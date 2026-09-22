@@ -1,0 +1,184 @@
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import {
+  createExample,
+  exampleContext,
+  exampleText,
+} from "../src/core/example";
+import {
+  makeArtifact,
+  matchPacket,
+  parsePacket,
+  SessionSchema,
+} from "../src/core/model";
+import { publicURL, retrieve, collectSources } from "../src/core/collector";
+
+test(
+  "the collection deadline cancels an unresponsive source without returning late context",
+  { timeout: 35000 },
+  async () => {
+    const originalFetch = globalThis.fetch;
+    let attempts = 0,
+      results = 0;
+    const keepAlive = setTimeout(() => {}, 34000);
+    globalThis.fetch = async (_url, options) => {
+      attempts++;
+      return new Promise((_resolve, reject) => {
+        options!.signal!.addEventListener(
+          "abort",
+          () => reject(new DOMException("Aborted", "AbortError")),
+          { once: true },
+        );
+      });
+    };
+    try {
+      await assert.rejects(
+        collectSources(
+          ["https://example.com/slow"],
+          new AbortController().signal,
+          () => results++,
+        ),
+        /timed out after 30 seconds/,
+      );
+      assert.equal(attempts, 1);
+      assert.equal(results, 0);
+    } finally {
+      clearTimeout(keepAlive);
+      globalThis.fetch = originalFetch;
+    }
+  },
+);
+
+test("example has anchored independent goals, stable values, and an explicit correction", async () => {
+  const p = await createExample(),
+    r = await createExample("tompathy:example", true);
+  assert.equal(matchPacket(p, p.artifact, "artifact", []), null);
+  assert.equal(
+    matchPacket(
+      p,
+      await makeArtifact(exampleText, "tompathy:example", "Example"),
+      "artifact",
+      [],
+    ),
+    null,
+  );
+  assert.equal(matchPacket(r, p.artifact, "context", [exampleContext]), null);
+  assert.notEqual(
+    r.hypotheses.find((h) => h.id === "craft")?.label,
+    p.hypotheses.find((h) => h.id === "craft")?.label,
+  );
+  assert.equal(r.revisionOf, p.id);
+  assert.equal(
+    p.hypotheses
+      .filter((h) => h.kind === "value")
+      .every((h) => !h.regions.length),
+    true,
+  );
+});
+test("repeated Unicode and inline-compatible text get distinct contextual anchors", async () => {
+  const a = await makeArtifact(
+    ["Hello café — 世界", "Repeated phrase here.", "Repeated phrase here."],
+    "https://example.com",
+    "Test",
+  );
+  assert.notEqual(a.regions[1].anchor.start, a.regions[2].anchor.start);
+  assert.notEqual(a.regions[1].anchor.prefix, a.regions[2].anchor.prefix);
+  const p = await createExample();
+  assert.match(matchPacket(p, a, "artifact", [])!, /different artifact/);
+  const corrupt = structuredClone(p);
+  corrupt.artifact.regions[0].anchor.index = 9;
+  assert.match(matchPacket(corrupt, p.artifact, "artifact", [])!, /anchors/);
+});
+test("missing support and zero remain distinct; invalid numbers and dangling references fail", async () => {
+  const p = await createExample();
+  p.hypotheses[0].support!.value = 0;
+  assert.equal(parsePacket(JSON.stringify(p)).hypotheses[0].support?.value, 0);
+  p.hypotheses[0].support!.value = 2;
+  assert.throws(() => parsePacket(JSON.stringify(p)), /outside declared scale/);
+  p.hypotheses[0].support = null;
+  p.hypotheses[0].evidence = ["missing"];
+  assert.throws(() => parsePacket(JSON.stringify(p)), /Unresolved/);
+  assert.throws(() => parsePacket("{broken"), SyntaxError);
+});
+test("probabilities require a valid candidate set, scale and normalized exhaustive distribution", async () => {
+  const p = await createExample();
+  const ids = ["observe", "convention"];
+  for (const id of ids) {
+    const h = p.hypotheses.find((h) => h.id === id)!;
+    h.support = {
+      value: 0.8,
+      scale: [0, 1],
+      semantics: "probability",
+      meaning: "Test probability",
+      candidateSet: "routes",
+    };
+  }
+  p.alternatives.find((a) => a.id === "routes")!.exhaustive = true;
+  assert.throws(() => parsePacket(JSON.stringify(p)), /sum to 1/);
+  p.hypotheses.find((h) => h.id === "convention")!.support!.value = 0.2;
+  assert.doesNotThrow(() => parsePacket(JSON.stringify(p)));
+});
+test("scope mismatches never re-use analysis and session validation catches corrupted packets", async () => {
+  const p = await createExample();
+  assert.match(
+    matchPacket(p, p.artifact, "context", [exampleContext])!,
+    /scope differs/,
+  );
+  const s = {
+    sessionVersion: "1.0",
+    artifact: p.artifact,
+    packet: p,
+    scope: "artifact",
+    context: [],
+  };
+  assert.equal(SessionSchema.safeParse(s).success, true);
+  p.process.edges[0].to = "absent";
+  assert.equal(SessionSchema.safeParse(s).success, false);
+});
+test("public collector rejects private literals, encoded IPs, credentials, insecure and local sources", () => {
+  for (const url of [
+    "http://example.com",
+    "https://localhost",
+    "https://127.0.0.1",
+    "https://2130706433",
+    "https://[::1]",
+    "https://192.168.1.1",
+    "https://router.local",
+    "https://host.internal",
+    "https://user:pass@example.com",
+    "https://example.com:9443",
+  ])
+    assert.throws(() => publicURL(url), url);
+  assert.equal(
+    publicURL("https://example.com/a#b").href,
+    "https://example.com/a",
+  );
+});
+test("bounded fetch rejects status, content type and oversized body; cancellation stays visible", async () => {
+  const call = (response: Response) =>
+    retrieve(
+      new URL("https://example.com"),
+      new AbortController().signal,
+      async () => response,
+    );
+  await assert.rejects(call(new Response("no", { status: 404 })), /404/);
+  await assert.rejects(
+    call(new Response("x", { headers: { "content-type": "application/pdf" } })),
+    /Choose an HTML/,
+  );
+  await assert.rejects(
+    call(
+      new Response("x".repeat(256001), {
+        headers: { "content-type": "text/plain" },
+      }),
+    ),
+    /256 KB/,
+  );
+  const r = await call(
+    new Response("A useful public excerpt.", {
+      headers: { "content-type": "text/plain" },
+    }),
+  );
+  assert.equal(r.selected, false);
+  assert.equal(r.lineage, "public-url");
+});

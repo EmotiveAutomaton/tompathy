@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "ToMpathy — Maker Reader",
+  "description": "Explore goals, processes, and values behind a text. A reader for externally supplied maker hypotheses.",
+  "version": "0.1.0",
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "minimum_chrome_version": "116",
+  "permissions": ["activeTab", "scripting", "sidePanel", "storage"],
+  "optional_host_permissions": ["https://*/*"],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "action": {
+    "default_title": "Open ToMpathy",
+    "default_icon": { "16": "icon16.png", "32": "icon32.png" }
+  },
+  "side_panel": { "default_path": "panel.html" },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": { "default": "Alt+Shift+Y" },
+      "description": "Open ToMpathy"
+    }
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'"
+  }
+}
