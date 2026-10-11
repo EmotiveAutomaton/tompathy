@@ -1,4 +1,4 @@
-# ToMpathy result contract · 1.0
+# ToMpathy result contract · 1.0 and 1.1
 
 `src/core/model.ts` is the authoritative runtime validator. `examples/bench-result.json` is a complete valid packet; `bench-revision.json` demonstrates a context-conditioned revision. `bench-source.txt` is the corresponding synthetic text. Fixtures use `tompathy:example` as their portable origin. In the installed extension, use **Import result → Download example format** on the bundled source to obtain a packet bound to that installation's source URL.
 
@@ -13,27 +13,37 @@ No transport endpoint has been invented. `configuredProvider` is null; ordinary 
 
 ## Fields
 
-| Field                             | Meaning                                                                                                                                                   |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `schemaVersion`                   | Exactly `"1.0"`                                                                                                                                           |
-| `id`, `revision`                  | Analysis identity and positive integer revision                                                                                                           |
-| `artifact`                        | ID, source, title, capture timestamp, content revision, truncation flag and regions                                                                       |
-| `provider`                        | Stable provider ID and method description                                                                                                                 |
-| `origin`                          | `synthetic example`, `imported`, or `live provider`; separate from claim status                                                                           |
-| `scope`                           | `artifact` or `context`, plus exactly the selected context IDs                                                                                            |
-| `makers`                          | Analysis-local IDs, labels, identity status (`unknown`, `supplied`, `synthetic`) and relationship to the artifact                                         |
-| `hypotheses`                      | ID, kind (`goal`, `process`, `value`), label, description, maker and region associations, claim status, optional support/alternative set and evidence IDs |
-| `alternatives`                    | Explicit member IDs, `competing` or `independent`, and whether exhaustive                                                                                 |
-| `process`                         | Process node IDs and explicit directed edges with supplied relationship labels                                                                            |
-| `estimates`                       | Region ID, optional contribution value with quantity and 0–1 scale, independent uncertainty level and meaning                                             |
-| `evidence`                        | ID, source identity/URL, excerpt, capture time and supplied relationship to the claim                                                                     |
-| `revisionOf`, `changeExplanation` | Optional predecessor analysis ID and explanation to review before accepting                                                                               |
+| Field                             | Meaning                                                                                                                                                         |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `schemaVersion`                   | `"1.0"` (legacy, including Sounding Line Stage 13) or `"1.1"`                                                                                                   |
+| `id`, `revision`                  | Analysis identity and positive integer revision                                                                                                                 |
+| `artifact`                        | ID, source, title, capture timestamp, content revision, truncation flag and regions                                                                             |
+| `provider`                        | Stable provider ID and method description                                                                                                                       |
+| `origin`                          | `synthetic example`, `imported`, or `live provider`; separate from claim status                                                                                 |
+| `scope`                           | `artifact` or `context`, plus exactly the selected context IDs                                                                                                  |
+| `makers`                          | Analysis-local IDs, labels, identity status (`unknown`, `supplied`, `synthetic`) and relationship to the artifact                                               |
+| `hypotheses`                      | ID, kind (`goal`, `process`, `value`), label, description, maker and region associations, claim status, optional support/alternative set and evidence IDs       |
+| `alternatives`                    | Explicit member IDs, `competing` or `coexisting`, and whether exhaustive; legacy `independent` remains readable as coexistence without a new independence claim |
+| `process`                         | Process node IDs and explicit directed edges with supplied relationship labels                                                                                  |
+| `estimates`                       | Region ID, optional contribution value with quantity and 0–1 scale, independent uncertainty level and meaning                                                   |
+| `evidence`                        | ID, source identity/URL, excerpt, capture time and supplied relationship to the claim                                                                           |
+| `revisionOf`, `changeExplanation` | Optional predecessor analysis ID and explanation to review before accepting                                                                                     |
 
 Claim status is one of `hypothesis`, `creator-reported`, `observed`, `unknown`. An observation of text is not an observation of intent. Makers are explicitly scoped; the UI lets readers select a maker and never merges identities by name.
 
 Support is optional/null, or an object with `value`, a two-number `scale`, `semantics` (`relative` or `probability`), `meaning`, optional `calibration`, and optional `candidateSet`. A probability requires scale `[0,1]` and a valid candidate set. An exhaustive competing probability set must sum to one. Invalid values, nonfinite numbers, duplicate IDs and dangling references are rejected. Missing support and zero are distinct. Relative support is never labeled as probability. Contribution never determines uncertainty.
 
 Maker-level values are rendered from the whole accepted snapshot. Their membership, order and sizes do not vary with the selected passage. A change in scope hides mismatched estimates; the UI does not reweight them. Replacing an existing packet opens an explicit revision review.
+
+## Additions in 1.1
+
+- `hypotheses[].interpretation`: `governing-purpose` / `local-goal` for goals; `historical-event` / `reader-route` / `repertoire` for processes; `preference` / `value` for the stable list. These are distinct meanings. Missing legacy meanings stay unspecified. Unknown value placeholders do not become a list of repeated asserted values.
+- `process.interpretation`: `historical-production`, `functional`, or `unspecified`. Edges can carry `kind` (`precedes`, `enables`, `revises`, `alternative`, `related`, `order-unknown`), claim `status`, and evidence IDs. Only precedes/enables edges form displayed branches; other relations remain explicit cross-links. Shared events are referenced rather than silently dropped. A cycle of explicit `precedes` claims is rejected. Branches do not establish a total chronology. Reader-route and repertoire nodes are not mixed into the historical display.
+- `accounts[]`: ID, label, member hypothesis IDs, and explanation. Accounts relate compatible goal/process/preference claims; the frontend does not infer a joint posterior from their individual scores.
+- `documentContribution`: nullable value, named quantity, explanation, and evidence IDs. A local contribution can add `basis`, explanation, and evidence IDs. The frontend never adds global and local scores or treats edits as a quantity of thought. Unknown local contribution is unpainted. Page hover titles and source details explain both levels.
+- Capture metadata may include explicitly sourced `authors[]` with `basis` and a `capture` method/note. Page metadata is not verified identity. The requested author is separately editable in Source text and never relabels a loaded packet's maker.
+
+All new evidence/account references are validated. Existing 1.0 packets remain accepted; adding fields does not supply missing historical or scientific warrant.
 
 ## Text identity and matching
 
@@ -48,6 +58,14 @@ The page adapter resolves anchors against its captured DOM index. Relevant text/
 `sessionVersion: "1.0"` wraps an artifact, nullable packet, context items and scope. Context items include ID, source, excerpt, retrieval timestamp, lineage (`pasted`, `file`, `public-url`, `synthetic`) and selection state. Imported session items are deselected until the reader chooses them again. Sessions load as detached snapshots; they do not attach claims to a current tab.
 
 ## Sounding Line inspection
+
+October 11 integration update: the nearby repository now has `runners/stage13/export_tompathy.py`, an offline 1.0 exporter. It is not a live inference endpoint. The frontend preserves that shape, leaves its missing values unknown, and accepts empty process graphs. Newly added/retrieved context IDs use SHA-256 of UTF-8 `JSON.stringify([source, excerpt])`, matching its canonical source/excerpt identity. Legacy UUID context remains readable but needs recollection or an explicit ID mapping before use with that exporter. Synthetic example context uses its fixture ID.
+
+**Export analysis request** writes `requestVersion: "1.0"`, request ID, exact artifact, requested author (or null), scope with selected context IDs, selected context records only, and accepted packet versions. **Export capture** remains the plain artifact input expected by the offline exporter. No backend jobs are started by either action.
+
+Sessions add optional `authorLabel` and `history` (up to five earlier packets, their context, and retention timestamp). Revision acceptance preserves the preceding account; history inspection does not repaint the page or replace the current account. Clearing the session also clears this history.
+
+The original September inspection is retained below as historical context.
 
 Read-only inspection used the local `SoundingLine/sounding-line` checkout at commit `9d193b75cb117c999f197ca0319ff946656eba3f`. The reviewed `soundingline/reading_profile.py` separates proximal reconstruction, trajectories, historical claims, contribution hypotheses, observed process and explicit claim boundaries. The Stage 11.1 human viewer similarly keeps forecasts and witnessed facts separate.
 

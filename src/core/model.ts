@@ -20,6 +20,21 @@ export const ArtifactSchema = z.object({
     .min(1)
     .max(1500),
   truncated: z.boolean().default(false),
+  authors: z
+    .array(
+      z.object({
+        label: z.string().min(1).max(250),
+        basis: z.enum(["page-metadata", "byline", "structured-data"]),
+      }),
+    )
+    .max(20)
+    .optional(),
+  capture: z
+    .object({
+      method: z.enum(["article", "main", "content-container", "page"]),
+      note: z.string().max(1000),
+    })
+    .optional(),
 });
 export const ContextSchema = z.object({
   id,
@@ -48,10 +63,21 @@ export const HypothesisSchema = z.object({
   support: SupportSchema.nullish(),
   alternativeSet: id.optional(),
   evidence: z.array(id),
+  interpretation: z
+    .enum([
+      "governing-purpose",
+      "local-goal",
+      "historical-event",
+      "reader-route",
+      "repertoire",
+      "preference",
+      "value",
+    ])
+    .optional(),
 });
 export const PacketSchema = z
   .object({
-    schemaVersion: z.literal("1.0"),
+    schemaVersion: z.enum(["1.0", "1.1"]),
     id,
     revision: z.number().int().positive(),
     artifact: ArtifactSchema,
@@ -75,21 +101,57 @@ export const PacketSchema = z
     alternatives: z.array(
       z.object({
         id,
-        kind: z.enum(["competing", "independent"]),
+        kind: z.enum(["competing", "independent", "coexisting"]),
         members: z.array(id).min(1),
         exhaustive: z.boolean(),
       }),
     ),
     process: z.object({
+      interpretation: z
+        .enum(["historical-production", "functional", "unspecified"])
+        .optional(),
       nodes: z.array(id),
       edges: z.array(
         z.object({
           from: id,
           to: id,
           relationship: z.string().min(1).max(500),
+          kind: z
+            .enum([
+              "precedes",
+              "enables",
+              "revises",
+              "alternative",
+              "related",
+              "order-unknown",
+            ])
+            .optional(),
+          status: z
+            .enum(["hypothesis", "creator-reported", "observed", "unknown"])
+            .optional(),
+          evidence: z.array(id).optional(),
         }),
       ),
     }),
+    accounts: z
+      .array(
+        z.object({
+          id,
+          label: z.string().min(1).max(250),
+          members: z.array(id).min(1),
+          explanation: z.string().min(1).max(4000),
+        }),
+      )
+      .max(30)
+      .optional(),
+    documentContribution: z
+      .object({
+        value: z.number().min(0).max(1).nullable(),
+        quantity: z.string().min(1).max(500),
+        explanation: z.string().min(1).max(4000),
+        evidence: z.array(id),
+      })
+      .optional(),
     estimates: z.array(
       z.object({
         region: id,
@@ -98,6 +160,11 @@ export const PacketSchema = z
             value: z.number().min(0).max(1),
             quantity: z.string().min(1).max(500),
             scale: z.literal("0–1"),
+            explanation: z.string().max(4000).optional(),
+            evidence: z.array(id).optional(),
+            basis: z
+              .enum(["global-and-local", "local-only", "unspecified"])
+              .optional(),
           })
           .nullish(),
         uncertainty: z.object({
@@ -130,6 +197,7 @@ export const PacketSchema = z
     unique(p.makers, "maker");
     unique(p.evidence, "evidence");
     unique(p.alternatives, "alternative set");
+    unique(p.accounts ?? [], "account");
     const hs = new Map(p.hypotheses.map((x) => [x.id, x])),
       rs = new Set(p.artifact.regions.map((x) => x.id)),
       ms = new Set(p.makers.map((x) => x.id)),
@@ -141,6 +209,16 @@ export const PacketSchema = z
         h.evidence.some((x) => !es.has(x))
       )
         error(`Unresolved references in ${h.id}.`);
+      const allowedInterpretations = {
+        goal: ["governing-purpose", "local-goal"],
+        process: ["historical-event", "reader-route", "repertoire"],
+        value: ["preference", "value"],
+      };
+      if (
+        h.interpretation &&
+        !allowedInterpretations[h.kind].includes(h.interpretation)
+      )
+        error(`Interpretation does not match hypothesis kind in ${h.id}.`);
       if (h.support) {
         const s = h.support;
         if (
@@ -207,6 +285,36 @@ export const PacketSchema = z
       error("Invalid or duplicate estimate region.");
     if (p.scope.kind === "artifact" && p.scope.contextIds.length)
       error("Artifact scope cannot include context.");
+    for (const a of p.accounts ?? []) {
+      if (
+        new Set(a.members).size !== a.members.length ||
+        a.members.some((x) => !hs.has(x))
+      )
+        error(`Invalid members in account ${a.id}.`);
+    }
+    const evidenceLists = [
+      p.documentContribution?.evidence ?? [],
+      ...p.process.edges.map((e) => e.evidence ?? []),
+      ...p.estimates.map((e) => e.contribution?.evidence ?? []),
+    ];
+    if (evidenceLists.some((list) => list.some((x) => !es.has(x))))
+      error("Unresolved contribution or process relationship evidence.");
+    // Only explicit temporal claims imply order. A historical partial order cannot cycle.
+    const temporal = p.process.edges.filter((e) => e.kind === "precedes");
+    const visiting = new Set<string>(),
+      visited = new Set<string>();
+    const cycles = (node: string): boolean => {
+      if (visiting.has(node)) return true;
+      if (visited.has(node)) return false;
+      visiting.add(node);
+      if (temporal.filter((e) => e.from === node).some((e) => cycles(e.to)))
+        return true;
+      visiting.delete(node);
+      visited.add(node);
+      return false;
+    };
+    if (p.process.nodes.some(cycles))
+      error("Historical precedence cannot contain a cycle.");
   });
 export type Artifact = z.infer<typeof ArtifactSchema>;
 export type Packet = z.infer<typeof PacketSchema>;
@@ -219,6 +327,17 @@ export const SessionSchema = z.object({
   packet: PacketSchema.nullable(),
   context: z.array(ContextSchema).max(30),
   scope: z.enum(["artifact", "context"]),
+  authorLabel: z.string().max(250).optional(),
+  history: z
+    .array(
+      z.object({
+        packet: PacketSchema,
+        context: z.array(ContextSchema).max(30),
+        acceptedAt: timestamp,
+      }),
+    )
+    .max(5)
+    .optional(),
 });
 export type Session = z.infer<typeof SessionSchema>;
 export { normalize, makeArtifact } from "./artifact";

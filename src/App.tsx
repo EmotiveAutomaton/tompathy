@@ -39,6 +39,13 @@ import {
 import { createExample, exampleContext, exampleText } from "./core/example";
 import { collectSources, publicURL } from "./core/collector";
 import {
+  acceptRevision,
+  analysisHandoff,
+  contributionExplanation,
+  interpretationLabel,
+} from "./core/reading";
+import { contextIdentity, mergeContext } from "./core/context";
+import {
   capturePage,
   captureSelection,
   isExtension,
@@ -164,6 +171,7 @@ export function App({ preview = false }: { preview?: boolean }) {
       | "import"
       | "help"
       | "revision"
+      | "history"
       | null
     >(null),
     [theme, setTheme] = useState("system"),
@@ -186,6 +194,15 @@ export function App({ preview = false }: { preview?: boolean }) {
   const ready = !!packet && !mismatch && !stale;
   const activeMaker =
     packet?.makers.find((m) => m.id === maker) ?? packet?.makers[0];
+  const authorName =
+    (ready && activeMaker?.identity !== "unknown"
+      ? activeMaker?.label
+      : null) ||
+    session.authorLabel ||
+    (artifact?.authors?.length === 1 ? artifact.authors[0].label : null) ||
+    (artifact?.authors?.length
+      ? "Multiple authors listed"
+      : "Author not identified");
   const hypotheses = ready
     ? packet!.hypotheses.filter((h) => h.makers.includes(activeMaker!.id))
     : [];
@@ -199,7 +216,9 @@ export function App({ preview = false }: { preview?: boolean }) {
     (h) =>
       h.kind === "process" && (!h.regions.length || h.regions.includes(region)),
   );
-  const values = hypotheses.filter((h) => h.kind === "value");
+  const values = hypotheses.filter(
+    (h) => h.kind === "value" && h.status !== "unknown",
+  );
   const focus = processes
     .filter((h) => h.status !== "unknown")
     .sort((a, b) => supportWeight(b) - supportWeight(a))[0];
@@ -207,11 +226,22 @@ export function App({ preview = false }: { preview?: boolean }) {
     ? packet?.estimates.find((e) => e.region === region)
     : null;
   const isExample = packet?.origin === "synthetic example";
+  const detailEvidence = [
+    ...new Set([
+      ...(detail?.evidence ?? []),
+      ...(detail?.kind === "process"
+        ? (packet?.process.edges
+            .filter((e) => e.from === detail.id || e.to === detail.id)
+            .flatMap((e) => e.evidence ?? []) ?? [])
+        : []),
+    ]),
+  ];
   function cancelWork() {
     serial.current++;
     collector.current?.abort();
     setCollecting(false);
     setBusy(false);
+    setPending(null);
   }
   async function capture() {
     cancelWork();
@@ -242,8 +272,14 @@ export function App({ preview = false }: { preview?: boolean }) {
         ) === null
           ? previous.packet
           : null;
-      if (result.artifact.source === chrome.runtime.getURL("example.html"))
-        resultPacket = await createExample(result.artifact.source);
+      if (
+        !resultPacket &&
+        result.artifact.source === chrome.runtime.getURL("example.html")
+      ) {
+        const candidate = await createExample(result.artifact.source);
+        if (!matchPacket(candidate, result.artifact, "artifact", []))
+          resultPacket = candidate;
+      }
       if (request !== serial.current) return;
       setSession({
         sessionVersion: "1.0",
@@ -251,6 +287,11 @@ export function App({ preview = false }: { preview?: boolean }) {
         packet: resultPacket,
         scope: resultPacket?.scope.kind ?? "artifact",
         context: resultPacket?.scope.kind === "context" ? previous.context : [],
+        history: resultPacket ? previous.history : [],
+        authorLabel:
+          previous.artifact?.id === result.artifact.id
+            ? previous.authorLabel
+            : undefined,
       });
     } catch (e) {
       if (request !== serial.current) return;
@@ -298,7 +339,12 @@ export function App({ preview = false }: { preview?: boolean }) {
     };
   }, []);
   useEffect(() => {
-    if (hydrated) void writeSession(session);
+    if (hydrated)
+      void writeSession(session).catch(() =>
+        setError(
+          "This reading could not be saved in browser session storage. Save a session file before closing the panel.",
+        ),
+      );
   }, [session, hydrated]);
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -476,7 +522,7 @@ export function App({ preview = false }: { preview?: boolean }) {
       setError((e as Error).message);
     }
   };
-  function addContext(
+  async function addContext(
     excerpt: string,
     source: string,
     lineage: ContextItem["lineage"] = "pasted",
@@ -489,19 +535,20 @@ export function App({ preview = false }: { preview?: boolean }) {
       setError("Remove a context item before adding more (30 maximum).");
       return;
     }
+    const request = serial.current;
+    const text = excerpt.trim().slice(0, 20000);
+    const id = await contextIdentity(source, text);
+    if (request !== serial.current) return;
     setSession((s) => ({
       ...s,
-      context: [
-        ...s.context,
-        {
-          id: crypto.randomUUID(),
-          source,
-          excerpt: excerpt.trim().slice(0, 20000),
-          retrievedAt: new Date().toISOString(),
-          lineage,
-          selected: false,
-        },
-      ],
+      context: mergeContext(s.context, {
+        id,
+        source,
+        excerpt: text,
+        retrievedAt: new Date().toISOString(),
+        lineage,
+        selected: false,
+      }),
     }));
     setContextPaste("");
     setError("");
@@ -544,7 +591,7 @@ export function App({ preview = false }: { preview?: boolean }) {
           else {
             setSession((s) => ({
               ...s,
-              context: [...s.context, item].slice(0, 30),
+              context: mergeContext(s.context, item),
             }));
             setCollectionStatus((s) => [
               ...s,
@@ -604,26 +651,32 @@ export function App({ preview = false }: { preview?: boolean }) {
       )}
       <div className="reader" data-tompathy-ui>
         <header className="app-header">
+          <div className="author-identity">
+            <span className="author-caption">Author</span>
+            <button
+              className="author-name"
+              onClick={() => setModal("source")}
+              title="Author and source"
+            >
+              {authorName}
+            </button>
+            <span className="identity-note">
+              {busy
+                ? "Capturing…"
+                : isExample
+                  ? "Synthetic example"
+                  : ready
+                    ? "Revisable account"
+                    : artifact
+                      ? "Awaiting analysis"
+                      : "Choose a text to begin"}
+            </span>
+          </div>
           <Brand />
           <IconButton label="Reader menu" onClick={() => setModal("menu")}>
             <MoreHorizontal size={21} />
           </IconButton>
         </header>
-        <div className="reading-identity">
-          <button className="artifact-title" onClick={() => setModal("source")}>
-            {artifact?.title ?? "Start with a piece of writing"}
-          </button>
-          <span className="identity-note">
-            {busy
-              ? "Capturing…"
-              : isExample
-                ? "Synthetic example"
-                : ready
-                  ? "Analysis connected"
-                  : "No analysis connected"}
-            {ready && activeMaker ? " · " + activeMaker.label : ""}
-          </span>
-        </div>
         <div className={`reader-content ${ready ? "is-ready" : ""}`}>
           {error && (
             <div className="message error" role="alert">
@@ -671,12 +724,12 @@ export function App({ preview = false }: { preview?: boolean }) {
               </div>
               <h2>
                 {artifact
-                  ? "The text is here.\nThe maker is still a question."
-                  : "Every text carries traces of its making."}
+                  ? "Ready for an account"
+                  : "Start with a piece of writing"}
               </h2>
               <p>
                 {artifact
-                  ? "Maker estimates are awaiting an analysis source. Explore the captured passages, add context, or import a matching result."
+                  ? "Maker estimates are awaiting an analysis source. Import a result for this capture, or explore the example."
                   : "Explore possible goals, the process behind them, and the values that may connect them."}
               </p>
               <button className="primary-button" onClick={() => void example()}>
@@ -698,7 +751,12 @@ export function App({ preview = false }: { preview?: boolean }) {
           >
             <div className="section-heading">
               <h2 id="goals-title">Goals</h2>
-              <span className="section-aside">in this passage</span>
+              <span
+                className="section-aside"
+                title="Governing purposes and local goals may coexist. Word size shows support within a declared set."
+              >
+                possible aims
+              </span>
             </div>
             <div
               className={`goal-cloud ${view === "list" ? "as-list" : ""}`}
@@ -741,18 +799,36 @@ export function App({ preview = false }: { preview?: boolean }) {
                 {view === "cloud" ? "Tree" : "Expand"}
               </button>
             </div>
+            {ready && (
+              <p className="process-caption">
+                {packet!.process.interpretation === "historical-production"
+                  ? "Possible production history · order may be unresolved"
+                  : "Process account · historical order not established"}
+              </p>
+            )}
             <div className={`process-map ${view}`} data-testid="process">
               {processes.length ? (
                 view === "tree" ? (
                   <ProcessTree
-                    nodes={hypotheses.filter((h) => h.kind === "process")}
+                    nodes={hypotheses.filter(
+                      (h) =>
+                        h.kind === "process" &&
+                        h.interpretation !== "reader-route" &&
+                        h.interpretation !== "repertoire",
+                    )}
                     edges={packet!.process.edges}
                     focus={focus?.id}
                     local={processes.map((h) => h.id)}
                     onInspect={inspect}
                   />
                 ) : (
-                  processes.map((h, i) => token(h, i, view))
+                  processes
+                    .filter(
+                      (h) =>
+                        h.interpretation !== "reader-route" &&
+                        h.interpretation !== "repertoire",
+                    )
+                    .map((h, i) => token(h, i, view))
                 )
               ) : (
                 <p className="empty-region">
@@ -782,6 +858,7 @@ export function App({ preview = false }: { preview?: boolean }) {
                 {detail.status} · {detail.kind}
               </span>
               <p>{detail.description}</p>
+              <p className="muted">{interpretationLabel(detail)}</p>
               {detail.support ? (
                 <p className="support-line">
                   {detail.support.semantics === "probability"
@@ -800,9 +877,9 @@ export function App({ preview = false }: { preview?: boolean }) {
                 .filter((a) => a.members.includes(detail.id))
                 .map((a) => (
                   <p className="muted" key={a.id}>
-                    {a.kind === "independent"
-                      ? "Can coexist with"
-                      : "Competing account with"}
+                    {a.kind === "competing"
+                      ? "Competing account with"
+                      : "Can coexist with"}
                     :{" "}
                     {a.members
                       .filter((id) => id !== detail.id)
@@ -815,6 +892,8 @@ export function App({ preview = false }: { preview?: boolean }) {
                     {a.exhaustive
                       ? " Complete candidate set."
                       : " Other accounts may be possible."}
+                    {a.kind !== "competing" &&
+                      " Coexistence does not imply statistical independence."}
                   </p>
                 ))}
               {detail.kind === "process" &&
@@ -824,11 +903,32 @@ export function App({ preview = false }: { preview?: boolean }) {
                     <p className="muted" key={i}>
                       {packet!.hypotheses.find((h) => h.id === e.from)!.label} →{" "}
                       {packet!.hypotheses.find((h) => h.id === e.to)!.label}:{" "}
-                      {e.relationship}.
+                      {e.relationship}.{" "}
+                      {e.kind
+                        ? `Relationship: ${e.kind}.`
+                        : "Order unspecified."}{" "}
+                      {e.status ?? "hypothesis"}.
                     </p>
                   ))}
-              {detail.evidence.length ? (
-                detail.evidence.map((id) => {
+              {packet!.accounts
+                ?.filter((a) => a.members.includes(detail.id))
+                .map((a) => (
+                  <details key={a.id}>
+                    <summary>{a.label}</summary>
+                    <p>{a.explanation}</p>
+                    <p className="muted">
+                      Compatible hypotheses:{" "}
+                      {a.members
+                        .map(
+                          (id) =>
+                            packet!.hypotheses.find((h) => h.id === id)!.label,
+                        )
+                        .join(" · ")}
+                    </p>
+                  </details>
+                ))}
+              {detailEvidence.length ? (
+                detailEvidence.map((id) => {
                   const e = packet!.evidence.find((e) => e.id === id)!;
                   return (
                     <blockquote key={id}>
@@ -882,7 +982,16 @@ export function App({ preview = false }: { preview?: boolean }) {
                   >
                     {["◌", "✳", "◇"][i % 3]}
                   </span>
-                  <span>{h.label}</span>
+                  <span>
+                    {h.label}
+                    <small className="value-kind">
+                      {h.interpretation === "preference"
+                        ? "Preference"
+                        : h.interpretation === "value"
+                          ? "Value hypothesis"
+                          : "Interpretation unspecified"}
+                    </small>
+                  </span>
                   <span className="value-track">
                     <i
                       style={{
@@ -897,7 +1006,7 @@ export function App({ preview = false }: { preview?: boolean }) {
             ) : (
               <p className="empty-region">
                 {ready
-                  ? "No maker-level values supplied."
+                  ? "Not enough evidence for this author’s values."
                   : "A stable maker-level snapshot will appear here."}
               </p>
             )}
@@ -906,13 +1015,17 @@ export function App({ preview = false }: { preview?: boolean }) {
         <footer className="app-footer">
           {ready ? (
             <div className="passage-strip">
-              <span>
+              <button
+                className="passage-info"
+                onClick={() => setModal("source")}
+                title={contributionExplanation(packet!, region)}
+              >
                 {pinned ? "Pinned" : "Following"} passage{" "}
                 {Math.max(
                   1,
                   artifact!.regions.findIndex((r) => r.id === region) + 1,
                 )}
-              </span>
+              </button>
               <button
                 className="pin-button"
                 aria-label={pinned ? "Release passage" : "Pin passage"}
@@ -947,6 +1060,7 @@ export function App({ preview = false }: { preview?: boolean }) {
               import: "Connect an analysis",
               help: "A little closer to the maker",
               revision: "Review the new perspective",
+              history: "Earlier accounts",
             }[modal]
           }
           onClose={() => {
@@ -1001,6 +1115,16 @@ export function App({ preview = false }: { preview?: boolean }) {
                   <span>Reader settings</span>
                   <ChevronRight size={15} />
                 </button>
+                {!!session.history?.length && (
+                  <button onClick={() => setModal("history")}>
+                    <BookOpen size={18} />
+                    <span>
+                      Earlier accounts
+                      <small>{session.history.length} retained revisions</small>
+                    </span>
+                    <ChevronRight size={15} />
+                  </button>
+                )}
                 <button onClick={() => setModal("help")}>
                   <CircleHelp size={18} />
                   <span>How ToMpathy works</span>
@@ -1067,14 +1191,20 @@ export function App({ preview = false }: { preview?: boolean }) {
               </ol>
               <h3>Reading the page marks</h3>
               <p>
-                Amber tint represents a supplied human contribution estimate. A
-                dotted underline independently marks high uncertainty. An
-                outline marks your selection. No estimate means no tint.
+                Amber tint represents a named contribution estimate. A dotted
+                underline independently marks high uncertainty. An outline marks
+                your selection. No estimate means no tint.
               </p>
               <p>
                 Word size expresses the provider’s declared support scale; it
                 does not automatically mean probability. Example estimates are
                 hand-authored.
+              </p>
+              <p>
+                Process describes possible production events, not a recipe for
+                reading or a map of expertise. More evidence can reveal
+                alternatives or reduce confidence. Context collection never
+                changes an account by itself.
               </p>
               <button className="primary-button" onClick={() => void example()}>
                 Open the example <ArrowRight size={16} />
@@ -1083,6 +1213,31 @@ export function App({ preview = false }: { preview?: boolean }) {
           )}
           {modal === "source" && (
             <>
+              <h3>{artifact?.title ?? "No source captured"}</h3>
+              <label>
+                Author to inspect
+                <input
+                  value={
+                    session.authorLabel ??
+                    (artifact?.authors?.length === 1
+                      ? artifact.authors[0].label
+                      : "")
+                  }
+                  maxLength={250}
+                  placeholder="Author not identified"
+                  onChange={(e) =>
+                    setSession((s) => ({ ...s, authorLabel: e.target.value }))
+                  }
+                />
+              </label>
+              <p className="muted">
+                {ready
+                  ? `Analysis subject: ${activeMaker?.label}. Editing the requested author does not reassign existing claims.`
+                  : "A page byline is a source attribution, not a verified identity. You can correct the requested author before exporting."}
+              </p>
+              {artifact?.capture && (
+                <p className="muted">{artifact.capture.note}</p>
+              )}
               <p className="muted">
                 {artifact
                   ? `${artifact.regions.length} passages · ${artifact.truncated ? "Capture limited to 300,000 characters / 1,500 blocks" : "Text snapshot"} · ${tabId === null ? "Detached from a live page" : "Linked to the active page"}`
@@ -1099,14 +1254,42 @@ export function App({ preview = false }: { preview?: boolean }) {
                     <span>□ Selection</span>
                   </div>
                   {estimate && (
-                    <p className="muted">
-                      {estimate.contribution
-                        ? `${estimate.contribution.quantity}: ${estimate.contribution.value} (${estimate.contribution.scale}).`
-                        : "Contribution unknown."}{" "}
-                      Uncertainty: {estimate.uncertainty.level}.{" "}
-                      {estimate.uncertainty.meaning}
-                    </p>
+                    <div className="contribution-explanation">
+                      {contributionExplanation(packet!, region)
+                        .split("\n")
+                        .map((line) => (
+                          <p key={line} className="muted">
+                            {line}
+                          </p>
+                        ))}
+                    </div>
                   )}
+                  {ready &&
+                    !!(
+                      packet!.documentContribution?.evidence.length ||
+                      estimate?.contribution?.evidence?.length
+                    ) && (
+                      <details>
+                        <summary>Evidence for contribution</summary>
+                        {[
+                          ...new Set([
+                            ...(packet!.documentContribution?.evidence ?? []),
+                            ...(estimate?.contribution?.evidence ?? []),
+                          ]),
+                        ].map((id) => {
+                          const e = packet!.evidence.find((e) => e.id === id)!;
+                          return (
+                            <blockquote key={id}>
+                              <p>{e.excerpt}</p>
+                              <cite>
+                                <SourceLink source={e.source} />
+                              </cite>
+                              <small>{e.relationship}</small>
+                            </blockquote>
+                          );
+                        })}
+                      </details>
+                    )}
                   <div className="passage-list">
                     {artifact.regions.map((r, i) => (
                       <button
@@ -1124,6 +1307,18 @@ export function App({ preview = false }: { preview?: boolean }) {
                     onClick={() => download("tompathy-capture.json", artifact)}
                   >
                     <Download size={15} /> Export capture for a provider
+                  </button>
+                  <button
+                    className="secondary-button"
+                    onClick={() =>
+                      download(
+                        "tompathy-analysis-request.json",
+                        analysisHandoff(session),
+                      )
+                    }
+                  >
+                    <Download size={15} /> Export analysis request with selected
+                    context
                   </button>
                 </>
               )}
@@ -1200,7 +1395,7 @@ export function App({ preview = false }: { preview?: boolean }) {
               <label className="upload-zone">
                 <Upload size={23} />
                 <strong>Choose a result packet</strong>
-                <span>Version 1.0 JSON · up to 2 MB</span>
+                <span>Version 1.0 / 1.1 JSON · up to 2 MB</span>
                 <input
                   type="file"
                   accept=".json,application/json"
@@ -1264,6 +1459,10 @@ export function App({ preview = false }: { preview?: boolean }) {
                 Add an excerpt or retrieve up to three public pages. Select the
                 items you want an analysis to consider. Collection alone does
                 not change the estimates.
+              </p>
+              <p className="muted">
+                These sources are available to you. Their presence does not
+                establish what the author knew or believed.
               </p>
               {context.map((c) => (
                 <div className="context-item" key={c.id}>
@@ -1427,15 +1626,26 @@ export function App({ preview = false }: { preview?: boolean }) {
               <button
                 className="primary-button"
                 onClick={() => {
-                  setSession((s) => ({
-                    ...s,
-                    packet: pending,
-                    scope: pending.scope.kind,
-                    context:
-                      pending.origin === "synthetic example"
-                        ? [exampleContext]
-                        : s.context,
-                  }));
+                  const nextContext =
+                    pending.origin === "synthetic example"
+                      ? [exampleContext]
+                      : context;
+                  const reason = artifact
+                    ? matchPacket(
+                        pending,
+                        artifact,
+                        pending.scope.kind,
+                        nextContext,
+                      )
+                    : "Capture a source first.";
+                  if (reason || stale) {
+                    setError(
+                      reason ||
+                        "Recapture the changed source before accepting a revision.",
+                    );
+                    return;
+                  }
+                  setSession((s) => acceptRevision(s, pending, nextContext));
                   setPending(null);
                   setDetail(null);
                   setModal(null);
@@ -1455,6 +1665,64 @@ export function App({ preview = false }: { preview?: boolean }) {
               >
                 Keep current analysis
               </button>
+            </>
+          )}
+          {modal === "history" && (
+            <>
+              <p className="muted">
+                Previous accounts stay inspectable. Viewing one does not replace
+                the accepted account or change page marks. Up to five are
+                retained in this session.
+              </p>
+              {[...(session.history ?? [])].reverse().map((entry, i) => (
+                <details key={`${entry.packet.id}-${i}`}>
+                  <summary>
+                    Revision {entry.packet.revision} ·{" "}
+                    {entry.packet.provider.id}
+                  </summary>
+                  <p>
+                    {entry.packet.changeExplanation ??
+                      "Earlier account before new evidence was accepted."}
+                  </p>
+                  <p className="muted">
+                    {entry.packet.origin} · {entry.packet.scope.kind} ·{" "}
+                    {entry.context.filter((c) => c.selected).length} selected
+                    sources
+                  </p>
+                  {entry.packet.hypotheses.map((h) => (
+                    <details key={h.id}>
+                      <summary>{h.label}</summary>
+                      <p>{h.description}</p>
+                      <p className="muted">
+                        {h.status} · {interpretationLabel(h)}
+                      </p>
+                      {h.evidence.map((id) => {
+                        const e = entry.packet.evidence.find(
+                          (e) => e.id === id,
+                        )!;
+                        return (
+                          <blockquote key={id}>
+                            <p>{e.excerpt}</p>
+                            <cite>{e.source}</cite>
+                            <small>{e.relationship}</small>
+                          </blockquote>
+                        );
+                      })}
+                    </details>
+                  ))}
+                  <button
+                    className="secondary-button"
+                    onClick={() =>
+                      download(
+                        `tompathy-revision-${entry.packet.revision}.json`,
+                        entry.packet,
+                      )
+                    }
+                  >
+                    <Download size={15} /> Export this account
+                  </button>
+                </details>
+              ))}
             </>
           )}
           {modal === "settings" && (
@@ -1556,12 +1824,28 @@ function ProcessTree({
   onInspect: (h: Hypothesis) => void;
 }) {
   const byId = new Map(nodes.map((h) => [h.id, h]));
-  const links = edges.filter((e) => byId.has(e.from) && byId.has(e.to));
+  const allLinks = edges.filter((e) => byId.has(e.from) && byId.has(e.to));
+  const links = allLinks.filter(
+    (e) => e.kind === "precedes" || e.kind === "enables",
+  );
   const visited = new Set<string>();
   const branch = (h: Hypothesis, relationship?: string): ReactNode => {
-    if (visited.has(h.id)) return null;
+    if (visited.has(h.id))
+      return (
+        <li key={`reference-${h.id}`}>
+          <button className="tree-node is-distant" onClick={() => onInspect(h)}>
+            <span aria-hidden="true">↗</span>
+            <span>
+              {h.label}
+              <small className="value-kind">
+                Shared event · {relationship}
+              </small>
+            </span>
+          </button>
+        </li>
+      );
     visited.add(h.id);
-    const children = links.filter((e) => e.from === h.id && !visited.has(e.to));
+    const children = links.filter((e) => e.from === h.id);
     return (
       <li key={h.id}>
         <button
@@ -1572,12 +1856,24 @@ function ProcessTree({
           <span className="node-dot" aria-hidden="true">
             {h.status === "unknown" ? "?" : ""}
           </span>
-          <span>{h.label}</span>
+          <span>
+            {h.label}
+            {relationship && (
+              <small className="value-kind">{relationship}</small>
+            )}
+          </span>
           {focus === h.id && (
             <span className="focus-mark" aria-label="in focus" />
           )}
           {relationship && <span className="sr-only"> · {relationship}</span>}
         </button>
+        {allLinks
+          .filter((e) => e.from === h.id && !links.includes(e))
+          .map((e, i) => (
+            <p className="cross-link" key={i}>
+              {e.relationship} · {byId.get(e.to)!.label}
+            </p>
+          ))}
         {children.length > 0 && (
           <ul>
             {children.map((e) => branch(byId.get(e.to)!, e.relationship))}

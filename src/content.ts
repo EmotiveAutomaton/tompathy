@@ -1,5 +1,7 @@
 import { makeArtifact, normalize } from "./core/artifact";
 import type { Artifact, Packet } from "./core/model";
+import { pageAuthors, readingRoot } from "./core/page";
+import { contributionExplanation } from "./core/reading";
 declare global {
   interface Window {
     __tompathyCleanup?: () => void;
@@ -18,6 +20,7 @@ export function installPageAdapter() {
   const abort = new AbortController(),
     sheet = new CSSStyleSheet();
   let ownTabId: number | undefined;
+  const originalTitles = new Map<HTMLElement, string | null>();
   if (location.protocol === "chrome-extension:")
     void chrome.tabs.getCurrent().then((tab) => {
       ownTabId = tab?.id;
@@ -31,9 +34,15 @@ export function installPageAdapter() {
       for (const name of ["mark", "selected", "uncertain", "related"])
         el.removeAttribute(`data-tompathy-${name}`);
       el.style.removeProperty("--tompathy-tint");
+      if (originalTitles.has(el)) {
+        const title = originalTitles.get(el);
+        if (title === null) el.removeAttribute("title");
+        else el.setAttribute("title", title!);
+        originalTitles.delete(el);
+      }
     });
   const excluded =
-    'nav,header,footer,aside,button,input,textarea,select,[contenteditable]:not([contenteditable="false"]),[hidden],[aria-hidden="true"],[data-tompathy-ui]';
+    'nav,header,footer,aside,button,input,textarea,select,[contenteditable]:not([contenteditable="false"]),[hidden],[aria-hidden="true"],[data-tompathy-ui],.entryFooter,.entry-footer,.post-footer,.related,.related-posts,.recent-articles,.subscription,.newsletter,.comments,#comments';
   const readable = (el: HTMLElement) => {
     const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
     let text = "",
@@ -91,10 +100,7 @@ export function installPageAdapter() {
     pinned = false;
     selected = "";
     stale = false;
-    const root =
-      document.querySelector("article") ??
-      document.querySelector("main") ??
-      document.body;
+    const { root, capture: captureInfo } = readingRoot(document);
     const candidates = Array.from(
       root.querySelectorAll<HTMLElement>(
         "h1,h2,h3,h4,p,li,blockquote,pre,dd,dt,td",
@@ -127,6 +133,8 @@ export function installPageAdapter() {
     const texts = elements.map(readable),
       source = location.href;
     artifact = await makeArtifact(texts, source, document.title);
+    artifact.authors = pageAuthors(document);
+    artifact.capture = captureInfo;
     artifact.truncated = candidates.length > 1500 || length > 300000;
     if (
       source !== location.href ||
@@ -239,6 +247,14 @@ export function installPageAdapter() {
       for (const e of (m.estimates ?? []) as Packet["estimates"]) {
         const el = elements.find((el) => index.get(el) === e.region);
         if (el) {
+          originalTitles.set(el, el.getAttribute("title"));
+          el.title = contributionExplanation(
+            {
+              estimates: m.estimates,
+              documentContribution: m.documentContribution,
+            },
+            e.region,
+          );
           el.setAttribute("data-tompathy-mark", "");
           if (e.contribution != null)
             el.style.setProperty(

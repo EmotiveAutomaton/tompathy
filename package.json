@@ -1,10 +1,14 @@
 {
   "name": "tompathy",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
+    "dev": "vite --host 127.0.0.1 --port 5173 --strictPort",
+    "testbed": "npm run build && node scripts/testbed.mjs && node scripts/start-testbed.mjs",
+    "chrome": "node scripts/open-chrome.mjs",
+    "check:build": "node scripts/check-build.mjs",
+    "test:native": "node scripts/native-validation.mjs",
     "build": "tsc --noEmit && node scripts/build.mjs",
     "test": "node scripts/test-core.mjs",
     "test:browser": "playwright test",

@@ -1,6 +1,7 @@
 import { build } from "esbuild";
 import { mkdir, copyFile, writeFile } from "node:fs/promises";
 import { icons } from "./icons.mjs";
+import path from "node:path";
 await mkdir("dist", { recursive: true });
 await icons("dist");
 await build({
@@ -31,4 +32,9 @@ await writeFile(
     "<title>ToMpathy — Maker Reader</title>",
     "<title>A bench is an invitation</title>",
   ),
+);
+const { verifyBuild } = await import("./check-build.mjs");
+await verifyBuild();
+console.log(
+  `\nBuild succeeded. ToMpathy is ready to load in Chrome.\n\n  Load unpacked: ${path.resolve("dist")}\n\nOpen chrome://extensions, choose Load unpacked, and select that folder.\nAlready loaded? Click Reload on the ToMpathy card, then refresh the source page.\nRun npm run testbed to open the local test page.\n`,
 );

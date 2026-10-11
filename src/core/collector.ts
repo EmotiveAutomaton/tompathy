@@ -1,4 +1,6 @@
 import type { ContextItem } from "./model";
+import { contextIdentity } from "./context";
+import { readingRoot } from "./page";
 export const COLLECT_LIMITS = {
   urls: 3,
   bytes: 256000,
@@ -80,7 +82,7 @@ export async function retrieve(
     doc
       .querySelectorAll("p,h1,h2,h3,h4,li,div,section,br")
       .forEach((n) => n.append(doc.createTextNode(" ")));
-    excerpt = (doc.querySelector("article,main") ?? doc.body).textContent ?? "";
+    excerpt = readingRoot(doc).root.textContent ?? "";
   }
   excerpt = excerpt
     .replace(/\s+/g, " ")
@@ -88,7 +90,7 @@ export async function retrieve(
     .slice(0, COLLECT_LIMITS.excerpt);
   if (!excerpt) throw Error("No readable excerpt in this source.");
   return {
-    id: crypto.randomUUID(),
+    id: await contextIdentity(url.href, excerpt),
     source: url.href,
     excerpt,
     retrievedAt: new Date().toISOString(),

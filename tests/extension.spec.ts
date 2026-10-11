@@ -1,6 +1,7 @@
 import { test, expect, chromium } from "@playwright/test";
 import { cp, mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { matchPacket, parsePacket } from "../src/core/model";
 test("installed page adapter: anchors, dynamic revision, cleanup and long-page latency", async () => {
   const root = path.resolve(".local/extension-test");
   await mkdir(root, { recursive: true });
@@ -130,6 +131,37 @@ test("installed page adapter: anchors, dynamic revision, cleanup and long-page l
     );
     await source.locator("#repeat1").hover();
     await expect(source.locator("[data-tompathy-selected]")).toHaveCount(0);
+    await source.goto("http://127.0.0.1:5173/testbed.html");
+    const install = () =>
+      sw.evaluate(
+        async (tabId) =>
+          chrome.scripting.executeScript({
+            target: { tabId },
+            files: ["content.js"],
+          }),
+        id,
+      );
+    await install();
+    const testbed = await capture();
+    const fixture = parsePacket(
+      await readFile("public/testbed-result.json", "utf8"),
+    );
+    expect(testbed.artifact.authors).toEqual([
+      { label: "The garden designer", basis: "page-metadata" },
+    ]);
+    expect(matchPacket(fixture, testbed.artifact, "artifact", [])).toBeNull();
+    expect(testbed.artifact.regions).toHaveLength(6);
+    await source.setContent(
+      `<meta name="author" content="Fixture Author"><nav><p>Navigation not part of this article.</p></nav><div class="entry entryPage"><div><h1>A legacy blog article</h1><p>The author's actual article paragraph with useful content.</p></div><div class="entryFooter"><p>Subscribe to our unrelated newsletter.</p></div></div><div class="recent-articles"><p>More recent articles and promotional links.</p></div>`,
+    );
+    await install();
+    const legacy = await capture();
+    expect(legacy.artifact.regions).toHaveLength(2);
+    expect(legacy.artifact.capture.method).toBe("content-container");
+    expect(legacy.artifact.authors[0].label).toBe("Fixture Author");
+    expect(
+      legacy.artifact.regions.map((r: any) => r.anchor.exact).join(" "),
+    ).not.toMatch(/Subscribe|promotional|Navigation/);
   } finally {
     await context.close();
   }

@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-09-22T00:18:08.400Z",
-  "zipBytes": 203931,
-  "sha256": "a280159f49b6ca767cee79db37c101baa7f1e06e1d1d42ece851e777b0b94dfa",
+  "verifiedAt": "2026-10-11T12:46:40.938Z",
+  "zipBytes": 209757,
+  "sha256": "d82173aefd60ab6055e8aa308562a63b5ae7c2881bacb087a077e8582accc94b",
   "entries": [
     "background.js",
     "content.js",

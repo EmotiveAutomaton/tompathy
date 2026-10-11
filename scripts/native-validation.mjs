@@ -31,6 +31,7 @@ let panel = remote
   .find((p) => p.url().endsWith("/panel.html"));
 if (!panel) throw Error("Native panel target did not open");
 await expect(panel.locator(".identity-note")).toBeVisible();
+await expect(panel.getByTestId("values")).toContainText("Care for others");
 const values = await panel.getByTestId("values").innerHTML();
 await source.locator('[data-passage="p4"]').hover();
 await expect(panel.getByTestId("process")).toContainText("Test & refine");
@@ -144,7 +145,7 @@ await panel.locator("input[type=file]").setInputFiles({
   mimeType: "application/json",
   buffer: Buffer.from(JSON.stringify(longPacket)),
 });
-await panel.getByRole("button", { name: "Accept this revision" }).click();
+await expect(panel.getByTestId("values")).toContainText("Care for others");
 await panel.evaluate(() => {
   globalThis.paintTimes = [];
   new MutationObserver(() =>
@@ -196,7 +197,7 @@ const ordinary = await context.newPage();
 await ordinary.goto("http://127.0.0.1:5173/fixture.html");
 await ordinary.keyboard.press("Alt+Shift+Y");
 await ordinary.waitForTimeout(1000);
-receipt.shortcutCapture = await panel.locator(".artifact-title").innerText();
+receipt.shortcutCapture = await panel.locator(".author-name").innerText();
 await source.bringToFront();
 await panel.getByRole("button", { name: "Reader menu", exact: true }).click();
 await panel
@@ -212,6 +213,41 @@ await expect
   )
   .toBe(1006);
 receipt.tabReturnRecapture = true;
+// Accept an evidence revision, then actually close and reopen the native panel.
+await source.goto(`chrome-extension://${id}/example.html`);
+await source.getByRole("button", { name: "Open Maker Reader" }).click();
+await expect(panel.getByTestId("values")).toContainText("Care for others");
+await panel.getByRole("button", { name: "Reader menu", exact: true }).click();
+await panel.getByRole("button", { name: "Context", exact: true }).click();
+await panel.getByRole("button", { name: "Preview example revision" }).click();
+await panel.getByRole("button", { name: "Accept this revision" }).click();
+await expect(panel.getByTestId("values")).toContainText("Practical care");
+await expect
+  .poll(() =>
+    panel.evaluate(
+      async () =>
+        (await chrome.storage.session.get("reading")).reading.packet.revision,
+    ),
+  )
+  .toBe(2);
+await panel.close();
+await source.getByRole("button", { name: "Open Maker Reader" }).click();
+const revisionReopen = await chromium.connectOverCDP("http://127.0.0.1:9334");
+panel = revisionReopen
+  .contexts()[0]
+  .pages()
+  .find((p) => p.url().endsWith("/panel.html"));
+if (!panel) throw Error("Panel failed to reopen after accepting a revision");
+await expect(panel.getByTestId("values")).toContainText("Practical care");
+await expect
+  .poll(() =>
+    panel.evaluate(
+      async () =>
+        (await chrome.storage.session.get("reading")).reading.history.length,
+    ),
+  )
+  .toBeGreaterThan(0);
+receipt.acceptedRevisionSurvivesReopen = true;
 console.log(JSON.stringify(receipt, null, 2));
 await writeFile(
   "evidence/native-validation.json",
@@ -219,4 +255,5 @@ await writeFile(
 );
 await remote.close();
 await reopened.close();
+await revisionReopen.close();
 await context.close();

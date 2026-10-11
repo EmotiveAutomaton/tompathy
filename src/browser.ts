@@ -100,6 +100,7 @@ export async function markPage(
 ) {
   await pageCommand(tabId, artifact, "TOMPATHY_MARK", {
     estimates: packet?.estimates ?? [],
+    documentContribution: packet?.documentContribution,
   });
 }
 export async function readSession() {

@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-10-11T12:36:58.558Z",
+  "browser": "153.0.8010.12",
+  "testOnlyHostPermissions": [
+    "https://simonwillison.net/*",
+    "https://til.simonwillison.net/*"
+  ],
+  "inferenceRequested": false,
+  "pages": [
+    {
+      "url": "https://simonwillison.net/2022/May/4/datasette-lite/",
+      "passages": 93,
+      "authors": [
+        {
+          "label": "Simon Willison",
+          "basis": "page-metadata"
+        }
+      ],
+      "capture": {
+        "method": "content-container",
+        "note": "Captured the article content area. Review the source text before requesting analysis."
+      },
+      "includedMainContent": true,
+      "includedBoilerplate": false
+    },
+    {
+      "url": "https://til.simonwillison.net/service-workers/intercept-fetch",
+      "passages": 14,
+      "authors": [],
+      "capture": {
+        "method": "content-container",
+        "note": "Captured the article content area. Review the source text before requesting analysis."
+      },
+      "includedMainContent": true,
+      "includedBoilerplate": false
+    }
+  ]
+}

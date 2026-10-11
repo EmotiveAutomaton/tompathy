@@ -1,0 +1,763 @@
+{
+  "schemaVersion": "1.1",
+  "id": "bench-analysis-2",
+  "revision": 2,
+  "artifact": {
+    "id": "http://127.0.0.1:5173/testbed.html",
+    "revision": "d00de37ffc1ac6bd20317ad02c4db20154862d732cca8b19eae65e0223ac3bc1",
+    "title": "A bench is an invitation",
+    "source": "http://127.0.0.1:5173/testbed.html",
+    "capturedAt": "2026-10-11T12:38:43.938Z",
+    "regions": [
+      {
+        "id": "p1",
+        "anchor": {
+          "exact": "A bench is an invitation",
+          "prefix": "",
+          "suffix": "\n\nThe first thing we noticed was not where people sat. It was where they stopped",
+          "start": 0,
+          "index": 0
+        }
+      },
+      {
+        "id": "p2",
+        "anchor": {
+          "exact": "The first thing we noticed was not where people sat. It was where they stopped. At the edge of the garden, visitors paused with their bags still on their shoulders, as if waiting for permission to stay.",
+          "prefix": "A bench is an invitation\n\n",
+          "suffix": "\n\nWe could have added a sign. Instead, we moved one bench into the shade and tur",
+          "start": 26,
+          "index": 1
+        }
+      },
+      {
+        "id": "p3",
+        "anchor": {
+          "exact": "We could have added a sign. Instead, we moved one bench into the shade and turned it slightly toward the path. Nothing about it demanded a conversation. It simply made room for one.",
+          "prefix": "ith their bags still on their shoulders, as if waiting for permission to stay.\n\n",
+          "suffix": "\n\nFor two weeks, we returned at different hours. We counted pauses, sketched the",
+          "start": 230,
+          "index": 2
+        }
+      },
+      {
+        "id": "p4",
+        "anchor": {
+          "exact": "For two weeks, we returned at different hours. We counted pauses, sketched the paths people took, and listened when someone offered a comment. Our first arrangement was too close to the gate. We moved it again.",
+          "prefix": "e path. Nothing about it demanded a conversation. It simply made room for one.\n\n",
+          "suffix": "\n\nThe final bench is made from reclaimed cedar. Its corners are rounded, its sea",
+          "start": 413,
+          "index": 3
+        }
+      },
+      {
+        "id": "p5",
+        "anchor": {
+          "exact": "The final bench is made from reclaimed cedar. Its corners are rounded, its seat a little higher than the old one. A walking stick can rest against either arm. These are small decisions, but small decisions decide who feels welcome.",
+          "prefix": "a comment. Our first arrangement was too close to the gate. We moved it again.\n\n",
+          "suffix": "\n\nWe do not know whether a bench can make a neighborhood kinder. We do know that",
+          "start": 625,
+          "index": 4
+        }
+      },
+      {
+        "id": "p6",
+        "anchor": {
+          "exact": "We do not know whether a bench can make a neighborhood kinder. We do know that on Thursday, two people who had never met sat down in the shade. For now, that is a useful place to begin.",
+          "prefix": " arm. These are small decisions, but small decisions decide who feels welcome.\n\n",
+          "suffix": "",
+          "start": 858,
+          "index": 5
+        }
+      }
+    ],
+    "truncated": false
+  },
+  "provider": {
+    "id": "tompathy-example",
+    "method": "Hand-authored interaction fixture"
+  },
+  "origin": "synthetic example",
+  "scope": {
+    "kind": "context",
+    "contextIds": [
+      "context-notebook"
+    ]
+  },
+  "makers": [
+    {
+      "id": "maker-1",
+      "label": "The garden designer",
+      "identity": "synthetic",
+      "relationship": "Fictional designer and author of this reflection"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "invite",
+      "kind": "goal",
+      "label": "Invite connection",
+      "description": "The writer may be making an everyday encounter feel possible.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p1",
+        "p2",
+        "p3",
+        "p6"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.88,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate.",
+        "candidateSet": "aims"
+      },
+      "evidence": [
+        "e1",
+        "e2",
+        "e5"
+      ],
+      "interpretation": "governing-purpose"
+    },
+    {
+      "id": "notice",
+      "kind": "goal",
+      "label": "Help us notice",
+      "description": "Directing attention to quiet behavior before proposing a change.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p1",
+        "p2",
+        "p4"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.62,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate.",
+        "candidateSet": "aims"
+      },
+      "evidence": [
+        "e1",
+        "e3"
+      ],
+      "interpretation": "local-goal"
+    },
+    {
+      "id": "persuade",
+      "kind": "goal",
+      "label": "Make a case",
+      "description": "The story may also make the design project feel worthwhile.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p1",
+        "p2",
+        "p3",
+        "p5",
+        "p6"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.46,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate.",
+        "candidateSet": "aims"
+      },
+      "evidence": [
+        "e2",
+        "e5"
+      ],
+      "interpretation": "local-goal"
+    },
+    {
+      "id": "test",
+      "kind": "goal",
+      "label": "Test an assumption",
+      "description": "The writer may be showing how observation changed a decision.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p4"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.91,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate.",
+        "candidateSet": "aims"
+      },
+      "evidence": [
+        "e3"
+      ],
+      "interpretation": "local-goal"
+    },
+    {
+      "id": "include",
+      "kind": "goal",
+      "label": "Reduce barriers",
+      "description": "Making access tangible through the details of a seat.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p5"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.48,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate.",
+        "candidateSet": "aims"
+      },
+      "evidence": [
+        "e4",
+        "notebook"
+      ],
+      "interpretation": "local-goal"
+    },
+    {
+      "id": "observe",
+      "kind": "process",
+      "label": "Observe everyday life",
+      "description": "Attention to pauses and routes offers a possible starting point.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.8,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e1",
+        "e3"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "reframe",
+      "kind": "process",
+      "label": "Reframe the problem",
+      "description": "A place to pause becomes a question of invitation, rather than signage.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.82,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e2"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "iterate",
+      "kind": "process",
+      "label": "Test & refine",
+      "description": "The described visits and second move support an iterative account.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p4"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.92,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e3"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "craft",
+      "kind": "process",
+      "label": "Work within a brief",
+      "description": "The notebook attributes material and seat height to the brief.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p5"
+      ],
+      "status": "creator-reported",
+      "support": {
+        "value": 0.83,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "notebook"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "reflect",
+      "kind": "process",
+      "label": "Reflect without closure",
+      "description": "The author may have selected and qualified a final observation while composing the reflection. The finished text alone cannot establish when this happened.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p6"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.8,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e5"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "convention",
+      "kind": "process",
+      "label": "Adapt a familiar pattern",
+      "description": "A familiar design or editorial convention could produce the same text.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.38,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e2"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "history",
+      "kind": "process",
+      "label": "Earlier experience",
+      "description": "No records identify the earlier events that shaped this work. Their timing and influence are unresolved.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6"
+      ],
+      "status": "unknown",
+      "support": null,
+      "evidence": [],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "care",
+      "kind": "value",
+      "label": "Practical care",
+      "description": "A possible concern for everyday comfort, limited to this fictional artifact.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.64,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e2",
+        "e4"
+      ],
+      "interpretation": "value"
+    },
+    {
+      "id": "curiosity",
+      "kind": "value",
+      "label": "Curiosity",
+      "description": "A possible preference for learning through observation.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.64,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e1",
+        "e3"
+      ],
+      "interpretation": "preference"
+    },
+    {
+      "id": "restraint",
+      "kind": "value",
+      "label": "Restraint",
+      "description": "A possible preference for modest interventions and qualified claims.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.55,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e2",
+        "e5"
+      ],
+      "interpretation": "preference"
+    }
+  ],
+  "alternatives": [
+    {
+      "id": "aims",
+      "kind": "coexisting",
+      "members": [
+        "invite",
+        "notice",
+        "persuade",
+        "test",
+        "include"
+      ],
+      "exhaustive": false
+    },
+    {
+      "id": "routes",
+      "kind": "competing",
+      "members": [
+        "observe",
+        "convention"
+      ],
+      "exhaustive": false
+    }
+  ],
+  "process": {
+    "interpretation": "historical-production",
+    "nodes": [
+      "observe",
+      "reframe",
+      "iterate",
+      "craft",
+      "reflect",
+      "convention",
+      "history"
+    ],
+    "edges": [
+      {
+        "from": "observe",
+        "to": "reframe",
+        "relationship": "May inform the decision",
+        "kind": "enables",
+        "status": "hypothesis",
+        "evidence": [
+          "e1",
+          "e2"
+        ]
+      },
+      {
+        "from": "observe",
+        "to": "iterate",
+        "relationship": "Reported before the later move",
+        "kind": "precedes",
+        "status": "creator-reported",
+        "evidence": [
+          "e3"
+        ]
+      },
+      {
+        "from": "iterate",
+        "to": "craft",
+        "relationship": "Order unresolved",
+        "kind": "order-unknown",
+        "status": "unknown",
+        "evidence": [
+          "e3",
+          "e4"
+        ]
+      },
+      {
+        "from": "craft",
+        "to": "reflect",
+        "relationship": "Related; timing unknown",
+        "kind": "related",
+        "status": "hypothesis",
+        "evidence": [
+          "e4",
+          "e5"
+        ]
+      }
+    ]
+  },
+  "accounts": [
+    {
+      "id": "account-observation",
+      "label": "Learning through observation",
+      "members": [
+        "invite",
+        "observe",
+        "iterate",
+        "curiosity"
+      ],
+      "explanation": "These hypotheses can form one compatible account. They are not independent measurements of the author."
+    },
+    {
+      "id": "account-convention",
+      "label": "Adapting an existing brief",
+      "members": [
+        "convention",
+        "craft",
+        "care"
+      ],
+      "explanation": "A brief or familiar pattern may explain the same choices; the notebook can change which decisions belong to this maker."
+    }
+  ],
+  "documentContribution": {
+    "value": 0.55,
+    "quantity": "Synthetic support for consequential maker choices",
+    "explanation": "The notebook attributes material and height to the brief. Choosing placement remains a possible consequential contribution.",
+    "evidence": [
+      "e2",
+      "notebook"
+    ]
+  },
+  "estimates": [
+    {
+      "region": "p1",
+      "contribution": null,
+      "uncertainty": {
+        "level": "medium",
+        "meaning": "Illustrative uncertainty about the production account, independent of contribution."
+      }
+    },
+    {
+      "region": "p2",
+      "contribution": {
+        "value": 0.6,
+        "quantity": "Synthetic support for consequential maker choices",
+        "scale": "0–1",
+        "explanation": "The document-wide choice supplies context; the described observation or intervention supplies local evidence. No arithmetic decomposition is asserted.",
+        "evidence": [
+          "e1"
+        ],
+        "basis": "global-and-local"
+      },
+      "uncertainty": {
+        "level": "medium",
+        "meaning": "Illustrative uncertainty about the production account, independent of contribution."
+      }
+    },
+    {
+      "region": "p3",
+      "contribution": {
+        "value": 0.8,
+        "quantity": "Synthetic support for consequential maker choices",
+        "scale": "0–1",
+        "explanation": "The document-wide choice supplies context; the described observation or intervention supplies local evidence. No arithmetic decomposition is asserted.",
+        "evidence": [
+          "e2"
+        ],
+        "basis": "global-and-local"
+      },
+      "uncertainty": {
+        "level": "medium",
+        "meaning": "Illustrative uncertainty about the production account, independent of contribution."
+      }
+    },
+    {
+      "region": "p4",
+      "contribution": {
+        "value": 0.7,
+        "quantity": "Synthetic support for consequential maker choices",
+        "scale": "0–1",
+        "explanation": "The document-wide choice supplies context; the described observation or intervention supplies local evidence. No arithmetic decomposition is asserted.",
+        "evidence": [
+          "e3"
+        ],
+        "basis": "global-and-local"
+      },
+      "uncertainty": {
+        "level": "medium",
+        "meaning": "Illustrative uncertainty about the production account, independent of contribution."
+      }
+    },
+    {
+      "region": "p5",
+      "contribution": {
+        "value": 0.85,
+        "quantity": "Synthetic support for consequential maker choices",
+        "scale": "0–1",
+        "explanation": "The material and height may be local choices or requirements from the brief. These scores are illustrative, not calibrated.",
+        "evidence": [
+          "e4"
+        ],
+        "basis": "global-and-local"
+      },
+      "uncertainty": {
+        "level": "high",
+        "meaning": "Illustrative uncertainty about the production account, independent of contribution."
+      }
+    },
+    {
+      "region": "p6",
+      "contribution": {
+        "value": 0.65,
+        "quantity": "Synthetic support for consequential maker choices",
+        "scale": "0–1",
+        "explanation": "The document-wide choice supplies context; the described observation or intervention supplies local evidence. No arithmetic decomposition is asserted.",
+        "evidence": [
+          "e5"
+        ],
+        "basis": "global-and-local"
+      },
+      "uncertainty": {
+        "level": "medium",
+        "meaning": "Illustrative uncertainty about the production account, independent of contribution."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1",
+      "source": "http://127.0.0.1:5173/testbed.html",
+      "excerpt": "The first thing we noticed was not where people sat. It was where they stopped. At the edge of the garden, visitors paused with their bags still on their shoulders, as if waiting for permission to stay.",
+      "capturedAt": "2026-10-11T12:38:43.938Z",
+      "relationship": "Text compatible with this account; it does not establish the maker’s intent."
+    },
+    {
+      "id": "e2",
+      "source": "http://127.0.0.1:5173/testbed.html",
+      "excerpt": "We could have added a sign. Instead, we moved one bench into the shade and turned it slightly toward the path. Nothing about it demanded a conversation. It simply made room for one.",
+      "capturedAt": "2026-10-11T12:38:43.938Z",
+      "relationship": "Text compatible with this account; it does not establish the maker’s intent."
+    },
+    {
+      "id": "e3",
+      "source": "http://127.0.0.1:5173/testbed.html",
+      "excerpt": "For two weeks, we returned at different hours. We counted pauses, sketched the paths people took, and listened when someone offered a comment. Our first arrangement was too close to the gate. We moved it again.",
+      "capturedAt": "2026-10-11T12:38:43.938Z",
+      "relationship": "Text compatible with this account; it does not establish the maker’s intent."
+    },
+    {
+      "id": "e4",
+      "source": "http://127.0.0.1:5173/testbed.html",
+      "excerpt": "The final bench is made from reclaimed cedar. Its corners are rounded, its seat a little higher than the old one. A walking stick can rest against either arm. These are small decisions, but small decisions decide who feels welcome.",
+      "capturedAt": "2026-10-11T12:38:43.938Z",
+      "relationship": "Text compatible with this account; it does not establish the maker’s intent."
+    },
+    {
+      "id": "e5",
+      "source": "http://127.0.0.1:5173/testbed.html",
+      "excerpt": "We do not know whether a bench can make a neighborhood kinder. We do know that on Thursday, two people who had never met sat down in the shade. For now, that is a useful place to begin.",
+      "capturedAt": "2026-10-11T12:38:43.938Z",
+      "relationship": "Text compatible with this account; it does not establish the maker’s intent."
+    },
+    {
+      "id": "notebook",
+      "source": "Synthetic designer’s notebook",
+      "excerpt": "The site brief required reclaimed cedar and a raised seat. The first layout came from a standard park plan. Observations led us to change the position twice; the material and seat height were constraints, not our original choices.",
+      "capturedAt": "2026-09-19T10:00:00.000Z",
+      "relationship": "Creator-reported constraints offer an alternative to original design choices."
+    }
+  ],
+  "revisionOf": "bench-analysis-1",
+  "changeExplanation": "The notebook shows that material and seat height were requirements. “Design for inclusion” is replaced by “Work within a brief”; the values snapshot is explicitly revised."
+}

@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "ToMpathy — Maker Reader",
   "description": "Explore goals, processes, and values behind a text. A reader for externally supplied maker hypotheses.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "icons": {
     "16": "icon16.png",
     "32": "icon32.png",

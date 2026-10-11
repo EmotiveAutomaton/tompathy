@@ -12,6 +12,9 @@ import {
   SessionSchema,
 } from "../src/core/model";
 import { publicURL, retrieve, collectSources } from "../src/core/collector";
+import { acceptRevision, analysisHandoff } from "../src/core/reading";
+import { contextIdentity, mergeContext } from "../src/core/context";
+import { createHash } from "node:crypto";
 
 test(
   "the collection deadline cancels an unresponsive source without returning late context",
@@ -181,4 +184,107 @@ test("bounded fetch rejects status, content type and oversized body; cancellatio
   );
   assert.equal(r.selected, false);
   assert.equal(r.lineage, "public-url");
+});
+
+test("historical partial orders, joint accounts and typed meanings reject contradictory references", async () => {
+  const p = await createExample();
+  assert.equal(p.schemaVersion, "1.1");
+  assert.equal(p.alternatives[0].kind, "coexisting");
+  p.process.edges.push({
+    from: "iterate",
+    to: "observe",
+    kind: "precedes",
+    relationship: "Invalid reverse chronology",
+  });
+  assert.throws(() => parsePacket(JSON.stringify(p)), /precedence.*cycle/);
+  p.process.edges.pop();
+  p.accounts![0].members.push("missing");
+  assert.throws(() => parsePacket(JSON.stringify(p)), /Invalid members/);
+  p.accounts![0].members.pop();
+  p.documentContribution!.evidence.push("missing");
+  assert.throws(
+    () => parsePacket(JSON.stringify(p)),
+    /Unresolved contribution/,
+  );
+  p.documentContribution!.evidence.pop();
+  p.hypotheses[0].interpretation = "preference";
+  assert.throws(
+    () => parsePacket(JSON.stringify(p)),
+    /Interpretation does not match/,
+  );
+});
+
+test("legacy Stage 13 shape remains readable and missing values stay unknown", async () => {
+  const p = await createExample();
+  p.schemaVersion = "1.0";
+  delete p.accounts;
+  delete p.documentContribution;
+  delete p.process.interpretation;
+  p.process.edges = [];
+  p.alternatives[0].kind = "independent";
+  p.hypotheses.forEach((h) => delete h.interpretation);
+  p.hypotheses
+    .filter((h) => h.kind === "value")
+    .forEach((h) => {
+      h.status = "unknown";
+      h.support = null;
+    });
+  p.estimates.forEach((e) => {
+    e.contribution = null;
+  });
+  const parsed = parsePacket(JSON.stringify(p));
+  assert.equal(
+    parsed.estimates.every((e) => e.contribution === null),
+    true,
+  );
+  assert.equal(
+    parsed.hypotheses.filter(
+      (h) => h.kind === "value" && h.status !== "unknown",
+    ).length,
+    0,
+  );
+});
+
+test("accepted revision retains inspectable history; requests contain only selected evidence", async () => {
+  const first = await createExample(),
+    next = await createExample(undefined, true);
+  const session = SessionSchema.parse({
+    sessionVersion: "1.0",
+    artifact: first.artifact,
+    packet: first,
+    scope: "artifact",
+    context: [],
+  });
+  const accepted = acceptRevision(session, next, [exampleContext]);
+  assert.equal(accepted.history![0].packet.id, first.id);
+  assert.equal(accepted.packet!.id, next.id);
+  const request = analysisHandoff({
+    ...accepted,
+    context: [
+      exampleContext,
+      { ...exampleContext, id: "unselected", selected: false },
+    ],
+  });
+  assert.deepEqual(request.scope.contextIds, [exampleContext.id]);
+  assert.equal(request.context.length, 1);
+  assert.equal(
+    analysisHandoff({ ...accepted, scope: "artifact" }).context.length,
+    0,
+  );
+  assert.equal(session.history, undefined);
+});
+
+test("context identity binds Unicode source and excerpt; duplicate history is not counted twice", async () => {
+  const source = "https://example.com/notes",
+    excerpt = "A café — 世界";
+  const id = await contextIdentity(source, excerpt);
+  assert.equal(
+    id,
+    createHash("sha256")
+      .update(JSON.stringify([source, excerpt]))
+      .digest("hex"),
+  );
+  assert.notEqual(id, await contextIdentity(source, excerpt + " changed"));
+  const item = { ...exampleContext, id, source, excerpt };
+  assert.equal(mergeContext([item], { ...item, id: "legacy-id" }).length, 1);
 });

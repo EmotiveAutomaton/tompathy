@@ -73,6 +73,41 @@ test("context changes invalidate scope; explicit revision updates fixed values",
   await expect(page.getByTestId("process")).toContainText(
     "Work within a brief",
   );
+  await tool(page, "Earlier accounts 1 retained revisions");
+  await page
+    .getByText("Revision 1 · tompathy-example", { exact: true })
+    .click();
+  await expect(page.getByRole("dialog")).toContainText("Care for others");
+  await expect(page.getByRole("dialog")).toContainText("Design for inclusion");
+  await page.getByRole("button", { name: "Close dialog" }).click();
+  await expect(page.getByTestId("values")).toContainText("Practical care");
+});
+
+test("compact author header and source export preserve the selected author and context boundary", async ({
+  page,
+}) => {
+  await page.goto("/?panel");
+  await expect(page.locator(".author-name")).toHaveText("The garden designer");
+  const bounds = await page.locator(".app-header").boundingBox();
+  expect(bounds!.height).toBeLessThan(85);
+  await page.getByTitle("Author and source", { exact: true }).click();
+  await page
+    .getByLabel("Author to inspect")
+    .fill("A different requested author");
+  const promise = page.waitForEvent("download");
+  await page
+    .getByRole("button", {
+      name: "Export analysis request with selected context",
+    })
+    .click();
+  const file = await (await promise).path();
+  const { readFile } = await import("node:fs/promises");
+  const request = JSON.parse(await readFile(file!, "utf8"));
+  expect(request.author).toBe("A different requested author");
+  expect(request.context).toEqual([]);
+  await page.getByRole("button", { name: "Close dialog" }).click();
+  // A new requested subject never relabels an existing account.
+  await expect(page.locator(".author-name")).toHaveText("The garden designer");
 });
 test("malformed packet, pasted text and session clear expose honest empty state", async ({
   page,
@@ -84,9 +119,7 @@ test("malformed packet, pasted text and session clear expose honest empty state"
   await page.getByRole("button", { name: "Validate & import" }).click();
   await expect(page.getByRole("dialog").getByRole("alert")).toBeVisible();
   await page.getByRole("button", { name: "Close dialog" }).click();
-  await page
-    .getByRole("button", { name: "A bench is an invitation", exact: true })
-    .click();
+  await page.getByTitle("Author and source", { exact: true }).click();
   await page
     .getByLabel("Paste a different text")
     .fill("This is a new text, written only for this browser test.");
