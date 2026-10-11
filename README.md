@@ -8,7 +8,30 @@ Private repository: [EmotiveAutomaton/tompathy](https://github.com/EmotiveAutoma
 
 ![Reader preview](evidence/preview-light.png)
 
-## Try it
+## Your daily review loop
+
+**Double-click `Review ToMpathy.cmd` in this project folder.** Or run `npm run review` from PowerShell. This is the recommended entry point: it builds the current code, opens ordinary Google Chrome in a separate review profile, loads the extension, verifies that Chrome reports it enabled, and opens a step-by-step **Review desk**. There is no folder picker and no server to keep running.
+
+1. In the Review desk, click **Open the guided example**.
+2. On the fictional article, click **Open Maker Reader**. Confirm the compact author header and the three sections beside the text.
+3. Hover paragraphs; goals and processes should respond while values stay fixed. Click a paragraph to pin it; press **Escape** to release it. Expand and collapse the process tree.
+4. Click a hypothesis and follow its evidence back to a passage.
+5. Use **Reader menu → Context → Preview example revision → Accept this revision**. Values change to include **Practical care**. **Earlier accounts** lets you inspect the original.
+6. Return to the guide and choose **Try a real author**. On Simon Willison’s article, click ToMpathy from Chrome’s puzzle-piece menu and pin it for next time. The header should identify Simon and say **Awaiting analysis**. Inspect **Reader menu → Source text** and export an analysis request. Live inference is not yet connected.
+
+Bookmark the Review desk with **Ctrl+D in the review profile**. While that Chrome session is open, the bookmark is enough. After a computer restart or closing Chrome completely, double-click the launcher first: Chrome removes extensions installed through its development API at startup, and the launcher restores this one automatically with the same ID. Your Chrome profile and local preferences remain. This behavior is covered by the restart test; browser preference files are not patched to override Chrome’s lifecycle.
+
+After code changes, run the same launcher. A changed build is reloaded; refresh existing source tabs and reopen the reader. An unchanged build with a reading open is left alone. Before updating or ending the browser session, use **Reader menu → Save session** to keep an analysis: captures and accepted accounts use temporary session storage.
+
+The guide shows a version and build fingerprint. For feedback, send that label, the page/passage, your action, what you expected, and what happened. A screenshot helps with visual decisions.
+
+### What the launcher needs
+
+Google Chrome and Node 22.14 or later. The Windows launcher runs `npm ci` automatically if dependencies are missing. It uses `.local/chrome-review`, an isolated persistent profile with a loopback development connection. Keep ordinary personal browsing and sign-ins in your usual profile. The Node launcher also locates Chrome on macOS/Linux, but the owner workflow is verified on Windows.
+
+The initial missing-card investigation found the connected automation Chrome running with `--disable-extensions`; that browser cannot validate extension loading. We cannot retrospectively identify which window the owner used. The new launcher starts its own ordinary Chrome without that flag and verifies installation explicitly. A separate action-handler bug that prevented page-access permission has also been fixed and regression-tested.
+
+### Manual installation, if preferred
 
 From a fresh clone, run `npm ci` and `npm run build` first to create `dist/`.
 
@@ -21,13 +44,13 @@ Hover a passage to preview its hypotheses; click to pin; Escape releases. Use **
 
 Chrome controls side-panel placement. For the intended right-hand layout, choose the right side in Chrome's **Settings → Appearance → Side panel**. The extension respects the existing setting.
 
-The revised native panel was tested in Chromium 153.0.8010.12. Connected Chrome 154.0.8037.98 was used for preview checks. Ordinary Chrome's folder-selection confirmation and toolbar activation remain distinct acceptance checks; see STATUS.md for the current receipt.
+Ordinary Chrome 154.0.8037.98 now passes automated installation, native panel, extension-action capture, and restoration after a full restart. The check invokes Chrome’s real extension action through its development protocol; a physical toolbar click and the Windows folder picker are separate from that automated receipt. See STATUS.md.
 
 ## Repeatable Chrome testbed
 
 Run `npm run testbed`. It builds and checks the unpacked extension, generates a fictional author page and matching results, and starts the preview server (or reports that it is already running). Open **http://127.0.0.1:5173/testbed.html** in Chrome. Keep the server terminal open if it started a server.
 
-Optionally run `npm run chrome` in another terminal to open ordinary Google Chrome with the separate `.local/chrome-review` development profile. Load `dist` once and Chrome remembers it in that profile. This launcher does not use automated extension sideloading flags, a debugging port, or your personal Chrome profile.
+Use `npm run chrome` to open the review profile with the current built extension. For everyday review, use the bundled example from its Review desk; only this optional HTTP testbed needs the local server.
 
 On the test page, click ToMpathy in the toolbar, download **first account**, then use **Reader menu → Import result**. The source and result are bound to that exact localhost URL. Hover and pin passages, inspect evidence, expand the tree into a cloud, and confirm that values stay fixed. **Context → Preview example revision** demonstrates new evidence. After accepting, use **Earlier accounts** to inspect the original without replacing the current result.
 
@@ -36,6 +59,12 @@ The page links to Simon Willison's Datasette Lite article and its GitHub project
 After editing: rebuild, click **Reload** on the ToMpathy card in `chrome://extensions`, then refresh the source page and reopen the panel. If the extension is absent from the puzzle-piece menu, check that its card is present and enabled in this same Chrome profile. The installed extension runs without Vite; only the localhost preview/test page needs the server.
 
 ## Develop
+
+### Continuous integration and delivery
+
+`.github/workflows/verify.yml` runs on pushes and pull requests. It installs lockfile dependencies, typechecks/builds, runs core and browser checks, exercises ordinary Chrome installation and its native side panel under a virtual display, verifies restart restoration, and packages the exact tested build. Successful runs retain the extension ZIP for 14 days; test receipts and failure traces are retained separately. See [GitHub Actions](https://github.com/EmotiveAutomaton/tompathy/actions).
+
+Local delivery is the review launcher. It uses the code currently checked out here and does not pull, merge, or publish automatically. CI prepares a downloadable private artifact; it does not publish to the Chrome Web Store. This keeps daily review one click while source changes still receive automated checks. Main remains unchanged until this branch is merged.
 
 Node 22.14.0 and npm 10.9.2 were used. Install the exact lockfile dependencies:
 
@@ -51,6 +80,7 @@ Open `http://127.0.0.1:5173/` for the page-and-reader preview, or `http://127.0.
 npm run build
 npm test
 npm run test:browser
+npm run test:review
 node scripts/native-validation.mjs
 node scripts/live-validation.mjs
 node scripts/public-testbed-validation.mjs

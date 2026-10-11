@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ToMpathy · Review desk</title>
+    <link rel="icon" href="icon32.png" />
+    <link rel="stylesheet" href="review.css" />
+    <script type="module" src="review.js"></script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <a class="brand" href="review.html"
+          ><img src="icon32.png" width="20" height="20" alt="" />tompathy</a
+        >
+        <span id="build" class="build" role="status"
+          >Checking this installation…</span
+        >
+      </header>
+      <section class="intro">
+        <p class="eyebrow">YOUR REVIEW DESK</p>
+        <h1>A small place to try things.</h1>
+        <p class="lead">
+          Start with a complete example. Then try a real author’s page.<br />This
+          guide and the example work without a local server.
+        </p>
+        <div class="actions">
+          <a class="primary" href="example.html" target="_blank"
+            >Open the guided example <span aria-hidden="true">↗</span></a
+          >
+          <a
+            class="secondary"
+            href="https://simonwillison.net/2022/May/4/datasette-lite/"
+            target="_blank"
+            rel="noreferrer"
+            >Try a real author <span aria-hidden="true">↗</span></a
+          >
+        </div>
+        <p class="bookmark">
+          Keep this page: press <kbd>Ctrl</kbd> + <kbd>D</kbd> to bookmark it in
+          this Chrome profile.
+        </p>
+      </section>
+
+      <section aria-labelledby="review-title">
+        <div class="section-heading">
+          <h2 id="review-title">Your first five-minute review</h2>
+          <span>Follow these in order</span>
+        </div>
+        <ol class="steps">
+          <li>
+            <div>
+              <h3>Open the reader beside its source</h3>
+              <p>
+                Choose <strong>Open the guided example</strong> above. On the
+                article, click <strong>Open Maker Reader</strong>. A native
+                Chrome side panel should appear beside the text.
+              </p>
+              <p class="expect">
+                Look for “The garden designer,” the tiny ToMpathy mark, and
+                three sections: goals, process, values.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Move between the text and the three sections</h3>
+              <p>
+                Hover different paragraphs. Goals and processes should respond;
+                values should stay fixed. Click a paragraph to pin it. Press
+                <kbd>Esc</kbd> to release it.
+              </p>
+              <p class="expect">
+                Use the expand button in the process section to switch between
+                the tree and its word cloud.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Check why an interpretation is there</h3>
+              <p>
+                Click a goal or process. Read its evidence, then follow a
+                <strong>Passage</strong> button back to the text. Uncertainty
+                and missing evidence should remain visible.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Try a change of mind</h3>
+              <p>
+                In the panel’s <strong>⋯ Reader menu → Context</strong>, choose
+                <strong>Preview example revision</strong>, then
+                <strong>Accept this revision</strong>. Look for “Practical care”
+                in values. Use
+                <strong>Reader menu → Earlier accounts</strong> to inspect the
+                original.
+              </p>
+              <p class="expect">
+                This is a hand-authored fictional demonstration. It does not
+                call an inference service.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Try a real author</h3>
+              <p>
+                Open the real-author link above. Use Chrome’s puzzle-piece menu
+                to select <strong>ToMpathy — Maker Reader</strong>; pin it for
+                next time. Clicking its toolbar icon on the article grants that
+                page access.
+              </p>
+              <p class="expect">
+                The header should identify Simon Willison and say
+                <strong>Awaiting analysis</strong>. Open
+                <strong>Reader menu → Source text</strong> to inspect the
+                captured article and export an analysis request. Empty estimates
+                are expected here.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="return-note" aria-labelledby="return-title">
+        <h2 id="return-title">Come back whenever you like</h2>
+        <p>
+          Double-click <strong>Review ToMpathy.cmd</strong> in the project
+          folder. It opens this same Chrome profile, builds the current code,
+          and installs an update only when the build changed. You can close its
+          terminal when it finishes.
+        </p>
+        <p>
+          Within an open review session, your bookmark brings you straight back
+          here. After closing Chrome completely or restarting the computer, use
+          the launcher first; it restores the extension automatically. Before
+          installing a changed build or ending the browser session, use
+          <strong>Reader menu → Save session</strong> if you want to keep an
+          analysis. Captured readings are temporary.
+        </p>
+      </section>
+
+      <details>
+        <summary>What is working, and what is still to come?</summary>
+        <p>
+          <strong>Ready to review:</strong> the three-section reader, source
+          capture, attribution, evidence links, context selection, imported
+          results, revision history, and file exports.
+        </p>
+        <p>
+          <strong>Still to come:</strong> a connected Sounding Line service.
+          Real pages can be captured, but they do not yet produce new estimates
+          automatically. A matching result file is required. The bundled example
+          supplies fictional estimates so the whole reading experience can be
+          reviewed now.
+        </p>
+        <p>
+          The
+          <a
+            href="https://github.com/simonw/datasette-lite"
+            target="_blank"
+            rel="noreferrer"
+            >Datasette Lite repository</a
+          >
+          is a useful companion to the real article. A repository link is
+          context to inspect; it is not proof of an author’s goals or values.
+        </p>
+      </details>
+      <details>
+        <summary>How do updates and automated checks work?</summary>
+        <p>
+          After a code change, run <strong>Review ToMpathy.cmd</strong> again.
+          The launcher typechecks and rebuilds before it reloads Chrome. Refresh
+          any old article tabs, then reopen the reader. A build failure stops
+          the update and leaves the existing installation available.
+        </p>
+        <p>
+          The repository’s
+          <a
+            href="https://github.com/EmotiveAutomaton/tompathy/actions"
+            target="_blank"
+            rel="noreferrer"
+            >GitHub Actions checks</a
+          >
+          build, run the core and browser tests, and retain a downloadable
+          extension ZIP for each successful run. The launcher uses this local
+          checkout; it does not silently pull or deploy code from GitHub.
+        </p>
+      </details>
+      <details>
+        <summary>Optional: test a normal webpage with imported results</summary>
+        <p>
+          For the file-exchange path, run <code>npm run testbed</code> from the
+          project folder and keep that terminal open. Visit
+          <a href="http://127.0.0.1:5173/testbed.html" target="_blank"
+            >the local test article</a
+          >. Click ToMpathy in the toolbar, download its first account, then use
+          <strong>Reader menu → Import result</strong>.
+        </p>
+        <p>
+          This extra test uses a real HTTP page and a matching packet. It is
+          optional for everyday interface review. Those packets only match that
+          exact localhost article, not the bundled example or Simon’s article.
+        </p>
+      </details>
+      <details>
+        <summary>If something does not open</summary>
+        <ul>
+          <li>
+            <strong>No ToMpathy icon?</strong> Use the puzzle-piece menu in this
+            review Chrome window. Your regular Chrome profile has separate
+            extensions. The guided example also has its own Open Maker Reader
+            button.
+          </li>
+          <li>
+            <strong>No extension card?</strong> Run the launcher again. It
+            verifies that Chrome reports this build enabled. A Chrome instance
+            launched with <code>--disable-extensions</code> cannot serve as this
+            test environment.
+          </li>
+          <li>
+            <strong>Wrong page or stale text?</strong> Refresh the article,
+            click the toolbar icon there, and use Reader menu → Capture current
+            page if needed.
+          </li>
+          <li>
+            <strong>Localhost unavailable?</strong> Only the optional HTTP
+            testbed needs <code>npm run testbed</code>. This guide and the
+            bundled example work without it.
+          </li>
+        </ul>
+      </details>
+      <footer>
+        <p>
+          <strong>Useful feedback:</strong> copy the build label above, name the
+          page and passage, describe the action, what you expected, and what
+          happened. A screenshot helps with visual decisions.
+        </p>
+        <p class="quiet">
+          This is a separate Chrome development profile. Use it for test pages;
+          keep personal browsing and sign-ins in your usual profile.
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "verifiedAt": "2026-10-11T13:18:08.690Z",
+  "profile": "isolated ordinary Google Chrome",
+  "checks": [
+    "Fresh ordinary Chrome installation is enabled",
+    "Guide opens a native panel beside its bundled source without a server",
+    "Hover, pin, Escape, fixed values and tree/cloud switch",
+    "Re-running the unchanged launcher preserves the accepted reading",
+    "Chrome extension action grants activeTab and captures a normal HTTP article with the delivered manifest",
+    "Real Simon Willison article captures through the extension action and correctly awaits backend analysis",
+    "Launcher restores the same extension ID after a full Chrome restart; local preferences survive"
+  ],
+  "browser": "154.0.8037.98",
+  "build": "927fcb36959c",
+  "nativePanel": {
+    "sourceWidthBefore": 1427,
+    "sourceWidthAfter": 1041,
+    "panelWidth": 360
+  },
+  "publicArticle": {
+    "url": "https://simonwillison.net/2022/May/4/datasette-lite/",
+    "author": "Simon Willison",
+    "passages": 93,
+    "inferenceRequested": false
+  },
+  "extensionId": "ofegdlmfcciapikbidnlgimponjdijmk",
+  "errors": []
+}

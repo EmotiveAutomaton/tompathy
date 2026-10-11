@@ -1,9 +1,10 @@
 {
-  "verifiedAt": "2026-10-11T12:46:40.938Z",
-  "zipBytes": 209757,
-  "sha256": "d82173aefd60ab6055e8aa308562a63b5ae7c2881bacb087a077e8582accc94b",
+  "verifiedAt": "2026-10-11T13:16:10.666Z",
+  "zipBytes": 215452,
+  "sha256": "86e9d158af017ae2d07c10c6c5e4149790c75bf304ca13a7e275e371393d3dd5",
   "entries": [
     "background.js",
+    "build-info.json",
     "content.js",
     "example.html",
     "icon128.png",
@@ -13,7 +14,10 @@
     "manifest.json",
     "panel.css",
     "panel.html",
-    "panel.js"
+    "panel.js",
+    "review.css",
+    "review.html",
+    "review.js"
   ],
   "matchesBuild": true,
   "permanentHostPermissions": false

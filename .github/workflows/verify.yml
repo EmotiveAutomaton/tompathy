@@ -1,0 +1,55 @@
+name: Verify and package
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm test
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser
+      - name: Install ordinary Google Chrome for the owner-workflow check
+        run: npx playwright install chrome
+      - name: Verify installation, native panel and restoration after restart
+        run: xvfb-run -a npm run test:review
+      - run: npm run package
+      - run: node scripts/verify-package.mjs
+      - name: Save the verified extension
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: tompathy-${{ github.sha }}
+          path: tompathy-*.zip
+          if-no-files-found: error
+          retention-days: 14
+      - name: Save test receipts and failure traces
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: verification-${{ github.sha }}
+          path: |
+            evidence/test-results.json
+            evidence/review-validation.json
+            evidence/review-desk.png
+            evidence/review-chrome-panel.png
+            evidence/package-verification.json
+            test-results/
+          retention-days: 14

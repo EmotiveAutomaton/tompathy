@@ -16,6 +16,10 @@ export async function verifyBuild() {
     "panel.css",
     "content.js",
     "example.html",
+    "review.html",
+    "review.css",
+    "review.js",
+    "build-info.json",
   ];
   for (const asset of assets) {
     if (path.dirname(asset) !== ".")

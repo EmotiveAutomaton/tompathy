@@ -1,5 +1,12 @@
 import { build } from "esbuild";
-import { mkdir, copyFile, writeFile } from "node:fs/promises";
+import {
+  mkdir,
+  copyFile,
+  writeFile,
+  readdir,
+  readFile,
+} from "node:fs/promises";
+import { createHash } from "node:crypto";
 import { icons } from "./icons.mjs";
 import path from "node:path";
 await mkdir("dist", { recursive: true });
@@ -23,6 +30,8 @@ await build({
   sourcemap: true,
 });
 await copyFile("public/manifest.json", "dist/manifest.json");
+for (const file of ["review.html", "review.css", "review.js"])
+  await copyFile(`public/${file}`, `dist/${file}`);
 const html =
   '<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ToMpathy — Maker Reader</title><link rel="stylesheet" href="panel.css"></head><body><div id="root"></div><script type="module" src="panel.js"></script></body></html>';
 await writeFile("dist/panel.html", html);
@@ -34,7 +43,24 @@ await writeFile(
   ),
 );
 const { verifyBuild } = await import("./check-build.mjs");
+const hash = createHash("sha256");
+for (const file of (await readdir("dist")).sort()) {
+  if (file.endsWith(".map") || file === "build-info.json") continue;
+  hash
+    .update(file)
+    .update("\0")
+    .update(await readFile(path.join("dist", file)));
+}
+const { version } = JSON.parse(await readFile("dist/manifest.json", "utf8"));
+await writeFile(
+  "dist/build-info.json",
+  JSON.stringify(
+    { version, fingerprint: hash.digest("hex").slice(0, 12) },
+    null,
+    2,
+  ),
+);
 await verifyBuild();
 console.log(
-  `\nBuild succeeded. ToMpathy is ready to load in Chrome.\n\n  Load unpacked: ${path.resolve("dist")}\n\nOpen chrome://extensions, choose Load unpacked, and select that folder.\nAlready loaded? Click Reload on the ToMpathy card, then refresh the source page.\nRun npm run testbed to open the local test page.\n`,
+  `\nBuild succeeded. ToMpathy ${version} is ready.\n\n  Review in Chrome: npm run chrome\n  Or double-click Review ToMpathy.cmd next time.\n  Manual Load unpacked: ${path.resolve("dist")}\n`,
 );
