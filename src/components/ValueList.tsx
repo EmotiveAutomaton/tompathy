@@ -47,70 +47,77 @@ export function ValueList({
 }) {
   return (
     <div className="core-values" data-testid="values">
-      {values.map((h) => (
-        <HoverCard
-          key={h.id}
-          className="value-hover"
-          content={
-            <>
-              <div className="value-detail-heading">
-                <Wheel value={h.support ? weight(h) : null} large />
-                <div>
-                  <strong>{h.label}</strong>
-                  <p>{supportText(h)}</p>
+      {[...values]
+        .sort(
+          (a, b) => (b.support ? weight(b) : -1) - (a.support ? weight(a) : -1),
+        )
+        .slice(0, 9)
+        .map((h) => (
+          <HoverCard
+            key={h.id}
+            className="value-hover"
+            content={
+              <>
+                <div className="value-detail-heading">
+                  <Wheel value={h.support ? weight(h) : null} large />
+                  <div>
+                    <strong>{h.label}</strong>
+                    <p>{supportText(h)}</p>
+                  </div>
                 </div>
-              </div>
-              <p>{h.description}</p>
-              <p className="muted">
-                {h.support?.meaning ?? "No reliability estimate was supplied."}
-              </p>
-              <h3>Where this comes from</h3>
-              {h.evidence.length ? (
-                h.evidence.map((id) => {
-                  const e = packet?.evidence.find((e) => e.id === id);
+                <p className="value-summary">{h.description}</p>
+                <p className="muted support-summary">
+                  {h.support?.meaning ??
+                    "No reliability estimate was supplied."}
+                </p>
+                <h3>Where this comes from</h3>
+                {h.evidence.length ? (
+                  h.evidence.slice(0, 3).map((id) => {
+                    const e = packet?.evidence.find((e) => e.id === id);
+                    return (
+                      e && (
+                        <div key={id} className="source-note">
+                          <strong>
+                            {e.source === packet?.artifact.source
+                              ? "This page"
+                              : packet?.scope.kind === "context"
+                                ? "Context"
+                                : "External source"}
+                          </strong>
+                          <p className="source-excerpt">{e.excerpt}</p>
+                        </div>
+                      )
+                    );
+                  })
+                ) : (
+                  <p>No evidence supplied.</p>
+                )}
+                {h.decisionNodes?.slice(0, 1).map((id) => {
+                  const n = packet?.goalHierarchy?.nodes.find(
+                    (n) => n.id === id,
+                  );
                   return (
-                    e && (
+                    n && (
                       <div key={id} className="source-note">
-                        <strong>
-                          {e.source === packet?.artifact.source
-                            ? "This page"
-                            : packet?.scope.kind === "context"
-                              ? "Context"
-                              : "External source"}
-                        </strong>
-                        <p>{e.excerpt}</p>
-                        <small>{e.relationship}</small>
+                        <strong>Specific decision · {n.label}</strong>
                       </div>
                     )
                   );
-                })
-              ) : (
-                <p>No evidence supplied.</p>
-              )}
-              {h.decisionNodes?.map((id) => {
-                const n = packet?.goalHierarchy?.nodes.find((n) => n.id === id);
-                return (
-                  n && (
-                    <div key={id} className="source-note">
-                      <strong>Specific decision · {n.label}</strong>
-                      <p>{n.description}</p>
-                    </div>
-                  )
-                );
-              })}
-              <p className="muted">
-                Sources support an interpretation; they are not additive slices
-                of confidence. Select the row to inspect the full account.
-              </p>
-            </>
-          }
-        >
-          <button className="core-value-row" onClick={() => inspect(h)}>
-            <Wheel value={h.support ? weight(h) : null} />
-            <span>{h.label}</span>
-          </button>
-        </HoverCard>
-      ))}
+                })}
+                <p className="muted">
+                  Sources support an interpretation; they are not additive
+                  slices of confidence. Select the row to inspect the full
+                  account.
+                </p>
+              </>
+            }
+          >
+            <button className="core-value-row" onClick={() => inspect(h)}>
+              <Wheel value={h.support ? weight(h) : null} />
+              <span>{h.label}</span>
+            </button>
+          </HoverCard>
+        ))}
       {!values.length && (
         <span className="quiet-empty">No values supplied</span>
       )}

@@ -33,12 +33,12 @@ await copyFile("public/manifest.json", "dist/manifest.json");
 for (const file of ["review.html", "review.css", "review.js"])
   await copyFile(`public/${file}`, `dist/${file}`);
 const html =
-  '<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>What&#39;s on the author&#39;s mind?</title><link rel="stylesheet" href="panel.css"></head><body><div id="root"></div><script type="module" src="panel.js"></script></body></html>';
+  '<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ToMpathy - What&#39;s on the author&#39;s mind?</title><link rel="stylesheet" href="panel.css"></head><body><div id="root"></div><script type="module" src="panel.js"></script></body></html>';
 await writeFile("dist/panel.html", html);
 await writeFile(
   "dist/example.html",
   html.replace(
-    "<title>What&#39;s on the author&#39;s mind?</title>",
+    "<title>ToMpathy - What&#39;s on the author&#39;s mind?</title>",
     "<title>A bench is an invitation</title>",
   ),
 );

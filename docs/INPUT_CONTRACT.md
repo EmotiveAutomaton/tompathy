@@ -1,4 +1,4 @@
-# ToMpathy result contract · 1.0, 1.1 and 1.2
+# ToMpathy result contract · 1.0–1.3
 
 `src/core/model.ts` is the authoritative runtime validator. `examples/bench-result.json` is a complete valid packet; `bench-revision.json` demonstrates a context-conditioned revision. `bench-source.txt` is the corresponding synthetic text. Fixtures use `tompathy:example` as their portable origin. In the installed extension, use **Import result → Download example format** on the bundled source to obtain a packet bound to that installation's source URL.
 
@@ -15,7 +15,7 @@ No transport endpoint has been invented. `configuredProvider` is null; ordinary 
 
 | Field                             | Meaning                                                                                                                                                         |
 | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `schemaVersion`                   | `"1.0"` (legacy, including Sounding Line Stage 13) `"1.1"`, or `"1.2"`                                                                                                   |
+| `schemaVersion`                   | `"1.0"` (legacy, including Sounding Line Stage 13) `"1.1"`, `"1.2"`, or `"1.3"`                                                                                 |
 | `id`, `revision`                  | Analysis identity and positive integer revision                                                                                                                 |
 | `artifact`                        | ID, source, title, capture timestamp, content revision, truncation flag and regions                                                                             |
 | `provider`                        | Stable provider ID and method description                                                                                                                       |
@@ -47,17 +47,23 @@ All new evidence/account references are validated. Existing 1.0 packets remain a
 
 ## Additions in 1.2
 
-`goalHierarchy.nodes[]` is an optional, explicit hierarchy of possible goals. It is separate from `process` production-history edges. The renderer never derives parenthood from historical precedence. Each maker has one root; cycles, dangling IDs, cross-maker parents, paths deeper than 12 nodes and child regions outside the parent are rejected. Large/deep hierarchies have a readable list fallback.
+`goalHierarchy.nodes[]` is an optional, explicit hierarchy of possible goals. It is separate from `process` production-history edges. The renderer never derives parenthood from historical precedence. Each maker has one root; cycles, dangling IDs, cross-maker parents, paths deeper than 12 nodes and child regions outside the parent are rejected. Large hierarchies have a readable list fallback.
 
 Each node supplies `id`, optional `parentId`, `maker`, `label`, `description`, `level` (`document`, `section`, `paragraph`, `sentence`), nonempty `regions`, and `evidence` IDs. Sentence nodes also require `span: {region, start, end}`: a half-open UTF-16 range inside that region's existing normalized `anchor.exact`. The range must be nonempty and within the region. Region identities, paragraph capture boundaries and capture revisions do not change.
 
 Goal hypotheses can supply `spans[]` with the same range shape to limit visibility to individual sentences within their declared regions. Hypotheses may also supply `decisionNodes[]`, explicit same-maker references into the hierarchy. Core-value hover details use these references to identify particular decisions, alongside the actual page/context evidence. Sources are not treated as additive probability components. Missing support remains unknown; relative support stays explicitly relative.
 
-The frontend segments captured prose into sentence ranges with `Intl.Segmenter`. It maps normalized offsets back to original DOM text nodes and paints CSS Highlights without inserting spans into third-party articles. Double-click locks the current sentence; it does not suppress native text selection. Word-level analysis is a disabled development marker only.
+The frontend segments captured prose into sentence ranges with `Intl.Segmenter`. It maps normalized offsets back to original DOM text nodes and paints CSS Highlights without inserting spans into third-party articles. Single left click locks the current sentence; links, form controls and nonempty native text selections are excluded. A hierarchy click or reel scroll locks that node and highlights its span or full region set. Escape releases it. Word-level analysis is a disabled development marker only.
 
 The native title and three panels are intentionally spare. Analysis subject, synthetic/imported origin, methods, old process claims and full evidence remain available in Reader menu, Help, Source text and All supplied hypotheses.
 
 Layout foundations: [D3 force simulation](https://d3js.org/d3-force/simulation) for gentle position relaxation, with phrase-shaped collision and bounded packing; [D3 hierarchy](https://d3js.org/d3-hierarchy/stratify) for explicit parent/ancestor/descendant relationships. [d3-cloud](https://github.com/jasondavies/d3-cloud) was considered; its fresh spiral placement and possible omission of non-fitting words were a poor fit for persistent goals.
+
+## Additions in 1.3
+
+`goalHierarchy.nodes[].level` becomes optional descriptive metadata (a nonempty string of up to 100 characters when present). Parent links determine hierarchy depth; the interface does not display fixed sentence/paragraph/section/document reel captions. Up to 64 levels are accepted with the existing 3,000-node bound, cycle checks, same-maker references and region-containment validation. A node explicitly labeled `sentence` still requires its exact span. Versions 1.0–1.2 keep their original level vocabulary and 12-level limit.
+
+The compact reels scroll horizontally for deeper paths; each reel supports mouse-wheel and arrow-key selection. Top-nine values are selected by normalized supplied support, with stable input order breaking ties and unknown support last. The full hypothesis list remains available. Multiple-parent or multiple-root graphs are deferred; no such relationships are inferred or simulated in this pass.
 
 ## Text identity and matching
 

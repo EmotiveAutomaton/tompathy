@@ -64,6 +64,31 @@ test("installed page adapter: anchors, dynamic revision, cleanup and long-page l
           }),
         { tabId: id, type, a: result.artifact, data },
       );
+    const drag = await source.locator("#repeat1").evaluate((el) => {
+      const range = document.createRange();
+      range.setStart(el.firstChild!, 1);
+      range.setEnd(el.firstChild!, 20);
+      const rect = range.getBoundingClientRect();
+      return { x: rect.x, y: rect.y + rect.height / 2, right: rect.right };
+    });
+    await source.mouse.move(drag.x, drag.y);
+    await source.mouse.down();
+    await source.mouse.move(drag.right, drag.y, { steps: 5 });
+    await source.mouse.up();
+    expect(
+      await source.evaluate(() => window.getSelection()?.toString().length),
+    ).toBeGreaterThan(5);
+    await expect(
+      source.locator('[aria-label="Selection locked; press Escape to unlock"]'),
+    ).toBeHidden();
+    await source.locator("#repeat2").click();
+    await expect(
+      source.locator('[aria-label="Selection locked; press Escape to unlock"]'),
+    ).toBeVisible();
+    await source.keyboard.press("Escape");
+    await expect(
+      source.locator('[aria-label="Selection locked; press Escape to unlock"]'),
+    ).toBeHidden();
     await command("TOMPATHY_FOCUS", { region: repeated[1].id });
     await expect(source.locator("#repeat2")).toHaveAttribute(
       "data-tompathy-selected",

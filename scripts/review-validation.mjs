@@ -60,6 +60,7 @@ try {
       "The actual native side panel did not open from the guided example",
     );
   panel.on("pageerror", (error) => errors.push(error.message));
+  await expect(panel).toHaveTitle("ToMpathy - What's on the author's mind?");
   await expect(panel.locator(".reader-content > .region")).toHaveCount(3);
   await expect(panel.locator(".app-header, .app-footer")).toHaveCount(0);
   await expect(panel.getByTestId("values")).toContainText("Care for others");
@@ -85,12 +86,12 @@ try {
     "sentence-3-1",
   );
   expect(await panel.getByTestId("values").innerHTML()).toBe(values);
-  await source.mouse.dblclick(point.x, point.y);
+  await source.mouse.click(point.x, point.y);
   await expect(
-    panel.getByRole("button", { name: "Unlock sentence" }),
+    panel.getByRole("button", { name: "Unlock selection" }),
   ).toBeVisible();
   await expect(
-    source.locator('[aria-label="Sentence locked; press Escape to unlock"]'),
+    source.locator('[aria-label="Selection locked; press Escape to unlock"]'),
   ).toBeVisible();
   await source.locator('[data-passage="p2"]').hover();
   await expect(panel.locator('.spool[data-level="3"]')).toHaveAttribute(
@@ -102,6 +103,31 @@ try {
     path: "evidence/review-odometer.png",
     scale: "css",
   });
+  await expect(panel.locator(".pyramid")).toBeVisible();
+  const pyramidBounds = await panel.locator(".pyramid").boundingBox();
+  const reelBounds = await panel.getByTestId("odometer").boundingBox();
+  expect(reelBounds.y).toBeGreaterThan(pyramidBounds.y + pyramidBounds.height);
+  expect(reelBounds.height).toBeLessThan(70);
+  const reel = panel.locator('.spool[data-level="3"]');
+  await reel.hover();
+  await panel.mouse.wheel(0, 100);
+  await expect(reel).toHaveAttribute("data-selected", "sentence-3-2");
+  await expect
+    .poll(() =>
+      source.evaluate(() =>
+        [...CSS.highlights.get("tompathy-active")]
+          .map((r) => r.toString())
+          .join(" "),
+      ),
+    )
+    .toContain("We counted pauses");
+  await panel.locator('[data-node="paragraph-3"]').click();
+  await expect(reel).toHaveClass(/ambiguous/);
+  await expect
+    .poll(() =>
+      source.evaluate(() => CSS.highlights.get("tompathy-active").size),
+    )
+    .toBe(4);
   await source.keyboard.press("Escape");
   await panel.locator(".process-region .section-heading").hover();
   await panel.locator('[data-node="paragraph-3"]').hover();
@@ -116,12 +142,36 @@ try {
     .getByRole("button", { name: "Care for others", exact: true })
     .hover();
   await expect(panel.getByRole("tooltip")).toContainText("Specific decision");
-  await panel.waitForTimeout(1000);
+  await panel.getByRole("button", { name: "Restraint", exact: true }).hover();
+  await panel.getByRole("button", { name: "Curiosity", exact: true }).hover();
+  await expect(panel.getByRole("tooltip")).toContainText("Curiosity");
+  await expect(panel.getByRole("tooltip")).not.toContainText("Restraint");
+  await panel
+    .getByRole("button", { name: "Care for others", exact: true })
+    .hover();
+  await panel.waitForTimeout(300);
   await panel.screenshot({
     path: "evidence/review-value-detail.png",
     scale: "css",
   });
-  await panel.locator(".values-region .section-heading").hover();
+  await panel.locator("#process-title button").hover();
+  await expect(panel.getByRole("tooltip")).toContainText(
+    "lossy, compressed record",
+  );
+  await expect(panel.getByRole("tooltip").getByRole("img")).toBeVisible();
+  const helpBounds = await panel.getByRole("tooltip").boundingBox();
+  expect(helpBounds.y).toBeGreaterThanOrEqual(0);
+  expect(helpBounds.y + helpBounds.height).toBeLessThanOrEqual(
+    await panel.evaluate(() => innerHeight),
+  );
+  await panel.waitForTimeout(250);
+  await panel.screenshot({
+    path: "evidence/review-expertise-help.png",
+    scale: "css",
+  });
+  await panel
+    .locator(".values-region .section-heading")
+    .hover({ position: { x: 260, y: 8 } });
   await panel.waitForTimeout(1000);
   await panel.screenshot({
     path: "evidence/review-chrome-panel.png",
@@ -134,7 +184,7 @@ try {
   };
   receipt.checks.push(
     "Guide opens a native panel beside its bundled source without a server",
-    "Sentence hover, double-click lock, Escape, fixed values, hierarchy branches, linked page highlighting, confidence provenance",
+    "Sentence hover, single-click locks for sentences and branches, wheel-driven source selection, compact reels below a persistent hierarchy, Escape, fixed values and provenance",
   );
   await panel.getByRole("button", { name: "Reader menu", exact: true }).click();
   await panel.getByRole("button", { name: "Context", exact: true }).click();

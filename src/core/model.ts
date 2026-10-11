@@ -88,7 +88,7 @@ export const HypothesisSchema = z.object({
 });
 export const PacketSchema = z
   .object({
-    schemaVersion: z.enum(["1.0", "1.1", "1.2"]),
+    schemaVersion: z.enum(["1.0", "1.1", "1.2", "1.3"]),
     id,
     revision: z.number().int().positive(),
     artifact: ArtifactSchema,
@@ -154,7 +154,7 @@ export const PacketSchema = z
               maker: id,
               label: z.string().min(1).max(250),
               description: z.string().max(4000),
-              level: z.enum(["document", "section", "paragraph", "sentence"]),
+              level: z.string().min(1).max(100).optional(),
               regions: z.array(id).min(1),
               span: z
                 .object({
@@ -244,6 +244,15 @@ export const PacketSchema = z
     const hierarchyById = new Map(hierarchy.map((n) => [n.id, n]));
     for (const n of hierarchy) {
       if (
+        p.schemaVersion !== "1.3" &&
+        !["document", "section", "paragraph", "sentence"].includes(
+          n.level ?? "",
+        )
+      )
+        error(
+          `Legacy hierarchy node ${n.id} requires a supported level; use 1.3 for optional level names.`,
+        );
+      if (
         !ms.has(n.maker) ||
         n.regions.some((r) => !rs.has(r)) ||
         n.evidence.some((e) => !es.has(e))
@@ -272,8 +281,11 @@ export const PacketSchema = z
       const seen = new Set<string>([n.id]);
       let parent = n.parentId;
       while (parent) {
-        if (seen.has(parent) || seen.size > 12) {
-          error("Goal hierarchy must be acyclic and at most 12 levels deep.");
+        const maxDepth = p.schemaVersion === "1.3" ? 64 : 12;
+        if (seen.has(parent) || seen.size >= maxDepth) {
+          error(
+            `Goal hierarchy must be acyclic and at most ${maxDepth} levels deep.`,
+          );
           break;
         }
         seen.add(parent);

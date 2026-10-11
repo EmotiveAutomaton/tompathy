@@ -36,7 +36,7 @@ const values = await panel.getByTestId("values").innerHTML();
 await source.locator('[data-passage="p4"]').hover();
 await expect(panel.getByTestId("process")).toContainText("Show the iteration");
 expect(await panel.getByTestId("values").innerHTML()).toEqual(values);
-await source.locator('[data-passage="p4"]').dblclick();
+await source.locator('[data-passage="p4"]').click();
 await source.locator('[data-passage="p2"]').hover();
 await expect(panel.locator(".sr-only")).toContainText("Locked p4");
 await source.keyboard.press("Escape");
@@ -59,7 +59,7 @@ expect(
     .getAttribute("data-tompathy-selected"),
 ).toBe("");
 await panel.locator(".reader-content").evaluate((el) => (el.scrollTop = 0));
-await panel.getByRole("button", { name: "Unlock sentence" }).click();
+await panel.getByRole("button", { name: "Unlock selection" }).click();
 await panel.locator(".process-region .section-heading").hover();
 await expect(panel.locator(".pyramid")).toBeVisible();
 await panel.screenshot({ path: "evidence/native-panel.png", scale: "css" });

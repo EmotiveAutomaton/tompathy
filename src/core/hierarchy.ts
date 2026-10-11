@@ -9,14 +9,26 @@ export function goalTree(nodes: GoalNode[]) {
     : null;
 }
 export function goalAt(nodes: GoalNode[], region: string, offset: number) {
-  return (
-    nodes.find(
+  const byId = new Map(nodes.map((n) => [n.id, n]));
+  const depth = (node: GoalNode) => {
+    let result = 0,
+      parent = node.parentId;
+    while (parent && result < 64) {
+      result++;
+      parent = byId.get(parent)?.parentId;
+    }
+    return result;
+  };
+  return nodes
+    .filter(
       (n) =>
-        n.span?.region === region &&
-        n.span.start <= offset &&
-        n.span.end > offset,
-    ) ??
-    nodes.find((n) => n.level === "paragraph" && n.regions.includes(region)) ??
-    nodes.find((n) => n.regions.includes(region))
-  );
+        n.regions.includes(region) &&
+        (!n.span ||
+          (n.span.region === region &&
+            n.span.start <= offset &&
+            n.span.end > offset)),
+    )
+    .sort(
+      (a, b) => Number(!!b.span) - Number(!!a.span) || depth(b) - depth(a),
+    )[0];
 }

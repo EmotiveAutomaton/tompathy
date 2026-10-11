@@ -165,6 +165,7 @@ export function App({ preview = false }: { preview?: boolean }) {
     [sentenceOffset, setSentenceOffset] = useState(0),
     [sourceHover, setSourceHover] = useState(false),
     [relatedNode, setRelatedNode] = useState<GoalNode | null>(null),
+    [lockedNode, setLockedNode] = useState<GoalNode | null>(null),
     [busy, setBusy] = useState(false),
     [stale, setStale] = useState(false),
     [notice, setNotice] = useState(""),
@@ -272,6 +273,8 @@ export function App({ preview = false }: { preview?: boolean }) {
       setTabId(result.tabId);
       setRegion(result.artifact.regions[0].id);
       setPinned(false);
+      setLockedNode(null);
+      setRelatedNode(null);
       const previous = current.current.session;
       let resultPacket: Packet | null =
         previous.packet &&
@@ -319,6 +322,8 @@ export function App({ preview = false }: { preview?: boolean }) {
     setModal(null);
     setStale(false);
     setPinned(false);
+    setLockedNode(null);
+    setRelatedNode(null);
     setRegion("p2");
     if (isExtension) {
       const tab = await chrome.tabs.create({
@@ -397,6 +402,7 @@ export function App({ preview = false }: { preview?: boolean }) {
         setSourceHover(true);
         setRelatedNode(null);
         setPinned(m.pinned);
+        setLockedNode(null);
         setDetail(null);
       }
       if (m.type === "TOMPATHY_LEAVE") setSourceHover(false);
@@ -416,6 +422,8 @@ export function App({ preview = false }: { preview?: boolean }) {
       setSession(empty);
       setDetail(null);
       setPinned(false);
+      setLockedNode(null);
+      setRelatedNode(null);
       setTabId(null);
       void capture();
     };
@@ -453,12 +461,20 @@ export function App({ preview = false }: { preview?: boolean }) {
     }
   }, [tabId]);
   useEffect(() => {
+    setPinned(false);
+    setLockedNode(null);
+    setRelatedNode(null);
+    void pageCommand(tabId, artifact, "TOMPATHY_RELEASE");
+  }, [packet?.id, packet?.revision, activeMaker?.id, ready]);
+  useEffect(() => {
     void markPage(tabId, artifact, ready ? packet : null);
   }, [tabId, artifact, packet, ready]);
   useEffect(() => {
     const key = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setPinned(false);
+        setLockedNode(null);
+        setRelatedNode(null);
         void pageCommand(tabId, artifact, "TOMPATHY_RELEASE");
       }
     };
@@ -471,6 +487,7 @@ export function App({ preview = false }: { preview?: boolean }) {
     setSentenceOffset(offset);
     setSourceHover(true);
     setRelatedNode(null);
+    setLockedNode(null);
     if (pin) {
       setPinned(true);
       void pageCommand(tabId, artifact, "TOMPATHY_FOCUS", {
@@ -639,7 +656,12 @@ export function App({ preview = false }: { preview?: boolean }) {
         <ExampleArticle
           active={region}
           pinned={pinned}
-          related={relatedNode?.regions ?? detail?.regions ?? []}
+          related={
+            relatedNode?.regions ??
+            (lockedNode?.span ? undefined : lockedNode?.regions) ??
+            detail?.regions ??
+            []
+          }
           sentenceOffset={sentenceOffset}
           onLeave={() => setSourceHover(false)}
           onMove={move}
@@ -655,7 +677,7 @@ export function App({ preview = false }: { preview?: boolean }) {
             aria-labelledby="goals-title"
           >
             <div className="section-heading">
-              <SectionTitle kind="goals">Goals</SectionTitle>
+              <SectionTitle kind="goals">Current attention</SectionTitle>
               <IconButton label="Reader menu" onClick={() => setModal("menu")}>
                 <MoreHorizontal size={20} />
               </IconButton>
@@ -749,9 +771,12 @@ export function App({ preview = false }: { preview?: boolean }) {
             aria-labelledby="process-title"
           >
             <div className="section-heading">
-              <SectionTitle kind="process">Process</SectionTitle>
+              <SectionTitle kind="process">
+                Expertise, Habits, and Hierarchical Goals
+              </SectionTitle>
             </div>
             <ProcessHierarchy
+              key={`${packet?.id}:${packet?.revision}:${activeMaker?.id}`}
               nodes={
                 ready
                   ? (packet!.goalHierarchy?.nodes ?? []).filter(
@@ -763,6 +788,19 @@ export function App({ preview = false }: { preview?: boolean }) {
               offset={sentenceOffset}
               sourceHover={sourceHover}
               pinned={pinned}
+              lockedNodeId={lockedNode?.id}
+              onSelect={(node) => {
+                setLockedNode(node);
+                setPinned(true);
+                setRelatedNode(null);
+                setRegion(node.regions[0]);
+                setSentenceOffset(node.span?.start ?? 0);
+                void pageCommand(tabId, artifact, "TOMPATHY_FOCUS", {
+                  region: node.regions[0],
+                  offset: node.span?.start ?? 0,
+                  regions: node.span ? undefined : node.regions,
+                });
+              }}
               list={view === "list"}
               onHighlight={(node) => {
                 setRelatedNode(node);
@@ -773,6 +811,8 @@ export function App({ preview = false }: { preview?: boolean }) {
               }}
               onLock={() => {
                 setPinned(!pinned);
+                setLockedNode(null);
+                setRelatedNode(null);
                 void pageCommand(
                   tabId,
                   artifact,
@@ -1085,17 +1125,17 @@ export function App({ preview = false }: { preview?: boolean }) {
               <ol className="steps">
                 <li>
                   <strong>Follow a sentence.</strong> Hover page text to roll
-                  through its goal hierarchy. Double-click to lock it; Escape or
-                  the lock in Process releases it. Native text selection and
-                  links still work. Keyboard readers can use the source passage
-                  list and the Process lock.
+                  through its goal hierarchy. Click to lock it; Escape or the
+                  small lock beside the reels releases it. Native text selection
+                  and links still work. Keyboard readers can use the source
+                  passage list, then the reels’ arrow-key controls.
                 </li>
                 <li>
-                  <strong>Explore the shape.</strong> Move into Process to see
-                  the pyramid. Hover or focus a block: its ancestors light up to
-                  the right, its descendants fan out to the left, and the
-                  matching page text shares their color. Blurred spools mean
-                  several subordinate goals remain possible.
+                  <strong>Explore the shape.</strong> The continuous hierarchy
+                  stays visible above the reels. Hover or focus a block: its
+                  ancestors light up to the right, its descendants fan out to
+                  the left, and the matching page text shares their color.
+                  Blurred spools mean several subordinate goals remain possible.
                 </li>
                 <li>
                   <strong>Look closer.</strong> Hover or focus headings, goals
@@ -1103,9 +1143,9 @@ export function App({ preview = false }: { preview?: boolean }) {
                   full evidence account.
                 </li>
               </ol>
-              <h3>Goals</h3>
+              <h3>Current attention</h3>
               <p>{explanations.goals}</p>
-              <h3>Process</h3>
+              <h3>Expertise, Habits, and Hierarchical Goals</h3>
               <p>{explanations.process}</p>
               <h3>Core values</h3>
               <p>{explanations.values}</p>
@@ -1810,7 +1850,9 @@ export function ExampleArticle({
         <h1
           data-passage="p1"
           onMouseEnter={() => onMove("p1")}
-          onDoubleClick={() => onMove("p1", true)}
+          onClick={() =>
+            !window.getSelection()?.toString() && onMove("p1", true)
+          }
         >
           {exampleText[0]}
         </h1>
@@ -1858,7 +1900,8 @@ export function ExampleArticle({
                     onMouseEnter={() =>
                       onMove(`p${i + 2}`, false, sentence.start)
                     }
-                    onDoubleClick={() =>
+                    onClick={() =>
+                      !window.getSelection()?.toString() &&
                       onMove(`p${i + 2}`, true, sentence.start)
                     }
                   >

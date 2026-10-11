@@ -16,16 +16,6 @@ function chunk(type, data) {
   check.writeUInt32BE(crc(Buffer.concat([t, data])));
   return Buffer.concat([size, t, data, check]);
 }
-function distance(x, y, a, b, c, d) {
-  const t = Math.max(
-    0,
-    Math.min(
-      1,
-      ((x - a) * (c - a) + (y - b) * (d - b)) / ((c - a) ** 2 + (d - b) ** 2),
-    ),
-  );
-  return Math.hypot(x - a - t * (c - a), y - b - t * (d - b));
-}
 export async function icons(dir) {
   for (const size of [16, 32, 48, 128]) {
     const raw = Buffer.alloc(size * (1 + size * 4));
@@ -37,12 +27,26 @@ export async function icons(dir) {
             const u = ((x + (sx + 0.5) / 4) * 64) / size,
               v = ((y + (sy + 0.5) / 4) * 64) / size;
             let col = [240, 242, 235, 255];
-            if (
-              distance(u, v, 19, 38, 24, 22) < 3 ||
-              distance(u, v, 41, 43, 49, 22) < 3
-            )
-              col = [66, 104, 91, 255];
-            if (distance(u, v, 28, 47, 38, 16) < 3) col = [165, 121, 55, 255];
+            const half = 23 * Math.pow(Math.max(0, 1 - (u - 9) / 47), 0.65);
+            if (u >= 9 && u <= 56 && Math.abs(v - 32) <= half) {
+              col =
+                u < 25
+                  ? [125, 159, 136, 255]
+                  : u < 40
+                    ? [87, 130, 109, 255]
+                    : [48, 96, 77, 255];
+              const seam = size <= 16 ? 1.7 : 1.1;
+              if (
+                Math.abs(u - 25) < seam ||
+                Math.abs(u - 40) < seam ||
+                (u < 25 &&
+                  [15, 23.5, 32, 40.5, 49].some(
+                    (y) => Math.abs(v - y) < seam,
+                  )) ||
+                (u >= 25 && u < 40 && Math.abs(v - 32) < seam)
+              )
+                col = [240, 242, 235, 255];
+            }
             for (let c = 0; c < 4; c++) colors[c] += col[c] / 16;
           }
         const offset = y * (1 + size * 4) + 1 + x * 4;

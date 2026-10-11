@@ -1,1 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#f0f2eb"/><g stroke-linecap="round" stroke-width="6"><path d="m18 38 5-16M28 47l10-31" stroke="#a57937"/><path d="m42 42 7-22" stroke="#42685b"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#f0f2eb" />
+  <defs>
+    <clipPath id="shape"><path d="M9 9Q35 10 56 32Q35 54 9 55Z" /></clipPath>
+  </defs>
+  <g clip-path="url(#shape)">
+    <path fill="#7d9f88" d="M9 9H25V55H9Z" />
+    <path fill="#57826d" d="M25 9H40V55H25Z" />
+    <path fill="#30604d" d="M40 9H56V55H40Z" />
+    <path
+      d="M25 9V55M40 9V55M9 16H25M9 24H25M9 32H40M9 40H25M9 48H25"
+      fill="none"
+      stroke="#f0f2eb"
+      stroke-width="2"
+    />
+  </g>
+</svg>

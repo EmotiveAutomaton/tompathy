@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "What's on the author's mind?",
+  "name": "ToMpathy - What's on the author's mind?",
   "description": "Explore goals, processes, and values behind a text. A reader for externally supplied maker hypotheses.",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "icons": {
     "16": "icon16.png",
     "32": "icon32.png",
@@ -17,7 +17,7 @@
     "type": "module"
   },
   "action": {
-    "default_title": "What's on the author's mind? \u00b7 ToMpathy",
+    "default_title": "ToMpathy - What's on the author's mind?",
     "default_icon": {
       "16": "icon16.png",
       "32": "icon32.png"

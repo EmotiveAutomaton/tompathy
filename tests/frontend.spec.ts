@@ -1,3 +1,4 @@
+import { createExample } from "../src/core/example";
 import { test, expect, type Page } from "@playwright/test";
 async function tool(page: Page, name: string) {
   await page.getByRole("button", { name: "Reader menu", exact: true }).click();
@@ -30,18 +31,26 @@ test("three panels, stable cloud anchor, sentence spools, branching highlights a
     Math.abs(anchor!.x + anchor!.width / 2 - (moved!.x + moved!.width / 2)),
   ).toBeLessThan(2);
   await sentence.click();
-  await expect(
-    page.getByRole("button", { name: "Lock sentence", exact: true }),
-  ).toHaveAttribute("aria-pressed", "false");
-  await sentence.dblclick();
   await page.locator('[data-passage="p2"] [data-sentence="0"]').hover();
   await expect(page.locator('.spool[data-level="3"]')).toHaveAttribute(
     "data-selected",
     "sentence-3-2",
   );
   await expect(
-    page.getByRole("button", { name: "Unlock sentence" }),
+    page.getByRole("button", { name: "Unlock selection" }),
   ).toBeVisible();
+  await expect(page.locator(".pyramid")).toBeVisible();
+  const pyramid = await page.locator(".pyramid").boundingBox();
+  const reel = page.locator('.spool[data-level="3"]');
+  const reels = await page.getByTestId("odometer").boundingBox();
+  expect(reels!.y).toBeGreaterThan(pyramid!.y + pyramid!.height);
+  expect(reels!.height).toBeLessThan(70);
+  await reel.hover();
+  await page.mouse.wheel(0, 100);
+  await expect(reel).toHaveAttribute("data-selected", "sentence-3-3");
+  await reel.focus();
+  await page.keyboard.press("ArrowUp");
+  await expect(reel).toHaveAttribute("data-selected", "sentence-3-2");
   await page.keyboard.press("Escape");
   await page.locator(".process-region .section-heading").hover();
   await page.locator('[data-node="paragraph-3"]').hover();
@@ -82,6 +91,31 @@ test("cloud phrases do not overlap at native width; heading and value explanatio
           b.bottom <= a.top,
       ).toBe(true);
     }
+  const sizes = await page
+    .locator(".cloud-position button")
+    .evaluateAll((es) =>
+      es.map((e) => parseFloat(getComputedStyle(e).fontSize)),
+    );
+  expect(Math.max(...sizes) / Math.min(...sizes)).toBeGreaterThan(2.9);
+  const headingSize = await page
+    .locator("#goals-title")
+    .evaluate((e) => parseFloat(getComputedStyle(e).fontSize));
+  expect(Math.min(...sizes)).toBeLessThan(headingSize);
+  await page.getByRole("button", { name: "Restraint", exact: true }).hover();
+  await expect(page.getByRole("tooltip")).toContainText("Restraint");
+  await page.getByRole("button", { name: "Curiosity", exact: true }).hover();
+  await expect(page.getByRole("tooltip")).toContainText("Curiosity");
+  await expect(page.getByRole("tooltip")).not.toContainText("Restraint");
+  const tooltip = await page.getByRole("tooltip").evaluate((e) => ({
+    scroll: e.scrollHeight > e.clientHeight,
+    events: getComputedStyle(e).pointerEvents,
+  }));
+  expect(tooltip).toEqual({ scroll: false, events: "none" });
+  const cells = await page
+    .locator(".core-value-row")
+    .evaluateAll((es) => es.map((e) => e.getBoundingClientRect().x));
+  expect(new Set(cells).size).toBe(2);
+  await page.locator(".pyramid").hover({ position: { x: 1, y: 1 } });
   await page.getByRole("button", { name: "About Core values" }).focus();
   await expect(page.getByRole("tooltip")).toContainText("latent preferences");
   await page
@@ -202,7 +236,7 @@ test("narrow dark panel, reduced motion and keyboard dialog focus", async ({
     el.scrollTop = el.scrollHeight;
   });
   await expect(
-    page.getByRole("heading", { name: "About Goals", exact: true }),
+    page.getByRole("heading", { name: "About Current attention", exact: true }),
   ).toBeInViewport();
   await expect(
     page.getByRole("heading", { name: "About Core values", exact: true }),
@@ -283,4 +317,61 @@ test("collection cancellation and 200% zoom preserve usable controls", async ({
   expect(bounds!.y).toBeGreaterThanOrEqual(0);
   expect(bounds!.y + bounds!.height).toBeLessThanOrEqual(1000);
   await page.screenshot({ path: "evidence/zoom-200.png" });
+});
+
+test("unnamed eight-level hierarchy and top nine values fit a narrow panel", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 360, height: 900 });
+  await page.goto("/?panel");
+  const packet = await createExample();
+  packet.schemaVersion = "1.3";
+  packet.revisionOf = packet.id;
+  packet.id = "deep-review-fixture";
+  packet.revision = 2;
+  const nodes = packet.goalHierarchy!.nodes;
+  for (const node of nodes)
+    if (node.parentId === "purpose") node.parentId = "extra-3";
+  for (let i = 0; i < 4; i++)
+    nodes.push({
+      ...nodes[0],
+      id: `extra-${i}`,
+      parentId: i ? `extra-${i - 1}` : "purpose",
+      label: `Intermediate goal ${i + 1}`,
+      level: undefined,
+    });
+  const value = packet.hypotheses.find((h) => h.kind === "value")!;
+  for (let i = 0; i < 10; i++)
+    packet.hypotheses.push({
+      ...value,
+      id: `extra-value-${i}`,
+      label: `Fixture preference ${i + 1}`,
+      support: { ...value.support!, value: 0.95 - i * 0.02 },
+    });
+  await tool(page, "Import result");
+  await page.getByText("Or paste JSON").click();
+  await page.getByLabel("Result JSON").fill(JSON.stringify(packet));
+  await page.getByRole("button", { name: "Validate & import" }).click();
+  await page.getByRole("button", { name: "Accept this revision" }).click();
+  await expect(page.locator(".core-value-row")).toHaveCount(9);
+  await expect(page.locator(".core-value-row").first()).toHaveText(
+    "Fixture preference 1",
+  );
+  await expect(page.locator(".core-value-row").last()).toHaveText(
+    "Fixture preference 9",
+  );
+  await expect(page.locator(".core-value-row").last()).toBeInViewport();
+  await page.locator('[data-node="sentence-3-2"]').click();
+  await expect(page.locator(".spool")).toHaveCount(8);
+  await expect(page.locator(".spool small")).toHaveCount(0);
+  const broadest = page.locator('.spool[data-level="0"]');
+  await broadest.focus();
+  await expect(broadest).toBeInViewport();
+  await expect(broadest).toHaveAttribute("data-selected", "purpose");
+  await expect(page.locator(".pyramid")).toBeVisible();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
 });

@@ -1,27 +1,16 @@
-# ToMpathy · Maker Reader
+# ToMpathy - What's on the author's mind?
 
-The 0.3.0 design pass has exactly three panels: **Goals**, **Process**, and **Core values**. Chrome supplies the title **What's on the author's mind?**; the previous author band and passage footer are gone. Author identity remains in the Reader menu and Source text.
+Version **0.4.0** has three panels: **Current attention**, **Expertise, Habits, and Hierarchical Goals**, and **Core values**. Chrome supplies the compact title and the new right-pointing pyramid icon.
 
-To review the new design:
+The attention cloud keeps shared phrases in place, with a wide support-based size range and gentle motion. The continuous tiled hierarchy stays visible above compact reels. Single-click text or a brick to lock; scroll over a reel to explore that level. Escape releases. Core values occupy two columns, capped at the nine most supported supplied hypotheses. Passive hover explanations never intercept the pointer; click a value for its complete evidence.
 
-1. Double-click **ToMpathy Review** on the desktop (or `Review ToMpathy.cmd` here). It rebuilds and opens the ordinary Chrome review profile.
-2. Choose **Open the guided example**, then **Open Maker Reader** on the article.
-3. Move across individual sentences. Watch shared goals keep their position and the leftmost process spool roll while unchanged ancestors stay still.
-4. Double-click a sentence. Look for locks on the page and in Process. Hover another sentence to confirm the selection stays put. Press Escape to release.
-5. Move into Process. Hover or keyboard-focus a rounded block. Ancestors light up to its right; subordinate goals fan out to its left. Matching page text uses the same green. Blurred lower spools mean several possible descendants, not a chosen sentence.
-6. Hover or focus a core-value row. Inspect its larger wheel, page evidence and specific decision. Accept the example notebook revision via **⋯ → Context** to inspect context provenance too.
-7. Hover headings for explanations, or use **⋯ → How ToMpathy works**. **Reader settings** includes the disabled word-level development marker. **All supplied hypotheses** retains the older production-history accounts.
+The expertise heading includes an illustrated explanation and the creator's line about expertise as a lossy, compressed record of previous attentional focuses. The Reader menu keeps source identity, context, imports, earlier accounts, list view, maker selection, settings and Help.
 
-No new backend inference is performed. Ordinary pages still require a matching imported result. Contract 1.2 adds explicit goal hierarchy and sentence spans; 1.0/1.1 results remain supported without fabricating a hierarchy from temporal edges. Wheel fill and font size follow the supplied scale; relative support is not presented as a calibrated probability.
-
-
-A Chrome side-panel extension for exploring possible goals, processes, and values behind a text. Sounding Line will supply the inference; this frontend already supports capture, imported results, evidence, context, and a complete synthetic example.
-
-The reader has a compact author-first header and three quiet sections: a goal word cloud, a possible production-history tree that expands into a word cloud, and a stable values/preferences list. Select a word or node for evidence. The **⋯ Reader menu** holds source, context, imports, earlier accounts, list view, maker selection, and settings. The main header has no author dropdown in this pass.
+Sounding Line will supply inference. This frontend supports capture, validated result import, evidence, context, and a fictional hand-authored example. No live inference endpoint is connected. [Input contract 1.0–1.3](docs/INPUT_CONTRACT.md) documents compatibility and deeper hierarchies with optional level names. Relative support is never presented as calibrated probability.
 
 Private repository: [EmotiveAutomaton/tompathy](https://github.com/EmotiveAutomaton/tompathy).
 
-![Reader preview](evidence/preview-light.png)
+![Native Chrome reader](evidence/review-odometer.png)
 
 ## Your daily review loop
 
@@ -30,11 +19,11 @@ Private repository: [EmotiveAutomaton/tompathy](https://github.com/EmotiveAutoma
 On the owner's workstation, the **ToMpathy Review** desktop shortcut opens this same launcher.
 
 1. In the Review desk, click **Open the guided example**.
-2. On the fictional article, click **Open Maker Reader**. Confirm the compact author header and the three sections beside the text.
-3. Hover paragraphs; goals and processes should respond while values stay fixed. Click a paragraph to pin it; press **Escape** to release it. Expand and collapse the process tree.
-4. Click a hypothesis and follow its evidence back to a passage.
+2. On the fictional article, click **Open Maker Reader**. Confirm the three sections beside the text, with ToMpathy in Chrome’s title bar.
+3. Hover sentences; current attention and the reels respond while core values stay fixed. Single-click to hold a sentence. Move to a reel and scroll to choose a neighboring goal; press **Escape** to release. Hover a hierarchy brick to trace its ancestors, descendants and matching source text.
+4. Move between the value rows to check their wider, passive tooltips. Click an attention phrase or value and follow its evidence back to a passage. Hover the middle heading for its illustrated explanation.
 5. Use **Reader menu → Context → Preview example revision → Accept this revision**. Values change to include **Practical care**. **Earlier accounts** lets you inspect the original.
-6. Return to the guide and choose **Try a real author**. On Simon Willison’s article, click ToMpathy from Chrome’s puzzle-piece menu and pin it for next time. The header should identify Simon and say **Awaiting analysis**. Inspect **Reader menu → Source text** and export an analysis request. Live inference is not yet connected.
+6. Return to the guide and choose **Try a real author**. On Simon Willison’s article, click ToMpathy from Chrome’s puzzle-piece menu and pin it for next time. The reader should say **Awaiting analysis**; **Source text** identifies Simon. Inspect **Reader menu → Source text** and export an analysis request. Live inference is not yet connected.
 
 Bookmark the Review desk with **Ctrl+D in the review profile**. While that Chrome session is open, the bookmark is enough. After a computer restart or closing Chrome completely, double-click the launcher first: Chrome removes extensions installed through its development API at startup, and the launcher restores this one automatically with the same ID. Your Chrome profile and local preferences remain. This behavior is covered by the restart test; browser preference files are not patched to override Chrome’s lifecycle.
 
@@ -53,11 +42,11 @@ The initial missing-card investigation found the connected automation Chrome run
 From a fresh clone, run `npm ci` and `npm run build` first to create `dist/`.
 
 1. Open `chrome://extensions` in Chrome 116 or later and enable Developer mode.
-2. Choose **Load unpacked** and select `E:\EmotiveAutomaton\Projects\ToMpathy\dist`. Alternatively, unzip `tompathy-0.3.0.zip` into a folder and load that folder. **The folder picker may look empty because it shows subfolders, not files. Click Select Folder while inside `dist`.** Do not select the project root or the ZIP itself.
+2. Choose **Load unpacked** and select `E:\EmotiveAutomaton\Projects\ToMpathy\dist`. Alternatively, unzip `tompathy-0.4.0.zip` into a folder and load that folder. **The folder picker may look empty because it shows subfolders, not files. Click Select Folder while inside `dist`.** Do not select the project root or the ZIP itself.
 3. Pin **ToMpathy** from Chrome's extensions menu. Click its toolbar icon on an ordinary text page.
 4. Choose **Explore an example** for the complete experience. It opens the matching fictional source. If needed, use its **Open Maker Reader** button.
 
-Hover a sentence to preview its hypotheses and roll the goal spools; double-click to lock; Escape releases. Use **Reader menu → Source text** for keyboard passage navigation, or select text on the page. Select a hypothesis to inspect its evidence and jump back to a passage. Values stay fixed for the analysis revision. In **Reader menu → Context**, preview and explicitly accept the example notebook revision to see a change of mind.
+Hover a sentence to preview its hypotheses and roll the goal spools; click to lock; Escape releases. Use **Reader menu → Source text** for keyboard passage navigation, or select text on the page. Select a hypothesis to inspect its evidence and jump back to a passage. Values stay fixed for the analysis revision. In **Reader menu → Context**, preview and explicitly accept the example notebook revision to see a change of mind.
 
 Chrome controls side-panel placement. For the intended right-hand layout, choose the right side in Chrome's **Settings → Appearance → Side panel**. The extension respects the existing setting.
 
@@ -69,7 +58,7 @@ Run `npm run testbed`. It builds and checks the unpacked extension, generates a 
 
 Use `npm run chrome` to open the review profile with the current built extension. For everyday review, use the bundled example from its Review desk; only this optional HTTP testbed needs the local server.
 
-On the test page, click ToMpathy in the toolbar, download **first account**, then use **Reader menu → Import result**. The source and result are bound to that exact localhost URL. Hover sentences, double-click to lock, inspect the hierarchy and evidence, and confirm that core values stay fixed. **Context → Preview example revision** demonstrates new evidence. After accepting, use **Earlier accounts** to inspect the original without replacing the current result.
+On the test page, click ToMpathy in the toolbar, download **first account**, then use **Reader menu → Import result**. The source and result are bound to that exact localhost URL. Hover sentences, click to lock, inspect the hierarchy and evidence, and confirm that core values stay fixed. **Context → Preview example revision** demonstrates new evidence. After accepting, use **Earlier accounts** to inspect the original without replacing the current result.
 
 The page links to Simon Willison's Datasette Lite article and its GitHub project for the next public-page check. Capture and inspect those pages, then export a capture or analysis request. The fictional packets cannot be attached to a different article. No live backend is configured.
 
@@ -120,15 +109,15 @@ Preferences persist locally. Captures, context and up to five earlier accepted a
 
 ## Project map
 
-| Location                                          | Responsibility                                                                    |
-| ------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `src/App.tsx`, `src/reader.css`, `src/styles.css` | Reader, source preview, dialogs, themes, keyboard interaction                     |
-| `src/content.ts`                                  | Bounded text extraction, anchors, local pointer selection, page marks and cleanup |
-| `src/browser.ts`, `src/background.ts`             | Chrome boundary, side panel, session/preferences storage                          |
-| `src/core/model.ts`                               | Versioned runtime schemas and artifact/scope matching                             |
-| `src/core/provider.ts`                            | Future inference adapter interface                                                |
-| `src/core/collector.ts`                           | Bounded public-context retrieval                                                  |
-| `src/core/example.ts`, `examples/`                | Synthetic artifact, ambiguity, unknown history and explicit correction            |
-| `tests/`, `scripts/*validation.mjs`, `evidence/`  | Repeatable checks and measured receipts                                           |
+| Location                                         | Responsibility                                                                    |
+| ------------------------------------------------ | --------------------------------------------------------------------------------- |
+| `src/App.tsx`, `src/components/`, `src/mind.css` | Reader, source preview, dialogs, themes, keyboard interaction                     |
+| `src/content.ts`                                 | Bounded text extraction, anchors, local pointer selection, page marks and cleanup |
+| `src/browser.ts`, `src/background.ts`            | Chrome boundary, side panel, session/preferences storage                          |
+| `src/core/model.ts`                              | Versioned runtime schemas and artifact/scope matching                             |
+| `src/core/provider.ts`                           | Future inference adapter interface                                                |
+| `src/core/collector.ts`                          | Bounded public-context retrieval                                                  |
+| `src/core/example.ts`, `examples/`               | Synthetic artifact, ambiguity, unknown history and explicit correction            |
+| `tests/`, `scripts/*validation.mjs`, `evidence/` | Repeatable checks and measured receipts                                           |
 
 See [STATUS.md](STATUS.md) for verification and remaining limitations. The original [project context](TOMPATHY_PROJECT_CONTEXT.md) remains the intent source.

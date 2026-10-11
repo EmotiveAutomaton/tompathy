@@ -39,7 +39,7 @@ export function installPageAdapter() {
   >();
   const marker = document.createElement("span");
   marker.setAttribute("data-tompathy-ui", "");
-  marker.setAttribute("aria-label", "Sentence locked; press Escape to unlock");
+  marker.setAttribute("aria-label", "Selection locked; press Escape to unlock");
   marker.textContent = "🔒";
   marker.style.cssText =
     "all:initial;position:fixed;z-index:2147483647;pointer-events:none;font:11px system-ui;background:#e4eee7;border-radius:6px;padding:2px;display:none";
@@ -300,9 +300,11 @@ export function installPageAdapter() {
     passive: true,
   });
   document.addEventListener(
-    "dblclick",
+    "click",
     (e) => {
       if (
+        e.button !== 0 ||
+        !!window.getSelection()?.toString() ||
         (e.target as Element).closest(
           "a,button,input,textarea,select,[contenteditable]",
         )
@@ -318,6 +320,9 @@ export function installPageAdapter() {
     (e) => {
       if (e.key === "Escape") {
         pinned = false;
+        highlights?.delete("tompathy-active");
+        highlights?.delete("tompathy-related");
+        elements.forEach((el) => el.removeAttribute("data-tompathy-related"));
         positionMarker();
         send("TOMPATHY_SELECT", {
           region: selected,
@@ -379,6 +384,13 @@ export function installPageAdapter() {
     if (m.type === "TOMPATHY_FOCUS") {
       pinned = false;
       select(m.region, true, false, m.offset ?? 0);
+      if (Array.isArray(m.regions))
+        paint(
+          "tompathy-active",
+          m.regions.flatMap((id: string) =>
+            (ranges.get(id) ?? []).map((s) => s.range),
+          ),
+        );
       elements
         .find((el) => index.get(el) === m.region)
         ?.scrollIntoView({
@@ -390,6 +402,9 @@ export function installPageAdapter() {
     }
     if (m.type === "TOMPATHY_RELEASE") {
       pinned = false;
+      highlights?.delete("tompathy-active");
+      highlights?.delete("tompathy-related");
+      elements.forEach((el) => el.removeAttribute("data-tompathy-related"));
       positionMarker();
     }
     if (m.type === "TOMPATHY_RELATED") {

@@ -347,3 +347,34 @@ test("context identity binds Unicode source and excerpt; duplicate history is no
   const item = { ...exampleContext, id, source, excerpt };
   assert.equal(mergeContext([item], { ...item, id: "legacy-id" }).length, 1);
 });
+
+test("1.3 accepts unnamed deep goal paths while retaining cycle, depth and legacy checks", async () => {
+  const p = await createExample();
+  p.schemaVersion = "1.3";
+  const base = p.goalHierarchy!.nodes[0];
+  p.hypotheses.forEach((h) => delete h.decisionNodes);
+  const chain = (count: number) =>
+    Array.from({ length: count }, (_, i) => ({
+      ...base,
+      id: `deep-${i}`,
+      parentId: i ? `deep-${i - 1}` : undefined,
+      level: undefined,
+    }));
+  p.goalHierarchy!.nodes = chain(64);
+  assert.equal(
+    goalTree(parsePacket(JSON.stringify(p)).goalHierarchy!.nodes)!.height,
+    63,
+  );
+  assert.equal(goalAt(p.goalHierarchy!.nodes, "p4", 0)?.id, "deep-63");
+  p.goalHierarchy!.nodes = chain(65);
+  assert.throws(() => parsePacket(JSON.stringify(p)), /at most 64 levels/);
+  p.goalHierarchy!.nodes = chain(7);
+  p.goalHierarchy!.nodes[0].parentId = "deep-6";
+  assert.throws(() => parsePacket(JSON.stringify(p)), /acyclic/);
+  delete p.goalHierarchy!.nodes[0].parentId;
+  p.schemaVersion = "1.2";
+  assert.throws(
+    () => parsePacket(JSON.stringify(p)),
+    /requires a supported level/,
+  );
+});

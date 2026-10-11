@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   forceSimulation,
   forceX,
@@ -40,6 +40,18 @@ export function GoalCloud({
     memory = useRef(new Map<string, Word>());
   const [size, setSize] = useState({ width: 300, height: 260 });
   const [words, setWords] = useState<Word[]>([]);
+  const [displayed, setDisplayed] = useState(goals);
+  const latest = useRef(goals);
+  latest.current = goals;
+  const ids = goals.map((h) => h.id).join("|");
+  useEffect(() => {
+    setDisplayed((previous) => [
+      ...goals,
+      ...previous.filter((h) => !goals.some((g) => g.id === h.id)),
+    ]);
+    const timer = setTimeout(() => setDisplayed(latest.current), 480);
+    return () => clearTimeout(timer);
+  }, [ids]);
   useLayoutEffect(() => {
     const observer = new ResizeObserver(([entry]) =>
       setSize({
@@ -60,8 +72,9 @@ export function GoalCloud({
       return;
     }
     const canvas = document.createElement("canvas").getContext("2d")!;
-    const nodes: Word[] = goals.map((h, i) => {
-      let font = (13 + weight(h) * 21) * Math.min(1, size.width / 330);
+    const nodes: Word[] = goals.map((h) => {
+      let font =
+        (7 + Math.pow(weight(h), 1.65) * 27) * Math.min(1, size.width / 330);
       canvas.font = `${font}px Georgia`;
       font *= Math.min(
         1,
@@ -71,18 +84,26 @@ export function GoalCloud({
       const width = canvas.measureText(h.label).width + 12,
         height = font * 1.4 + 12;
       const previous = memory.current.get(h.id);
-      const angle = i * 2.4,
-        radius = 44 + i * 10;
+      const hash = Array.from(h.id).reduce(
+        (sum, char) => (sum * 31 + char.charCodeAt(0)) >>> 0,
+        17,
+      );
+      const angle = (hash % 628) / 100,
+        radius =
+          22 +
+          (1 - weight(h)) * Math.min(size.width, size.height) * 0.36 +
+          (hash % 29);
       const central = h.interpretation === "governing-purpose";
       const tx = central
         ? size.width / 2
         : (previous?.x ??
-          size.width / 2 + Math.cos(angle) * Math.min(radius, size.width / 4));
+          size.width / 2 +
+            Math.cos(angle) * Math.min(radius, size.width / 2.5));
       const ty = central
         ? size.height / 2
         : (previous?.y ??
           size.height / 2 +
-            Math.sin(angle) * Math.min(radius, size.height / 3));
+            Math.sin(angle) * Math.min(radius, size.height / 2.5));
       return {
         id: h.id,
         width,
@@ -195,8 +216,10 @@ export function GoalCloud({
       className={`living-cloud ${dense ? "cloud-list" : ""}`}
       data-testid="goals"
     >
-      {goals.map((h, i) => {
-        const n = words.find((w) => w.id === h.id);
+      {(dense ? goals : displayed).map((old) => {
+        const h = goals.find((g) => g.id === old.id) ?? old;
+        const leaving = !goals.some((g) => g.id === h.id);
+        const n = words.find((w) => w.id === h.id) ?? memory.current.get(h.id);
         const color =
           h.interpretation === "governing-purpose"
             ? "var(--green)"
@@ -210,7 +233,9 @@ export function GoalCloud({
           <div
             key={h.id}
             data-goal={h.id}
-            className={`cloud-position ${h.interpretation === "governing-purpose" ? "cloud-center" : ""}`}
+            aria-hidden={leaving || undefined}
+            inert={leaving || undefined}
+            className={`cloud-position ${leaving ? "cloud-leaving" : ""} ${h.interpretation === "governing-purpose" ? "cloud-center" : ""}`}
             style={
               dense
                 ? undefined
@@ -220,7 +245,7 @@ export function GoalCloud({
                     fontSize: n?.font ?? 18,
                     color,
                     maxWidth: size.width - 12,
-                    animationDelay: `${i * -0.6}s`,
+                    animationDelay: `${-(Array.from(h.id).reduce((sum, c) => sum + c.charCodeAt(0), 0) % 80) / 10}s`,
                   }
             }
           >
@@ -228,8 +253,8 @@ export function GoalCloud({
               content={
                 <>
                   <strong>{h.label}</strong>
-                  <p>{h.description}</p>
-                  <p className="muted">
+                  <p className="hypothesis-summary">{h.description}</p>
+                  <p className="muted support-summary">
                     {supportText(h)}. {h.support?.meaning}
                   </p>
                 </>
