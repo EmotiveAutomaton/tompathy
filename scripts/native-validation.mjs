@@ -60,7 +60,7 @@ expect(
 ).toBe("");
 await panel.locator(".reader-content").evaluate((el) => (el.scrollTop = 0));
 await panel.getByRole("button", { name: "Unlock selection" }).click();
-await panel.locator(".process-region .section-heading").hover();
+await panel.locator("#process-title button").hover();
 await expect(panel.locator(".pyramid")).toBeVisible();
 await panel.screenshot({ path: "evidence/native-panel.png", scale: "css" });
 await source.screenshot({ path: "evidence/native-source.png", scale: "css" });

@@ -79,15 +79,15 @@ test("installed page adapter: anchors, dynamic revision, cleanup and long-page l
       await source.evaluate(() => window.getSelection()?.toString().length),
     ).toBeGreaterThan(5);
     await expect(
-      source.locator('[aria-label="Selection locked; press Escape to unlock"]'),
+      source.locator('[aria-label="Unlock selection"]'),
     ).toBeHidden();
     await source.locator("#repeat2").click();
     await expect(
-      source.locator('[aria-label="Selection locked; press Escape to unlock"]'),
+      source.locator('[aria-label="Unlock selection"]'),
     ).toBeVisible();
     await source.keyboard.press("Escape");
     await expect(
-      source.locator('[aria-label="Selection locked; press Escape to unlock"]'),
+      source.locator('[aria-label="Unlock selection"]'),
     ).toBeHidden();
     await command("TOMPATHY_FOCUS", { region: repeated[1].id });
     await expect(source.locator("#repeat2")).toHaveAttribute(

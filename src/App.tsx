@@ -1,3 +1,6 @@
+import { attentionAt } from "./core/attention";
+import { ValueTabs } from "./components/ValueTabs";
+import { SelectionLock } from "./components/SelectionLock";
 import { GoalCloud } from "./components/GoalCloud";
 import { ProcessHierarchy } from "./components/ProcessHierarchy";
 import { ValueList } from "./components/ValueList";
@@ -162,6 +165,7 @@ export function App({ preview = false }: { preview?: boolean }) {
     [tabId, setTabId] = useState<number | null>(null),
     [region, setRegion] = useState("p2"),
     [pinned, setPinned] = useState(false),
+    [valuesTab, setValuesTab] = useState<"author" | "world">("author"),
     [sentenceOffset, setSentenceOffset] = useState(0),
     [sourceHover, setSourceHover] = useState(false),
     [relatedNode, setRelatedNode] = useState<GoalNode | null>(null),
@@ -217,20 +221,24 @@ export function App({ preview = false }: { preview?: boolean }) {
   const hypotheses = ready
     ? packet!.hypotheses.filter((h) => h.makers.includes(activeMaker!.id))
     : [];
-  const goals = hypotheses
-    .filter(
-      (h) =>
-        h.kind === "goal" &&
-        (!h.regions.length || h.regions.includes(region)) &&
-        (!h.spans?.length ||
-          h.spans.some(
-            (s) =>
-              s.region === region &&
-              sentenceOffset >= s.start &&
-              sentenceOffset < s.end,
-          )),
-    )
-    .sort((a, b) => supportWeight(b) - supportWeight(a));
+  const attentionTarget = pinned
+    ? lockedNode
+      ? lockedNode.span
+      : { region, start: sentenceOffset }
+    : relatedNode
+      ? relatedNode.span
+      : sourceHover
+        ? { region, start: sentenceOffset }
+        : null;
+  const goals =
+    ready && attentionTarget
+      ? attentionAt(
+          packet,
+          activeMaker!.id,
+          attentionTarget.region,
+          attentionTarget.start,
+        )
+      : [];
   const values = hypotheses.filter(
     (h) => h.kind === "value" && h.status !== "unknown",
   );
@@ -405,6 +413,12 @@ export function App({ preview = false }: { preview?: boolean }) {
         setLockedNode(null);
         setDetail(null);
       }
+      if (m.type === "TOMPATHY_UNLOCK") {
+        setPinned(false);
+        setLockedNode(null);
+        setRelatedNode(null);
+        setSourceHover(false);
+      }
       if (m.type === "TOMPATHY_LEAVE") setSourceHover(false);
       if (m.type === "TOMPATHY_STALE") {
         cancelWork();
@@ -475,12 +489,20 @@ export function App({ preview = false }: { preview?: boolean }) {
         setPinned(false);
         setLockedNode(null);
         setRelatedNode(null);
+        setSourceHover(false);
         void pageCommand(tabId, artifact, "TOMPATHY_RELEASE");
       }
     };
     window.addEventListener("keydown", key);
     return () => window.removeEventListener("keydown", key);
   }, [tabId, artifact]);
+  const unlock = () => {
+    setPinned(false);
+    setLockedNode(null);
+    setRelatedNode(null);
+    setSourceHover(false);
+    void pageCommand(tabId, artifact, "TOMPATHY_RELEASE");
+  };
   const move = (id: string, pin = false, offset = 0) => {
     if (pinned && !pin) return;
     setRegion(id);
@@ -654,15 +676,20 @@ export function App({ preview = false }: { preview?: boolean }) {
     <div className={preview ? "workspace" : "extension-root"}>
       {preview && (
         <ExampleArticle
-          active={region}
+          active={
+            pinned || sourceHover || relatedNode?.span
+              ? (relatedNode?.span?.region ?? region)
+              : ""
+          }
           pinned={pinned}
           related={
-            relatedNode?.regions ??
+            (relatedNode?.span ? [] : relatedNode?.regions) ??
             (lockedNode?.span ? undefined : lockedNode?.regions) ??
             detail?.regions ??
             []
           }
-          sentenceOffset={sentenceOffset}
+          sentenceOffset={relatedNode?.span?.start ?? sentenceOffset}
+          onUnlock={unlock}
           onLeave={() => setSourceHover(false)}
           onMove={move}
         />
@@ -761,6 +788,7 @@ export function App({ preview = false }: { preview?: boolean }) {
               <GoalCloud
                 key={packet!.id}
                 goals={goals}
+                active={!!attentionTarget}
                 onInspect={inspect}
                 list={view === "list"}
               />
@@ -803,23 +831,14 @@ export function App({ preview = false }: { preview?: boolean }) {
               }}
               list={view === "list"}
               onHighlight={(node) => {
+                if (pinned) return;
                 setRelatedNode(node);
                 void pageCommand(tabId, artifact, "TOMPATHY_RELATED", {
                   regions: node?.regions ?? [],
                   span: node?.span,
                 });
               }}
-              onLock={() => {
-                setPinned(!pinned);
-                setLockedNode(null);
-                setRelatedNode(null);
-                void pageCommand(
-                  tabId,
-                  artifact,
-                  pinned ? "TOMPATHY_RELEASE" : "TOMPATHY_FOCUS",
-                  { region, offset: sentenceOffset },
-                );
-              }}
+              onLock={unlock}
             />
           </section>
           <section
@@ -829,7 +848,22 @@ export function App({ preview = false }: { preview?: boolean }) {
             <div className="section-heading">
               <SectionTitle kind="values">Core values</SectionTitle>
             </div>
-            <ValueList values={values} packet={packet} inspect={inspect} />
+            <div
+              id="values-view"
+              role="tabpanel"
+              aria-label={
+                valuesTab === "author" ? "Author values" : "World preview"
+              }
+            >
+              {valuesTab === "author" ? (
+                <ValueList values={values} packet={packet} inspect={inspect} />
+              ) : (
+                <span className="quiet-empty world-placeholder">
+                  World view · coming later
+                </span>
+              )}
+            </div>
+            <ValueTabs tab={valuesTab} onTab={setValuesTab} />
           </section>
           <span className="sr-only" role="status">
             {busy
@@ -1135,7 +1169,8 @@ export function App({ preview = false }: { preview?: boolean }) {
                   stays visible above the reels. Hover or focus a block: its
                   ancestors light up to the right, its descendants fan out to
                   the left, and the matching page text shares their color.
-                  Blurred spools mean several subordinate goals remain possible.
+                  Blurred spools mean several subordinate goals, broader goals
+                  or earlier endings remain possible.
                 </li>
                 <li>
                   <strong>Look closer.</strong> Hover or focus headings, goals
@@ -1803,6 +1838,7 @@ export function ExampleArticle({
   related = [],
   onMove = () => {},
   onLeave = () => {},
+  onUnlock = () => {},
   sentenceOffset = 0,
 }: {
   active?: string;
@@ -1810,9 +1846,24 @@ export function ExampleArticle({
   related?: string[];
   onMove?: (id: string, pin?: boolean, offset?: number) => void;
   onLeave?: () => void;
+  onUnlock?: () => void;
   sentenceOffset?: number;
 }) {
   const standalone = isExtension && location.pathname.endsWith("example.html");
+  const pointedOffset = (
+    el: HTMLElement,
+    x: number,
+    y: number,
+    sentence: { start: number; text: string },
+  ) => {
+    const caret = document.caretRangeFromPoint(x, y);
+    return (
+      sentence.start +
+      (caret?.startContainer === el.firstChild
+        ? Math.min(caret.startOffset, sentence.text.length - 1)
+        : 0)
+    );
+  };
   return (
     <div className="example-page">
       <nav>
@@ -1849,7 +1900,7 @@ export function ExampleArticle({
         </div>
         <h1
           data-passage="p1"
-          onMouseEnter={() => onMove("p1")}
+          onMouseMove={() => onMove("p1")}
           onClick={() =>
             !window.getSelection()?.toString() && onMove("p1", true)
           }
@@ -1893,19 +1944,48 @@ export function ExampleArticle({
                     data-sentence={j}
                     className={
                       active === `p${i + 2}` &&
-                      sentenceOffset === sentence.start
-                        ? `active-sentence ${pinned ? "locked-sentence" : ""}`
+                      sentenceOffset >= sentence.start &&
+                      sentenceOffset < sentence.end
+                        ? "active-sentence"
                         : ""
                     }
-                    onMouseEnter={() =>
-                      onMove(`p${i + 2}`, false, sentence.start)
-                    }
-                    onClick={() =>
+                    onMouseMove={(e) => {
+                      if ((e.target as Element).closest("button")) return;
+                      onMove(
+                        `p${i + 2}`,
+                        false,
+                        pointedOffset(
+                          e.currentTarget,
+                          e.clientX,
+                          e.clientY,
+                          sentence,
+                        ),
+                      );
+                    }}
+                    onClick={(e) =>
                       !window.getSelection()?.toString() &&
-                      onMove(`p${i + 2}`, true, sentence.start)
+                      onMove(
+                        `p${i + 2}`,
+                        true,
+                        pointedOffset(
+                          e.currentTarget,
+                          e.clientX,
+                          e.clientY,
+                          sentence,
+                        ),
+                      )
                     }
                   >
                     {sentence.text}
+                    {pinned &&
+                      active === `p${i + 2}` &&
+                      sentenceOffset >= sentence.start &&
+                      sentenceOffset < sentence.end && (
+                        <SelectionLock
+                          className="inline-lock"
+                          onUnlock={onUnlock}
+                        />
+                      )}
                     {j < sentences(text).length - 1 ? " " : ""}
                   </span>
                 ))}

@@ -31,7 +31,7 @@ try {
   const errors = [];
   guide.on("pageerror", (error) => errors.push(error.message));
   await expect(guide.locator("#build")).toContainText(
-    `Installed · ${current.receipt.version} · build ${receipt.build}`,
+    `Installed · ${current.receipt.version} alpha · build ${receipt.build}`,
   );
   await expect(
     guide.getByRole("heading", { name: "Your first five-minute review" }),
@@ -90,9 +90,11 @@ try {
   await expect(
     panel.getByRole("button", { name: "Unlock selection" }),
   ).toBeVisible();
-  await expect(
-    source.locator('[aria-label="Selection locked; press Escape to unlock"]'),
-  ).toBeVisible();
+  await expect(source.locator('[aria-label="Unlock selection"]')).toBeVisible();
+  await source.screenshot({
+    path: "evidence/review-locked-source.png",
+    scale: "css",
+  });
   await source.locator('[data-passage="p2"]').hover();
   await expect(panel.locator('.spool[data-level="3"]')).toHaveAttribute(
     "data-selected",
@@ -107,7 +109,7 @@ try {
   const pyramidBounds = await panel.locator(".pyramid").boundingBox();
   const reelBounds = await panel.getByTestId("odometer").boundingBox();
   expect(reelBounds.y).toBeGreaterThan(pyramidBounds.y + pyramidBounds.height);
-  expect(reelBounds.height).toBeLessThan(70);
+  expect(reelBounds.height).toBeLessThan(50);
   const reel = panel.locator('.spool[data-level="3"]');
   await reel.hover();
   await panel.mouse.wheel(0, 100);
@@ -121,16 +123,35 @@ try {
       ),
     )
     .toContain("We counted pauses");
-  await panel.locator('[data-node="paragraph-3"]').click();
+  await panel.locator('[data-node="paragraph-3"] circle').click();
   await expect(reel).toHaveClass(/ambiguous/);
   await expect
     .poll(() =>
       source.evaluate(() => CSS.highlights.get("tompathy-active").size),
     )
     .toBe(4);
-  await source.keyboard.press("Escape");
-  await panel.locator(".process-region .section-heading").hover();
-  await panel.locator('[data-node="paragraph-3"]').hover();
+  await source.getByRole("button", { name: "Unlock selection" }).click();
+  await expect(panel.getByTestId("goals")).toHaveText("Hover to see");
+  await expect(
+    panel.getByRole("button", { name: "Unlock selection" }),
+  ).toHaveCount(0);
+  await panel.locator('[data-node="sentence-3-2"] circle').click();
+  await expect(panel.locator('[data-dominant="true"]')).toHaveText(
+    "Learning from others",
+  );
+  await expect(panel.locator('.spool[data-level="1"]')).toHaveClass(
+    /ambiguous/,
+  );
+  await expect(panel.locator('.spool[data-level="0"]')).toHaveClass(
+    /ambiguous/,
+  );
+  await panel.getByRole("button", { name: "Unlock selection" }).click();
+  await expect(
+    source.getByRole("button", { name: "Unlock selection" }),
+  ).toBeHidden();
+  await expect(panel.getByTestId("goals")).toHaveText("Hover to see");
+  await panel.locator("#process-title button").hover();
+  await panel.locator('[data-node="paragraph-3"] circle').hover();
   await expect(panel.locator(".pyramid-node.descendant")).toHaveCount(5);
   await expect(source.locator('[data-passage="p4"]')).toHaveAttribute(
     "data-tompathy-related",
@@ -138,6 +159,24 @@ try {
   );
   await panel.waitForTimeout(1000);
   await panel.screenshot({ path: "evidence/review-branch.png", scale: "css" });
+  await panel.getByRole("tab", { name: "world", exact: true }).click();
+  await expect(panel.getByRole("tabpanel")).toHaveText(
+    "World view · coming later",
+  );
+  await panel.getByRole("tab", { name: "author", exact: true }).click();
+  await expect(panel.locator(".core-value-row")).toHaveCount(8);
+  await panel.getByRole("button", { name: "Open search preview" }).click();
+  await panel
+    .getByRole("textbox", { name: "Search preview" })
+    .fill("curiosity");
+  await panel.getByRole("textbox", { name: "Search preview" }).press("Enter");
+  await expect(
+    panel.getByRole("status").filter({ hasText: "No query was sent" }),
+  ).toBeVisible();
+  await panel.getByRole("button", { name: "Close search" }).click();
+  receipt.checks.push(
+    "Eight author values, world placeholder and expandable typing-only search work in the native panel",
+  );
   await panel
     .getByRole("button", { name: "Care for others", exact: true })
     .hover();
@@ -169,9 +208,7 @@ try {
     path: "evidence/review-expertise-help.png",
     scale: "css",
   });
-  await panel
-    .locator(".values-region .section-heading")
-    .hover({ position: { x: 260, y: 8 } });
+  await panel.locator(".value-tabs").hover();
   await panel.waitForTimeout(1000);
   await panel.screenshot({
     path: "evidence/review-chrome-panel.png",
@@ -184,7 +221,7 @@ try {
   };
   receipt.checks.push(
     "Guide opens a native panel beside its bundled source without a server",
-    "Sentence hover, single-click locks for sentences and branches, wheel-driven source selection, compact reels below a persistent hierarchy, Escape, fixed values and provenance",
+    "Independent attention, two hierarchy peaks, bidirectional ambiguity, page/panel green unlock controls, sentence hover, single-click locks for sentences and branches, wheel-driven source selection, compact reels below a persistent hierarchy, Escape, fixed values and provenance",
   );
   await panel.getByRole("button", { name: "Reader menu", exact: true }).click();
   await panel.getByRole("button", { name: "Context", exact: true }).click();

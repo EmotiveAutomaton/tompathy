@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-11T20:43:41.208Z",
-  "zipBytes": 230306,
-  "sha256": "f18bf749c98190880b5befc324c2eec01cf292965a3791f8855d477ee80a610a",
+  "verifiedAt": "2026-10-11T21:37:06.226Z",
+  "zipBytes": 234557,
+  "sha256": "8c2ee970d71ebb144a2a519e12314899fc31b7b8482873b91b294019311492de",
   "entries": [
     "background.js",
     "build-info.json",

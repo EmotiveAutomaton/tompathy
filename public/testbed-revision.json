@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.2",
+  "schemaVersion": "1.4",
   "id": "bench-analysis-2",
   "revision": 2,
   "artifact": {
@@ -7,7 +7,7 @@
     "revision": "d00de37ffc1ac6bd20317ad02c4db20154862d732cca8b19eae65e0223ac3bc1",
     "title": "A bench is an invitation",
     "source": "http://127.0.0.1:5173/testbed.html",
-    "capturedAt": "2026-10-11T15:57:39.796Z",
+    "capturedAt": "2026-10-11T21:35:11.423Z",
     "regions": [
       {
         "id": "p1",
@@ -92,6 +92,198 @@
     }
   ],
   "hypotheses": [
+    {
+      "id": "focus-0",
+      "kind": "attention",
+      "label": "Noticing pauses",
+      "description": "A possible current attentional focus: noticing pauses. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e1"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-1",
+      "kind": "attention",
+      "label": "A quiet invitation",
+      "description": "A possible current attentional focus: a quiet invitation. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e1"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-2",
+      "kind": "attention",
+      "label": "Watching closely",
+      "description": "A possible current attentional focus: watching closely. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e1"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-3",
+      "kind": "attention",
+      "label": "Trying again",
+      "description": "A possible current attentional focus: trying again. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e2"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-4",
+      "kind": "attention",
+      "label": "Making room",
+      "description": "A possible current attentional focus: making room. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e2"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-5",
+      "kind": "attention",
+      "label": "Small details",
+      "description": "A possible current attentional focus: small details. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e2"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-6",
+      "kind": "attention",
+      "label": "A modest claim",
+      "description": "A possible current attentional focus: a modest claim. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e3"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-7",
+      "kind": "attention",
+      "label": "A shared moment",
+      "description": "A possible current attentional focus: a shared moment. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e3"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-8",
+      "kind": "attention",
+      "label": "What comes next",
+      "description": "A possible current attentional focus: what comes next. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e3"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-9",
+      "kind": "attention",
+      "label": "Room to linger",
+      "description": "A possible current attentional focus: room to linger. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e4"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-10",
+      "kind": "attention",
+      "label": "Learning from others",
+      "description": "A possible current attentional focus: learning from others. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e4"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-11",
+      "kind": "attention",
+      "label": "Uncertainty",
+      "description": "A possible current attentional focus: uncertainty. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e4"
+      ],
+      "interpretation": "current-attention"
+    },
     {
       "id": "concrete",
       "kind": "goal",
@@ -635,6 +827,126 @@
       "interpretation": "preference"
     },
     {
+      "id": "accessibility",
+      "kind": "value",
+      "label": "Access for everyone",
+      "description": "An illustrative recurring preference: access for everyone.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.51,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e4"
+      ],
+      "interpretation": "preference"
+    },
+    {
+      "id": "adaptability",
+      "kind": "value",
+      "label": "Willingness to revise",
+      "description": "An illustrative recurring preference: willingness to revise.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.48,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e3"
+      ],
+      "interpretation": "preference"
+    },
+    {
+      "id": "stewardship",
+      "kind": "value",
+      "label": "Thoughtful use of materials",
+      "description": "An illustrative recurring preference: thoughtful use of materials.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.44,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e4"
+      ],
+      "interpretation": "preference"
+    },
+    {
+      "id": "belonging",
+      "kind": "value",
+      "label": "Shared belonging",
+      "description": "An illustrative recurring preference: shared belonging.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.4,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e2"
+      ],
+      "interpretation": "preference"
+    },
+    {
+      "id": "patience",
+      "kind": "value",
+      "label": "Patient observation",
+      "description": "An illustrative recurring preference: patient observation.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.36,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e1"
+      ],
+      "interpretation": "preference"
+    },
+    {
       "id": "restraint",
       "kind": "value",
       "label": "Restraint",
@@ -658,6 +970,1494 @@
         "e5"
       ],
       "interpretation": "preference"
+    }
+  ],
+  "currentAttention": [
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p1",
+        "start": 0,
+        "end": 24
+      },
+      "items": [
+        {
+          "hypothesis": "focus-1",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-4",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-2",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-8",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-6",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p2",
+        "start": 0,
+        "end": 52
+      },
+      "items": [
+        {
+          "hypothesis": "focus-0",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-3",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-1",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-7",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-5",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p2",
+        "start": 53,
+        "end": 79
+      },
+      "items": [
+        {
+          "hypothesis": "focus-0",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-3",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-1",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-7",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-5",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p2",
+        "start": 80,
+        "end": 202
+      },
+      "items": [
+        {
+          "hypothesis": "focus-9",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-0",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-10",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-4",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-2",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p3",
+        "start": 0,
+        "end": 27
+      },
+      "items": [
+        {
+          "hypothesis": "focus-1",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-4",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-2",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-8",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-6",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p3",
+        "start": 28,
+        "end": 110
+      },
+      "items": [
+        {
+          "hypothesis": "focus-4",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-7",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-5",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-9",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p3",
+        "start": 111,
+        "end": 152
+      },
+      "items": [
+        {
+          "hypothesis": "focus-1",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-4",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-2",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-8",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-6",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p3",
+        "start": 153,
+        "end": 181
+      },
+      "items": [
+        {
+          "hypothesis": "focus-7",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-10",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-8",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-2",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-0",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p4",
+        "start": 0,
+        "end": 46
+      },
+      "items": [
+        {
+          "hypothesis": "focus-2",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-5",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-3",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-9",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-7",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p4",
+        "start": 47,
+        "end": 142
+      },
+      "items": [
+        {
+          "hypothesis": "focus-10",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-1",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-5",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-3",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p4",
+        "start": 143,
+        "end": 191
+      },
+      "items": [
+        {
+          "hypothesis": "focus-3",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-6",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-4",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-10",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-8",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p4",
+        "start": 192,
+        "end": 210
+      },
+      "items": [
+        {
+          "hypothesis": "focus-3",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-6",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-4",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-10",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-8",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p5",
+        "start": 0,
+        "end": 45
+      },
+      "items": [
+        {
+          "hypothesis": "focus-5",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-8",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-6",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-0",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-10",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p5",
+        "start": 46,
+        "end": 113
+      },
+      "items": [
+        {
+          "hypothesis": "focus-5",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-8",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-6",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-0",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-10",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p5",
+        "start": 114,
+        "end": 158
+      },
+      "items": [
+        {
+          "hypothesis": "focus-4",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-7",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-5",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-9",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p5",
+        "start": 159,
+        "end": 231
+      },
+      "items": [
+        {
+          "hypothesis": "focus-4",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-7",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-5",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-9",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p6",
+        "start": 0,
+        "end": 62
+      },
+      "items": [
+        {
+          "hypothesis": "focus-6",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-9",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-7",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-1",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p6",
+        "start": 63,
+        "end": 143
+      },
+      "items": [
+        {
+          "hypothesis": "focus-7",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-10",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-8",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-2",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-0",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p6",
+        "start": 144,
+        "end": 185
+      },
+      "items": [
+        {
+          "hypothesis": "focus-8",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-9",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-3",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-1",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-authored alpha demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
     }
   ],
   "alternatives": [
@@ -971,7 +2771,10 @@
       },
       {
         "id": "paragraph-3",
-        "parentId": "story",
+        "parentIds": [
+          "story",
+          "practical-care"
+        ],
         "maker": "maker-1",
         "label": "Show the iteration",
         "description": "A possible role for this paragraph: show the iteration. Grounded in the quoted passage, with alternatives still possible.",
@@ -1061,7 +2864,10 @@
       },
       {
         "id": "paragraph-4",
-        "parentId": "story",
+        "parentIds": [
+          "story",
+          "practical-care"
+        ],
         "maker": "maker-1",
         "label": "Explain the constraints",
         "description": "A possible role for this paragraph: explain the constraints. Grounded in the quoted passage, with alternatives still possible.",
@@ -1224,6 +3030,23 @@
         "evidence": [
           "e5"
         ]
+      },
+      {
+        "id": "practical-care",
+        "maker": "maker-1",
+        "label": "Make everyday life easier",
+        "description": "A second possible end: practical care may matter independently of the broader social story. An authored stress-test branch.",
+        "regions": [
+          "p4",
+          "p5"
+        ],
+        "evidence": [
+          "e1",
+          "e2",
+          "e3",
+          "e4",
+          "e5"
+        ]
       }
     ]
   },
@@ -1359,35 +3182,35 @@
       "id": "e1",
       "source": "http://127.0.0.1:5173/testbed.html",
       "excerpt": "The first thing we noticed was not where people sat. It was where they stopped. At the edge of the garden, visitors paused with their bags still on their shoulders, as if waiting for permission to stay.",
-      "capturedAt": "2026-10-11T15:57:39.796Z",
+      "capturedAt": "2026-10-11T21:35:11.423Z",
       "relationship": "Text compatible with this account; it does not establish the maker’s intent."
     },
     {
       "id": "e2",
       "source": "http://127.0.0.1:5173/testbed.html",
       "excerpt": "We could have added a sign. Instead, we moved one bench into the shade and turned it slightly toward the path. Nothing about it demanded a conversation. It simply made room for one.",
-      "capturedAt": "2026-10-11T15:57:39.796Z",
+      "capturedAt": "2026-10-11T21:35:11.423Z",
       "relationship": "Text compatible with this account; it does not establish the maker’s intent."
     },
     {
       "id": "e3",
       "source": "http://127.0.0.1:5173/testbed.html",
       "excerpt": "For two weeks, we returned at different hours. We counted pauses, sketched the paths people took, and listened when someone offered a comment. Our first arrangement was too close to the gate. We moved it again.",
-      "capturedAt": "2026-10-11T15:57:39.796Z",
+      "capturedAt": "2026-10-11T21:35:11.423Z",
       "relationship": "Text compatible with this account; it does not establish the maker’s intent."
     },
     {
       "id": "e4",
       "source": "http://127.0.0.1:5173/testbed.html",
       "excerpt": "The final bench is made from reclaimed cedar. Its corners are rounded, its seat a little higher than the old one. A walking stick can rest against either arm. These are small decisions, but small decisions decide who feels welcome.",
-      "capturedAt": "2026-10-11T15:57:39.796Z",
+      "capturedAt": "2026-10-11T21:35:11.423Z",
       "relationship": "Text compatible with this account; it does not establish the maker’s intent."
     },
     {
       "id": "e5",
       "source": "http://127.0.0.1:5173/testbed.html",
       "excerpt": "We do not know whether a bench can make a neighborhood kinder. We do know that on Thursday, two people who had never met sat down in the shade. For now, that is a useful place to begin.",
-      "capturedAt": "2026-10-11T15:57:39.796Z",
+      "capturedAt": "2026-10-11T21:35:11.423Z",
       "relationship": "Text compatible with this account; it does not establish the maker’s intent."
     },
     {

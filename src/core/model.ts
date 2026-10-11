@@ -54,7 +54,7 @@ const SupportSchema = z.object({
 });
 export const HypothesisSchema = z.object({
   id,
-  kind: z.enum(["goal", "process", "value"]),
+  kind: z.enum(["goal", "process", "value", "attention"]),
   label: z.string().min(1).max(250),
   description: z.string().max(4000),
   makers: z.array(id).min(1),
@@ -76,6 +76,7 @@ export const HypothesisSchema = z.object({
   decisionNodes: z.array(id).optional(),
   interpretation: z
     .enum([
+      "current-attention",
       "governing-purpose",
       "local-goal",
       "historical-event",
@@ -88,7 +89,7 @@ export const HypothesisSchema = z.object({
 });
 export const PacketSchema = z
   .object({
-    schemaVersion: z.enum(["1.0", "1.1", "1.2", "1.3"]),
+    schemaVersion: z.enum(["1.0", "1.1", "1.2", "1.3", "1.4"]),
     id,
     revision: z.number().int().positive(),
     artifact: ArtifactSchema,
@@ -109,6 +110,24 @@ export const PacketSchema = z
       )
       .min(1),
     hypotheses: z.array(HypothesisSchema).max(1000),
+    currentAttention: z
+      .array(
+        z.object({
+          maker: id,
+          span: z.object({
+            region: id,
+            start: z.number().int().nonnegative(),
+            end: z.number().int().positive(),
+          }),
+          items: z
+            .array(
+              z.object({ hypothesis: id, support: SupportSchema.nullish() }),
+            )
+            .max(40),
+        }),
+      )
+      .max(3000)
+      .optional(),
     alternatives: z.array(
       z.object({
         id,
@@ -151,6 +170,7 @@ export const PacketSchema = z
             z.object({
               id,
               parentId: id.optional(),
+              parentIds: z.array(id).min(1).max(16).optional(),
               maker: id,
               label: z.string().min(1).max(250),
               description: z.string().max(4000),
@@ -244,7 +264,7 @@ export const PacketSchema = z
     const hierarchyById = new Map(hierarchy.map((n) => [n.id, n]));
     for (const n of hierarchy) {
       if (
-        p.schemaVersion !== "1.3" &&
+        !["1.3", "1.4"].includes(p.schemaVersion) &&
         !["document", "section", "paragraph", "sentence"].includes(
           n.level ?? "",
         )
@@ -259,14 +279,21 @@ export const PacketSchema = z
       )
         error(`Unresolved hierarchy references in ${n.id}.`);
       if (
-        n.parentId &&
-        (!hierarchyById.has(n.parentId) ||
-          hierarchyById.get(n.parentId)?.maker !== n.maker)
+        n.parentIds &&
+        (p.schemaVersion !== "1.4" ||
+          n.parentId ||
+          new Set(n.parentIds).size !== n.parentIds.length)
       )
-        error(`Invalid hierarchy parent in ${n.id}.`);
-      const parentNode = n.parentId ? hierarchyById.get(n.parentId) : undefined;
-      if (parentNode && n.regions.some((r) => !parentNode.regions.includes(r)))
-        error(`Hierarchy regions must stay within their parent in ${n.id}.`);
+        error(
+          `Multiple parents require 1.4 and unambiguous unique parentIds in ${n.id}.`,
+        );
+      for (const parentId of n.parentIds ?? (n.parentId ? [n.parentId] : [])) {
+        const parent = hierarchyById.get(parentId);
+        if (!parent || parent.maker !== n.maker)
+          error(`Invalid hierarchy parent in ${n.id}.`);
+        if (parent && n.regions.some((r) => !parent.regions.includes(r)))
+          error(`Hierarchy regions must stay within their parent in ${n.id}.`);
+      }
       if (n.level === "sentence" && !n.span)
         error(`Sentence goal ${n.id} requires an explicit span.`);
       if (
@@ -278,25 +305,133 @@ export const PacketSchema = z
               .exact.length ?? 0))
       )
         error(`Invalid sentence span in ${n.id}.`);
-      const seen = new Set<string>([n.id]);
-      let parent = n.parentId;
-      while (parent) {
-        const maxDepth = p.schemaVersion === "1.3" ? 64 : 12;
-        if (seen.has(parent) || seen.size >= maxDepth) {
+    }
+    const depths = new Map<string, number>(),
+      visitingHierarchy = new Set<string>();
+    const maxDepth = ["1.3", "1.4"].includes(p.schemaVersion) ? 64 : 12;
+    const visitHierarchy = (id: string): number => {
+      if (visitingHierarchy.has(id) || visitingHierarchy.size >= maxDepth) {
+        error(
+          `Goal hierarchy must be acyclic and at most ${maxDepth} levels deep.`,
+        );
+        return maxDepth;
+      }
+      if (depths.has(id)) return depths.get(id)!;
+      visitingHierarchy.add(id);
+      const n = hierarchyById.get(id);
+      const depth =
+        1 +
+        Math.max(
+          0,
+          ...(n?.parentIds ?? (n?.parentId ? [n.parentId] : [])).map(
+            visitHierarchy,
+          ),
+        );
+      visitingHierarchy.delete(id);
+      depths.set(id, depth);
+      if (depth > maxDepth)
+        error(
+          `Goal hierarchy must be acyclic and at most ${maxDepth} levels deep.`,
+        );
+      return depth;
+    };
+    hierarchy.forEach((n) => visitHierarchy(n.id));
+    if (p.schemaVersion !== "1.4")
+      for (const m of p.makers) {
+        const nodes = hierarchy.filter((n) => n.maker === m.id);
+        if (nodes.length && nodes.filter((n) => !n.parentId).length !== 1)
+          error("Each legacy maker hierarchy needs exactly one root.");
+      }
+    if (
+      p.schemaVersion !== "1.4" &&
+      (p.currentAttention || p.hypotheses.some((h) => h.kind === "attention"))
+    )
+      error("Independent current attention requires contract 1.4.");
+    for (const frame of p.currentAttention ?? []) {
+      const span = frame.span,
+        region = p.artifact.regions.find((r) => r.id === span.region);
+      if (
+        !ms.has(frame.maker) ||
+        !region ||
+        span.end <= span.start ||
+        span.end > region.anchor.exact.length
+      )
+        error("Invalid current-attention span or maker.");
+      if (
+        new Set(frame.items.map((i) => i.hypothesis)).size !==
+        frame.items.length
+      )
+        error("Duplicate current-attention item.");
+      for (const item of frame.items) {
+        const h = hs.get(item.hypothesis),
+          s = item.support === undefined ? h?.support : item.support;
+        if (
+          !h ||
+          h.kind !== "attention" ||
+          !h.makers.includes(frame.maker) ||
+          (h.regions.length && !h.regions.includes(span.region))
+        )
           error(
-            `Goal hierarchy must be acyclic and at most ${maxDepth} levels deep.`,
+            "Current attention must reference separate, matching attention hypotheses.",
           );
-          break;
-        }
-        seen.add(parent);
-        parent = hierarchyById.get(parent)?.parentId;
+        if (
+          s &&
+          (s.scale[0] >= s.scale[1] ||
+            s.value < s.scale[0] ||
+            s.value > s.scale[1])
+        )
+          error("Attention support outside declared scale.");
+        if (
+          s?.semantics === "probability" &&
+          (s.scale[0] !== 0 || s.scale[1] !== 1 || !s.candidateSet)
+        )
+          error(
+            "Attention probability requires scale [0,1] and a candidate set.",
+          );
+        if (
+          s?.candidateSet &&
+          !p.alternatives.some(
+            (a) =>
+              a.id === s.candidateSet && a.members.includes(item.hypothesis),
+          )
+        )
+          error("Invalid attention candidate set.");
+      }
+      for (const set of p.alternatives.filter(
+        (a) => a.exhaustive && a.kind === "competing",
+      )) {
+        const scores = set.members.map((id) => {
+          const item = frame.items.find((i) => i.hypothesis === id);
+          return item
+            ? item.support === undefined
+              ? hs.get(id)?.support
+              : item.support
+            : undefined;
+        });
+        if (
+          scores.some((s) => s?.semantics === "probability") &&
+          (scores.some(
+            (s) => s?.semantics !== "probability" || s.candidateSet !== set.id,
+          ) ||
+            Math.abs(scores.reduce((a, s) => a + (s?.value ?? 0), 0) - 1) >
+              0.000001)
+        )
+          error("Exhaustive attention probability set must sum to 1.");
       }
     }
-    for (const m of p.makers) {
-      const nodes = hierarchy.filter((n) => n.maker === m.id);
-      if (nodes.length && nodes.filter((n) => !n.parentId).length !== 1)
-        error("Each maker hierarchy needs exactly one root.");
-    }
+    const frames = [...(p.currentAttention ?? [])].sort(
+      (a, b) =>
+        a.maker.localeCompare(b.maker) ||
+        a.span.region.localeCompare(b.span.region) ||
+        a.span.start - b.span.start,
+    );
+    for (let i = 1; i < frames.length; i++)
+      if (
+        frames[i].maker === frames[i - 1].maker &&
+        frames[i].span.region === frames[i - 1].span.region &&
+        frames[i].span.start < frames[i - 1].span.end
+      )
+        error("Current-attention spans must not overlap for the same maker.");
     for (const h of p.hypotheses) {
       if (
         h.spans?.some(
@@ -324,6 +459,7 @@ export const PacketSchema = z
       )
         error(`Unresolved references in ${h.id}.`);
       const allowedInterpretations = {
+        attention: ["current-attention"],
         goal: ["governing-purpose", "local-goal"],
         process: ["historical-event", "reader-route", "repertoire"],
         value: ["preference", "value"],

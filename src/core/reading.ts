@@ -1,6 +1,7 @@
 import type { Hypothesis, Packet, Session } from "./model";
 
 const meanings: Record<string, string> = {
+  "current-attention": "Current attention",
   "governing-purpose": "Governing purpose",
   "local-goal": "Local goal",
   "historical-event": "Possible production event",

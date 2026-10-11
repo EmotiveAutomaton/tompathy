@@ -15,7 +15,14 @@ import { publicURL, retrieve, collectSources } from "../src/core/collector";
 import { acceptRevision, analysisHandoff } from "../src/core/reading";
 import { contextIdentity, mergeContext } from "../src/core/context";
 import { createHash } from "node:crypto";
-import { goalAt, goalTree } from "../src/core/hierarchy";
+import {
+  goalAt,
+  goalTree,
+  goalGraph,
+  hierarchyLayout,
+  reelCandidates,
+} from "../src/core/hierarchy";
+import { attentionAt } from "../src/core/attention";
 import { sentences } from "../src/core/sentences";
 
 test("goal hierarchy preserves exact sentence spans, branches and historical independence", async () => {
@@ -30,14 +37,14 @@ test("goal hierarchy preserves exact sentence spans, branches and historical ind
     "We counted pauses, sketched the paths people took, and listened when someone offered a comment.",
   );
   assert.equal(goalAt(nodes, "p4", sentence.span!.start)?.id, sentence.id);
-  const tree = goalTree(nodes)!;
-  const paragraph = tree.descendants().find((n) => n.id === "paragraph-3")!;
-  assert.equal(paragraph.descendants().length, 5);
+  const graph = goalGraph(nodes);
+  const paragraph = graph.byId.get("paragraph-3")!;
+  assert.equal(graph.descendants(paragraph).size, 5);
   assert.deepEqual(
-    paragraph.ancestors().map((n) => n.id),
-    ["paragraph-3", "story", "purpose"],
+    [...graph.ancestors(paragraph)].sort(),
+    ["paragraph-3", "story", "purpose", "practical-care"].sort(),
   );
-  const legacy = structuredClone(packet);
+  const legacy = legacyExample(packet);
   legacy.schemaVersion = "1.0";
   delete legacy.goalHierarchy;
   legacy.hypotheses.forEach((h) => {
@@ -153,12 +160,17 @@ test("repeated Unicode and inline-compatible text get distinct contextual anchor
 });
 test("missing support and zero remain distinct; invalid numbers and dangling references fail", async () => {
   const p = await createExample();
-  p.hypotheses[0].support!.value = 0;
-  assert.equal(parsePacket(JSON.stringify(p)).hypotheses[0].support?.value, 0);
-  p.hypotheses[0].support!.value = 2;
+  const h = p.hypotheses.find((h) => h.id === "invite")!;
+  h.support!.value = 0;
+  assert.equal(
+    parsePacket(JSON.stringify(p)).hypotheses.find((h) => h.id === "invite")!
+      .support?.value,
+    0,
+  );
+  h.support!.value = 2;
   assert.throws(() => parsePacket(JSON.stringify(p)), /outside declared scale/);
-  p.hypotheses[0].support = null;
-  p.hypotheses[0].evidence = ["missing"];
+  h.support = null;
+  h.evidence = ["missing"];
   assert.throws(() => parsePacket(JSON.stringify(p)), /Unresolved/);
   assert.throws(() => parsePacket("{broken"), SyntaxError);
 });
@@ -247,7 +259,7 @@ test("bounded fetch rejects status, content type and oversized body; cancellatio
 
 test("historical partial orders, joint accounts and typed meanings reject contradictory references", async () => {
   const p = await createExample();
-  assert.equal(p.schemaVersion, "1.2");
+  assert.equal(p.schemaVersion, "1.4");
   assert.equal(p.alternatives[0].kind, "coexisting");
   p.process.edges.push({
     from: "iterate",
@@ -274,7 +286,7 @@ test("historical partial orders, joint accounts and typed meanings reject contra
 });
 
 test("legacy Stage 13 shape remains readable and missing values stay unknown", async () => {
-  const p = await createExample();
+  const p = legacyExample(await createExample());
   p.schemaVersion = "1.0";
   delete p.accounts;
   delete p.documentContribution;
@@ -349,7 +361,7 @@ test("context identity binds Unicode source and excerpt; duplicate history is no
 });
 
 test("1.3 accepts unnamed deep goal paths while retaining cycle, depth and legacy checks", async () => {
-  const p = await createExample();
+  const p = legacyExample(await createExample());
   p.schemaVersion = "1.3";
   const base = p.goalHierarchy!.nodes[0];
   p.hypotheses.forEach((h) => delete h.decisionNodes);
@@ -377,4 +389,127 @@ test("1.3 accepts unnamed deep goal paths while retaining cycle, depth and legac
     () => parsePacket(JSON.stringify(p)),
     /requires a supported level/,
   );
+});
+
+// Deliberately convert only the new contract fields for legacy acceptance checks.
+function legacyExample(packet: Awaited<ReturnType<typeof createExample>>) {
+  const p = structuredClone(packet);
+  delete p.currentAttention;
+  p.hypotheses = p.hypotheses.filter((h) => h.kind !== "attention");
+  p.goalHierarchy!.nodes = p.goalHierarchy!.nodes.filter(
+    (n) => n.id !== "practical-care",
+  );
+  for (const n of p.goalHierarchy!.nodes)
+    if (n.parentIds) {
+      n.parentId = n.parentIds[0];
+      delete n.parentIds;
+    }
+  return p;
+}
+
+test("independent attention supports sub-sentence snapshots and rejects invalid bindings", async () => {
+  const p = await createExample();
+  const frame = p.currentAttention!.find((f) => f.span.region === "p4")!;
+  const first = attentionAt(p, "maker-1", "p4", frame.span.start);
+  assert.equal(first[0].label, "Watching closely");
+  assert.ok(first.every((h) => h.kind === "attention"));
+  assert.ok(
+    first.every((h) => !p.goalHierarchy!.nodes.some((n) => n.id === h.id)),
+  );
+  assert.equal(attentionAt(p, "unknown", "p4", 0).length, 0);
+  const next = structuredClone(frame);
+  next.span.start = 20;
+  frame.span.end = 20;
+  next.items.reverse();
+  p.currentAttention!.push(next);
+  assert.doesNotThrow(() => parsePacket(JSON.stringify(p)));
+  assert.notEqual(
+    attentionAt(p, "maker-1", "p4", 19)[0].id,
+    attentionAt(p, "maker-1", "p4", 20)[0].id,
+  );
+  for (const change of [
+    (q: typeof p) => {
+      q.currentAttention![0].items[0].hypothesis = "invite";
+    },
+    (q: typeof p) => {
+      q.currentAttention![0].span.end = 90000;
+    },
+    (q: typeof p) => {
+      q.currentAttention!.push(q.currentAttention![0]);
+    },
+    (q: typeof p) => {
+      q.currentAttention![0].items[0].support!.value = 2;
+    },
+    (q: typeof p) => {
+      q.schemaVersion = "1.3";
+    },
+  ]) {
+    const q = structuredClone(p);
+    change(q);
+    assert.throws(() => parsePacket(JSON.stringify(q)));
+  }
+  // Omitted support inherits the supplied baseline; explicit null stays unknown.
+  const item = frame.items[0],
+    hypothesis = p.hypotheses.find((h) => h.id === item.hypothesis)!;
+  hypothesis.support = item.support;
+  delete item.support;
+  assert.equal(attentionAt(p, "maker-1", "p4", 0)[0].support!.value, 0.94);
+  item.support = null;
+  assert.equal(attentionAt(p, "maker-1", "p4", 0)[0].support, null);
+});
+
+test("two peaks retain shared parents, ambiguity in both directions, and usable brick edges", async () => {
+  const p = await createExample(),
+    graph = goalGraph(p.goalHierarchy!.nodes);
+  assert.deepEqual(
+    graph.roots.map((n) => [n.id, n.rank]),
+    [
+      ["purpose", 3],
+      ["practical-care", 2],
+    ],
+  );
+  const paragraph = graph.byId.get("paragraph-3")!;
+  assert.equal(reelCandidates(graph, paragraph, 0).nodes.length, 4);
+  assert.deepEqual(
+    reelCandidates(graph, paragraph, 2)
+      .nodes.map((n) => n.id)
+      .sort(),
+    ["practical-care", "story"],
+  );
+  assert.equal(reelCandidates(graph, paragraph, 3).ended, true);
+  assert.equal(reelCandidates(graph, paragraph, 3).ambiguous, true);
+  for (const nodes of [
+    p.goalHierarchy!.nodes,
+    legacyExample(p).goalHierarchy!.nodes,
+  ]) {
+    for (const height of [160, 300, 550]) {
+      const g = goalGraph(nodes),
+        layout = hierarchyLayout(g, height);
+      assert.equal(layout.tiles.length, nodes.length);
+      assert.equal(
+        new Set(layout.tiles.map((t) => t.node.id)).size,
+        nodes.length,
+      );
+      for (const tile of layout.tiles) {
+        assert.ok(tile.exposure >= 0.5, tile.node.id);
+        assert.ok(tile.dotX > tile.x && tile.dotX < tile.x + tile.width);
+        assert.ok(tile.dotY > tile.y && tile.dotY < tile.y + tile.height);
+        assert.ok(
+          layout
+            .slices(tile.dotX)
+            .some(([a, b]) => tile.dotY >= a && tile.dotY <= b),
+        );
+      }
+    }
+  }
+  const cyclic = structuredClone(p);
+  cyclic.goalHierarchy!.nodes.find(
+    (n) => n.id === "practical-care",
+  )!.parentIds = ["paragraph-3"];
+  assert.throws(() => parsePacket(JSON.stringify(cyclic)), /acyclic/);
+  const wrongParent = structuredClone(p);
+  wrongParent.goalHierarchy!.nodes.find(
+    (n) => n.id === "paragraph-3",
+  )!.parentIds = ["story", "limits"];
+  assert.throws(() => parsePacket(JSON.stringify(wrongParent)), /parent/);
 });

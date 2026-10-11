@@ -31,10 +31,12 @@ export function GoalCloud({
   goals,
   onInspect,
   list = false,
+  active = true,
 }: {
   goals: Hypothesis[];
   onInspect: (h: Hypothesis) => void;
   list?: boolean;
+  active?: boolean;
 }) {
   const host = useRef<HTMLDivElement>(null),
     memory = useRef(new Map<string, Word>());
@@ -67,11 +69,33 @@ export function GoalCloud({
     .join("|");
   useLayoutEffect(() => {
     if (!size.width || !size.height) return;
+    if (!active) {
+      setWords([]);
+      setDisplayed([]);
+      return;
+    }
     if (goals.length > 12 || list) {
       setWords([]);
       return;
     }
     const canvas = document.createElement("canvas").getContext("2d")!;
+    const dominant = [...goals].sort((a, b) => weight(b) - weight(a))[0]?.id;
+    const bounds = host.current?.getBoundingClientRect();
+    const obstacles = bounds
+      ? Array.from(
+          host.current!.parentElement!.querySelectorAll(
+            ".section-heading h2, .section-heading .icon-button",
+          ),
+        ).map((el) => {
+          const r = el.getBoundingClientRect();
+          return {
+            left: r.left - bounds.left - 3,
+            right: r.right - bounds.left + 3,
+            top: r.top - bounds.top - 3,
+            bottom: r.bottom - bounds.top + 3,
+          };
+        })
+      : [];
     const nodes: Word[] = goals.map((h) => {
       let font =
         (7 + Math.pow(weight(h), 1.65) * 27) * Math.min(1, size.width / 330);
@@ -93,17 +117,25 @@ export function GoalCloud({
           22 +
           (1 - weight(h)) * Math.min(size.width, size.height) * 0.36 +
           (hash % 29);
-      const central = h.interpretation === "governing-purpose";
+      const central = h.id === dominant;
       const tx = central
         ? size.width / 2
-        : (previous?.x ??
-          size.width / 2 +
-            Math.cos(angle) * Math.min(radius, size.width / 2.5));
+        : previous
+          ? previous.x! * 0.55 +
+            (size.width / 2 +
+              Math.cos(angle) * Math.min(radius, size.width / 2.5)) *
+              0.45
+          : size.width / 2 +
+            Math.cos(angle) * Math.min(radius, size.width / 2.5);
       const ty = central
         ? size.height / 2
-        : (previous?.y ??
-          size.height / 2 +
-            Math.sin(angle) * Math.min(radius, size.height / 2.5));
+        : previous
+          ? previous.y! * 0.55 +
+            (size.height / 2 +
+              Math.sin(angle) * Math.min(radius, size.height / 2.5)) *
+              0.45
+          : size.height / 2 +
+            Math.sin(angle) * Math.min(radius, size.height / 2.5);
       return {
         id: h.id,
         width,
@@ -166,6 +198,13 @@ export function GoalCloud({
       let fits = true;
       for (const n of ordered) {
         const free = (x: number, y: number) =>
+          obstacles.every(
+            (r) =>
+              x + n.width / 2 < r.left ||
+              x - n.width / 2 > r.right ||
+              y + n.height / 2 < r.top ||
+              y - n.height / 2 > r.bottom,
+          ) &&
           placed.every(
             (p) =>
               Math.abs(x - p.x!) >= (n.width + p.width) / 2 + 5 ||
@@ -208,20 +247,21 @@ export function GoalCloud({
     }
     for (const node of nodes) memory.current.set(node.id, node);
     setWords(nodes);
-  }, [identity, size.width, size.height, list]);
+  }, [identity, size.width, size.height, list, active]);
   const dense = list || goals.length > 12;
+  const dominant = [...goals].sort((a, b) => weight(b) - weight(a))[0]?.id;
   return (
     <div
       ref={host}
       className={`living-cloud ${dense ? "cloud-list" : ""}`}
       data-testid="goals"
     >
-      {(dense ? goals : displayed).map((old) => {
+      {(active ? (dense ? goals : displayed) : []).map((old) => {
         const h = goals.find((g) => g.id === old.id) ?? old;
         const leaving = !goals.some((g) => g.id === h.id);
         const n = words.find((w) => w.id === h.id) ?? memory.current.get(h.id);
         const color =
-          h.interpretation === "governing-purpose"
+          h.id === dominant
             ? "var(--green)"
             : ["var(--trace)", "#8b7964", "#6a8290"][
                 Array.from(h.id).reduce(
@@ -233,9 +273,10 @@ export function GoalCloud({
           <div
             key={h.id}
             data-goal={h.id}
+            data-dominant={h.id === dominant || undefined}
             aria-hidden={leaving || undefined}
             inert={leaving || undefined}
-            className={`cloud-position ${leaving ? "cloud-leaving" : ""} ${h.interpretation === "governing-purpose" ? "cloud-center" : ""}`}
+            className={`cloud-position ${leaving ? "cloud-leaving" : ""} ${h.id === dominant ? "cloud-center" : ""}`}
             style={
               dense
                 ? undefined
@@ -265,7 +306,11 @@ export function GoalCloud({
           </div>
         );
       })}
-      {!goals.length && <span className="quiet-empty">No goals supplied</span>}
+      {(!active || !goals.length) && (
+        <span className="attention-cue">
+          {active ? "No attention supplied" : "Hover to see"}
+        </span>
+      )}
     </div>
   );
 }

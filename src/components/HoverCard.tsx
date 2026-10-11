@@ -96,9 +96,9 @@ export function HoverCard({
 }
 export const explanations = {
   goals:
-    "What might the author be trying to accomplish here? These are revisable interpretations supplied by the analysis, grounded in its evidence. Word size follows declared likelihood when available, otherwise relative support. Shared goals keep their place as you move between sentences. Select a goal to inspect its sources.",
+    "What might be occupying the author’s attention at this point in the text? These supplied interpretations are independent of the goal hierarchy. Word size follows declared likelihood when available, otherwise relative support. The strongest current item gathers near the center; shared phrases persist while newcomers bubble into place. Hover text or a sentence brick to reveal attention. Click to hold it, then select a phrase for its evidence. The example uses hand-authored snapshots, not live inference.",
   process:
-    "Expertise is a kind of lossy, compressed record of all of the author’s previous attentional focuses — nerves that fired together, wired together. This is the project’s conceptual model. A hierarchy of possible goals: the broad purpose is on the right; subordinate goals branch toward individual sentences on the left. Hover a block to trace its ancestors and descendants. Hover page text to roll through the corresponding goal spools. Click a sentence or block to lock; Escape releases. Scroll a reel to explore neighboring goals at that level. The triangle stays visible throughout. This hierarchy does not establish the historical order of writing.",
+    "Expertise is a kind of lossy, compressed record of all of the author’s previous attentional focuses — nerves that fired together, wired together. This is the project’s conceptual model. A hierarchy of possible goals: possible broader ends are on the right; subordinate goals branch toward individual sentences on the left. Hover a block to trace its ancestors and descendants. Hover page text to roll through the corresponding goal spools. Click a sentence or block to lock; either green lock or Escape releases. Scroll a reel to explore neighboring goals at that level. The triangle stays visible throughout. This hierarchy does not establish the historical order of writing.",
   values:
     "Recurring latent preferences that may explain the author’s choices across this text and any explicitly selected context. The creator considers ‘core values’ imprecise; ‘latent preferences’ is the preferred term. Wheels show the supplied support, not an invented confidence score. Hover a row for sources. Values stay steady until you accept a new account.",
 };
@@ -157,8 +157,10 @@ export function SectionTitle({
               <p>
                 Click text or a brick to hold a selection. Scroll a reel, or
                 focus it and use ↑ / ↓, to explore that level. Blurred reels
-                represent several possible descendants. Escape releases the
-                lock.
+                represent multiple possible descendants, broader goals or
+                earlier endings. A shorter peak ends before the tallest one. The
+                hovered brick’s reel glows. Click either green lock, or press
+                Escape, to release the selection.
               </p>
               <p className="muted">
                 Depth comes from the supplied hierarchy. These are

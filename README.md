@@ -1,12 +1,14 @@
 # ToMpathy - What's on the author's mind?
 
-Version **0.4.0** has three panels: **Current attention**, **Expertise, Habits, and Hierarchical Goals**, and **Core values**. Chrome supplies the compact title and the new right-pointing pyramid icon.
+Version **0.4.0 alpha** has three panels: **Current attention**, **Expertise, Habits, and Hierarchical Goals**, and **Core values**. Titles sit in the top-right corners; the Reader menu is at top left. Chrome supplies the compact title and right-pointing pyramid icon. The future public release is intended to restart at **0.1 beta** with an empty frontend; this alpha remains a private development build.
 
-The attention cloud keeps shared phrases in place, with a wide support-based size range and gentle motion. The continuous tiled hierarchy stays visible above compact reels. Single-click text or a brick to lock; scroll over a reel to explore that level. Escape releases. Core values occupy two columns, capped at the nine most supported supplied hypotheses. Passive hover explanations never intercept the pointer; click a value for its complete evidence.
+Current attention occupies about half its previous height and is independent of the goal hierarchy. At rest it says **Hover to see**. Hover a sentence or sentence brick: its strongest supplied attentional focus gathers near the center, new phrases grow into place, and shared phrases shift gently. The example deliberately changes its leading focus across sentences.
+
+The continuous, rounded hierarchy now has two peaks at different depths with shared subgoals. Compact two-line reels stay below it; ambiguous descendants, broader goals and earlier endings are blurred. Hovering a brick emphasizes its reel. Single-click text or a brick to lock; scroll over a reel to explore that level. Click either matching green lock, or press Escape, to release. Core values occupy a larger two-column area with eight demo items, capped at nine supplied hypotheses. Bottom tabs switch between **author** and a **world** placeholder; search expands into a typing-only prototype. It sends no query.
 
 The expertise heading includes an illustrated explanation and the creator's line about expertise as a lossy, compressed record of previous attentional focuses. The Reader menu keeps source identity, context, imports, earlier accounts, list view, maker selection, settings and Help.
 
-Sounding Line will supply inference. This frontend supports capture, validated result import, evidence, context, and a fictional hand-authored example. No live inference endpoint is connected. [Input contract 1.0–1.3](docs/INPUT_CONTRACT.md) documents compatibility and deeper hierarchies with optional level names. Relative support is never presented as calibrated probability.
+Sounding Line will supply inference. This frontend supports capture, validated result import, evidence, context, and a fictional hand-authored example. No live inference endpoint is connected. [Input contract 1.0–1.4](docs/INPUT_CONTRACT.md) documents independent attention frames, multiple hierarchy parents/roots, and legacy compatibility. Relative support is never presented as calibrated probability.
 
 Private repository: [EmotiveAutomaton/tompathy](https://github.com/EmotiveAutomaton/tompathy).
 
@@ -20,8 +22,8 @@ On the owner's workstation, the **ToMpathy Review** desktop shortcut opens this 
 
 1. In the Review desk, click **Open the guided example**.
 2. On the fictional article, click **Open Maker Reader**. Confirm the three sections beside the text, with ToMpathy in Chrome’s title bar.
-3. Hover sentences; current attention and the reels respond while core values stay fixed. Single-click to hold a sentence. Move to a reel and scroll to choose a neighboring goal; press **Escape** to release. Hover a hierarchy brick to trace its ancestors, descendants and matching source text.
-4. Move between the value rows to check their wider, passive tooltips. Click an attention phrase or value and follow its evidence back to a passage. Hover the middle heading for its illustrated explanation.
+3. Hover sentences and watch the leading attention phrase change. Single-click to hold both attention and reels. Move to a reel and scroll to choose a neighboring goal. Click either green lock or press **Escape** to release. Hover a hierarchy brick to trace its ancestors, descendants and matching source text. Paragraph-level bricks show possible paths in both directions and leave attention at **Hover to see**.
+4. Try **author**, **world**, and the search icon at the bottom. World and search are interface prototypes. Move between the value rows to check their wider, passive tooltips. Click an attention phrase or value and follow its evidence back to a passage. Hover the middle heading for its illustrated explanation.
 5. Use **Reader menu → Context → Preview example revision → Accept this revision**. Values change to include **Practical care**. **Earlier accounts** lets you inspect the original.
 6. Return to the guide and choose **Try a real author**. On Simon Willison’s article, click ToMpathy from Chrome’s puzzle-piece menu and pin it for next time. The reader should say **Awaiting analysis**; **Source text** identifies Simon. Inspect **Reader menu → Source text** and export an analysis request. Live inference is not yet connected.
 

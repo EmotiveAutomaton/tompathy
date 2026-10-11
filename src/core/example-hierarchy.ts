@@ -98,5 +98,20 @@ export function exampleHierarchy(
       }),
     );
   });
+  // A second possible end stops one tier earlier. Shared subgoals can lead
+  // toward either end, so this is a DAG rather than two unrelated pictures.
+  nodes.push({
+    ...base,
+    id: "practical-care",
+    label: "Make everyday life easier",
+    description:
+      "A second possible end: practical care may matter independently of the broader social story. An authored stress-test branch.",
+    regions: ["p4", "p5"],
+  });
+  for (const id of ["paragraph-3", "paragraph-4"]) {
+    const n = nodes.find((n) => n.id === id)!;
+    n.parentIds = [n.parentId!, "practical-care"];
+    delete n.parentId;
+  }
   return nodes;
 }

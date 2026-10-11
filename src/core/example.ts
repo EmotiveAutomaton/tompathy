@@ -4,6 +4,7 @@ import {
   type Packet,
   type ContextItem,
 } from "./model";
+import { exampleAttention } from "./attention";
 import { exampleHierarchy } from "./example-hierarchy";
 import { sentences } from "./sentences";
 export const exampleText = [
@@ -100,8 +101,10 @@ export async function createExample(
             ? "value"
             : "preference",
   });
+  const attention = exampleAttention(artifact);
   return PacketSchema.parse({
-    schemaVersion: "1.2",
+    schemaVersion: "1.4",
+    currentAttention: attention.currentAttention,
     goalHierarchy: { nodes: exampleHierarchy(artifact, revised) },
     id: revised ? "bench-analysis-2" : "bench-analysis-1",
     revision: revised ? 2 : 1,
@@ -124,6 +127,7 @@ export async function createExample(
       },
     ],
     hypotheses: [
+      ...attention.hypotheses,
       h(
         "concrete",
         "goal",
@@ -298,6 +302,23 @@ export async function createExample(
         [],
         0.64,
         ["e1", "e3"],
+      ),
+      ...[
+        ["accessibility", "Access for everyone", 0.51, "e4"],
+        ["adaptability", "Willingness to revise", 0.48, "e3"],
+        ["stewardship", "Thoughtful use of materials", 0.44, "e4"],
+        ["belonging", "Shared belonging", 0.4, "e2"],
+        ["patience", "Patient observation", 0.36, "e1"],
+      ].map(([id, label, value, evidence]) =>
+        h(
+          String(id),
+          "value",
+          String(label),
+          `An illustrative recurring preference: ${String(label).toLowerCase()}.`,
+          [],
+          Number(value),
+          [String(evidence)],
+        ),
       ),
       h(
         "restraint",

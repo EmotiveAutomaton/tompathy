@@ -4,63 +4,94 @@ async function tool(page: Page, name: string) {
   await page.getByRole("button", { name: "Reader menu", exact: true }).click();
   await page.getByRole("button", { name, exact: true }).click();
 }
-test("three panels, stable cloud anchor, sentence spools, branching highlights and lock", async ({
+test("independent attention, two peaks, bidirectional ambiguity and matching locks", async ({
   page,
 }) => {
   await page.goto("/");
   await expect(page.locator(".reader-content > .region")).toHaveCount(3);
-  await expect(page.locator(".app-header, .app-footer")).toHaveCount(0);
-  await page.waitForTimeout(1000);
-  const anchor = await page.locator('[data-goal="invite"]').boundingBox();
+  await expect(
+    page.locator(".app-header, .app-footer, .node-explanation"),
+  ).toHaveCount(0);
+  await expect(page.getByTestId("goals")).toHaveText("Hover to see");
   const values = await page.getByTestId("values").innerHTML();
+  const first = page.locator('[data-passage="p2"] [data-sentence="0"]');
+  await first.hover();
+  await expect(page.locator('[data-dominant="true"]')).toHaveText(
+    "Noticing pauses",
+  );
+  const shared = await page.locator('[data-goal="focus-11"]').elementHandle();
   const sentence = page.locator('[data-passage="p4"] [data-sentence="1"]');
   await sentence.hover();
+  await expect(page.locator('[data-dominant="true"]')).toHaveText(
+    "Learning from others",
+  );
+  expect(await shared!.evaluate((el) => el.isConnected)).toBe(true);
   await expect(page.locator('.spool[data-level="3"]')).toHaveAttribute(
     "data-selected",
     "sentence-3-2",
+  );
+  await expect(page.locator('.spool[data-level="1"]')).toHaveAttribute(
+    "data-candidates",
+    "story,practical-care",
   );
   await expect(page.locator('.spool[data-level="0"]')).toHaveAttribute(
-    "data-selected",
-    "purpose",
+    "data-candidates",
+    "purpose,end",
   );
-  await expect(page.getByTestId("goals")).toContainText("Test an assumption");
   expect(await page.getByTestId("values").innerHTML()).toEqual(values);
-  await page.waitForTimeout(950);
-  const moved = await page.locator('[data-goal="invite"]').boundingBox();
-  expect(
-    Math.abs(anchor!.x + anchor!.width / 2 - (moved!.x + moved!.width / 2)),
-  ).toBeLessThan(2);
   await sentence.click();
-  await page.locator('[data-passage="p2"] [data-sentence="0"]').hover();
-  await expect(page.locator('.spool[data-level="3"]')).toHaveAttribute(
-    "data-selected",
-    "sentence-3-2",
+  await first.hover();
+  await expect(page.locator('[data-dominant="true"]')).toHaveText(
+    "Learning from others",
   );
   await expect(
     page.getByRole("button", { name: "Unlock selection" }),
-  ).toBeVisible();
-  await expect(page.locator(".pyramid")).toBeVisible();
+  ).toHaveCount(2);
+  await expect(page.locator(".pyramid svg")).toHaveAttribute("data-peaks", "2");
   const pyramid = await page.locator(".pyramid").boundingBox();
-  const reel = page.locator('.spool[data-level="3"]');
   const reels = await page.getByTestId("odometer").boundingBox();
-  expect(reels!.y).toBeGreaterThan(pyramid!.y + pyramid!.height);
-  expect(reels!.height).toBeLessThan(70);
+  expect(reels!.y).toBeGreaterThanOrEqual(pyramid!.y + pyramid!.height);
+  expect(reels!.height).toBeLessThan(50);
+  await page.locator('[data-node="paragraph-3"] circle').hover();
+  await expect(page.locator('.spool[data-level="2"]')).toHaveClass(
+    /spool-emphasis/,
+  );
+  await expect(page.locator('.spool[data-level="3"]')).toHaveAttribute(
+    "data-selected",
+    "sentence-3-2",
+  );
+  await expect(page.locator('[data-dominant="true"]')).toHaveText(
+    "Learning from others",
+  );
+  const reel = page.locator('.spool[data-level="3"]');
   await reel.hover();
   await page.mouse.wheel(0, 100);
   await expect(reel).toHaveAttribute("data-selected", "sentence-3-3");
   await reel.focus();
   await page.keyboard.press("ArrowUp");
   await expect(reel).toHaveAttribute("data-selected", "sentence-3-2");
-  await page.keyboard.press("Escape");
-  await page.locator(".process-region .section-heading").hover();
-  await page.locator('[data-node="paragraph-3"]').hover();
+  await page.locator(".process-lock").click();
+  await expect(page.getByTestId("goals")).toHaveText("Hover to see");
+  await expect(
+    page.getByRole("button", { name: "Unlock selection" }),
+  ).toHaveCount(0);
+  await sentence.click();
+  await page.locator(".inline-lock").click();
+  await expect(page.getByTestId("goals")).toHaveText("Hover to see");
+  await page.locator('[data-node="paragraph-3"] circle').hover();
   await expect(page.locator(".pyramid-node.descendant")).toHaveCount(5);
-  await expect(page.locator(".pyramid-node.ancestor")).toHaveCount(3);
-  await expect(page.locator(".spool.ambiguous")).toHaveCount(1);
+  await expect(page.locator(".pyramid-node.ancestor")).toHaveCount(4);
+  await expect(page.locator(".spool.ambiguous")).toHaveCount(3);
+  await expect(page.getByTestId("goals")).toHaveText("Hover to see");
   await expect(page.locator('[data-passage="p4"]')).toHaveClass(
     /related-passage/,
   );
   await page.screenshot({ path: "evidence/design-branch.png" });
+  await page.locator('[data-node="sentence-3-2"] circle').click();
+  await expect(page.locator('[data-dominant="true"]')).toHaveText(
+    "Learning from others",
+  );
+  await page.keyboard.press("Escape");
   await page.getByRole("button", { name: "Reader menu", exact: true }).click();
   await page.getByLabel("Show hypotheses as a list").check();
   await page.getByRole("button", { name: "Close dialog" }).click();
@@ -71,6 +102,7 @@ test("cloud phrases do not overlap at native width; heading and value explanatio
 }) => {
   await page.setViewportSize({ width: 360, height: 900 });
   await page.goto("/?panel");
+  await page.locator('[data-node="sentence-1-1"] circle').click();
   await page.waitForTimeout(1100);
   const boxes = await page
     .locator(".cloud-position button")
@@ -325,7 +357,7 @@ test("unnamed eight-level hierarchy and top nine values fit a narrow panel", asy
   await page.setViewportSize({ width: 360, height: 900 });
   await page.goto("/?panel");
   const packet = await createExample();
-  packet.schemaVersion = "1.3";
+  packet.schemaVersion = "1.4";
   packet.revisionOf = packet.id;
   packet.id = "deep-review-fixture";
   packet.revision = 2;
@@ -361,7 +393,7 @@ test("unnamed eight-level hierarchy and top nine values fit a narrow panel", asy
     "Fixture preference 9",
   );
   await expect(page.locator(".core-value-row").last()).toBeInViewport();
-  await page.locator('[data-node="sentence-3-2"]').click();
+  await page.locator('[data-node="sentence-1-1"] circle').click();
   await expect(page.locator(".spool")).toHaveCount(8);
   await expect(page.locator(".spool small")).toHaveCount(0);
   const broadest = page.locator('.spool[data-level="0"]');
@@ -374,4 +406,101 @@ test("unnamed eight-level hierarchy and top nine values fit a narrow panel", asy
       () => document.documentElement.scrollWidth <= innerWidth,
     ),
   ).toBe(true);
+});
+
+test("corner headings, compact attention, expanded values and prototype tabs", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 360, height: 900 });
+  await page.goto("/?panel");
+  const cloud = await page.locator(".goals-region").boundingBox();
+  const values = await page.locator(".values-region").boundingBox();
+  expect(cloud!.height).toBeLessThanOrEqual(190);
+  expect(values!.height).toBeGreaterThanOrEqual(240);
+  for (const selector of [
+    ".goals-region",
+    ".process-region",
+    ".values-region",
+  ]) {
+    const region = await page.locator(selector).boundingBox();
+    const title = await page
+      .locator(selector + " > .section-heading > h2")
+      .boundingBox();
+    expect(Math.abs(title!.y - region!.y)).toBeLessThan(2);
+    expect(
+      Math.abs(title!.x + title!.width - region!.x - region!.width),
+    ).toBeLessThan(2);
+  }
+  await expect(page.locator(".core-value-row")).toHaveCount(8);
+  await page.getByRole("tab", { name: "world", exact: true }).click();
+  await expect(page.getByRole("tabpanel")).toHaveText(
+    "World view · coming later",
+  );
+  await page.getByRole("tab", { name: "author", exact: true }).click();
+  await expect(page.locator(".core-value-row")).toHaveCount(8);
+  await page.getByRole("button", { name: "Open search preview" }).click();
+  const search = page.getByRole("textbox", { name: "Search preview" });
+  await expect(search).toBeFocused();
+  await search.fill("curiosity");
+  const requests: string[] = [];
+  page.on("request", (r) => requests.push(r.url()));
+  await search.press("Enter");
+  await expect(
+    page.getByRole("status").filter({ hasText: "No query was sent" }),
+  ).toBeVisible();
+  expect(requests).toEqual([]);
+  await search.press("Escape");
+  await expect(
+    page.getByRole("button", { name: "Open search preview" }),
+  ).toBeFocused();
+  await page.getByRole("button", { name: "Open search preview" }).click();
+  await expect(search).toHaveValue("curiosity");
+  await page.screenshot({ path: "evidence/alpha-search.png" });
+});
+
+test("attention can change within a sentence and lock the pointed frame", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const packet = await createExample();
+  packet.revisionOf = packet.id;
+  packet.id = "attention-offset-fixture";
+  packet.revision = 2;
+  const frame = packet.currentAttention!.find((f) => f.span.region === "p4")!;
+  const next = structuredClone(frame);
+  frame.span.end = 20;
+  next.span.start = 20;
+  next.items = [next.items[1]];
+  packet.currentAttention!.push(next);
+  await tool(page, "Import result");
+  await page.getByText("Or paste JSON").click();
+  await page.getByLabel("Result JSON").fill(JSON.stringify(packet));
+  await page.getByRole("button", { name: "Validate & import" }).click();
+  await page.getByRole("button", { name: "Accept this revision" }).click();
+  const sentence = page.locator('[data-passage="p4"] [data-sentence="0"]');
+  await sentence.scrollIntoViewIfNeeded();
+  const points = await sentence.evaluate((el) =>
+    [5, 35].map((offset) => {
+      const range = document.createRange();
+      range.setStart(el.firstChild!, offset);
+      range.setEnd(el.firstChild!, offset + 2);
+      const r = range.getBoundingClientRect();
+      return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
+    }),
+  );
+  await page.mouse.move(points[0].x, points[0].y);
+  await expect(page.locator('[data-dominant="true"]')).toHaveText(
+    "Watching closely",
+  );
+  await page.mouse.move(points[1].x, points[1].y);
+  await expect(page.locator('[data-dominant="true"]')).toHaveText(
+    "Small details",
+  );
+  await page.mouse.click(points[1].x, points[1].y);
+  await page.mouse.move(points[0].x, points[0].y);
+  await expect(page.locator('[data-dominant="true"]')).toHaveText(
+    "Small details",
+  );
+  await page.locator(".process-lock").click();
+  await expect(page.getByTestId("goals")).toHaveText("Hover to see");
 });

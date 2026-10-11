@@ -1,4 +1,4 @@
-# ToMpathy result contract · 1.0–1.3
+# ToMpathy result contract · 1.0–1.4
 
 `src/core/model.ts` is the authoritative runtime validator. `examples/bench-result.json` is a complete valid packet; `bench-revision.json` demonstrates a context-conditioned revision. `bench-source.txt` is the corresponding synthetic text. Fixtures use `tompathy:example` as their portable origin. In the installed extension, use **Import result → Download example format** on the bundled source to obtain a packet bound to that installation's source URL.
 
@@ -15,14 +15,14 @@ No transport endpoint has been invented. `configuredProvider` is null; ordinary 
 
 | Field                             | Meaning                                                                                                                                                         |
 | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `schemaVersion`                   | `"1.0"` (legacy, including Sounding Line Stage 13) `"1.1"`, `"1.2"`, or `"1.3"`                                                                                 |
+| `schemaVersion`                   | `"1.0"` (legacy, including Sounding Line Stage 13) `"1.1"`, `"1.2"`, `"1.3"`, or `"1.4"`                                                                                 |
 | `id`, `revision`                  | Analysis identity and positive integer revision                                                                                                                 |
 | `artifact`                        | ID, source, title, capture timestamp, content revision, truncation flag and regions                                                                             |
 | `provider`                        | Stable provider ID and method description                                                                                                                       |
 | `origin`                          | `synthetic example`, `imported`, or `live provider`; separate from claim status                                                                                 |
 | `scope`                           | `artifact` or `context`, plus exactly the selected context IDs                                                                                                  |
 | `makers`                          | Analysis-local IDs, labels, identity status (`unknown`, `supplied`, `synthetic`) and relationship to the artifact                                               |
-| `hypotheses`                      | ID, kind (`goal`, `process`, `value`), label, description, maker and region associations, claim status, optional support/alternative set and evidence IDs       |
+| `hypotheses`                      | ID, kind (`attention` in 1.4, `goal`, `process`, `value`), label, description, maker and region associations, claim status, optional support/alternative set and evidence IDs       |
 | `alternatives`                    | Explicit member IDs, `competing` or `coexisting`, and whether exhaustive; legacy `independent` remains readable as coexistence without a new independence claim |
 | `process`                         | Process node IDs and explicit directed edges with supplied relationship labels                                                                                  |
 | `estimates`                       | Region ID, optional contribution value with quantity and 0–1 scale, independent uncertainty level and meaning                                                   |
@@ -63,7 +63,41 @@ Layout foundations: [D3 force simulation](https://d3js.org/d3-force/simulation) 
 
 `goalHierarchy.nodes[].level` becomes optional descriptive metadata (a nonempty string of up to 100 characters when present). Parent links determine hierarchy depth; the interface does not display fixed sentence/paragraph/section/document reel captions. Up to 64 levels are accepted with the existing 3,000-node bound, cycle checks, same-maker references and region-containment validation. A node explicitly labeled `sentence` still requires its exact span. Versions 1.0–1.2 keep their original level vocabulary and 12-level limit.
 
-The compact reels scroll horizontally for deeper paths; each reel supports mouse-wheel and arrow-key selection. Top-nine values are selected by normalized supplied support, with stable input order breaking ties and unknown support last. The full hypothesis list remains available. Multiple-parent or multiple-root graphs are deferred; no such relationships are inferred or simulated in this pass.
+The compact reels scroll horizontally for deeper paths; each reel supports mouse-wheel and arrow-key selection. Top-nine values are selected by normalized supplied support, with stable input order breaking ties and unknown support last. The full hypothesis list remains available. Versions through 1.3 retain one parent per node and one root per maker. Contract 1.4 adds explicit branching ends below.
+
+## Additions in 1.4
+
+Current attention is an independent supplied stream. `hypotheses[].kind: "attention"` may carry `interpretation: "current-attention"`. It is never populated by filtering goal hypotheses or reading hierarchy nodes. Optional `currentAttention[]` frames have this shape:
+
+```json
+{
+  "maker": "maker-1",
+  "span": { "region": "p4", "start": 0, "end": 20 },
+  "items": [
+    {
+      "hypothesis": "focus-2",
+      "support": {
+        "value": 0.94,
+        "scale": [0, 1],
+        "semantics": "relative",
+        "meaning": "Supplied relative support, not calibrated probability"
+      }
+    }
+  ]
+}
+```
+
+Each item references a separate attention hypothesis associated with the same maker and compatible region. Frame ranges use normalized half-open UTF-16 offsets and may divide a sentence. Nonoverlapping frames for the same maker/region, valid references, support scales and probability candidate sets are enforced. An omitted item support inherits that hypothesis's support; explicit null means unknown. Exhaustive probability sets must be complete and sum to one within each frame that uses them. Limits: 3,000 frames, 40 items per frame. The content adapter supplies the pointed character offset; this does not enable the deferred word-level goal analysis.
+
+The cloud is empty with **Hover to see** until source text or a sentence node is selected. Parent nodes do not select an arbitrary descendant's attention. A selected position without a supplied frame says **No attention supplied**. Older packets remain valid and do not acquire invented attention. The alpha example supplies authored sentence frames with shifting leaders, clearly labeled as synthetic in evidence and Help.
+
+Hierarchy nodes may use `parentIds` (1–16 unique IDs) instead of `parentId`. A maker may have multiple roots. Both parent forms together, cycles, cross-maker parents, missing parents and child regions outside **any** parent are rejected. The 64-level/3,000-node bounds remain. No extra relationships are inferred.
+
+The graph view places local leaves at the left; a node's rank follows its longest child path. Each root contributes a rounded lobe ending at its own depth. Shared subgoals light up every reachable ancestor and descendant once. A reel can be ambiguous in either direction; a shorter completed path also remains a possible ending at later reels. Scrolling deliberately chooses a node and locks its reachable neighborhood.
+
+Bricks partition the actual widest visible vertical edge of each column, instead of clipping a rectangular grid into phantom slivers. This preserves every semantic node while meeting the requested 50% edge threshold; dots are centered in the visible area. Very large graphs (over 120 nodes or four roots) use the list fallback. The new graph traversal handles multiple parents; D3 stratify remains only a legacy tree helper.
+
+Page and reel locks share the same green SVG. Clicking either releases selection and clears highlights, as does Escape. The world tab and expandable search are UI previews only; they do not change scope or trigger requests.
 
 ## Text identity and matching
 

@@ -1,3 +1,4 @@
+import { LOCK_SVG, LOCK_INK, LOCK_BACKGROUND } from "./core/lock";
 import { sentences } from "./core/sentences";
 import { makeArtifact, normalize } from "./core/artifact";
 import type { Artifact, Packet } from "./core/model";
@@ -37,12 +38,14 @@ export function installPageAdapter() {
     string,
     { start: number; end: number; range: Range }[]
   >();
-  const marker = document.createElement("span");
+  let pointOffsets = new WeakMap<Node, number[]>();
+  const marker = document.createElement("button");
+  marker.type = "button";
   marker.setAttribute("data-tompathy-ui", "");
-  marker.setAttribute("aria-label", "Selection locked; press Escape to unlock");
-  marker.textContent = "🔒";
-  marker.style.cssText =
-    "all:initial;position:fixed;z-index:2147483647;pointer-events:none;font:11px system-ui;background:#e4eee7;border-radius:6px;padding:2px;display:none";
+  marker.setAttribute("aria-label", "Unlock selection");
+  marker.title = "Unlock selection · Escape";
+  marker.innerHTML = LOCK_SVG;
+  marker.style.cssText = `all:initial;box-sizing:border-box;position:fixed;z-index:2147483647;cursor:pointer;width:23px;height:23px;align-items:center;justify-content:center;color:${LOCK_INK};background:${LOCK_BACKGROUND};border:1px solid #91b7a4;border-radius:50%;padding:0;box-shadow:0 1px 5px #426f5d22;display:none`;
   document.documentElement.append(marker);
   const paint = (name: string, rs: Range[]) => {
     if (highlights && (globalThis as any).Highlight)
@@ -51,14 +54,14 @@ export function installPageAdapter() {
   const positionMarker = () => {
     const selectedRange = ranges
       .get(selected)
-      ?.find((s) => s.start === selectedOffset)?.range;
+      ?.find((s) => s.start <= selectedOffset && s.end > selectedOffset)?.range;
     const rects = selectedRange?.getClientRects();
     const r = rects?.[rects.length - 1];
     marker.style.display =
-      pinned && r && r.bottom > 0 && r.top < innerHeight ? "block" : "none";
+      pinned && r && r.bottom > 0 && r.top < innerHeight ? "grid" : "none";
     if (r) {
-      marker.style.left = `${Math.min(innerWidth - 24, r.right + 3)}px`;
-      marker.style.top = `${r.bottom - 19}px`;
+      marker.style.left = `${Math.min(innerWidth - 24, r.right - 5)}px`;
+      marker.style.top = `${r.bottom - 5}px`;
     }
   };
   window.addEventListener("scroll", positionMarker, {
@@ -120,6 +123,27 @@ export function installPageAdapter() {
       /* extension reloaded */
     }
   };
+  const release = () => {
+    pinned = false;
+    highlights?.delete("tompathy-active");
+    highlights?.delete("tompathy-related");
+    elements.forEach((el) => {
+      el.removeAttribute("data-tompathy-related");
+      el.removeAttribute("data-tompathy-selected");
+    });
+    selected = "";
+    selectedOffset = 0;
+    positionMarker();
+    send("TOMPATHY_UNLOCK");
+  };
+  marker.addEventListener(
+    "click",
+    (e) => {
+      e.stopPropagation();
+      release();
+    },
+    { signal: abort.signal },
+  );
   const select = (id: string, pin = false, notify = true, offset = 0) => {
     if (stale || (!pin && pinned)) return;
     byId.get(selected)?.removeAttribute("data-tompathy-selected");
@@ -127,7 +151,9 @@ export function installPageAdapter() {
     const sentence =
       ranges.get(id)?.find((s) => s.start <= offset && s.end > offset) ??
       ranges.get(id)?.[0];
-    selectedOffset = sentence?.start ?? 0;
+    selectedOffset = sentence
+      ? Math.max(sentence.start, Math.min(offset, sentence.end - 1))
+      : 0;
     if (pin) pinned = true;
     byId.get(id)?.setAttribute("data-tompathy-selected", "");
     paint("tompathy-active", sentence ? [sentence.range] : []);
@@ -207,6 +233,7 @@ export function installPageAdapter() {
     index = new WeakMap();
     byId = new Map();
     ranges.clear();
+    pointOffsets = new WeakMap();
     elements.forEach((el, i) => {
       index.set(el, artifact!.regions[i].id);
       const id = artifact!.regions[i].id;
@@ -235,6 +262,12 @@ export function installPageAdapter() {
             points.push({ node, offset });
           }
         }
+      }
+      for (let i = 0; i < points.length; i++) {
+        const point = points[i],
+          offsets = pointOffsets.get(point.node) ?? [];
+        offsets[point.offset] = i;
+        pointOffsets.set(point.node, offsets);
       }
       ranges.set(
         id,
@@ -266,8 +299,8 @@ export function installPageAdapter() {
     }
     return null;
   };
-  const offsetAt = (id: string, e: MouseEvent) =>
-    ranges
+  const offsetAt = (id: string, e: MouseEvent) => {
+    const sentence = ranges
       .get(id)
       ?.find((s) =>
         Array.from(s.range.getClientRects()).some(
@@ -277,7 +310,19 @@ export function installPageAdapter() {
             e.clientY >= r.top - 2 &&
             e.clientY <= r.bottom + 2,
         ),
-      )?.start;
+      );
+    if (!sentence) return;
+    const caret = document.caretRangeFromPoint(e.clientX, e.clientY);
+    const offsets = caret && pointOffsets.get(caret.startContainer);
+    const offset =
+      caret && offsets
+        ? (offsets[caret.startOffset] ?? offsets[caret.startOffset - 1])
+        : undefined;
+    return Math.max(
+      sentence.start,
+      Math.min(offset ?? sentence.start, sentence.end - 1),
+    );
+  };
   document.addEventListener(
     "pointermove",
     (e) => {
@@ -318,18 +363,7 @@ export function installPageAdapter() {
   document.addEventListener(
     "keydown",
     (e) => {
-      if (e.key === "Escape") {
-        pinned = false;
-        highlights?.delete("tompathy-active");
-        highlights?.delete("tompathy-related");
-        elements.forEach((el) => el.removeAttribute("data-tompathy-related"));
-        positionMarker();
-        send("TOMPATHY_SELECT", {
-          region: selected,
-          offset: selectedOffset,
-          pinned: false,
-        });
-      }
+      if (e.key === "Escape") release();
     },
     { signal: abort.signal },
   );
@@ -400,13 +434,7 @@ export function installPageAdapter() {
             : "smooth",
         });
     }
-    if (m.type === "TOMPATHY_RELEASE") {
-      pinned = false;
-      highlights?.delete("tompathy-active");
-      highlights?.delete("tompathy-related");
-      elements.forEach((el) => el.removeAttribute("data-tompathy-related"));
-      positionMarker();
-    }
+    if (m.type === "TOMPATHY_RELEASE") release();
     if (m.type === "TOMPATHY_RELATED") {
       if (!pinned) highlights?.delete("tompathy-active");
       paint(

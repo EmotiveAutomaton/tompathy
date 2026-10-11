@@ -1,16 +1,17 @@
 {
-  "verifiedAt": "2026-10-11T20:44:30.142Z",
+  "verifiedAt": "2026-10-11T21:38:44.274Z",
   "profile": "isolated ordinary Google Chrome",
   "checks": [
     "Fresh ordinary Chrome installation is enabled",
+    "Eight author values, world placeholder and expandable typing-only search work in the native panel",
     "Guide opens a native panel beside its bundled source without a server",
-    "Sentence hover, single-click locks for sentences and branches, wheel-driven source selection, compact reels below a persistent hierarchy, Escape, fixed values and provenance",
+    "Independent attention, two hierarchy peaks, bidirectional ambiguity, page/panel green unlock controls, sentence hover, single-click locks for sentences and branches, wheel-driven source selection, compact reels below a persistent hierarchy, Escape, fixed values and provenance",
     "Re-running the unchanged launcher preserves the accepted reading",
     "Chrome extension action grants activeTab and captures a normal HTTP article with the delivered manifest",
     "Launcher restores the same extension ID after a full Chrome restart; local preferences survive"
   ],
   "browser": "154.0.8037.98",
-  "build": "f5dc07e3b494",
+  "build": "1272115bb534",
   "nativePanel": {
     "sourceWidthBefore": 1427,
     "sourceWidthAfter": 1041,
