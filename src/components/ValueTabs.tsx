@@ -31,15 +31,26 @@ export function ValueTabs({
           </button>
         ))}
       </div>
-      {search ? (
+      <button
+        ref={button}
+        className="search-toggle"
+        aria-label="Open search preview"
+        title="Search · interface preview"
+        aria-expanded={search}
+        aria-controls="values-search"
+        onClick={() => (search ? close() : setSearch(true))}
+      >
+        <Search size={15} aria-hidden="true" />
+      </button>
+      {search && (
         <form
+          id="values-search"
           className="value-search"
           onSubmit={(e) => {
             e.preventDefault();
             setSubmitted(true);
           }}
         >
-          <Search size={13} aria-hidden="true" />
           <input
             autoFocus
             aria-label="Search preview"
@@ -63,15 +74,6 @@ export function ValueTabs({
             {submitted ? "Search preview only. No query was sent." : ""}
           </span>
         </form>
-      ) : (
-        <button
-          ref={button}
-          className="search-toggle"
-          aria-label="Open search preview"
-          onClick={() => setSearch(true)}
-        >
-          <Search size={15} />
-        </button>
       )}
     </div>
   );

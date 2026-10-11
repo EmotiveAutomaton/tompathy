@@ -116,17 +116,23 @@ export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
       (multi ? 0.34 + (i * 0.47) / Math.max(1, roots.length - 1) : 0.5),
     half: height * (multi ? (i === 0 ? 0.42 : 0.32) : 0.5),
   }));
+  // One broad elliptical back curves across the full left side. A fuller
+  // shoulder then tapers toward each existing end; parent links stay unchanged.
+  const bounds = (l: (typeof lobes)[number], x: number): Interval => {
+    const backWidth = Math.min(width * 0.17, cw * 0.7),
+      backHalf =
+        (height / 2) *
+        Math.sqrt(1 - Math.pow(Math.max(0, 1 - x / backWidth), 2)),
+      half = l.half * Math.pow(Math.max(0, 1 - Math.pow(x / l.end, 1.5)), 0.85);
+    return [
+      Math.max(height / 2 - backHalf, l.center - half),
+      Math.min(height / 2 + backHalf, l.center + half),
+    ];
+  };
   const slices = (x: number): Interval[] => {
-    const inset = x < 14 ? 14 - Math.sqrt(Math.max(0, 196 - (x - 14) ** 2)) : 0;
     const raw = lobes
       .filter((l) => x <= l.end)
-      .map((l) => {
-        const half = l.half * Math.pow(Math.max(0, 1 - x / l.end), 0.78);
-        return [
-          Math.max(inset, l.center - half),
-          Math.min(height - inset, l.center + half),
-        ] as Interval;
-      })
+      .map((l) => bounds(l, x))
       .filter(([a, b]) => b > a + 0.001)
       .sort((a, b) => a[0] - b[0]);
     const result: Interval[] = [];
@@ -140,12 +146,11 @@ export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
   const outline = lobes.map((l) => {
     const points = Array.from({ length: 81 }, (_, i) => {
       const x = (l.end * i) / 80,
-        inset = x < 14 ? 14 - Math.sqrt(Math.max(0, 196 - (x - 14) ** 2)) : 0;
-      const half = l.half * Math.pow(Math.max(0, 1 - x / l.end), 0.78);
+        [top, bottom] = bounds(l, x);
       return {
         x,
-        top: Math.max(inset, l.center - half),
-        bottom: Math.min(height - inset, l.center + half),
+        top,
+        bottom,
       };
     });
     return `M${points.map((p) => `${p.x},${p.top}`).join(" L")} L${[...points]

@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-11T21:38:44.274Z",
+  "verifiedAt": "2026-10-11T22:31:00.867Z",
   "profile": "isolated ordinary Google Chrome",
   "checks": [
     "Fresh ordinary Chrome installation is enabled",
@@ -11,7 +11,7 @@
     "Launcher restores the same extension ID after a full Chrome restart; local preferences survive"
   ],
   "browser": "154.0.8037.98",
-  "build": "1272115bb534",
+  "build": "2f49bc1d99b7",
   "nativePanel": {
     "sourceWidthBefore": 1427,
     "sourceWidthAfter": 1041,

@@ -4,7 +4,7 @@ Version **0.4.0 alpha** has three panels: **Current attention**, **Expertise, Ha
 
 Current attention occupies about half its previous height and is independent of the goal hierarchy. At rest it says **Hover to see**. Hover a sentence or sentence brick: its strongest supplied attentional focus gathers near the center, new phrases grow into place, and shared phrases shift gently. The example deliberately changes its leading focus across sentences.
 
-The continuous, rounded hierarchy now has two peaks at different depths with shared subgoals. Compact two-line reels stay below it; ambiguous descendants, broader goals and earlier endings are blurred. Hovering a brick emphasizes its reel. Single-click text or a brick to lock; scroll over a reel to explore that level. Click either matching green lock, or press Escape, to release. Core values occupy a larger two-column area with eight demo items, capped at nine supplied hypotheses. Bottom tabs switch between **author** and a **world** placeholder; search expands into a typing-only prototype. It sends no query.
+The continuous, rounded hierarchy now has two peaks at different depths with shared subgoals. Compact two-line reels stay below it; ambiguous descendants, broader goals and earlier endings are blurred. Hovering a brick emphasizes its reel. Single-click text or a brick to lock; scroll over a reel to explore that level. Click either matching green lock, or press Escape, to release. Core values occupy a larger two-column area with eight demo items, capped at nine supplied hypotheses. Bottom tabs switch between **author** and a **world** placeholder; the adjacent search control expands a typing-only field to its right. It sends no query.
 
 The expertise heading includes an illustrated explanation and the creator's line about expertise as a lossy, compressed record of previous attentional focuses. The Reader menu keeps source identity, context, imports, earlier accounts, list view, maker selection, settings and Help.
 
@@ -122,4 +122,4 @@ Preferences persist locally. Captures, context and up to five earlier accepted a
 | `src/core/example.ts`, `examples/`               | Synthetic artifact, ambiguity, unknown history and explicit correction            |
 | `tests/`, `scripts/*validation.mjs`, `evidence/` | Repeatable checks and measured receipts                                           |
 
-See [STATUS.md](STATUS.md) for verification and remaining limitations. The original [project context](TOMPATHY_PROJECT_CONTEXT.md) remains the intent source.
+See [STATUS.md](STATUS.md) for verification, the UX review and remaining limitations. The original [project context](TOMPATHY_PROJECT_CONTEXT.md) remains the intent source.

@@ -432,14 +432,39 @@ test("corner headings, compact attention, expanded values and prototype tabs", a
     ).toBeLessThan(2);
   }
   await expect(page.locator(".core-value-row")).toHaveCount(8);
+  const rows = await page.locator(".core-value-row").evaluateAll((es) =>
+    es.map((e) => {
+      const r = e.getBoundingClientRect();
+      return r.y + r.height / 2;
+    }),
+  );
+  for (let i = 0; i < rows.length; i += 2)
+    expect(Math.abs(rows[i] - rows[i + 1])).toBeLessThan(1);
+  const menu = await page
+    .getByRole("button", { name: "Reader menu", exact: true })
+    .boundingBox();
+  expect(menu!.x - cloud!.x).toBeGreaterThanOrEqual(8);
+  expect(menu!.y - cloud!.y).toBeGreaterThanOrEqual(6);
   await page.getByRole("tab", { name: "world", exact: true }).click();
   await expect(page.getByRole("tabpanel")).toHaveText(
     "World view · coming later",
   );
   await page.getByRole("tab", { name: "author", exact: true }).click();
   await expect(page.locator(".core-value-row")).toHaveCount(8);
+  const world = await page
+    .getByRole("tab", { name: "world", exact: true })
+    .boundingBox();
+  const toggle = page.getByRole("button", { name: "Open search preview" });
+  const searchBefore = await toggle.boundingBox();
+  expect(searchBefore!.x - world!.x - world!.width).toBeGreaterThanOrEqual(0);
+  expect(searchBefore!.x - world!.x - world!.width).toBeLessThan(9);
   await page.getByRole("button", { name: "Open search preview" }).click();
   const search = page.getByRole("textbox", { name: "Search preview" });
+  const searchAfter = await toggle.boundingBox();
+  expect(searchAfter!.x).toBe(searchBefore!.x);
+  expect((await search.boundingBox())!.x).toBeGreaterThan(
+    searchAfter!.x + searchAfter!.width,
+  );
   await expect(search).toBeFocused();
   await search.fill("curiosity");
   const requests: string[] = [];

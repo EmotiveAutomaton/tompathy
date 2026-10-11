@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-11T22:32:19.901Z",
+  "method": "Heuristic task walkthrough in ordinary Chrome, not a participant study",
+  "observations": {
+    "dimensions": {
+      "width": 360,
+      "height": 899,
+      "menu": {
+        "x": 19,
+        "y": 17,
+        "width": 26,
+        "height": 24
+      },
+      "cueOpacity": "0.55",
+      "smallestTile": 19.526885986328125
+    },
+    "unlockedPageToPanel": "Unpinned attention disappears on entering the panel; click-to-lock is needed before inspecting an attention phrase.",
+    "sharedBranch": {
+      "chosen": "paragraph goal: Make inclusion tangible",
+      "ancestors": [
+        "paragraph-4",
+        "story",
+        "practical-care",
+        "purpose"
+      ],
+      "reels": [
+        {
+          "selected": "",
+          "candidates": "sentence-4-1,sentence-4-2,sentence-4-3,sentence-4-4",
+          "label": "4 possible goals or endings; none selected. Scroll or use arrow keys to choose."
+        },
+        {
+          "selected": "paragraph-4",
+          "candidates": "paragraph-4",
+          "label": "Make inclusion tangible. Scroll or use arrow keys to choose."
+        },
+        {
+          "selected": "",
+          "candidates": "story,practical-care",
+          "label": "2 possible goals or endings; none selected. Scroll or use arrow keys to choose."
+        },
+        {
+          "selected": "",
+          "candidates": "purpose,end",
+          "label": "2 possible goals or endings; none selected. Scroll or use arrow keys to choose."
+        }
+      ]
+    },
+    "reelClipping": [
+      "Make hesitation visible",
+      "Avoid demanding contact",
+      "Show sustained attention",
+      "Make observation concrete",
+      "Show willingness to revise",
+      "Name a considered material",
+      "Connect details to belonging",
+      "Offer one observed encounter",
+      "Invite a modest beginning",
+      "Make inclusion tangible"
+    ],
+    "attentionFontRange": {
+      "min": 8.09227,
+      "max": 30.0482
+    },
+    "escapeFromEvidence": {
+      "lockStillPresent": 0,
+      "attention": "Hover to see"
+    },
+    "hoverCard": {
+      "height": 402.3203125,
+      "panelFraction": 0.4475198136818687,
+      "pointerEvents": "none"
+    },
+    "menu": "Your reading\n\nThe garden designer · synthetic example\n\nAll supplied hypotheses\nSource text\n6 passages\nCapture current page\nContext\nImport result\nReader settings\nHow ToMpathy works\nShow hypotheses as a list\nMaker perspective\nThe garden designer · synthetic\n\nExample connected · revision 1",
+    "list": "Readable labels are available in the list fallback; all 27 hierarchy nodes remain present."
+  },
+  "errors": [],
+  "build": "2f49bc1d99b7",
+  "browser": "154.0.8037.98"
+}
