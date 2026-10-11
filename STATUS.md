@@ -29,9 +29,13 @@ Frontend 0.2.0 is built and packaged. The latest pass supplies the owner's repea
 
 ## Ordinary Chrome QA loop
 
+The exact Windows `Review ToMpathy.cmd` entry point completed successfully and left the review guide open. A **ToMpathy Review** desktop shortcut was created and its target/working directory were read back. The first private [CI run](https://github.com/EmotiveAutomaton/tompathy/actions/runs/38142665302) passed every step and uploaded the verified ZIP and test receipts. The workflow pins Ubuntu 24.04, the tested runner OS, rather than following the imminent `ubuntu-latest` migration.
+
 The connected automation Chrome process was observed running with `--disable-extensions` in a temporary Playwright profile. This is a concrete environment problem and a plausible explanation for an absent card; the owner's earlier folder-selection window cannot be identified retrospectively. The new launcher uses ordinary Google Chrome in this checkout's `.local/chrome-review`, without the disable flag, and verifies the loaded extension ID, version, path and enabled state through Chrome's development protocol. It never attaches to the personal Chrome profile.
 
 The new regression check passed in Chrome 154.0.8037.98: fresh installation, guide-to-example-to-native-panel navigation, actual source-width reduction, hover, pin/Escape, stable values, tree/cloud, explicit revision acceptance, unchanged-launcher preservation, and a real extension-action invocation on an ordinary HTTP article. The last check caught the activeTab bug above; it now captures all six passages with the correct author. Screenshots are `evidence/review-desk.png` and `evidence/review-chrome-panel.png`; the receipt is `evidence/review-validation.json`.
+
+The optional live pass (`node scripts/review-validation.mjs --public`) also passed against Simon Willison's linked Datasette Lite article using the actual extension action: 93 passages, correct metadata attribution, and **Awaiting analysis**, with no inference request. See `evidence/review-public-panel.png`. The restart check now waits for the owned Chrome process to exit fully before relaunching; a fixed one-second pause had proved unreliable.
 
 The restart test also established that Chrome intentionally removes CDP-installed extensions at startup. The launcher restores the installation automatically and the test confirms the same extension ID and retained local preferences. No Chrome preference files or policies are altered to bypass that lifecycle. The owner should use the launcher after a full Chrome/Windows restart; bookmarks suffice within an open review session. A conventional manual Load unpacked installation is still an optional route for a regular personal profile.
 

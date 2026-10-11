@@ -12,6 +12,8 @@ Private repository: [EmotiveAutomaton/tompathy](https://github.com/EmotiveAutoma
 
 **Double-click `Review ToMpathy.cmd` in this project folder.** Or run `npm run review` from PowerShell. This is the recommended entry point: it builds the current code, opens ordinary Google Chrome in a separate review profile, loads the extension, verifies that Chrome reports it enabled, and opens a step-by-step **Review desk**. There is no folder picker and no server to keep running.
 
+On the owner's workstation, the **ToMpathy Review** desktop shortcut opens this same launcher.
+
 1. In the Review desk, click **Open the guided example**.
 2. On the fictional article, click **Open Maker Reader**. Confirm the compact author header and the three sections beside the text.
 3. Hover paragraphs; goals and processes should respond while values stay fixed. Click a paragraph to pin it; press **Escape** to release it. Expand and collapse the process tree.
