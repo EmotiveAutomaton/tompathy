@@ -487,6 +487,10 @@
 .example-page article p.active-passage {
   background: transparent;
   outline: none;
+  box-shadow: none;
+}
+.example-page .active-passage .passage-number {
+  color: #568674;
 }
 .example-page article .active-sentence {
   background: #56867430;
