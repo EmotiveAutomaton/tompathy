@@ -1,5 +1,20 @@
 # ToMpathy · Maker Reader
 
+The 0.3.0 design pass has exactly three panels: **Goals**, **Process**, and **Core values**. Chrome supplies the title **What's on the author's mind?**; the previous author band and passage footer are gone. Author identity remains in the Reader menu and Source text.
+
+To review the new design:
+
+1. Double-click **ToMpathy Review** on the desktop (or `Review ToMpathy.cmd` here). It rebuilds and opens the ordinary Chrome review profile.
+2. Choose **Open the guided example**, then **Open Maker Reader** on the article.
+3. Move across individual sentences. Watch shared goals keep their position and the leftmost process spool roll while unchanged ancestors stay still.
+4. Double-click a sentence. Look for locks on the page and in Process. Hover another sentence to confirm the selection stays put. Press Escape to release.
+5. Move into Process. Hover or keyboard-focus a rounded block. Ancestors light up to its right; subordinate goals fan out to its left. Matching page text uses the same green. Blurred lower spools mean several possible descendants, not a chosen sentence.
+6. Hover or focus a core-value row. Inspect its larger wheel, page evidence and specific decision. Accept the example notebook revision via **⋯ → Context** to inspect context provenance too.
+7. Hover headings for explanations, or use **⋯ → How ToMpathy works**. **Reader settings** includes the disabled word-level development marker. **All supplied hypotheses** retains the older production-history accounts.
+
+No new backend inference is performed. Ordinary pages still require a matching imported result. Contract 1.2 adds explicit goal hierarchy and sentence spans; 1.0/1.1 results remain supported without fabricating a hierarchy from temporal edges. Wheel fill and font size follow the supplied scale; relative support is not presented as a calibrated probability.
+
+
 A Chrome side-panel extension for exploring possible goals, processes, and values behind a text. Sounding Line will supply the inference; this frontend already supports capture, imported results, evidence, context, and a complete synthetic example.
 
 The reader has a compact author-first header and three quiet sections: a goal word cloud, a possible production-history tree that expands into a word cloud, and a stable values/preferences list. Select a word or node for evidence. The **⋯ Reader menu** holds source, context, imports, earlier accounts, list view, maker selection, and settings. The main header has no author dropdown in this pass.
@@ -38,11 +53,11 @@ The initial missing-card investigation found the connected automation Chrome run
 From a fresh clone, run `npm ci` and `npm run build` first to create `dist/`.
 
 1. Open `chrome://extensions` in Chrome 116 or later and enable Developer mode.
-2. Choose **Load unpacked** and select `E:\EmotiveAutomaton\Projects\ToMpathy\dist`. Alternatively, unzip `tompathy-0.2.0.zip` into a folder and load that folder. **The folder picker may look empty because it shows subfolders, not files. Click Select Folder while inside `dist`.** Do not select the project root or the ZIP itself.
+2. Choose **Load unpacked** and select `E:\EmotiveAutomaton\Projects\ToMpathy\dist`. Alternatively, unzip `tompathy-0.3.0.zip` into a folder and load that folder. **The folder picker may look empty because it shows subfolders, not files. Click Select Folder while inside `dist`.** Do not select the project root or the ZIP itself.
 3. Pin **ToMpathy** from Chrome's extensions menu. Click its toolbar icon on an ordinary text page.
 4. Choose **Explore an example** for the complete experience. It opens the matching fictional source. If needed, use its **Open Maker Reader** button.
 
-Hover a passage to preview its hypotheses; click to pin; Escape releases. Use **Reader menu → Source text** for keyboard passage navigation, or select text on the page. Select a hypothesis to inspect its evidence and jump back to a passage. Values stay fixed for the analysis revision. In **Reader menu → Context**, preview and explicitly accept the example notebook revision to see a change of mind.
+Hover a sentence to preview its hypotheses and roll the goal spools; double-click to lock; Escape releases. Use **Reader menu → Source text** for keyboard passage navigation, or select text on the page. Select a hypothesis to inspect its evidence and jump back to a passage. Values stay fixed for the analysis revision. In **Reader menu → Context**, preview and explicitly accept the example notebook revision to see a change of mind.
 
 Chrome controls side-panel placement. For the intended right-hand layout, choose the right side in Chrome's **Settings → Appearance → Side panel**. The extension respects the existing setting.
 
@@ -54,7 +69,7 @@ Run `npm run testbed`. It builds and checks the unpacked extension, generates a 
 
 Use `npm run chrome` to open the review profile with the current built extension. For everyday review, use the bundled example from its Review desk; only this optional HTTP testbed needs the local server.
 
-On the test page, click ToMpathy in the toolbar, download **first account**, then use **Reader menu → Import result**. The source and result are bound to that exact localhost URL. Hover and pin passages, inspect evidence, expand the tree into a cloud, and confirm that values stay fixed. **Context → Preview example revision** demonstrates new evidence. After accepting, use **Earlier accounts** to inspect the original without replacing the current result.
+On the test page, click ToMpathy in the toolbar, download **first account**, then use **Reader menu → Import result**. The source and result are bound to that exact localhost URL. Hover sentences, double-click to lock, inspect the hierarchy and evidence, and confirm that core values stay fixed. **Context → Preview example revision** demonstrates new evidence. After accepting, use **Earlier accounts** to inspect the original without replacing the current result.
 
 The page links to Simon Willison's Datasette Lite article and its GitHub project for the next public-page check. Capture and inspect those pages, then export a capture or analysis request. The fictional packets cannot be attached to a different article. No live backend is configured.
 
@@ -94,7 +109,7 @@ node scripts/verify-package.mjs
 
 ## Inputs, context, and storage
 
-- **Bundled example:** fictional text, maker, scores, and evidence. It is always labeled synthetic and opens its own source.
+- **Bundled example:** fictional text, maker, scores, and evidence. Its source page, Reader menu, Help and evidence tools label it synthetic; it opens its own source.
 - **Result import:** versioned JSON, validated and matched to the exact captured artifact, revision, anchors, and selected context. Export a capture from **The source text** for a provider. See [the input contract](docs/INPUT_CONTRACT.md) and [example packet](examples/bench-result.json).
 - **Provider:** replaceable TypeScript interface in `src/core/provider.ts`; no live endpoint or credentials are configured.
 - **Analysis request export:** source, requested author, and only selected context are exported together. Newly collected context IDs bind the exact source/excerpt and match Sounding Line's offline hash convention. Identical source/excerpt pairs are deduplicated.

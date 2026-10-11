@@ -30,20 +30,22 @@ let panel = remote
   .pages()
   .find((p) => p.url().endsWith("/panel.html"));
 if (!panel) throw Error("Native panel target did not open");
-await expect(panel.locator(".identity-note")).toBeVisible();
+await expect(panel.getByTestId("values")).toBeVisible();
 await expect(panel.getByTestId("values")).toContainText("Care for others");
 const values = await panel.getByTestId("values").innerHTML();
 await source.locator('[data-passage="p4"]').hover();
-await expect(panel.getByTestId("process")).toContainText("Test & refine");
+await expect(panel.getByTestId("process")).toContainText("Show the iteration");
 expect(await panel.getByTestId("values").innerHTML()).toEqual(values);
-await source.locator('[data-passage="p4"]').click();
+await source.locator('[data-passage="p4"]').dblclick();
 await source.locator('[data-passage="p2"]').hover();
-await expect(panel.locator(".passage-strip")).toContainText("Pinned passage 4");
+await expect(panel.locator(".sr-only")).toContainText("Locked p4");
 await source.keyboard.press("Escape");
 await source.locator('[data-passage="p3"]').hover();
-await expect(panel.locator(".passage-strip")).toContainText(
-  "Following passage 3",
-);
+await expect(panel.locator(".sr-only")).toContainText("Following p3");
+await panel.getByRole("button", { name: "Reader menu", exact: true }).click();
+await panel
+  .getByRole("button", { name: "All supplied hypotheses", exact: true })
+  .click();
 await panel
   .getByRole("button", { name: "Reframe the problem", exact: false })
   .click();
@@ -57,19 +59,16 @@ expect(
     .getAttribute("data-tompathy-selected"),
 ).toBe("");
 await panel.locator(".reader-content").evaluate((el) => (el.scrollTop = 0));
-await panel
-  .getByRole("button", { name: "Expand process into word cloud" })
-  .click();
-await expect(panel.locator(".process-map.cloud")).toBeVisible();
-await panel.getByRole("button", { name: "Collapse to process tree" }).click();
-await expect(panel.locator(".process-tree")).toBeVisible();
+await panel.getByRole("button", { name: "Unlock sentence" }).click();
+await panel.locator(".process-region .section-heading").hover();
+await expect(panel.locator(".pyramid")).toBeVisible();
 await panel.screenshot({ path: "evidence/native-panel.png", scale: "css" });
 await source.screenshot({ path: "evidence/native-source.png", scale: "css" });
 const receipt = {
   browser: context.browser()?.version(),
   extensionId: id,
   nativePanel: true,
-  treeCloudSwitch: true,
+  goalHierarchy: true,
   initialSourceWidth: initialWidth,
   sourceWidthWithPanel: await source.evaluate(() => innerWidth),
   panelWidth: await panel.evaluate(() => innerWidth),
@@ -87,7 +86,7 @@ panel = reopened
   .pages()
   .find((p) => p.url().endsWith("/panel.html"));
 if (!panel) throw Error("Panel failed to reopen");
-await expect(panel.locator(".identity-note")).toBeVisible();
+await expect(panel.getByTestId("values")).toBeVisible();
 receipt.closeCleanupAndReopen = true;
 // Stop only this isolated browser's extension worker, then verify local state survives.
 const serviceSession = await context.newCDPSession(source);
@@ -95,7 +94,7 @@ await serviceSession.send("ServiceWorker.enable");
 await serviceSession.send("ServiceWorker.stopAllWorkers");
 await source.keyboard.press("Escape");
 await source.locator('[data-passage="p4"]').hover();
-await expect(panel.getByTestId("process")).toContainText("Test & refine");
+await expect(panel.getByTestId("process")).toContainText("Show the iteration");
 receipt.workerStopRecovery = true;
 
 // Exercise the real native panel on a longer synthetic text, using an imported fixture.
@@ -152,7 +151,7 @@ await panel.evaluate(() => {
     requestAnimationFrame(() =>
       globalThis.paintTimes.push(performance.timeOrigin + performance.now()),
     ),
-  ).observe(document.querySelector(".passage-strip"), {
+  ).observe(document.querySelector(".sr-only"), {
     subtree: true,
     childList: true,
     characterData: true,
@@ -163,7 +162,23 @@ for (let i = 0; i < 12; i++) {
   const start = await source.evaluate((i) => {
     const p = document.querySelectorAll("article>p")[i % 5];
     const t = performance.timeOrigin + performance.now();
-    p.dispatchEvent(new PointerEvent("pointerover", { bubbles: true }));
+    p.scrollIntoView({ block: "center" });
+    const range = document.createRange();
+    const textNode = Array.from(p.childNodes).find(
+      (n) => n.nodeType === Node.TEXT_NODE && n.textContent.trim().length > 12,
+    );
+    range.setStart(textNode, 2);
+    range.setEnd(textNode, 10);
+    const r = range.getClientRects()[0];
+    p.dispatchEvent(
+      new PointerEvent("pointermove", {
+        bubbles: true,
+        clientX: r.left + 12,
+        clientY: r.top + r.height / 2,
+      }),
+    );
+    if (!p.hasAttribute("data-tompathy-selected"))
+      throw Error("No source selection");
     return t;
   }, i);
   await panel.waitForFunction(
@@ -197,7 +212,7 @@ const ordinary = await context.newPage();
 await ordinary.goto("http://127.0.0.1:5173/fixture.html");
 await ordinary.keyboard.press("Alt+Shift+Y");
 await ordinary.waitForTimeout(1000);
-receipt.shortcutCapture = await panel.locator(".author-name").innerText();
+receipt.shortcutCapture = await panel.locator(".sr-only").innerText();
 await source.bringToFront();
 await panel.getByRole("button", { name: "Reader menu", exact: true }).click();
 await panel

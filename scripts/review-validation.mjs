@@ -60,36 +60,69 @@ try {
       "The actual native side panel did not open from the guided example",
     );
   panel.on("pageerror", (error) => errors.push(error.message));
-  await expect(panel.locator(".author-name")).toContainText(
-    "The garden designer",
-  );
-  await expect(panel.locator(".identity-note")).toContainText(
-    "Synthetic example",
-  );
+  await expect(panel.locator(".reader-content > .region")).toHaveCount(3);
+  await expect(panel.locator(".app-header, .app-footer")).toHaveCount(0);
   await expect(panel.getByTestId("values")).toContainText("Care for others");
   await expect
     .poll(() => source.evaluate(() => innerWidth))
     .toBeLessThan(widthBefore);
   const widthAfter = await source.evaluate(() => innerWidth);
   const values = await panel.getByTestId("values").innerHTML();
-  await source.locator('[data-passage="p4"]').hover();
-  await expect(panel.getByTestId("process")).toContainText("Test & refine");
+  // Aim at text, not a paragraph's empty rectangular padding.
+  const point = await source.locator('[data-passage="p4"]').evaluate((el) => {
+    const text = Array.from(el.childNodes).find(
+      (n) => n.nodeType === Node.TEXT_NODE && n.textContent.trim().length > 20,
+    );
+    const range = document.createRange();
+    range.setStart(text, 4);
+    range.setEnd(text, 12);
+    const r = range.getBoundingClientRect();
+    return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
+  });
+  await source.mouse.move(point.x, point.y);
+  await expect(panel.locator('.spool[data-level="3"]')).toHaveAttribute(
+    "data-selected",
+    "sentence-3-1",
+  );
   expect(await panel.getByTestId("values").innerHTML()).toBe(values);
-  await source.locator('[data-passage="p4"]').click();
+  await source.mouse.dblclick(point.x, point.y);
+  await expect(
+    panel.getByRole("button", { name: "Unlock sentence" }),
+  ).toBeVisible();
+  await expect(
+    source.locator('[aria-label="Sentence locked; press Escape to unlock"]'),
+  ).toBeVisible();
   await source.locator('[data-passage="p2"]').hover();
-  await expect(panel.locator(".passage-strip")).toContainText(
-    "Pinned passage 4",
+  await expect(panel.locator('.spool[data-level="3"]')).toHaveAttribute(
+    "data-selected",
+    "sentence-3-1",
   );
+  await panel.waitForTimeout(1000);
+  await panel.screenshot({
+    path: "evidence/review-odometer.png",
+    scale: "css",
+  });
   await source.keyboard.press("Escape");
-  await source.locator('[data-passage="p3"]').hover();
-  await expect(panel.locator(".passage-strip")).toContainText(
-    "Following passage 3",
+  await panel.locator(".process-region .section-heading").hover();
+  await panel.locator('[data-node="paragraph-3"]').hover();
+  await expect(panel.locator(".pyramid-node.descendant")).toHaveCount(5);
+  await expect(source.locator('[data-passage="p4"]')).toHaveAttribute(
+    "data-tompathy-related",
+    "",
   );
+  await panel.waitForTimeout(1000);
+  await panel.screenshot({ path: "evidence/review-branch.png", scale: "css" });
   await panel
-    .getByRole("button", { name: "Expand process into word cloud" })
-    .click();
-  await expect(panel.locator(".process-map.cloud")).toBeVisible();
-  await panel.getByRole("button", { name: "Collapse to process tree" }).click();
+    .getByRole("button", { name: "Care for others", exact: true })
+    .hover();
+  await expect(panel.getByRole("tooltip")).toContainText("Specific decision");
+  await panel.waitForTimeout(1000);
+  await panel.screenshot({
+    path: "evidence/review-value-detail.png",
+    scale: "css",
+  });
+  await panel.locator(".values-region .section-heading").hover();
+  await panel.waitForTimeout(1000);
   await panel.screenshot({
     path: "evidence/review-chrome-panel.png",
     scale: "css",
@@ -101,7 +134,7 @@ try {
   };
   receipt.checks.push(
     "Guide opens a native panel beside its bundled source without a server",
-    "Hover, pin, Escape, fixed values and tree/cloud switch",
+    "Sentence hover, double-click lock, Escape, fixed values, hierarchy branches, linked page highlighting, confidence provenance",
   );
   await panel.getByRole("button", { name: "Reader menu", exact: true }).click();
   await panel.getByRole("button", { name: "Context", exact: true }).click();
@@ -161,12 +194,7 @@ try {
     throw Error(
       "The extension action did not open the native panel on an ordinary page",
     );
-  await expect(panel.locator(".author-name")).toContainText(
-    "The garden designer",
-  );
-  await expect(panel.locator(".identity-note")).toContainText(
-    "Awaiting analysis",
-  );
+  await expect(panel.locator(".sr-only")).toContainText("Awaiting analysis");
   await expect
     .poll(() =>
       panel.evaluate(
@@ -203,22 +231,23 @@ try {
       .pages()
       .find((page) => page.url().endsWith("/panel.html"));
     if (!panel) throw Error("The panel did not open on the public article");
-    await expect(panel.locator(".author-name")).toContainText("Simon Willison");
-    await expect(panel.locator(".identity-note")).toContainText(
-      "Awaiting analysis",
-    );
+    await expect(panel.locator(".sr-only")).toContainText("Awaiting analysis");
     const captured = await panel.evaluate(
       async () =>
         (await chrome.storage.session.get("reading")).reading.artifact,
     );
-    expect(captured.source).toBe(publicUrl);
-    expect(captured.regions.length).toBeGreaterThan(10);
+    expect(captured.authors).toContainEqual({
+      label: "Simon Willison",
+      basis: "page-metadata",
+    });
+    expect(captured.regions.length).toBeGreaterThan(50);
     receipt.publicArticle = {
       url: publicUrl,
       author: "Simon Willison",
       passages: captured.regions.length,
       inferenceRequested: false,
     };
+    await panel.waitForTimeout(1000);
     await panel.screenshot({
       path: "evidence/review-public-panel.png",
       scale: "css",

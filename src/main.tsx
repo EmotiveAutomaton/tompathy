@@ -1,6 +1,7 @@
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 import "./reader.css";
+import "./mind.css";
 import { App, ExampleArticle } from "./App";
 import { isExtension } from "./browser";
 const example = isExtension && location.pathname.endsWith("example.html");

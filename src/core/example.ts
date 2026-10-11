@@ -4,6 +4,8 @@ import {
   type Packet,
   type ContextItem,
 } from "./model";
+import { exampleHierarchy } from "./example-hierarchy";
+import { sentences } from "./sentences";
 export const exampleText = [
   "A bench is an invitation",
   "The first thing we noticed was not where people sat. It was where they stopped. At the edge of the garden, visitors paused with their bags still on their shoulders, as if waiting for permission to stay.",
@@ -76,6 +78,17 @@ export async function createExample(
               "Illustrative relative support, not a probability or calibrated estimate.",
           },
     evidence: ev,
+    ...(id === "attention"
+      ? {
+          spans: ["p2", "p4"].map((region) => ({
+            region,
+            ...sentences(
+              artifact.regions.find((r) => r.id === region)!.anchor.exact,
+            )[0],
+          })),
+        }
+      : {}),
+    ...(id === "care" ? { decisionNodes: ["sentence-4-3"] } : {}),
     interpretation:
       kind === "goal"
         ? id === "invite"
@@ -88,7 +101,8 @@ export async function createExample(
             : "preference",
   });
   return PacketSchema.parse({
-    schemaVersion: "1.1",
+    schemaVersion: "1.2",
+    goalHierarchy: { nodes: exampleHierarchy(artifact, revised) },
     id: revised ? "bench-analysis-2" : "bench-analysis-1",
     revision: revised ? 2 : 1,
     artifact,
@@ -111,11 +125,56 @@ export async function createExample(
     ],
     hypotheses: [
       h(
+        "concrete",
+        "goal",
+        "Make it tangible",
+        "Ground an abstract invitation in observable design choices.",
+        [],
+        0.53,
+        ["e2", "e4"],
+      ),
+      h(
+        "ordinary",
+        "goal",
+        "Reframe",
+        "Suggest that an everyday object can carry a social purpose.",
+        [],
+        0.31,
+        ["e1", "e5"],
+      ),
+      h(
+        "reflection",
+        "goal",
+        "Reflection",
+        "Leave the reader room to form their own judgment.",
+        [],
+        0.38,
+        ["e5"],
+      ),
+      h(
+        "attention",
+        "goal",
+        "Look closer",
+        "Use a close observation to let the situation become visible.",
+        ["p2", "p4"],
+        0.24,
+        ["e1", "e3"],
+      ),
+      h(
+        "modesty",
+        "goal",
+        "Keep the claim modest",
+        "Qualify what this small intervention can establish.",
+        ["p3", "p6"],
+        0.34,
+        ["e2", "e5"],
+      ),
+      h(
         "invite",
         "goal",
         "Invite connection",
         "The writer may be making an everyday encounter feel possible.",
-        ["p1", "p2", "p3", "p6"],
+        ["p1", "p2", "p3", "p4", "p5", "p6"],
         0.88,
         ["e1", "e2", "e5"],
       ),
@@ -229,7 +288,7 @@ export async function createExample(
         "A possible concern for everyday comfort, limited to this fictional artifact.",
         [],
         revised ? 0.64 : 0.78,
-        ["e2", "e4"],
+        ["e2", "e4", ...(revised ? ["notebook"] : [])],
       ),
       h(
         "curiosity",
@@ -254,7 +313,18 @@ export async function createExample(
       {
         id: "aims",
         kind: "coexisting",
-        members: ["invite", "notice", "persuade", "test", "include"],
+        members: [
+          "invite",
+          "notice",
+          "persuade",
+          "test",
+          "include",
+          "concrete",
+          "ordinary",
+          "reflection",
+          "attention",
+          "modesty",
+        ],
         exhaustive: false,
       },
       {

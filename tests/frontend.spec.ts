@@ -3,47 +3,98 @@ async function tool(page: Page, name: string) {
   await page.getByRole("button", { name: "Reader menu", exact: true }).click();
   await page.getByRole("button", { name, exact: true }).click();
 }
-test("linked hypotheses, stable values, pin/release and evidence", async ({
+test("three panels, stable cloud anchor, sentence spools, branching highlights and lock", async ({
   page,
 }) => {
   await page.goto("/");
-  await expect(page.locator(".identity-note")).toBeVisible();
+  await expect(page.locator(".reader-content > .region")).toHaveCount(3);
+  await expect(page.locator(".app-header, .app-footer")).toHaveCount(0);
+  await page.waitForTimeout(1000);
+  const anchor = await page.locator('[data-goal="invite"]').boundingBox();
   const values = await page.getByTestId("values").innerHTML();
-  await page.locator('[data-passage="p4"]').hover();
-  await expect(page.getByTestId("process")).toContainText("Test & refine");
+  const sentence = page.locator('[data-passage="p4"] [data-sentence="1"]');
+  await sentence.hover();
+  await expect(page.locator('.spool[data-level="3"]')).toHaveAttribute(
+    "data-selected",
+    "sentence-3-2",
+  );
+  await expect(page.locator('.spool[data-level="0"]')).toHaveAttribute(
+    "data-selected",
+    "purpose",
+  );
   await expect(page.getByTestId("goals")).toContainText("Test an assumption");
   expect(await page.getByTestId("values").innerHTML()).toEqual(values);
-  await page.locator('[data-passage="p4"]').click();
-  await page.locator('[data-passage="p2"]').hover();
-  await expect(page.locator(".passage-strip")).toContainText(
-    "Pinned passage 4",
-  );
-  await page.keyboard.press("Escape");
-  await page.locator('[data-passage="p3"]').hover();
-  await expect(page.locator(".passage-strip")).toContainText(
-    "Following passage 3",
-  );
-  await page
-    .getByRole("button", { name: "Reframe the problem", exact: false })
-    .click();
+  await page.waitForTimeout(950);
+  const moved = await page.locator('[data-goal="invite"]').boundingBox();
+  expect(
+    Math.abs(anchor!.x + anchor!.width / 2 - (moved!.x + moved!.width / 2)),
+  ).toBeLessThan(2);
+  await sentence.click();
   await expect(
-    page.getByRole("region", { name: "Hypothesis evidence" }),
-  ).toContainText("not a probability");
-  await page.getByRole("button", { name: "Passage 2", exact: true }).click();
-  await expect(page.locator(".passage-strip")).toContainText(
-    "Pinned passage 2",
+    page.getByRole("button", { name: "Lock sentence", exact: true }),
+  ).toHaveAttribute("aria-pressed", "false");
+  await sentence.dblclick();
+  await page.locator('[data-passage="p2"] [data-sentence="0"]').hover();
+  await expect(page.locator('.spool[data-level="3"]')).toHaveAttribute(
+    "data-selected",
+    "sentence-3-2",
   );
-  await page
-    .getByRole("button", { name: "Expand process into word cloud" })
-    .click();
-  await expect(page.locator(".process-map.cloud")).toBeVisible();
-  await expect(page.getByTestId("process")).toContainText("Earlier experience");
-  await page.getByRole("button", { name: "Collapse to process tree" }).click();
-  await expect(page.locator(".process-tree ul").first()).toBeVisible();
-  await page.getByRole("button", { name: "Reader menu" }).click();
+  await expect(
+    page.getByRole("button", { name: "Unlock sentence" }),
+  ).toBeVisible();
+  await page.keyboard.press("Escape");
+  await page.locator(".process-region .section-heading").hover();
+  await page.locator('[data-node="paragraph-3"]').hover();
+  await expect(page.locator(".pyramid-node.descendant")).toHaveCount(5);
+  await expect(page.locator(".pyramid-node.ancestor")).toHaveCount(3);
+  await expect(page.locator(".spool.ambiguous")).toHaveCount(1);
+  await expect(page.locator('[data-passage="p4"]')).toHaveClass(
+    /related-passage/,
+  );
+  await page.screenshot({ path: "evidence/design-branch.png" });
+  await page.getByRole("button", { name: "Reader menu", exact: true }).click();
   await page.getByLabel("Show hypotheses as a list").check();
   await page.getByRole("button", { name: "Close dialog" }).click();
-  await expect(page.getByTestId("process")).toContainText("Earlier experience");
+  await expect(page.locator(".pyramid-list")).toBeVisible();
+});
+test("cloud phrases do not overlap at native width; heading and value explanations work by keyboard", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 360, height: 900 });
+  await page.goto("/?panel");
+  await page.waitForTimeout(1100);
+  const boxes = await page
+    .locator(".cloud-position button")
+    .evaluateAll((buttons) =>
+      buttons.map((b) => {
+        const r = b.getBoundingClientRect();
+        return { left: r.left, right: r.right, top: r.top, bottom: r.bottom };
+      }),
+    );
+  for (let i = 0; i < boxes.length; i++)
+    for (let j = i + 1; j < boxes.length; j++) {
+      const a = boxes[i],
+        b = boxes[j];
+      expect(
+        a.right <= b.left ||
+          b.right <= a.left ||
+          a.bottom <= b.top ||
+          b.bottom <= a.top,
+      ).toBe(true);
+    }
+  await page.getByRole("button", { name: "About Core values" }).focus();
+  await expect(page.getByRole("tooltip")).toContainText("latent preferences");
+  await page
+    .getByRole("button", { name: "Care for others", exact: true })
+    .focus();
+  await expect(
+    page.getByRole("tooltip").filter({ hasText: "Where this comes from" }),
+  ).toContainText("Specific decision");
+  await page.keyboard.press("Escape");
+  await tool(page, "Reader settings");
+  await expect(
+    page.getByRole("checkbox", { name: /Word-level goals/ }),
+  ).toBeDisabled();
 });
 test("context changes invalidate scope; explicit revision updates fixed values", async ({
   page,
@@ -60,9 +111,7 @@ test("context changes invalidate scope; explicit revision updates fixed values",
   await page.getByLabel("Analysis scope").selectOption("context");
   await page.getByRole("button", { name: "Close dialog" }).click();
   await expect(page.getByText("A different evidence scope")).toBeVisible();
-  await expect(page.getByTestId("values")).toContainText(
-    "snapshot will appear",
-  );
+  await expect(page.getByTestId("values")).toContainText("No values supplied");
   await tool(page, "Context · 1");
   await page.getByLabel("Analysis scope").selectOption("artifact");
   await page.getByRole("button", { name: "Preview example revision" }).click();
@@ -71,7 +120,7 @@ test("context changes invalidate scope; explicit revision updates fixed values",
   await expect(page.getByTestId("values")).toContainText("Practical care");
   await page.locator('[data-passage="p5"]').hover();
   await expect(page.getByTestId("process")).toContainText(
-    "Work within a brief",
+    "Explain the constraints",
   );
   await tool(page, "Earlier accounts 1 retained revisions");
   await page
@@ -87,10 +136,8 @@ test("compact author header and source export preserve the selected author and c
   page,
 }) => {
   await page.goto("/?panel");
-  await expect(page.locator(".author-name")).toHaveText("The garden designer");
-  const bounds = await page.locator(".app-header").boundingBox();
-  expect(bounds!.height).toBeLessThan(85);
-  await page.getByTitle("Author and source", { exact: true }).click();
+  await expect(page.locator(".app-header")).toHaveCount(0);
+  await tool(page, "Source text");
   await page
     .getByLabel("Author to inspect")
     .fill("A different requested author");
@@ -107,7 +154,10 @@ test("compact author header and source export preserve the selected author and c
   expect(request.context).toEqual([]);
   await page.getByRole("button", { name: "Close dialog" }).click();
   // A new requested subject never relabels an existing account.
-  await expect(page.locator(".author-name")).toHaveText("The garden designer");
+  await tool(page, "Source text");
+  await expect(page.getByRole("dialog")).toContainText(
+    "Analysis subject: The garden designer",
+  );
 });
 test("malformed packet, pasted text and session clear expose honest empty state", async ({
   page,
@@ -119,7 +169,7 @@ test("malformed packet, pasted text and session clear expose honest empty state"
   await page.getByRole("button", { name: "Validate & import" }).click();
   await expect(page.getByRole("dialog").getByRole("alert")).toBeVisible();
   await page.getByRole("button", { name: "Close dialog" }).click();
-  await page.getByTitle("Author and source", { exact: true }).click();
+  await tool(page, "Source text");
   await page
     .getByLabel("Paste a different text")
     .fill("This is a new text, written only for this browser test.");
@@ -152,10 +202,10 @@ test("narrow dark panel, reduced motion and keyboard dialog focus", async ({
     el.scrollTop = el.scrollHeight;
   });
   await expect(
-    page.getByRole("heading", { name: "Goals", exact: true }),
+    page.getByRole("heading", { name: "About Goals", exact: true }),
   ).toBeInViewport();
   await expect(
-    page.getByRole("heading", { name: "Values", exact: true }),
+    page.getByRole("heading", { name: "About Core values", exact: true }),
   ).toBeInViewport();
   await page.getByTestId("process").evaluate((el) => {
     el.scrollTop = 0;

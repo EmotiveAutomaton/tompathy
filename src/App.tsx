@@ -1,3 +1,9 @@
+import { GoalCloud } from "./components/GoalCloud";
+import { ProcessHierarchy } from "./components/ProcessHierarchy";
+import { ValueList } from "./components/ValueList";
+import { SectionTitle, explanations } from "./components/HoverCard";
+import { sentences } from "./core/sentences";
+import type { GoalNode } from "./core/hierarchy";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   ArrowDownLeft,
@@ -156,6 +162,9 @@ export function App({ preview = false }: { preview?: boolean }) {
     [tabId, setTabId] = useState<number | null>(null),
     [region, setRegion] = useState("p2"),
     [pinned, setPinned] = useState(false),
+    [sentenceOffset, setSentenceOffset] = useState(0),
+    [sourceHover, setSourceHover] = useState(false),
+    [relatedNode, setRelatedNode] = useState<GoalNode | null>(null),
     [busy, setBusy] = useState(false),
     [stale, setStale] = useState(false),
     [notice, setNotice] = useState(""),
@@ -172,6 +181,7 @@ export function App({ preview = false }: { preview?: boolean }) {
       | "help"
       | "revision"
       | "history"
+      | "claims"
       | null
     >(null),
     [theme, setTheme] = useState("system"),
@@ -209,19 +219,20 @@ export function App({ preview = false }: { preview?: boolean }) {
   const goals = hypotheses
     .filter(
       (h) =>
-        h.kind === "goal" && (!h.regions.length || h.regions.includes(region)),
+        h.kind === "goal" &&
+        (!h.regions.length || h.regions.includes(region)) &&
+        (!h.spans?.length ||
+          h.spans.some(
+            (s) =>
+              s.region === region &&
+              sentenceOffset >= s.start &&
+              sentenceOffset < s.end,
+          )),
     )
     .sort((a, b) => supportWeight(b) - supportWeight(a));
-  const processes = hypotheses.filter(
-    (h) =>
-      h.kind === "process" && (!h.regions.length || h.regions.includes(region)),
-  );
   const values = hypotheses.filter(
     (h) => h.kind === "value" && h.status !== "unknown",
   );
-  const focus = processes
-    .filter((h) => h.status !== "unknown")
-    .sort((a, b) => supportWeight(b) - supportWeight(a))[0];
   const estimate = ready
     ? packet?.estimates.find((e) => e.region === region)
     : null;
@@ -382,9 +393,13 @@ export function App({ preview = false }: { preview?: boolean }) {
         return;
       if (m.type === "TOMPATHY_SELECT") {
         setRegion(m.region);
+        setSentenceOffset(m.offset ?? 0);
+        setSourceHover(true);
+        setRelatedNode(null);
         setPinned(m.pinned);
         setDetail(null);
       }
+      if (m.type === "TOMPATHY_LEAVE") setSourceHover(false);
       if (m.type === "TOMPATHY_STALE") {
         cancelWork();
         setStale(true);
@@ -450,12 +465,18 @@ export function App({ preview = false }: { preview?: boolean }) {
     window.addEventListener("keydown", key);
     return () => window.removeEventListener("keydown", key);
   }, [tabId, artifact]);
-  const move = (id: string, pin = false) => {
+  const move = (id: string, pin = false, offset = 0) => {
     if (pinned && !pin) return;
     setRegion(id);
+    setSentenceOffset(offset);
+    setSourceHover(true);
+    setRelatedNode(null);
     if (pin) {
       setPinned(true);
-      void pageCommand(tabId, artifact, "TOMPATHY_FOCUS", { region: id });
+      void pageCommand(tabId, artifact, "TOMPATHY_FOCUS", {
+        region: id,
+        offset,
+      });
     }
     setDetail(null);
   };
@@ -612,233 +633,173 @@ export function App({ preview = false }: { preview?: boolean }) {
     setPending(p);
     setModal("revision");
   }
-  const token = (h: Hypothesis, i: number, mode = "cloud") => (
-    <button
-      key={h.id}
-      className={`hypothesis ${mode} ${h.support == null ? "unquantified" : ""} ${i === 0 && h.support != null ? "primary-word" : ""}`}
-      title={`${h.status}: ${h.description}`}
-      style={
-        mode === "cloud"
-          ? {
-              fontSize: `${h.support ? 16 + Math.max(0, Math.min(1, (h.support.value - h.support.scale[0]) / (h.support.scale[1] - h.support.scale[0]))) * 13 : 16}px`,
-            }
-          : undefined
-      }
-      onClick={() => inspect(h)}
-    >
-      <span>{h.label}</span>
-      {mode === "list" && (
-        <span className="muted">
-          {h.status === "unknown"
-            ? "Unresolved"
-            : h.support?.semantics === "probability"
-              ? `${Math.round(h.support.value * 100)}%`
-              : "Inspect"}{" "}
-          <ChevronRight size={13} />
-        </span>
-      )}
-    </button>
-  );
   return (
     <div className={preview ? "workspace" : "extension-root"}>
       {preview && (
         <ExampleArticle
           active={region}
           pinned={pinned}
-          related={detail?.regions ?? []}
+          related={relatedNode?.regions ?? detail?.regions ?? []}
+          sentenceOffset={sentenceOffset}
+          onLeave={() => setSourceHover(false)}
           onMove={move}
         />
       )}
       <div className="reader" data-tompathy-ui>
-        <header className="app-header">
-          <div className="author-identity">
-            <span className="author-caption">Author</span>
-            <button
-              className="author-name"
-              onClick={() => setModal("source")}
-              title="Author and source"
-            >
-              {authorName}
-            </button>
-            <span className="identity-note">
-              {busy
-                ? "Capturing…"
-                : isExample
-                  ? "Synthetic example"
-                  : ready
-                    ? "Revisable account"
-                    : artifact
-                      ? "Awaiting analysis"
-                      : "Choose a text to begin"}
-            </span>
-          </div>
-          <Brand />
-          <IconButton label="Reader menu" onClick={() => setModal("menu")}>
-            <MoreHorizontal size={21} />
-          </IconButton>
-        </header>
-        <div className={`reader-content ${ready ? "is-ready" : ""}`}>
-          {error && (
-            <div className="message error" role="alert">
-              <span>{error}</span>
-              <IconButton label="Dismiss error" onClick={() => setError("")}>
-                <X size={15} />
-              </IconButton>
-            </div>
-          )}
-          {notice && (
-            <div className="message" role="status">
-              <span>{notice}</span>
-              <IconButton label="Dismiss notice" onClick={() => setNotice("")}>
-                <X size={15} />
-              </IconButton>
-            </div>
-          )}
-          {(stale || mismatch) && (
-            <div className="message warning" role="status">
-              <div>
-                <strong>
-                  {stale
-                    ? "The source text changed"
-                    : "A different evidence scope"}
-                </strong>
-                <p>
-                  {stale
-                    ? "Capture again to resolve the passages before viewing estimates."
-                    : mismatch}
-                </p>
-                <button
-                  className="text-button"
-                  onClick={() => (stale ? void capture() : setModal("import"))}
-                >
-                  {stale ? "Recapture page" : "Import matching analysis"}{" "}
-                  <ArrowRight size={14} />
-                </button>
-              </div>
-            </div>
-          )}
-          {!ready && !busy && !stale && !mismatch && (
-            <section className="welcome">
-              <div className="welcome-orbit">
-                <Search size={24} />
-              </div>
-              <h2>
-                {artifact
-                  ? "Ready for an account"
-                  : "Start with a piece of writing"}
-              </h2>
-              <p>
-                {artifact
-                  ? "Maker estimates are awaiting an analysis source. Import a result for this capture, or explore the example."
-                  : "Explore possible goals, the process behind them, and the values that may connect them."}
-              </p>
-              <button className="primary-button" onClick={() => void example()}>
-                <Sparkles size={16} /> Explore an example{" "}
-                <ArrowRight size={16} />
-              </button>
-              <button
-                className="secondary-button"
-                onClick={() => setModal(artifact ? "import" : "source")}
-              >
-                {artifact ? "Import analysis" : "Paste a text"}
-                <Upload size={15} />
-              </button>
-            </section>
-          )}
+        <div
+          className={`reader-content ${ready ? "is-ready" : ""}`}
+          onMouseEnter={() => setSourceHover(false)}
+        >
           <section
             className="region goals-region"
             aria-labelledby="goals-title"
           >
             <div className="section-heading">
-              <h2 id="goals-title">Goals</h2>
-              <span
-                className="section-aside"
-                title="Governing purposes and local goals may coexist. Word size shows support within a declared set."
-              >
-                possible aims
-              </span>
+              <SectionTitle kind="goals">Goals</SectionTitle>
+              <IconButton label="Reader menu" onClick={() => setModal("menu")}>
+                <MoreHorizontal size={20} />
+              </IconButton>
             </div>
-            <div
-              className={`goal-cloud ${view === "list" ? "as-list" : ""}`}
-              data-testid="goals"
-            >
-              {goals.length ? (
-                goals.map((h, i) =>
-                  token(h, i, view === "list" ? "list" : "cloud"),
-                )
-              ) : (
-                <p className="empty-region">
-                  {ready
-                    ? "No goals for this passage."
-                    : "Possible aims will appear here."}
+            {error && (
+              <div className="message error" role="alert">
+                <span>{error}</span>
+                <IconButton label="Dismiss error" onClick={() => setError("")}>
+                  <X size={15} />
+                </IconButton>
+              </div>
+            )}
+            {notice && (
+              <div className="message" role="status">
+                <span>{notice}</span>
+                <IconButton
+                  label="Dismiss notice"
+                  onClick={() => setNotice("")}
+                >
+                  <X size={15} />
+                </IconButton>
+              </div>
+            )}
+            {(stale || mismatch) && (
+              <div className="message warning" role="status">
+                <div>
+                  <strong>
+                    {stale
+                      ? "The source text changed"
+                      : "A different evidence scope"}
+                  </strong>
+                  <p>
+                    {stale
+                      ? "Capture again to resolve the passages before viewing estimates."
+                      : mismatch}
+                  </p>
+                  <button
+                    className="text-button"
+                    onClick={() =>
+                      stale ? void capture() : setModal("import")
+                    }
+                  >
+                    {stale ? "Recapture page" : "Import matching analysis"}{" "}
+                    <ArrowRight size={14} />
+                  </button>
+                </div>
+              </div>
+            )}
+            {!ready && !busy && !stale && !mismatch && (
+              <section className="welcome">
+                <div className="welcome-orbit">
+                  <Search size={24} />
+                </div>
+                <h2>
+                  {artifact
+                    ? "Ready for an account"
+                    : "Start with a piece of writing"}
+                </h2>
+                <p>
+                  {artifact
+                    ? "Maker estimates are awaiting an analysis source. Import a result for this capture, or explore the example."
+                    : "Explore possible goals, the process behind them, and the values that may connect them."}
                 </p>
-              )}
-            </div>
+                <button
+                  className="primary-button"
+                  onClick={() => void example()}
+                >
+                  <Sparkles size={16} /> Explore an example{" "}
+                  <ArrowRight size={16} />
+                </button>
+                <button
+                  className="secondary-button"
+                  onClick={() => setModal(artifact ? "import" : "source")}
+                >
+                  {artifact ? "Import analysis" : "Paste a text"}
+                  <Upload size={15} />
+                </button>
+              </section>
+            )}
+            {ready && (
+              <GoalCloud
+                key={packet!.id}
+                goals={goals}
+                onInspect={inspect}
+                list={view === "list"}
+              />
+            )}
           </section>
           <section
             className="region process-region"
             aria-labelledby="process-title"
           >
             <div className="section-heading">
-              <h2 id="process-title">Process</h2>
-              <button
-                className="view-toggle"
-                aria-label={
-                  view === "cloud"
-                    ? "Collapse to process tree"
-                    : "Expand process into word cloud"
-                }
-                aria-pressed={view === "cloud"}
-                onClick={() => setView(view === "cloud" ? "tree" : "cloud")}
-              >
-                {view === "cloud" ? (
-                  <GitBranch size={14} />
-                ) : (
-                  <Expand size={14} />
-                )}
-                {view === "cloud" ? "Tree" : "Expand"}
-              </button>
+              <SectionTitle kind="process">Process</SectionTitle>
             </div>
-            {ready && (
-              <p className="process-caption">
-                {packet!.process.interpretation === "historical-production"
-                  ? "Possible production history · order may be unresolved"
-                  : "Process account · historical order not established"}
-              </p>
-            )}
-            <div className={`process-map ${view}`} data-testid="process">
-              {processes.length ? (
-                view === "tree" ? (
-                  <ProcessTree
-                    nodes={hypotheses.filter(
-                      (h) =>
-                        h.kind === "process" &&
-                        h.interpretation !== "reader-route" &&
-                        h.interpretation !== "repertoire",
-                    )}
-                    edges={packet!.process.edges}
-                    focus={focus?.id}
-                    local={processes.map((h) => h.id)}
-                    onInspect={inspect}
-                  />
-                ) : (
-                  processes
-                    .filter(
-                      (h) =>
-                        h.interpretation !== "reader-route" &&
-                        h.interpretation !== "repertoire",
+            <ProcessHierarchy
+              nodes={
+                ready
+                  ? (packet!.goalHierarchy?.nodes ?? []).filter(
+                      (n) => n.maker === activeMaker!.id,
                     )
-                    .map((h, i) => token(h, i, view))
-                )
-              ) : (
-                <p className="empty-region">
-                  {ready
-                    ? "No process account for this passage."
-                    : "The shape of a process will appear here."}
-                </p>
-              )}
-            </div>
+                  : []
+              }
+              region={region}
+              offset={sentenceOffset}
+              sourceHover={sourceHover}
+              pinned={pinned}
+              list={view === "list"}
+              onHighlight={(node) => {
+                setRelatedNode(node);
+                void pageCommand(tabId, artifact, "TOMPATHY_RELATED", {
+                  regions: node?.regions ?? [],
+                  span: node?.span,
+                });
+              }}
+              onLock={() => {
+                setPinned(!pinned);
+                void pageCommand(
+                  tabId,
+                  artifact,
+                  pinned ? "TOMPATHY_RELEASE" : "TOMPATHY_FOCUS",
+                  { region, offset: sentenceOffset },
+                );
+              }}
+            />
           </section>
+          <section
+            className="region values-region"
+            aria-labelledby="values-title"
+          >
+            <div className="section-heading">
+              <SectionTitle kind="values">Core values</SectionTitle>
+            </div>
+            <ValueList values={values} packet={packet} inspect={inspect} />
+          </section>
+          <span className="sr-only" role="status">
+            {busy
+              ? "Capturing"
+              : ready
+                ? `${authorName}. ${packet!.origin}. ${pinned ? "Locked" : "Following"} ${region}, sentence offset ${sentenceOffset}.`
+                : artifact
+                  ? "Awaiting analysis"
+                  : "Choose a text"}
+          </span>
         </div>
         {detail && (
           <Modal
@@ -957,97 +918,6 @@ export function App({ preview = false }: { preview?: boolean }) {
             </section>
           </Modal>
         )}
-        <section
-          className="region values-region"
-          aria-labelledby="values-title"
-        >
-          <div className="section-heading">
-            <div>
-              <h2 id="values-title">Values</h2>
-            </div>
-            <span
-              className="section-aside"
-              title="Values stay steady until you accept a new analysis revision."
-            >
-              across the text
-            </span>
-          </div>
-          <div className="values" data-testid="values">
-            {values.length ? (
-              values.map((h, i) => (
-                <button key={h.id} onClick={() => inspect(h)}>
-                  <span
-                    className={`value-symbol value-${i % 3}`}
-                    aria-hidden="true"
-                  >
-                    {["◌", "✳", "◇"][i % 3]}
-                  </span>
-                  <span>
-                    {h.label}
-                    <small className="value-kind">
-                      {h.interpretation === "preference"
-                        ? "Preference"
-                        : h.interpretation === "value"
-                          ? "Value hypothesis"
-                          : "Interpretation unspecified"}
-                    </small>
-                  </span>
-                  <span className="value-track">
-                    <i
-                      style={{
-                        width: h.support
-                          ? `${(100 * (h.support.value - h.support.scale[0])) / (h.support.scale[1] - h.support.scale[0])}%`
-                          : "0%",
-                      }}
-                    />
-                  </span>
-                </button>
-              ))
-            ) : (
-              <p className="empty-region">
-                {ready
-                  ? "Not enough evidence for this author’s values."
-                  : "A stable maker-level snapshot will appear here."}
-              </p>
-            )}
-          </div>
-        </section>
-        <footer className="app-footer">
-          {ready ? (
-            <div className="passage-strip">
-              <button
-                className="passage-info"
-                onClick={() => setModal("source")}
-                title={contributionExplanation(packet!, region)}
-              >
-                {pinned ? "Pinned" : "Following"} passage{" "}
-                {Math.max(
-                  1,
-                  artifact!.regions.findIndex((r) => r.id === region) + 1,
-                )}
-              </button>
-              <button
-                className="pin-button"
-                aria-label={pinned ? "Release passage" : "Pin passage"}
-                aria-pressed={pinned}
-                onClick={() => {
-                  setPinned(!pinned);
-                  void pageCommand(
-                    tabId,
-                    artifact,
-                    pinned ? "TOMPATHY_RELEASE" : "TOMPATHY_FOCUS",
-                    { region },
-                  );
-                }}
-              >
-                <Pin size={13} />
-                <span>{pinned ? "Release" : "Pin"}</span>
-              </button>
-            </div>
-          ) : (
-            <span>Ready when you are.</span>
-          )}
-        </footer>
       </div>
       {modal && (
         <Modal
@@ -1061,6 +931,7 @@ export function App({ preview = false }: { preview?: boolean }) {
               help: "A little closer to the maker",
               revision: "Review the new perspective",
               history: "Earlier accounts",
+              claims: "All supplied hypotheses",
             }[modal]
           }
           onClose={() => {
@@ -1075,8 +946,21 @@ export function App({ preview = false }: { preview?: boolean }) {
           )}
           {modal === "menu" && (
             <>
+              <p className="menu-status">
+                {authorName} · {packet?.origin ?? "No analysis connected"}
+              </p>
               <nav className="reader-menu" aria-label="Reader tools">
-                <button onClick={() => setModal("source")}>
+                {ready && (
+                  <button onClick={() => setModal("claims")}>
+                    <Layers size={18} />
+                    <span>All supplied hypotheses</span>
+                    <ChevronRight size={15} />
+                  </button>
+                )}
+                <button
+                  aria-label="Source text"
+                  onClick={() => setModal("source")}
+                >
                   <BookOpen size={18} />
                   <span>
                     Source text
@@ -1168,43 +1052,77 @@ export function App({ preview = false }: { preview?: boolean }) {
               </p>
             </>
           )}
+          {modal === "claims" && (
+            <>
+              <p>
+                Goals, historical process accounts and latent preferences retain
+                their supplied meanings. Historical edges are not treated as a
+                goal hierarchy.
+              </p>
+              <div className="all-claims">
+                {hypotheses.map((h) => (
+                  <button
+                    key={h.id}
+                    className="hypothesis list"
+                    onClick={() => {
+                      setModal(null);
+                      inspect(h);
+                    }}
+                  >
+                    <span>
+                      {h.label}
+                      <small>{interpretationLabel(h)}</small>
+                    </span>
+                    <ChevronRight size={14} />
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
           {modal === "help" && (
             <>
-              <p className="modal-lead">
-                One text. More than one possible account.
-              </p>
+              <p className="modal-lead">What's on the author's mind?</p>
               <ol className="steps">
                 <li>
-                  <strong>Follow a passage.</strong> Hover to preview; click to
-                  pin. Escape releases it. You can also select text or use the
-                  passage list.
+                  <strong>Follow a sentence.</strong> Hover page text to roll
+                  through its goal hierarchy. Double-click to lock it; Escape or
+                  the lock in Process releases it. Native text selection and
+                  links still work. Keyboard readers can use the source passage
+                  list and the Process lock.
                 </li>
                 <li>
-                  <strong>Explore the alternatives.</strong> Goals and process
-                  respond to the passage. Select a hypothesis to inspect its
-                  evidence.
+                  <strong>Explore the shape.</strong> Move into Process to see
+                  the pyramid. Hover or focus a block: its ancestors light up to
+                  the right, its descendants fan out to the left, and the
+                  matching page text shares their color. Blurred spools mean
+                  several subordinate goals remain possible.
                 </li>
                 <li>
-                  <strong>Keep the maker in view.</strong> Values stay fixed
-                  until you explicitly accept a new analysis revision.
+                  <strong>Look closer.</strong> Hover or focus headings, goals
+                  and values for explanations. Select a goal or value for the
+                  full evidence account.
                 </li>
               </ol>
-              <h3>Reading the page marks</h3>
+              <h3>Goals</h3>
+              <p>{explanations.goals}</p>
+              <h3>Process</h3>
+              <p>{explanations.process}</p>
+              <h3>Core values</h3>
+              <p>{explanations.values}</p>
+              <h3>This account</h3>
               <p>
-                Amber tint represents a named contribution estimate. A dotted
-                underline independently marks high uncertainty. An outline marks
-                your selection. No estimate means no tint.
+                {packet
+                  ? `${authorName} · ${packet.origin}. ${packet.provider.method}.`
+                  : "No analysis is connected. Ordinary pages await a supplied result."}{" "}
+                The bundled example is fictional and hand-authored. Older
+                packets without a goal hierarchy remain readable in the source
+                and evidence tools; a hierarchy is never inferred from
+                historical process edges.
               </p>
               <p>
-                Word size expresses the provider’s declared support scale; it
-                does not automatically mean probability. Example estimates are
-                hand-authored.
-              </p>
-              <p>
-                Process describes possible production events, not a recipe for
-                reading or a map of expertise. More evidence can reveal
-                alternatives or reduce confidence. Context collection never
-                changes an account by itself.
+                Reduced-motion settings are respected. Word-level goals are
+                reserved for a later version. Context collection alone never
+                changes the accepted account.
               </p>
               <button className="primary-button" onClick={() => void example()}>
                 Open the example <ArrowRight size={16} />
@@ -1743,6 +1661,13 @@ export function App({ preview = false }: { preview?: boolean }) {
                   </button>
                 ))}
               </div>
+              <h3>Analysis detail</h3>
+              <label className="future-option">
+                <input type="checkbox" disabled /> Word-level goals{" "}
+                <small>
+                  Planned · sentence-level reading is available now.
+                </small>
+              </label>
               <h3>This reading session</h3>
               <p>
                 Preferences persist. Captured text and context stay in this
@@ -1810,92 +1735,6 @@ export function App({ preview = false }: { preview?: boolean }) {
   );
 }
 
-function ProcessTree({
-  nodes,
-  edges,
-  focus,
-  local,
-  onInspect,
-}: {
-  nodes: Hypothesis[];
-  edges: Packet["process"]["edges"];
-  focus?: string;
-  local: string[];
-  onInspect: (h: Hypothesis) => void;
-}) {
-  const byId = new Map(nodes.map((h) => [h.id, h]));
-  const allLinks = edges.filter((e) => byId.has(e.from) && byId.has(e.to));
-  const links = allLinks.filter(
-    (e) => e.kind === "precedes" || e.kind === "enables",
-  );
-  const visited = new Set<string>();
-  const branch = (h: Hypothesis, relationship?: string): ReactNode => {
-    if (visited.has(h.id))
-      return (
-        <li key={`reference-${h.id}`}>
-          <button className="tree-node is-distant" onClick={() => onInspect(h)}>
-            <span aria-hidden="true">↗</span>
-            <span>
-              {h.label}
-              <small className="value-kind">
-                Shared event · {relationship}
-              </small>
-            </span>
-          </button>
-        </li>
-      );
-    visited.add(h.id);
-    const children = links.filter((e) => e.from === h.id);
-    return (
-      <li key={h.id}>
-        <button
-          className={`tree-node ${focus === h.id ? "is-focus" : ""} ${local.includes(h.id) ? "" : "is-distant"} ${h.status === "unknown" ? "is-unknown" : ""}`}
-          title={relationship ? `${relationship}: ${h.label}` : h.description}
-          onClick={() => onInspect(h)}
-        >
-          <span className="node-dot" aria-hidden="true">
-            {h.status === "unknown" ? "?" : ""}
-          </span>
-          <span>
-            {h.label}
-            {relationship && (
-              <small className="value-kind">{relationship}</small>
-            )}
-          </span>
-          {focus === h.id && (
-            <span className="focus-mark" aria-label="in focus" />
-          )}
-          {relationship && <span className="sr-only"> · {relationship}</span>}
-        </button>
-        {allLinks
-          .filter((e) => e.from === h.id && !links.includes(e))
-          .map((e, i) => (
-            <p className="cross-link" key={i}>
-              {e.relationship} · {byId.get(e.to)!.label}
-            </p>
-          ))}
-        {children.length > 0 && (
-          <ul>
-            {children.map((e) => branch(byId.get(e.to)!, e.relationship))}
-          </ul>
-        )}
-      </li>
-    );
-  };
-  const roots = nodes.filter((h) => !links.some((e) => e.to === h.id));
-  const forest = roots.map((h) => branch(h));
-  // Cyclic or disconnected provider graphs still expose each hypothesis once.
-  const remaining = nodes
-    .filter((h) => !visited.has(h.id))
-    .map((h) => branch(h));
-  return (
-    <ul className="process-tree" aria-label="Possible process relationships">
-      {forest}
-      {remaining}
-    </ul>
-  );
-}
-
 function supportWeight(h: Hypothesis) {
   return h.support
     ? (h.support.value - h.support.scale[0]) /
@@ -1923,11 +1762,15 @@ export function ExampleArticle({
   pinned = false,
   related = [],
   onMove = () => {},
+  onLeave = () => {},
+  sentenceOffset = 0,
 }: {
   active?: string;
   pinned?: boolean;
   related?: string[];
-  onMove?: (id: string, pin?: boolean) => void;
+  onMove?: (id: string, pin?: boolean, offset?: number) => void;
+  onLeave?: () => void;
+  sentenceOffset?: number;
 }) {
   const standalone = isExtension && location.pathname.endsWith("example.html");
   return (
@@ -1960,14 +1803,14 @@ export function ExampleArticle({
           </span>
         )}
       </div>
-      <article>
+      <article onMouseLeave={onLeave}>
         <div className="article-kicker" data-tompathy-ui>
           SMALL INTERVENTIONS / 06 MIN READ
         </div>
         <h1
           data-passage="p1"
           onMouseEnter={() => onMove("p1")}
-          onClick={() => onMove("p1", true)}
+          onDoubleClick={() => onMove("p1", true)}
         >
           {exampleText[0]}
         </h1>
@@ -1990,8 +1833,7 @@ export function ExampleArticle({
             data-passage={`p${i + 2}`}
             tabIndex={0}
             className={`${active === `p${i + 2}` ? "active-passage" : ""} ${related.includes(`p${i + 2}`) ? "related-passage" : ""}`}
-            onMouseEnter={() => onMove(`p${i + 2}`)}
-            onClick={() => onMove(`p${i + 2}`, true)}
+
             onFocus={() => onMove(`p${i + 2}`)}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") onMove(`p${i + 2}`, true);
@@ -2001,7 +1843,29 @@ export function ExampleArticle({
               {String(i + 1).padStart(2, "0")}
               {pinned && active === `p${i + 2}` ? " ·" : ""}
             </span>
-            {text}
+            {standalone
+              ? text
+              : sentences(text).map((sentence, j) => (
+                  <span
+                    key={j}
+                    data-sentence={j}
+                    className={
+                      active === `p${i + 2}` &&
+                      sentenceOffset === sentence.start
+                        ? `active-sentence ${pinned ? "locked-sentence" : ""}`
+                        : ""
+                    }
+                    onMouseEnter={() =>
+                      onMove(`p${i + 2}`, false, sentence.start)
+                    }
+                    onDoubleClick={() =>
+                      onMove(`p${i + 2}`, true, sentence.start)
+                    }
+                  >
+                    {sentence.text}
+                    {j < sentences(text).length - 1 ? " " : ""}
+                  </span>
+                ))}
           </p>
         ))}
         <div className="article-end" data-tompathy-ui>

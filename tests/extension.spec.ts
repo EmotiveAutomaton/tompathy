@@ -88,11 +88,23 @@ test("installed page adapter: anchors, dynamic revision, cleanup and long-page l
       const elapsed = await source.evaluate(async (i) => {
         const elements = document.querySelectorAll("main>p");
         const target = elements[20 + i] as HTMLElement;
+        target.scrollIntoView({ block: "center" });
+        const range = document.createRange();
+        range.selectNodeContents(target);
+        const rect = range.getClientRects()[0];
         const start = performance.now();
         target.dispatchEvent(
-          new PointerEvent("pointerover", { bubbles: true }),
+          new PointerEvent("pointermove", {
+            bubbles: true,
+            clientX: rect.left + 12,
+            clientY: rect.top + rect.height / 2,
+          }),
         );
         await new Promise(requestAnimationFrame);
+        if (!target.hasAttribute("data-tompathy-selected"))
+          throw Error("Long-page sentence selection did not run");
+        if (!(CSS as any).highlights.get("tompathy-active")?.size)
+          throw Error("Sentence highlight was not painted");
         return performance.now() - start;
       }, i);
       samples.push(elapsed);

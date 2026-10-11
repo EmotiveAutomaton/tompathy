@@ -59,10 +59,21 @@ export const HypothesisSchema = z.object({
   description: z.string().max(4000),
   makers: z.array(id).min(1),
   regions: z.array(id),
+  spans: z
+    .array(
+      z.object({
+        region: id,
+        start: z.number().int().nonnegative(),
+        end: z.number().int().positive(),
+      }),
+    )
+    .max(1500)
+    .optional(),
   status: z.enum(["hypothesis", "creator-reported", "observed", "unknown"]),
   support: SupportSchema.nullish(),
   alternativeSet: id.optional(),
   evidence: z.array(id),
+  decisionNodes: z.array(id).optional(),
   interpretation: z
     .enum([
       "governing-purpose",
@@ -77,7 +88,7 @@ export const HypothesisSchema = z.object({
 });
 export const PacketSchema = z
   .object({
-    schemaVersion: z.enum(["1.0", "1.1"]),
+    schemaVersion: z.enum(["1.0", "1.1", "1.2"]),
     id,
     revision: z.number().int().positive(),
     artifact: ArtifactSchema,
@@ -133,6 +144,32 @@ export const PacketSchema = z
         }),
       ),
     }),
+    goalHierarchy: z
+      .object({
+        nodes: z
+          .array(
+            z.object({
+              id,
+              parentId: id.optional(),
+              maker: id,
+              label: z.string().min(1).max(250),
+              description: z.string().max(4000),
+              level: z.enum(["document", "section", "paragraph", "sentence"]),
+              regions: z.array(id).min(1),
+              span: z
+                .object({
+                  region: id,
+                  start: z.number().int().nonnegative(),
+                  end: z.number().int().positive(),
+                })
+                .optional(),
+              evidence: z.array(id),
+            }),
+          )
+          .min(1)
+          .max(3000),
+      })
+      .optional(),
     accounts: z
       .array(
         z.object({
@@ -202,7 +239,72 @@ export const PacketSchema = z
       rs = new Set(p.artifact.regions.map((x) => x.id)),
       ms = new Set(p.makers.map((x) => x.id)),
       es = new Set(p.evidence.map((x) => x.id));
+    const hierarchy = p.goalHierarchy?.nodes ?? [];
+    unique(hierarchy, "goal hierarchy");
+    const hierarchyById = new Map(hierarchy.map((n) => [n.id, n]));
+    for (const n of hierarchy) {
+      if (
+        !ms.has(n.maker) ||
+        n.regions.some((r) => !rs.has(r)) ||
+        n.evidence.some((e) => !es.has(e))
+      )
+        error(`Unresolved hierarchy references in ${n.id}.`);
+      if (
+        n.parentId &&
+        (!hierarchyById.has(n.parentId) ||
+          hierarchyById.get(n.parentId)?.maker !== n.maker)
+      )
+        error(`Invalid hierarchy parent in ${n.id}.`);
+      const parentNode = n.parentId ? hierarchyById.get(n.parentId) : undefined;
+      if (parentNode && n.regions.some((r) => !parentNode.regions.includes(r)))
+        error(`Hierarchy regions must stay within their parent in ${n.id}.`);
+      if (n.level === "sentence" && !n.span)
+        error(`Sentence goal ${n.id} requires an explicit span.`);
+      if (
+        n.span &&
+        (!n.regions.includes(n.span.region) ||
+          n.span.end <= n.span.start ||
+          n.span.end >
+            (p.artifact.regions.find((r) => r.id === n.span!.region)?.anchor
+              .exact.length ?? 0))
+      )
+        error(`Invalid sentence span in ${n.id}.`);
+      const seen = new Set<string>([n.id]);
+      let parent = n.parentId;
+      while (parent) {
+        if (seen.has(parent) || seen.size > 12) {
+          error("Goal hierarchy must be acyclic and at most 12 levels deep.");
+          break;
+        }
+        seen.add(parent);
+        parent = hierarchyById.get(parent)?.parentId;
+      }
+    }
+    for (const m of p.makers) {
+      const nodes = hierarchy.filter((n) => n.maker === m.id);
+      if (nodes.length && nodes.filter((n) => !n.parentId).length !== 1)
+        error("Each maker hierarchy needs exactly one root.");
+    }
     for (const h of p.hypotheses) {
+      if (
+        h.spans?.some(
+          (s) =>
+            !h.regions.includes(s.region) ||
+            s.start >= s.end ||
+            s.end >
+              (p.artifact.regions.find((r) => r.id === s.region)?.anchor.exact
+                .length ?? 0),
+        )
+      )
+        error(`Invalid goal span in ${h.id}.`);
+      if (
+        h.decisionNodes?.some(
+          (n) =>
+            !hierarchyById.has(n) ||
+            !h.makers.includes(hierarchyById.get(n)!.maker),
+        )
+      )
+        error(`Unresolved decision reference in ${h.id}.`);
       if (
         h.makers.some((x) => !ms.has(x)) ||
         h.regions.some((x) => !rs.has(x)) ||

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.1",
+  "schemaVersion": "1.2",
   "id": "bench-analysis-1",
   "revision": 1,
   "artifact": {
@@ -7,7 +7,7 @@
     "revision": "d00de37ffc1ac6bd20317ad02c4db20154862d732cca8b19eae65e0223ac3bc1",
     "title": "A bench is an invitation",
     "source": "http://127.0.0.1:5173/testbed.html",
-    "capturedAt": "2026-10-11T12:38:43.925Z",
+    "capturedAt": "2026-10-11T15:57:39.769Z",
     "regions": [
       {
         "id": "p1",
@@ -91,6 +91,153 @@
   ],
   "hypotheses": [
     {
+      "id": "concrete",
+      "kind": "goal",
+      "label": "Make it tangible",
+      "description": "Ground an abstract invitation in observable design choices.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.53,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate.",
+        "candidateSet": "aims"
+      },
+      "evidence": [
+        "e2",
+        "e4"
+      ],
+      "interpretation": "local-goal"
+    },
+    {
+      "id": "ordinary",
+      "kind": "goal",
+      "label": "Reframe",
+      "description": "Suggest that an everyday object can carry a social purpose.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.31,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate.",
+        "candidateSet": "aims"
+      },
+      "evidence": [
+        "e1",
+        "e5"
+      ],
+      "interpretation": "local-goal"
+    },
+    {
+      "id": "reflection",
+      "kind": "goal",
+      "label": "Reflection",
+      "description": "Leave the reader room to form their own judgment.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.38,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate.",
+        "candidateSet": "aims"
+      },
+      "evidence": [
+        "e5"
+      ],
+      "interpretation": "local-goal"
+    },
+    {
+      "id": "attention",
+      "kind": "goal",
+      "label": "Look closer",
+      "description": "Use a close observation to let the situation become visible.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p2",
+        "p4"
+      ],
+      "spans": [
+        {
+          "region": "p2",
+          "start": 0,
+          "end": 52
+        },
+        {
+          "region": "p4",
+          "start": 0,
+          "end": 46
+        }
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.24,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate.",
+        "candidateSet": "aims"
+      },
+      "evidence": [
+        "e1",
+        "e3"
+      ],
+      "interpretation": "local-goal"
+    },
+    {
+      "id": "modesty",
+      "kind": "goal",
+      "label": "Keep the claim modest",
+      "description": "Qualify what this small intervention can establish.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p3",
+        "p6"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.34,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate.",
+        "candidateSet": "aims"
+      },
+      "evidence": [
+        "e2",
+        "e5"
+      ],
+      "interpretation": "local-goal"
+    },
+    {
       "id": "invite",
       "kind": "goal",
       "label": "Invite connection",
@@ -102,6 +249,8 @@
         "p1",
         "p2",
         "p3",
+        "p4",
+        "p5",
         "p6"
       ],
       "status": "hypothesis",
@@ -451,6 +600,9 @@
         "e2",
         "e4"
       ],
+      "decisionNodes": [
+        "sentence-4-3"
+      ],
       "interpretation": "value"
     },
     {
@@ -513,7 +665,12 @@
         "notice",
         "persuade",
         "test",
-        "include"
+        "include",
+        "concrete",
+        "ordinary",
+        "reflection",
+        "attention",
+        "modesty"
       ],
       "exhaustive": false
     },
@@ -579,6 +736,483 @@
         "status": "hypothesis",
         "evidence": [
           "e4",
+          "e5"
+        ]
+      }
+    ]
+  },
+  "goalHierarchy": {
+    "nodes": [
+      {
+        "id": "purpose",
+        "maker": "maker-1",
+        "label": "Make room for connection",
+        "description": "A possible governing purpose: show how modest design choices can invite people to stay. Hand-authored example, not established intent.",
+        "level": "document",
+        "regions": [
+          "p1",
+          "p2",
+          "p3",
+          "p4",
+          "p5",
+          "p6"
+        ],
+        "evidence": [
+          "e1",
+          "e2",
+          "e3",
+          "e4",
+          "e5"
+        ]
+      },
+      {
+        "id": "story",
+        "parentId": "purpose",
+        "maker": "maker-1",
+        "label": "Tell a design story",
+        "description": "Build an argument through noticing, trying and revising a small intervention.",
+        "level": "section",
+        "regions": [
+          "p2",
+          "p3",
+          "p4",
+          "p5"
+        ],
+        "evidence": [
+          "e1",
+          "e2",
+          "e3",
+          "e4",
+          "e5"
+        ]
+      },
+      {
+        "id": "limits",
+        "parentId": "purpose",
+        "maker": "maker-1",
+        "label": "Leave room for doubt",
+        "description": "Qualify the claim and close with a concrete encounter.",
+        "level": "section",
+        "regions": [
+          "p6"
+        ],
+        "evidence": [
+          "e1",
+          "e2",
+          "e3",
+          "e4",
+          "e5"
+        ]
+      },
+      {
+        "id": "paragraph-1",
+        "parentId": "story",
+        "maker": "maker-1",
+        "label": "Notice hesitation",
+        "description": "A possible role for this paragraph: notice hesitation. Grounded in the quoted passage, with alternatives still possible.",
+        "level": "paragraph",
+        "regions": [
+          "p2"
+        ],
+        "evidence": [
+          "e1"
+        ]
+      },
+      {
+        "id": "sentence-1-1",
+        "parentId": "paragraph-1",
+        "maker": "maker-1",
+        "label": "Shift our attention",
+        "description": "“The first thing we noticed was not where people sat.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p2"
+        ],
+        "span": {
+          "region": "p2",
+          "start": 0,
+          "end": 52
+        },
+        "evidence": [
+          "e1"
+        ]
+      },
+      {
+        "id": "sentence-1-2",
+        "parentId": "paragraph-1",
+        "maker": "maker-1",
+        "label": "Notice the pauses",
+        "description": "“It was where they stopped.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p2"
+        ],
+        "span": {
+          "region": "p2",
+          "start": 53,
+          "end": 79
+        },
+        "evidence": [
+          "e1"
+        ]
+      },
+      {
+        "id": "sentence-1-3",
+        "parentId": "paragraph-1",
+        "maker": "maker-1",
+        "label": "Make hesitation visible",
+        "description": "“At the edge of the garden, visitors paused with their bags still on their shoulders, as if waiting for permission to stay.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p2"
+        ],
+        "span": {
+          "region": "p2",
+          "start": 80,
+          "end": 202
+        },
+        "evidence": [
+          "e1"
+        ]
+      },
+      {
+        "id": "paragraph-2",
+        "parentId": "story",
+        "maker": "maker-1",
+        "label": "Offer an invitation",
+        "description": "A possible role for this paragraph: offer an invitation. Grounded in the quoted passage, with alternatives still possible.",
+        "level": "paragraph",
+        "regions": [
+          "p3"
+        ],
+        "evidence": [
+          "e2"
+        ]
+      },
+      {
+        "id": "sentence-2-1",
+        "parentId": "paragraph-2",
+        "maker": "maker-1",
+        "label": "Consider a simple fix",
+        "description": "“We could have added a sign.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p3"
+        ],
+        "span": {
+          "region": "p3",
+          "start": 0,
+          "end": 27
+        },
+        "evidence": [
+          "e2"
+        ]
+      },
+      {
+        "id": "sentence-2-2",
+        "parentId": "paragraph-2",
+        "maker": "maker-1",
+        "label": "Reframe the invitation",
+        "description": "“Instead, we moved one bench into the shade and turned it slightly toward the path.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p3"
+        ],
+        "span": {
+          "region": "p3",
+          "start": 28,
+          "end": 110
+        },
+        "evidence": [
+          "e2"
+        ]
+      },
+      {
+        "id": "sentence-2-3",
+        "parentId": "paragraph-2",
+        "maker": "maker-1",
+        "label": "Avoid demanding contact",
+        "description": "“Nothing about it demanded a conversation.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p3"
+        ],
+        "span": {
+          "region": "p3",
+          "start": 111,
+          "end": 152
+        },
+        "evidence": [
+          "e2"
+        ]
+      },
+      {
+        "id": "sentence-2-4",
+        "parentId": "paragraph-2",
+        "maker": "maker-1",
+        "label": "Make space for encounter",
+        "description": "“It simply made room for one.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p3"
+        ],
+        "span": {
+          "region": "p3",
+          "start": 153,
+          "end": 181
+        },
+        "evidence": [
+          "e2"
+        ]
+      },
+      {
+        "id": "paragraph-3",
+        "parentId": "story",
+        "maker": "maker-1",
+        "label": "Show the iteration",
+        "description": "A possible role for this paragraph: show the iteration. Grounded in the quoted passage, with alternatives still possible.",
+        "level": "paragraph",
+        "regions": [
+          "p4"
+        ],
+        "evidence": [
+          "e3"
+        ]
+      },
+      {
+        "id": "sentence-3-1",
+        "parentId": "paragraph-3",
+        "maker": "maker-1",
+        "label": "Show sustained attention",
+        "description": "“For two weeks, we returned at different hours.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p4"
+        ],
+        "span": {
+          "region": "p4",
+          "start": 0,
+          "end": 46
+        },
+        "evidence": [
+          "e3"
+        ]
+      },
+      {
+        "id": "sentence-3-2",
+        "parentId": "paragraph-3",
+        "maker": "maker-1",
+        "label": "Make observation concrete",
+        "description": "“We counted pauses, sketched the paths people took, and listened when someone offered a comment.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p4"
+        ],
+        "span": {
+          "region": "p4",
+          "start": 47,
+          "end": 142
+        },
+        "evidence": [
+          "e3"
+        ]
+      },
+      {
+        "id": "sentence-3-3",
+        "parentId": "paragraph-3",
+        "maker": "maker-1",
+        "label": "Admit a failed attempt",
+        "description": "“Our first arrangement was too close to the gate.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p4"
+        ],
+        "span": {
+          "region": "p4",
+          "start": 143,
+          "end": 191
+        },
+        "evidence": [
+          "e3"
+        ]
+      },
+      {
+        "id": "sentence-3-4",
+        "parentId": "paragraph-3",
+        "maker": "maker-1",
+        "label": "Show willingness to revise",
+        "description": "“We moved it again.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p4"
+        ],
+        "span": {
+          "region": "p4",
+          "start": 192,
+          "end": 210
+        },
+        "evidence": [
+          "e3"
+        ]
+      },
+      {
+        "id": "paragraph-4",
+        "parentId": "story",
+        "maker": "maker-1",
+        "label": "Make inclusion tangible",
+        "description": "A possible role for this paragraph: make inclusion tangible. Grounded in the quoted passage, with alternatives still possible.",
+        "level": "paragraph",
+        "regions": [
+          "p5"
+        ],
+        "evidence": [
+          "e4"
+        ]
+      },
+      {
+        "id": "sentence-4-1",
+        "parentId": "paragraph-4",
+        "maker": "maker-1",
+        "label": "Name a considered material",
+        "description": "“The final bench is made from reclaimed cedar.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p5"
+        ],
+        "span": {
+          "region": "p5",
+          "start": 0,
+          "end": 45
+        },
+        "evidence": [
+          "e4"
+        ]
+      },
+      {
+        "id": "sentence-4-2",
+        "parentId": "paragraph-4",
+        "maker": "maker-1",
+        "label": "Show care in the details",
+        "description": "“Its corners are rounded, its seat a little higher than the old one.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p5"
+        ],
+        "span": {
+          "region": "p5",
+          "start": 46,
+          "end": 113
+        },
+        "evidence": [
+          "e4"
+        ]
+      },
+      {
+        "id": "sentence-4-3",
+        "parentId": "paragraph-4",
+        "maker": "maker-1",
+        "label": "Anticipate a visitor’s needs",
+        "description": "“A walking stick can rest against either arm.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p5"
+        ],
+        "span": {
+          "region": "p5",
+          "start": 114,
+          "end": 158
+        },
+        "evidence": [
+          "e4"
+        ]
+      },
+      {
+        "id": "sentence-4-4",
+        "parentId": "paragraph-4",
+        "maker": "maker-1",
+        "label": "Connect details to belonging",
+        "description": "“These are small decisions, but small decisions decide who feels welcome.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p5"
+        ],
+        "span": {
+          "region": "p5",
+          "start": 159,
+          "end": 231
+        },
+        "evidence": [
+          "e4"
+        ]
+      },
+      {
+        "id": "paragraph-5",
+        "parentId": "limits",
+        "maker": "maker-1",
+        "label": "Close without certainty",
+        "description": "A possible role for this paragraph: close without certainty. Grounded in the quoted passage, with alternatives still possible.",
+        "level": "paragraph",
+        "regions": [
+          "p6"
+        ],
+        "evidence": [
+          "e5"
+        ]
+      },
+      {
+        "id": "sentence-5-1",
+        "parentId": "paragraph-5",
+        "maker": "maker-1",
+        "label": "Bound the claim",
+        "description": "“We do not know whether a bench can make a neighborhood kinder.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p6"
+        ],
+        "span": {
+          "region": "p6",
+          "start": 0,
+          "end": 62
+        },
+        "evidence": [
+          "e5"
+        ]
+      },
+      {
+        "id": "sentence-5-2",
+        "parentId": "paragraph-5",
+        "maker": "maker-1",
+        "label": "Offer one observed encounter",
+        "description": "“We do know that on Thursday, two people who had never met sat down in the shade.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p6"
+        ],
+        "span": {
+          "region": "p6",
+          "start": 63,
+          "end": 143
+        },
+        "evidence": [
+          "e5"
+        ]
+      },
+      {
+        "id": "sentence-5-3",
+        "parentId": "paragraph-5",
+        "maker": "maker-1",
+        "label": "Invite a modest beginning",
+        "description": "“For now, that is a useful place to begin.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p6"
+        ],
+        "span": {
+          "region": "p6",
+          "start": 144,
+          "end": 185
+        },
+        "evidence": [
           "e5"
         ]
       }
@@ -715,35 +1349,35 @@
       "id": "e1",
       "source": "http://127.0.0.1:5173/testbed.html",
       "excerpt": "The first thing we noticed was not where people sat. It was where they stopped. At the edge of the garden, visitors paused with their bags still on their shoulders, as if waiting for permission to stay.",
-      "capturedAt": "2026-10-11T12:38:43.925Z",
+      "capturedAt": "2026-10-11T15:57:39.769Z",
       "relationship": "Text compatible with this account; it does not establish the maker’s intent."
     },
     {
       "id": "e2",
       "source": "http://127.0.0.1:5173/testbed.html",
       "excerpt": "We could have added a sign. Instead, we moved one bench into the shade and turned it slightly toward the path. Nothing about it demanded a conversation. It simply made room for one.",
-      "capturedAt": "2026-10-11T12:38:43.925Z",
+      "capturedAt": "2026-10-11T15:57:39.769Z",
       "relationship": "Text compatible with this account; it does not establish the maker’s intent."
     },
     {
       "id": "e3",
       "source": "http://127.0.0.1:5173/testbed.html",
       "excerpt": "For two weeks, we returned at different hours. We counted pauses, sketched the paths people took, and listened when someone offered a comment. Our first arrangement was too close to the gate. We moved it again.",
-      "capturedAt": "2026-10-11T12:38:43.925Z",
+      "capturedAt": "2026-10-11T15:57:39.769Z",
       "relationship": "Text compatible with this account; it does not establish the maker’s intent."
     },
     {
       "id": "e4",
       "source": "http://127.0.0.1:5173/testbed.html",
       "excerpt": "The final bench is made from reclaimed cedar. Its corners are rounded, its seat a little higher than the old one. A walking stick can rest against either arm. These are small decisions, but small decisions decide who feels welcome.",
-      "capturedAt": "2026-10-11T12:38:43.925Z",
+      "capturedAt": "2026-10-11T15:57:39.769Z",
       "relationship": "Text compatible with this account; it does not establish the maker’s intent."
     },
     {
       "id": "e5",
       "source": "http://127.0.0.1:5173/testbed.html",
       "excerpt": "We do not know whether a bench can make a neighborhood kinder. We do know that on Thursday, two people who had never met sat down in the shade. For now, that is a useful place to begin.",
-      "capturedAt": "2026-10-11T12:38:43.925Z",
+      "capturedAt": "2026-10-11T15:57:39.769Z",
       "relationship": "Text compatible with this account; it does not establish the maker’s intent."
     }
   ]

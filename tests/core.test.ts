@@ -15,6 +15,65 @@ import { publicURL, retrieve, collectSources } from "../src/core/collector";
 import { acceptRevision, analysisHandoff } from "../src/core/reading";
 import { contextIdentity, mergeContext } from "../src/core/context";
 import { createHash } from "node:crypto";
+import { goalAt, goalTree } from "../src/core/hierarchy";
+import { sentences } from "../src/core/sentences";
+
+test("goal hierarchy preserves exact sentence spans, branches and historical independence", async () => {
+  const packet = await createExample(),
+    nodes = packet.goalHierarchy!.nodes;
+  const sentence = nodes.find((n) => n.id === "sentence-3-2")!;
+  const text = packet.artifact.regions.find(
+    (r) => r.id === sentence.span!.region,
+  )!.anchor.exact;
+  assert.equal(
+    text.slice(sentence.span!.start, sentence.span!.end),
+    "We counted pauses, sketched the paths people took, and listened when someone offered a comment.",
+  );
+  assert.equal(goalAt(nodes, "p4", sentence.span!.start)?.id, sentence.id);
+  const tree = goalTree(nodes)!;
+  const paragraph = tree.descendants().find((n) => n.id === "paragraph-3")!;
+  assert.equal(paragraph.descendants().length, 5);
+  assert.deepEqual(
+    paragraph.ancestors().map((n) => n.id),
+    ["paragraph-3", "story", "purpose"],
+  );
+  const legacy = structuredClone(packet);
+  legacy.schemaVersion = "1.0";
+  delete legacy.goalHierarchy;
+  legacy.hypotheses.forEach((h) => {
+    delete h.decisionNodes;
+    delete h.spans;
+  });
+  assert.equal(parsePacket(JSON.stringify(legacy)).goalHierarchy, undefined);
+  assert.ok(legacy.process.edges.length);
+});
+
+test("invalid hierarchy cycles, ranges, decision sources and wrong parents are rejected", async () => {
+  const original = await createExample();
+  for (const corrupt of [
+    (p: typeof original) => {
+      p.goalHierarchy!.nodes[0].parentId = "sentence-3-2";
+    },
+    (p: typeof original) => {
+      p.goalHierarchy!.nodes.find((n) => n.span)!.span!.end = 90000;
+    },
+    (p: typeof original) => {
+      p.goalHierarchy!.nodes.find((n) => n.id === "paragraph-3")!.parentId =
+        "limits";
+    },
+    (p: typeof original) => {
+      p.hypotheses[0].decisionNodes = ["missing"];
+    },
+  ]) {
+    const packet = structuredClone(original);
+    corrupt(packet);
+    assert.throws(() => parsePacket(JSON.stringify(packet)));
+  }
+  const text = "Café 世界. A second sentence! A final question?";
+  const spans = sentences(text);
+  assert.equal(spans.length, 3);
+  spans.forEach((s) => assert.equal(text.slice(s.start, s.end), s.text));
+});
 
 test(
   "the collection deadline cancels an unresponsive source without returning late context",
@@ -188,7 +247,7 @@ test("bounded fetch rejects status, content type and oversized body; cancellatio
 
 test("historical partial orders, joint accounts and typed meanings reject contradictory references", async () => {
   const p = await createExample();
-  assert.equal(p.schemaVersion, "1.1");
+  assert.equal(p.schemaVersion, "1.2");
   assert.equal(p.alternatives[0].kind, "coexisting");
   p.process.edges.push({
     from: "iterate",

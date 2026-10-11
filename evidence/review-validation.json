@@ -1,17 +1,17 @@
 {
-  "verifiedAt": "2026-10-11T13:18:08.690Z",
+  "verifiedAt": "2026-10-11T16:02:21.217Z",
   "profile": "isolated ordinary Google Chrome",
   "checks": [
     "Fresh ordinary Chrome installation is enabled",
     "Guide opens a native panel beside its bundled source without a server",
-    "Hover, pin, Escape, fixed values and tree/cloud switch",
+    "Sentence hover, double-click lock, Escape, fixed values, hierarchy branches, linked page highlighting, confidence provenance",
     "Re-running the unchanged launcher preserves the accepted reading",
     "Chrome extension action grants activeTab and captures a normal HTTP article with the delivered manifest",
     "Real Simon Willison article captures through the extension action and correctly awaits backend analysis",
     "Launcher restores the same extension ID after a full Chrome restart; local preferences survive"
   ],
   "browser": "154.0.8037.98",
-  "build": "927fcb36959c",
+  "build": "cd7b11cdf947",
   "nativePanel": {
     "sourceWidthBefore": 1427,
     "sourceWidthAfter": 1041,

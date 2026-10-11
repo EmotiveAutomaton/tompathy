@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "ToMpathy — Maker Reader",
+  "name": "What's on the author's mind?",
   "description": "Explore goals, processes, and values behind a text. A reader for externally supplied maker hypotheses.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "icons": {
     "16": "icon16.png",
     "32": "icon32.png",
@@ -12,15 +12,25 @@
   "minimum_chrome_version": "116",
   "permissions": ["activeTab", "scripting", "sidePanel", "storage"],
   "optional_host_permissions": ["https://*/*"],
-  "background": { "service_worker": "background.js", "type": "module" },
-  "action": {
-    "default_title": "Open ToMpathy",
-    "default_icon": { "16": "icon16.png", "32": "icon32.png" }
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
   },
-  "side_panel": { "default_path": "panel.html" },
+  "action": {
+    "default_title": "What's on the author's mind? \u00b7 ToMpathy",
+    "default_icon": {
+      "16": "icon16.png",
+      "32": "icon32.png"
+    }
+  },
+  "side_panel": {
+    "default_path": "panel.html"
+  },
   "commands": {
     "_execute_action": {
-      "suggested_key": { "default": "Alt+Shift+Y" },
+      "suggested_key": {
+        "default": "Alt+Shift+Y"
+      },
       "description": "Open ToMpathy"
     }
   },
