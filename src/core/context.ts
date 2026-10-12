@@ -19,6 +19,10 @@ export function mergeContext(
       (c) => c.source === incoming.source && c.excerpt === incoming.excerpt,
     )
   )
-    return existing;
+    return existing.map((c) =>
+      c.source === incoming.source && c.excerpt === incoming.excerpt
+        ? { ...c, ...incoming, selected: c.selected }
+        : c,
+    );
   return [...existing, incoming].slice(0, 30);
 }

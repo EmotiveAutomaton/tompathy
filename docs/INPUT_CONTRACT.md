@@ -1,4 +1,4 @@
-# ToMpathy result contract · 1.0–1.4
+# ToMpathy result contract · 1.0–1.5
 
 `src/core/model.ts` is the authoritative runtime validator. `examples/bench-result.json` is a complete valid packet; `bench-revision.json` demonstrates a context-conditioned revision. `bench-source.txt` is the corresponding synthetic text. Fixtures use `tompathy:example` as their portable origin. In the installed extension, use **Development tools → Import result → Download example format** on the bundled source to obtain a packet bound to that installation's source URL.
 
@@ -15,7 +15,7 @@ No transport endpoint has been invented. `configuredProvider` is null; ordinary 
 
 | Field                             | Meaning                                                                                                                                                         |
 | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `schemaVersion`                   | `"1.0"` (legacy, including Sounding Line Stage 13) `"1.1"`, `"1.2"`, `"1.3"`, or `"1.4"`                                                                                 |
+| `schemaVersion`                   | `"1.0"` (legacy, including Sounding Line Stage 13), `"1.1"`, `"1.2"`, `"1.3"`, `"1.4"`, or `"1.5"` |
 | `id`, `revision`                  | Analysis identity and positive integer revision                                                                                                                 |
 | `artifact`                        | ID, source, title, capture timestamp, content revision, truncation flag and regions                                                                             |
 | `provider`                        | Stable provider ID and method description                                                                                                                       |
@@ -93,11 +93,21 @@ The cloud is empty with **Hover to see** until source text or a sentence node is
 
 Hierarchy nodes may use `parentIds` (1–16 unique IDs) instead of `parentId`. A maker may have multiple roots. Both parent forms together, cycles, cross-maker parents, missing parents and child regions outside **any** parent are rejected. The 64-level/3,000-node bounds remain. No extra relationships are inferred.
 
-The graph view places local leaves at the left; a node's rank follows its longest child path. Each root contributes a rounded lobe ending at its own depth. Shared subgoals have linked visual instances under each supplied parent path; all instances highlight together. A reel can be ambiguous in either direction; a shorter completed path also remains a possible ending at later reels. Scrolling deliberately chooses a node and locks its reachable neighborhood.
+The graph view places local leaves at the left; a node's rank follows its longest child path. Each root contributes a rounded lobe ending at its own depth. Shared subgoals have linked visual instances under each supplied parent path. Page selection retains all supplied paths. Directly pointing at a visual instance highlights only that instance's ancestor/descendant path; its duplicated instances elsewhere stay unlit. Reels use that same branch, and later unused reels fade after a short path ends. This is a display selection, not a change to the underlying graph or a probability update.
 
 Bricks subdivide the actual parent band, so a child meets its own parent at the column boundary. Shared DAG nodes are unfolded into separate visual instances; no brick straddles two branches. Skipped levels span the intervening columns. The curved outline is applied to those bands, and dots remain inside their visible area. Dense graphs (over 120 semantic nodes, four roots, or 600 unfolded instances) retain an automatic scrollable detail fallback. There is no user-facing list setting.
 
 Reels remain visible and blurred at rest, with no idle interaction. With a locked selection, ambiguous reels grow upward from their existing positions on hover/focus, presenting candidate lists over the faded hierarchy. Candidate inspection highlights the supplied ancestor/descendant neighborhood. Both green locks release selection; Escape dismisses the topmost overlay first. Global and search remain interface previews.
+
+## Additions in 1.5 and context timeline records
+
+Contract 1.5 optionally supplies `goalHierarchy.orderUncertainGroups[]`, each containing `id`, `nodes` (2–30 distinct sibling node IDs), `explanation`, and `evidence` IDs. Members must exist, share a maker and at least one explicit parent; evidence references must exist. At most 30 groups are accepted. The renderer places a subtle “Order uncertain” squiggle beside each supplied group. It does not derive chronological uncertainty from hierarchy geometry. Absence of a mark does not assert that order is known. Versions 1.0–1.4 remain accepted without these fields.
+
+Context records optionally add `provenance: {author, basis, linkedFrom}`. Basis is `page-byline`, `explicit-author-link` or `linked-source`. Optional `facts[]` (at most 20 per source) carries `label`, `quote`, `source`, optional `date`, and `dateKind`: `publication`, `event`, `account-created`, `profile-updated`, `source-updated`, or `undated`. Calendar dates retain supplied precision (`YYYY`, `YYYY-MM`, `YYYY-MM-DD`) and must be valid. Dated kinds require a date; undated facts forbid one. `retrievedAt` retains its separate meaning on the source record. These are additive context metadata; canonical context IDs still bind the source URL and excerpt.
+
+The collector reads at most three explicit selected-author sources, or six total with one-hop discovery enabled. Only the initial source origins are eligible for discovered requests. Successful sources have a 15-minute bounded memory cache. Collected context is initially unselected and never modifies the accepted packet. The timeline and text brief are extractive; neither provides inferred biography, score updates or automatic Sounding Line submission.
+
+Double-clicking anywhere in the active page or reader releases the held selection. Native text selection is not prevented. Expanded reel pointer bounds follow each actual reel window with a small gap allowance, instead of the full expanded bounding rectangle.
 
 ## Portable reading files
 

@@ -11,7 +11,8 @@ test("Options, persistent idle reels, connected alternatives and overlay dismiss
   await page.setViewportSize({ width: 360, height: 900 });
   await page.goto("/?panel");
   await expect(page.getByTestId("odometer")).toBeVisible();
-  await page.getByTestId("odometer").hover();
+  const idle = await page.getByTestId("odometer").boundingBox();
+  await page.mouse.move(idle!.x + 10, idle!.y + 20);
   await expect(page.locator(".spool.is-expanded")).toHaveCount(0);
   await page.locator('[data-node="paragraph-3"] circle').first().click();
   const before = await page.getByTestId("odometer").boundingBox();
@@ -70,7 +71,7 @@ test("Options, persistent idle reels, connected alternatives and overlay dismiss
   ).toBeVisible();
   await expect(
     page.getByRole("checkbox", { name: /Agent search/ }),
-  ).toBeDisabled();
+  ).toBeEnabled();
   await page.getByRole("checkbox", { name: /Use GitHub/ }).uncheck();
   expect(
     await page.evaluate(() => localStorage.getItem("tompathy-use-github")),
@@ -206,5 +207,63 @@ test("first-use guide is optional, dismissible, and replayable from Help", async
   await page.getByRole("button", { name: "Try the interaction guide" }).click();
   await expect(page.locator(".interaction-guide")).toContainText(
     "Move over a sentence",
+  );
+});
+
+test("pointed branches, faded endings, precise reel hover gaps and double-click release", async ({
+  page,
+}) => {
+  await page.addInitScript(() =>
+    localStorage.setItem("tompathy-guide-offered-040", "yes"),
+  );
+  await page.setViewportSize({ width: 360, height: 900 });
+  await page.goto("/?panel");
+  const lower = page.locator(
+    '[data-root="practical-care"][data-node="paragraph-3"] circle',
+  );
+  await lower.hover();
+  await expect(
+    page.locator(
+      '[data-root="purpose"].ancestor, [data-root="purpose"].descendant',
+    ),
+  ).toHaveCount(0);
+  await expect(page.locator('.spool[data-level="0"]')).toHaveClass(
+    /path-ended/,
+  );
+  await expect(page.locator('.spool[data-level="0"]')).toHaveCSS(
+    "opacity",
+    "0.18",
+  );
+  await page.screenshot({ path: "evidence/short-branch.png" });
+  await lower.click();
+  const exact = page.locator('.spool[data-level="2"] .spool-window');
+  await exact.hover();
+  await expect(page.locator(".spool.is-expanded")).toHaveCount(1);
+  await expect(page.locator(".spool.is-expanded .spool-window")).toHaveCSS(
+    "height",
+    "170px",
+  );
+  const tall = await page
+    .locator(".spool.is-expanded .spool-window")
+    .boundingBox();
+  const short = await exact.boundingBox();
+  // The adjacent gap is navigable; empty space above the short reel is not sticky.
+  await page.mouse.move(short!.x - 2, short!.y + 10);
+  await expect(page.locator(".spool.is-expanded")).toHaveCount(1);
+  await page.mouse.move(short!.x + short!.width / 2, short!.y - 12);
+  await expect(page.locator(".spool.is-expanded")).toHaveCount(0);
+  expect(tall!.height).toBeGreaterThan(short!.height * 3);
+  await exact.hover();
+  await expect(page.locator(".odometer")).toHaveCSS("scrollbar-width", "none");
+  await expect(page.locator(".reel-options")).toHaveCSS(
+    "scrollbar-width",
+    "none",
+  );
+  await page.locator("#process-title").dblclick();
+  await expect(page.locator(".process-lock")).toHaveCount(0);
+  await lower.dblclick();
+  await expect(page.locator(".process-lock")).toHaveCount(0);
+  await expect(page.getByRole("img", { name: /^Order uncertain/ })).toHaveCount(
+    2,
   );
 });

@@ -394,6 +394,10 @@ export function installPageAdapter() {
     },
     { signal: abort.signal },
   );
+  document.addEventListener("dblclick", () => release(), {
+    signal: abort.signal,
+    passive: true,
+  });
   const listener = (
     m: any,
     _sender: chrome.runtime.MessageSender,

@@ -86,6 +86,11 @@ test("installed page adapter: anchors, dynamic revision, cleanup and long-page l
     await expect(
       source.locator('[aria-label="Unlock selection"]'),
     ).toBeVisible();
+    await source.locator("h1").dblclick();
+    await expect(
+      source.locator('[aria-label="Unlock selection"]'),
+    ).toBeHidden();
+    await source.locator("#repeat2").click();
     await source.keyboard.press("Escape");
     await expect(
       source.locator('[aria-label="Unlock selection"]'),

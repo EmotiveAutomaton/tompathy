@@ -102,8 +102,13 @@ test("independent attention, two peaks, bidirectional ambiguity and matching loc
       .evaluateAll(
         (es) => new Set(es.map((e) => e.getAttribute("data-node"))).size,
       ),
-  ).toBe(4);
-  await expect(page.locator(".spool.ambiguous")).toHaveCount(3);
+  ).toBe(3);
+  await expect(page.locator(".spool.ambiguous")).toHaveCount(1);
+  await expect(
+    page.locator(
+      '[data-root="practical-care"].ancestor, [data-root="practical-care"].descendant',
+    ),
+  ).toHaveCount(0);
   await expect(page.getByTestId("goals")).toHaveText("Hover to see");
   await expect(page.locator('[data-passage="p4"]')).toHaveClass(
     /related-passage/,
@@ -112,6 +117,15 @@ test("independent attention, two peaks, bidirectional ambiguity and matching loc
   await page.locator('[data-node="sentence-3-2"] circle').first().click();
   await expect(page.locator('[data-dominant="true"]')).toHaveText(
     "Learning from others",
+  );
+  await expect(page.locator('.spool[data-level="1"]')).toHaveAttribute(
+    "data-candidates",
+    "story",
+  );
+  await sentence.click();
+  await expect(page.locator('.spool[data-level="1"]')).toHaveAttribute(
+    "data-candidates",
+    "story,practical-care",
   );
   await page.keyboard.press("Escape");
   await page.getByRole("button", { name: "Reader menu", exact: true }).click();
@@ -379,7 +393,7 @@ test("unnamed eight-level hierarchy and top nine values fit a narrow panel", asy
   await page.setViewportSize({ width: 360, height: 900 });
   await page.goto("/?panel&qa");
   const packet = await createExample();
-  packet.schemaVersion = "1.4";
+  packet.schemaVersion = "1.5";
   packet.revisionOf = packet.id;
   packet.id = "deep-review-fixture";
   packet.revision = 2;

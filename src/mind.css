@@ -274,10 +274,11 @@
   display: flex;
   gap: 3px;
   overflow-x: auto;
-  scrollbar-width: thin;
+  scrollbar-width: none;
   padding: 2px 0;
 }
 .spool {
+  pointer-events: auto;
   flex: 1 0 55px;
   min-width: 0;
   text-align: center;
@@ -711,6 +712,7 @@
 /* Reels share one fixed baseline and unfold upward over the hierarchy. */
 .odometer {
   position: absolute;
+  pointer-events: none;
   bottom: 0;
   left: 0;
   right: 0;
@@ -736,7 +738,36 @@
 .reel-options {
   height: 100%;
   overflow-y: auto;
-  scrollbar-width: thin;
+  scrollbar-width: none;
+}
+.odometer::-webkit-scrollbar,
+.reel-options::-webkit-scrollbar {
+  display: none;
+}
+.spool.path-ended {
+  opacity: 0.18;
+  pointer-events: none;
+}
+.order-uncertain {
+  outline: none;
+  cursor: help;
+}
+.order-line {
+  fill: none;
+  stroke: var(--trace);
+  stroke-width: 1.4;
+  opacity: 0.65;
+  pointer-events: none;
+}
+.order-hit {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 9;
+}
+.order-uncertain:hover .order-line,
+.order-uncertain:focus-visible .order-line {
+  opacity: 1;
+  stroke-width: 2;
 }
 .reel-options button,
 .reel-ending {
@@ -766,6 +797,99 @@
 }
 .reels-open .pyramid {
   opacity: 0.48;
+}
+.context-view-button {
+  justify-self: start;
+  margin: 4px 0 0 24px;
+  color: var(--green);
+  font-size: 11px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.context-timeline {
+  font-size: 12px;
+  line-height: 1.5;
+}
+.context-timeline > p {
+  margin: 0 0 15px;
+}
+.timeline-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.timeline-actions button {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 6px 9px;
+  font-size: 11px;
+}
+.context-timeline h3 {
+  font-size: 13px;
+  margin: 22px 0 10px;
+}
+.context-timeline ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.context-timeline ol > li {
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr);
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+.context-timeline .timeline-date {
+  color: var(--green);
+  font-variant-numeric: tabular-nums;
+}
+.context-timeline small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 4px;
+}
+.context-timeline strong {
+  font-weight: 500;
+}
+.modal .context-timeline details {
+  margin: 5px 0 0;
+  border: 0;
+  padding: 0;
+}
+.modal .context-timeline summary {
+  min-height: 24px;
+}
+.context-timeline summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 5px;
+}
+.context-timeline a,
+.context-timeline small,
+.context-timeline li {
+  overflow-wrap: anywhere;
+}
+.context-timeline blockquote {
+  margin: 8px 0;
+  border-left: 2px solid var(--line);
+  padding-left: 10px;
+}
+.context-use {
+  border-top: 1px solid var(--line);
+  margin-top: 20px;
+  padding-top: 10px;
+}
+.context-use label {
+  display: flex;
+  gap: 9px;
+  margin: 9px 0;
+}
+.context-use input {
+  flex-shrink: 0;
 }
 @media (prefers-reduced-motion: reduce) {
   .spool-window,

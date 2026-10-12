@@ -6,6 +6,8 @@
 
 **0.1 beta · MIT licensed · frontend preview.** The bundled example is fictional and hand-authored. A live Sounding Line backend is not connected. Ordinary pages can be captured and paired with a matching imported analysis; the extension does not generate claims about their authors on its own.
 
+This branch is **0.2 development** (`0.2.0-dev.1`; Chrome build `0.1.1`). The public 0.1 beta download below remains the earlier snapshot. See [our branch and version workflow](docs/VERSIONING.md).
+
 ## Try the beta
 
 1. Download [tompathy-0.1.0.zip](https://github.com/EmotiveAutomaton/tompathy/releases/download/v0.1.0-beta.1/tompathy-0.1.0.zip) from the [beta release](https://github.com/EmotiveAutomaton/tompathy/releases).
@@ -25,7 +27,7 @@ The reader supports keyboard focus, reduced motion, system/light/dark themes, mu
 
 ## Context and saved readings
 
-**Light context** follows explicit author links. **Use GitHub when possible** retrieves a linked account’s public profile without authentication. Retrieval is bounded and optional; no paid search runs. **Agent search**, author-like local models and word-level analysis are planned controls. Global and search are interface previews. See the [free context design](docs/CONTEXT_RESEARCH.md).
+In this development branch, **Light context** records the byline and follows up to three explicit author links. **Use GitHub when possible** retrieves a linked public profile without authentication. **Agent search** now adds a deterministic, bounded follow-up on the permitted sites: at most six sources total, including linked pages and RSS/Atom feeds. It uses no model or paid search. **View context and timeline** opens dated source entries, undated facts, retrieval coverage and a downloadable brief. Author-like local models and word-level analysis remain planned controls; Global and value search remain interface previews. See [implementation and limits](docs/CONTEXT_RESEARCH.md).
 
 **Export** saves one HTML reading containing captured text, analysis and context. **Import** restores its text beside the reader. The file also opens offline as plain text with reading styles; original site images, CSS and active features are not archived.
 

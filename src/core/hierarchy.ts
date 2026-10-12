@@ -185,14 +185,41 @@ export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
     from: number,
     to: number,
   ) => {
-    const points = Array.from({ length: 33 }, (_, i) => {
-      const px = x + ((end - x) * i) / 32,
-        [top, bottom] = band(l, px, from, to);
+    const sample = (px: number) => {
+      const [top, bottom] = band(l, px, from, to);
       return { x: px, top, bottom };
-    }).filter((p) => p.bottom >= p.top);
-    return `M${points.map((p) => `${p.x},${p.top}`).join(" L")} L${points
+    };
+    const steps = Math.max(32, Math.ceil((end - x) * 1.25));
+    const points: ReturnType<typeof sample>[] = [];
+    let previous = sample(x);
+    if (previous.bottom >= previous.top) points.push(previous);
+    for (let i = 1; i <= steps; i++) {
+      const next = sample(x + ((end - x) * i) / steps);
+      const wasVisible = previous.bottom >= previous.top;
+      const isVisible = next.bottom >= next.top;
+      if (wasVisible !== isVisible) {
+        let low = previous.x,
+          high = next.x;
+        for (let j = 0; j < 24; j++) {
+          const mid = (low + high) / 2,
+            p = sample(mid);
+          if (p.bottom >= p.top === wasVisible) low = mid;
+          else high = mid;
+        }
+        // Include the exact curved intersection, not a vertical cut at the
+        // first sampled column. This removes the missing left-edge wedges.
+        const edge = sample((low + high) / 2);
+        edge.top = edge.bottom = (edge.top + edge.bottom) / 2;
+        points.push(edge);
+      }
+      if (isVisible) points.push(next);
+      previous = next;
+    }
+    const xy = (p: ReturnType<typeof sample>, bottom = false) =>
+      `${p.x.toFixed(3)},${(bottom ? p.bottom : p.top).toFixed(3)}`;
+    return `M${points.map((p) => xy(p)).join(" L")} L${points
       .reverse()
-      .map((p) => `${p.x},${p.bottom}`)
+      .map((p) => xy(p, true))
       .join(" L")} Z`;
   };
   const tiles: {
@@ -219,7 +246,7 @@ export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
     parentKey?: string,
     parentRank = node.rank + 1,
   ) => {
-    const key = `${parentKey ?? l.root.id}/${node.id}`;
+    const key = `${parentKey ?? encodeURIComponent(l.root.id)}/${encodeURIComponent(node.id)}`;
     const x = edges[node.rank],
       end = edges[parentRank];
     const [la, lb] = bounds(l, x);
@@ -289,4 +316,40 @@ export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
     slices,
     dense,
   };
+}
+
+export type HierarchyLayout = ReturnType<typeof hierarchyLayout>;
+export function instanceNeighborhood(layout: HierarchyLayout, key?: string) {
+  const tile = layout.tiles.find((t) => t.key === key);
+  const ancestors = new Set<string>(),
+    descendants = new Set<string>();
+  let current = tile;
+  while (current) {
+    ancestors.add(current.key);
+    current = layout.tiles.find((t) => t.key === current!.parentKey);
+  }
+  if (tile)
+    for (const t of layout.tiles)
+      if (t.key === tile.key || t.key.startsWith(tile.key + "/"))
+        descendants.add(t.key);
+  return { tile, ancestors, descendants };
+}
+
+export function instanceReelCandidates(
+  graph: GoalGraph,
+  layout: HierarchyLayout,
+  selected: GraphNode | undefined,
+  rank: number,
+  key?: string,
+) {
+  const branch = instanceNeighborhood(layout, key);
+  if (!branch.tile || branch.tile.node.id !== selected?.id)
+    return reelCandidates(graph, selected, rank);
+  const keys = rank >= selected.rank ? branch.ancestors : branch.descendants;
+  const ids = new Set(
+    layout.tiles.filter((t) => keys.has(t.key)).map((t) => t.node.id),
+  );
+  const nodes = graph.all.filter((n) => n.rank === rank && ids.has(n.id));
+  const ended = rank > graph.byId.get(branch.tile.rootId)!.rank;
+  return { nodes, ended, ambiguous: nodes.length + Number(ended) > 1 };
 }

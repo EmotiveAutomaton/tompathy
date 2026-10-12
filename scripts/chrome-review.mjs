@@ -1,4 +1,4 @@
-import { access, mkdir, readFile, writeFile } from "node:fs/promises";
+import { access, mkdir, readFile, writeFile, rm } from "node:fs/promises";
 import { spawn } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -80,6 +80,10 @@ export async function openReview({
   const reusedBrowser = !!browser;
   if (!browser) {
     const executable = await findChrome();
+    // A stopped Chrome can leave this file pointing at its old port. On
+    // Windows a subsequent launch may not replace it. An existing live
+    // connection above is preserved; a new launch must publish fresh metadata.
+    await rm(path.join(profile, "DevToolsActivePort"), { force: true });
     const child = spawn(
       executable,
       [

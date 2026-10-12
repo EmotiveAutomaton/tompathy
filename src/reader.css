@@ -41,24 +41,8 @@
   display: none;
 }
 .brand-symbol {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  height: 12px;
-  transform: rotate(-17deg);
-}
-.brand-symbol i {
-  width: 2px;
-  height: 7px;
-  border-radius: 4px;
-  background: var(--green);
-}
-.brand-symbol i:nth-child(2) {
-  height: 12px;
-}
-.brand-symbol i:nth-child(3) {
-  height: 9px;
-  opacity: 0.55;
+  width: 20px;
+  height: 20px;
 }
 .icon-button {
   display: inline-flex;

@@ -103,9 +103,12 @@ export async function createExample(
   });
   const attention = exampleAttention(artifact);
   return PacketSchema.parse({
-    schemaVersion: "1.4",
+    schemaVersion: "1.5",
     currentAttention: attention.currentAttention,
-    goalHierarchy: { nodes: exampleHierarchy(artifact, revised) },
+    goalHierarchy: { nodes: exampleHierarchy(artifact, revised), orderUncertainGroups: [
+ {id:'noticing-order',nodes:['sentence-1-1','sentence-1-2','sentence-1-3'], explanation:'The supplied account does not establish the order of these noticing steps. Vertical position is not a timeline.',evidence:['e1']},
+ {id:'invitation-order',nodes:['sentence-2-1','sentence-2-2','sentence-2-3','sentence-2-4'], explanation:'These design choices may have developed together; their production order is uncertain.',evidence:['e2']}
+] },
     id: revised ? "bench-analysis-2" : "bench-analysis-1",
     revision: revised ? 2 : 1,
     artifact,

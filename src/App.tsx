@@ -1,5 +1,12 @@
 import { readingFile, parseReadingFile } from "./core/reading-file";
 import { ReadingPreview } from "./components/ReadingPreview";
+import { ContextTimeline } from "./components/ContextTimeline";
+import {
+  bylineContext,
+  collectAuthorContext,
+  clearContextCache,
+  type ContextReport,
+} from "./core/author-context";
 import {
   ContextProgress,
   type ContextWork,
@@ -76,11 +83,11 @@ import {
 export function Brand() {
   return (
     <div className="brand">
-      <span className="brand-symbol" aria-hidden="true">
-        <i />
-        <i />
-        <i />
-      </span>
+      <img
+        className="brand-symbol"
+        src={isExtension ? "./icon32.png" : "./favicon.svg"}
+        alt=""
+      />
       <div>
         <strong>
           ToMpathy<span className="brand-dot">.</span>
@@ -185,6 +192,10 @@ export function App({ preview = false }: { preview?: boolean }) {
     [notice, setNotice] = useState(""),
     [error, setError] = useState(""),
     [contextEnabled, setContextEnabled] = useState(false),
+    [followLinks, setFollowLinks] = useState(
+      () => localStorage.getItem("tompathy-follow-links") === "true",
+    ),
+    [contextReport, setContextReport] = useState<ContextReport | null>(null),
     [useGitHub, setUseGitHub] = useState(
       () => localStorage.getItem("tompathy-use-github") !== "false",
     ),
@@ -196,6 +207,7 @@ export function App({ preview = false }: { preview?: boolean }) {
       | "qa"
       | "menu"
       | "context"
+      | "author-context"
       | "source"
       | "settings"
       | "import"
@@ -285,6 +297,7 @@ export function App({ preview = false }: { preview?: boolean }) {
     ]),
   ];
   function cancelWork() {
+    setContextReport(null);
     serial.current++;
     collector.current?.abort();
     setCollecting(false);
@@ -546,6 +559,11 @@ export function App({ preview = false }: { preview?: boolean }) {
     setSourceHover(false);
     void pageCommand(tabId, artifact, "TOMPATHY_RELEASE");
   };
+  useEffect(() => {
+    const release = () => unlock();
+    window.addEventListener("dblclick", release);
+    return () => window.removeEventListener("dblclick", release);
+  }, [tabId, artifact]);
   const move = (id: string, pin = false, offset = 0) => {
     if (pinned && !pin) return;
     setRegion(id);
@@ -656,73 +674,72 @@ export function App({ preview = false }: { preview?: boolean }) {
     setContextPaste("");
     setError("");
   }
-  async function toggleContext(enabled: boolean) {
+  async function toggleContext(
+    enabled: boolean,
+    discover = followLinks,
+    refresh = false,
+  ) {
     collector.current?.abort();
     setContextEnabled(enabled);
     setContextWork(null);
+    setContextReport(null);
     if (!enabled || !artifact) return;
+    if (refresh) clearContextCache();
     const request = serial.current;
     const sources = (session.contextSources ?? []).filter(
       (s) => s.author.toLocaleLowerCase() === authorName.toLocaleLowerCase(),
     );
-    if (!sources.length) {
-      setContextWork({
-        phase: "error",
-        completed: 0,
-        total: 1,
-        label:
-          "No linked public author sources on this page. Wider search is not connected yet.",
-      });
-      return;
-    }
     const job = new AbortController();
     collector.current = job;
     try {
       const urls = sources.map((s) => contextSourceURL(s.url, useGitHub));
       if (
         isExtension &&
+        urls.length &&
         !(await chrome.permissions.request({
-          origins: [...new Set(urls.map((u) => `${u.origin}/*`))],
+          origins: [...new Set(urls.map((u) => u.origin + "/*"))],
         }))
       )
         throw Error("Context source access was declined.");
       if (request !== serial.current || job.signal.aborted) return;
-      let completed = 0,
-        failures = 0;
-      setContextWork({
-        phase: "working",
-        completed,
-        total: urls.length,
-        label: `Collecting ${urls.length} linked author sources`,
-      });
-      await collectSources(
-        urls.map((u) => u.href),
-        job.signal,
-        (item) => {
-          if (request !== serial.current || job.signal.aborted) return;
-          completed++;
-          if ("error" in item) failures++;
-          else
+      const byline = await bylineContext(artifact, authorName);
+      if (request !== serial.current || job.signal.aborted) return;
+      if (byline)
+        setSession((s) => ({ ...s, context: mergeContext(s.context, byline) }));
+      const report = await collectAuthorContext({
+        sources,
+        author: authorName,
+        useGitHub,
+        followLinks: discover,
+        signal: job.signal,
+        onResult: (item) => {
+          if (request === serial.current && !job.signal.aborted)
             setSession((s) => ({
               ...s,
               context: mergeContext(s.context, item),
             }));
-          setContextWork({
-            phase: "working",
-            completed,
-            total: urls.length,
-            label: `Collected ${completed - failures} of ${urls.length} sources`,
-          });
         },
-      );
+        onProgress: (completed, total, label) => {
+          if (request === serial.current && !job.signal.aborted)
+            setContextWork({ phase: "working", completed, total, label });
+        },
+      });
       if (request !== serial.current || job.signal.aborted) return;
+      setContextReport(report);
       setContextWork({
-        phase: failures ? "error" : "done",
-        completed,
-        total: urls.length,
-        label: failures
-          ? `Context collection incomplete: ${failures} source(s) unavailable.`
-          : "Author context collected. A new analysis is needed before estimates change.",
+        phase:
+          report.failures.length || (!byline && !report.collected)
+            ? "error"
+            : "done",
+        completed: report.attempted,
+        total: report.attempted || 1,
+        label: report.failures.length
+          ? "Some context sources were unavailable. Open the timeline for coverage."
+          : !sources.length
+            ? byline
+              ? "Page byline recorded; no explicit author links found."
+              : "No author byline or explicit public profile links found."
+            : "Author context and timeline collected. A new analysis is needed before estimates change.",
       });
     } catch (e) {
       if (request === serial.current && !job.signal.aborted)
@@ -897,7 +914,7 @@ export function App({ preview = false }: { preview?: boolean }) {
                     "Move over a sentence in the page. Watch attention and the reels change.",
                     "Click that sentence to hold it. You can now move into the reader.",
                     "Hover a reel to reveal its possible paths. Scroll to choose another goal.",
-                    "Click either green lock to let go. You can replay this guide from Help.",
+                    "Click either green lock, or double-click anywhere in the page or reader, to let go. You can replay this guide from Help.",
                   ][tour]}
             </span>
             <button onClick={() => setTour(tour === 3 ? null : tour + 1)}>
@@ -1026,6 +1043,9 @@ export function App({ preview = false }: { preview?: boolean }) {
                       (n) => n.maker === activeMaker!.id,
                     )
                   : []
+              }
+              orderUncertainGroups={
+                ready ? packet?.goalHierarchy?.orderUncertainGroups : []
               }
               region={region}
               offset={sentenceOffset}
@@ -1217,6 +1237,7 @@ export function App({ preview = false }: { preview?: boolean }) {
               menu: "Options",
               qa: "Development tools",
               context: "Build the context",
+              "author-context": "Author context",
               source: "The source text",
               settings: "Your reader",
               import: "Connect an analysis",
@@ -1236,6 +1257,32 @@ export function App({ preview = false }: { preview?: boolean }) {
               {error}
             </div>
           )}
+          {modal === "author-context" && (
+            <ContextTimeline
+              items={context}
+              author={authorName}
+              report={contextReport}
+              busy={contextWork?.phase === "working"}
+              onRefresh={() => void toggleContext(true, followLinks, true)}
+              onClear={() => {
+                collector.current?.abort();
+                clearContextCache();
+                setContextEnabled(false);
+                setContextReport(null);
+                setContextWork(null);
+                setSession((s) => ({ ...s, context: [], scope: "artifact" }));
+              }}
+              onSelect={(id, selected) =>
+                setSession((s) => ({
+                  ...s,
+                  scope: "context",
+                  context: s.context.map((c) =>
+                    c.id === id ? { ...c, selected } : c,
+                  ),
+                }))
+              }
+            />
+          )}
           {modal === "menu" && (
             <div className="options-content">
               <label className="maker-picker author-selection">
@@ -1251,6 +1298,7 @@ export function App({ preview = false }: { preview?: boolean }) {
                     setDetail(null);
                     setContextEnabled(false);
                     setContextWork(null);
+                    setContextReport(null);
                     collector.current?.abort();
                     if (!ready)
                       setSession((s) => ({
@@ -1294,13 +1342,26 @@ export function App({ preview = false }: { preview?: boolean }) {
                   </span>
                 </label>
                 <div className="nested-options">
-                  <label className="option-check future">
-                    <input type="checkbox" disabled />
+                  <label className="option-check">
+                    <input
+                      type="checkbox"
+                      checked={followLinks}
+                      onChange={(e) => {
+                        setFollowLinks(e.target.checked);
+                        localStorage.setItem(
+                          "tompathy-follow-links",
+                          String(e.target.checked),
+                        );
+                        if (contextEnabled)
+                          void toggleContext(true, e.target.checked);
+                      }}
+                    />
                     <span>
                       Agent search
                       <small>
-                        Planned · gather more sources and build a dated timeline
-                        locally. No paid services.
+                        Follow linked pages and feeds on the permitted sites.
+                        Build a dated timeline locally, without an AI model or
+                        paid search.
                       </small>
                     </span>
                   </label>
@@ -1326,6 +1387,12 @@ export function App({ preview = false }: { preview?: boolean }) {
                     </span>
                   </label>
                 </div>
+                <button
+                  className="context-view-button"
+                  onClick={() => setModal("author-context")}
+                >
+                  View context and timeline
+                </button>
               </section>
               <section
                 className="options-section future-options"
@@ -1462,10 +1529,12 @@ export function App({ preview = false }: { preview?: boolean }) {
               <ol className="steps">
                 <li>
                   <strong>Follow a sentence.</strong> Hover page text to roll
-                  through its goal hierarchy. Click to lock it; Escape or the
-                  small lock beside the reels releases it. Native text selection
-                  and links still work. Use Tab to focus hierarchy blocks and
-                  values; the reels support arrow-key selection.
+                  through its goal hierarchy. Click to lock it; double-click
+                  anywhere in the page or reader to release it. The green lock
+                  also releases it; Escape closes an open overlay first. Native
+                  text selection and links still work. Use Tab to focus
+                  hierarchy blocks and values; the reels support arrow-key
+                  selection.
                 </li>
                 <li>
                   <strong>Explore the shape.</strong> The continuous hierarchy

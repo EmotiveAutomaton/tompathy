@@ -46,9 +46,7 @@ export async function icons(dir) {
                 Math.abs(u - 25) < seam ||
                 Math.abs(u - 40) < seam ||
                 (u < 25 &&
-                  [15, 23.5, 32, 40.5, 49].some(
-                    (y) => Math.abs(v - y) < seam,
-                  )) ||
+                  [20.5, 32, 43.5].some((y) => Math.abs(v - y) < seam)) ||
                 (u >= 25 && u < 40 && Math.abs(v - 32) < seam)
               )
                 col = [240, 242, 235, 255];

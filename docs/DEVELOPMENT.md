@@ -15,8 +15,8 @@ The separate development profile is `.local/chrome-review`. It enables Chrome’
 1. Hover different sentences. Attention should shift independently of the hierarchy; values should stay fixed.
 2. Click a sentence, then move away. Both page and panel should retain a matching green lock.
 3. Click **Show the iteration**, then hover its reel. The other reels expand upward over a faded hierarchy, without moving their bottom edge. Inspect or select a candidate.
-4. Escape first dismisses the active expansion/dialog. Click a lock to release the selection.
-5. Open Options. Review author selection, Light context, the GitHub preference and Color scheme. Agent search and the other future controls stay disabled.
+4. Escape first dismisses the active expansion/dialog. Click a lock, or double-click anywhere in the active page/reader, to release the selection. Directly hover a lower-branch node: only that branch should light up, and its unused final reel should fade. Move above a short reel: expansion should close immediately, while a small gap between adjacent boxes remains traversable.
+5. Open Options. Review author selection, Light context, Agent search, the GitHub preference and Color scheme. **View context and timeline** opens extracted dates, undated facts and source coverage. Author-like models and word analysis remain disabled. Light context does not invent results for a page without analysis.
 6. Export a reading, import it, and check page/panel hover and locking. Updated imported revisions must survive switching away and returning.
 7. Try the public-author link from the Review desk. Invoke the toolbar action to grant access. Capture should succeed; estimates await a matching result.
 
@@ -48,7 +48,7 @@ Receipts and screenshots are generated under ignored `evidence/`; failure traces
 | `src/core/hierarchy.ts`, `attention.ts` | Supplied graph layout and independent attention |
 | `src/content.ts`, `browser.ts`, `background.ts` | Text anchors, Chrome messages and page lifecycle |
 | `src/core/model.ts`, `reading-file.ts` | Runtime schemas and portable reading files |
-| `src/core/collector.ts`, `page.ts` | Public author-link discovery and bounded retrieval |
+| `src/core/collector.ts`, `page.ts`, `author-context.ts`, `context-source.ts` | Author-link discovery, bounded retrieval, cache and timeline extraction |
 | `scripts`, `tests` | Build, fixtures, review launcher and repeatable checks |
 
-The display version is **0.1 beta**; npm uses `0.1.0-beta.1`, and Chrome uses numeric `0.1.0` plus `version_name`. Once uploaded to a Web Store listing, each later numeric version must increase.
+The development display version is **0.2 development 1**; npm uses `0.2.0-dev.1`, and Chrome uses numeric `0.1.1`. The published 0.1 beta is unchanged. See [versioning and the 0.2 workflow](VERSIONING.md). Once uploaded to a Web Store listing, each later numeric version must increase.

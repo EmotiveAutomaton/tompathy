@@ -1,36 +1,33 @@
-# ToMpathy status · 0.1 beta
+# ToMpathy status · 0.2 development
 
-The first public frontend beta consolidates the earlier alpha passes. It is MIT licensed. The example is fictional and hand-authored; no live Sounding Line endpoint is connected.
+Updated 11 October 2026, Pacific time.
 
-## Delivered interface
+Work is on `codex/0.2-development`. npm version: `0.2.0-dev.1`; Chrome numeric version: `0.1.1`; display: **0.2 development 1**. The published `v0.1.0-beta.1` release and main baseline remain unchanged. This is the first iteration toward the complete frontend, not completion of 0.2. [Workflow and milestone criteria](docs/VERSIONING.md).
 
-Exactly three panels remain. Options groups author selection, Light context, nested Agent search and GitHub preference, future controls, and a compact Color scheme selector. The process heading is **Expertise, Habits, and Process**. Its outline has a broad rounded back, pinched shoulders and soft tips; branch-local dots follow their own lobes. Shared nodes retain separate linked instances under their supplied parents.
+## This iteration
 
-Locked ambiguous reels expand upward from the odometer over a faded, still-responsive hierarchy. Their baseline stays fixed. The selected reel glows; the green unlock control remains clickable above the expanded layer. Attention is an independent supplied stream and values remain stable.
+- Simplified three-column teardrop icon: list, two middle blocks, one soft tip.
+- Direct node selection and its reels stay on the pointed visual branch. Page selection retains all supplied alternatives. Shorter branches fade the unused final reel.
+- Accurate intersections at the rounded back remove clipped wedges. Two explicit sibling groups in the example show “Order uncertain” squiggles; absence of a squiggle does not assert known order.
+- Expanded reels close outside their actual boxes, with a small allowance between neighboring boxes. Scrollbars stay hidden during expansion. Double-clicking either the page or reader releases selection.
+- Light context captures the page byline and up to three explicit author sources. Agent search now enables one-hop discovery of linked pages/feeds on the same granted origins, at most six total sources. No model, paid provider or API key is required.
+- Source-backed timeline, separate date kinds, undated facts, source excerpts, coverage, brief export and a 15-minute bounded memory cache. New context stays unselected until requested for a new analysis. Packet contract 1.5 adds optional order-uncertainty groups; 1.0–1.4 remain readable.
 
-Light context has an unauthenticated GitHub profile path for explicitly linked accounts. Agent search, author-like models and word analysis remain planned controls. Global/search remain interface previews. The free context and Store distribution proposals are in [Context research](docs/CONTEXT_RESEARCH.md) and [Distribution](docs/DISTRIBUTION.md).
+## Verification
 
-## Verification · 12 October 2026
+Extension build **5792975216bb**:
 
-Build **846d62d5c803** passed:
+- 22/22 core tests passed: contracts, source identity, calendar dates, branch geometry, cache expiry, cancellation and revision handling.
+- 19/19 browser tests passed: bounded timeline discovery/coverage/export, inert feed/HTML parsing, precise hover boundaries, branch selection, both lock surfaces, narrow/dark layouts, import/export, keyboard and installed page-adapter behavior.
+- Ordinary Google Chrome **154.0.8037.98** passed on this build: actual 360-pixel native panel, branch-local highlighting, faded endings, both double-click unlock surfaces, source/reader interaction, file round trip, toolbar capture and full restart with retained preferences. No recorded page errors. One earlier repeat exposed a stale `DevToolsActivePort` file pointing at the closed browser's port; removing that stale file before a fresh launch fixed the observed restart failure. Existing live review connections are preserved.
+- Package verification passed: 18 entries, 351,340 bytes; every member matches the build. SHA-256: `47ad49dc72aa8889d31c926df50acc983027b4444474198b114953633a752e0d`. Source maps are excluded; MIT and dependency notices are included.
 
-- 18/18 core tests, including graph geometry, retrieval limits, identity and profile-date semantics.
-- 16/16 browser tests, including upward reel expansion, Options, locks, import/export, keyboard, narrow/dark layouts and 200% zoom.
-- Ordinary Google Chrome **154.0.8037.98**: installation, actual native side panel, source/reader interaction, toolbar capture, portable reading round trip, revision retention across tab switching, unchanged-launcher continuity and full restart. No recorded page errors.
-- Package verification: 18 ZIP entries, 343,900 bytes, every member identical to the tested build. MIT and dependency notices included; source maps excluded.
+The icon, branch geometry, expanded reels, timeline and native panel were visually inspected. Generated evidence stays in ignored `evidence/` and CI artifacts. Public release assets were not replaced. Owner-supplied unpublished design files remain ignored and local.
 
-The broader browser run initially found the odometer intercepting the unlock button. Its stacking order was corrected; the complete browser suite and native Chrome check then passed. Screenshots of Options, expanded reels, the native panel and active README example were visually inspected.
+## Review and boundaries
 
-The first clean CI checkout exposed a missing generated-evidence directory. The page-adapter test and package verifier now create their output directory explicitly, independent of tracked screenshots or earlier test order.
+Use **Review ToMpathy.cmd** or `npm run review`. On the example, inspect each branch, hold a paragraph and hover a reel, then double-click to release. For context, use a page with explicit author links and choose **Options → Light context**, optionally **Agent search**, then **View context and timeline**. [QA guide](docs/DEVELOPMENT.md).
 
-Local receipts are in ignored `evidence/`; CI retains its own test artifacts. Chrome's local Prompt/Summarizer availability was `downloadable`; neither model was downloaded or executed. The physical folder picker is not claimed as automated.
+The example is still fictional and hand-authored. Sounding Line is not connected to a live endpoint. The timeline is an extractive report of source statements, not a verified biography or proof of improved inference. Broad web search, local summarization, author-like models, Global and value search remain future work. Redirects and JavaScript-only sources can be unavailable. [Context implementation and limits](docs/CONTEXT_RESEARCH.md).
 
-## Public-repository preparation
-
-The root README is rewritten around installation and real beta behavior, with one active screenshot. Privacy, MIT licensing, dependency notices, development instructions and release notes are included. Superseded alpha notes and one-off validation scripts have recoverable local copies; generated QA images/receipts are no longer tracked. Owner-supplied unpublished design inputs remain local. A local Git bundle preserves the pre-release history.
-
-Existing Git history is retained rather than destructively rewritten. The release is consolidated on main; no scientific repositories or jobs are changed. Credential-pattern and sensitive-filename scans cover all existing refs, with manual review of the public source scope; this is an audit, not a guarantee against every possible disclosure.
-
-## Next work
-
-Review the beta through **Review ToMpathy.cmd** or `npm run review`. Connect the selected-context request/revision boundary to Sounding Line when its callable contract is ready. Then add bounded caching and a source-backed timeline before considering optional local summarization. No paid service or Store submission is configured.
+No scientific jobs, model downloads, training runs, paid services or Store submission were started.

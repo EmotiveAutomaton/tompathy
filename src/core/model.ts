@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { calendarDate } from "./dates";
 
 const id = z.string().min(1).max(200);
 const timestamp = z.iso.datetime();
@@ -43,6 +44,43 @@ export const ContextSchema = z.object({
   retrievedAt: timestamp,
   selected: z.boolean(),
   lineage: z.enum(["pasted", "file", "public-url", "synthetic"]),
+  provenance: z
+    .object({
+      author: z.string().min(1).max(250),
+      basis: z.enum(["page-byline", "explicit-author-link", "linked-source"]),
+      linkedFrom: z.string().max(4000),
+    })
+    .optional(),
+  facts: z
+    .array(
+      z
+        .object({
+          label: z.string().min(1).max(600),
+          quote: z.string().min(1).max(1500),
+          source: z.string().max(4000),
+          date: z
+            .string()
+            .refine(
+              (s) => calendarDate(s) === s,
+              "Invalid or imprecise calendar date",
+            )
+            .optional(),
+          dateKind: z.enum([
+            "publication",
+            "event",
+            "account-created",
+            "profile-updated",
+            "source-updated",
+            "undated",
+          ]),
+        })
+        .refine(
+          (f) => (f.dateKind === "undated") === !f.date,
+          "Dated facts need a date; undated facts must not have one",
+        ),
+    )
+    .max(20)
+    .optional(),
 });
 const SupportSchema = z.object({
   value: z.number().finite(),
@@ -89,7 +127,7 @@ export const HypothesisSchema = z.object({
 });
 export const PacketSchema = z
   .object({
-    schemaVersion: z.enum(["1.0", "1.1", "1.2", "1.3", "1.4"]),
+    schemaVersion: z.enum(["1.0", "1.1", "1.2", "1.3", "1.4", "1.5"]),
     id,
     revision: z.number().int().positive(),
     artifact: ArtifactSchema,
@@ -165,6 +203,17 @@ export const PacketSchema = z
     }),
     goalHierarchy: z
       .object({
+        orderUncertainGroups: z
+          .array(
+            z.object({
+              id,
+              nodes: z.array(id).min(2).max(30),
+              explanation: z.string().min(1).max(1500),
+              evidence: z.array(id).max(30),
+            }),
+          )
+          .max(30)
+          .optional(),
         nodes: z
           .array(
             z.object({
@@ -262,9 +311,28 @@ export const PacketSchema = z
     const hierarchy = p.goalHierarchy?.nodes ?? [];
     unique(hierarchy, "goal hierarchy");
     const hierarchyById = new Map(hierarchy.map((n) => [n.id, n]));
+    const uncertain = p.goalHierarchy?.orderUncertainGroups ?? [];
+    unique(uncertain, "order uncertainty group");
+    if (uncertain.length && p.schemaVersion !== "1.5")
+      error("Order uncertainty groups require contract 1.5.");
+    for (const group of uncertain) {
+      const members = group.nodes.map((id) => hierarchyById.get(id));
+      const parents = (n: (typeof members)[number]) =>
+        n?.parentIds ?? (n?.parentId ? [n.parentId] : []);
+      if (
+        new Set(group.nodes).size !== group.nodes.length ||
+        members.some((n) => !n) ||
+        new Set(members.map((n) => n?.maker)).size !== 1 ||
+        !parents(members[0]).some((p) =>
+          members.every((n) => parents(n).includes(p)),
+        ) ||
+        group.evidence.some((e) => !es.has(e))
+      )
+        error(`Invalid sibling order uncertainty group ${group.id}.`);
+    }
     for (const n of hierarchy) {
       if (
-        !["1.3", "1.4"].includes(p.schemaVersion) &&
+        !["1.3", "1.4", "1.5"].includes(p.schemaVersion) &&
         !["document", "section", "paragraph", "sentence"].includes(
           n.level ?? "",
         )
@@ -280,7 +348,7 @@ export const PacketSchema = z
         error(`Unresolved hierarchy references in ${n.id}.`);
       if (
         n.parentIds &&
-        (p.schemaVersion !== "1.4" ||
+        (!["1.4", "1.5"].includes(p.schemaVersion) ||
           n.parentId ||
           new Set(n.parentIds).size !== n.parentIds.length)
       )
@@ -308,7 +376,7 @@ export const PacketSchema = z
     }
     const depths = new Map<string, number>(),
       visitingHierarchy = new Set<string>();
-    const maxDepth = ["1.3", "1.4"].includes(p.schemaVersion) ? 64 : 12;
+    const maxDepth = ["1.3", "1.4", "1.5"].includes(p.schemaVersion) ? 64 : 12;
     const visitHierarchy = (id: string): number => {
       if (visitingHierarchy.has(id) || visitingHierarchy.size >= maxDepth) {
         error(
@@ -336,14 +404,14 @@ export const PacketSchema = z
       return depth;
     };
     hierarchy.forEach((n) => visitHierarchy(n.id));
-    if (p.schemaVersion !== "1.4")
+    if (!["1.4", "1.5"].includes(p.schemaVersion))
       for (const m of p.makers) {
         const nodes = hierarchy.filter((n) => n.maker === m.id);
         if (nodes.length && nodes.filter((n) => !n.parentId).length !== 1)
           error("Each legacy maker hierarchy needs exactly one root.");
       }
     if (
-      p.schemaVersion !== "1.4" &&
+      !["1.4", "1.5"].includes(p.schemaVersion) &&
       (p.currentAttention || p.hypotheses.some((h) => h.kind === "attention"))
     )
       error("Independent current attention requires contract 1.4.");

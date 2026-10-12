@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.4",
+  "schemaVersion": "1.5",
   "id": "bench-analysis-1",
   "revision": 1,
   "artifact": {
@@ -7,7 +7,7 @@
     "revision": "d00de37ffc1ac6bd20317ad02c4db20154862d732cca8b19eae65e0223ac3bc1",
     "title": "A bench is an invitation",
     "source": "http://127.0.0.1:5173/testbed.html",
-    "capturedAt": "2026-10-12T02:07:11.505Z",
+    "capturedAt": "2026-10-12T03:25:58.929Z",
     "regions": [
       {
         "id": "p1",
@@ -2542,6 +2542,33 @@
     ]
   },
   "goalHierarchy": {
+    "orderUncertainGroups": [
+      {
+        "id": "noticing-order",
+        "nodes": [
+          "sentence-1-1",
+          "sentence-1-2",
+          "sentence-1-3"
+        ],
+        "explanation": "The supplied account does not establish the order of these noticing steps. Vertical position is not a timeline.",
+        "evidence": [
+          "e1"
+        ]
+      },
+      {
+        "id": "invitation-order",
+        "nodes": [
+          "sentence-2-1",
+          "sentence-2-2",
+          "sentence-2-3",
+          "sentence-2-4"
+        ],
+        "explanation": "These design choices may have developed together; their production order is uncertain.",
+        "evidence": [
+          "e2"
+        ]
+      }
+    ],
     "nodes": [
       {
         "id": "purpose",
@@ -3172,35 +3199,35 @@
       "id": "e1",
       "source": "http://127.0.0.1:5173/testbed.html",
       "excerpt": "The first thing we noticed was not where people sat. It was where they stopped. At the edge of the garden, visitors paused with their bags still on their shoulders, as if waiting for permission to stay.",
-      "capturedAt": "2026-10-12T02:07:11.505Z",
+      "capturedAt": "2026-10-12T03:25:58.929Z",
       "relationship": "Text compatible with this account; it does not establish the maker’s intent."
     },
     {
       "id": "e2",
       "source": "http://127.0.0.1:5173/testbed.html",
       "excerpt": "We could have added a sign. Instead, we moved one bench into the shade and turned it slightly toward the path. Nothing about it demanded a conversation. It simply made room for one.",
-      "capturedAt": "2026-10-12T02:07:11.505Z",
+      "capturedAt": "2026-10-12T03:25:58.929Z",
       "relationship": "Text compatible with this account; it does not establish the maker’s intent."
     },
     {
       "id": "e3",
       "source": "http://127.0.0.1:5173/testbed.html",
       "excerpt": "For two weeks, we returned at different hours. We counted pauses, sketched the paths people took, and listened when someone offered a comment. Our first arrangement was too close to the gate. We moved it again.",
-      "capturedAt": "2026-10-12T02:07:11.505Z",
+      "capturedAt": "2026-10-12T03:25:58.929Z",
       "relationship": "Text compatible with this account; it does not establish the maker’s intent."
     },
     {
       "id": "e4",
       "source": "http://127.0.0.1:5173/testbed.html",
       "excerpt": "The final bench is made from reclaimed cedar. Its corners are rounded, its seat a little higher than the old one. A walking stick can rest against either arm. These are small decisions, but small decisions decide who feels welcome.",
-      "capturedAt": "2026-10-12T02:07:11.505Z",
+      "capturedAt": "2026-10-12T03:25:58.929Z",
       "relationship": "Text compatible with this account; it does not establish the maker’s intent."
     },
     {
       "id": "e5",
       "source": "http://127.0.0.1:5173/testbed.html",
       "excerpt": "We do not know whether a bench can make a neighborhood kinder. We do know that on Thursday, two people who had never met sat down in the shade. For now, that is a useful place to begin.",
-      "capturedAt": "2026-10-12T02:07:11.505Z",
+      "capturedAt": "2026-10-12T03:25:58.929Z",
       "relationship": "Text compatible with this account; it does not establish the maker’s intent."
     }
   ]

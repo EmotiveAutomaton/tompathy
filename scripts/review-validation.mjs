@@ -31,7 +31,7 @@ try {
   const errors = [];
   guide.on("pageerror", (error) => errors.push(error.message));
   await expect(guide.locator("#build")).toContainText(
-    `Installed · 0.1 beta · build ${receipt.build}`,
+    `Installed · 0.2 development 1 · build ${receipt.build}`,
   );
   await expect(
     guide.getByRole("heading", { name: "Your first five-minute review" }),
@@ -147,17 +147,47 @@ try {
   await expect(panel.locator('[data-dominant="true"]')).toHaveText(
     "Learning from others",
   );
-  await expect(panel.locator('.spool[data-level="1"]')).toHaveClass(
-    /ambiguous/,
+  await expect(panel.locator('.spool[data-level="1"]')).toHaveAttribute(
+    "data-selected",
+    "story",
   );
-  await expect(panel.locator('.spool[data-level="0"]')).toHaveClass(
-    /ambiguous/,
+  await expect(panel.locator('.spool[data-level="0"]')).toHaveAttribute(
+    "data-selected",
+    "purpose",
   );
   await panel.getByRole("button", { name: "Unlock selection" }).click();
   await expect(
     source.getByRole("button", { name: "Unlock selection" }),
   ).toBeHidden();
   await expect(panel.getByTestId("goals")).toHaveText("Hover to see");
+  const lowerBranch = panel.locator(
+    '[data-root="practical-care"][data-node="paragraph-3"] circle',
+  );
+  await lowerBranch.click();
+  await expect(
+    panel.locator(
+      '[data-root="purpose"].ancestor, [data-root="purpose"].descendant',
+    ),
+  ).toHaveCount(0);
+  await expect(panel.locator('.spool[data-level="0"]')).toHaveCSS(
+    "opacity",
+    "0.18",
+  );
+  await source.locator("h1").dblclick();
+  await expect(
+    panel.getByRole("button", { name: "Unlock selection" }),
+  ).toHaveCount(0);
+  await lowerBranch.click();
+  await panel.locator("#process-title").dblclick();
+  await expect(
+    source.getByRole("button", { name: "Unlock selection" }),
+  ).toBeHidden();
+  await expect(
+    panel.getByRole("img", { name: /^Order uncertain/ }),
+  ).toHaveCount(2);
+  receipt.checks.push(
+    "Direct node selection stays on its visual branch; shorter paths fade the final reel; double-clicking either page or panel releases both locks; two supplied order-uncertainty marks render",
+  );
   await panel.locator("#process-title button").hover();
   await panel.locator('[data-node="paragraph-3"] circle').first().hover();
   expect(

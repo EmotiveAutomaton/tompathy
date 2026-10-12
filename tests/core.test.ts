@@ -26,7 +26,16 @@ import {
   goalGraph,
   hierarchyLayout,
   reelCandidates,
+  instanceNeighborhood,
+  instanceReelCandidates,
 } from "../src/core/hierarchy";
+import { calendarDate } from "../src/core/dates";
+import {
+  clearContextCache,
+  collectAuthorContext,
+  contextTimeline,
+  contextBrief,
+} from "../src/core/author-context";
 import { attentionAt } from "../src/core/attention";
 import { sentences } from "../src/core/sentences";
 
@@ -264,7 +273,7 @@ test("bounded fetch rejects status, content type and oversized body; cancellatio
 
 test("historical partial orders, joint accounts and typed meanings reject contradictory references", async () => {
   const p = await createExample();
-  assert.equal(p.schemaVersion, "1.4");
+  assert.equal(p.schemaVersion, "1.5");
   assert.equal(p.alternatives[0].kind, "coexisting");
   p.process.edges.push({
     from: "iterate",
@@ -400,6 +409,7 @@ test("1.3 accepts unnamed deep goal paths while retaining cycle, depth and legac
 function legacyExample(packet: Awaited<ReturnType<typeof createExample>>) {
   const p = structuredClone(packet);
   delete p.currentAttention;
+  delete p.goalHierarchy?.orderUncertainGroups;
   p.hypotheses = p.hypotheses.filter((h) => h.kind !== "attention");
   p.goalHierarchy!.nodes = p.goalHierarchy!.nodes.filter(
     (n) => n.id !== "practical-care",
@@ -578,4 +588,158 @@ test("GitHub context uses only explicit profiles and preserves the meaning of da
     ),
     /does not match/,
   );
+});
+
+test("visual instances keep a shared node on its pointed branch and close the curved back", async () => {
+  const packet = await createExample(),
+    graph = goalGraph(packet.goalHierarchy!.nodes);
+  const layout = hierarchyLayout(graph, 300),
+    selected = graph.byId.get("paragraph-3")!;
+  for (const root of ["purpose", "practical-care"]) {
+    const tile = layout.tiles.find(
+      (t) => t.rootId === root && t.node.id === selected.id,
+    )!;
+    const related = instanceNeighborhood(layout, tile.key);
+    assert.ok(
+      layout.tiles
+        .filter(
+          (t) => related.ancestors.has(t.key) || related.descendants.has(t.key),
+        )
+        .every((t) => t.rootId === root),
+    );
+    assert.deepEqual(
+      instanceReelCandidates(graph, layout, selected, 2, tile.key).nodes.map(
+        (n) => n.id,
+      ),
+      [root === "purpose" ? "story" : root],
+    );
+    assert.equal(
+      instanceReelCandidates(graph, layout, selected, 3, tile.key).ended,
+      root === "practical-care",
+    );
+    assert.equal(
+      instanceReelCandidates(graph, layout, selected, 0, tile.key).nodes.length,
+      4,
+    );
+  }
+  // A brick entering the curved back starts at a closed intersection rather
+  // than a visibly vertical segment cut at the first valid sampled column.
+  const curved = layout.tiles
+    .filter((t) => t.x === 0)
+    .map((t) =>
+      t.path
+        .match(/-?\d+\.\d+,-?\d+\.\d+/g)!
+        .map((s) => s.split(",").map(Number)),
+    );
+  assert.ok(curved.length > 10);
+  for (const points of curved) assert.deepEqual(points[0], points.at(-1));
+});
+
+test("supplied order uncertainty validates sibling references and preserves older contracts", async () => {
+  const packet = await createExample();
+  assert.equal(
+    parsePacket(JSON.stringify(packet)).goalHierarchy!.orderUncertainGroups!
+      .length,
+    2,
+  );
+  const legacy = structuredClone(packet);
+  legacy.schemaVersion = "1.4";
+  delete legacy.goalHierarchy!.orderUncertainGroups;
+  assert.doesNotThrow(() => parsePacket(JSON.stringify(legacy)));
+  for (const nodes of [
+    ["missing", "sentence-1-1"],
+    ["sentence-1-1", "sentence-2-1"],
+    ["sentence-1-1", "sentence-1-1"],
+  ]) {
+    const bad = structuredClone(packet);
+    bad.goalHierarchy!.orderUncertainGroups![0].nodes = nodes;
+    assert.throws(() => parsePacket(JSON.stringify(bad)), /order uncertainty/);
+  }
+});
+
+test("free context retains date meanings, author identity, cache expiry and cancellation", async () => {
+  clearContextCache();
+  let requests = 0,
+    now = 1000;
+  const items: import("../src/core/model").ContextItem[] = [];
+  const options = {
+    sources: [
+      { author: "Alice", url: "https://github.com/alice" },
+      { author: "Bob", url: "https://github.com/bob" },
+    ],
+    author: "Alice",
+    useGitHub: true,
+    followLinks: true,
+    signal: new AbortController().signal,
+    onResult: (item: (typeof items)[number]) => items.push(item),
+    onProgress: () => {},
+    now: () => now,
+    fetcher: (async (url, init) => {
+      requests++;
+      assert.equal(String(url), "https://api.github.com/users/alice");
+      assert.equal(init?.credentials, "omit");
+      return new Response(
+        JSON.stringify({
+          login: "alice",
+          bio: "I build gardens",
+          created_at: "2019-02-01T12:00:00Z",
+          updated_at: "2026-10-11T09:00:00Z",
+          blog: "https://alice.example.org/about",
+        }),
+        { headers: { "Content-Type": "application/json" } },
+      );
+    }) as typeof fetch,
+  };
+  const first = await collectAuthorContext(options);
+  assert.equal(first.collected, 1);
+  assert.equal(
+    first.skipped[0].reason,
+    "Outside the explicitly granted source sites",
+  );
+  assert.equal(items[0].provenance?.author, "Alice");
+  assert.equal(items[0].selected, false);
+  assert.equal((await collectAuthorContext(options)).cached, 1);
+  assert.equal(requests, 1);
+  now += 16 * 60 * 1000;
+  assert.equal((await collectAuthorContext(options)).cached, 0);
+  assert.equal(requests, 2);
+  const timeline = contextTimeline(items, "Alice");
+  assert.deepEqual(
+    timeline.dated.map((f) => f.dateKind),
+    ["account-created", "profile-updated"],
+  );
+  assert.equal(contextTimeline(items, "Bob").sources.length, 0);
+  assert.match(contextBrief(items, "Alice"), /not biographical event dates/);
+  clearContextCache();
+  const job = new AbortController();
+  await assert.rejects(
+    collectAuthorContext({
+      ...options,
+      signal: job.signal,
+      fetcher: async () => {
+        job.abort();
+        return new Response("Late body", {
+          headers: { "Content-Type": "text/plain" },
+        });
+      },
+      onResult: () => assert.fail("Late context must not enter the session"),
+    }),
+    /cancelled/,
+  );
+});
+
+test("calendar extraction keeps precision and rejects imaginary dates", () => {
+  for (const date of ["2024", "2024-02", "2024-02-29"])
+    assert.equal(calendarDate(date), date);
+  assert.equal(calendarDate("2024-02-29T12:30:00Z"), "2024-02-29");
+  for (const date of [
+    "2023-02-29",
+    "2024-13-01",
+    "2024-00-01",
+    "2024-02-30",
+    "2024Tnonsense",
+    "2024-02-29Tnonsense",
+    "around 2024",
+  ])
+    assert.equal(calendarDate(date), undefined);
 });
