@@ -27,7 +27,7 @@ GitHub unpacked distribution and the implemented context path require no paid se
 
 No published rule requires a backend specifically. The important requirements are useful functioning behavior, an accurate listing, a clear purpose and policy compliance. Google's [quality policies](https://developer.chrome.com/docs/webstore/program-policies/policies) prohibit broken or nonfunctional items and require basic utility.
 
-My assessment: a working reader for imported analysis can be a legitimate product without generating analysis itself, provided that limitation is prominent and reviewers can exercise it. An empty shell that promises author inference but only displays mock data is a poor submission candidate. Store acceptance remains Google's decision.
+My assessment: a working reader for imported analysis can be a legitimate product without generating analysis itself, provided that limitation is prominent and reviewers can exercise it. An empty shell that promises creator inference but only displays mock data is a poor submission candidate. Store acceptance remains Google's decision.
 
 The present GitHub beta honestly exposes its example, import/export and frontend status. Before a Store submission, make the supplied-analysis workflow easy for a new reader, remove or clearly scope unfinished controls, and provide reviewer instructions and a usable sample reading. We do not have to wait for every research feature, but ordinary users need a coherent task they can complete.
 
@@ -51,12 +51,12 @@ These are starting points for the dashboard, not an assertion of approval.
 | `scripting` | Attach the readable-text adapter and linked hover/selection marks |
 | `sidePanel` | Display the three-part reader beside the source |
 | `storage` | Retain local preferences and browser-session reading state |
-| Optional HTTPS hosts | Fetch explicitly selected author context from the granted source origins |
+| Optional HTTPS hosts | Fetch explicitly selected creator context from the granted source origins |
 
 Executable extension code is bundled locally. Retrieved text and imported readings are data, not executable extension code. The ZIP includes the MIT license and bundled dependency notices. Source maps, workstation profiles, local research inputs and QA receipts are excluded.
 
 ## Proposed reviewer walkthrough
 
-Open ToMpathy from the toolbar, then Options → How ToMpathy works → Open the example → Open Maker Reader. Hover and hold a sentence, release its green lock, inspect a hierarchy node and expand the reels. Export the reading, import it, and confirm that the saved text and analysis reopen together. The example is fictional and hand-authored; ordinary pages do not receive generated analysis in this build.
+Open ToMpathy from the toolbar, then Options → How ToMpathy works → Open the example → Open Maker Reader. Hover and hold a sentence, release its green lock, inspect a hierarchy node and expand the reels. Export the reading, import it, and confirm that the saved text and analysis reopen together. The example is fictional and hand-written; ordinary pages do not receive generated analysis in this build.
 
 Recommended sequence: **GitHub 0.1 beta now → private Store beta after the supplied-analysis workflow and listing assets are ready → public Store release when the advertised reading task is useful and complete.**

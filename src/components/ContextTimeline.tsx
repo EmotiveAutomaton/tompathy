@@ -3,7 +3,7 @@ import {
   contextTimeline,
   dateKindLabel,
   type ContextReport,
-} from "../core/author-context";
+} from "../core/creator-context";
 import type { ContextItem } from "../core/model";
 function sourceLink(value: string) {
   try {
@@ -19,22 +19,24 @@ function sourceLink(value: string) {
 }
 export function ContextTimeline({
   items,
-  author,
+  creator,
   report,
   onSelect,
   onRefresh,
   onClear,
   busy,
+  onCancel,
 }: {
   items: ContextItem[];
-  author: string;
+  creator: string;
   report: ContextReport | null;
   onSelect: (id: string, selected: boolean) => void;
   onRefresh: () => void;
   onClear: () => void;
   busy: boolean;
+  onCancel: () => void;
 }) {
-  const timeline = contextTimeline(items, author);
+  const timeline = contextTimeline(items, creator);
   const render = (f: (typeof timeline.dated)[number], i: number) => (
     <li key={`${f.itemId}:${i}`}>
       <div className="timeline-date">
@@ -51,7 +53,7 @@ export function ContextTimeline({
           </a>
           <small>
             Retrieved {new Date(f.retrievedAt).toLocaleString()} ·{" "}
-            {f.basis.replaceAll("-", " ")}
+            {f.basis.replaceAll("-", " ").replace("author", "creator")}
             {f.linkedFrom ? ` · linked from ${f.linkedFrom}` : ""}
           </small>
         </details>
@@ -61,23 +63,24 @@ export function ContextTimeline({
   return (
     <div className="context-timeline">
       <p>
-        Source-backed context for <strong>{author}</strong>. Linked publications
-        and profile timestamps are not a verified biography.
+        Source-backed context for <strong>{creator}</strong>. Linked
+        publications and profile timestamps are not a verified biography.
       </p>
       <div className="timeline-actions">
         <button disabled={busy} onClick={onRefresh}>
           Refresh sources
         </button>
+        {busy && <button onClick={onCancel}>Cancel collection</button>}
         <button
           disabled={!timeline.sources.length}
           onClick={() => {
-            const blob = new Blob([contextBrief(items, author)], {
+            const blob = new Blob([contextBrief(items, creator)], {
                 type: "text/plain;charset=utf-8",
               }),
               url = URL.createObjectURL(blob),
               a = document.createElement("a");
             a.href = url;
-            a.download = "tompathy-author-context.txt";
+            a.download = "tompathy-creator-context.txt";
             a.click();
             setTimeout(() => URL.revokeObjectURL(url), 1000);
           }}
@@ -120,7 +123,9 @@ export function ContextTimeline({
         <ol>{timeline.undated.map(render)}</ol>
       ) : (
         <p className="muted">
-          Enable Light context to collect the page byline and linked sources.
+          {busy
+            ? "Reading linked sources…"
+            : "No undated context collected. Refresh sources to try the page byline and explicit links."}
         </p>
       )}
       {!!timeline.sources.length && (

@@ -105,16 +105,36 @@ export async function createExample(
   return PacketSchema.parse({
     schemaVersion: "1.5",
     currentAttention: attention.currentAttention,
-    goalHierarchy: { nodes: exampleHierarchy(artifact, revised), orderUncertainGroups: [
- {id:'noticing-order',nodes:['sentence-1-1','sentence-1-2','sentence-1-3'], explanation:'The supplied account does not establish the order of these noticing steps. Vertical position is not a timeline.',evidence:['e1']},
- {id:'invitation-order',nodes:['sentence-2-1','sentence-2-2','sentence-2-3','sentence-2-4'], explanation:'These design choices may have developed together; their production order is uncertain.',evidence:['e2']}
-] },
+    goalHierarchy: {
+      nodes: exampleHierarchy(artifact, revised),
+      orderUncertainGroups: [
+        {
+          id: "noticing-order",
+          nodes: ["sentence-1-1", "sentence-1-2", "sentence-1-3"],
+          explanation:
+            "The supplied account does not establish the order of these noticing steps. Vertical position is not a timeline.",
+          evidence: ["e1"],
+        },
+        {
+          id: "invitation-order",
+          nodes: [
+            "sentence-2-1",
+            "sentence-2-2",
+            "sentence-2-3",
+            "sentence-2-4",
+          ],
+          explanation:
+            "These design choices may have developed together; their production order is uncertain.",
+          evidence: ["e2"],
+        },
+      ],
+    },
     id: revised ? "bench-analysis-2" : "bench-analysis-1",
     revision: revised ? 2 : 1,
     artifact,
     provider: {
       id: "tompathy-example",
-      method: "Hand-authored interaction fixture",
+      method: "Hand-written interaction fixture",
     },
     origin: "synthetic example",
     scope: {
@@ -126,7 +146,7 @@ export async function createExample(
         id: "maker-1",
         label: "The garden designer",
         identity: "synthetic",
-        relationship: "Fictional designer and author of this reflection",
+        relationship: "Fictional designer and creator of this reflection",
       },
     ],
     hypotheses: [
@@ -264,7 +284,7 @@ export async function createExample(
         "reflect",
         "process",
         "Reflect without closure",
-        "The author may have selected and qualified a final observation while composing the reflection. The finished text alone cannot establish when this happened.",
+        "The creator may have selected and qualified a final observation while composing the reflection. The finished text alone cannot establish when this happened.",
         ["p6"],
         0.8,
         ["e5"],
@@ -410,7 +430,7 @@ export async function createExample(
         label: "Learning through observation",
         members: ["invite", "observe", "iterate", "curiosity"],
         explanation:
-          "These hypotheses can form one compatible account. They are not independent measurements of the author.",
+          "These hypotheses can form one compatible account. They are not independent measurements of the creator.",
       },
       {
         id: "account-convention",

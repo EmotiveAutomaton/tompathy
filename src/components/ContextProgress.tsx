@@ -21,7 +21,7 @@ export function ContextProgress({ work }: { work: ContextWork | null }) {
       ) : (
         <svg
           role="progressbar"
-          aria-label="Collecting author context"
+          aria-label="Collecting creator context"
           aria-valuemin={0}
           aria-valuemax={work.total}
           aria-valuenow={work.completed}

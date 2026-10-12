@@ -4,8 +4,8 @@ export function ValueTabs({
   tab,
   onTab,
 }: {
-  tab: "author" | "global";
-  onTab: (tab: "author" | "global") => void;
+  tab: "creator" | "global";
+  onTab: (tab: "creator" | "global") => void;
 }) {
   const [search, setSearch] = useState(false),
     [query, setQuery] = useState(""),
@@ -19,12 +19,32 @@ export function ValueTabs({
   return (
     <div className={`value-tabs ${search ? "searching" : ""}`}>
       <div role="tablist" aria-label="Values perspective">
-        {(["author", "global"] as const).map((t) => (
+        {(["creator", "global"] as const).map((t) => (
           <button
             key={t}
             role="tab"
             aria-selected={tab === t}
             aria-controls="values-view"
+            tabIndex={tab === t ? 0 : -1}
+            onKeyDown={(e) => {
+              if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key))
+                return;
+              e.preventDefault();
+              const next =
+                e.key === "Home"
+                  ? "creator"
+                  : e.key === "End"
+                    ? "global"
+                    : t === "creator"
+                      ? "global"
+                      : "creator";
+              onTab(next);
+              const buttons =
+                e.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>(
+                  '[role="tab"]',
+                );
+              buttons?.[next === "creator" ? 0 : 1]?.focus();
+            }}
             onClick={() => onTab(t)}
           >
             {t}

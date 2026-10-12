@@ -5,11 +5,11 @@ test("free linked-source timeline: bounded discovery, dates, cache, coverage, ex
   page,
 }) => {
   const packet = await createExample();
-  const author = "The garden designer",
-    origin = "https://author.example.org";
-  packet.artifact.authors = [{ label: author, basis: "byline" }];
+  const creator = "The garden designer",
+    origin = "https://creator.example.org";
+  packet.artifact.authors = [{ label: creator, basis: "byline" }];
   await page.addInitScript(
-    ({ packet, author, origin }) => {
+    ({ packet, creator, origin }) => {
       localStorage.setItem("tompathy-guide-offered-040", "yes");
       localStorage.setItem("tompathy-follow-links", "true");
       sessionStorage.setItem(
@@ -20,11 +20,11 @@ test("free linked-source timeline: bounded discovery, dates, cache, coverage, ex
           packet,
           scope: "artifact",
           context: [],
-          contextSources: [{ author, url: origin + "/about" }],
+          contextSources: [{ author: creator, url: origin + "/about" }],
         }),
       );
     },
-    { packet, author, origin },
+    { packet, creator, origin },
   );
   const requests: string[] = [];
   await page.route(origin + "/**", async (route) => {
@@ -78,7 +78,7 @@ test("free linked-source timeline: bounded discovery, dates, cache, coverage, ex
   await expect(dialog).toContainText("Six-source collection limit");
   await expect(dialog).toContainText("429");
   await dialog.getByText("Collection coverage", { exact: true }).click();
-  await page.screenshot({ path: "evidence/author-context-timeline.png" });
+  await page.screenshot({ path: "evidence/creator-context-timeline.png" });
   const [download] = await Promise.all([
     page.waitForEvent("download"),
     dialog.getByRole("button", { name: "Export brief" }).click(),
@@ -88,7 +88,7 @@ test("free linked-source timeline: bounded discovery, dates, cache, coverage, ex
   for await (const chunk of stream!) chunks.push(Buffer.from(chunk));
   const brief = Buffer.concat(chunks).toString();
   expect(brief).toContain("2021-04-05 · Published");
-  expect(brief).toContain("https://author.example.org/blog/old");
+  expect(brief).toContain("https://creator.example.org/blog/old");
   expect(brief).toContain("not biographical event dates");
   expect(await page.getByTestId("values").innerHTML()).toBe(values);
   const session = await page.evaluate(() =>
@@ -112,6 +112,73 @@ test("free linked-source timeline: bounded discovery, dates, cache, coverage, ex
   );
   expect(selected.context.filter((s: any) => s.selected)).toHaveLength(1);
   expect(selected.scope).toBe("context");
+  await dialog.getByRole("checkbox").first().uncheck();
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () => JSON.parse(sessionStorage.getItem("tompathy-session")!).scope,
+      ),
+    )
+    .toBe("artifact");
+  await expect(page.getByTestId("values")).toContainText("Care for others");
+});
+
+test("timeline cancellation keeps completed byline and rejects late source responses", async ({
+  page,
+}) => {
+  const packet = await createExample();
+  packet.artifact.authors = [{ label: "The garden designer", basis: "byline" }];
+  await page.addInitScript((packet) => {
+    localStorage.setItem("tompathy-guide-offered-040", "yes");
+    sessionStorage.setItem(
+      "tompathy-session",
+      JSON.stringify({
+        sessionVersion: "1.0",
+        artifact: packet.artifact,
+        packet,
+        scope: "artifact",
+        context: [],
+        contextSources: [
+          {
+            author: "The garden designer",
+            url: "https://creator.example.org/slow",
+          },
+        ],
+      }),
+    );
+  }, packet);
+  let release!: () => void;
+  const response = new Promise<void>((r) => {
+    release = r;
+  });
+  let requested = false;
+  await page.route("https://creator.example.org/slow", async (route) => {
+    requested = true;
+    await response;
+    await route
+      .fulfill({
+        contentType: "text/plain",
+        body: "Late source must not become context.",
+      })
+      .catch(() => {});
+  });
+  await page.goto("/?panel");
+  await page.getByRole("button", { name: "Reader menu", exact: true }).click();
+  await page.getByRole("checkbox", { name: /^Light context/ }).check();
+  await expect.poll(() => requested).toBe(true);
+  await page.getByRole("button", { name: "View context and timeline" }).click();
+  await page.getByRole("button", { name: "Cancel collection" }).click();
+  release();
+  await expect(
+    page.getByRole("button", { name: "Refresh sources" }),
+  ).toBeEnabled();
+  await page.waitForTimeout(100);
+  const context = await page.evaluate(
+    () => JSON.parse(sessionStorage.getItem("tompathy-session")!).context,
+  );
+  expect(context).toHaveLength(1);
+  expect(context[0].provenance.basis).toBe("page-byline");
+  expect(context[0].selected).toBe(false);
 });
 
 test("feed and metadata extraction rejects malformed dates and never executes fetched markup", async ({
@@ -123,9 +190,9 @@ test("feed and metadata extraction rejects malformed dates and never executes fe
     const { parseContextSource } = (await import(
       moduleURL
     )) as typeof import("../src/core/context-source");
-    const source = new URL("https://author.example.org/feed");
+    const source = new URL("https://creator.example.org/feed");
     const rss = parseContextSource(
-      `<rss><channel><item><title>Garden journal</title><pubDate>Tue, 05 Apr 2022 12:00:00 GMT</pubDate><link>https://author.example.org/blog/journal</link><description>&lt;b&gt;Safe excerpt&lt;/b&gt;</description></item></channel></rss>`,
+      `<rss><channel><item><title>Garden journal</title><pubDate>Tue, 05 Apr 2022 12:00:00 GMT</pubDate><link>https://creator.example.org/blog/journal</link><description>&lt;b&gt;Safe excerpt&lt;/b&gt;</description></item></channel></rss>`,
       "application/rss+xml",
       source,
     );

@@ -31,7 +31,7 @@ try {
   const errors = [];
   guide.on("pageerror", (error) => errors.push(error.message));
   await expect(guide.locator("#build")).toContainText(
-    `Installed · 0.2 development 1 · build ${receipt.build}`,
+    `Installed · 0.2 development 2 · build ${receipt.build}`,
   );
   await expect(
     guide.getByRole("heading", { name: "Your first five-minute review" }),
@@ -60,7 +60,7 @@ try {
       "The actual native side panel did not open from the guided example",
     );
   panel.on("pageerror", (error) => errors.push(error.message));
-  await expect(panel).toHaveTitle("ToMpathy - What's on the author's mind?");
+  await expect(panel).toHaveTitle("ToMpathy - What's on the creator's mind?");
   await expect(panel.locator(".reader-content > .region")).toHaveCount(3);
   await expect(panel.locator(".app-header, .app-footer")).toHaveCount(0);
   await expect(panel.getByTestId("values")).toContainText("Care for others");
@@ -99,6 +99,57 @@ try {
     panel.getByRole("button", { name: "Unlock selection" }),
   ).toBeVisible();
   await expect(source.locator('[aria-label="Unlock selection"]')).toBeVisible();
+  // Native panel → document reminder, with no unlock or selection change.
+  for (let i = 0; i < 4; i++) {
+    await panel
+      .locator(
+        `[data-root="purpose"][data-node="sentence-1-${(i % 3) + 1}"] circle`,
+      )
+      .hover();
+    await panel.waitForTimeout(75);
+  }
+  await expect(panel.locator('[data-lock-reminder="active"]')).toHaveCount(1);
+  await expect(source.locator('[data-lock-reminder="active"]')).toHaveCount(1);
+  await source.getByRole("button", { name: "Unlock selection" }).click();
+  await expect(panel.locator('[data-lock-reminder="active"]')).toHaveCount(0);
+  await panel
+    .locator('[data-root="purpose"][data-node="sentence-3-1"] circle')
+    .click();
+  // Document → native panel reminder, using four distinct sentence targets.
+  await source.locator('[data-passage="p3"]').scrollIntoViewIfNeeded();
+  const blockedPoints = await source
+    .locator('[data-passage="p3"]')
+    .evaluate((el) => {
+      const text = Array.from(el.childNodes).find(
+        (n) =>
+          n.nodeType === Node.TEXT_NODE && n.textContent.trim().length > 20,
+      );
+      return [
+        ...new Intl.Segmenter("en", { granularity: "sentence" }).segment(
+          text.textContent,
+        ),
+      ].map((s) => {
+        const range = document.createRange();
+        range.setStart(text, s.index + 4);
+        range.setEnd(text, s.index + 8);
+        const r = range.getBoundingClientRect();
+        return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
+      });
+    });
+  for (const p of blockedPoints) {
+    await source.mouse.move(p.x, p.y);
+    await source.waitForTimeout(75);
+  }
+  await expect(source.locator('[data-lock-reminder="active"]')).toHaveCount(1);
+  await expect(panel.locator('[data-lock-reminder="active"]')).toHaveCount(1);
+  await expect(panel.locator('.spool[data-level="3"]')).toHaveAttribute(
+    "data-selected",
+    "sentence-3-1",
+  );
+  receipt.checks.push(
+    "Blocked focus reminders pulse both native locks in either direction; unlock cancels them",
+  );
+  await expect(panel.locator('[data-lock-reminder="active"]')).toHaveCount(0);
   await source.screenshot({
     path: "evidence/review-locked-source.png",
     scale: "css",
@@ -139,7 +190,7 @@ try {
     )
     .toBe(4);
   await source.getByRole("button", { name: "Unlock selection" }).click();
-  await expect(panel.getByTestId("goals")).toHaveText("Hover to see");
+  await expect(panel.getByTestId("goals")).toHaveText("<- hover");
   await expect(
     panel.getByRole("button", { name: "Unlock selection" }),
   ).toHaveCount(0);
@@ -159,7 +210,7 @@ try {
   await expect(
     source.getByRole("button", { name: "Unlock selection" }),
   ).toBeHidden();
-  await expect(panel.getByTestId("goals")).toHaveText("Hover to see");
+  await expect(panel.getByTestId("goals")).toHaveText("<- hover");
   const lowerBranch = panel.locator(
     '[data-root="practical-care"][data-node="paragraph-3"] circle',
   );
@@ -207,7 +258,7 @@ try {
   await expect(panel.getByRole("tabpanel")).toHaveText(
     "Global view · coming later",
   );
-  await panel.getByRole("tab", { name: "author", exact: true }).click();
+  await panel.getByRole("tab", { name: "creator", exact: true }).click();
   await expect(panel.locator(".core-value-row")).toHaveCount(8);
   await panel.getByRole("button", { name: "Open search preview" }).click();
   await panel
@@ -219,7 +270,7 @@ try {
   ).toBeVisible();
   await panel.getByRole("button", { name: "Close search" }).click();
   receipt.checks.push(
-    "Eight author values, global placeholder and expandable typing-only search work in the native panel",
+    "Eight creator values, global placeholder and expandable typing-only search work in the native panel",
   );
   await panel
     .getByRole("button", { name: "Care for others", exact: true })

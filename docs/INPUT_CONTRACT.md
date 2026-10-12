@@ -41,7 +41,7 @@ Maker-level values are rendered from the whole accepted snapshot. Their membersh
 - `process.interpretation`: `historical-production`, `functional`, or `unspecified`. Edges can carry `kind` (`precedes`, `enables`, `revises`, `alternative`, `related`, `order-unknown`), claim `status`, and evidence IDs. Only precedes/enables edges form displayed branches; other relations remain explicit cross-links. Shared events are referenced rather than silently dropped. A cycle of explicit `precedes` claims is rejected. Branches do not establish a total chronology. Reader-route and repertoire nodes are not mixed into the historical display.
 - `accounts[]`: ID, label, member hypothesis IDs, and explanation. Accounts relate compatible goal/process/preference claims; the frontend does not infer a joint posterior from their individual scores.
 - `documentContribution`: nullable value, named quantity, explanation, and evidence IDs. A local contribution can add `basis`, explanation, and evidence IDs. The frontend never adds global and local scores or treats edits as a quantity of thought. Unknown local contribution is unpainted. Page hover titles and source details explain both levels.
-- Capture metadata may include explicitly sourced `authors[]` with `basis` and a `capture` method/note. Page metadata is not verified identity. The requested author is separately editable in Source text and never relabels a loaded packet's maker.
+- Capture metadata may include explicitly sourced `authors[]` with `basis` and a `capture` method/note. Page metadata is not verified identity. The requested creator is separately editable in Source text and never relabels a loaded packet's maker.
 
 All new evidence/account references are validated. Existing 1.0 packets remain accepted; adding fields does not supply missing historical or scientific warrant.
 
@@ -89,7 +89,7 @@ Current attention is an independent supplied stream. `hypotheses[].kind: "attent
 
 Each item references a separate attention hypothesis associated with the same maker and compatible region. Frame ranges use normalized half-open UTF-16 offsets and may divide a sentence. Nonoverlapping frames for the same maker/region, valid references, support scales and probability candidate sets are enforced. An omitted item support inherits that hypothesis's support; explicit null means unknown. Exhaustive probability sets must be complete and sum to one within each frame that uses them. Limits: 3,000 frames, 40 items per frame. The content adapter supplies the pointed character offset; this does not enable the deferred word-level goal analysis.
 
-The cloud is empty with **Hover to see** until source text or a sentence node is selected. Parent nodes do not select an arbitrary descendant's attention. A selected position without a supplied frame says **No attention supplied**. Older packets remain valid and do not acquire invented attention. The beta example supplies authored sentence frames with shifting leaders, clearly labeled as synthetic in evidence and Help.
+The cloud is empty with **`<- hover`** until source text or a sentence node is selected. Parent nodes do not select an arbitrary descendant's attention. A selected position without a supplied frame says **No attention supplied**. Older packets remain valid and do not acquire invented attention. The beta example supplies written sentence frames with shifting leaders, clearly labeled as synthetic in evidence and Help.
 
 Hierarchy nodes may use `parentIds` (1–16 unique IDs) instead of `parentId`. A maker may have multiple roots. Both parent forms together, cycles, cross-maker parents, missing parents and child regions outside **any** parent are rejected. The 64-level/3,000-node bounds remain. No extra relationships are inferred.
 
@@ -105,7 +105,7 @@ Contract 1.5 optionally supplies `goalHierarchy.orderUncertainGroups[]`, each co
 
 Context records optionally add `provenance: {author, basis, linkedFrom}`. Basis is `page-byline`, `explicit-author-link` or `linked-source`. Optional `facts[]` (at most 20 per source) carries `label`, `quote`, `source`, optional `date`, and `dateKind`: `publication`, `event`, `account-created`, `profile-updated`, `source-updated`, or `undated`. Calendar dates retain supplied precision (`YYYY`, `YYYY-MM`, `YYYY-MM-DD`) and must be valid. Dated kinds require a date; undated facts forbid one. `retrievedAt` retains its separate meaning on the source record. These are additive context metadata; canonical context IDs still bind the source URL and excerpt.
 
-The collector reads at most three explicit selected-author sources, or six total with one-hop discovery enabled. Only the initial source origins are eligible for discovered requests. Successful sources have a 15-minute bounded memory cache. Collected context is initially unselected and never modifies the accepted packet. The timeline and text brief are extractive; neither provides inferred biography, score updates or automatic Sounding Line submission.
+The collector reads at most three explicit selected-creator sources, or six total with one-hop discovery enabled. Only the initial source origins are eligible for discovered requests. Successful sources have a 15-minute bounded memory cache. Collected context is initially unselected and never modifies the accepted packet. The timeline and text brief are extractive; neither provides inferred biography, score updates or automatic Sounding Line submission.
 
 Double-clicking anywhere in the active page or reader releases the held selection. Native text selection is not prevented. Expanded reel pointer bounds follow each actual reel window with a small gap allowance, instead of the full expanded bounding rectangle.
 
@@ -115,7 +115,7 @@ Options → Export writes `tompathy-reading.html`: a static readable snapshot an
 
 Options → Import accepts this file or a matching provider packet. Reading imports validate the schema, recalculate the page hash and anchors, and validate packet/scope binding. Imported HTML is not executed or inserted into the extension. Chrome opens an extension-owned saved-page tab, whose adapter uses the original validated artifact identity rather than pretending that claims belong to the extension URL. The imported context scope is restored because the user explicitly imported the whole accepted reading. Legacy QA session JSON loading remains a separate detached path and deselects context as before.
 
-The session schema has optional `contextSources` (at most three `{author,url}` links explicitly supplied by page metadata/bylines). Checking Light context fetches matching author links with bounded retrieval and narrow host permission. Use GitHub when possible maps explicit GitHub profile links to the public profile API and preserves the meaning of account/profile dates. Results remain unselected until a matching analysis scope is supplied; collection never mutates accepted scores. There is no web search provider or summarization model in this beta.
+The session schema has optional `contextSources` (at most three `{author,url}` links explicitly supplied by page metadata/bylines). Checking Light context fetches matching creator links with bounded retrieval and narrow host permission. Use GitHub when possible maps explicit GitHub profile links to the public profile API and preserves the meaning of account/profile dates. Results remain unselected until a matching analysis scope is supplied; collection never mutates accepted scores. There is no web search provider or summarization model in this beta.
 
 ## Text identity and matching
 
@@ -133,7 +133,7 @@ The page adapter resolves anchors against its captured DOM index. Relevant text/
 
 October 11 integration update: the nearby repository now has `runners/stage13/export_tompathy.py`, an offline 1.0 exporter. It is not a live inference endpoint. The frontend preserves that shape, leaves its missing values unknown, and accepts empty process graphs. Newly added/retrieved context IDs use SHA-256 of UTF-8 `JSON.stringify([source, excerpt])`, matching its canonical source/excerpt identity. Legacy UUID context remains readable but needs recollection or an explicit ID mapping before use with that exporter. Synthetic example context uses its fixture ID.
 
-**Export analysis request** writes `requestVersion: "1.0"`, request ID, exact artifact, requested author (or null), scope with selected context IDs, selected context records only, and accepted packet versions. **Export capture** remains the plain artifact input expected by the offline exporter. No backend jobs are started by either action.
+**Export analysis request** writes `requestVersion: "1.0"`, request ID, exact artifact, requested creator (or null), scope with selected context IDs, selected context records only, and accepted packet versions. **Export capture** remains the plain artifact input expected by the offline exporter. No backend jobs are started by either action.
 
 Sessions add optional `authorLabel` and `history` (up to five earlier packets, their context, and retention timestamp). Revision acceptance preserves the preceding account; history inspection does not repaint the page or replace the current account. Clearing the session also clears this history.
 
@@ -144,3 +144,9 @@ Read-only inspection used the local `SoundingLine/sounding-line` checkout at com
 These research structures are not a callable browser API and were not silently converted into maker values. The future adapter must preserve those distinctions, carry evidence lineage, map only fields whose semantics actually agree, and leave unavailable estimates unknown. No research outputs were copied, experiments launched, or upstream files edited.
 
 Primary implementation references: [Chrome side panels](https://developer.chrome.com/docs/extensions/reference/api/sidePanel), [activeTab](https://developer.chrome.com/docs/extensions/develop/concepts/activeTab), [Playwright extension testing](https://playwright.dev/docs/chrome-extensions).
+
+## Creator terminology and compatibility
+
+The interface and context collector use **creator**. Existing packet/session/request fields `authors`, `authorLabel`, `author` and provenance basis `explicit-author-link` retain their serialized spelling so saved readings and backend producers remain compatible. Standard HTML `author` metadata, `rel=author` links and schema.org `author` fields are still read as specified by their publishers. No schema version changed for this vocabulary update. Source quotations are not rewritten.
+
+Exporting after a context selection changes stores the previous, now mismatched account in reading history and leaves the active packet empty. The requested context stays selected. Reimport therefore preserves the page, prior account and pending selection without presenting outdated estimates as current.

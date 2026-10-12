@@ -22,7 +22,7 @@ test("independent attention, two peaks, bidirectional ambiguity and matching loc
   await expect(
     page.locator(".app-header, .app-footer, .node-explanation"),
   ).toHaveCount(0);
-  await expect(page.getByTestId("goals")).toHaveText("Hover to see");
+  await expect(page.getByTestId("goals")).toHaveText("<- hover");
   const values = await page.getByTestId("values").innerHTML();
   const first = page.locator('[data-passage="p2"] [data-sentence="0"]');
   await first.hover();
@@ -81,13 +81,13 @@ test("independent attention, two peaks, bidirectional ambiguity and matching loc
   await page.keyboard.press("ArrowUp");
   await expect(reel).toHaveAttribute("data-selected", "sentence-3-2");
   await page.locator(".process-lock").click();
-  await expect(page.getByTestId("goals")).toHaveText("Hover to see");
+  await expect(page.getByTestId("goals")).toHaveText("<- hover");
   await expect(
     page.getByRole("button", { name: "Unlock selection" }),
   ).toHaveCount(0);
   await sentence.click();
   await page.locator(".inline-lock").click();
-  await expect(page.getByTestId("goals")).toHaveText("Hover to see");
+  await expect(page.getByTestId("goals")).toHaveText("<- hover");
   await page.locator('[data-node="paragraph-3"] circle').first().hover();
   expect(
     await page
@@ -109,7 +109,7 @@ test("independent attention, two peaks, bidirectional ambiguity and matching loc
       '[data-root="practical-care"].ancestor, [data-root="practical-care"].descendant',
     ),
   ).toHaveCount(0);
-  await expect(page.getByTestId("goals")).toHaveText("Hover to see");
+  await expect(page.getByTestId("goals")).toHaveText("<- hover");
   await expect(page.locator('[data-passage="p4"]')).toHaveClass(
     /related-passage/,
   );
@@ -131,7 +131,7 @@ test("independent attention, two peaks, bidirectional ambiguity and matching loc
   await page.getByRole("button", { name: "Reader menu", exact: true }).click();
   await expect(page.getByLabel("Show hypotheses as a list")).toHaveCount(0);
   await expect(page.getByRole("dialog")).toHaveAccessibleName("Options");
-  await expect(page.getByLabel("Author selection")).toBeVisible();
+  await expect(page.getByLabel("Creator selection")).toBeVisible();
 });
 test("cloud phrases do not overlap at native width; heading and value explanations work by keyboard", async ({
   page,
@@ -234,15 +234,15 @@ test("context changes invalidate scope; explicit revision updates fixed values",
   await expect(page.getByTestId("values")).toContainText("Practical care");
 });
 
-test("compact author header and source export preserve the selected author and context boundary", async ({
+test("compact creator header and source export preserve the selected creator and context boundary", async ({
   page,
 }) => {
   await page.goto("/?panel&qa");
   await expect(page.locator(".app-header")).toHaveCount(0);
   await tool(page, "Source text");
   await page
-    .getByLabel("Author to inspect")
-    .fill("A different requested author");
+    .getByLabel("Creator to inspect")
+    .fill("A different requested creator");
   const promise = page.waitForEvent("download");
   await page
     .getByRole("button", {
@@ -252,7 +252,7 @@ test("compact author header and source export preserve the selected author and c
   const file = await (await promise).path();
   const { readFile } = await import("node:fs/promises");
   const request = JSON.parse(await readFile(file!, "utf8"));
-  expect(request.author).toBe("A different requested author");
+  expect(request.author).toBe("A different requested creator");
   expect(request.context).toEqual([]);
   await page.getByRole("button", { name: "Close dialog" }).click();
   // A new requested subject never relabels an existing account.
@@ -485,7 +485,7 @@ test("corner headings, compact attention, expanded values and prototype tabs", a
   await expect(page.getByRole("tabpanel")).toHaveText(
     "Global view · coming later",
   );
-  await page.getByRole("tab", { name: "author", exact: true }).click();
+  await page.getByRole("tab", { name: "creator", exact: true }).click();
   await expect(page.locator(".core-value-row")).toHaveCount(8);
   const world = await page
     .getByRole("tab", { name: "global", exact: true })
@@ -563,5 +563,5 @@ test("attention can change within a sentence and lock the pointed frame", async 
     "Small details",
   );
   await page.locator(".process-lock").click();
-  await expect(page.getByTestId("goals")).toHaveText("Hover to see");
+  await expect(page.getByTestId("goals")).toHaveText("<- hover");
 });

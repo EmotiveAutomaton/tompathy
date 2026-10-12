@@ -21,13 +21,13 @@ export function clearContextCache() {
 
 export async function bylineContext(
   artifact: Artifact,
-  author: string,
+  creator: string,
 ): Promise<ContextItem | null> {
   const attribution = artifact.authors?.find(
-    (a) => a.label.toLocaleLowerCase() === author.toLocaleLowerCase(),
+    (a) => a.label.toLocaleLowerCase() === creator.toLocaleLowerCase(),
   );
   if (!attribution) return null;
-  const excerpt = `This page credits ${attribution.label} as its author (${attribution.basis}). This is page-supplied attribution, not independently verified identity.`;
+  const excerpt = `This page credits ${attribution.label} as its creator (${attribution.basis}). This is page-supplied attribution, not independently verified identity.`;
   return {
     id: await contextIdentity(artifact.source, excerpt),
     source: artifact.source,
@@ -35,10 +35,14 @@ export async function bylineContext(
     retrievedAt: artifact.capturedAt,
     selected: false,
     lineage: "public-url",
-    provenance: { author, basis: "page-byline", linkedFrom: artifact.source },
+    provenance: {
+      author: creator,
+      basis: "page-byline",
+      linkedFrom: artifact.source,
+    },
     facts: [
       {
-        label: `Page byline: ${author}`,
+        label: `Page byline: ${creator}`,
         quote: excerpt,
         source: artifact.source,
         dateKind: "undated",
@@ -48,9 +52,9 @@ export async function bylineContext(
 }
 
 /** Six bounded requests at most, on the explicitly granted source origins only. */
-export async function collectAuthorContext(options: {
+export async function collectCreatorContext(options: {
   sources: { url: string; author: string }[];
-  author: string;
+  creator: string;
   useGitHub: boolean;
   followLinks: boolean;
   signal: AbortSignal;
@@ -60,7 +64,7 @@ export async function collectAuthorContext(options: {
   now?: () => number;
 }) {
   const {
-    author,
+    creator,
     useGitHub,
     followLinks,
     signal,
@@ -70,7 +74,7 @@ export async function collectAuthorContext(options: {
     now = Date.now,
   } = options;
   const selectedSources = options.sources
-    .filter((s) => s.author.toLocaleLowerCase() === author.toLocaleLowerCase())
+    .filter((s) => s.author.toLocaleLowerCase() === creator.toLocaleLowerCase())
     .slice(0, 3);
   const seeds = [
     ...new Set(
@@ -135,7 +139,11 @@ export async function collectAuthorContext(options: {
       check();
       const item = {
         ...result.item,
-        provenance: { author, basis: job.basis, linkedFrom: job.linkedFrom },
+        provenance: {
+          author: creator,
+          basis: job.basis,
+          linkedFrom: job.linkedFrom,
+        },
       };
       onResult(item);
       report.collected++;
@@ -181,11 +189,12 @@ export const dateKindLabel: Record<
   "source-updated": "Source updated",
   undated: "Undated",
 };
-export function contextTimeline(items: ContextItem[], author: string) {
+export function contextTimeline(items: ContextItem[], creator: string) {
   const sources = items.filter(
     (item) =>
       !item.provenance ||
-      item.provenance.author.toLocaleLowerCase() === author.toLocaleLowerCase(),
+      item.provenance.author.toLocaleLowerCase() ===
+        creator.toLocaleLowerCase(),
   );
   const seen = new Set<string>();
   const facts = sources
@@ -221,9 +230,9 @@ export function contextTimeline(items: ContextItem[], author: string) {
     undated: facts.filter((f) => !f.date),
   };
 }
-export function contextBrief(items: ContextItem[], author: string) {
-  const timeline = contextTimeline(items, author);
+export function contextBrief(items: ContextItem[], creator: string) {
+  const timeline = contextTimeline(items, creator);
   const line = (f: (typeof timeline.dated)[number]) =>
     `${f.date ?? "Undated"} · ${dateKindLabel[f.dateKind]} · ${f.label}\n  Source: ${f.source}\n  Excerpt: ${f.quote}\n  Retrieved: ${f.retrievedAt} · Link basis: ${f.basis}`;
-  return `Context for ${author}\nSource-backed extraction; linked material is not independent identity verification. Dates retain their supplied precision. Publication and profile dates are not biographical event dates.\n\nTimeline\n${timeline.dated.map(line).join("\n\n") || "No explicit dates supplied."}\n\nUndated context\n${timeline.undated.map(line).join("\n\n") || "No undated context supplied."}`;
+  return `Context for ${creator}\nSource-backed extraction; linked material is not independent identity verification. Dates retain their supplied precision. Publication and profile dates are not biographical event dates.\n\nTimeline\n${timeline.dated.map(line).join("\n\n") || "No explicit dates supplied."}\n\nUndated context\n${timeline.undated.map(line).join("\n\n") || "No undated context supplied."}`;
 }

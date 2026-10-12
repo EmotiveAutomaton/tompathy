@@ -2,7 +2,7 @@ import type { Artifact } from "./model";
 import type { GoalNode } from "./hierarchy";
 import { sentences } from "./sentences";
 
-/** Authored fixture interpretations, never generated from arbitrary page text. */
+/** Written fixture interpretations, never generated from arbitrary page text. */
 export function exampleHierarchy(
   artifact: Artifact,
   revised: boolean,
@@ -14,7 +14,7 @@ export function exampleHierarchy(
       id: "purpose",
       label: "Make room for connection",
       description:
-        "A possible governing purpose: show how modest design choices can invite people to stay. Hand-authored example, not established intent.",
+        "A possible governing purpose: show how modest design choices can invite people to stay. Hand-written example, not established intent.",
       level: "document",
       regions: artifact.regions.map((r) => r.id),
     },
@@ -105,7 +105,7 @@ export function exampleHierarchy(
     id: "practical-care",
     label: "Make everyday life easier",
     description:
-      "A second possible end: practical care may matter independently of the broader social story. An authored stress-test branch.",
+      "A second possible end: practical care may matter independently of the broader social story. An written stress-test branch.",
     regions: ["p4", "p5"],
   });
   for (const id of ["paragraph-3", "paragraph-4"]) {

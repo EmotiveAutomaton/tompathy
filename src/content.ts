@@ -1,4 +1,10 @@
-import { LOCK_SVG, LOCK_INK, LOCK_BACKGROUND } from "./core/lock";
+import {
+  LOCK_SVG,
+  LOCK_INK,
+  LOCK_BACKGROUND,
+  blockedFocusTracker,
+  pulseLock,
+} from "./core/lock";
 import { sentences } from "./core/sentences";
 import { makeArtifact, normalize } from "./core/artifact";
 import {
@@ -7,7 +13,7 @@ import {
   type Packet,
   type Session,
 } from "./core/model";
-import { pageAuthors, pageAuthorSources, readingRoot } from "./core/page";
+import { pageCreators, pageCreatorSources, readingRoot } from "./core/page";
 import { contributionExplanation } from "./core/reading";
 declare global {
   interface Window {
@@ -51,6 +57,14 @@ export function installPageAdapter() {
   >();
   let pointOffsets = new WeakMap<Node, number[]>();
   const marker = document.createElement("button");
+  const blockedFocus = blockedFocusTracker();
+  let cancelPulse = () => {};
+  const remind = () => {
+    if (!pinned) return;
+    cancelPulse();
+    blockedFocus.acknowledge(performance.now());
+    cancelPulse = pulseLock(marker);
+  };
   marker.type = "button";
   marker.setAttribute("data-tompathy-ui", "");
   marker.setAttribute("aria-label", "Unlock selection");
@@ -71,8 +85,8 @@ export function installPageAdapter() {
     marker.style.display =
       pinned && r && r.bottom > 0 && r.top < innerHeight ? "grid" : "none";
     if (r) {
-      marker.style.left = `${Math.min(innerWidth - 24, r.right - 5)}px`;
-      marker.style.top = `${r.bottom - 5}px`;
+      marker.style.left = `${Math.max(1, Math.min(innerWidth - 24, r.right - 5))}px`;
+      marker.style.top = `${Math.max(1, Math.min(innerHeight - 24, r.bottom - 5))}px`;
     }
   };
   window.addEventListener("scroll", positionMarker, {
@@ -83,6 +97,8 @@ export function installPageAdapter() {
   window.addEventListener("resize", positionMarker, { signal: abort.signal });
   document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
   const clear = () => {
+    blockedFocus.reset();
+    cancelPulse();
     highlights?.delete("tompathy-active");
     highlights?.delete("tompathy-related");
     marker.style.display = "none";
@@ -135,6 +151,8 @@ export function installPageAdapter() {
     }
   };
   const release = () => {
+    blockedFocus.reset();
+    cancelPulse();
     pinned = false;
     highlights?.delete("tompathy-active");
     highlights?.delete("tompathy-related");
@@ -156,12 +174,33 @@ export function installPageAdapter() {
     { signal: abort.signal },
   );
   const select = (id: string, pin = false, notify = true, offset = 0) => {
-    if (stale || (!pin && pinned)) return;
-    byId.get(selected)?.removeAttribute("data-tompathy-selected");
-    selected = id;
+    if (stale) return;
     const sentence =
       ranges.get(id)?.find((s) => s.start <= offset && s.end > offset) ??
       ranges.get(id)?.[0];
+    if (!pin && pinned) {
+      if (
+        (id !== selected ||
+          (sentence &&
+            !(
+              sentence.start <= selectedOffset && sentence.end > selectedOffset
+            ))) &&
+        blockedFocus.attempt(
+          `text:${id}:${sentence?.start ?? 0}`,
+          performance.now(),
+        )
+      ) {
+        remind();
+        send("TOMPATHY_LOCK_REMINDER");
+      }
+      return;
+    }
+    if (pin) {
+      blockedFocus.reset();
+      cancelPulse();
+    }
+    byId.get(selected)?.removeAttribute("data-tompathy-selected");
+    selected = id;
     selectedOffset = sentence
       ? Math.max(sentence.start, Math.min(offset, sentence.end - 1))
       : 0;
@@ -246,7 +285,7 @@ export function installPageAdapter() {
     artifact =
       restored?.artifact ?? (await makeArtifact(texts, source, document.title));
     if (!restored) {
-      artifact.authors = pageAuthors(document);
+      artifact.authors = pageCreators(document);
       artifact.capture = captureInfo;
       artifact.truncated = candidates.length > 1500 || length > 300000;
     }
@@ -411,7 +450,7 @@ export function installPageAdapter() {
           respond({
             artifact: a,
             restored,
-            contextSources: restored ? [] : pageAuthorSources(document),
+            contextSources: restored ? [] : pageCreatorSources(document),
           }),
         )
         .catch((e) => respond({ error: e.message }));
@@ -472,6 +511,7 @@ export function installPageAdapter() {
         });
     }
     if (m.type === "TOMPATHY_RELEASE") release();
+    if (m.type === "TOMPATHY_LOCK_REMINDER") remind();
     if (m.type === "TOMPATHY_RELATED") {
       if (!pinned) highlights?.delete("tompathy-active");
       paint(
@@ -524,7 +564,7 @@ if (typeof chrome !== "undefined" && chrome.runtime?.id) {
                 restored: window.__tompathySnapshot,
                 contextSources: window.__tompathySnapshot
                   ? []
-                  : pageAuthorSources(document),
+                  : pageCreatorSources(document),
               }),
             )
             .catch((e) => respond({ error: e.message }));

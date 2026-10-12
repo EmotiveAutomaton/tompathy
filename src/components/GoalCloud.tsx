@@ -308,7 +308,7 @@ export function GoalCloud({
       })}
       {(!active || !goals.length) && (
         <span className="attention-cue">
-          {active ? "No attention supplied" : "Hover to see"}
+          {active ? "No attention supplied" : "<- hover"}
         </span>
       )}
     </div>

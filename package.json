@@ -1,6 +1,6 @@
 {
   "name": "tompathy",
-  "version": "0.2.0-dev.1",
+  "version": "0.2.0-dev.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -39,5 +39,5 @@
     "vite": "8.3.0"
   },
   "license": "MIT",
-  "description": "A Chrome side-panel reader for exploring externally supplied author attention, process and values."
+  "description": "A Chrome side-panel reader for exploring externally supplied creator attention, process and values."
 }

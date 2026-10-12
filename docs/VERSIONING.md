@@ -32,7 +32,7 @@ These are choices, not social obligations. Release branches are not a prerequisi
 
 ## Version labels in this checkout
 
-The development package is **`0.2.0-dev.1`**. Chrome's numeric field is **`0.1.1`**, honoring the requested first iteration, with a human-readable **`0.2 development 1`** label. No public 0.1.1 release was created. Chrome cannot put `-dev.1` in its numeric field; later installable previews can use `0.1.2`, `0.1.3`, and so on, all preceding `0.2.0`. Individual commits need no bump: the build fingerprint identifies their exact contents. [Chrome version fields](https://developer.chrome.com/docs/extensions/reference/manifest/version).
+The development package is **`0.2.0-dev.2`**. Chrome's numeric field is **`0.1.2`**, with a human-readable **`0.2 development 2`** label. This is the second review iteration, following Chrome 0.1.1. Neither is a new public GitHub release. Chrome requires a numeric version, so later installable previews can use `0.1.3`, `0.1.4`, and so on before `0.2.0`. Individual commits need no bump: the build fingerprint identifies their exact contents. [Chrome version fields](https://developer.chrome.com/docs/extensions/reference/manifest/version).
 
 Semantic versioning uses major/minor/patch to communicate compatibility. `0.y.z` explicitly means initial development, where the interface is not yet stable. After 1.0, incompatible API changes increment major, compatible features minor, and fixes patch. Our packet contract has its own version because frontend releases and data compatibility are separate concerns. [SemVer 2.0](https://semver.org/).
 
@@ -42,9 +42,9 @@ The owner's target is a complete frontend that can accept the backend when ready
 
 - Final attention, hierarchy, reel, values and Options interactions, including deep/ambiguous graphs and keyboard/reduced-motion behavior.
 - Consistent empty, loading, cancellation, unavailable-source, stale-result and invalid-packet states.
-- Stable capture, author selection, context timeline, saved readings and revision handling across page changes and browser restarts.
+- Stable capture, creator selection, context timeline, saved readings and revision handling across page changes and browser restarts.
 - A documented provider boundary exercised with deterministic success, error and delayed-response fixtures; no invented estimates when fields are absent.
 - A repeatable native Chrome review loop, green CI, current privacy/contract documentation, and an installable verified package.
-- Owner review of the interface and explicit decisions about features that remain marked future, such as Global, value search, word-level analysis and author-like models.
+- Owner review of the interface and explicit decisions about features that remain marked future, such as Global, value search, word-level analysis and creator-like models.
 
 The current iteration advances these criteria; it does not declare 0.2 complete.

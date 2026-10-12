@@ -30,12 +30,61 @@ import {
   instanceReelCandidates,
 } from "../src/core/hierarchy";
 import { calendarDate } from "../src/core/dates";
+import { blockedFocusTracker } from "../src/core/lock";
+import { readingFile, parseReadingFile } from "../src/core/reading-file";
+
+test("lock reminder rejects jitter and slow exploration, bounds bursts, and resets", () => {
+  const tracker = blockedFocusTracker();
+  for (let i = 0; i < 50; i++)
+    assert.equal(tracker.attempt("same", i * 50), false);
+  tracker.reset();
+  for (let i = 0; i < 5; i++)
+    assert.equal(tracker.attempt(String(i), i * 1500), false);
+  tracker.reset();
+  for (let i = 0; i < 3; i++)
+    assert.equal(tracker.attempt(String(i), i * 100), false);
+  assert.equal(tracker.attempt("last", 300), true);
+  for (let i = 0; i < 50; i++)
+    assert.equal(tracker.attempt(String(i), 400 + i * 100), false);
+  tracker.acknowledge(6000);
+  assert.equal(tracker.attempt("remote", 6100), false);
+  tracker.reset();
+  for (let i = 0; i < 3; i++) tracker.attempt(String(i), i * 100);
+  assert.equal(tracker.attempt("last", 300), true);
+});
+
+test("reading export round-trips pending context without losing the previous account", async () => {
+  const packet = await createExample();
+  const session = {
+    sessionVersion: "1.0" as const,
+    artifact: packet.artifact,
+    packet,
+    context: [{ ...exampleContext, selected: true }],
+    scope: "context" as const,
+  };
+  const restored = await parseReadingFile(readingFile(session));
+  assert.equal(restored.packet, null);
+  assert.equal(restored.scope, "context");
+  assert.equal(restored.context[0].selected, true);
+  assert.deepEqual(restored.history![0].packet, packet);
+  const tampered = structuredClone(session);
+  tampered.artifact.regions[0].anchor.exact =
+    "A changed source must still be rejected.";
+  // Separate the packet and artifact: structuredClone preserves shared references.
+  tampered.packet = structuredClone(packet);
+  assert.throws(() => readingFile(tampered), /anchors do not match/);
+  const legacy = { ...session, scope: "artifact" as const, context: [] };
+  assert.deepEqual(
+    (await parseReadingFile(readingFile(legacy))).packet,
+    packet,
+  );
+});
 import {
   clearContextCache,
-  collectAuthorContext,
+  collectCreatorContext,
   contextTimeline,
   contextBrief,
-} from "../src/core/author-context";
+} from "../src/core/creator-context";
 import { attentionAt } from "../src/core/attention";
 import { sentences } from "../src/core/sentences";
 
@@ -657,7 +706,7 @@ test("supplied order uncertainty validates sibling references and preserves olde
   }
 });
 
-test("free context retains date meanings, author identity, cache expiry and cancellation", async () => {
+test("free context retains date meanings, creator identity, cache expiry and cancellation", async () => {
   clearContextCache();
   let requests = 0,
     now = 1000;
@@ -667,7 +716,7 @@ test("free context retains date meanings, author identity, cache expiry and canc
       { author: "Alice", url: "https://github.com/alice" },
       { author: "Bob", url: "https://github.com/bob" },
     ],
-    author: "Alice",
+    creator: "Alice",
     useGitHub: true,
     followLinks: true,
     signal: new AbortController().signal,
@@ -690,7 +739,7 @@ test("free context retains date meanings, author identity, cache expiry and canc
       );
     }) as typeof fetch,
   };
-  const first = await collectAuthorContext(options);
+  const first = await collectCreatorContext(options);
   assert.equal(first.collected, 1);
   assert.equal(
     first.skipped[0].reason,
@@ -698,10 +747,10 @@ test("free context retains date meanings, author identity, cache expiry and canc
   );
   assert.equal(items[0].provenance?.author, "Alice");
   assert.equal(items[0].selected, false);
-  assert.equal((await collectAuthorContext(options)).cached, 1);
+  assert.equal((await collectCreatorContext(options)).cached, 1);
   assert.equal(requests, 1);
   now += 16 * 60 * 1000;
-  assert.equal((await collectAuthorContext(options)).cached, 0);
+  assert.equal((await collectCreatorContext(options)).cached, 0);
   assert.equal(requests, 2);
   const timeline = contextTimeline(items, "Alice");
   assert.deepEqual(
@@ -713,7 +762,7 @@ test("free context retains date meanings, author identity, cache expiry and canc
   clearContextCache();
   const job = new AbortController();
   await assert.rejects(
-    collectAuthorContext({
+    collectCreatorContext({
       ...options,
       signal: job.signal,
       fetcher: async () => {

@@ -42,7 +42,7 @@ export function readingRoot(doc: Document): {
   };
 }
 
-export function pageAuthors(doc: Document): NonNullable<Artifact["authors"]> {
+export function pageCreators(doc: Document): NonNullable<Artifact["authors"]> {
   const found: NonNullable<Artifact["authors"]> = [];
   const add = (
     label: string | null | undefined,
@@ -99,7 +99,7 @@ export function pageAuthors(doc: Document): NonNullable<Artifact["authors"]> {
 }
 
 /** Only explicit publisher-supplied author links are retrieval seeds. */
-export function pageAuthorSources(
+export function pageCreatorSources(
   doc: Document,
 ): { author: string; url: string }[] {
   const found: { author: string; url: string }[] = [];

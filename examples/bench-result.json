@@ -7,7 +7,7 @@
     "revision": "d00de37ffc1ac6bd20317ad02c4db20154862d732cca8b19eae65e0223ac3bc1",
     "title": "A bench is an invitation",
     "source": "tompathy:example",
-    "capturedAt": "2026-10-12T03:25:58.599Z",
+    "capturedAt": "2026-10-12T04:21:38.661Z",
     "regions": [
       {
         "id": "p1",
@@ -74,7 +74,7 @@
   },
   "provider": {
     "id": "tompathy-example",
-    "method": "Hand-authored interaction fixture"
+    "method": "Hand-written interaction fixture"
   },
   "origin": "synthetic example",
   "scope": {
@@ -86,7 +86,7 @@
       "id": "maker-1",
       "label": "The garden designer",
       "identity": "synthetic",
-      "relationship": "Fictional designer and author of this reflection"
+      "relationship": "Fictional designer and creator of this reflection"
     }
   ],
   "hypotheses": [
@@ -695,7 +695,7 @@
       "id": "reflect",
       "kind": "process",
       "label": "Reflect without closure",
-      "description": "The author may have selected and qualified a final observation while composing the reflection. The finished text alone cannot establish when this happened.",
+      "description": "The creator may have selected and qualified a final observation while composing the reflection. The finished text alone cannot establish when this happened.",
       "makers": [
         "maker-1"
       ],
@@ -986,7 +986,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -998,7 +998,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1010,7 +1010,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1022,7 +1022,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1034,7 +1034,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1046,7 +1046,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         }
       ]
@@ -1068,7 +1068,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1080,7 +1080,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1092,7 +1092,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1104,7 +1104,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1116,7 +1116,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1128,7 +1128,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         }
       ]
@@ -1150,7 +1150,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1162,7 +1162,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1174,7 +1174,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1186,7 +1186,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1198,7 +1198,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1210,7 +1210,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         }
       ]
@@ -1232,7 +1232,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1244,7 +1244,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1256,7 +1256,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1268,7 +1268,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1280,7 +1280,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1292,7 +1292,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         }
       ]
@@ -1314,7 +1314,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1326,7 +1326,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1338,7 +1338,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1350,7 +1350,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1362,7 +1362,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1374,7 +1374,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         }
       ]
@@ -1396,7 +1396,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1408,7 +1408,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1420,7 +1420,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1432,7 +1432,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1444,7 +1444,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         }
       ]
@@ -1466,7 +1466,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1478,7 +1478,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1490,7 +1490,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1502,7 +1502,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1514,7 +1514,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1526,7 +1526,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         }
       ]
@@ -1548,7 +1548,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1560,7 +1560,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1572,7 +1572,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1584,7 +1584,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1596,7 +1596,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1608,7 +1608,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         }
       ]
@@ -1630,7 +1630,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1642,7 +1642,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1654,7 +1654,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1666,7 +1666,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1678,7 +1678,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1690,7 +1690,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         }
       ]
@@ -1712,7 +1712,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1724,7 +1724,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1736,7 +1736,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1748,7 +1748,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1760,7 +1760,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         }
       ]
@@ -1782,7 +1782,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1794,7 +1794,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1806,7 +1806,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1818,7 +1818,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1830,7 +1830,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1842,7 +1842,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         }
       ]
@@ -1864,7 +1864,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1876,7 +1876,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1888,7 +1888,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1900,7 +1900,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1912,7 +1912,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1924,7 +1924,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         }
       ]
@@ -1946,7 +1946,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1958,7 +1958,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1970,7 +1970,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1982,7 +1982,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -1994,7 +1994,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2006,7 +2006,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         }
       ]
@@ -2028,7 +2028,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2040,7 +2040,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2052,7 +2052,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2064,7 +2064,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2076,7 +2076,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2088,7 +2088,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         }
       ]
@@ -2110,7 +2110,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2122,7 +2122,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2134,7 +2134,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2146,7 +2146,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2158,7 +2158,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         }
       ]
@@ -2180,7 +2180,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2192,7 +2192,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2204,7 +2204,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2216,7 +2216,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2228,7 +2228,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         }
       ]
@@ -2250,7 +2250,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2262,7 +2262,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2274,7 +2274,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2286,7 +2286,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2298,7 +2298,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         }
       ]
@@ -2320,7 +2320,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2332,7 +2332,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2344,7 +2344,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2356,7 +2356,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2368,7 +2368,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2380,7 +2380,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         }
       ]
@@ -2402,7 +2402,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2414,7 +2414,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2426,7 +2426,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2438,7 +2438,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         },
         {
@@ -2450,7 +2450,7 @@
               1
             ],
             "semantics": "relative",
-            "meaning": "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood."
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
           }
         }
       ]
@@ -2574,7 +2574,7 @@
         "id": "purpose",
         "maker": "maker-1",
         "label": "Make room for connection",
-        "description": "A possible governing purpose: show how modest design choices can invite people to stay. Hand-authored example, not established intent.",
+        "description": "A possible governing purpose: show how modest design choices can invite people to stay. Hand-written example, not established intent.",
         "level": "document",
         "regions": [
           "p1",
@@ -3053,7 +3053,7 @@
         "id": "practical-care",
         "maker": "maker-1",
         "label": "Make everyday life easier",
-        "description": "A second possible end: practical care may matter independently of the broader social story. An authored stress-test branch.",
+        "description": "A second possible end: practical care may matter independently of the broader social story. An written stress-test branch.",
         "regions": [
           "p4",
           "p5"
@@ -3078,7 +3078,7 @@
         "iterate",
         "curiosity"
       ],
-      "explanation": "These hypotheses can form one compatible account. They are not independent measurements of the author."
+      "explanation": "These hypotheses can form one compatible account. They are not independent measurements of the creator."
     },
     {
       "id": "account-convention",
@@ -3199,35 +3199,35 @@
       "id": "e1",
       "source": "tompathy:example",
       "excerpt": "The first thing we noticed was not where people sat. It was where they stopped. At the edge of the garden, visitors paused with their bags still on their shoulders, as if waiting for permission to stay.",
-      "capturedAt": "2026-10-12T03:25:58.599Z",
+      "capturedAt": "2026-10-12T04:21:38.661Z",
       "relationship": "Text compatible with this account; it does not establish the maker’s intent."
     },
     {
       "id": "e2",
       "source": "tompathy:example",
       "excerpt": "We could have added a sign. Instead, we moved one bench into the shade and turned it slightly toward the path. Nothing about it demanded a conversation. It simply made room for one.",
-      "capturedAt": "2026-10-12T03:25:58.599Z",
+      "capturedAt": "2026-10-12T04:21:38.661Z",
       "relationship": "Text compatible with this account; it does not establish the maker’s intent."
     },
     {
       "id": "e3",
       "source": "tompathy:example",
       "excerpt": "For two weeks, we returned at different hours. We counted pauses, sketched the paths people took, and listened when someone offered a comment. Our first arrangement was too close to the gate. We moved it again.",
-      "capturedAt": "2026-10-12T03:25:58.599Z",
+      "capturedAt": "2026-10-12T04:21:38.661Z",
       "relationship": "Text compatible with this account; it does not establish the maker’s intent."
     },
     {
       "id": "e4",
       "source": "tompathy:example",
       "excerpt": "The final bench is made from reclaimed cedar. Its corners are rounded, its seat a little higher than the old one. A walking stick can rest against either arm. These are small decisions, but small decisions decide who feels welcome.",
-      "capturedAt": "2026-10-12T03:25:58.599Z",
+      "capturedAt": "2026-10-12T04:21:38.661Z",
       "relationship": "Text compatible with this account; it does not establish the maker’s intent."
     },
     {
       "id": "e5",
       "source": "tompathy:example",
       "excerpt": "We do not know whether a bench can make a neighborhood kinder. We do know that on Thursday, two people who had never met sat down in the shade. For now, that is a useful place to begin.",
-      "capturedAt": "2026-10-12T03:25:58.599Z",
+      "capturedAt": "2026-10-12T04:21:38.661Z",
       "relationship": "Text compatible with this account; it does not establish the maker’s intent."
     }
   ]

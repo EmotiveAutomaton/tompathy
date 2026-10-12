@@ -3,10 +3,10 @@ import { ReadingPreview } from "./components/ReadingPreview";
 import { ContextTimeline } from "./components/ContextTimeline";
 import {
   bylineContext,
-  collectAuthorContext,
+  collectCreatorContext,
   clearContextCache,
   type ContextReport,
-} from "./core/author-context";
+} from "./core/creator-context";
 import {
   ContextProgress,
   type ContextWork,
@@ -14,6 +14,7 @@ import {
 import { attentionAt } from "./core/attention";
 import { ValueTabs } from "./components/ValueTabs";
 import { SelectionLock } from "./components/SelectionLock";
+import { blockedFocusTracker } from "./core/lock";
 import { GoalCloud } from "./components/GoalCloud";
 import { ProcessHierarchy } from "./components/ProcessHierarchy";
 import { ValueList } from "./components/ValueList";
@@ -182,7 +183,8 @@ export function App({ preview = false }: { preview?: boolean }) {
     [tabId, setTabId] = useState<number | null>(null),
     [region, setRegion] = useState("p2"),
     [pinned, setPinned] = useState(false),
-    [valuesTab, setValuesTab] = useState<"author" | "global">("author"),
+    [lockReminder, setLockReminder] = useState(0),
+    [valuesTab, setValuesTab] = useState<"creator" | "global">("creator"),
     [sentenceOffset, setSentenceOffset] = useState(0),
     [sourceHover, setSourceHover] = useState(false),
     [relatedNode, setRelatedNode] = useState<GoalNode | null>(null),
@@ -207,7 +209,7 @@ export function App({ preview = false }: { preview?: boolean }) {
       | "qa"
       | "menu"
       | "context"
-      | "author-context"
+      | "creator-context"
       | "source"
       | "settings"
       | "import"
@@ -229,8 +231,19 @@ export function App({ preview = false }: { preview?: boolean }) {
   const serial = useRef(0),
     collector = useRef<AbortController | null>(null),
     port = useRef<chrome.runtime.Port | null>(null),
-    current = useRef({ session, tabId });
-  current.current = { session, tabId };
+    current = useRef({ session, tabId, pinned }),
+    blockedFocus = useRef(blockedFocusTracker());
+  current.current = { session, tabId, pinned };
+  useEffect(() => {
+    blockedFocus.current.reset();
+    setLockReminder(0);
+  }, [pinned, lockedNode?.id, region, sentenceOffset]);
+  const blocked = (key: string) => {
+    if (pinned && blockedFocus.current.attempt(key, performance.now())) {
+      setLockReminder((n) => n + 1);
+      void pageCommand(tabId, session.artifact, "TOMPATHY_LOCK_REMINDER");
+    }
+  };
   useEffect(() => {
     if (contextWork?.phase === "done" || contextWork?.phase === "error") {
       const timer = setTimeout(() => setContextWork(null), 5000);
@@ -249,15 +262,15 @@ export function App({ preview = false }: { preview?: boolean }) {
   }, [ready]);
   const activeMaker =
     packet?.makers.find((m) => m.id === maker) ?? packet?.makers[0];
-  const authorName =
+  const creatorName =
     (ready && activeMaker?.identity !== "unknown"
       ? activeMaker?.label
       : null) ||
     session.authorLabel ||
     (artifact?.authors?.length === 1 ? artifact.authors[0].label : null) ||
     (artifact?.authors?.length
-      ? "Multiple authors listed"
-      : "Author not identified");
+      ? "Multiple creators listed"
+      : "Creator not identified");
   const hypotheses = ready
     ? packet!.hypotheses.filter((h) => h.makers.includes(activeMaker!.id))
     : [];
@@ -467,6 +480,10 @@ export function App({ preview = false }: { preview?: boolean }) {
         setRelatedNode(null);
         setSourceHover(false);
       }
+      if (m.type === "TOMPATHY_LOCK_REMINDER" && c.pinned) {
+        blockedFocus.current.acknowledge(performance.now());
+        setLockReminder((n) => n + 1);
+      }
       if (m.type === "TOMPATHY_LEAVE") setSourceHover(false);
       if (m.type === "TOMPATHY_STALE") {
         cancelWork();
@@ -565,7 +582,20 @@ export function App({ preview = false }: { preview?: boolean }) {
     return () => window.removeEventListener("dblclick", release);
   }, [tabId, artifact]);
   const move = (id: string, pin = false, offset = 0) => {
-    if (pinned && !pin) return;
+    if (pinned && !pin) {
+      const text =
+        artifact?.regions.find((r) => r.id === id)?.anchor.exact ?? "";
+      const sentence = sentences(text).find(
+        (s) => s.start <= offset && s.end > offset,
+      );
+      if (
+        id !== region ||
+        (sentence &&
+          !(sentence.start <= sentenceOffset && sentence.end > sentenceOffset))
+      )
+        blocked(`text:${id}:${sentence?.start ?? 0}`);
+      return;
+    }
     setRegion(id);
     setSentenceOffset(offset);
     setSourceHover(true);
@@ -687,7 +717,7 @@ export function App({ preview = false }: { preview?: boolean }) {
     if (refresh) clearContextCache();
     const request = serial.current;
     const sources = (session.contextSources ?? []).filter(
-      (s) => s.author.toLocaleLowerCase() === authorName.toLocaleLowerCase(),
+      (s) => s.author.toLocaleLowerCase() === creatorName.toLocaleLowerCase(),
     );
     const job = new AbortController();
     collector.current = job;
@@ -702,13 +732,13 @@ export function App({ preview = false }: { preview?: boolean }) {
       )
         throw Error("Context source access was declined.");
       if (request !== serial.current || job.signal.aborted) return;
-      const byline = await bylineContext(artifact, authorName);
+      const byline = await bylineContext(artifact, creatorName);
       if (request !== serial.current || job.signal.aborted) return;
       if (byline)
         setSession((s) => ({ ...s, context: mergeContext(s.context, byline) }));
-      const report = await collectAuthorContext({
+      const report = await collectCreatorContext({
         sources,
-        author: authorName,
+        creator: creatorName,
         useGitHub,
         followLinks: discover,
         signal: job.signal,
@@ -737,9 +767,9 @@ export function App({ preview = false }: { preview?: boolean }) {
           ? "Some context sources were unavailable. Open the timeline for coverage."
           : !sources.length
             ? byline
-              ? "Page byline recorded; no explicit author links found."
-              : "No author byline or explicit public profile links found."
-            : "Author context and timeline collected. A new analysis is needed before estimates change.",
+              ? "Page byline recorded; no explicit creator links found."
+              : "No creator byline or explicit public profile links found."
+            : "Creator context and timeline collected. A new analysis is needed before estimates change.",
       });
     } catch (e) {
       if (request === serial.current && !job.signal.aborted)
@@ -761,6 +791,10 @@ export function App({ preview = false }: { preview?: boolean }) {
       a.download = "tompathy-reading.html";
       a.click();
       setTimeout(() => URL.revokeObjectURL(url), 2000);
+      if (mismatch)
+        setNotice(
+          "Reading saved. The previous account is retained in history; selected context awaits a matching analysis.",
+        );
     } catch (e) {
       setError((e as Error).message);
     }
@@ -868,6 +902,7 @@ export function App({ preview = false }: { preview?: boolean }) {
     <div className={preview ? "workspace" : "extension-root"}>
       {preview && artifact && artifact.source !== "tompathy:example" ? (
         <ReadingPreview
+          lockReminder={lockReminder}
           artifact={artifact}
           region={region}
           offset={sentenceOffset}
@@ -880,6 +915,7 @@ export function App({ preview = false }: { preview?: boolean }) {
       ) : (
         preview && (
           <ExampleArticle
+            lockReminder={lockReminder}
             active={
               pinned || sourceHover || relatedNode?.span
                 ? (relatedNode?.span?.region ?? region)
@@ -1032,10 +1068,12 @@ export function App({ preview = false }: { preview?: boolean }) {
           >
             <div className="section-heading">
               <SectionTitle kind="process">
-                Expertise, Habits, and Process
+                Previous attention (expertise and habit)
               </SectionTitle>
             </div>
             <ProcessHierarchy
+              lockReminder={lockReminder}
+              onBlockedFocus={blocked}
               key={`${packet?.id}:${packet?.revision}:${activeMaker?.id}`}
               nodes={
                 ready
@@ -1086,10 +1124,10 @@ export function App({ preview = false }: { preview?: boolean }) {
               id="values-view"
               role="tabpanel"
               aria-label={
-                valuesTab === "author" ? "Author values" : "Global preview"
+                valuesTab === "creator" ? "Creator values" : "Global preview"
               }
             >
-              {valuesTab === "author" ? (
+              {valuesTab === "creator" ? (
                 <ValueList values={values} packet={packet} inspect={inspect} />
               ) : (
                 <span className="quiet-empty world-placeholder">
@@ -1106,7 +1144,7 @@ export function App({ preview = false }: { preview?: boolean }) {
             {busy
               ? "Capturing"
               : ready
-                ? `${authorName}. ${packet!.origin}. ${pinned ? "Locked" : "Following"} ${region}, sentence offset ${sentenceOffset}.`
+                ? `${creatorName}. ${packet!.origin}. ${pinned ? "Locked" : "Following"} ${region}, sentence offset ${sentenceOffset}.`
                 : artifact
                   ? "Awaiting analysis"
                   : "Choose a text"}
@@ -1237,7 +1275,7 @@ export function App({ preview = false }: { preview?: boolean }) {
               menu: "Options",
               qa: "Development tools",
               context: "Build the context",
-              "author-context": "Author context",
+              "creator-context": "Creator context",
               source: "The source text",
               settings: "Your reader",
               import: "Connect an analysis",
@@ -1257,12 +1295,17 @@ export function App({ preview = false }: { preview?: boolean }) {
               {error}
             </div>
           )}
-          {modal === "author-context" && (
+          {modal === "creator-context" && (
             <ContextTimeline
               items={context}
-              author={authorName}
+              creator={creatorName}
               report={contextReport}
               busy={contextWork?.phase === "working"}
+              onCancel={() => {
+                collector.current?.abort();
+                setContextEnabled(false);
+                setContextWork(null);
+              }}
               onRefresh={() => void toggleContext(true, followLinks, true)}
               onClear={() => {
                 collector.current?.abort();
@@ -1273,25 +1316,30 @@ export function App({ preview = false }: { preview?: boolean }) {
                 setSession((s) => ({ ...s, context: [], scope: "artifact" }));
               }}
               onSelect={(id, selected) =>
-                setSession((s) => ({
-                  ...s,
-                  scope: "context",
-                  context: s.context.map((c) =>
+                setSession((s) => {
+                  const context = s.context.map((c) =>
                     c.id === id ? { ...c, selected } : c,
-                  ),
-                }))
+                  );
+                  return {
+                    ...s,
+                    scope: context.some((c) => c.selected)
+                      ? "context"
+                      : "artifact",
+                    context,
+                  };
+                })
               }
             />
           )}
           {modal === "menu" && (
             <div className="options-content">
-              <label className="maker-picker author-selection">
-                Author selection
+              <label className="maker-picker creator-selection">
+                Creator selection
                 <select
                   value={
                     ready
                       ? activeMaker?.id
-                      : (session.authorLabel ?? authorName)
+                      : (session.authorLabel ?? creatorName)
                   }
                   onChange={(e) => {
                     setMaker(e.target.value);
@@ -1318,7 +1366,7 @@ export function App({ preview = false }: { preview?: boolean }) {
                       <option key={a.label}>{a.label}</option>
                     ))
                   ) : (
-                    <option>{authorName}</option>
+                    <option>{creatorName}</option>
                   )}
                 </select>
               </label>
@@ -1336,7 +1384,7 @@ export function App({ preview = false }: { preview?: boolean }) {
                   <span>
                     Light context
                     <small>
-                      Read the byline and follow the author’s explicit profile
+                      Read the byline and follow the creator’s explicit profile
                       links.
                     </small>
                   </span>
@@ -1381,7 +1429,7 @@ export function App({ preview = false }: { preview?: boolean }) {
                     <span>
                       Use GitHub when possible
                       <small>
-                        Use public profile data when the author links their
+                        Use public profile data when the creator links their
                         account.
                       </small>
                     </span>
@@ -1389,7 +1437,7 @@ export function App({ preview = false }: { preview?: boolean }) {
                 </div>
                 <button
                   className="context-view-button"
-                  onClick={() => setModal("author-context")}
+                  onClick={() => setModal("creator-context")}
                 >
                   View context and timeline
                 </button>
@@ -1401,7 +1449,7 @@ export function App({ preview = false }: { preview?: boolean }) {
                 <label className="option-check future">
                   <input type="checkbox" disabled />
                   <span>
-                    Create a small local model to think like this author
+                    Create a small local model to think like this creator
                     <small>Planned · no model is created yet.</small>
                   </span>
                 </label>
@@ -1516,7 +1564,7 @@ export function App({ preview = false }: { preview?: boolean }) {
           )}
           {modal === "help" && (
             <>
-              <p className="modal-lead">What's on the author's mind?</p>
+              <p className="modal-lead">What's on the creator's mind?</p>
               <button
                 className="secondary-button"
                 onClick={() => {
@@ -1552,19 +1600,19 @@ export function App({ preview = false }: { preview?: boolean }) {
               </ol>
               <h3>Current attention</h3>
               <p>{explanations.goals}</p>
-              <h3>Expertise, Habits, and Process</h3>
+              <h3>Previous attention (expertise and habit)</h3>
               <p>{explanations.process}</p>
               <h3>Core values</h3>
               <p>{explanations.values}</p>
               <h3>This account</h3>
               <p>
                 {packet
-                  ? `${authorName} · ${packet.origin}. ${packet.provider.method}.`
+                  ? `${creatorName} · ${packet.origin}. ${packet.provider.method}.`
                   : "No analysis is connected. Ordinary pages await a supplied result."}{" "}
-                The bundled example is fictional and hand-authored. Older
-                packets without a goal hierarchy remain readable in the source
-                and evidence tools; a hierarchy is never inferred from
-                historical process edges.
+                The bundled example is fictional and hand-written. Older packets
+                without a goal hierarchy remain readable in the source and
+                evidence tools; a hierarchy is never inferred from historical
+                process edges.
               </p>
               <p>
                 Reduced-motion settings are respected. Word-level goals are
@@ -1580,7 +1628,7 @@ export function App({ preview = false }: { preview?: boolean }) {
             <>
               <h3>{artifact?.title ?? "No source captured"}</h3>
               <label>
-                Author to inspect
+                Creator to inspect
                 <input
                   value={
                     session.authorLabel ??
@@ -1589,7 +1637,7 @@ export function App({ preview = false }: { preview?: boolean }) {
                       : "")
                   }
                   maxLength={250}
-                  placeholder="Author not identified"
+                  placeholder="Creator not identified"
                   onChange={(e) =>
                     setSession((s) => ({ ...s, authorLabel: e.target.value }))
                   }
@@ -1597,8 +1645,8 @@ export function App({ preview = false }: { preview?: boolean }) {
               </label>
               <p className="muted">
                 {ready
-                  ? `Analysis subject: ${activeMaker?.label}. Editing the requested author does not reassign existing claims.`
-                  : "A page byline is a source attribution, not a verified identity. You can correct the requested author before exporting."}
+                  ? `Analysis subject: ${activeMaker?.label}. Editing the requested creator does not reassign existing claims.`
+                  : "A page byline is a source attribution, not a verified identity. You can correct the requested creator before exporting."}
               </p>
               {artifact?.capture && (
                 <p className="muted">{artifact.capture.note}</p>
@@ -1827,7 +1875,7 @@ export function App({ preview = false }: { preview?: boolean }) {
               </p>
               <p className="muted">
                 These sources are available to you. Their presence does not
-                establish what the author knew or believed.
+                establish what the creator knew or believed.
               </p>
               {context.map((c) => (
                 <div className="context-item" key={c.id}>
@@ -2205,6 +2253,7 @@ function sourceLabel(source: string) {
   }
 }
 export function ExampleArticle({
+  lockReminder = 0,
   active = "",
   pinned = false,
   related = [],
@@ -2213,6 +2262,7 @@ export function ExampleArticle({
   onUnlock = () => {},
   sentenceOffset = 0,
 }: {
+  lockReminder?: number;
   active?: string;
   pinned?: boolean;
   related?: string[];
@@ -2293,10 +2343,10 @@ export function ExampleArticle({
           we cannot quite plan.
         </div>
         <div className="article-byline" data-tompathy-ui>
-          <span className="author-avatar">F</span>
+          <span className="creator-avatar">F</span>
           <span>
             The garden designer{" "}
-            <small>September 19, 2026 · Fictional author</small>
+            <small>September 19, 2026 · Fictional creator</small>
           </span>
           <span className="article-rule" />
         </div>
@@ -2309,7 +2359,10 @@ export function ExampleArticle({
 
             onFocus={() => onMove(`p${i + 2}`)}
             onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") onMove(`p${i + 2}`, true);
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onMove(`p${i + 2}`, true);
+              }
             }}
           >
             <span className="passage-number" aria-hidden="true">
@@ -2362,6 +2415,7 @@ export function ExampleArticle({
                       sentenceOffset >= sentence.start &&
                       sentenceOffset < sentence.end && (
                         <SelectionLock
+                          reminder={lockReminder}
                           className="inline-lock"
                           onUnlock={onUnlock}
                         />

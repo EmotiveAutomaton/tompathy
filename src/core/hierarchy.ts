@@ -259,8 +259,23 @@ export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
       extent = Math.max(...samples.map((p) => p.b)) - y;
     // Dot arcs follow this node's root lobe, independently of the shared back.
     const localY = from + to - 1;
-    const desiredX = x + (end - x) * (0.34 + 0.3 * localY ** 2);
-    const middle = samples.reduce<(typeof samples)[number] | undefined>(
+    const desiredX = x + (end - x) * (0.46 + 0.4 * Math.abs(localY) ** 1.5);
+    const radius = node.parents.length ? 1.6 : 2.7;
+    // Fit the whole dot inside its brick, including the curved upper/lower edge.
+    const safe = samples.filter((p) => {
+      const cy = (p.a + p.b) / 2;
+      return (
+        p.x - x > radius + 1 &&
+        end - p.x > radius + 1 &&
+        [-1, 0, 1].every((dx) => {
+          const [a, b] = band(l, p.x + dx * (radius + 1), from, to);
+          return cy - a > radius + 1 && b - cy > radius + 1;
+        })
+      );
+    });
+    const middle = (safe.length ? safe : samples).reduce<
+      (typeof samples)[number] | undefined
+    >(
       (best, p) =>
         !best || Math.abs(p.x - desiredX) < Math.abs(best.x - desiredX)
           ? p

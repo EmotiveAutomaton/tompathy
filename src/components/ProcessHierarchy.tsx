@@ -93,6 +93,7 @@ function Reel({
           : `${ambiguous ? `${candidates.length + Number(ended)} possible goals or endings; none selected` : (choice?.data.label ?? "This path ends before this level")}. Scroll or use arrow keys to choose.`
       }
       onKeyDown={(e) => {
+        if (e.target !== e.currentTarget) return;
         if (["ArrowUp", "ArrowDown", "Home", "End"].includes(e.key)) {
           e.preventDefault();
           select(
@@ -119,6 +120,30 @@ function Reel({
             className="reel-options"
             role="group"
             aria-label="Possible goals"
+            onMouseLeave={() => onInspect(null)}
+            onKeyDown={(e) => {
+              if (!["ArrowUp", "ArrowDown", "Home", "End"].includes(e.key))
+                return;
+              e.preventDefault();
+              e.stopPropagation();
+              const buttons = Array.from(
+                e.currentTarget.querySelectorAll("button"),
+              );
+              const index = buttons.indexOf(e.target as HTMLButtonElement);
+              const next =
+                e.key === "Home"
+                  ? 0
+                  : e.key === "End"
+                    ? buttons.length - 1
+                    : Math.max(
+                        0,
+                        Math.min(
+                          buttons.length - 1,
+                          index + (e.key === "ArrowDown" ? 1 : -1),
+                        ),
+                      );
+              buttons[next]?.focus();
+            }}
           >
             {candidates.map((n) => (
               <button
@@ -165,6 +190,8 @@ export function ProcessHierarchy({
   onHighlight,
   onLock,
   onSelect,
+  lockReminder = 0,
+  onBlockedFocus = () => {},
 }: {
   nodes: GoalNode[];
   orderUncertainGroups?: { id: string; nodes: string[]; explanation: string }[];
@@ -176,6 +203,8 @@ export function ProcessHierarchy({
   onHighlight: (node: GoalNode | null) => void;
   onLock: () => void;
   onSelect: (node: GoalNode) => void;
+  lockReminder?: number;
+  onBlockedFocus?: (key: string) => void;
 }) {
   const graph = useMemo(() => goalGraph(nodes), [nodes]);
   const [hovered, setHovered] = useState<{ id: string; key?: string } | null>(
@@ -200,6 +229,7 @@ export function ProcessHierarchy({
   useEffect(() => {
     if (!expanded) return;
     const move = (e: PointerEvent) => {
+      if ((e.target as Element).closest(".process-lock")) return;
       const boxes = spools.current?.querySelectorAll(".spool-window");
       const inside = Array.from(boxes ?? []).some((el) => {
         const r = el.getBoundingClientRect();
@@ -218,6 +248,18 @@ export function ProcessHierarchy({
     document.addEventListener("pointermove", move, { passive: true });
     return () => document.removeEventListener("pointermove", move);
   }, [expanded]);
+  useEffect(() => {
+    const first = spools.current?.querySelector(".spool-window");
+    if (!first) return;
+    const observer = new ResizeObserver(([entry]) => {
+      spools.current?.style.setProperty(
+        "--first-reel-rise",
+        `${Math.max(0, (entry.borderBoxSize[0]?.blockSize ?? entry.contentRect.height) - REEL_HEIGHT)}px`,
+      );
+    });
+    observer.observe(first);
+    return () => observer.disconnect();
+  }, [nodes.length]);
   useEffect(() => {
     const observer = new ResizeObserver(([entry]) =>
       setHeight(Math.max(160, entry.contentRect.height)),
@@ -245,6 +287,7 @@ export function ProcessHierarchy({
     layout,
     expanded ? (hovered?.key ?? selectedKey) : selectedKey,
   );
+  const lockedBranch = instanceNeighborhood(layout, selectedKey);
   const candidatesAt = (rank: number) =>
     instanceReelCandidates(graph, layout, selected, rank, selectedKey);
   const columns = Array.from({ length: graph.depth + 1 }, (_, rank) =>
@@ -254,6 +297,8 @@ export function ProcessHierarchy({
   const canExpand =
     pinned && columns.some((_, rank) => candidatesAt(rank).ambiguous);
   const highlight = (node: GraphNode | null, key?: string) => {
+    if (pinned && node && node.id !== selected?.id)
+      onBlockedFocus(key ?? node.id);
     setHovered(node ? { id: node.id, key } : null);
     if (!pinned) onHighlight(node?.data ?? null);
   };
@@ -357,7 +402,11 @@ export function ProcessHierarchy({
                       data-rank={t.node.rank}
                       className={classes(t.node, t.key)}
                       aria-label={`${t.node.data.level ?? "Hierarchy"} goal: ${t.node.data.label}`}
-                      aria-pressed={pinned && selected?.id === t.node.id}
+                      aria-pressed={
+                        pinned &&
+                        selected?.id === t.node.id &&
+                        (!selectedKey || selectedKey === t.key)
+                      }
                       onMouseEnter={() => highlight(t.node, t.key)}
                       onFocus={() => highlight(t.node, t.key)}
                       onClick={() => choose(t.node.data, t.key)}
@@ -383,9 +432,9 @@ export function ProcessHierarchy({
                     className="order-uncertain"
                     tabIndex={0}
                     role="img"
-                    aria-label={`Order uncertain. ${m.explanation}`}
+                    aria-label="Order uncertain"
                   >
-                    <title>{`Order uncertain — ${m.explanation}`}</title>
+                    <title>Order uncertain</title>
                     <path d={m.d} className="order-hit" />
                     <path d={m.d} className="order-line" />
                   </g>
@@ -439,9 +488,9 @@ export function ProcessHierarchy({
                       const match = layout.tiles.find(
                         (t) =>
                           t.node.id === n?.id &&
-                          (!branch.tile ||
-                            branch.ancestors.has(t.key) ||
-                            branch.descendants.has(t.key)),
+                          (!lockedBranch.tile ||
+                            lockedBranch.ancestors.has(t.key) ||
+                            lockedBranch.descendants.has(t.key)),
                       );
                       setHovered(n ? { id: n.id, key: match?.key } : null);
                     }}
@@ -452,6 +501,7 @@ export function ProcessHierarchy({
             {pinned && (
               <SelectionLock
                 className="process-lock"
+                reminder={lockReminder}
                 onUnlock={() => {
                   setHovered(null);
                   onLock();

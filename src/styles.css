@@ -699,7 +699,7 @@ a {
   margin: 30px 0 36px;
   font-size: 10px;
 }
-.author-avatar {
+.creator-avatar {
   display: grid;
   place-items: center;
   border: 1px solid #d1d6c7;

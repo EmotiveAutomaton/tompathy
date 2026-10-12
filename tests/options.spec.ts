@@ -52,7 +52,7 @@ test("Options, persistent idle reels, connected alternatives and overlay dismiss
   await expect(page.locator(".process-lock")).toBeVisible();
   await page.getByRole("button", { name: "Reader menu", exact: true }).click();
   await expect(page.getByRole("dialog")).toHaveAccessibleName("Options");
-  await expect(page.getByLabel("Author selection")).toBeVisible();
+  await expect(page.getByLabel("Creator selection")).toBeVisible();
   await expect(page.getByRole("checkbox")).toHaveCount(5);
   await expect(
     page.getByRole("checkbox", { name: /Word-level analysis/ }),
@@ -139,7 +139,7 @@ test("context wheel follows real completed fetches and never updates estimates",
   page,
 }) => {
   const p = await createExample();
-  const source = "https://author.example.org/about";
+  const source = "https://creator.example.org/about";
   await page.addInitScript(
     ({ p, source }) => {
       localStorage.setItem("tompathy-guide-offered-040", "yes");

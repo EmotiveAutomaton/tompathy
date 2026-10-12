@@ -23,14 +23,14 @@ const leaders = [
   [5, 5, 4, 4],
   [6, 7, 8],
 ];
-/** Separate authored attention snapshots; these do not derive from the goal graph. */
+/** Separate written attention snapshots; these do not derive from the goal graph. */
 export function exampleAttention(artifact: Artifact) {
   const support = (value: number) => ({
     value,
     scale: [0, 1] as [number, number],
     semantics: "relative" as const,
     meaning:
-      "Hand-authored demonstration of shifting attention; not live inference or a calibrated likelihood.",
+      "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood.",
   });
   const hypotheses: Hypothesis[] = labels.map((label, i) => ({
     id: `focus-${i}`,

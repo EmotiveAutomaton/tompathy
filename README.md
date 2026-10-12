@@ -1,12 +1,12 @@
 # ToMpathy
 
-![ToMpathy in use: a held sentence, changing attention, a goal hierarchy and core values](docs/assets/reader.png)
+![Development preview: a held sentence, changing attention, a goal hierarchy and core values](docs/assets/reader.png)
 
-**What’s on the author’s mind?** ToMpathy is a Chrome side-panel reader for exploring an author’s current attention, expertise, habits, process and core values alongside a text.
+**What’s on the creator’s mind?** ToMpathy is a Chrome side-panel reader for exploring a creator’s current attention, expertise, habits, process and core values alongside a text.
 
-**0.1 beta · MIT licensed · frontend preview.** The bundled example is fictional and hand-authored. A live Sounding Line backend is not connected. Ordinary pages can be captured and paired with a matching imported analysis; the extension does not generate claims about their authors on its own.
+**0.1 beta · MIT licensed · frontend preview.** The bundled example is fictional and hand-written. A live Sounding Line backend is not connected. Ordinary pages can be captured and paired with a matching imported analysis; the extension does not generate claims about their creators on its own.
 
-This branch is **0.2 development** (`0.2.0-dev.1`; Chrome build `0.1.1`). The public 0.1 beta download below remains the earlier snapshot. See [our branch and version workflow](docs/VERSIONING.md).
+This branch is **0.2 development** (`0.2.0-dev.2`; Chrome build `0.1.2`). The public 0.1 beta download below remains the earlier snapshot. See [our branch and version workflow](docs/VERSIONING.md).
 
 ## Try the beta
 
@@ -20,16 +20,18 @@ No account, API key, paid service or model download is needed for the example, r
 ## Three views, one reading
 
 - **Current attention** is an independent, animated word cloud. It follows the pointed sentence or supplied sub-sentence frame; word size reflects the supplied support.
-- **Expertise, Habits, and Process** shows local choices flowing toward broader goals. Hold a node and hover the odometer: ambiguous reels grow upward into selectable lists over the faded hierarchy.
+- **Previous attention (expertise and habit)** shows local choices flowing toward broader goals. Hold a node and hover the odometer: ambiguous reels grow upward into selectable lists over the faded hierarchy.
 - **Core values** shows a stable set of supplied latent-preference hypotheses with evidence and support indicators.
 
-The reader supports keyboard focus, reduced motion, system/light/dark themes, multiple supplied authors, and retained analysis revisions. Estimates are hypotheses, not verified access to a person’s mind or calibrated probabilities unless the input explicitly says so.
+The reader supports keyboard focus, reduced motion, system/light/dark themes, multiple supplied creators, and retained analysis revisions. Estimates are hypotheses, not verified access to a person’s mind or calibrated probabilities unless the input explicitly says so.
 
 ## Context and saved readings
 
-In this development branch, **Light context** records the byline and follows up to three explicit author links. **Use GitHub when possible** retrieves a linked public profile without authentication. **Agent search** now adds a deterministic, bounded follow-up on the permitted sites: at most six sources total, including linked pages and RSS/Atom feeds. It uses no model or paid search. **View context and timeline** opens dated source entries, undated facts, retrieval coverage and a downloadable brief. Author-like local models and word-level analysis remain planned controls; Global and value search remain interface previews. See [implementation and limits](docs/CONTEXT_RESEARCH.md).
+In this development branch, **Light context** records the byline and follows up to three explicit creator links. **Use GitHub when possible** retrieves a linked public profile without authentication. **Agent search** now adds a deterministic, bounded follow-up on the permitted sites: at most six sources total, including linked pages and RSS/Atom feeds. It uses no model or paid search. **View context and timeline** opens dated source entries, undated facts, retrieval coverage and a downloadable brief. Creator-like local models and word-level analysis remain planned controls; Global and value search remain interface previews. See [implementation and limits](docs/CONTEXT_RESEARCH.md).
 
 **Export** saves one HTML reading containing captured text, analysis and context. **Import** restores its text beside the reader. The file also opens offline as plain text with reading styles; original site images, CSS and active features are not archived.
+
+Read the [0.1.2 UX review and next priorities](docs/UX_REVIEW_0.1.2.md).
 
 See [Privacy](PRIVACY.md) for storage, network behavior and permissions.
 

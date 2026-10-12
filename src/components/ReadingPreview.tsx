@@ -10,6 +10,7 @@ export function ReadingPreview({
   onMove,
   onLeave,
   onUnlock,
+  lockReminder = 0,
 }: {
   artifact: Artifact;
   region: string;
@@ -19,6 +20,7 @@ export function ReadingPreview({
   onMove: (id: string, pin?: boolean, offset?: number) => void;
   onLeave: () => void;
   onUnlock: () => void;
+  lockReminder?: number;
 }) {
   return (
     <main className="example-page saved-page">
@@ -85,6 +87,7 @@ export function ReadingPreview({
                   offset < s.end && (
                     <SelectionLock
                       className="inline-lock"
+                      reminder={lockReminder}
                       onUnlock={onUnlock}
                     />
                   )}{" "}

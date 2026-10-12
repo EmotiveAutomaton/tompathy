@@ -195,13 +195,13 @@ test("installed page adapter: anchors, dynamic revision, cleanup and long-page l
     expect(matchPacket(fixture, testbed.artifact, "artifact", [])).toBeNull();
     expect(testbed.artifact.regions).toHaveLength(6);
     await source.setContent(
-      `<meta name="author" content="Fixture Author"><nav><p>Navigation not part of this article.</p></nav><div class="entry entryPage"><div><h1>A legacy blog article</h1><p>The author's actual article paragraph with useful content.</p></div><div class="entryFooter"><p>Subscribe to our unrelated newsletter.</p></div></div><div class="recent-articles"><p>More recent articles and promotional links.</p></div>`,
+      `<meta name="author" content="Fixture Creator"><nav><p>Navigation not part of this article.</p></nav><div class="entry entryPage"><div><h1>A legacy blog article</h1><p>The creator's actual article paragraph with useful content.</p></div><div class="entryFooter"><p>Subscribe to our unrelated newsletter.</p></div></div><div class="recent-articles"><p>More recent articles and promotional links.</p></div>`,
     );
     await install();
     const legacy = await capture();
     expect(legacy.artifact.regions).toHaveLength(2);
     expect(legacy.artifact.capture.method).toBe("content-container");
-    expect(legacy.artifact.authors[0].label).toBe("Fixture Author");
+    expect(legacy.artifact.authors[0].label).toBe("Fixture Creator");
     expect(
       legacy.artifact.regions.map((r: any) => r.anchor.exact).join(" "),
     ).not.toMatch(/Subscribe|promotional|Navigation/);

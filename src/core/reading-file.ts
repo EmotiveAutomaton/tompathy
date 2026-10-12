@@ -17,10 +17,41 @@ const escapeHTML = (s: string) =>
 export function readingFile(session: Session): string {
   if (!session.artifact) throw Error("Open a page before exporting a reading.");
   const a = session.artifact;
+  // A context change can leave the last account awaiting replacement. Preserve
+  // it as history, rather than exporting an active account that cannot reimport.
+  let portable = session;
+  if (
+    session.packet &&
+    matchPacket(session.packet, a, session.scope, session.context)
+  ) {
+    const p = session.packet;
+    const artifactMismatch = matchPacket(
+      { ...p, scope: { kind: "artifact", contextIds: [] } },
+      a,
+      "artifact",
+      [],
+    );
+    if (artifactMismatch) throw Error(artifactMismatch);
+    portable = {
+      ...session,
+      packet: null,
+      history: [
+        ...(session.history ?? []),
+        {
+          packet: p,
+          context: session.context.map((c) => ({
+            ...c,
+            selected: p.scope.contextIds.includes(c.id),
+          })),
+          acceptedAt: new Date().toISOString(),
+        },
+      ].slice(-5),
+    };
+  }
   const payload = JSON.stringify({
     format: "tompathy-reading",
     version: 1,
-    session: { ...session, savedPageId: undefined },
+    session: { ...portable, savedPageId: undefined },
   }).replace(/</g, "\\u003c");
   return `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'"><title>${escapeHTML(a.title)}</title><style>body{max-width:740px;margin:60px auto;padding:0 24px;font:19px/1.75 Georgia,serif;color:#24382e;background:#fbfcf8}header{font:13px/1.6 system-ui;color:#64726a}p{white-space:pre-wrap}</style><header>ToMpathy saved reading · ${escapeHTML(a.source)}<br>Readable text snapshot${a.truncated ? " · capture was truncated" : ""}. Import this file in ToMpathy to explore its analysis.</header><article>${a.regions.map((r) => `<p>${escapeHTML(r.anchor.exact)}</p>`).join("\n")}</article><script type="application/json" id="tompathy-reading">${payload}</script></html>`;
 }

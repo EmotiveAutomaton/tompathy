@@ -2,32 +2,32 @@
 
 Updated 11 October 2026, Pacific time.
 
-Work is on `codex/0.2-development`. npm version: `0.2.0-dev.1`; Chrome numeric version: `0.1.1`; display: **0.2 development 1**. The published `v0.1.0-beta.1` release and main baseline remain unchanged. This is the first iteration toward the complete frontend, not completion of 0.2. [Workflow and milestone criteria](docs/VERSIONING.md).
+Work is on `codex/0.2-development`. npm version: `0.2.0-dev.2`; Chrome numeric version: `0.1.2`; display: **0.2 development 2**. The published `v0.1.0-beta.1` release and main baseline remain unchanged. This is the second review iteration toward 0.2, not completion of that milestone. [Workflow](docs/VERSIONING.md).
 
 ## This iteration
 
-- Simplified three-column teardrop icon: list, two middle blocks, one soft tip.
-- Direct node selection and its reels stay on the pointed visual branch. Page selection retains all supplied alternatives. Shorter branches fade the unused final reel.
-- Accurate intersections at the rounded back remove clipped wedges. Two explicit sibling groups in the example show “Order uncertain” squiggles; absence of a squiggle does not assert known order.
-- Expanded reels close outside their actual boxes, with a small allowance between neighboring boxes. Scrollbars stay hidden during expansion. Double-clicking either the page or reader releases selection.
-- Light context captures the page byline and up to three explicit author sources. Agent search now enables one-hop discovery of linked pages/feeds on the same granted origins, at most six total sources. No model, paid provider or API key is required.
-- Source-backed timeline, separate date kinds, undated facts, source excerpts, coverage, brief export and a 15-minute bounded memory cache. New context stays unselected until requested for a new analysis. Packet contract 1.5 adds optional order-uncertainty groups; 1.0–1.4 remain readable.
+- Creator terminology throughout the interface, context reports and example; **Previous attention (expertise and habit)** heading and quiet **`<- hover`** cue. Existing serialized fields and publisher metadata retain compatibility.
+- Right-shifted, deeper dot arcs with full-circle clearance; uniform **Order uncertain** tooltips.
+- The reel lock overlaps its top-left corner and follows expansion. Rapid blocked focus changes gently emphasize both locks with cooldown and reduced-motion support.
+- Each expanded candidate highlights its own branch regardless of the previous hover. Arrow keys inspect candidates without prematurely changing the lock.
+- System-dark palette correction, keyboard value tabs, viewport-contained document locks and context collection cancellation.
+- Deselecting the last context restores artifact scope. Pending-context exports retain the previous account in history and round-trip without presenting stale estimates.
+- [Detailed UX review, findings and next priorities](docs/UX_REVIEW_0.1.2.md).
 
 ## Verification
 
-Extension build **5792975216bb**:
+Final extension build **5123f80ba7cc**:
 
-- 22/22 core tests passed: contracts, source identity, calendar dates, branch geometry, cache expiry, cancellation and revision handling.
-- 19/19 browser tests passed: bounded timeline discovery/coverage/export, inert feed/HTML parsing, precise hover boundaries, branch selection, both lock surfaces, narrow/dark layouts, import/export, keyboard and installed page-adapter behavior.
-- Ordinary Google Chrome **154.0.8037.98** passed on this build: actual 360-pixel native panel, branch-local highlighting, faded endings, both double-click unlock surfaces, source/reader interaction, file round trip, toolbar capture and full restart with retained preferences. No recorded page errors. One earlier repeat exposed a stale `DevToolsActivePort` file pointing at the closed browser's port; removing that stale file before a fresh launch fixed the observed restart failure. Existing live review connections are preserved.
-- Package verification passed: 18 entries, 351,340 bytes; every member matches the build. SHA-256: `47ad49dc72aa8889d31c926df50acc983027b4444474198b114953633a752e0d`. Source maps are excluded; MIT and dependency notices are included.
+- **24/24 core tests passed**: contracts, sentence bindings, source identity, context deadlines/cancellation, revision handling, lock reminder thresholds/cooldown, and pending-context exports including rejection of changed anchors.
+- **23/23 browser tests passed**: every sibling inspection order, keyboard navigation, both preview locks, motion preferences, dot clearance at three heights, cue contrast, explicit and system dark, context opt-in/cancellation, reading round trips, narrow panels, eight hierarchy levels, nine values and 200% zoom.
+- **Ordinary Google Chrome 154.0.8037.98 passed**: actual 360-pixel native panel; reminders initiated from either document or panel; click/wheel/hover and branch behavior; file import/export; tab switching; toolbar capture with the shipped manifest; full restart with persistent preferences. No recorded page errors. The sandboxed launch could not connect initially; the authorized desktop run succeeded.
+- The controlled 1,006-passage content-script fixture captured in **150 ms**; twelve hover-to-next-paint samples ranged **0.7–7.9 ms**. This is local content-script performance, not backend or complete panel latency.
+- **Package verified**: 18 entries, 353,293 bytes. Every member matches `dist`; source maps excluded, license and dependency notices included. SHA-256: `881daaeeb461503e885805da93f6cb5c559d78aa097e53336d061fa64b505c08`.
 
-The icon, branch geometry, expanded reels, timeline and native panel were visually inspected. Generated evidence stays in ignored `evidence/` and CI artifacts. Public release assets were not replaced. Owner-supplied unpublished design files remain ignored and local.
+Quiet and active panels, expanded reels, theme states, Options, timeline and refreshed README image were visually inspected. Generated evidence remains in ignored `evidence/` and CI artifacts. The owner’s separate Chrome review profile was updated to the same build and left open on the example with **Watching closely** selected. Unpublished owner design files remain ignored and local.
 
 ## Review and boundaries
 
-Use **Review ToMpathy.cmd** or `npm run review`. On the example, inspect each branch, hold a paragraph and hover a reel, then double-click to release. For context, use a page with explicit author links and choose **Options → Light context**, optionally **Agent search**, then **View context and timeline**. [QA guide](docs/DEVELOPMENT.md).
+Use **Review ToMpathy.cmd** or `npm run review`. Hold **Show the iteration**, hover its reel and move among the four sentence options; each should inspect just its own path. While locked, move rapidly among several different text sentences or hierarchy nodes to see the gentle reminder. Either lock, Escape or double-click releases selection. [QA guide](docs/DEVELOPMENT.md).
 
-The example is still fictional and hand-authored. Sounding Line is not connected to a live endpoint. The timeline is an extractive report of source statements, not a verified biography or proof of improved inference. Broad web search, local summarization, author-like models, Global and value search remain future work. Redirects and JavaScript-only sources can be unavailable. [Context implementation and limits](docs/CONTEXT_RESEARCH.md).
-
-No scientific jobs, model downloads, training runs, paid services or Store submission were started.
+The example is fictional and hand-written. Sounding Line is not connected to a live endpoint. Context collection is free, bounded extraction from explicit links and their permitted follow-ups, with a source timeline; it is not a verified biography. Broad web search, local summarization, creator-like models, Global and value search remain future work. No model downloads, training, paid services or Store submission were started. [Context implementation and limits](docs/CONTEXT_RESEARCH.md).
