@@ -4,5 +4,7 @@ const files = {};
 for (const name of await readdir("dist"))
   if (!name.endsWith(".map"))
     files[name] = new Uint8Array(await readFile(`dist/${name}`));
-await writeFile("tompathy-0.1.0.zip", zipSync(files));
-console.log("Created tompathy-0.1.0.zip");
+const { version } = JSON.parse(await readFile("dist/manifest.json", "utf8"));
+const file = `tompathy-${version}.zip`;
+await writeFile(file, zipSync(files));
+console.log(`Created ${file}`);

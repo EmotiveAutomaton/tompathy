@@ -6,4 +6,8 @@ playwright-report/
 *.zip
 .playwright-mcp/
 *.log
-evidence/test-results.json
+evidence/
+
+# Local design inputs and unpublished owner notes
+/*_REVIEW_*.md
+/teardrop-*.png

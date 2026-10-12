@@ -1,4 +1,6 @@
 import type { ContextItem } from "./model";
+import { contextIdentity } from "./context";
+import { readingRoot } from "./page";
 export const COLLECT_LIMITS = {
   urls: 3,
   bytes: 256000,
@@ -28,6 +30,33 @@ export function publicURL(input: string): URL {
   url.hash = "";
   return url;
 }
+/** Resolve only explicitly linked GitHub profiles; never guess an identity. */
+export function contextSourceURL(input: string, useGitHub: boolean): URL {
+  const url = publicURL(input);
+  const match = url.pathname.match(
+    /^\/([A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?)\/?$/,
+  );
+  if (
+    useGitHub &&
+    url.hostname === "github.com" &&
+    match &&
+    ![
+      "about",
+      "features",
+      "topics",
+      "marketplace",
+      "pricing",
+      "settings",
+      "login",
+      "signup",
+      "explore",
+      "sponsors",
+      "organizations",
+    ].includes(match[1].toLowerCase())
+  )
+    return new URL(`https://api.github.com/users/${match[1]}`);
+  return url;
+}
 export async function retrieve(
   url: URL,
   signal: AbortSignal,
@@ -42,7 +71,13 @@ export async function retrieve(
   });
   if (!response.ok) throw Error(`Source returned HTTP ${response.status}.`);
   const type = response.headers.get("content-type") ?? "";
-  if (!/text\/(html|plain|markdown)/i.test(type))
+  const githubProfile =
+    url.hostname === "api.github.com" &&
+    /^\/users\/[A-Za-z0-9-]+$/.test(url.pathname);
+  if (
+    !/text\/(html|plain|markdown)/i.test(type) &&
+    !(githubProfile && /application\/json/i.test(type))
+  )
     throw Error("Choose an HTML, plain text, or Markdown source.");
   if (Number(response.headers.get("content-length")) > COLLECT_LIMITS.bytes)
     throw Error("Source exceeds the 256 KB retrieval limit.");
@@ -70,6 +105,31 @@ export async function retrieve(
   }
   const text = new TextDecoder().decode(bytes);
   let excerpt = text;
+  if (githubProfile && /application\/json/i.test(type)) {
+    const profile = JSON.parse(text);
+    if (
+      typeof profile.login !== "string" ||
+      profile.login.toLowerCase() !==
+        url.pathname.split("/").pop()!.toLowerCase()
+    )
+      throw Error(
+        "The returned GitHub profile does not match the linked account.",
+      );
+    const fields: [string, unknown][] = [
+      ["GitHub account", profile.login],
+      ["Name", profile.name],
+      ["Bio", profile.bio],
+      ["Company (self-described)", profile.company],
+      ["Website", profile.blog],
+      ["Location (self-described)", profile.location],
+      ["Account created", profile.created_at],
+      ["Profile updated", profile.updated_at],
+    ];
+    excerpt = fields
+      .filter(([, v]) => typeof v === "string" && v.trim())
+      .map(([label, v]) => `${label}: ${v}`)
+      .join(". ");
+  }
   if (type.includes("html")) {
     const doc = new DOMParser().parseFromString(text, "text/html");
     doc
@@ -80,7 +140,7 @@ export async function retrieve(
     doc
       .querySelectorAll("p,h1,h2,h3,h4,li,div,section,br")
       .forEach((n) => n.append(doc.createTextNode(" ")));
-    excerpt = (doc.querySelector("article,main") ?? doc.body).textContent ?? "";
+    excerpt = readingRoot(doc).root.textContent ?? "";
   }
   excerpt = excerpt
     .replace(/\s+/g, " ")
@@ -88,7 +148,7 @@ export async function retrieve(
     .slice(0, COLLECT_LIMITS.excerpt);
   if (!excerpt) throw Error("No readable excerpt in this source.");
   return {
-    id: crypto.randomUUID(),
+    id: await contextIdentity(url.href, excerpt),
     source: url.href,
     excerpt,
     retrievedAt: new Date().toISOString(),

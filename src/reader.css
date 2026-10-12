@@ -20,18 +20,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 25px 27px 16px;
+  padding: 10px 24px 12px;
+  gap: 10px;
   flex-shrink: 0;
 }
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 4px;
 }
 .brand strong {
-  font-size: 22px;
+  font-size: 10px;
   font-weight: 550;
-  letter-spacing: -1px;
+  letter-spacing: -0.3px;
 }
 .brand-dot {
   color: var(--amber);
@@ -42,21 +43,21 @@
 .brand-symbol {
   display: flex;
   align-items: center;
-  gap: 3px;
-  height: 25px;
+  gap: 2px;
+  height: 12px;
   transform: rotate(-17deg);
 }
 .brand-symbol i {
-  width: 3px;
-  height: 15px;
+  width: 2px;
+  height: 7px;
   border-radius: 4px;
   background: var(--green);
 }
 .brand-symbol i:nth-child(2) {
-  height: 25px;
+  height: 12px;
 }
 .brand-symbol i:nth-child(3) {
-  height: 19px;
+  height: 9px;
   opacity: 0.55;
 }
 .icon-button {
@@ -96,8 +97,64 @@
 .identity-note {
   display: block;
   color: var(--muted);
-  font-size: 10px;
-  padding-top: 4px;
+  font-size: 9px;
+  padding-top: 2px;
+}
+.author-identity {
+  min-width: 0;
+  flex: 1;
+}
+.author-caption {
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 0.6px;
+}
+.author-name {
+  display: block;
+  padding: 2px 0;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+.author-name:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.process-caption {
+  font-size: 9px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+.value-kind {
+  display: block;
+  margin-top: 3px;
+  font-size: 9px;
+  color: var(--muted);
+  font-weight: normal;
+}
+.passage-info {
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+}
+.contribution-explanation {
+  border-left: 2px solid var(--line);
+  padding-left: 12px;
+  margin-block: 14px;
+}
+.contribution-explanation p + p {
+  margin-top: 8px;
+}
+.cross-link {
+  font-size: 9px;
+  color: var(--muted);
+  padding: 0 0 5px 30px;
 }
 .reader-content {
   flex: 1;
@@ -479,14 +536,24 @@ input[type="checkbox"] {
   padding-top: 10px;
 }
 .welcome {
-  margin: 0 0 20px;
-  padding: 15px 0 25px;
+  margin: 0 0 8px;
+  padding: 8px 0 15px;
 }
 .welcome-orbit {
   display: none;
 }
 .welcome h2 {
-  font-size: 25px;
+  font-size: 18px;
+}
+.welcome p {
+  font-size: 12px;
+  margin: 8px 0 12px;
+}
+.welcome .primary-button,
+.welcome .secondary-button {
+  min-height: 34px;
+  padding: 7px 12px;
+  font-size: 11px;
 }
 .message {
   flex-shrink: 0;
@@ -518,7 +585,7 @@ input[type="checkbox"] {
 }
 @media (max-width: 340px) {
   .app-header {
-    padding: 20px 20px 13px;
+    padding: 10px 20px;
   }
   .reading-identity {
     padding: 0 20px 18px;
@@ -547,7 +614,7 @@ input[type="checkbox"] {
 }
 @media (max-height: 760px) {
   .app-header {
-    padding-top: 17px;
+    padding-top: 8px;
   }
   .reading-identity {
     padding-bottom: 13px;

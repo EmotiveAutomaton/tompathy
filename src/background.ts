@@ -1,8 +1,12 @@
 chrome.sidePanel
-  .setPanelBehavior({ openPanelOnActionClick: true })
+  // Chrome's automatic panel toggle bypasses onClicked and does not grant
+  // activeTab. Use the action event so ordinary-page capture has permission.
+  .setPanelBehavior({ openPanelOnActionClick: false })
   .catch(() => {});
 chrome.action.onClicked.addListener(async (tab) => {
   if (!tab.id) return;
+  // Keep this before any await to retain the action's user gesture.
+  void chrome.sidePanel.open({ tabId: tab.id }).catch(console.error);
   await chrome.storage.session.set({ invokedTab: tab.id });
   try {
     await chrome.scripting.executeScript({

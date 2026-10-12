@@ -3,7 +3,8 @@ import { createHash } from "node:crypto";
 import { unzipSync } from "fflate";
 import assert from "node:assert/strict";
 
-const bytes = await readFile("tompathy-0.1.0.zip");
+const { version } = JSON.parse(await readFile("dist/manifest.json", "utf8"));
+const bytes = await readFile(`tompathy-${version}.zip`);
 const files = unzipSync(bytes);
 const built = (await readdir("dist"))
   .filter((name) => !name.endsWith(".map"))

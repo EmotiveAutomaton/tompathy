@@ -1,3 +1,18 @@
+import { readingFile, parseReadingFile } from "./core/reading-file";
+import { ReadingPreview } from "./components/ReadingPreview";
+import {
+  ContextProgress,
+  type ContextWork,
+} from "./components/ContextProgress";
+import { attentionAt } from "./core/attention";
+import { ValueTabs } from "./components/ValueTabs";
+import { SelectionLock } from "./components/SelectionLock";
+import { GoalCloud } from "./components/GoalCloud";
+import { ProcessHierarchy } from "./components/ProcessHierarchy";
+import { ValueList } from "./components/ValueList";
+import { SectionTitle, explanations } from "./components/HoverCard";
+import { sentences } from "./core/sentences";
+import type { GoalNode } from "./core/hierarchy";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   ArrowDownLeft,
@@ -37,7 +52,14 @@ import {
   parsePacket,
 } from "./core/model";
 import { createExample, exampleContext, exampleText } from "./core/example";
-import { collectSources, publicURL } from "./core/collector";
+import { collectSources, publicURL, contextSourceURL } from "./core/collector";
+import {
+  acceptRevision,
+  analysisHandoff,
+  contributionExplanation,
+  interpretationLabel,
+} from "./core/reading";
+import { contextIdentity, mergeContext } from "./core/context";
 import {
   capturePage,
   captureSelection,
@@ -120,7 +142,11 @@ function Modal({
   return (
     <dialog
       ref={ref}
-      className="modal"
+      className={`modal ${title === "Options" ? "options-modal" : ""}`}
+      aria-label={title}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") e.stopPropagation();
+      }}
       onCancel={(e) => {
         e.preventDefault();
         onClose();
@@ -149,14 +175,25 @@ export function App({ preview = false }: { preview?: boolean }) {
     [tabId, setTabId] = useState<number | null>(null),
     [region, setRegion] = useState("p2"),
     [pinned, setPinned] = useState(false),
+    [valuesTab, setValuesTab] = useState<"author" | "global">("author"),
+    [sentenceOffset, setSentenceOffset] = useState(0),
+    [sourceHover, setSourceHover] = useState(false),
+    [relatedNode, setRelatedNode] = useState<GoalNode | null>(null),
+    [lockedNode, setLockedNode] = useState<GoalNode | null>(null),
     [busy, setBusy] = useState(false),
     [stale, setStale] = useState(false),
     [notice, setNotice] = useState(""),
     [error, setError] = useState(""),
-    [view, setView] = useState<"tree" | "list" | "cloud">("tree"),
+    [contextEnabled, setContextEnabled] = useState(false),
+    [useGitHub, setUseGitHub] = useState(
+      () => localStorage.getItem("tompathy-use-github") !== "false",
+    ),
+    [contextWork, setContextWork] = useState<ContextWork | null>(null),
+    [tour, setTour] = useState<number | null>(null),
     [maker, setMaker] = useState(""),
     [detail, setDetail] = useState<Hypothesis | null>(null),
     [modal, setModal] = useState<
+      | "qa"
       | "menu"
       | "context"
       | "source"
@@ -164,6 +201,8 @@ export function App({ preview = false }: { preview?: boolean }) {
       | "import"
       | "help"
       | "revision"
+      | "history"
+      | "claims"
       | null
     >(null),
     [theme, setTheme] = useState("system"),
@@ -180,38 +219,78 @@ export function App({ preview = false }: { preview?: boolean }) {
     port = useRef<chrome.runtime.Port | null>(null),
     current = useRef({ session, tabId });
   current.current = { session, tabId };
+  useEffect(() => {
+    if (contextWork?.phase === "done" || contextWork?.phase === "error") {
+      const timer = setTimeout(() => setContextWork(null), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [contextWork]);
   const { artifact, packet, scope, context } = session;
   const mismatch =
     packet && artifact ? matchPacket(packet, artifact, scope, context) : null;
   const ready = !!packet && !mismatch && !stale;
+  useEffect(() => {
+    if (ready && !localStorage.getItem("tompathy-guide-offered-040")) {
+      localStorage.setItem("tompathy-guide-offered-040", "yes");
+      setTour(-1);
+    }
+  }, [ready]);
   const activeMaker =
     packet?.makers.find((m) => m.id === maker) ?? packet?.makers[0];
+  const authorName =
+    (ready && activeMaker?.identity !== "unknown"
+      ? activeMaker?.label
+      : null) ||
+    session.authorLabel ||
+    (artifact?.authors?.length === 1 ? artifact.authors[0].label : null) ||
+    (artifact?.authors?.length
+      ? "Multiple authors listed"
+      : "Author not identified");
   const hypotheses = ready
     ? packet!.hypotheses.filter((h) => h.makers.includes(activeMaker!.id))
     : [];
-  const goals = hypotheses
-    .filter(
-      (h) =>
-        h.kind === "goal" && (!h.regions.length || h.regions.includes(region)),
-    )
-    .sort((a, b) => supportWeight(b) - supportWeight(a));
-  const processes = hypotheses.filter(
-    (h) =>
-      h.kind === "process" && (!h.regions.length || h.regions.includes(region)),
+  const attentionTarget = pinned
+    ? lockedNode
+      ? lockedNode.span
+      : { region, start: sentenceOffset }
+    : relatedNode
+      ? relatedNode.span
+      : sourceHover
+        ? { region, start: sentenceOffset }
+        : null;
+  const goals =
+    ready && attentionTarget
+      ? attentionAt(
+          packet,
+          activeMaker!.id,
+          attentionTarget.region,
+          attentionTarget.start,
+        )
+      : [];
+  const values = hypotheses.filter(
+    (h) => h.kind === "value" && h.status !== "unknown",
   );
-  const values = hypotheses.filter((h) => h.kind === "value");
-  const focus = processes
-    .filter((h) => h.status !== "unknown")
-    .sort((a, b) => supportWeight(b) - supportWeight(a))[0];
   const estimate = ready
     ? packet?.estimates.find((e) => e.region === region)
     : null;
   const isExample = packet?.origin === "synthetic example";
+  const detailEvidence = [
+    ...new Set([
+      ...(detail?.evidence ?? []),
+      ...(detail?.kind === "process"
+        ? (packet?.process.edges
+            .filter((e) => e.from === detail.id || e.to === detail.id)
+            .flatMap((e) => e.evidence ?? []) ?? [])
+        : []),
+    ]),
+  ];
   function cancelWork() {
     serial.current++;
     collector.current?.abort();
     setCollecting(false);
     setBusy(false);
+    setPending(null);
+    setContextWork(null);
   }
   async function capture() {
     cancelWork();
@@ -231,6 +310,8 @@ export function App({ preview = false }: { preview?: boolean }) {
       setTabId(result.tabId);
       setRegion(result.artifact.regions[0].id);
       setPinned(false);
+      setLockedNode(null);
+      setRelatedNode(null);
       const previous = current.current.session;
       let resultPacket: Packet | null =
         previous.packet &&
@@ -242,16 +323,33 @@ export function App({ preview = false }: { preview?: boolean }) {
         ) === null
           ? previous.packet
           : null;
-      if (result.artifact.source === chrome.runtime.getURL("example.html"))
-        resultPacket = await createExample(result.artifact.source);
+      if (
+        !resultPacket &&
+        result.artifact.source.split("?")[0] ===
+          chrome.runtime.getURL("example.html")
+      ) {
+        const candidate = await createExample(result.artifact.source);
+        if (!matchPacket(candidate, result.artifact, "artifact", []))
+          resultPacket = candidate;
+      }
       if (request !== serial.current) return;
-      setSession({
-        sessionVersion: "1.0",
-        artifact: result.artifact,
-        packet: resultPacket,
-        scope: resultPacket?.scope.kind ?? "artifact",
-        context: resultPacket?.scope.kind === "context" ? previous.context : [],
-      });
+      setContextEnabled(false);
+      setSession(
+        result.restored ?? {
+          sessionVersion: "1.0",
+          artifact: result.artifact,
+          contextSources: result.contextSources,
+          packet: resultPacket,
+          scope: resultPacket?.scope.kind ?? "artifact",
+          context:
+            resultPacket?.scope.kind === "context" ? previous.context : [],
+          history: resultPacket ? previous.history : [],
+          authorLabel:
+            previous.artifact?.id === result.artifact.id
+              ? previous.authorLabel
+              : undefined,
+        },
+      );
     } catch (e) {
       if (request !== serial.current) return;
       setTabId(null);
@@ -267,6 +365,8 @@ export function App({ preview = false }: { preview?: boolean }) {
     setModal(null);
     setStale(false);
     setPinned(false);
+    setLockedNode(null);
+    setRelatedNode(null);
     setRegion("p2");
     if (isExtension) {
       const tab = await chrome.tabs.create({
@@ -298,7 +398,12 @@ export function App({ preview = false }: { preview?: boolean }) {
     };
   }, []);
   useEffect(() => {
-    if (hydrated) void writeSession(session);
+    if (hydrated)
+      void writeSession(session).catch(() =>
+        setError(
+          "This reading could not be saved in browser session storage. Save a session file before closing the panel.",
+        ),
+      );
   }, [session, hydrated]);
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -336,9 +441,20 @@ export function App({ preview = false }: { preview?: boolean }) {
         return;
       if (m.type === "TOMPATHY_SELECT") {
         setRegion(m.region);
+        setSentenceOffset(m.offset ?? 0);
+        setSourceHover(true);
+        setRelatedNode(null);
         setPinned(m.pinned);
+        setLockedNode(null);
         setDetail(null);
       }
+      if (m.type === "TOMPATHY_UNLOCK") {
+        setPinned(false);
+        setLockedNode(null);
+        setRelatedNode(null);
+        setSourceHover(false);
+      }
+      if (m.type === "TOMPATHY_LEAVE") setSourceHover(false);
       if (m.type === "TOMPATHY_STALE") {
         cancelWork();
         setStale(true);
@@ -355,6 +471,8 @@ export function App({ preview = false }: { preview?: boolean }) {
       setSession(empty);
       setDetail(null);
       setPinned(false);
+      setLockedNode(null);
+      setRelatedNode(null);
       setTabId(null);
       void capture();
     };
@@ -392,24 +510,55 @@ export function App({ preview = false }: { preview?: boolean }) {
     }
   }, [tabId]);
   useEffect(() => {
+    setPinned(false);
+    setLockedNode(null);
+    setRelatedNode(null);
+    void pageCommand(tabId, artifact, "TOMPATHY_RELEASE");
+  }, [packet?.id, packet?.revision, activeMaker?.id, ready]);
+  useEffect(() => {
     void markPage(tabId, artifact, ready ? packet : null);
   }, [tabId, artifact, packet, ready]);
   useEffect(() => {
     const key = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+      if (
+        e.key === "Escape" &&
+        !e.defaultPrevented &&
+        !document.querySelector("dialog[open]")
+      ) {
+        if (tour !== null) {
+          setTour(null);
+          return;
+        }
         setPinned(false);
+        setLockedNode(null);
+        setRelatedNode(null);
+        setSourceHover(false);
         void pageCommand(tabId, artifact, "TOMPATHY_RELEASE");
       }
     };
     window.addEventListener("keydown", key);
     return () => window.removeEventListener("keydown", key);
-  }, [tabId, artifact]);
-  const move = (id: string, pin = false) => {
+  }, [tabId, artifact, tour]);
+  const unlock = () => {
+    setPinned(false);
+    setLockedNode(null);
+    setRelatedNode(null);
+    setSourceHover(false);
+    void pageCommand(tabId, artifact, "TOMPATHY_RELEASE");
+  };
+  const move = (id: string, pin = false, offset = 0) => {
     if (pinned && !pin) return;
     setRegion(id);
+    setSentenceOffset(offset);
+    setSourceHover(true);
+    setRelatedNode(null);
+    setLockedNode(null);
     if (pin) {
       setPinned(true);
-      void pageCommand(tabId, artifact, "TOMPATHY_FOCUS", { region: id });
+      void pageCommand(tabId, artifact, "TOMPATHY_FOCUS", {
+        region: id,
+        offset,
+      });
     }
     setDetail(null);
   };
@@ -476,7 +625,7 @@ export function App({ preview = false }: { preview?: boolean }) {
       setError((e as Error).message);
     }
   };
-  function addContext(
+  async function addContext(
     excerpt: string,
     source: string,
     lineage: ContextItem["lineage"] = "pasted",
@@ -489,22 +638,155 @@ export function App({ preview = false }: { preview?: boolean }) {
       setError("Remove a context item before adding more (30 maximum).");
       return;
     }
+    const request = serial.current;
+    const text = excerpt.trim().slice(0, 20000);
+    const id = await contextIdentity(source, text);
+    if (request !== serial.current) return;
     setSession((s) => ({
       ...s,
-      context: [
-        ...s.context,
-        {
-          id: crypto.randomUUID(),
-          source,
-          excerpt: excerpt.trim().slice(0, 20000),
-          retrievedAt: new Date().toISOString(),
-          lineage,
-          selected: false,
-        },
-      ],
+      context: mergeContext(s.context, {
+        id,
+        source,
+        excerpt: text,
+        retrievedAt: new Date().toISOString(),
+        lineage,
+        selected: false,
+      }),
     }));
     setContextPaste("");
     setError("");
+  }
+  async function toggleContext(enabled: boolean) {
+    collector.current?.abort();
+    setContextEnabled(enabled);
+    setContextWork(null);
+    if (!enabled || !artifact) return;
+    const request = serial.current;
+    const sources = (session.contextSources ?? []).filter(
+      (s) => s.author.toLocaleLowerCase() === authorName.toLocaleLowerCase(),
+    );
+    if (!sources.length) {
+      setContextWork({
+        phase: "error",
+        completed: 0,
+        total: 1,
+        label:
+          "No linked public author sources on this page. Wider search is not connected yet.",
+      });
+      return;
+    }
+    const job = new AbortController();
+    collector.current = job;
+    try {
+      const urls = sources.map((s) => contextSourceURL(s.url, useGitHub));
+      if (
+        isExtension &&
+        !(await chrome.permissions.request({
+          origins: [...new Set(urls.map((u) => `${u.origin}/*`))],
+        }))
+      )
+        throw Error("Context source access was declined.");
+      if (request !== serial.current || job.signal.aborted) return;
+      let completed = 0,
+        failures = 0;
+      setContextWork({
+        phase: "working",
+        completed,
+        total: urls.length,
+        label: `Collecting ${urls.length} linked author sources`,
+      });
+      await collectSources(
+        urls.map((u) => u.href),
+        job.signal,
+        (item) => {
+          if (request !== serial.current || job.signal.aborted) return;
+          completed++;
+          if ("error" in item) failures++;
+          else
+            setSession((s) => ({
+              ...s,
+              context: mergeContext(s.context, item),
+            }));
+          setContextWork({
+            phase: "working",
+            completed,
+            total: urls.length,
+            label: `Collected ${completed - failures} of ${urls.length} sources`,
+          });
+        },
+      );
+      if (request !== serial.current || job.signal.aborted) return;
+      setContextWork({
+        phase: failures ? "error" : "done",
+        completed,
+        total: urls.length,
+        label: failures
+          ? `Context collection incomplete: ${failures} source(s) unavailable.`
+          : "Author context collected. A new analysis is needed before estimates change.",
+      });
+    } catch (e) {
+      if (request === serial.current && !job.signal.aborted)
+        setContextWork({
+          phase: "error",
+          completed: 0,
+          total: 1,
+          label: (e as Error).message,
+        });
+    }
+  }
+  function exportReading() {
+    try {
+      const url = URL.createObjectURL(
+        new Blob([readingFile(session)], { type: "text/html" }),
+      );
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "tompathy-reading.html";
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+    } catch (e) {
+      setError((e as Error).message);
+    }
+  }
+  async function importReading(file?: File) {
+    if (!file) return;
+    try {
+      if (file.size > 12000000)
+        throw Error("Reading files must be under 12 MB.");
+      const request = serial.current,
+        text = await file.text();
+      if (request !== serial.current) return;
+      if (text.trimStart().startsWith("{") && JSON.parse(text).schemaVersion) {
+        await loadPacket(text);
+        return;
+      }
+      const loaded = await parseReadingFile(text);
+      if (request !== serial.current) return;
+      cancelWork();
+      await pageCommand(tabId, artifact, "TOMPATHY_CLEANUP");
+      setSession(loaded);
+      setStale(false);
+      setDetail(null);
+      setPinned(false);
+      setLockedNode(null);
+      setRelatedNode(null);
+      setSourceHover(false);
+      setRegion(loaded.artifact!.regions[0].id);
+      setModal(null);
+      setTabId(null);
+      if (isExtension) {
+        const id = crypto.randomUUID();
+        const restored = { ...loaded, savedPageId: id };
+        await chrome.storage.session.set({ [`snapshot:${id}`]: restored });
+        setSession(restored);
+        const tab = await chrome.tabs.create({
+          url: chrome.runtime.getURL(`snapshot.html?id=${id}`),
+        });
+        setTabId(tab.id ?? null);
+      }
+    } catch (e) {
+      setError((e as Error).message);
+    }
   }
   async function collect() {
     setError("");
@@ -544,7 +826,7 @@ export function App({ preview = false }: { preview?: boolean }) {
           else {
             setSession((s) => ({
               ...s,
-              context: [...s.context, item].slice(0, 30),
+              context: mergeContext(s.context, item),
             }));
             setCollectionStatus((s) => [
               ...s,
@@ -565,204 +847,250 @@ export function App({ preview = false }: { preview?: boolean }) {
     setPending(p);
     setModal("revision");
   }
-  const token = (h: Hypothesis, i: number, mode = "cloud") => (
-    <button
-      key={h.id}
-      className={`hypothesis ${mode} ${h.support == null ? "unquantified" : ""} ${i === 0 && h.support != null ? "primary-word" : ""}`}
-      title={`${h.status}: ${h.description}`}
-      style={
-        mode === "cloud"
-          ? {
-              fontSize: `${h.support ? 16 + Math.max(0, Math.min(1, (h.support.value - h.support.scale[0]) / (h.support.scale[1] - h.support.scale[0]))) * 13 : 16}px`,
-            }
-          : undefined
-      }
-      onClick={() => inspect(h)}
-    >
-      <span>{h.label}</span>
-      {mode === "list" && (
-        <span className="muted">
-          {h.status === "unknown"
-            ? "Unresolved"
-            : h.support?.semantics === "probability"
-              ? `${Math.round(h.support.value * 100)}%`
-              : "Inspect"}{" "}
-          <ChevronRight size={13} />
-        </span>
-      )}
-    </button>
-  );
   return (
     <div className={preview ? "workspace" : "extension-root"}>
-      {preview && (
-        <ExampleArticle
-          active={region}
+      {preview && artifact && artifact.source !== "tompathy:example" ? (
+        <ReadingPreview
+          artifact={artifact}
+          region={region}
+          offset={sentenceOffset}
           pinned={pinned}
-          related={detail?.regions ?? []}
+          active={pinned || sourceHover}
           onMove={move}
+          onLeave={() => setSourceHover(false)}
+          onUnlock={unlock}
         />
+      ) : (
+        preview && (
+          <ExampleArticle
+            active={
+              pinned || sourceHover || relatedNode?.span
+                ? (relatedNode?.span?.region ?? region)
+                : ""
+            }
+            pinned={pinned}
+            related={
+              (relatedNode?.span ? [] : relatedNode?.regions) ??
+              (lockedNode?.span ? undefined : lockedNode?.regions) ??
+              detail?.regions ??
+              []
+            }
+            sentenceOffset={relatedNode?.span?.start ?? sentenceOffset}
+            onUnlock={unlock}
+            onLeave={() => setSourceHover(false)}
+            onMove={move}
+          />
+        )
       )}
       <div className="reader" data-tompathy-ui>
-        <header className="app-header">
-          <Brand />
-          <IconButton label="Reader menu" onClick={() => setModal("menu")}>
-            <MoreHorizontal size={21} />
-          </IconButton>
-        </header>
-        <div className="reading-identity">
-          <button className="artifact-title" onClick={() => setModal("source")}>
-            {artifact?.title ?? "Start with a piece of writing"}
+        {new URLSearchParams(location.search).has("qa") && (
+          <button className="qa-entry" onClick={() => setModal("qa")}>
+            Development tools
           </button>
-          <span className="identity-note">
-            {busy
-              ? "Capturing…"
-              : isExample
-                ? "Synthetic example"
-                : ready
-                  ? "Analysis connected"
-                  : "No analysis connected"}
-            {ready && activeMaker ? " · " + activeMaker.label : ""}
-          </span>
-        </div>
-        <div className={`reader-content ${ready ? "is-ready" : ""}`}>
-          {error && (
-            <div className="message error" role="alert">
-              <span>{error}</span>
-              <IconButton label="Dismiss error" onClick={() => setError("")}>
-                <X size={15} />
-              </IconButton>
-            </div>
-          )}
-          {notice && (
-            <div className="message" role="status">
-              <span>{notice}</span>
-              <IconButton label="Dismiss notice" onClick={() => setNotice("")}>
-                <X size={15} />
-              </IconButton>
-            </div>
-          )}
-          {(stale || mismatch) && (
-            <div className="message warning" role="status">
-              <div>
-                <strong>
-                  {stale
-                    ? "The source text changed"
-                    : "A different evidence scope"}
-                </strong>
-                <p>
-                  {stale
-                    ? "Capture again to resolve the passages before viewing estimates."
-                    : mismatch}
-                </p>
-                <button
-                  className="text-button"
-                  onClick={() => (stale ? void capture() : setModal("import"))}
-                >
-                  {stale ? "Recapture page" : "Import matching analysis"}{" "}
-                  <ArrowRight size={14} />
-                </button>
-              </div>
-            </div>
-          )}
-          {!ready && !busy && !stale && !mismatch && (
-            <section className="welcome">
-              <div className="welcome-orbit">
-                <Search size={24} />
-              </div>
-              <h2>
-                {artifact
-                  ? "The text is here.\nThe maker is still a question."
-                  : "Every text carries traces of its making."}
-              </h2>
-              <p>
-                {artifact
-                  ? "Maker estimates are awaiting an analysis source. Explore the captured passages, add context, or import a matching result."
-                  : "Explore possible goals, the process behind them, and the values that may connect them."}
-              </p>
-              <button className="primary-button" onClick={() => void example()}>
-                <Sparkles size={16} /> Explore an example{" "}
-                <ArrowRight size={16} />
-              </button>
-              <button
-                className="secondary-button"
-                onClick={() => setModal(artifact ? "import" : "source")}
-              >
-                {artifact ? "Import analysis" : "Paste a text"}
-                <Upload size={15} />
-              </button>
-            </section>
-          )}
+        )}
+        {tour !== null && (
+          <div className="interaction-guide" role="status">
+            <span>
+              {tour === -1
+                ? "New here? Try a brief interaction guide."
+                : [
+                    "Move over a sentence in the page. Watch attention and the reels change.",
+                    "Click that sentence to hold it. You can now move into the reader.",
+                    "Hover a reel to reveal its possible paths. Scroll to choose another goal.",
+                    "Click either green lock to let go. You can replay this guide from Help.",
+                  ][tour]}
+            </span>
+            <button onClick={() => setTour(tour === 3 ? null : tour + 1)}>
+              {tour === -1 ? "Show me" : tour === 3 ? "Done" : "Next"}
+            </button>
+            <button
+              aria-label="Dismiss interaction guide"
+              onClick={() => setTour(null)}
+            >
+              <X size={14} />
+            </button>
+          </div>
+        )}
+        <div
+          className={`reader-content ${ready ? "is-ready" : ""}`}
+          onMouseEnter={() => setSourceHover(false)}
+        >
           <section
             className="region goals-region"
             aria-labelledby="goals-title"
           >
             <div className="section-heading">
-              <h2 id="goals-title">Goals</h2>
-              <span className="section-aside">in this passage</span>
+              <SectionTitle kind="goals">Current attention</SectionTitle>
+              <IconButton label="Reader menu" onClick={() => setModal("menu")}>
+                <MoreHorizontal size={20} />
+              </IconButton>
             </div>
-            <div
-              className={`goal-cloud ${view === "list" ? "as-list" : ""}`}
-              data-testid="goals"
-            >
-              {goals.length ? (
-                goals.map((h, i) =>
-                  token(h, i, view === "list" ? "list" : "cloud"),
-                )
-              ) : (
-                <p className="empty-region">
-                  {ready
-                    ? "No goals for this passage."
-                    : "Possible aims will appear here."}
+            {error && (
+              <div className="message error" role="alert">
+                <span>{error}</span>
+                <IconButton label="Dismiss error" onClick={() => setError("")}>
+                  <X size={15} />
+                </IconButton>
+              </div>
+            )}
+            {notice && (
+              <div className="message" role="status">
+                <span>{notice}</span>
+                <IconButton
+                  label="Dismiss notice"
+                  onClick={() => setNotice("")}
+                >
+                  <X size={15} />
+                </IconButton>
+              </div>
+            )}
+            {(stale || mismatch) && (
+              <div className="message warning" role="status">
+                <div>
+                  <strong>
+                    {stale
+                      ? "The source text changed"
+                      : "A different evidence scope"}
+                  </strong>
+                  <p>
+                    {stale
+                      ? "Capture again to resolve the passages before viewing estimates."
+                      : mismatch}
+                  </p>
+                  <button
+                    className="text-button"
+                    onClick={() =>
+                      stale ? void capture() : setModal("import")
+                    }
+                  >
+                    {stale ? "Recapture page" : "Import matching analysis"}{" "}
+                    <ArrowRight size={14} />
+                  </button>
+                </div>
+              </div>
+            )}
+            {!ready && !busy && !stale && !mismatch && (
+              <section className="welcome">
+                <div className="welcome-orbit">
+                  <Search size={24} />
+                </div>
+                <h2>
+                  {artifact
+                    ? "Ready for an account"
+                    : "Start with a piece of writing"}
+                </h2>
+                <p>
+                  {artifact
+                    ? "Maker estimates are awaiting an analysis source. Import a result for this capture, or explore the example."
+                    : "Explore possible goals, the process behind them, and the values that may connect them."}
                 </p>
-              )}
-            </div>
+                <button
+                  className="primary-button"
+                  onClick={() => void example()}
+                >
+                  <Sparkles size={16} /> Explore an example{" "}
+                  <ArrowRight size={16} />
+                </button>
+                <button
+                  className="secondary-button"
+                  onClick={() => setModal(artifact ? "import" : "source")}
+                >
+                  {artifact ? "Import analysis" : "Paste a text"}
+                  <Upload size={15} />
+                </button>
+              </section>
+            )}
+            {ready && (
+              <GoalCloud
+                key={packet!.id}
+                goals={goals}
+                active={!!attentionTarget}
+                onInspect={inspect}
+              />
+            )}
           </section>
           <section
             className="region process-region"
             aria-labelledby="process-title"
           >
             <div className="section-heading">
-              <h2 id="process-title">Process</h2>
-              <button
-                className="view-toggle"
-                aria-label={
-                  view === "cloud"
-                    ? "Collapse to process tree"
-                    : "Expand process into word cloud"
-                }
-                aria-pressed={view === "cloud"}
-                onClick={() => setView(view === "cloud" ? "tree" : "cloud")}
-              >
-                {view === "cloud" ? (
-                  <GitBranch size={14} />
-                ) : (
-                  <Expand size={14} />
-                )}
-                {view === "cloud" ? "Tree" : "Expand"}
-              </button>
+              <SectionTitle kind="process">
+                Expertise, Habits, and Process
+              </SectionTitle>
             </div>
-            <div className={`process-map ${view}`} data-testid="process">
-              {processes.length ? (
-                view === "tree" ? (
-                  <ProcessTree
-                    nodes={hypotheses.filter((h) => h.kind === "process")}
-                    edges={packet!.process.edges}
-                    focus={focus?.id}
-                    local={processes.map((h) => h.id)}
-                    onInspect={inspect}
-                  />
-                ) : (
-                  processes.map((h, i) => token(h, i, view))
-                )
+            <ProcessHierarchy
+              key={`${packet?.id}:${packet?.revision}:${activeMaker?.id}`}
+              nodes={
+                ready
+                  ? (packet!.goalHierarchy?.nodes ?? []).filter(
+                      (n) => n.maker === activeMaker!.id,
+                    )
+                  : []
+              }
+              region={region}
+              offset={sentenceOffset}
+              sourceHover={sourceHover}
+              pinned={pinned}
+              lockedNodeId={lockedNode?.id}
+              onSelect={(node) => {
+                setLockedNode(node);
+                setPinned(true);
+                setRelatedNode(null);
+                setRegion(node.regions[0]);
+                setSentenceOffset(node.span?.start ?? 0);
+                void pageCommand(tabId, artifact, "TOMPATHY_FOCUS", {
+                  region: node.regions[0],
+                  offset: node.span?.start ?? 0,
+                  regions: node.span ? undefined : node.regions,
+                });
+              }}
+              onHighlight={(node) => {
+                if (pinned) return;
+                setRelatedNode(node);
+                void pageCommand(tabId, artifact, "TOMPATHY_RELATED", {
+                  regions: node?.regions ?? [],
+                  span: node?.span,
+                });
+              }}
+              onLock={unlock}
+            />
+          </section>
+          <section
+            className="region values-region"
+            aria-labelledby="values-title"
+          >
+            <div className="section-heading">
+              <SectionTitle kind="values">Core values</SectionTitle>
+            </div>
+            <div
+              id="values-view"
+              role="tabpanel"
+              aria-label={
+                valuesTab === "author" ? "Author values" : "Global preview"
+              }
+            >
+              {valuesTab === "author" ? (
+                <ValueList values={values} packet={packet} inspect={inspect} />
               ) : (
-                <p className="empty-region">
-                  {ready
-                    ? "No process account for this passage."
-                    : "The shape of a process will appear here."}
-                </p>
+                <span className="quiet-empty world-placeholder">
+                  Global view · coming later
+                </span>
               )}
             </div>
+            <div className="values-bottom">
+              <ValueTabs tab={valuesTab} onTab={setValuesTab} />
+              <ContextProgress work={contextWork} />
+            </div>
           </section>
+          <span className="sr-only" role="status">
+            {busy
+              ? "Capturing"
+              : ready
+                ? `${authorName}. ${packet!.origin}. ${pinned ? "Locked" : "Following"} ${region}, sentence offset ${sentenceOffset}.`
+                : artifact
+                  ? "Awaiting analysis"
+                  : "Choose a text"}
+          </span>
         </div>
         {detail && (
           <Modal
@@ -782,6 +1110,7 @@ export function App({ preview = false }: { preview?: boolean }) {
                 {detail.status} · {detail.kind}
               </span>
               <p>{detail.description}</p>
+              <p className="muted">{interpretationLabel(detail)}</p>
               {detail.support ? (
                 <p className="support-line">
                   {detail.support.semantics === "probability"
@@ -800,9 +1129,9 @@ export function App({ preview = false }: { preview?: boolean }) {
                 .filter((a) => a.members.includes(detail.id))
                 .map((a) => (
                   <p className="muted" key={a.id}>
-                    {a.kind === "independent"
-                      ? "Can coexist with"
-                      : "Competing account with"}
+                    {a.kind === "competing"
+                      ? "Competing account with"
+                      : "Can coexist with"}
                     :{" "}
                     {a.members
                       .filter((id) => id !== detail.id)
@@ -815,6 +1144,8 @@ export function App({ preview = false }: { preview?: boolean }) {
                     {a.exhaustive
                       ? " Complete candidate set."
                       : " Other accounts may be possible."}
+                    {a.kind !== "competing" &&
+                      " Coexistence does not imply statistical independence."}
                   </p>
                 ))}
               {detail.kind === "process" &&
@@ -824,11 +1155,32 @@ export function App({ preview = false }: { preview?: boolean }) {
                     <p className="muted" key={i}>
                       {packet!.hypotheses.find((h) => h.id === e.from)!.label} →{" "}
                       {packet!.hypotheses.find((h) => h.id === e.to)!.label}:{" "}
-                      {e.relationship}.
+                      {e.relationship}.{" "}
+                      {e.kind
+                        ? `Relationship: ${e.kind}.`
+                        : "Order unspecified."}{" "}
+                      {e.status ?? "hypothesis"}.
                     </p>
                   ))}
-              {detail.evidence.length ? (
-                detail.evidence.map((id) => {
+              {packet!.accounts
+                ?.filter((a) => a.members.includes(detail.id))
+                .map((a) => (
+                  <details key={a.id}>
+                    <summary>{a.label}</summary>
+                    <p>{a.explanation}</p>
+                    <p className="muted">
+                      Compatible hypotheses:{" "}
+                      {a.members
+                        .map(
+                          (id) =>
+                            packet!.hypotheses.find((h) => h.id === id)!.label,
+                        )
+                        .join(" · ")}
+                    </p>
+                  </details>
+                ))}
+              {detailEvidence.length ? (
+                detailEvidence.map((id) => {
                   const e = packet!.evidence.find((e) => e.id === id)!;
                   return (
                     <blockquote key={id}>
@@ -857,96 +1209,21 @@ export function App({ preview = false }: { preview?: boolean }) {
             </section>
           </Modal>
         )}
-        <section
-          className="region values-region"
-          aria-labelledby="values-title"
-        >
-          <div className="section-heading">
-            <div>
-              <h2 id="values-title">Values</h2>
-            </div>
-            <span
-              className="section-aside"
-              title="Values stay steady until you accept a new analysis revision."
-            >
-              across the text
-            </span>
-          </div>
-          <div className="values" data-testid="values">
-            {values.length ? (
-              values.map((h, i) => (
-                <button key={h.id} onClick={() => inspect(h)}>
-                  <span
-                    className={`value-symbol value-${i % 3}`}
-                    aria-hidden="true"
-                  >
-                    {["◌", "✳", "◇"][i % 3]}
-                  </span>
-                  <span>{h.label}</span>
-                  <span className="value-track">
-                    <i
-                      style={{
-                        width: h.support
-                          ? `${(100 * (h.support.value - h.support.scale[0])) / (h.support.scale[1] - h.support.scale[0])}%`
-                          : "0%",
-                      }}
-                    />
-                  </span>
-                </button>
-              ))
-            ) : (
-              <p className="empty-region">
-                {ready
-                  ? "No maker-level values supplied."
-                  : "A stable maker-level snapshot will appear here."}
-              </p>
-            )}
-          </div>
-        </section>
-        <footer className="app-footer">
-          {ready ? (
-            <div className="passage-strip">
-              <span>
-                {pinned ? "Pinned" : "Following"} passage{" "}
-                {Math.max(
-                  1,
-                  artifact!.regions.findIndex((r) => r.id === region) + 1,
-                )}
-              </span>
-              <button
-                className="pin-button"
-                aria-label={pinned ? "Release passage" : "Pin passage"}
-                aria-pressed={pinned}
-                onClick={() => {
-                  setPinned(!pinned);
-                  void pageCommand(
-                    tabId,
-                    artifact,
-                    pinned ? "TOMPATHY_RELEASE" : "TOMPATHY_FOCUS",
-                    { region },
-                  );
-                }}
-              >
-                <Pin size={13} />
-                <span>{pinned ? "Release" : "Pin"}</span>
-              </button>
-            </div>
-          ) : (
-            <span>Ready when you are.</span>
-          )}
-        </footer>
       </div>
       {modal && (
         <Modal
           title={
             {
-              menu: "Your reading",
+              menu: "Options",
+              qa: "Development tools",
               context: "Build the context",
               source: "The source text",
               settings: "Your reader",
               import: "Connect an analysis",
               help: "A little closer to the maker",
               revision: "Review the new perspective",
+              history: "Earlier accounts",
+              claims: "All supplied hypotheses",
             }[modal]
           }
           onClose={() => {
@@ -960,121 +1237,270 @@ export function App({ preview = false }: { preview?: boolean }) {
             </div>
           )}
           {modal === "menu" && (
-            <>
-              <nav className="reader-menu" aria-label="Reader tools">
-                <button onClick={() => setModal("source")}>
-                  <BookOpen size={18} />
-                  <span>
-                    Source text
-                    <small>
-                      {artifact
-                        ? `${artifact.regions.length} passages`
-                        : "Capture or paste a text"}
-                    </small>
-                  </span>
-                  <ChevronRight size={15} />
-                </button>
-                <button
-                  onClick={() => {
-                    setModal(null);
-                    void capture();
+            <div className="options-content">
+              <label className="maker-picker author-selection">
+                Author selection
+                <select
+                  value={
+                    ready
+                      ? activeMaker?.id
+                      : (session.authorLabel ?? authorName)
+                  }
+                  onChange={(e) => {
+                    setMaker(e.target.value);
+                    setDetail(null);
+                    setContextEnabled(false);
+                    setContextWork(null);
+                    collector.current?.abort();
+                    if (!ready)
+                      setSession((s) => ({
+                        ...s,
+                        authorLabel: e.target.value,
+                      }));
                   }}
                 >
-                  <RefreshCw size={18} />
-                  <span>Capture current page</span>
-                  <ChevronRight size={15} />
-                </button>
-                <button onClick={() => setModal("context")}>
-                  <Layers size={18} />
-                  <span>
-                    Context{context.length ? ` · ${context.length}` : ""}
-                  </span>
-                  <ChevronRight size={15} />
-                </button>
-                <button onClick={() => setModal("import")}>
-                  <Upload size={18} />
-                  <span>Import result</span>
-                  <ChevronRight size={15} />
-                </button>
-                <button onClick={() => setModal("settings")}>
-                  <Settings2 size={18} />
-                  <span>Reader settings</span>
-                  <ChevronRight size={15} />
-                </button>
-                <button onClick={() => setModal("help")}>
-                  <CircleHelp size={18} />
-                  <span>How ToMpathy works</span>
-                  <ChevronRight size={15} />
-                </button>
-              </nav>
-              {ready && (
-                <label className="check-option">
+                  {ready ? (
+                    packet!.makers.map((m) => (
+                      <option key={m.id} value={m.id}>
+                        {m.label}
+                      </option>
+                    ))
+                  ) : artifact?.authors?.length ? (
+                    artifact.authors.map((a) => (
+                      <option key={a.label}>{a.label}</option>
+                    ))
+                  ) : (
+                    <option>{authorName}</option>
+                  )}
+                </select>
+              </label>
+              <section
+                className="options-section context-options"
+                aria-labelledby="context-options-title"
+              >
+                <h3 id="context-options-title">Context</h3>
+                <label className="option-check">
                   <input
                     type="checkbox"
-                    checked={view === "list"}
-                    onChange={(e) =>
-                      setView(e.target.checked ? "list" : "tree")
-                    }
-                  />{" "}
-                  Show hypotheses as a list
+                    checked={contextEnabled}
+                    onChange={(e) => void toggleContext(e.target.checked)}
+                  />
+                  <span>
+                    Light context
+                    <small>
+                      Read the byline and follow the author’s explicit profile
+                      links.
+                    </small>
+                  </span>
                 </label>
-              )}
-              {ready && (
-                <label className="maker-picker">
-                  Maker perspective
-                  <select
-                    value={activeMaker?.id}
-                    onChange={(e) => {
-                      setMaker(e.target.value);
-                      setDetail(null);
+                <div className="nested-options">
+                  <label className="option-check future">
+                    <input type="checkbox" disabled />
+                    <span>
+                      Agent search
+                      <small>
+                        Planned · gather more sources and build a dated timeline
+                        locally. No paid services.
+                      </small>
+                    </span>
+                  </label>
+                  <label className="option-check">
+                    <input
+                      type="checkbox"
+                      checked={useGitHub}
+                      onChange={(e) => {
+                        setUseGitHub(e.target.checked);
+                        localStorage.setItem(
+                          "tompathy-use-github",
+                          String(e.target.checked),
+                        );
+                        if (contextEnabled) void toggleContext(false);
+                      }}
+                    />
+                    <span>
+                      Use GitHub when possible
+                      <small>
+                        Use public profile data when the author links their
+                        account.
+                      </small>
+                    </span>
+                  </label>
+                </div>
+              </section>
+              <section
+                className="options-section future-options"
+                aria-label="Future analysis"
+              >
+                <label className="option-check future">
+                  <input type="checkbox" disabled />
+                  <span>
+                    Create a small local model to think like this author
+                    <small>Planned · no model is created yet.</small>
+                  </span>
+                </label>
+                <label className="option-check future">
+                  <input type="checkbox" disabled />
+                  <span>
+                    Word-level analysis
+                    <small>
+                      Word-level analysis is potentially academically
+                      interesting but difficult to interpret.
+                    </small>
+                  </span>
+                </label>
+              </section>
+              <section
+                className="color-scheme"
+                aria-labelledby="color-scheme-title"
+              >
+                <h3 id="color-scheme-title">Color scheme</h3>
+                <div
+                  className="theme-options"
+                  role="group"
+                  aria-label="Color scheme"
+                >
+                  {["system", "light", "dark"].map((t) => (
+                    <button
+                      key={t}
+                      aria-pressed={theme === t}
+                      onClick={() => {
+                        setTheme(t);
+                        void writeTheme(t);
+                      }}
+                    >
+                      {t}
+                    </button>
+                  ))}
+                </div>
+              </section>
+              <footer className="options-footer">
+                <button onClick={() => setModal("help")}>
+                  <CircleHelp size={15} /> <span>How ToMpathy works</span>
+                </button>
+                <div>
+                  <label
+                    className="options-import"
+                    title="Import a saved reading or matching analysis"
+                  >
+                    <Upload size={15} />
+                    <span>Import</span>
+                    <input
+                      type="file"
+                      accept=".html,.json"
+                      aria-label="Import reading"
+                      onChange={(e) => {
+                        void importReading(e.target.files?.[0]);
+                        e.target.value = "";
+                      }}
+                    />
+                  </label>
+                  <button disabled={!artifact} onClick={exportReading}>
+                    <Download size={15} />
+                    <span>Export</span>
+                  </button>
+                </div>
+              </footer>
+            </div>
+          )}
+          {modal === "qa" && (
+            <nav className="reader-menu" aria-label="Development tools">
+              {(
+                [
+                  ["claims", "All supplied hypotheses"],
+                  ["source", "Source text"],
+                  ["context", "Context"],
+                  ["import", "Import result"],
+                  ["settings", "Reader settings"],
+                  ["history", "Earlier accounts"],
+                ] as const
+              ).map(([id, label]) => (
+                <button key={id} onClick={() => setModal(id)}>
+                  {label}
+                </button>
+              ))}
+            </nav>
+          )}
+          {modal === "claims" && (
+            <>
+              <p>
+                Goals, historical process accounts and latent preferences retain
+                their supplied meanings. Historical edges are not treated as a
+                goal hierarchy.
+              </p>
+              <div className="all-claims">
+                {hypotheses.map((h) => (
+                  <button
+                    key={h.id}
+                    className="hypothesis list"
+                    onClick={() => {
+                      setModal(null);
+                      inspect(h);
                     }}
                   >
-                    {packet!.makers.map((m) => (
-                      <option key={m.id} value={m.id}>
-                        {m.label} · {m.identity}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              )}
-              <p className="menu-status">
-                {ready
-                  ? `${isExample ? "Example" : "Analysis"} connected · revision ${packet!.revision}`
-                  : "No analysis connected"}
-              </p>
+                    <span>
+                      {h.label}
+                      <small>{interpretationLabel(h)}</small>
+                    </span>
+                    <ChevronRight size={14} />
+                  </button>
+                ))}
+              </div>
             </>
           )}
           {modal === "help" && (
             <>
-              <p className="modal-lead">
-                One text. More than one possible account.
-              </p>
+              <p className="modal-lead">What's on the author's mind?</p>
+              <button
+                className="secondary-button"
+                onClick={() => {
+                  setModal(null);
+                  setTour(0);
+                }}
+              >
+                Try the interaction guide <MousePointer2 size={15} />
+              </button>
               <ol className="steps">
                 <li>
-                  <strong>Follow a passage.</strong> Hover to preview; click to
-                  pin. Escape releases it. You can also select text or use the
-                  passage list.
+                  <strong>Follow a sentence.</strong> Hover page text to roll
+                  through its goal hierarchy. Click to lock it; Escape or the
+                  small lock beside the reels releases it. Native text selection
+                  and links still work. Use Tab to focus hierarchy blocks and
+                  values; the reels support arrow-key selection.
                 </li>
                 <li>
-                  <strong>Explore the alternatives.</strong> Goals and process
-                  respond to the passage. Select a hypothesis to inspect its
-                  evidence.
+                  <strong>Explore the shape.</strong> The continuous hierarchy
+                  stays visible above the reels. Hover or focus a block: its
+                  ancestors light up to the right, its descendants fan out to
+                  the left, and the matching page text shares their color.
+                  Blurred spools mean several subordinate goals, broader goals
+                  or earlier endings remain possible.
                 </li>
                 <li>
-                  <strong>Keep the maker in view.</strong> Values stay fixed
-                  until you explicitly accept a new analysis revision.
+                  <strong>Look closer.</strong> Hover or focus headings, goals
+                  and values for explanations. Select a goal or value for the
+                  full evidence account.
                 </li>
               </ol>
-              <h3>Reading the page marks</h3>
+              <h3>Current attention</h3>
+              <p>{explanations.goals}</p>
+              <h3>Expertise, Habits, and Process</h3>
+              <p>{explanations.process}</p>
+              <h3>Core values</h3>
+              <p>{explanations.values}</p>
+              <h3>This account</h3>
               <p>
-                Amber tint represents a supplied human contribution estimate. A
-                dotted underline independently marks high uncertainty. An
-                outline marks your selection. No estimate means no tint.
+                {packet
+                  ? `${authorName} · ${packet.origin}. ${packet.provider.method}.`
+                  : "No analysis is connected. Ordinary pages await a supplied result."}{" "}
+                The bundled example is fictional and hand-authored. Older
+                packets without a goal hierarchy remain readable in the source
+                and evidence tools; a hierarchy is never inferred from
+                historical process edges.
               </p>
               <p>
-                Word size expresses the provider’s declared support scale; it
-                does not automatically mean probability. Example estimates are
-                hand-authored.
+                Reduced-motion settings are respected. Word-level goals are
+                reserved for a later version. Context collection alone never
+                changes the accepted account.
               </p>
               <button className="primary-button" onClick={() => void example()}>
                 Open the example <ArrowRight size={16} />
@@ -1083,6 +1509,31 @@ export function App({ preview = false }: { preview?: boolean }) {
           )}
           {modal === "source" && (
             <>
+              <h3>{artifact?.title ?? "No source captured"}</h3>
+              <label>
+                Author to inspect
+                <input
+                  value={
+                    session.authorLabel ??
+                    (artifact?.authors?.length === 1
+                      ? artifact.authors[0].label
+                      : "")
+                  }
+                  maxLength={250}
+                  placeholder="Author not identified"
+                  onChange={(e) =>
+                    setSession((s) => ({ ...s, authorLabel: e.target.value }))
+                  }
+                />
+              </label>
+              <p className="muted">
+                {ready
+                  ? `Analysis subject: ${activeMaker?.label}. Editing the requested author does not reassign existing claims.`
+                  : "A page byline is a source attribution, not a verified identity. You can correct the requested author before exporting."}
+              </p>
+              {artifact?.capture && (
+                <p className="muted">{artifact.capture.note}</p>
+              )}
               <p className="muted">
                 {artifact
                   ? `${artifact.regions.length} passages · ${artifact.truncated ? "Capture limited to 300,000 characters / 1,500 blocks" : "Text snapshot"} · ${tabId === null ? "Detached from a live page" : "Linked to the active page"}`
@@ -1099,14 +1550,42 @@ export function App({ preview = false }: { preview?: boolean }) {
                     <span>□ Selection</span>
                   </div>
                   {estimate && (
-                    <p className="muted">
-                      {estimate.contribution
-                        ? `${estimate.contribution.quantity}: ${estimate.contribution.value} (${estimate.contribution.scale}).`
-                        : "Contribution unknown."}{" "}
-                      Uncertainty: {estimate.uncertainty.level}.{" "}
-                      {estimate.uncertainty.meaning}
-                    </p>
+                    <div className="contribution-explanation">
+                      {contributionExplanation(packet!, region)
+                        .split("\n")
+                        .map((line) => (
+                          <p key={line} className="muted">
+                            {line}
+                          </p>
+                        ))}
+                    </div>
                   )}
+                  {ready &&
+                    !!(
+                      packet!.documentContribution?.evidence.length ||
+                      estimate?.contribution?.evidence?.length
+                    ) && (
+                      <details>
+                        <summary>Evidence for contribution</summary>
+                        {[
+                          ...new Set([
+                            ...(packet!.documentContribution?.evidence ?? []),
+                            ...(estimate?.contribution?.evidence ?? []),
+                          ]),
+                        ].map((id) => {
+                          const e = packet!.evidence.find((e) => e.id === id)!;
+                          return (
+                            <blockquote key={id}>
+                              <p>{e.excerpt}</p>
+                              <cite>
+                                <SourceLink source={e.source} />
+                              </cite>
+                              <small>{e.relationship}</small>
+                            </blockquote>
+                          );
+                        })}
+                      </details>
+                    )}
                   <div className="passage-list">
                     {artifact.regions.map((r, i) => (
                       <button
@@ -1124,6 +1603,18 @@ export function App({ preview = false }: { preview?: boolean }) {
                     onClick={() => download("tompathy-capture.json", artifact)}
                   >
                     <Download size={15} /> Export capture for a provider
+                  </button>
+                  <button
+                    className="secondary-button"
+                    onClick={() =>
+                      download(
+                        "tompathy-analysis-request.json",
+                        analysisHandoff(session),
+                      )
+                    }
+                  >
+                    <Download size={15} /> Export analysis request with selected
+                    context
                   </button>
                 </>
               )}
@@ -1200,7 +1691,7 @@ export function App({ preview = false }: { preview?: boolean }) {
               <label className="upload-zone">
                 <Upload size={23} />
                 <strong>Choose a result packet</strong>
-                <span>Version 1.0 JSON · up to 2 MB</span>
+                <span>Version 1.0 / 1.1 JSON · up to 2 MB</span>
                 <input
                   type="file"
                   accept=".json,application/json"
@@ -1264,6 +1755,10 @@ export function App({ preview = false }: { preview?: boolean }) {
                 Add an excerpt or retrieve up to three public pages. Select the
                 items you want an analysis to consider. Collection alone does
                 not change the estimates.
+              </p>
+              <p className="muted">
+                These sources are available to you. Their presence does not
+                establish what the author knew or believed.
               </p>
               {context.map((c) => (
                 <div className="context-item" key={c.id}>
@@ -1427,15 +1922,26 @@ export function App({ preview = false }: { preview?: boolean }) {
               <button
                 className="primary-button"
                 onClick={() => {
-                  setSession((s) => ({
-                    ...s,
-                    packet: pending,
-                    scope: pending.scope.kind,
-                    context:
-                      pending.origin === "synthetic example"
-                        ? [exampleContext]
-                        : s.context,
-                  }));
+                  const nextContext =
+                    pending.origin === "synthetic example"
+                      ? [exampleContext]
+                      : context;
+                  const reason = artifact
+                    ? matchPacket(
+                        pending,
+                        artifact,
+                        pending.scope.kind,
+                        nextContext,
+                      )
+                    : "Capture a source first.";
+                  if (reason || stale) {
+                    setError(
+                      reason ||
+                        "Recapture the changed source before accepting a revision.",
+                    );
+                    return;
+                  }
+                  setSession((s) => acceptRevision(s, pending, nextContext));
                   setPending(null);
                   setDetail(null);
                   setModal(null);
@@ -1457,6 +1963,64 @@ export function App({ preview = false }: { preview?: boolean }) {
               </button>
             </>
           )}
+          {modal === "history" && (
+            <>
+              <p className="muted">
+                Previous accounts stay inspectable. Viewing one does not replace
+                the accepted account or change page marks. Up to five are
+                retained in this session.
+              </p>
+              {[...(session.history ?? [])].reverse().map((entry, i) => (
+                <details key={`${entry.packet.id}-${i}`}>
+                  <summary>
+                    Revision {entry.packet.revision} ·{" "}
+                    {entry.packet.provider.id}
+                  </summary>
+                  <p>
+                    {entry.packet.changeExplanation ??
+                      "Earlier account before new evidence was accepted."}
+                  </p>
+                  <p className="muted">
+                    {entry.packet.origin} · {entry.packet.scope.kind} ·{" "}
+                    {entry.context.filter((c) => c.selected).length} selected
+                    sources
+                  </p>
+                  {entry.packet.hypotheses.map((h) => (
+                    <details key={h.id}>
+                      <summary>{h.label}</summary>
+                      <p>{h.description}</p>
+                      <p className="muted">
+                        {h.status} · {interpretationLabel(h)}
+                      </p>
+                      {h.evidence.map((id) => {
+                        const e = entry.packet.evidence.find(
+                          (e) => e.id === id,
+                        )!;
+                        return (
+                          <blockquote key={id}>
+                            <p>{e.excerpt}</p>
+                            <cite>{e.source}</cite>
+                            <small>{e.relationship}</small>
+                          </blockquote>
+                        );
+                      })}
+                    </details>
+                  ))}
+                  <button
+                    className="secondary-button"
+                    onClick={() =>
+                      download(
+                        `tompathy-revision-${entry.packet.revision}.json`,
+                        entry.packet,
+                      )
+                    }
+                  >
+                    <Download size={15} /> Export this account
+                  </button>
+                </details>
+              ))}
+            </>
+          )}
           {modal === "settings" && (
             <>
               <h3>Appearance</h3>
@@ -1475,6 +2039,13 @@ export function App({ preview = false }: { preview?: boolean }) {
                   </button>
                 ))}
               </div>
+              <h3>Analysis detail</h3>
+              <label className="future-option">
+                <input type="checkbox" disabled /> Word-level goals{" "}
+                <small>
+                  Planned · sentence-level reading is available now.
+                </small>
+              </label>
               <h3>This reading session</h3>
               <p>
                 Preferences persist. Captured text and context stay in this
@@ -1542,64 +2113,6 @@ export function App({ preview = false }: { preview?: boolean }) {
   );
 }
 
-function ProcessTree({
-  nodes,
-  edges,
-  focus,
-  local,
-  onInspect,
-}: {
-  nodes: Hypothesis[];
-  edges: Packet["process"]["edges"];
-  focus?: string;
-  local: string[];
-  onInspect: (h: Hypothesis) => void;
-}) {
-  const byId = new Map(nodes.map((h) => [h.id, h]));
-  const links = edges.filter((e) => byId.has(e.from) && byId.has(e.to));
-  const visited = new Set<string>();
-  const branch = (h: Hypothesis, relationship?: string): ReactNode => {
-    if (visited.has(h.id)) return null;
-    visited.add(h.id);
-    const children = links.filter((e) => e.from === h.id && !visited.has(e.to));
-    return (
-      <li key={h.id}>
-        <button
-          className={`tree-node ${focus === h.id ? "is-focus" : ""} ${local.includes(h.id) ? "" : "is-distant"} ${h.status === "unknown" ? "is-unknown" : ""}`}
-          title={relationship ? `${relationship}: ${h.label}` : h.description}
-          onClick={() => onInspect(h)}
-        >
-          <span className="node-dot" aria-hidden="true">
-            {h.status === "unknown" ? "?" : ""}
-          </span>
-          <span>{h.label}</span>
-          {focus === h.id && (
-            <span className="focus-mark" aria-label="in focus" />
-          )}
-          {relationship && <span className="sr-only"> · {relationship}</span>}
-        </button>
-        {children.length > 0 && (
-          <ul>
-            {children.map((e) => branch(byId.get(e.to)!, e.relationship))}
-          </ul>
-        )}
-      </li>
-    );
-  };
-  const roots = nodes.filter((h) => !links.some((e) => e.to === h.id));
-  const forest = roots.map((h) => branch(h));
-  // Cyclic or disconnected provider graphs still expose each hypothesis once.
-  const remaining = nodes
-    .filter((h) => !visited.has(h.id))
-    .map((h) => branch(h));
-  return (
-    <ul className="process-tree" aria-label="Possible process relationships">
-      {forest}
-      {remaining}
-    </ul>
-  );
-}
-
 function supportWeight(h: Hypothesis) {
   return h.support
     ? (h.support.value - h.support.scale[0]) /
@@ -1627,13 +2140,33 @@ export function ExampleArticle({
   pinned = false,
   related = [],
   onMove = () => {},
+  onLeave = () => {},
+  onUnlock = () => {},
+  sentenceOffset = 0,
 }: {
   active?: string;
   pinned?: boolean;
   related?: string[];
-  onMove?: (id: string, pin?: boolean) => void;
+  onMove?: (id: string, pin?: boolean, offset?: number) => void;
+  onLeave?: () => void;
+  onUnlock?: () => void;
+  sentenceOffset?: number;
 }) {
   const standalone = isExtension && location.pathname.endsWith("example.html");
+  const pointedOffset = (
+    el: HTMLElement,
+    x: number,
+    y: number,
+    sentence: { start: number; text: string },
+  ) => {
+    const caret = document.caretRangeFromPoint(x, y);
+    return (
+      sentence.start +
+      (caret?.startContainer === el.firstChild
+        ? Math.min(caret.startOffset, sentence.text.length - 1)
+        : 0)
+    );
+  };
   return (
     <div className="example-page">
       <nav>
@@ -1653,7 +2186,15 @@ export function ExampleArticle({
           <button
             onClick={async () => {
               const tab = await chrome.tabs.getCurrent();
-              if (tab?.id) await chrome.sidePanel.open({ tabId: tab.id });
+              if (tab?.id) {
+                await chrome.sidePanel.setOptions({
+                  path: new URLSearchParams(location.search).has("qa")
+                    ? "panel.html?qa"
+                    : "panel.html",
+                  enabled: true,
+                });
+                await chrome.sidePanel.open({ tabId: tab.id });
+              }
             }}
           >
             Open Maker Reader <ArrowRight size={14} />
@@ -1664,14 +2205,16 @@ export function ExampleArticle({
           </span>
         )}
       </div>
-      <article>
+      <article onMouseLeave={onLeave}>
         <div className="article-kicker" data-tompathy-ui>
           SMALL INTERVENTIONS / 06 MIN READ
         </div>
         <h1
           data-passage="p1"
-          onMouseEnter={() => onMove("p1")}
-          onClick={() => onMove("p1", true)}
+          onMouseMove={() => onMove("p1")}
+          onClick={() =>
+            !window.getSelection()?.toString() && onMove("p1", true)
+          }
         >
           {exampleText[0]}
         </h1>
@@ -1694,8 +2237,7 @@ export function ExampleArticle({
             data-passage={`p${i + 2}`}
             tabIndex={0}
             className={`${active === `p${i + 2}` ? "active-passage" : ""} ${related.includes(`p${i + 2}`) ? "related-passage" : ""}`}
-            onMouseEnter={() => onMove(`p${i + 2}`)}
-            onClick={() => onMove(`p${i + 2}`, true)}
+
             onFocus={() => onMove(`p${i + 2}`)}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") onMove(`p${i + 2}`, true);
@@ -1705,7 +2247,59 @@ export function ExampleArticle({
               {String(i + 1).padStart(2, "0")}
               {pinned && active === `p${i + 2}` ? " ·" : ""}
             </span>
-            {text}
+            {standalone
+              ? text
+              : sentences(text).map((sentence, j) => (
+                  <span
+                    key={j}
+                    data-sentence={j}
+                    className={
+                      active === `p${i + 2}` &&
+                      sentenceOffset >= sentence.start &&
+                      sentenceOffset < sentence.end
+                        ? "active-sentence"
+                        : ""
+                    }
+                    onMouseMove={(e) => {
+                      if ((e.target as Element).closest("button")) return;
+                      onMove(
+                        `p${i + 2}`,
+                        false,
+                        pointedOffset(
+                          e.currentTarget,
+                          e.clientX,
+                          e.clientY,
+                          sentence,
+                        ),
+                      );
+                    }}
+                    onClick={(e) =>
+                      !window.getSelection()?.toString() &&
+                      onMove(
+                        `p${i + 2}`,
+                        true,
+                        pointedOffset(
+                          e.currentTarget,
+                          e.clientX,
+                          e.clientY,
+                          sentence,
+                        ),
+                      )
+                    }
+                  >
+                    {sentence.text}
+                    {pinned &&
+                      active === `p${i + 2}` &&
+                      sentenceOffset >= sentence.start &&
+                      sentenceOffset < sentence.end && (
+                        <SelectionLock
+                          className="inline-lock"
+                          onUnlock={onUnlock}
+                        />
+                      )}
+                    {j < sentences(text).length - 1 ? " " : ""}
+                  </span>
+                ))}
           </p>
         ))}
         <div className="article-end" data-tompathy-ui>

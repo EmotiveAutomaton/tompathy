@@ -1,54 +1,193 @@
+import { createExample } from "../src/core/example";
 import { test, expect, type Page } from "@playwright/test";
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() =>
+    localStorage.setItem("tompathy-guide-offered-040", "yes"),
+  );
+});
 async function tool(page: Page, name: string) {
-  await page.getByRole("button", { name: "Reader menu", exact: true }).click();
+  await page
+    .getByRole("button", {
+      name: name === "How ToMpathy works" ? "Reader menu" : "Development tools",
+      exact: true,
+    })
+    .click();
   await page.getByRole("button", { name, exact: true }).click();
 }
-test("linked hypotheses, stable values, pin/release and evidence", async ({
+test("independent attention, two peaks, bidirectional ambiguity and matching locks", async ({
   page,
 }) => {
-  await page.goto("/");
-  await expect(page.locator(".identity-note")).toBeVisible();
+  await page.goto("/?qa");
+  await expect(page.locator(".reader-content > .region")).toHaveCount(3);
+  await expect(
+    page.locator(".app-header, .app-footer, .node-explanation"),
+  ).toHaveCount(0);
+  await expect(page.getByTestId("goals")).toHaveText("Hover to see");
   const values = await page.getByTestId("values").innerHTML();
-  await page.locator('[data-passage="p4"]').hover();
-  await expect(page.getByTestId("process")).toContainText("Test & refine");
-  await expect(page.getByTestId("goals")).toContainText("Test an assumption");
+  const first = page.locator('[data-passage="p2"] [data-sentence="0"]');
+  await first.hover();
+  await expect(page.locator('[data-dominant="true"]')).toHaveText(
+    "Noticing pauses",
+  );
+  const shared = await page.locator('[data-goal="focus-11"]').elementHandle();
+  const sentence = page.locator('[data-passage="p4"] [data-sentence="1"]');
+  await sentence.hover();
+  await expect(page.locator('[data-dominant="true"]')).toHaveText(
+    "Learning from others",
+  );
+  expect(await shared!.evaluate((el) => el.isConnected)).toBe(true);
+  await expect(page.locator('.spool[data-level="3"]')).toHaveAttribute(
+    "data-selected",
+    "sentence-3-2",
+  );
+  await expect(page.locator('.spool[data-level="1"]')).toHaveAttribute(
+    "data-candidates",
+    "story,practical-care",
+  );
+  await expect(page.locator('.spool[data-level="0"]')).toHaveAttribute(
+    "data-candidates",
+    "purpose,end",
+  );
   expect(await page.getByTestId("values").innerHTML()).toEqual(values);
-  await page.locator('[data-passage="p4"]').click();
-  await page.locator('[data-passage="p2"]').hover();
-  await expect(page.locator(".passage-strip")).toContainText(
-    "Pinned passage 4",
+  await sentence.click();
+  await first.hover();
+  await expect(page.locator('[data-dominant="true"]')).toHaveText(
+    "Learning from others",
+  );
+  await expect(
+    page.getByRole("button", { name: "Unlock selection" }),
+  ).toHaveCount(2);
+  await expect(page.locator(".pyramid svg")).toHaveAttribute("data-peaks", "2");
+  const pyramid = await page.locator(".pyramid").boundingBox();
+  const reels = await page.getByTestId("odometer").boundingBox();
+  expect(reels!.y).toBeGreaterThanOrEqual(pyramid!.y + pyramid!.height);
+  expect(reels!.height).toBeLessThan(50);
+  await page.locator('[data-node="paragraph-3"] circle').first().hover();
+  await expect(page.locator('.spool[data-level="2"]')).toHaveClass(
+    /spool-emphasis/,
+  );
+  await expect(page.locator('.spool[data-level="3"]')).toHaveAttribute(
+    "data-selected",
+    "sentence-3-2",
+  );
+  await expect(page.locator('[data-dominant="true"]')).toHaveText(
+    "Learning from others",
+  );
+  const reel = page.locator('.spool[data-level="3"]');
+  await reel.hover();
+  await page.mouse.wheel(0, 100);
+  await expect(reel).toHaveAttribute("data-selected", "sentence-3-3");
+  await reel.focus();
+  await page.keyboard.press("ArrowUp");
+  await expect(reel).toHaveAttribute("data-selected", "sentence-3-2");
+  await page.locator(".process-lock").click();
+  await expect(page.getByTestId("goals")).toHaveText("Hover to see");
+  await expect(
+    page.getByRole("button", { name: "Unlock selection" }),
+  ).toHaveCount(0);
+  await sentence.click();
+  await page.locator(".inline-lock").click();
+  await expect(page.getByTestId("goals")).toHaveText("Hover to see");
+  await page.locator('[data-node="paragraph-3"] circle').first().hover();
+  expect(
+    await page
+      .locator(".pyramid-node.descendant")
+      .evaluateAll(
+        (es) => new Set(es.map((e) => e.getAttribute("data-node"))).size,
+      ),
+  ).toBe(5);
+  expect(
+    await page
+      .locator(".pyramid-node.ancestor")
+      .evaluateAll(
+        (es) => new Set(es.map((e) => e.getAttribute("data-node"))).size,
+      ),
+  ).toBe(4);
+  await expect(page.locator(".spool.ambiguous")).toHaveCount(3);
+  await expect(page.getByTestId("goals")).toHaveText("Hover to see");
+  await expect(page.locator('[data-passage="p4"]')).toHaveClass(
+    /related-passage/,
+  );
+  await page.screenshot({ path: "evidence/design-branch.png" });
+  await page.locator('[data-node="sentence-3-2"] circle').first().click();
+  await expect(page.locator('[data-dominant="true"]')).toHaveText(
+    "Learning from others",
   );
   await page.keyboard.press("Escape");
-  await page.locator('[data-passage="p3"]').hover();
-  await expect(page.locator(".passage-strip")).toContainText(
-    "Following passage 3",
-  );
+  await page.getByRole("button", { name: "Reader menu", exact: true }).click();
+  await expect(page.getByLabel("Show hypotheses as a list")).toHaveCount(0);
+  await expect(page.getByRole("dialog")).toHaveAccessibleName("Options");
+  await expect(page.getByLabel("Author selection")).toBeVisible();
+});
+test("cloud phrases do not overlap at native width; heading and value explanations work by keyboard", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 360, height: 900 });
+  await page.goto("/?panel&qa");
+  await page.locator('[data-node="sentence-1-1"] circle').first().click();
+  await page.waitForTimeout(1100);
+  const boxes = await page
+    .locator(".cloud-position button")
+    .evaluateAll((buttons) =>
+      buttons.map((b) => {
+        const r = b.getBoundingClientRect();
+        return { left: r.left, right: r.right, top: r.top, bottom: r.bottom };
+      }),
+    );
+  for (let i = 0; i < boxes.length; i++)
+    for (let j = i + 1; j < boxes.length; j++) {
+      const a = boxes[i],
+        b = boxes[j];
+      expect(
+        a.right <= b.left ||
+          b.right <= a.left ||
+          a.bottom <= b.top ||
+          b.bottom <= a.top,
+      ).toBe(true);
+    }
+  const sizes = await page
+    .locator(".cloud-position button")
+    .evaluateAll((es) =>
+      es.map((e) => parseFloat(getComputedStyle(e).fontSize)),
+    );
+  expect(Math.max(...sizes) / Math.min(...sizes)).toBeGreaterThan(2.9);
+  const headingSize = await page
+    .locator("#goals-title")
+    .evaluate((e) => parseFloat(getComputedStyle(e).fontSize));
+  expect(Math.min(...sizes)).toBeLessThan(headingSize);
+  await page.getByRole("button", { name: "Restraint", exact: true }).hover();
+  await expect(page.getByRole("tooltip")).toContainText("Restraint");
+  await page.getByRole("button", { name: "Curiosity", exact: true }).hover();
+  await expect(page.getByRole("tooltip")).toContainText("Curiosity");
+  await expect(page.getByRole("tooltip")).not.toContainText("Restraint");
+  const tooltip = await page.getByRole("tooltip").evaluate((e) => ({
+    scroll: e.scrollHeight > e.clientHeight,
+    events: getComputedStyle(e).pointerEvents,
+  }));
+  expect(tooltip).toEqual({ scroll: false, events: "none" });
+  const cells = await page
+    .locator(".core-value-row")
+    .evaluateAll((es) => es.map((e) => e.getBoundingClientRect().x));
+  expect(new Set(cells).size).toBe(2);
+  await page.locator(".pyramid").hover({ position: { x: 1, y: 1 } });
+  await page.getByRole("button", { name: "About Core values" }).focus();
+  await expect(page.getByRole("tooltip")).toContainText("latent preferences");
   await page
-    .getByRole("button", { name: "Reframe the problem", exact: false })
-    .click();
+    .getByRole("button", { name: "Care for others", exact: true })
+    .focus();
   await expect(
-    page.getByRole("region", { name: "Hypothesis evidence" }),
-  ).toContainText("not a probability");
-  await page.getByRole("button", { name: "Passage 2", exact: true }).click();
-  await expect(page.locator(".passage-strip")).toContainText(
-    "Pinned passage 2",
-  );
-  await page
-    .getByRole("button", { name: "Expand process into word cloud" })
-    .click();
-  await expect(page.locator(".process-map.cloud")).toBeVisible();
-  await expect(page.getByTestId("process")).toContainText("Earlier experience");
-  await page.getByRole("button", { name: "Collapse to process tree" }).click();
-  await expect(page.locator(".process-tree ul").first()).toBeVisible();
-  await page.getByRole("button", { name: "Reader menu" }).click();
-  await page.getByLabel("Show hypotheses as a list").check();
-  await page.getByRole("button", { name: "Close dialog" }).click();
-  await expect(page.getByTestId("process")).toContainText("Earlier experience");
+    page.getByRole("tooltip").filter({ hasText: "Where this comes from" }),
+  ).toContainText("Specific decision");
+  await page.keyboard.press("Escape");
+  await tool(page, "Reader settings");
+  await expect(
+    page.getByRole("checkbox", { name: /Word-level goals/ }),
+  ).toBeDisabled();
 });
 test("context changes invalidate scope; explicit revision updates fixed values", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/?qa");
   await tool(page, "Context");
   await page
     .getByLabel("Excerpt", { exact: true })
@@ -60,10 +199,8 @@ test("context changes invalidate scope; explicit revision updates fixed values",
   await page.getByLabel("Analysis scope").selectOption("context");
   await page.getByRole("button", { name: "Close dialog" }).click();
   await expect(page.getByText("A different evidence scope")).toBeVisible();
-  await expect(page.getByTestId("values")).toContainText(
-    "snapshot will appear",
-  );
-  await tool(page, "Context · 1");
+  await expect(page.getByTestId("values")).toContainText("No values supplied");
+  await tool(page, "Context");
   await page.getByLabel("Analysis scope").selectOption("artifact");
   await page.getByRole("button", { name: "Preview example revision" }).click();
   await expect(page.getByRole("dialog")).toContainText("Work within a brief");
@@ -71,22 +208,56 @@ test("context changes invalidate scope; explicit revision updates fixed values",
   await expect(page.getByTestId("values")).toContainText("Practical care");
   await page.locator('[data-passage="p5"]').hover();
   await expect(page.getByTestId("process")).toContainText(
-    "Work within a brief",
+    "Explain the constraints",
+  );
+  await tool(page, "Earlier accounts");
+  await page
+    .getByText("Revision 1 · tompathy-example", { exact: true })
+    .click();
+  await expect(page.getByRole("dialog")).toContainText("Care for others");
+  await expect(page.getByRole("dialog")).toContainText("Design for inclusion");
+  await page.getByRole("button", { name: "Close dialog" }).click();
+  await expect(page.getByTestId("values")).toContainText("Practical care");
+});
+
+test("compact author header and source export preserve the selected author and context boundary", async ({
+  page,
+}) => {
+  await page.goto("/?panel&qa");
+  await expect(page.locator(".app-header")).toHaveCount(0);
+  await tool(page, "Source text");
+  await page
+    .getByLabel("Author to inspect")
+    .fill("A different requested author");
+  const promise = page.waitForEvent("download");
+  await page
+    .getByRole("button", {
+      name: "Export analysis request with selected context",
+    })
+    .click();
+  const file = await (await promise).path();
+  const { readFile } = await import("node:fs/promises");
+  const request = JSON.parse(await readFile(file!, "utf8"));
+  expect(request.author).toBe("A different requested author");
+  expect(request.context).toEqual([]);
+  await page.getByRole("button", { name: "Close dialog" }).click();
+  // A new requested subject never relabels an existing account.
+  await tool(page, "Source text");
+  await expect(page.getByRole("dialog")).toContainText(
+    "Analysis subject: The garden designer",
   );
 });
 test("malformed packet, pasted text and session clear expose honest empty state", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/?qa");
   await tool(page, "Import result");
   await page.getByText("Or paste JSON").click();
   await page.getByLabel("Result JSON").fill("{broken");
   await page.getByRole("button", { name: "Validate & import" }).click();
   await expect(page.getByRole("dialog").getByRole("alert")).toBeVisible();
   await page.getByRole("button", { name: "Close dialog" }).click();
-  await page
-    .getByRole("button", { name: "A bench is an invitation", exact: true })
-    .click();
+  await tool(page, "Source text");
   await page
     .getByLabel("Paste a different text")
     .fill("This is a new text, written only for this browser test.");
@@ -105,7 +276,7 @@ test("narrow dark panel, reduced motion and keyboard dialog focus", async ({
 }) => {
   await page.setViewportSize({ width: 320, height: 900 });
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/?panel");
+  await page.goto("/?panel&qa");
   await tool(page, "Reader settings");
   await page.getByRole("button", { name: "dark", exact: true }).click();
   await page.keyboard.press("Escape");
@@ -119,10 +290,10 @@ test("narrow dark panel, reduced motion and keyboard dialog focus", async ({
     el.scrollTop = el.scrollHeight;
   });
   await expect(
-    page.getByRole("heading", { name: "Goals", exact: true }),
+    page.getByRole("heading", { name: "About Current attention", exact: true }),
   ).toBeInViewport();
   await expect(
-    page.getByRole("heading", { name: "Values", exact: true }),
+    page.getByRole("heading", { name: "About Core values", exact: true }),
   ).toBeInViewport();
   await page.getByTestId("process").evaluate((el) => {
     el.scrollTop = 0;
@@ -136,7 +307,7 @@ test("narrow dark panel, reduced motion and keyboard dialog focus", async ({
 test("session save/load, file context and explicit imported-context selection", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/?qa");
   await tool(page, "Context");
   await page.locator("input[type=file]").setInputFiles({
     name: "notes.md",
@@ -156,7 +327,7 @@ test("session save/load, file context and explicit imported-context selection", 
   await expect(
     page.getByText("Session loaded as a detached snapshot.", { exact: false }),
   ).toBeVisible();
-  await tool(page, "Context · 1");
+  await tool(page, "Context");
   await expect(page.locator(".context-item input")).not.toBeChecked();
   await page.getByRole("button", { name: "Remove notes.md" }).click();
   await expect(page.locator(".context-item")).toHaveCount(0);
@@ -164,7 +335,7 @@ test("session save/load, file context and explicit imported-context selection", 
 test("collection cancellation and 200% zoom preserve usable controls", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/?qa");
   await tool(page, "Context");
   await page.getByText("Retrieve public sources", { exact: true }).click();
   await page.route("https://example.com/slow", async (route) => {
@@ -200,4 +371,183 @@ test("collection cancellation and 200% zoom preserve usable controls", async ({
   expect(bounds!.y).toBeGreaterThanOrEqual(0);
   expect(bounds!.y + bounds!.height).toBeLessThanOrEqual(1000);
   await page.screenshot({ path: "evidence/zoom-200.png" });
+});
+
+test("unnamed eight-level hierarchy and top nine values fit a narrow panel", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 360, height: 900 });
+  await page.goto("/?panel&qa");
+  const packet = await createExample();
+  packet.schemaVersion = "1.4";
+  packet.revisionOf = packet.id;
+  packet.id = "deep-review-fixture";
+  packet.revision = 2;
+  const nodes = packet.goalHierarchy!.nodes;
+  for (const node of nodes)
+    if (node.parentId === "purpose") node.parentId = "extra-3";
+  for (let i = 0; i < 4; i++)
+    nodes.push({
+      ...nodes[0],
+      id: `extra-${i}`,
+      parentId: i ? `extra-${i - 1}` : "purpose",
+      label: `Intermediate goal ${i + 1}`,
+      level: undefined,
+    });
+  const value = packet.hypotheses.find((h) => h.kind === "value")!;
+  for (let i = 0; i < 10; i++)
+    packet.hypotheses.push({
+      ...value,
+      id: `extra-value-${i}`,
+      label: `Fixture preference ${i + 1}`,
+      support: { ...value.support!, value: 0.95 - i * 0.02 },
+    });
+  await tool(page, "Import result");
+  await page.getByText("Or paste JSON").click();
+  await page.getByLabel("Result JSON").fill(JSON.stringify(packet));
+  await page.getByRole("button", { name: "Validate & import" }).click();
+  await page.getByRole("button", { name: "Accept this revision" }).click();
+  await expect(page.locator(".core-value-row")).toHaveCount(9);
+  await expect(page.locator(".core-value-row").first()).toHaveText(
+    "Fixture preference 1",
+  );
+  await expect(page.locator(".core-value-row").last()).toHaveText(
+    "Fixture preference 9",
+  );
+  await expect(page.locator(".core-value-row").last()).toBeInViewport();
+  await page.locator('[data-node="sentence-1-1"] circle').first().click();
+  await expect(page.locator(".spool")).toHaveCount(8);
+  await expect(page.locator(".spool small")).toHaveCount(0);
+  const broadest = page.locator('.spool[data-level="0"]');
+  await broadest.focus();
+  await expect(broadest).toBeInViewport();
+  await expect(broadest).toHaveAttribute("data-selected", "purpose");
+  await expect(page.locator(".pyramid")).toBeVisible();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+});
+
+test("corner headings, compact attention, expanded values and prototype tabs", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 360, height: 900 });
+  await page.goto("/?panel&qa");
+  const cloud = await page.locator(".goals-region").boundingBox();
+  const values = await page.locator(".values-region").boundingBox();
+  expect(cloud!.height).toBeLessThanOrEqual(190);
+  expect(values!.height).toBeGreaterThanOrEqual(240);
+  for (const selector of [
+    ".goals-region",
+    ".process-region",
+    ".values-region",
+  ]) {
+    const region = await page.locator(selector).boundingBox();
+    const title = await page
+      .locator(selector + " > .section-heading > h2")
+      .boundingBox();
+    expect(Math.abs(title!.y - region!.y)).toBeLessThan(2);
+    expect(
+      Math.abs(title!.x + title!.width - region!.x - region!.width),
+    ).toBeLessThan(2);
+  }
+  await expect(page.locator(".core-value-row")).toHaveCount(8);
+  const rows = await page.locator(".core-value-row").evaluateAll((es) =>
+    es.map((e) => {
+      const r = e.getBoundingClientRect();
+      return r.y + r.height / 2;
+    }),
+  );
+  for (let i = 0; i < rows.length; i += 2)
+    expect(Math.abs(rows[i] - rows[i + 1])).toBeLessThan(1);
+  const menu = await page
+    .getByRole("button", { name: "Reader menu", exact: true })
+    .boundingBox();
+  expect(menu!.x - cloud!.x).toBeGreaterThanOrEqual(8);
+  expect(menu!.y - cloud!.y).toBeGreaterThanOrEqual(6);
+  await page.getByRole("tab", { name: "global", exact: true }).click();
+  await expect(page.getByRole("tabpanel")).toHaveText(
+    "Global view · coming later",
+  );
+  await page.getByRole("tab", { name: "author", exact: true }).click();
+  await expect(page.locator(".core-value-row")).toHaveCount(8);
+  const world = await page
+    .getByRole("tab", { name: "global", exact: true })
+    .boundingBox();
+  const toggle = page.getByRole("button", { name: "Open search preview" });
+  const searchBefore = await toggle.boundingBox();
+  expect(searchBefore!.x - world!.x - world!.width).toBeGreaterThanOrEqual(0);
+  expect(searchBefore!.x - world!.x - world!.width).toBeLessThan(9);
+  await page.getByRole("button", { name: "Open search preview" }).click();
+  const search = page.getByRole("textbox", { name: "Search preview" });
+  const searchAfter = await toggle.boundingBox();
+  expect(searchAfter!.x).toBe(searchBefore!.x);
+  expect((await search.boundingBox())!.x).toBeGreaterThan(
+    searchAfter!.x + searchAfter!.width,
+  );
+  await expect(search).toBeFocused();
+  await search.fill("curiosity");
+  const requests: string[] = [];
+  page.on("request", (r) => requests.push(r.url()));
+  await search.press("Enter");
+  await expect(
+    page.getByRole("status").filter({ hasText: "No query was sent" }),
+  ).toBeVisible();
+  expect(requests).toEqual([]);
+  await search.press("Escape");
+  await expect(
+    page.getByRole("button", { name: "Open search preview" }),
+  ).toBeFocused();
+  await page.getByRole("button", { name: "Open search preview" }).click();
+  await expect(search).toHaveValue("curiosity");
+  await page.screenshot({ path: "evidence/search.png" });
+});
+
+test("attention can change within a sentence and lock the pointed frame", async ({
+  page,
+}) => {
+  await page.goto("/?qa");
+  const packet = await createExample();
+  packet.revisionOf = packet.id;
+  packet.id = "attention-offset-fixture";
+  packet.revision = 2;
+  const frame = packet.currentAttention!.find((f) => f.span.region === "p4")!;
+  const next = structuredClone(frame);
+  frame.span.end = 20;
+  next.span.start = 20;
+  next.items = [next.items[1]];
+  packet.currentAttention!.push(next);
+  await tool(page, "Import result");
+  await page.getByText("Or paste JSON").click();
+  await page.getByLabel("Result JSON").fill(JSON.stringify(packet));
+  await page.getByRole("button", { name: "Validate & import" }).click();
+  await page.getByRole("button", { name: "Accept this revision" }).click();
+  const sentence = page.locator('[data-passage="p4"] [data-sentence="0"]');
+  await sentence.scrollIntoViewIfNeeded();
+  const points = await sentence.evaluate((el) =>
+    [5, 35].map((offset) => {
+      const range = document.createRange();
+      range.setStart(el.firstChild!, offset);
+      range.setEnd(el.firstChild!, offset + 2);
+      const r = range.getBoundingClientRect();
+      return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
+    }),
+  );
+  await page.mouse.move(points[0].x, points[0].y);
+  await expect(page.locator('[data-dominant="true"]')).toHaveText(
+    "Watching closely",
+  );
+  await page.mouse.move(points[1].x, points[1].y);
+  await expect(page.locator('[data-dominant="true"]')).toHaveText(
+    "Small details",
+  );
+  await page.mouse.click(points[1].x, points[1].y);
+  await page.mouse.move(points[0].x, points[0].y);
+  await expect(page.locator('[data-dominant="true"]')).toHaveText(
+    "Small details",
+  );
+  await page.locator(".process-lock").click();
+  await expect(page.getByTestId("goals")).toHaveText("Hover to see");
 });

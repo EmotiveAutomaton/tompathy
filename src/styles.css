@@ -80,7 +80,7 @@ select:focus-visible,
 textarea:focus-visible,
 summary:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid var(--amber);
+  outline: 2px solid var(--green);
   outline-offset: 3px;
 }
 button {
@@ -411,7 +411,7 @@ a {
 }
 .file-button:focus-within,
 .upload-zone:focus-within {
-  outline: 2px solid var(--amber);
+  outline: 2px solid var(--green);
   outline-offset: 3px;
 }
 .upload-zone {

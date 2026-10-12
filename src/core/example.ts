@@ -4,6 +4,9 @@ import {
   type Packet,
   type ContextItem,
 } from "./model";
+import { exampleAttention } from "./attention";
+import { exampleHierarchy } from "./example-hierarchy";
+import { sentences } from "./sentences";
 export const exampleText = [
   "A bench is an invitation",
   "The first thing we noticed was not where people sat. It was where they stopped. At the edge of the garden, visitors paused with their bags still on their shoulders, as if waiting for permission to stay.",
@@ -71,13 +74,38 @@ export async function createExample(
             value,
             scale: [0, 1],
             semantics: "relative",
+            ...(kind === "goal" ? { candidateSet: "aims" } : {}),
             meaning:
               "Illustrative relative support, not a probability or calibrated estimate.",
           },
     evidence: ev,
+    ...(id === "attention"
+      ? {
+          spans: ["p2", "p4"].map((region) => ({
+            region,
+            ...sentences(
+              artifact.regions.find((r) => r.id === region)!.anchor.exact,
+            )[0],
+          })),
+        }
+      : {}),
+    ...(id === "care" ? { decisionNodes: ["sentence-4-3"] } : {}),
+    interpretation:
+      kind === "goal"
+        ? id === "invite"
+          ? "governing-purpose"
+          : "local-goal"
+        : kind === "process"
+          ? "historical-event"
+          : id === "care"
+            ? "value"
+            : "preference",
   });
+  const attention = exampleAttention(artifact);
   return PacketSchema.parse({
-    schemaVersion: "1.0",
+    schemaVersion: "1.4",
+    currentAttention: attention.currentAttention,
+    goalHierarchy: { nodes: exampleHierarchy(artifact, revised) },
     id: revised ? "bench-analysis-2" : "bench-analysis-1",
     revision: revised ? 2 : 1,
     artifact,
@@ -99,12 +127,58 @@ export async function createExample(
       },
     ],
     hypotheses: [
+      ...attention.hypotheses,
+      h(
+        "concrete",
+        "goal",
+        "Make it tangible",
+        "Ground an abstract invitation in observable design choices.",
+        [],
+        0.53,
+        ["e2", "e4"],
+      ),
+      h(
+        "ordinary",
+        "goal",
+        "Reframe",
+        "Suggest that an everyday object can carry a social purpose.",
+        [],
+        0.31,
+        ["e1", "e5"],
+      ),
+      h(
+        "reflection",
+        "goal",
+        "Reflection",
+        "Leave the reader room to form their own judgment.",
+        [],
+        0.38,
+        ["e5"],
+      ),
+      h(
+        "attention",
+        "goal",
+        "Look closer",
+        "Use a close observation to let the situation become visible.",
+        ["p2", "p4"],
+        0.24,
+        ["e1", "e3"],
+      ),
+      h(
+        "modesty",
+        "goal",
+        "Keep the claim modest",
+        "Qualify what this small intervention can establish.",
+        ["p3", "p6"],
+        0.34,
+        ["e2", "e5"],
+      ),
       h(
         "invite",
         "goal",
         "Invite connection",
         "The writer may be making an everyday encounter feel possible.",
-        ["p1", "p2", "p3", "p6"],
+        ["p1", "p2", "p3", "p4", "p5", "p6"],
         0.88,
         ["e1", "e2", "e5"],
       ),
@@ -187,7 +261,7 @@ export async function createExample(
         "reflect",
         "process",
         "Reflect without closure",
-        "The closing scene leaves the broader question open.",
+        "The author may have selected and qualified a final observation while composing the reflection. The finished text alone cannot establish when this happened.",
         ["p6"],
         0.8,
         ["e5"],
@@ -205,7 +279,7 @@ export async function createExample(
         "history",
         "process",
         "Earlier experience",
-        "The maker’s training and prior history are unresolved.",
+        "No records identify the earlier events that shaped this work. Their timing and influence are unresolved.",
         ["p1", "p2", "p3", "p4", "p5", "p6"],
         null,
         [],
@@ -218,7 +292,7 @@ export async function createExample(
         "A possible concern for everyday comfort, limited to this fictional artifact.",
         [],
         revised ? 0.64 : 0.78,
-        ["e2", "e4"],
+        ["e2", "e4", ...(revised ? ["notebook"] : [])],
       ),
       h(
         "curiosity",
@@ -228,6 +302,23 @@ export async function createExample(
         [],
         0.64,
         ["e1", "e3"],
+      ),
+      ...[
+        ["accessibility", "Access for everyone", 0.51, "e4"],
+        ["adaptability", "Willingness to revise", 0.48, "e3"],
+        ["stewardship", "Thoughtful use of materials", 0.44, "e4"],
+        ["belonging", "Shared belonging", 0.4, "e2"],
+        ["patience", "Patient observation", 0.36, "e1"],
+      ].map(([id, label, value, evidence]) =>
+        h(
+          String(id),
+          "value",
+          String(label),
+          `An illustrative recurring preference: ${String(label).toLowerCase()}.`,
+          [],
+          Number(value),
+          [String(evidence)],
+        ),
       ),
       h(
         "restraint",
@@ -242,8 +333,19 @@ export async function createExample(
     alternatives: [
       {
         id: "aims",
-        kind: "independent",
-        members: ["invite", "notice", "persuade", "test", "include"],
+        kind: "coexisting",
+        members: [
+          "invite",
+          "notice",
+          "persuade",
+          "test",
+          "include",
+          "concrete",
+          "ordinary",
+          "reflection",
+          "attention",
+          "modesty",
+        ],
         exhaustive: false,
       },
       {
@@ -254,6 +356,7 @@ export async function createExample(
       },
     ],
     process: {
+      interpretation: "historical-production",
       nodes: [
         "observe",
         "reframe",
@@ -264,11 +367,63 @@ export async function createExample(
         "history",
       ],
       edges: [
-        { from: "observe", to: "reframe", relationship: "May motivate" },
-        { from: "observe", to: "iterate", relationship: "May inform" },
-        { from: "iterate", to: "craft", relationship: "May refine" },
-        { from: "craft", to: "reflect", relationship: "May precede" },
+        {
+          from: "observe",
+          to: "reframe",
+          kind: "enables",
+          status: "hypothesis",
+          relationship: "May inform the decision",
+          evidence: ["e1", "e2"],
+        },
+        {
+          from: "observe",
+          to: "iterate",
+          kind: "precedes",
+          status: "creator-reported",
+          relationship: "Reported before the later move",
+          evidence: ["e3"],
+        },
+        {
+          from: "iterate",
+          to: "craft",
+          kind: "order-unknown",
+          status: "unknown",
+          relationship: "Order unresolved",
+          evidence: ["e3", "e4"],
+        },
+        {
+          from: "craft",
+          to: "reflect",
+          kind: "related",
+          status: "hypothesis",
+          relationship: "Related; timing unknown",
+          evidence: ["e4", "e5"],
+        },
       ],
+    },
+    accounts: [
+      {
+        id: "account-observation",
+        label: "Learning through observation",
+        members: ["invite", "observe", "iterate", "curiosity"],
+        explanation:
+          "These hypotheses can form one compatible account. They are not independent measurements of the author.",
+      },
+      {
+        id: "account-convention",
+        label: "Adapting an existing brief",
+        members: ["convention", "craft", "care"],
+        explanation:
+          "A brief or familiar pattern may explain the same choices; the notebook can change which decisions belong to this maker.",
+      },
+    ],
+    documentContribution: {
+      value: revised ? 0.55 : 0.7,
+      quantity: "Synthetic support for consequential maker choices",
+      explanation: revised
+        ? "The notebook attributes material and height to the brief. Choosing placement remains a possible consequential contribution."
+        : "Choosing to invite encounters by changing a bench may shape the whole artifact. This is an illustrative judgment, not a measured quantity of thought.",
+      evidence: revised ? ["e2", "notebook"] : ["e2"],
     },
     estimates: artifact.regions.map((r, i) => ({
       region: r.id,
@@ -277,9 +432,14 @@ export async function createExample(
           ? null
           : {
               value: [0.6, 0.8, 0.7, 0.85, 0.65][i - 1],
-              quantity:
-                "Synthetic estimate of direct human drafting contribution",
+              quantity: "Synthetic support for consequential maker choices",
               scale: "0–1",
+              basis: "global-and-local",
+              explanation:
+                i === 4
+                  ? "The material and height may be local choices or requirements from the brief. These scores are illustrative, not calibrated."
+                  : "The document-wide choice supplies context; the described observation or intervention supplies local evidence. No arithmetic decomposition is asserted.",
+              evidence: [`e${i}`],
             },
       uncertainty: {
         level: i === 4 ? "high" : "medium",
