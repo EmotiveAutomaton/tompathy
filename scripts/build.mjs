@@ -35,6 +35,7 @@ for (const file of ["review.html", "review.css", "review.js"])
 const html =
   '<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ToMpathy - What&#39;s on the author&#39;s mind?</title><link rel="stylesheet" href="panel.css"></head><body><div id="root"></div><script type="module" src="panel.js"></script></body></html>';
 await writeFile("dist/panel.html", html);
+await writeFile("dist/snapshot.html", html);
 await writeFile(
   "dist/example.html",
   html.replace(

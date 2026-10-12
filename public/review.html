@@ -83,7 +83,7 @@
                 reels show multiple possible paths in either direction.
                 Attention stays empty for a parent block. Hover a value for its
                 support wheel and sources. Hover headings for explanations; the
-                ⋯ menu contains Help. The author/world tabs and expandable
+                ⋯ menu contains Help. The author/global tabs and expandable
                 search at the bottom are interface previews; search sends no
                 query.
               </p>
@@ -102,18 +102,18 @@
           </li>
           <li>
             <div>
-              <h3>Try a change of mind</h3>
+              <h3>Review Options and keep a reading</h3>
               <p>
-                In the panel’s <strong>⋯ Reader menu → Context</strong>, choose
-                <strong>Preview example revision</strong>, then
-                <strong>Accept this revision</strong>. Look for “Practical care”
-                in values. Use
-                <strong>Reader menu → Earlier accounts</strong> to inspect the
-                original.
+                Open the <strong>⋯ Options</strong> menu. Check author
+                selection, context, the two planned controls, and the theme
+                buttons. <strong>Export</strong> saves one file with a readable
+                page copy and its analysis. <strong>Import</strong> reopens that
+                copy beside the reader. Its original styling is not preserved.
               </p>
               <p class="expect">
-                This is a hand-authored fictional demonstration. It does not
-                call an inference service.
+                Lock “Show the iteration,” then hover a reel. Its possible
+                sentence goals expand with connecting lines. Escape closes that
+                expansion before releasing your selection.
               </p>
             </div>
           </li>
@@ -128,11 +128,10 @@
                 that page access.
               </p>
               <p class="expect">
-                The header should identify Simon Willison and say
-                <strong>Awaiting analysis</strong>. Open
-                <strong>Reader menu → Source text</strong> to inspect the
-                captured article and export an analysis request. Empty estimates
-                are expected here.
+                The reader should say <strong>Awaiting analysis</strong>.
+                Options should list Simon Willison. Context can collect explicit
+                public author links when supplied by the page. A matching result
+                from Sounding Line is still required for estimates.
               </p>
             </div>
           </li>
@@ -152,11 +151,24 @@
           here. After closing Chrome completely or restarting the computer, use
           the launcher first; it restores the extension automatically. Before
           installing a changed build or ending the browser session, use
-          <strong>Reader menu → Save session</strong> if you want to keep an
-          analysis. Captured readings are temporary.
+          <strong>Options → Export</strong> if you want to keep an analysis.
+          Captured readings are temporary.
         </p>
       </section>
 
+      <details>
+        <summary>Development tools and example revisions</summary>
+        <p>
+          <a href="example.html?qa" target="_blank"
+            >Open the example with development tools</a
+          >, then click Open Maker Reader. The small Development tools control
+          is only present in this testing mode. Context → Preview example
+          revision → Accept this revision changes values to Practical care.
+          Earlier accounts retains the original. Source capture exports,
+          malformed packet tests, and manual context inputs also live here,
+          outside Options.
+        </p>
+      </details>
       <details>
         <summary>What is working, and what is still to come?</summary>
         <p>
@@ -212,7 +224,7 @@
           <a href="http://127.0.0.1:5173/testbed.html" target="_blank"
             >the local test article</a
           >. Click ToMpathy in the toolbar, download its first account, then use
-          <strong>Reader menu → Import result</strong>.
+          <strong>Options → Import</strong>.
         </p>
         <p>
           This extra test uses a real HTTP page and a matching packet. It is

@@ -97,3 +97,54 @@ export function pageAuthors(doc: Document): NonNullable<Artifact["authors"]> {
     }
   return found;
 }
+
+/** Only explicit publisher-supplied author links are retrieval seeds. */
+export function pageAuthorSources(
+  doc: Document,
+): { author: string; url: string }[] {
+  const found: { author: string; url: string }[] = [];
+  const add = (author: unknown, href: unknown) => {
+    if (typeof author !== "string" || typeof href !== "string") return;
+    try {
+      const url = new URL(href, doc.baseURI);
+      const clean = author.replace(/^by\s+/i, "").trim();
+      if (
+        url.protocol === "https:" &&
+        clean &&
+        clean.length <= 250 &&
+        url.href.length <= 4000 &&
+        !found.some((f) => f.url === url.href) &&
+        found.length < 3
+      )
+        found.push({ author: clean, url: url.href });
+    } catch {}
+  };
+  doc
+    .querySelectorAll<HTMLAnchorElement>(
+      'a[rel~="author"], [itemprop="author"] a[itemprop="url"]',
+    )
+    .forEach((a) => add(a.textContent, a.href));
+  for (const script of doc.querySelectorAll(
+    'script[type="application/ld+json"]',
+  )) {
+    if ((script.textContent?.length ?? 0) > 100000) continue;
+    try {
+      const data = JSON.parse(script.textContent ?? "null");
+      const entries = Array.isArray(data)
+        ? data
+        : [...(data?.["@graph"] ?? []), data];
+      for (const entry of entries)
+        if (/Article|Posting|Report/i.test(String(entry?.["@type"])))
+          for (const author of Array.isArray(entry.author)
+            ? entry.author
+            : [entry.author]) {
+            add(author?.name, author?.url);
+            for (const link of Array.isArray(author?.sameAs)
+              ? author.sameAs
+              : [])
+              add(author?.name, link);
+          }
+    } catch {}
+  }
+  return found;
+}

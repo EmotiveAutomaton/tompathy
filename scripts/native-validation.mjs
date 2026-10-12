@@ -28,7 +28,7 @@ const remote = await chromium.connectOverCDP("http://127.0.0.1:9334");
 let panel = remote
   .contexts()[0]
   .pages()
-  .find((p) => p.url().endsWith("/panel.html"));
+  .find((p) => p.url().includes("/panel.html"));
 if (!panel) throw Error("Native panel target did not open");
 await expect(panel.getByTestId("values")).toBeVisible();
 await expect(panel.getByTestId("values")).toContainText("Care for others");
@@ -42,7 +42,16 @@ await expect(panel.locator(".sr-only")).toContainText("Locked p4");
 await source.keyboard.press("Escape");
 await source.locator('[data-passage="p3"]').hover();
 await expect(panel.locator(".sr-only")).toContainText("Following p3");
-await panel.getByRole("button", { name: "Reader menu", exact: true }).click();
+if (!panel.url().includes("qa")) await panel.goto(panel.url() + "?qa");
+if (
+  await panel.getByRole("button", { name: "Dismiss interaction guide" }).count()
+)
+  await panel
+    .getByRole("button", { name: "Dismiss interaction guide" })
+    .click();
+await panel
+  .getByRole("button", { name: "Development tools", exact: true })
+  .click();
 await panel
   .getByRole("button", { name: "All supplied hypotheses", exact: true })
   .click();
@@ -84,7 +93,7 @@ const reopened = await chromium.connectOverCDP("http://127.0.0.1:9334");
 panel = reopened
   .contexts()[0]
   .pages()
-  .find((p) => p.url().endsWith("/panel.html"));
+  .find((p) => p.url().includes("/panel.html"));
 if (!panel) throw Error("Panel failed to reopen");
 await expect(panel.getByTestId("values")).toBeVisible();
 receipt.closeCleanupAndReopen = true;
@@ -110,15 +119,14 @@ await source.evaluate(() => {
   }
 });
 await expect(panel.getByText("The source text changed")).toBeVisible();
-await panel.getByRole("button", { name: "Reader menu", exact: true }).click();
 await panel
-  .getByRole("button", { name: "Capture current page", exact: true })
+  .getByRole("button", { name: "Recapture page", exact: true })
   .click();
 await expect
   .poll(async () =>
     panel.evaluate(
       async () =>
-        (await chrome.storage.session.get("reading")).reading.artifact.regions
+        (await chrome.storage.session.get("reading")).reading.artifact?.regions
           .length,
     ),
   )
@@ -137,7 +145,10 @@ for (const h of longPacket.hypotheses) {
       .map((r) => r.id);
   }
 }
-await panel.getByRole("button", { name: "Reader menu", exact: true }).click();
+if (!panel.url().includes("qa")) await panel.goto(panel.url() + "?qa");
+await panel
+  .getByRole("button", { name: "Development tools", exact: true })
+  .click();
 await panel.getByRole("button", { name: "Import result", exact: true }).click();
 await panel.locator("input[type=file]").setInputFiles({
   name: "long-example.json",
@@ -214,15 +225,12 @@ await ordinary.keyboard.press("Alt+Shift+Y");
 await ordinary.waitForTimeout(1000);
 receipt.shortcutCapture = await panel.locator(".sr-only").innerText();
 await source.bringToFront();
-await panel.getByRole("button", { name: "Reader menu", exact: true }).click();
-await panel
-  .getByRole("button", { name: "Capture current page", exact: true })
-  .click();
+// Returning to the source automatically captures it; no manual menu command.
 await expect
   .poll(async () =>
     panel.evaluate(
       async () =>
-        (await chrome.storage.session.get("reading")).reading.artifact.regions
+        (await chrome.storage.session.get("reading")).reading.artifact?.regions
           .length,
     ),
   )
@@ -232,7 +240,10 @@ receipt.tabReturnRecapture = true;
 await source.goto(`chrome-extension://${id}/example.html`);
 await source.getByRole("button", { name: "Open Maker Reader" }).click();
 await expect(panel.getByTestId("values")).toContainText("Care for others");
-await panel.getByRole("button", { name: "Reader menu", exact: true }).click();
+if (!panel.url().includes("qa")) await panel.goto(panel.url() + "?qa");
+await panel
+  .getByRole("button", { name: "Development tools", exact: true })
+  .click();
 await panel.getByRole("button", { name: "Context", exact: true }).click();
 await panel.getByRole("button", { name: "Preview example revision" }).click();
 await panel.getByRole("button", { name: "Accept this revision" }).click();
@@ -251,7 +262,7 @@ const revisionReopen = await chromium.connectOverCDP("http://127.0.0.1:9334");
 panel = revisionReopen
   .contexts()[0]
   .pages()
-  .find((p) => p.url().endsWith("/panel.html"));
+  .find((p) => p.url().includes("/panel.html"));
 if (!panel) throw Error("Panel failed to reopen after accepting a revision");
 await expect(panel.getByTestId("values")).toContainText("Practical care");
 await expect

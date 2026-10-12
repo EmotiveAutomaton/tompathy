@@ -154,7 +154,10 @@ export async function openReview({
       unchanged &&
       context
         .pages()
-        .some((page) => page.url() === `chrome-extension://${id}/panel.html`);
+        .some(
+          (page) =>
+            page.url().split("?")[0] === `chrome-extension://${id}/panel.html`,
+        );
     const receipt = {
       verifiedAt: new Date().toISOString(),
       chromeVersion: browser.version(),

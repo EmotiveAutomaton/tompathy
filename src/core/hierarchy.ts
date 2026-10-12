@@ -103,159 +103,181 @@ export function reelCandidates(
 }
 
 type Interval = [number, number];
+/** Unfold each supplied path into adjoining bands. Shared nodes get linked
+ * visual instances, never a brick straddling unrelated parent outcomes. */
 export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
   const columns = graph.depth + 1,
     cw = width / columns;
-  const roots = graph.roots,
-    multi = roots.length > 1;
-  const lobes = roots.map((root, i) => ({
-    root,
-    end: (root.rank + 1) * cw,
-    center:
-      height *
-      (multi ? 0.34 + (i * 0.47) / Math.max(1, roots.length - 1) : 0.5),
-    half: height * (multi ? (i === 0 ? 0.42 : 0.32) : 0.5),
-  }));
-  // One broad elliptical back curves across the full left side. A fuller
-  // shoulder then tapers toward each existing end; parent links stay unchanged.
+  const weights = new Map<string, number>();
+  const weight = (n: GraphNode): number => {
+    if (!weights.has(n.id))
+      weights.set(
+        n.id,
+        n.children.length
+          ? Math.min(
+              100000,
+              n.children.reduce((sum, c) => sum + weight(c), 0),
+            )
+          : 1,
+      );
+    return weights.get(n.id)!;
+  };
+  const total = graph.roots.reduce((sum, n) => sum + weight(n), 0) || 1;
+  const fork = Math.max(
+    cw * 0.6,
+    Math.min(...graph.roots.map((n) => n.rank * cw)),
+  );
+  const envelope = (x: number): Interval => {
+    const back = Math.sqrt(1 - Math.pow(Math.max(0, 1 - x / (cw * 0.68)), 2));
+    const taper = Math.pow(Math.max(0, 1 - Math.pow(x / width, 1.7)), 0.8);
+    const half = height * 0.5 * taper;
+    return [height / 2 - half, height / 2 + half];
+  };
+  let cursor = 0;
+  const lobes = graph.roots.map((root) => {
+    const from = cursor;
+    cursor += weight(root) / total;
+    return { root, from, to: cursor, end: (root.rank + 1) * cw };
+  });
   const bounds = (l: (typeof lobes)[number], x: number): Interval => {
-    const backWidth = Math.min(width * 0.17, cw * 0.7),
-      backHalf =
-        (height / 2) *
-        Math.sqrt(1 - Math.pow(Math.max(0, 1 - x / backWidth), 2)),
-      half = l.half * Math.pow(Math.max(0, 1 - Math.pow(x / l.end, 1.5)), 0.85);
-    return [
-      Math.max(height / 2 - backHalf, l.center - half),
-      Math.min(height / 2 + backHalf, l.center + half),
-    ];
-  };
-  const slices = (x: number): Interval[] => {
-    const raw = lobes
-      .filter((l) => x <= l.end)
-      .map((l) => bounds(l, x))
-      .filter(([a, b]) => b > a + 0.001)
-      .sort((a, b) => a[0] - b[0]);
-    const result: Interval[] = [];
-    for (const [a, b] of raw) {
-      const last = result.at(-1);
-      if (last && a <= last[1]) last[1] = Math.max(last[1], b);
-      else result.push([a, b]);
+    const [a, b] = envelope(Math.min(x, fork));
+    let top = a + (b - a) * l.from,
+      bottom = a + (b - a) * l.to;
+    if (x > fork) {
+      const center = (top + bottom) / 2;
+      const taper = Math.pow(
+        Math.max(0, 1 - Math.pow((x - fork) / (l.end - fork), 1.5)),
+        0.8,
+      );
+      const half = ((bottom - top) / 2) * taper;
+      top = center - half;
+      bottom = center + half;
     }
-    return result;
+    return [top, bottom];
   };
-  const outline = lobes.map((l) => {
-    const points = Array.from({ length: 81 }, (_, i) => {
-      const x = (l.end * i) / 80,
-        [top, bottom] = bounds(l, x);
-      return {
-        x,
-        top,
-        bottom,
-      };
-    });
-    return `M${points.map((p) => `${p.x},${p.top}`).join(" L")} L${[...points]
+  const back = (x: number): Interval => {
+    const half =
+      height *
+      0.5 *
+      Math.sqrt(1 - Math.pow(Math.max(0, 1 - x / (cw * 0.68)), 2));
+    return [height / 2 - half, height / 2 + half];
+  };
+  const band = (
+    l: (typeof lobes)[number],
+    x: number,
+    from: number,
+    to: number,
+  ): Interval => {
+    const [a, b] = bounds(l, x),
+      [lo, hi] = back(x);
+    return [Math.max(lo, a + (b - a) * from), Math.min(hi, a + (b - a) * to)];
+  };
+  const slices = (x: number): Interval[] =>
+    lobes
+      .filter((l) => x <= l.end)
+      .map((l) => band(l, x, 0, 1))
+      .filter(([a, b]) => b > a);
+  const pathFor = (
+    l: (typeof lobes)[number],
+    x: number,
+    end: number,
+    from: number,
+    to: number,
+  ) => {
+    const points = Array.from({ length: 33 }, (_, i) => {
+      const px = x + ((end - x) * i) / 32,
+        [top, bottom] = band(l, px, from, to);
+      return { x: px, top, bottom };
+    }).filter((p) => p.bottom >= p.top);
+    return `M${points.map((p) => `${p.x},${p.top}`).join(" L")} L${points
       .reverse()
       .map((p) => `${p.x},${p.bottom}`)
       .join(" L")} Z`;
-  });
-  const leafOrder = new Map(
-    graph.all.filter((n) => !n.children.length).map((n, i) => [n.id, i]),
-  );
-  const center = (n: GraphNode) => {
-    const leaves = [...graph.descendants(n)].filter((id) => leafOrder.has(id));
-    return (
-      leaves.reduce((s, id) => s + leafOrder.get(id)!, 0) /
-      Math.max(1, leaves.length)
-    );
   };
-  const tiles = [];
-  for (let rank = 0; rank < columns; rank++) {
-    const x = rank * cw,
-      left = slices(x),
-      right = slices(x + cw);
-    // Partition the actual widest edge, not an unclipped rectangular grid.
-    // Each tile therefore retains its whole longest vertical edge (>=50%).
-    const total = (is: Interval[]) => is.reduce((s, [a, b]) => s + b - a, 0);
-    const intervals = total(left) >= total(right) ? left : right;
-    const nodes = graph.all
-      .filter((n) => n.rank === rank)
-      .sort(
-        (a, b) =>
-          Number(!a.parents.length) - Number(!b.parents.length) ||
-          center(a) - center(b),
-      );
-    let assigned = 0;
-    for (
-      let bin = 0;
-      bin < intervals.length && assigned < nodes.length;
-      bin++
-    ) {
-      const [top, bottom] = intervals[bin];
-      const available = nodes.length - assigned;
-      const count =
-        bin === intervals.length - 1
-          ? available
-          : Math.max(
-              1,
-              Math.min(
-                available - (intervals.length - bin - 1),
-                Math.round(
-                  (nodes.length * (bottom - top)) /
-                    Math.max(1, total(intervals)),
-                ),
-              ),
-            );
-      for (let i = 0; i < count && assigned < nodes.length; i++) {
-        const node = nodes[assigned++],
-          y = top + ((bottom - top) * i) / count,
-          h = (bottom - top) / count;
-        let area = 0,
-          sx = 0,
-          sy = 0;
-        for (let dx = 1; dx < cw; dx += 2)
-          for (const [a, b] of slices(x + dx)) {
-            const lo = Math.max(a, y),
-              hi = Math.min(b, y + h),
-              mass = Math.max(0, hi - lo);
-            area += mass;
-            sx += (x + dx) * mass;
-            sy += ((lo + hi) / 2) * mass;
-          }
-        let dotX = area ? sx / area : x + cw * 0.35,
-          dotY = area ? sy / area : y + h / 2;
-        const spans = slices(dotX)
-          .map(([a, b]) => [Math.max(a, y), Math.min(b, y + h)] as Interval)
-          .filter(([a, b]) => b > a);
-        if (spans.length) {
-          const span = spans.reduce((a, b) =>
-            Math.abs((a[0] + a[1]) / 2 - dotY) <
-            Math.abs((b[0] + b[1]) / 2 - dotY)
-              ? a
-              : b,
-          );
-          dotY = Math.max(
-            span[0] + Math.min(2, (span[1] - span[0]) / 2),
-            Math.min(span[1] - Math.min(2, (span[1] - span[0]) / 2), dotY),
-          );
-        }
-        const visible = (edge: Interval[]) =>
-          edge.reduce(
-            (sum, [a, b]) =>
-              sum + Math.max(0, Math.min(b, y + h) - Math.max(a, y)),
-            0,
-          );
-        tiles.push({
-          node,
-          x,
-          y,
-          width: cw,
-          height: h,
-          dotX,
-          dotY,
-          exposure: Math.max(visible(left), visible(right)) / h,
-        });
-      }
+  const tiles: {
+    node: GraphNode;
+    key: string;
+    parentKey?: string;
+    rootId: string;
+    from: number;
+    to: number;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    dotX: number;
+    dotY: number;
+    exposure: number;
+    path: string;
+  }[] = [];
+  const visit = (
+    node: GraphNode,
+    l: (typeof lobes)[number],
+    from: number,
+    to: number,
+    parentKey?: string,
+    parentRank = node.rank + 1,
+  ) => {
+    const key = `${parentKey ?? l.root.id}/${node.id}`;
+    const x = node.rank * cw,
+      end = parentRank * cw;
+    const [la, lb] = bounds(l, x),
+      [ra, rb] = bounds(l, end);
+    const samples = Array.from({ length: 33 }, (_, i) => {
+      const px = x + ((end - x) * i) / 32;
+      const [a, b] = band(l, px, from, to);
+      return { x: px, a, b };
+    }).filter((p) => p.b >= p.a);
+    const y = Math.min(...samples.map((p) => p.a)),
+      extent = Math.max(...samples.map((p) => p.b)) - y;
+    const middle = samples[Math.floor(samples.length * 0.55)] ?? {
+      x: x + cw / 2,
+      a: la,
+      b: lb,
+    };
+    const dotX = middle.x,
+      dotY = (middle.a + middle.b) / 2;
+    tiles.push({
+      node,
+      key,
+      parentKey,
+      rootId: l.root.id,
+      from,
+      to,
+      x,
+      y,
+      width: end - x,
+      height: extent,
+      dotX,
+      dotY,
+      exposure: 1,
+      path: pathFor(l, x, end, from, to),
+    });
+    let offset = from;
+    for (const child of node.children) {
+      const next = offset + ((to - from) * weight(child)) / weight(node);
+      visit(child, l, offset, next, key, node.rank);
+      offset = next;
     }
-  }
-  return { width, height, outline, tiles, columns, slices };
+  };
+  // Dense graphs use the existing scrollable detail surface; don't unfold an
+  // exponentially branching DAG merely to discover it cannot fit on screen.
+  const unfoldedCount = (n: GraphNode): number =>
+    1 + n.children.reduce((s, c) => s + count(c), 0);
+  const counts = new Map<string, number>();
+  const count = (n: GraphNode): number => {
+    if (!counts.has(n.id)) counts.set(n.id, Math.min(601, unfoldedCount(n)));
+    return counts.get(n.id)!;
+  };
+  const dense = graph.roots.reduce((s, n) => s + count(n), 0) > 600;
+  if (!dense) for (const l of lobes) visit(l.root, l, 0, 1);
+  return {
+    width,
+    height,
+    outline: lobes.map((l) => pathFor(l, 0, l.end, 0, 1)),
+    tiles,
+    columns,
+    slices,
+    dense,
+  };
 }

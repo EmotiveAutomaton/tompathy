@@ -16,6 +16,7 @@ export async function verifyBuild() {
     "panel.css",
     "content.js",
     "example.html",
+    "snapshot.html",
     "review.html",
     "review.css",
     "review.js",

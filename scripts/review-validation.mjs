@@ -54,7 +54,7 @@ try {
   let panel = current.browser
     .contexts()[0]
     .pages()
-    .find((p) => p.url().endsWith("/panel.html"));
+    .find((p) => p.url().includes("/panel.html"));
   if (!panel)
     throw Error(
       "The actual native side panel did not open from the guided example",
@@ -64,6 +64,14 @@ try {
   await expect(panel.locator(".reader-content > .region")).toHaveCount(3);
   await expect(panel.locator(".app-header, .app-footer")).toHaveCount(0);
   await expect(panel.getByTestId("values")).toContainText("Care for others");
+  if (
+    await panel
+      .getByRole("button", { name: "Dismiss interaction guide" })
+      .count()
+  )
+    await panel
+      .getByRole("button", { name: "Dismiss interaction guide" })
+      .click();
   await expect
     .poll(() => source.evaluate(() => innerWidth))
     .toBeLessThan(widthBefore);
@@ -123,7 +131,7 @@ try {
       ),
     )
     .toContain("We counted pauses");
-  await panel.locator('[data-node="paragraph-3"] circle').click();
+  await panel.locator('[data-node="paragraph-3"] circle').first().click();
   await expect(reel).toHaveClass(/ambiguous/);
   await expect
     .poll(() =>
@@ -135,7 +143,7 @@ try {
   await expect(
     panel.getByRole("button", { name: "Unlock selection" }),
   ).toHaveCount(0);
-  await panel.locator('[data-node="sentence-3-2"] circle').click();
+  await panel.locator('[data-node="sentence-3-2"] circle').first().click();
   await expect(panel.locator('[data-dominant="true"]')).toHaveText(
     "Learning from others",
   );
@@ -151,17 +159,23 @@ try {
   ).toBeHidden();
   await expect(panel.getByTestId("goals")).toHaveText("Hover to see");
   await panel.locator("#process-title button").hover();
-  await panel.locator('[data-node="paragraph-3"] circle').hover();
-  await expect(panel.locator(".pyramid-node.descendant")).toHaveCount(5);
+  await panel.locator('[data-node="paragraph-3"] circle').first().hover();
+  expect(
+    await panel
+      .locator(".pyramid-node.descendant")
+      .evaluateAll(
+        (es) => new Set(es.map((e) => e.getAttribute("data-node"))).size,
+      ),
+  ).toBe(5);
   await expect(source.locator('[data-passage="p4"]')).toHaveAttribute(
     "data-tompathy-related",
     "",
   );
   await panel.waitForTimeout(1000);
   await panel.screenshot({ path: "evidence/review-branch.png", scale: "css" });
-  await panel.getByRole("tab", { name: "world", exact: true }).click();
+  await panel.getByRole("tab", { name: "global", exact: true }).click();
   await expect(panel.getByRole("tabpanel")).toHaveText(
-    "World view · coming later",
+    "Global view · coming later",
   );
   await panel.getByRole("tab", { name: "author", exact: true }).click();
   await expect(panel.locator(".core-value-row")).toHaveCount(8);
@@ -175,7 +189,7 @@ try {
   ).toBeVisible();
   await panel.getByRole("button", { name: "Close search" }).click();
   receipt.checks.push(
-    "Eight author values, world placeholder and expandable typing-only search work in the native panel",
+    "Eight author values, global placeholder and expandable typing-only search work in the native panel",
   );
   await panel
     .getByRole("button", { name: "Care for others", exact: true })
@@ -223,7 +237,97 @@ try {
     "Guide opens a native panel beside its bundled source without a server",
     "Independent attention, two hierarchy peaks, bidirectional ambiguity, page/panel green unlock controls, sentence hover, single-click locks for sentences and branches, wheel-driven source selection, compact reels below a persistent hierarchy, Escape, fixed values and provenance",
   );
+  receipt.localAI = await panel.evaluate(async () => {
+    const inspect = async (name) => {
+      const api = globalThis[name];
+      if (!api) return "API absent";
+      try {
+        return await api.availability({
+          expectedInputs: [{ type: "text", languages: ["en"] }],
+          expectedOutputs: [{ type: "text", languages: ["en"] }],
+        });
+      } catch (e) {
+        return `Unavailable: ${e.message}`;
+      }
+    };
+    return {
+      prompt: await inspect("LanguageModel"),
+      summarizer: await inspect("Summarizer"),
+      downloadRequested: false,
+    };
+  });
   await panel.getByRole("button", { name: "Reader menu", exact: true }).click();
+  await expect(panel.getByRole("dialog")).toHaveAccessibleName("Options");
+  await panel.screenshot({ path: "evidence/review-options.png", scale: "css" });
+  const [savedDownload] = await Promise.all([
+    panel.waitForEvent("download"),
+    panel.getByRole("button", { name: "Export", exact: true }).click(),
+  ]);
+  await panel
+    .getByLabel("Import reading")
+    .setInputFiles(await savedDownload.path());
+  await expect
+    .poll(() =>
+      panel
+        .context()
+        .pages()
+        .some((p) => p.url().includes("/snapshot.html?")),
+    )
+    .toBe(true);
+  const restored = panel
+    .context()
+    .pages()
+    .find((p) => p.url().includes("/snapshot.html?"));
+  await restored
+    .getByRole("button", { name: "Open ToMpathy", exact: true })
+    .waitFor();
+  await expect(panel.getByTestId("values")).toContainText("Care for others");
+  await restored
+    .locator('[data-snapshot-region="p4"]')
+    .click({ position: { x: 30, y: 18 } });
+  await expect(panel.locator(".process-lock")).toBeVisible();
+  await panel.locator(".process-lock").click();
+  await expect(
+    restored.locator('[aria-label="Unlock selection"]'),
+  ).not.toBeVisible();
+  await restored.screenshot({
+    path: "evidence/review-saved-page.png",
+    scale: "css",
+  });
+  receipt.checks.push(
+    "Options export saves a portable readable page with analysis; import opens it in Chrome and restores two-way sentence locking",
+  );
+  if (!panel.url().includes("qa")) await panel.goto(panel.url() + "?qa");
+  await panel
+    .getByRole("button", { name: "Development tools", exact: true })
+    .click();
+  await panel.getByRole("button", { name: "Context", exact: true }).click();
+  await panel.getByRole("button", { name: "Preview example revision" }).click();
+  await panel.getByRole("button", { name: "Accept this revision" }).click();
+  await expect(panel.getByTestId("values")).toContainText("Practical care");
+  await expect
+    .poll(() =>
+      panel.evaluate(async () => {
+        const reading = (await chrome.storage.session.get("reading")).reading;
+        return (
+          await chrome.storage.session.get(`snapshot:${reading.savedPageId}`)
+        )[`snapshot:${reading.savedPageId}`]?.packet?.revision;
+      }),
+    )
+    .toBe(2);
+  await source.bringToFront();
+  await expect(panel.getByTestId("values")).toContainText("Care for others");
+  await restored.bringToFront();
+  await expect(panel.getByTestId("values")).toContainText("Practical care");
+  receipt.checks.push(
+    "An imported reading retains its new revision after switching away and returning",
+  );
+  await source.bringToFront();
+  await expect(panel.getByTestId("values")).toContainText("Care for others");
+  if (!panel.url().includes("qa")) await panel.goto(panel.url() + "?qa");
+  await panel
+    .getByRole("button", { name: "Development tools", exact: true })
+    .click();
   await panel.getByRole("button", { name: "Context", exact: true }).click();
   await panel.getByRole("button", { name: "Preview example revision" }).click();
   await panel.getByRole("button", { name: "Accept this revision" }).click();
@@ -276,7 +380,7 @@ try {
   panel = actionConnection.browser
     .contexts()[0]
     .pages()
-    .find((p) => p.url().endsWith("/panel.html"));
+    .find((p) => p.url().includes("/panel.html"));
   if (!panel)
     throw Error(
       "The extension action did not open the native panel on an ordinary page",
@@ -316,7 +420,7 @@ try {
     panel = publicConnection.browser
       .contexts()[0]
       .pages()
-      .find((page) => page.url().endsWith("/panel.html"));
+      .find((page) => page.url().includes("/panel.html"));
     if (!panel) throw Error("The panel did not open on the public article");
     await expect(panel.locator(".sr-only")).toContainText("Awaiting analysis");
     const captured = await panel.evaluate(

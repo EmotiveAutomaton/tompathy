@@ -1,9 +1,16 @@
-import { makeArtifact, type Artifact, type Packet } from "./core/model";
+import {
+  makeArtifact,
+  type Artifact,
+  type Packet,
+  type Session,
+} from "./core/model";
 export const isExtension =
   typeof chrome !== "undefined" && !!chrome.runtime?.id;
 export async function capturePage(): Promise<{
   artifact: Artifact;
   tabId: number;
+  restored?: Session;
+  contextSources?: Session["contextSources"];
 }> {
   if (!isExtension)
     throw Error("Open the installed extension on a page, or paste text below.");
@@ -30,7 +37,12 @@ export async function capturePage(): Promise<{
       });
     }
     if (result.error) throw Error(result.error);
-    return { artifact: result.artifact, tabId: tab.id };
+    return {
+      artifact: result.artifact,
+      tabId: tab.id,
+      restored: result.restored,
+      contextSources: result.contextSources,
+    };
   } catch (e) {
     throw Error(
       `This page cannot be captured yet. Click ToMpathy’s toolbar icon on an ordinary text page, or paste text. ${e instanceof Error && e.message.startsWith("No readable") ? e.message : ""}`,
@@ -88,9 +100,11 @@ export async function pageCommand(
     ...data,
   };
   try {
-    if (artifact.source.startsWith(chrome.runtime.getURL("")))
+    try {
+      await chrome.tabs.sendMessage(tabId, message);
+    } catch {
       await chrome.runtime.sendMessage(message);
-    else await chrome.tabs.sendMessage(tabId, message);
+    }
   } catch {}
 }
 export async function markPage(
@@ -111,8 +125,14 @@ export async function readSession() {
     return null;
   }
 }
-export async function writeSession(value: unknown) {
-  if (isExtension) await chrome.storage.session.set({ reading: value });
+export async function writeSession(value: Session) {
+  if (isExtension)
+    await chrome.storage.session.set({
+      reading: value,
+      ...(value.savedPageId
+        ? { [`snapshot:${value.savedPageId}`]: value }
+        : {}),
+    });
   else sessionStorage.setItem("tompathy-session", JSON.stringify(value));
 }
 export async function readTheme(): Promise<string> {

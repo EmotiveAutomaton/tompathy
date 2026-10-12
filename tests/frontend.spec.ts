@@ -1,13 +1,23 @@
 import { createExample } from "../src/core/example";
 import { test, expect, type Page } from "@playwright/test";
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() =>
+    localStorage.setItem("tompathy-guide-offered-040", "yes"),
+  );
+});
 async function tool(page: Page, name: string) {
-  await page.getByRole("button", { name: "Reader menu", exact: true }).click();
+  await page
+    .getByRole("button", {
+      name: name === "How ToMpathy works" ? "Reader menu" : "Development tools",
+      exact: true,
+    })
+    .click();
   await page.getByRole("button", { name, exact: true }).click();
 }
 test("independent attention, two peaks, bidirectional ambiguity and matching locks", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/?qa");
   await expect(page.locator(".reader-content > .region")).toHaveCount(3);
   await expect(
     page.locator(".app-header, .app-footer, .node-explanation"),
@@ -52,7 +62,7 @@ test("independent attention, two peaks, bidirectional ambiguity and matching loc
   const reels = await page.getByTestId("odometer").boundingBox();
   expect(reels!.y).toBeGreaterThanOrEqual(pyramid!.y + pyramid!.height);
   expect(reels!.height).toBeLessThan(50);
-  await page.locator('[data-node="paragraph-3"] circle').hover();
+  await page.locator('[data-node="paragraph-3"] circle').first().hover();
   await expect(page.locator('.spool[data-level="2"]')).toHaveClass(
     /spool-emphasis/,
   );
@@ -78,31 +88,43 @@ test("independent attention, two peaks, bidirectional ambiguity and matching loc
   await sentence.click();
   await page.locator(".inline-lock").click();
   await expect(page.getByTestId("goals")).toHaveText("Hover to see");
-  await page.locator('[data-node="paragraph-3"] circle').hover();
-  await expect(page.locator(".pyramid-node.descendant")).toHaveCount(5);
-  await expect(page.locator(".pyramid-node.ancestor")).toHaveCount(4);
+  await page.locator('[data-node="paragraph-3"] circle').first().hover();
+  expect(
+    await page
+      .locator(".pyramid-node.descendant")
+      .evaluateAll(
+        (es) => new Set(es.map((e) => e.getAttribute("data-node"))).size,
+      ),
+  ).toBe(5);
+  expect(
+    await page
+      .locator(".pyramid-node.ancestor")
+      .evaluateAll(
+        (es) => new Set(es.map((e) => e.getAttribute("data-node"))).size,
+      ),
+  ).toBe(4);
   await expect(page.locator(".spool.ambiguous")).toHaveCount(3);
   await expect(page.getByTestId("goals")).toHaveText("Hover to see");
   await expect(page.locator('[data-passage="p4"]')).toHaveClass(
     /related-passage/,
   );
   await page.screenshot({ path: "evidence/design-branch.png" });
-  await page.locator('[data-node="sentence-3-2"] circle').click();
+  await page.locator('[data-node="sentence-3-2"] circle').first().click();
   await expect(page.locator('[data-dominant="true"]')).toHaveText(
     "Learning from others",
   );
   await page.keyboard.press("Escape");
   await page.getByRole("button", { name: "Reader menu", exact: true }).click();
-  await page.getByLabel("Show hypotheses as a list").check();
-  await page.getByRole("button", { name: "Close dialog" }).click();
-  await expect(page.locator(".pyramid-list")).toBeVisible();
+  await expect(page.getByLabel("Show hypotheses as a list")).toHaveCount(0);
+  await expect(page.getByRole("dialog")).toHaveAccessibleName("Options");
+  await expect(page.getByLabel("Author selection")).toBeVisible();
 });
 test("cloud phrases do not overlap at native width; heading and value explanations work by keyboard", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 360, height: 900 });
-  await page.goto("/?panel");
-  await page.locator('[data-node="sentence-1-1"] circle').click();
+  await page.goto("/?panel&qa");
+  await page.locator('[data-node="sentence-1-1"] circle').first().click();
   await page.waitForTimeout(1100);
   const boxes = await page
     .locator(".cloud-position button")
@@ -165,7 +187,7 @@ test("cloud phrases do not overlap at native width; heading and value explanatio
 test("context changes invalidate scope; explicit revision updates fixed values", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/?qa");
   await tool(page, "Context");
   await page
     .getByLabel("Excerpt", { exact: true })
@@ -178,7 +200,7 @@ test("context changes invalidate scope; explicit revision updates fixed values",
   await page.getByRole("button", { name: "Close dialog" }).click();
   await expect(page.getByText("A different evidence scope")).toBeVisible();
   await expect(page.getByTestId("values")).toContainText("No values supplied");
-  await tool(page, "Context · 1");
+  await tool(page, "Context");
   await page.getByLabel("Analysis scope").selectOption("artifact");
   await page.getByRole("button", { name: "Preview example revision" }).click();
   await expect(page.getByRole("dialog")).toContainText("Work within a brief");
@@ -188,7 +210,7 @@ test("context changes invalidate scope; explicit revision updates fixed values",
   await expect(page.getByTestId("process")).toContainText(
     "Explain the constraints",
   );
-  await tool(page, "Earlier accounts 1 retained revisions");
+  await tool(page, "Earlier accounts");
   await page
     .getByText("Revision 1 · tompathy-example", { exact: true })
     .click();
@@ -201,7 +223,7 @@ test("context changes invalidate scope; explicit revision updates fixed values",
 test("compact author header and source export preserve the selected author and context boundary", async ({
   page,
 }) => {
-  await page.goto("/?panel");
+  await page.goto("/?panel&qa");
   await expect(page.locator(".app-header")).toHaveCount(0);
   await tool(page, "Source text");
   await page
@@ -228,7 +250,7 @@ test("compact author header and source export preserve the selected author and c
 test("malformed packet, pasted text and session clear expose honest empty state", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/?qa");
   await tool(page, "Import result");
   await page.getByText("Or paste JSON").click();
   await page.getByLabel("Result JSON").fill("{broken");
@@ -254,7 +276,7 @@ test("narrow dark panel, reduced motion and keyboard dialog focus", async ({
 }) => {
   await page.setViewportSize({ width: 320, height: 900 });
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/?panel");
+  await page.goto("/?panel&qa");
   await tool(page, "Reader settings");
   await page.getByRole("button", { name: "dark", exact: true }).click();
   await page.keyboard.press("Escape");
@@ -285,7 +307,7 @@ test("narrow dark panel, reduced motion and keyboard dialog focus", async ({
 test("session save/load, file context and explicit imported-context selection", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/?qa");
   await tool(page, "Context");
   await page.locator("input[type=file]").setInputFiles({
     name: "notes.md",
@@ -305,7 +327,7 @@ test("session save/load, file context and explicit imported-context selection", 
   await expect(
     page.getByText("Session loaded as a detached snapshot.", { exact: false }),
   ).toBeVisible();
-  await tool(page, "Context · 1");
+  await tool(page, "Context");
   await expect(page.locator(".context-item input")).not.toBeChecked();
   await page.getByRole("button", { name: "Remove notes.md" }).click();
   await expect(page.locator(".context-item")).toHaveCount(0);
@@ -313,7 +335,7 @@ test("session save/load, file context and explicit imported-context selection", 
 test("collection cancellation and 200% zoom preserve usable controls", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/?qa");
   await tool(page, "Context");
   await page.getByText("Retrieve public sources", { exact: true }).click();
   await page.route("https://example.com/slow", async (route) => {
@@ -355,7 +377,7 @@ test("unnamed eight-level hierarchy and top nine values fit a narrow panel", asy
   page,
 }) => {
   await page.setViewportSize({ width: 360, height: 900 });
-  await page.goto("/?panel");
+  await page.goto("/?panel&qa");
   const packet = await createExample();
   packet.schemaVersion = "1.4";
   packet.revisionOf = packet.id;
@@ -393,7 +415,7 @@ test("unnamed eight-level hierarchy and top nine values fit a narrow panel", asy
     "Fixture preference 9",
   );
   await expect(page.locator(".core-value-row").last()).toBeInViewport();
-  await page.locator('[data-node="sentence-1-1"] circle').click();
+  await page.locator('[data-node="sentence-1-1"] circle').first().click();
   await expect(page.locator(".spool")).toHaveCount(8);
   await expect(page.locator(".spool small")).toHaveCount(0);
   const broadest = page.locator('.spool[data-level="0"]');
@@ -412,7 +434,7 @@ test("corner headings, compact attention, expanded values and prototype tabs", a
   page,
 }) => {
   await page.setViewportSize({ width: 360, height: 900 });
-  await page.goto("/?panel");
+  await page.goto("/?panel&qa");
   const cloud = await page.locator(".goals-region").boundingBox();
   const values = await page.locator(".values-region").boundingBox();
   expect(cloud!.height).toBeLessThanOrEqual(190);
@@ -445,14 +467,14 @@ test("corner headings, compact attention, expanded values and prototype tabs", a
     .boundingBox();
   expect(menu!.x - cloud!.x).toBeGreaterThanOrEqual(8);
   expect(menu!.y - cloud!.y).toBeGreaterThanOrEqual(6);
-  await page.getByRole("tab", { name: "world", exact: true }).click();
+  await page.getByRole("tab", { name: "global", exact: true }).click();
   await expect(page.getByRole("tabpanel")).toHaveText(
-    "World view · coming later",
+    "Global view · coming later",
   );
   await page.getByRole("tab", { name: "author", exact: true }).click();
   await expect(page.locator(".core-value-row")).toHaveCount(8);
   const world = await page
-    .getByRole("tab", { name: "world", exact: true })
+    .getByRole("tab", { name: "global", exact: true })
     .boundingBox();
   const toggle = page.getByRole("button", { name: "Open search preview" });
   const searchBefore = await toggle.boundingBox();
@@ -486,7 +508,7 @@ test("corner headings, compact attention, expanded values and prototype tabs", a
 test("attention can change within a sentence and lock the pointed frame", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/?qa");
   const packet = await createExample();
   packet.revisionOf = packet.id;
   packet.id = "attention-offset-fixture";

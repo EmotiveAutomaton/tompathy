@@ -1,10 +1,10 @@
 # ToMpathy result contract · 1.0–1.4
 
-`src/core/model.ts` is the authoritative runtime validator. `examples/bench-result.json` is a complete valid packet; `bench-revision.json` demonstrates a context-conditioned revision. `bench-source.txt` is the corresponding synthetic text. Fixtures use `tompathy:example` as their portable origin. In the installed extension, use **Import result → Download example format** on the bundled source to obtain a packet bound to that installation's source URL.
+`src/core/model.ts` is the authoritative runtime validator. `examples/bench-result.json` is a complete valid packet; `bench-revision.json` demonstrates a context-conditioned revision. `bench-source.txt` is the corresponding synthetic text. Fixtures use `tompathy:example` as their portable origin. In the installed extension, use **Development tools → Import result → Download example format** on the bundled source to obtain a packet bound to that installation's source URL.
 
 ## Producing a result
 
-1. Export the current capture from **The source text**.
+1. Export the current capture from **Development tools → Source text**.
 2. Preserve its `artifact` object, region IDs and anchors in the result. Infer only against this snapshot and explicitly selected context.
 3. Supply makers, hypotheses, evidence and the declared scope. Use empty hypothesis/estimate arrays and unknown states when no useful inference is available.
 4. Return a packet through result import, or implement `InferenceProvider.analyze(AnalysisRequest)` when Sounding Line has a callable service contract.
@@ -93,11 +93,19 @@ The cloud is empty with **Hover to see** until source text or a sentence node is
 
 Hierarchy nodes may use `parentIds` (1–16 unique IDs) instead of `parentId`. A maker may have multiple roots. Both parent forms together, cycles, cross-maker parents, missing parents and child regions outside **any** parent are rejected. The 64-level/3,000-node bounds remain. No extra relationships are inferred.
 
-The graph view places local leaves at the left; a node's rank follows its longest child path. Each root contributes a rounded lobe ending at its own depth. Shared subgoals light up every reachable ancestor and descendant once. A reel can be ambiguous in either direction; a shorter completed path also remains a possible ending at later reels. Scrolling deliberately chooses a node and locks its reachable neighborhood.
+The graph view places local leaves at the left; a node's rank follows its longest child path. Each root contributes a rounded lobe ending at its own depth. Shared subgoals have linked visual instances under each supplied parent path; all instances highlight together. A reel can be ambiguous in either direction; a shorter completed path also remains a possible ending at later reels. Scrolling deliberately chooses a node and locks its reachable neighborhood.
 
-Bricks partition the actual widest visible vertical edge of each column, instead of clipping a rectangular grid into phantom slivers. This preserves every semantic node while meeting the requested 50% edge threshold; dots are centered in the visible area. Very large graphs (over 120 nodes or four roots) use the list fallback. The new graph traversal handles multiple parents; D3 stratify remains only a legacy tree helper.
+Bricks subdivide the actual parent band, so a child meets its own parent at the column boundary. Shared DAG nodes are unfolded into separate visual instances; no brick straddles two branches. Skipped levels span the intervening columns. The curved outline is applied to those bands, and dots remain inside their visible area. Dense graphs (over 120 semantic nodes, four roots, or 600 unfolded instances) retain an automatic scrollable detail fallback. There is no user-facing list setting.
 
-Page and reel locks share the same green SVG. Clicking either releases selection and clears highlights, as does Escape. The world tab and expandable search are UI previews only; they do not change scope or trigger requests.
+Reels remain visible and blurred at rest, with no idle interaction. A locked selection with ambiguous reels can expand into connected candidate rows on hover/focus. Lines use only supplied parent relationships. Both green locks release selection; Escape dismisses the topmost overlay first. Global and search remain interface previews.
+
+## Portable reading files
+
+Options → Export writes `tompathy-reading.html`: a static readable snapshot and one inert JSON payload with `{format:"tompathy-reading", version:1, session}`. The page contains only captured text, basic reading styles and source attribution; it is not a visual archive of the site's original CSS/images or interactive features. The payload includes the exact artifact, accepted packet, context and retained revisions. It loads offline as readable text.
+
+Options → Import accepts this file or a matching provider packet. Reading imports validate the schema, recalculate the page hash and anchors, and validate packet/scope binding. Imported HTML is not executed or inserted into the extension. Chrome opens an extension-owned saved-page tab, whose adapter uses the original validated artifact identity rather than pretending that claims belong to the extension URL. The imported context scope is restored because the user explicitly imported the whole accepted reading. Legacy QA session JSON loading remains a separate detached path and deselects context as before.
+
+The session schema has optional `contextSources` (at most three `{author,url}` links explicitly supplied by page metadata/bylines). Checking Context fetches matching author links with existing bounded retrieval and narrow host permission. Results remain unselected until a matching analysis scope is supplied; collection never mutates accepted scores. There is no web search provider or summarization model in this alpha.
 
 ## Text identity and matching
 

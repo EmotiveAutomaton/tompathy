@@ -1,3 +1,9 @@
+import { readingFile, parseReadingFile } from "./core/reading-file";
+import { ReadingPreview } from "./components/ReadingPreview";
+import {
+  ContextProgress,
+  type ContextWork,
+} from "./components/ContextProgress";
 import { attentionAt } from "./core/attention";
 import { ValueTabs } from "./components/ValueTabs";
 import { SelectionLock } from "./components/SelectionLock";
@@ -137,6 +143,10 @@ function Modal({
     <dialog
       ref={ref}
       className="modal"
+      aria-label={title}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") e.stopPropagation();
+      }}
       onCancel={(e) => {
         e.preventDefault();
         onClose();
@@ -165,7 +175,7 @@ export function App({ preview = false }: { preview?: boolean }) {
     [tabId, setTabId] = useState<number | null>(null),
     [region, setRegion] = useState("p2"),
     [pinned, setPinned] = useState(false),
-    [valuesTab, setValuesTab] = useState<"author" | "world">("author"),
+    [valuesTab, setValuesTab] = useState<"author" | "global">("author"),
     [sentenceOffset, setSentenceOffset] = useState(0),
     [sourceHover, setSourceHover] = useState(false),
     [relatedNode, setRelatedNode] = useState<GoalNode | null>(null),
@@ -174,10 +184,13 @@ export function App({ preview = false }: { preview?: boolean }) {
     [stale, setStale] = useState(false),
     [notice, setNotice] = useState(""),
     [error, setError] = useState(""),
-    [view, setView] = useState<"tree" | "list" | "cloud">("tree"),
+    [contextEnabled, setContextEnabled] = useState(false),
+    [contextWork, setContextWork] = useState<ContextWork | null>(null),
+    [tour, setTour] = useState<number | null>(null),
     [maker, setMaker] = useState(""),
     [detail, setDetail] = useState<Hypothesis | null>(null),
     [modal, setModal] = useState<
+      | "qa"
       | "menu"
       | "context"
       | "source"
@@ -203,10 +216,22 @@ export function App({ preview = false }: { preview?: boolean }) {
     port = useRef<chrome.runtime.Port | null>(null),
     current = useRef({ session, tabId });
   current.current = { session, tabId };
+  useEffect(() => {
+    if (contextWork?.phase === "done" || contextWork?.phase === "error") {
+      const timer = setTimeout(() => setContextWork(null), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [contextWork]);
   const { artifact, packet, scope, context } = session;
   const mismatch =
     packet && artifact ? matchPacket(packet, artifact, scope, context) : null;
   const ready = !!packet && !mismatch && !stale;
+  useEffect(() => {
+    if (ready && !localStorage.getItem("tompathy-guide-offered-040")) {
+      localStorage.setItem("tompathy-guide-offered-040", "yes");
+      setTour(-1);
+    }
+  }, [ready]);
   const activeMaker =
     packet?.makers.find((m) => m.id === maker) ?? packet?.makers[0];
   const authorName =
@@ -262,6 +287,7 @@ export function App({ preview = false }: { preview?: boolean }) {
     setCollecting(false);
     setBusy(false);
     setPending(null);
+    setContextWork(null);
   }
   async function capture() {
     cancelWork();
@@ -296,25 +322,31 @@ export function App({ preview = false }: { preview?: boolean }) {
           : null;
       if (
         !resultPacket &&
-        result.artifact.source === chrome.runtime.getURL("example.html")
+        result.artifact.source.split("?")[0] ===
+          chrome.runtime.getURL("example.html")
       ) {
         const candidate = await createExample(result.artifact.source);
         if (!matchPacket(candidate, result.artifact, "artifact", []))
           resultPacket = candidate;
       }
       if (request !== serial.current) return;
-      setSession({
-        sessionVersion: "1.0",
-        artifact: result.artifact,
-        packet: resultPacket,
-        scope: resultPacket?.scope.kind ?? "artifact",
-        context: resultPacket?.scope.kind === "context" ? previous.context : [],
-        history: resultPacket ? previous.history : [],
-        authorLabel:
-          previous.artifact?.id === result.artifact.id
-            ? previous.authorLabel
-            : undefined,
-      });
+      setContextEnabled(false);
+      setSession(
+        result.restored ?? {
+          sessionVersion: "1.0",
+          artifact: result.artifact,
+          contextSources: result.contextSources,
+          packet: resultPacket,
+          scope: resultPacket?.scope.kind ?? "artifact",
+          context:
+            resultPacket?.scope.kind === "context" ? previous.context : [],
+          history: resultPacket ? previous.history : [],
+          authorLabel:
+            previous.artifact?.id === result.artifact.id
+              ? previous.authorLabel
+              : undefined,
+        },
+      );
     } catch (e) {
       if (request !== serial.current) return;
       setTabId(null);
@@ -485,7 +517,15 @@ export function App({ preview = false }: { preview?: boolean }) {
   }, [tabId, artifact, packet, ready]);
   useEffect(() => {
     const key = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+      if (
+        e.key === "Escape" &&
+        !e.defaultPrevented &&
+        !document.querySelector("dialog[open]")
+      ) {
+        if (tour !== null) {
+          setTour(null);
+          return;
+        }
         setPinned(false);
         setLockedNode(null);
         setRelatedNode(null);
@@ -495,7 +535,7 @@ export function App({ preview = false }: { preview?: boolean }) {
     };
     window.addEventListener("keydown", key);
     return () => window.removeEventListener("keydown", key);
-  }, [tabId, artifact]);
+  }, [tabId, artifact, tour]);
   const unlock = () => {
     setPinned(false);
     setLockedNode(null);
@@ -613,6 +653,138 @@ export function App({ preview = false }: { preview?: boolean }) {
     setContextPaste("");
     setError("");
   }
+  async function toggleContext(enabled: boolean) {
+    collector.current?.abort();
+    setContextEnabled(enabled);
+    setContextWork(null);
+    if (!enabled || !artifact) return;
+    const request = serial.current;
+    const sources = (session.contextSources ?? []).filter(
+      (s) => s.author.toLocaleLowerCase() === authorName.toLocaleLowerCase(),
+    );
+    if (!sources.length) {
+      setContextWork({
+        phase: "error",
+        completed: 0,
+        total: 1,
+        label:
+          "No linked public author sources on this page. Wider search is not connected yet.",
+      });
+      return;
+    }
+    const job = new AbortController();
+    collector.current = job;
+    try {
+      const urls = sources.map((s) => publicURL(s.url));
+      if (
+        isExtension &&
+        !(await chrome.permissions.request({
+          origins: [...new Set(urls.map((u) => `${u.origin}/*`))],
+        }))
+      )
+        throw Error("Context source access was declined.");
+      if (request !== serial.current || job.signal.aborted) return;
+      let completed = 0,
+        failures = 0;
+      setContextWork({
+        phase: "working",
+        completed,
+        total: urls.length,
+        label: `Collecting ${urls.length} linked author sources`,
+      });
+      await collectSources(
+        urls.map((u) => u.href),
+        job.signal,
+        (item) => {
+          if (request !== serial.current || job.signal.aborted) return;
+          completed++;
+          if ("error" in item) failures++;
+          else
+            setSession((s) => ({
+              ...s,
+              context: mergeContext(s.context, item),
+            }));
+          setContextWork({
+            phase: "working",
+            completed,
+            total: urls.length,
+            label: `Collected ${completed - failures} of ${urls.length} sources`,
+          });
+        },
+      );
+      if (request !== serial.current || job.signal.aborted) return;
+      setContextWork({
+        phase: failures ? "error" : "done",
+        completed,
+        total: urls.length,
+        label: failures
+          ? `Context collection incomplete: ${failures} source(s) unavailable.`
+          : "Author context collected. A new analysis is needed before estimates change.",
+      });
+    } catch (e) {
+      if (request === serial.current && !job.signal.aborted)
+        setContextWork({
+          phase: "error",
+          completed: 0,
+          total: 1,
+          label: (e as Error).message,
+        });
+    }
+  }
+  function exportReading() {
+    try {
+      const url = URL.createObjectURL(
+        new Blob([readingFile(session)], { type: "text/html" }),
+      );
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "tompathy-reading.html";
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+    } catch (e) {
+      setError((e as Error).message);
+    }
+  }
+  async function importReading(file?: File) {
+    if (!file) return;
+    try {
+      if (file.size > 12000000)
+        throw Error("Reading files must be under 12 MB.");
+      const request = serial.current,
+        text = await file.text();
+      if (request !== serial.current) return;
+      if (text.trimStart().startsWith("{") && JSON.parse(text).schemaVersion) {
+        await loadPacket(text);
+        return;
+      }
+      const loaded = await parseReadingFile(text);
+      if (request !== serial.current) return;
+      cancelWork();
+      await pageCommand(tabId, artifact, "TOMPATHY_CLEANUP");
+      setSession(loaded);
+      setStale(false);
+      setDetail(null);
+      setPinned(false);
+      setLockedNode(null);
+      setRelatedNode(null);
+      setSourceHover(false);
+      setRegion(loaded.artifact!.regions[0].id);
+      setModal(null);
+      setTabId(null);
+      if (isExtension) {
+        const id = crypto.randomUUID();
+        const restored = { ...loaded, savedPageId: id };
+        await chrome.storage.session.set({ [`snapshot:${id}`]: restored });
+        setSession(restored);
+        const tab = await chrome.tabs.create({
+          url: chrome.runtime.getURL(`snapshot.html?id=${id}`),
+        });
+        setTabId(tab.id ?? null);
+      }
+    } catch (e) {
+      setError((e as Error).message);
+    }
+  }
   async function collect() {
     setError("");
     setCollectionStatus([]);
@@ -674,27 +846,68 @@ export function App({ preview = false }: { preview?: boolean }) {
   }
   return (
     <div className={preview ? "workspace" : "extension-root"}>
-      {preview && (
-        <ExampleArticle
-          active={
-            pinned || sourceHover || relatedNode?.span
-              ? (relatedNode?.span?.region ?? region)
-              : ""
-          }
+      {preview && artifact && artifact.source !== "tompathy:example" ? (
+        <ReadingPreview
+          artifact={artifact}
+          region={region}
+          offset={sentenceOffset}
           pinned={pinned}
-          related={
-            (relatedNode?.span ? [] : relatedNode?.regions) ??
-            (lockedNode?.span ? undefined : lockedNode?.regions) ??
-            detail?.regions ??
-            []
-          }
-          sentenceOffset={relatedNode?.span?.start ?? sentenceOffset}
-          onUnlock={unlock}
-          onLeave={() => setSourceHover(false)}
+          active={pinned || sourceHover}
           onMove={move}
+          onLeave={() => setSourceHover(false)}
+          onUnlock={unlock}
         />
+      ) : (
+        preview && (
+          <ExampleArticle
+            active={
+              pinned || sourceHover || relatedNode?.span
+                ? (relatedNode?.span?.region ?? region)
+                : ""
+            }
+            pinned={pinned}
+            related={
+              (relatedNode?.span ? [] : relatedNode?.regions) ??
+              (lockedNode?.span ? undefined : lockedNode?.regions) ??
+              detail?.regions ??
+              []
+            }
+            sentenceOffset={relatedNode?.span?.start ?? sentenceOffset}
+            onUnlock={unlock}
+            onLeave={() => setSourceHover(false)}
+            onMove={move}
+          />
+        )
       )}
       <div className="reader" data-tompathy-ui>
+        {new URLSearchParams(location.search).has("qa") && (
+          <button className="qa-entry" onClick={() => setModal("qa")}>
+            Development tools
+          </button>
+        )}
+        {tour !== null && (
+          <div className="interaction-guide" role="status">
+            <span>
+              {tour === -1
+                ? "New here? Try a brief interaction guide."
+                : [
+                    "Move over a sentence in the page. Watch attention and the reels change.",
+                    "Click that sentence to hold it. You can now move into the reader.",
+                    "Hover a reel to reveal its possible paths. Scroll to choose another goal.",
+                    "Click either green lock to let go. You can replay this guide from Help.",
+                  ][tour]}
+            </span>
+            <button onClick={() => setTour(tour === 3 ? null : tour + 1)}>
+              {tour === -1 ? "Show me" : tour === 3 ? "Done" : "Next"}
+            </button>
+            <button
+              aria-label="Dismiss interaction guide"
+              onClick={() => setTour(null)}
+            >
+              <X size={14} />
+            </button>
+          </div>
+        )}
         <div
           className={`reader-content ${ready ? "is-ready" : ""}`}
           onMouseEnter={() => setSourceHover(false)}
@@ -790,7 +1003,6 @@ export function App({ preview = false }: { preview?: boolean }) {
                 goals={goals}
                 active={!!attentionTarget}
                 onInspect={inspect}
-                list={view === "list"}
               />
             )}
           </section>
@@ -829,7 +1041,6 @@ export function App({ preview = false }: { preview?: boolean }) {
                   regions: node.span ? undefined : node.regions,
                 });
               }}
-              list={view === "list"}
               onHighlight={(node) => {
                 if (pinned) return;
                 setRelatedNode(node);
@@ -852,18 +1063,21 @@ export function App({ preview = false }: { preview?: boolean }) {
               id="values-view"
               role="tabpanel"
               aria-label={
-                valuesTab === "author" ? "Author values" : "World preview"
+                valuesTab === "author" ? "Author values" : "Global preview"
               }
             >
               {valuesTab === "author" ? (
                 <ValueList values={values} packet={packet} inspect={inspect} />
               ) : (
                 <span className="quiet-empty world-placeholder">
-                  World view · coming later
+                  Global view · coming later
                 </span>
               )}
             </div>
-            <ValueTabs tab={valuesTab} onTab={setValuesTab} />
+            <div className="values-bottom">
+              <ValueTabs tab={valuesTab} onTab={setValuesTab} />
+              <ContextProgress work={contextWork} />
+            </div>
           </section>
           <span className="sr-only" role="status">
             {busy
@@ -997,7 +1211,8 @@ export function App({ preview = false }: { preview?: boolean }) {
         <Modal
           title={
             {
-              menu: "Your reading",
+              menu: "Options",
+              qa: "Development tools",
               context: "Build the context",
               source: "The source text",
               settings: "Your reader",
@@ -1019,112 +1234,135 @@ export function App({ preview = false }: { preview?: boolean }) {
             </div>
           )}
           {modal === "menu" && (
-            <>
-              <p className="menu-status">
-                {authorName} · {packet?.origin ?? "No analysis connected"}
-              </p>
-              <nav className="reader-menu" aria-label="Reader tools">
-                {ready && (
-                  <button onClick={() => setModal("claims")}>
-                    <Layers size={18} />
-                    <span>All supplied hypotheses</span>
-                    <ChevronRight size={15} />
-                  </button>
-                )}
-                <button
-                  aria-label="Source text"
-                  onClick={() => setModal("source")}
-                >
-                  <BookOpen size={18} />
-                  <span>
-                    Source text
-                    <small>
-                      {artifact
-                        ? `${artifact.regions.length} passages`
-                        : "Capture or paste a text"}
-                    </small>
-                  </span>
-                  <ChevronRight size={15} />
-                </button>
-                <button
-                  onClick={() => {
-                    setModal(null);
-                    void capture();
+            <div className="options-content">
+              <label className="maker-picker author-selection">
+                Author selection
+                <select
+                  value={
+                    ready
+                      ? activeMaker?.id
+                      : (session.authorLabel ?? authorName)
+                  }
+                  onChange={(e) => {
+                    setMaker(e.target.value);
+                    setDetail(null);
+                    setContextEnabled(false);
+                    setContextWork(null);
+                    collector.current?.abort();
+                    if (!ready)
+                      setSession((s) => ({
+                        ...s,
+                        authorLabel: e.target.value,
+                      }));
                   }}
                 >
-                  <RefreshCw size={18} />
-                  <span>Capture current page</span>
-                  <ChevronRight size={15} />
-                </button>
-                <button onClick={() => setModal("context")}>
-                  <Layers size={18} />
-                  <span>
-                    Context{context.length ? ` · ${context.length}` : ""}
-                  </span>
-                  <ChevronRight size={15} />
-                </button>
-                <button onClick={() => setModal("import")}>
-                  <Upload size={18} />
-                  <span>Import result</span>
-                  <ChevronRight size={15} />
-                </button>
-                <button onClick={() => setModal("settings")}>
-                  <Settings2 size={18} />
-                  <span>Reader settings</span>
-                  <ChevronRight size={15} />
-                </button>
-                {!!session.history?.length && (
-                  <button onClick={() => setModal("history")}>
-                    <BookOpen size={18} />
-                    <span>
-                      Earlier accounts
-                      <small>{session.history.length} retained revisions</small>
-                    </span>
-                    <ChevronRight size={15} />
-                  </button>
-                )}
-                <button onClick={() => setModal("help")}>
-                  <CircleHelp size={18} />
-                  <span>How ToMpathy works</span>
-                  <ChevronRight size={15} />
-                </button>
-              </nav>
-              {ready && (
-                <label className="check-option">
-                  <input
-                    type="checkbox"
-                    checked={view === "list"}
-                    onChange={(e) =>
-                      setView(e.target.checked ? "list" : "tree")
-                    }
-                  />{" "}
-                  Show hypotheses as a list
-                </label>
-              )}
-              {ready && (
-                <label className="maker-picker">
-                  Maker perspective
-                  <select
-                    value={activeMaker?.id}
-                    onChange={(e) => {
-                      setMaker(e.target.value);
-                      setDetail(null);
+                  {ready ? (
+                    packet!.makers.map((m) => (
+                      <option key={m.id} value={m.id}>
+                        {m.label}
+                      </option>
+                    ))
+                  ) : artifact?.authors?.length ? (
+                    artifact.authors.map((a) => (
+                      <option key={a.label}>{a.label}</option>
+                    ))
+                  ) : (
+                    <option>{authorName}</option>
+                  )}
+                </select>
+              </label>
+              <label className="option-check">
+                <input
+                  type="checkbox"
+                  checked={contextEnabled}
+                  onChange={(e) => void toggleContext(e.target.checked)}
+                />
+                <span>
+                  Context
+                  <small>
+                    A small collector gathers public context about this author.
+                    This alpha follows the page’s author links; wider search
+                    comes later.
+                  </small>
+                </span>
+              </label>
+              <label className="option-check future">
+                <input type="checkbox" disabled />
+                <span>
+                  Create a small local model to think like this author
+                  <small>Planned · no model is created yet.</small>
+                </span>
+              </label>
+              <label className="option-check future">
+                <input type="checkbox" disabled />
+                <span>
+                  Word-level analysis
+                  <small>
+                    Word-level analysis is potentially academically interesting
+                    but difficult to interpret.
+                  </small>
+                </span>
+              </label>
+              <div className="theme-options" aria-label="Appearance">
+                {["system", "light", "dark"].map((t) => (
+                  <button
+                    key={t}
+                    aria-pressed={theme === t}
+                    onClick={() => {
+                      setTheme(t);
+                      void writeTheme(t);
                     }}
                   >
-                    {packet!.makers.map((m) => (
-                      <option key={m.id} value={m.id}>
-                        {m.label} · {m.identity}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              )}
-              <p className="menu-status">
-                {ready
-                  ? `${isExample ? "Example" : "Analysis"} connected · revision ${packet!.revision}`
-                  : "No analysis connected"}
-              </p>
-            </>
+                    {t}
+                  </button>
+                ))}
+              </div>
+              <footer className="options-footer">
+                <button onClick={() => setModal("help")}>
+                  <CircleHelp size={15} /> <span>How ToMpathy works</span>
+                </button>
+                <div>
+                  <label
+                    className="options-import"
+                    title="Import a saved reading or matching analysis"
+                  >
+                    <Upload size={15} />
+                    <span>Import</span>
+                    <input
+                      type="file"
+                      accept=".html,.json"
+                      aria-label="Import reading"
+                      onChange={(e) => {
+                        void importReading(e.target.files?.[0]);
+                        e.target.value = "";
+                      }}
+                    />
+                  </label>
+                  <button disabled={!artifact} onClick={exportReading}>
+                    <Download size={15} />
+                    <span>Export</span>
+                  </button>
+                </div>
+              </footer>
+            </div>
+          )}
+          {modal === "qa" && (
+            <nav className="reader-menu" aria-label="Development tools">
+              {(
+                [
+                  ["claims", "All supplied hypotheses"],
+                  ["source", "Source text"],
+                  ["context", "Context"],
+                  ["import", "Import result"],
+                  ["settings", "Reader settings"],
+                  ["history", "Earlier accounts"],
+                ] as const
+              ).map(([id, label]) => (
+                <button key={id} onClick={() => setModal(id)}>
+                  {label}
+                </button>
+              ))}
+            </nav>
           )}
           {modal === "claims" && (
             <>
@@ -1156,13 +1394,22 @@ export function App({ preview = false }: { preview?: boolean }) {
           {modal === "help" && (
             <>
               <p className="modal-lead">What's on the author's mind?</p>
+              <button
+                className="secondary-button"
+                onClick={() => {
+                  setModal(null);
+                  setTour(0);
+                }}
+              >
+                Try the interaction guide <MousePointer2 size={15} />
+              </button>
               <ol className="steps">
                 <li>
                   <strong>Follow a sentence.</strong> Hover page text to roll
                   through its goal hierarchy. Click to lock it; Escape or the
                   small lock beside the reels releases it. Native text selection
-                  and links still work. Keyboard readers can use the source
-                  passage list, then the reels’ arrow-key controls.
+                  and links still work. Use Tab to focus hierarchy blocks and
+                  values; the reels support arrow-key selection.
                 </li>
                 <li>
                   <strong>Explore the shape.</strong> The continuous hierarchy
@@ -1883,7 +2130,15 @@ export function ExampleArticle({
           <button
             onClick={async () => {
               const tab = await chrome.tabs.getCurrent();
-              if (tab?.id) await chrome.sidePanel.open({ tabId: tab.id });
+              if (tab?.id) {
+                await chrome.sidePanel.setOptions({
+                  path: new URLSearchParams(location.search).has("qa")
+                    ? "panel.html?qa"
+                    : "panel.html",
+                  enabled: true,
+                });
+                await chrome.sidePanel.open({ tabId: tab.id });
+              }
             }}
           >
             Open Maker Reader <ArrowRight size={14} />

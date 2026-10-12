@@ -6,6 +6,7 @@ import {
   reelCandidates,
   type GoalNode,
   type GraphNode,
+  type GoalGraph,
 } from "../core/hierarchy";
 import { SelectionLock } from "./SelectionLock";
 const REEL_HEIGHT = 42;
@@ -30,12 +31,14 @@ function Reel({
   const ambiguous = candidates.length + Number(ended) > 1,
     exact = !ambiguous ? candidates[0] : undefined;
   const choice = candidates[0];
-  const index = choice
-    ? Math.max(
-        0,
-        column.findIndex((n) => n.id === choice.id),
-      )
-    : column.length;
+  const index = !active
+    ? 0
+    : choice
+      ? Math.max(
+          0,
+          column.findIndex((n) => n.id === choice.id),
+        )
+      : column.length;
   const select = (next: number) => {
     const n = column[Math.max(0, Math.min(column.length - 1, next))];
     if (n && n.id !== exact?.id) onSelect(n.data);
@@ -67,14 +70,18 @@ function Reel({
       ref={host}
       role="group"
       tabIndex={active ? 0 : -1}
-      className={`spool ${ambiguous ? "ambiguous" : ""} ${emphasized ? "spool-emphasis" : ""}`}
+      className={`spool ${ambiguous || !active ? "ambiguous" : ""} ${emphasized ? "spool-emphasis" : ""}`}
       data-level={level}
       data-selected={exact?.id ?? ""}
       data-candidates={[
         ...candidates.map((n) => n.id),
         ...(ended ? ["end"] : []),
       ].join(",")}
-      aria-label={`${ambiguous ? `${candidates.length + Number(ended)} possible goals or endings; none selected` : (choice?.data.label ?? "This path ends before this level")}. Scroll or use arrow keys to choose.`}
+      aria-label={
+        !active
+          ? "No goal selected"
+          : `${ambiguous ? `${candidates.length + Number(ended)} possible goals or endings; none selected` : (choice?.data.label ?? "This path ends before this level")}. Scroll or use arrow keys to choose.`
+      }
       onKeyDown={(e) => {
         if (["ArrowUp", "ArrowDown", "Home", "End"].includes(e.key)) {
           e.preventDefault();
@@ -116,7 +123,6 @@ export function ProcessHierarchy({
   onHighlight,
   onLock,
   onSelect,
-  list = false,
 }: {
   nodes: GoalNode[];
   region: string;
@@ -127,15 +133,18 @@ export function ProcessHierarchy({
   onHighlight: (node: GoalNode | null) => void;
   onLock: () => void;
   onSelect: (node: GoalNode) => void;
-  list?: boolean;
 }) {
   const graph = useMemo(() => goalGraph(nodes), [nodes]);
   const [hovered, setHovered] = useState<string | null>(null),
-    [height, setHeight] = useState(300);
+    [height, setHeight] = useState(300),
+    [expanded, setExpanded] = useState(false);
   const host = useRef<HTMLDivElement>(null),
     clip = useId().replace(/:/g, "");
   useEffect(() => {
-    if (!pinned) setHovered(null);
+    if (!pinned) {
+      setHovered(null);
+      setExpanded(false);
+    }
   }, [pinned]);
   useEffect(() => {
     const observer = new ResizeObserver(([entry]) =>
@@ -155,13 +164,17 @@ export function ProcessHierarchy({
   const columns = Array.from({ length: graph.depth + 1 }, (_, rank) =>
     graph.all.filter((n) => n.rank === rank),
   );
-  const showList = list || nodes.length > 120 || graph.roots.length > 4;
+  const showList = nodes.length > 120 || graph.roots.length > 4 || layout.dense;
+  const canExpand =
+    pinned &&
+    columns.some((_, rank) => reelCandidates(graph, selected, rank).ambiguous);
   const highlight = (node: GraphNode | null) => {
     setHovered(node?.id ?? null);
     if (!pinned) onHighlight(node?.data ?? null);
   };
   const choose = (node: GoalNode) => {
     setHovered(null);
+    setExpanded(false);
     onSelect(node);
   };
   const classes = (n: GraphNode) =>
@@ -218,10 +231,13 @@ export function ProcessHierarchy({
                 <g clipPath={`url(#${clip})`}>
                   {layout.tiles.map((t) => (
                     <g
-                      key={t.node.id}
+                      key={t.key}
                       role="button"
                       tabIndex={0}
                       data-node={t.node.id}
+                      data-instance={t.key}
+                      data-parent-instance={t.parentKey}
+                      data-root={t.rootId}
                       data-exposure={t.exposure}
                       data-rank={t.node.rank}
                       className={classes(t.node)}
@@ -237,7 +253,7 @@ export function ProcessHierarchy({
                         }
                       }}
                     >
-                      <rect x={t.x} y={t.y} width={t.width} height={t.height} />
+                      <path d={t.path} className="brick-face" />
                       <circle
                         cx={t.dotX}
                         cy={t.dotY}
@@ -250,12 +266,34 @@ export function ProcessHierarchy({
             )}
           </div>
           <div
-            className={`spool-area ${visible ? "is-visible" : ""}`}
-            aria-hidden={!visible}
-            inert={!visible || undefined}
+            className={`spool-area ${visible ? "is-visible" : "is-idle"}`}
+            onMouseLeave={() => setExpanded(false)}
+            onBlur={(e) => {
+              if (!e.currentTarget.contains(e.relatedTarget))
+                setExpanded(false);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Escape" && expanded) {
+                e.stopPropagation();
+                setExpanded(false);
+              }
+            }}
           >
+            {expanded && canExpand && selected && (
+              <ReelBranches
+                graph={graph}
+                selected={selected}
+                onSelect={choose}
+              />
+            )}
             <div
               className="odometer"
+              onMouseEnter={() => {
+                if (canExpand) setExpanded(true);
+              }}
+              onFocus={() => {
+                if (canExpand) setExpanded(true);
+              }}
               aria-label="Selected goal path"
               data-testid="odometer"
             >
@@ -287,6 +325,100 @@ export function ProcessHierarchy({
           </div>
         </>
       )}
+    </div>
+  );
+}
+
+function ReelBranches({
+  graph,
+  selected,
+  onSelect,
+}: {
+  graph: GoalGraph;
+  selected: GraphNode;
+  onSelect: (node: GoalNode) => void;
+}) {
+  const columns = Array.from({ length: graph.depth + 1 }, (_, rank) =>
+    reelCandidates(graph, selected, rank),
+  );
+  const rows = Math.max(
+    2,
+    ...columns.map((c) => c.nodes.length + Number(c.ended)),
+  );
+  const height = rows * 43 + 12,
+    width = columns.length * 82;
+  const positions = new Map<string, { x: number; y: number }>();
+  columns.forEach((c, rank) =>
+    c.nodes.forEach((n, i) =>
+      positions.set(n.id, {
+        x: rank * 82 + 41,
+        y: 6 + ((i + 0.5) * (height - 12)) / (c.nodes.length + Number(c.ended)),
+      }),
+    ),
+  );
+  return (
+    <div
+      className="reel-branches"
+      role="group"
+      aria-label="Possible connected goals"
+    >
+      <div
+        className="branch-canvas"
+        style={{ height, width, minWidth: "100%" }}
+      >
+        <svg
+          viewBox={`0 0 ${width} ${height}`}
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          {[...positions].flatMap(([id, p]) =>
+            graph.byId.get(id)!.parents.flatMap((parent) => {
+              const end = positions.get(parent.id);
+              if (!end) return [];
+              return (
+                <path
+                  key={`${id}:${parent.id}`}
+                  data-edge={`${id}:${parent.id}`}
+                  d={`M${p.x + 32} ${p.y} C${(p.x + end.x) / 2} ${p.y},${(p.x + end.x) / 2} ${end.y},${end.x - 32} ${end.y}`}
+                />
+              );
+            }),
+          )}
+        </svg>
+        {[...positions].map(([id, p]) => (
+          <button
+            key={id}
+            className={`branch-choice ${id === selected.id ? "anchor-choice" : ""}`}
+            style={{
+              left: `${(p.x / width) * 100}%`,
+              top: p.y,
+              width: `${(67 / width) * 100}%`,
+            }}
+            title={`${graph.byId.get(id)!.data.label}. ${graph.byId.get(id)!.data.description}`}
+            onClick={() => onSelect(graph.byId.get(id)!.data)}
+          >
+            {graph.byId.get(id)!.data.label}
+          </button>
+        ))}
+        {columns.map(
+          (c, rank) =>
+            c.ended && (
+              <span
+                className="branch-ending"
+                key={rank}
+                style={{
+                  left: `${((rank + 0.5) / columns.length) * 100}%`,
+                  top:
+                    6 +
+                    ((c.nodes.length + 0.5) * (height - 12)) /
+                      (c.nodes.length + 1),
+                }}
+              >
+                Earlier end
+              </span>
+            ),
+        )}
+      </div>
     </div>
   );
 }

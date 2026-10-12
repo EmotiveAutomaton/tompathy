@@ -1,15 +1,26 @@
 import { LOCK_SVG, LOCK_INK, LOCK_BACKGROUND } from "./core/lock";
 import { sentences } from "./core/sentences";
 import { makeArtifact, normalize } from "./core/artifact";
-import type { Artifact, Packet } from "./core/model";
-import { pageAuthors, readingRoot } from "./core/page";
+import {
+  SessionSchema,
+  type Artifact,
+  type Packet,
+  type Session,
+} from "./core/model";
+import { pageAuthors, pageAuthorSources, readingRoot } from "./core/page";
 import { contributionExplanation } from "./core/reading";
 declare global {
   interface Window {
     __tompathyCleanup?: () => void;
+    __tompathySnapshot?: Session;
   }
 }
 export function installPageAdapter() {
+  let restored =
+    location.protocol === "chrome-extension:" &&
+    location.pathname === "/snapshot.html"
+      ? window.__tompathySnapshot
+      : undefined;
   window.__tompathyCleanup?.();
   let artifact: Artifact | null = null,
     elements: HTMLElement[] = [],
@@ -187,6 +198,15 @@ export function installPageAdapter() {
     pinned = false;
     selected = "";
     stale = false;
+    if (restored?.savedPageId) {
+      const key = `snapshot:${restored.savedPageId}`;
+      const latest = (await chrome.storage.session.get(key))[key];
+      const parsed = SessionSchema.safeParse(latest);
+      if (parsed.success) {
+        restored = parsed.data;
+        window.__tompathySnapshot = restored;
+      }
+    }
     const { root, capture: captureInfo } = readingRoot(document);
     const candidates = Array.from(
       root.querySelectorAll<HTMLElement>(
@@ -206,6 +226,10 @@ export function installPageAdapter() {
       elements = Array.from(root.querySelectorAll<HTMLElement>("div,section"))
         .filter((el) => eligible(el) && !el.querySelector("div,section,p"))
         .slice(0, 1500);
+    if (restored?.artifact)
+      elements = [
+        ...document.querySelectorAll<HTMLElement>("[data-snapshot-region]"),
+      ];
     if (!elements.length)
       throw Error("No readable text found. Paste an excerpt to continue.");
     let length = 0;
@@ -219,10 +243,13 @@ export function installPageAdapter() {
       );
     const texts = elements.map(readable),
       source = location.href;
-    artifact = await makeArtifact(texts, source, document.title);
-    artifact.authors = pageAuthors(document);
-    artifact.capture = captureInfo;
-    artifact.truncated = candidates.length > 1500 || length > 300000;
+    artifact =
+      restored?.artifact ?? (await makeArtifact(texts, source, document.title));
+    if (!restored) {
+      artifact.authors = pageAuthors(document);
+      artifact.capture = captureInfo;
+      artifact.truncated = candidates.length > 1500 || length > 300000;
+    }
     if (
       source !== location.href ||
       elements.some((el, i) => !el.isConnected || readable(el) !== texts[i])
@@ -376,7 +403,13 @@ export function installPageAdapter() {
       return;
     if (m.type === "TOMPATHY_CAPTURE") {
       capture()
-        .then((a) => respond({ artifact: a }))
+        .then((a) =>
+          respond({
+            artifact: a,
+            restored,
+            contextSources: restored ? [] : pageAuthorSources(document),
+          }),
+        )
         .catch((e) => respond({ error: e.message }));
       return true;
     }
@@ -481,7 +514,15 @@ if (typeof chrome !== "undefined" && chrome.runtime?.id) {
         ) {
           installPageAdapter()
             .capture()
-            .then((artifact) => respond({ artifact }))
+            .then((artifact) =>
+              respond({
+                artifact,
+                restored: window.__tompathySnapshot,
+                contextSources: window.__tompathySnapshot
+                  ? []
+                  : pageAuthorSources(document),
+              }),
+            )
             .catch((e) => respond({ error: e.message }));
           return true;
         }

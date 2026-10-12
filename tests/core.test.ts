@@ -485,7 +485,19 @@ test("two peaks retain shared parents, ambiguity in both directions, and usable 
     for (const height of [160, 300, 550]) {
       const g = goalGraph(nodes),
         layout = hierarchyLayout(g, height);
-      assert.equal(layout.tiles.length, nodes.length);
+      assert.ok(layout.tiles.length >= nodes.length);
+      const byKey = new Map(layout.tiles.map((t) => [t.key, t]));
+      for (const tile of layout.tiles) {
+        if (tile.parentKey) {
+          const parent = byKey.get(tile.parentKey)!;
+          assert.ok(parent.node.children.some((c) => c.id === tile.node.id));
+          assert.ok(
+            tile.from >= parent.from - 1e-9 && tile.to <= parent.to + 1e-9,
+          );
+          assert.equal(tile.x + tile.width, parent.x);
+          assert.equal(tile.rootId, parent.rootId);
+        }
+      }
       assert.equal(
         new Set(layout.tiles.map((t) => t.node.id)).size,
         nodes.length,

@@ -63,7 +63,10 @@ export function HoverCard({
       onFocus={open}
       onBlur={close}
       onKeyDown={(e) => {
-        if (e.key === "Escape") setPosition(null);
+        if (e.key === "Escape" && position) {
+          e.stopPropagation();
+          setPosition(null);
+        }
       }}
       aria-describedby={position ? id : undefined}
     >

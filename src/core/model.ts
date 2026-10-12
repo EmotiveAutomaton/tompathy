@@ -578,6 +578,11 @@ export const SessionSchema = z.object({
   context: z.array(ContextSchema).max(30),
   scope: z.enum(["artifact", "context"]),
   authorLabel: z.string().max(250).optional(),
+  savedPageId: z.uuid().optional(),
+  contextSources: z
+    .array(z.object({ author: z.string().max(250), url: z.string().max(4000) }))
+    .max(3)
+    .optional(),
   history: z
     .array(
       z.object({

@@ -4,8 +4,8 @@ export function ValueTabs({
   tab,
   onTab,
 }: {
-  tab: "author" | "world";
-  onTab: (tab: "author" | "world") => void;
+  tab: "author" | "global";
+  onTab: (tab: "author" | "global") => void;
 }) {
   const [search, setSearch] = useState(false),
     [query, setQuery] = useState(""),
@@ -19,7 +19,7 @@ export function ValueTabs({
   return (
     <div className={`value-tabs ${search ? "searching" : ""}`}>
       <div role="tablist" aria-label="Values perspective">
-        {(["author", "world"] as const).map((t) => (
+        {(["author", "global"] as const).map((t) => (
           <button
             key={t}
             role="tab"
