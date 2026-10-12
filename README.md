@@ -1,6 +1,6 @@
 # ToMpathy
 
-![Development preview: a held sentence, changing attention, a goal hierarchy and core values](docs/assets/reader.png)
+![Development preview with a half-width reader: locked sentence, evidence tooltip, attention, hierarchy and core values](docs/assets/reader.png)
 
 **What’s on the creator’s mind?** ToMpathy is a Chrome side-panel reader for exploring a creator’s current attention, expertise, habits, process and core values alongside a text.
 
@@ -19,9 +19,11 @@ No account, API key, paid service or model download is needed for the example, r
 
 ## Three views, one reading
 
-- **Current attention** is an independent, animated word cloud. It follows the pointed sentence or supplied sub-sentence frame; word size reflects the supplied support.
-- **Previous attention (expertise and habit)** shows local choices flowing toward broader goals. Hold a node and hover the odometer: ambiguous reels grow upward into selectable lists over the faded hierarchy.
+- **Current attention** is an independent, animated word cloud. It follows the pointed sentence or supplied sub-sentence frame; word size reflects the supplied support. It retains the last inspected frame between targets; broader graph nodes combine their constituent attention frames.
+- **Expertise and habit (previous attention)** shows local choices flowing toward broader goals. Wheel to zoom, drag to pan, and use the corner-bracket button to fit the whole hierarchy. Cell-anchored goal labels fade in together as the graph grows. Hold a node and hover the odometer: ambiguous reels grow upward into selectable lists over the faded hierarchy. A held sentence can be located in the article with the arrow/magnifier below the lock.
 - **Core values** shows a stable set of supplied latent-preference hypotheses with evidence and support indicators.
+
+The development reading, **The door we stopped explaining**, follows a fictional cooperative-game designer. Sentence ink shows supplied Ghost Scale involvement; font grade independently shows confidence in that classification. Original bold becomes underline. Pause over a sentence for its evidence and open **Options → View context and timeline** for the fictional draft record. These are authored demonstration judgments, not live inference. The Latin reading font is bundled locally (about 53 KB); it adds no font-service requests.
 
 The reader supports keyboard focus, reduced motion, system/light/dark themes, multiple supplied creators, and retained analysis revisions. Estimates are hypotheses, not verified access to a person’s mind or calibrated probabilities unless the input explicitly says so.
 
@@ -44,7 +46,7 @@ npm ci
 npm run review
 ```
 
-The launcher builds the extension and opens a persistent, separate Chrome review profile. On Windows, **Review ToMpathy.cmd** provides the same entry point. It leaves normal Chrome profiles alone. For the design preview, run `npm run dev` and open `http://127.0.0.1:5173/`.
+The launcher builds the extension and opens a persistent, separate Chrome review profile. Its small dashboard links to the testing environment and a temporary gallery of twelve face-and-teardrop logo studies. On Windows, **Review ToMpathy.cmd** provides the same entry point. It leaves normal Chrome profiles alone. For the design preview, run `npm run dev` and open `http://127.0.0.1:5173/`.
 
 ```sh
 npm run build

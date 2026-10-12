@@ -24,6 +24,7 @@ type Word = SimulationNodeDatum & {
   width: number;
   height: number;
   font: number;
+  lines: string[];
   tx: number;
   ty: number;
 };
@@ -43,6 +44,12 @@ export function GoalCloud({
   const [size, setSize] = useState({ width: 300, height: 260 });
   const [words, setWords] = useState<Word[]>([]);
   const [displayed, setDisplayed] = useState(goals);
+  const [visible, setVisible] = useState(() => !document.hidden);
+  useEffect(() => {
+    const update = () => setVisible(!document.hidden);
+    document.addEventListener("visibilitychange", update);
+    return () => document.removeEventListener("visibilitychange", update);
+  }, []);
   const latest = useRef(goals);
   latest.current = goals;
   const ids = goals.map((h) => h.id).join("|");
@@ -69,22 +76,28 @@ export function GoalCloud({
     .join("|");
   useLayoutEffect(() => {
     if (!size.width || !size.height) return;
+    if (!visible) return;
     if (!active) {
       setWords([]);
       setDisplayed([]);
       return;
     }
-    if (goals.length > 12 || list) {
+    if (goals.length > 40 || list) {
       setWords([]);
       return;
     }
     const canvas = document.createElement("canvas").getContext("2d")!;
+    const combined = goals.length > 8;
+    const peak = combined ? Math.max(0.01, ...goals.map(weight)) : 1;
+    const padding = 6;
+    const gapX = 2,
+      gapY = 3;
     const dominant = [...goals].sort((a, b) => weight(b) - weight(a))[0]?.id;
     const bounds = host.current?.getBoundingClientRect();
     const obstacles = bounds
       ? Array.from(
           host.current!.parentElement!.querySelectorAll(
-            ".section-heading h2, .section-heading .icon-button",
+            ".section-heading h2, .creator-control",
           ),
         ).map((el) => {
           const r = el.getBoundingClientRect();
@@ -98,15 +111,43 @@ export function GoalCloud({
       : [];
     const nodes: Word[] = goals.map((h) => {
       let font =
-        (7 + Math.pow(weight(h), 1.65) * 27) * Math.min(1, size.width / 330);
+        (7 + Math.pow(weight(h) / peak, 1.65) * 27) *
+        Math.min(1, size.width / 330);
       canvas.font = `${font}px Georgia`;
+      const parts = h.label.split(/\s+/);
+      let lines = [h.label];
+      if (
+        parts.length > 1 &&
+        (h.label.length > 21 ||
+          canvas.measureText(h.label).width > size.width * 0.56)
+      ) {
+        let best = Infinity;
+        for (let split = 1; split < parts.length; split++) {
+          const candidate = [
+            parts.slice(0, split).join(" "),
+            parts.slice(split).join(" "),
+          ];
+          const widths = candidate.map(
+            (line) => canvas.measureText(line).width,
+          );
+          const score =
+            Math.max(...widths) + Math.abs(widths[0] - widths[1]) * 0.25;
+          if (score < best) {
+            best = score;
+            lines = candidate;
+          }
+        }
+      }
       font *= Math.min(
         1,
-        (size.width - 28) / canvas.measureText(h.label).width,
+        (size.width - 28) /
+          Math.max(...lines.map((line) => canvas.measureText(line).width)),
       );
       canvas.font = `${font}px Georgia`;
-      const width = canvas.measureText(h.label).width + 12,
-        height = font * 1.4 + 12;
+      const width =
+          Math.max(...lines.map((line) => canvas.measureText(line).width)) +
+          padding,
+        height = font * 1.25 * lines.length + padding;
       const previous = memory.current.get(h.id);
       const hash = Array.from(h.id).reduce(
         (sum, char) => (sum * 31 + char.charCodeAt(0)) >>> 0,
@@ -141,6 +182,7 @@ export function GoalCloud({
         width,
         height,
         font,
+        lines,
         tx,
         ty,
         x: tx,
@@ -160,8 +202,8 @@ export function GoalCloud({
             b = nodes[j],
             dx = b.x! - a.x!,
             dy = b.y! - a.y!;
-          const ox = (a.width + b.width) / 2 + 5 - Math.abs(dx),
-            oy = (a.height + b.height) / 2 + 7 - Math.abs(dy);
+          const ox = (a.width + b.width) / 2 + gapX - Math.abs(dx),
+            oy = (a.height + b.height) / 2 + gapY - Math.abs(dy);
           if (ox > 0 && oy > 0) {
             const share = a.fx != null || b.fx != null ? 1 : 0.5;
             if (ox < oy) {
@@ -207,11 +249,11 @@ export function GoalCloud({
           ) &&
           placed.every(
             (p) =>
-              Math.abs(x - p.x!) >= (n.width + p.width) / 2 + 5 ||
-              Math.abs(y - p.y!) >= (n.height + p.height) / 2 + 7,
+              Math.abs(x - p.x!) >= (n.width + p.width) / 2 + gapX ||
+              Math.abs(y - p.y!) >= (n.height + p.height) / 2 + gapY,
           );
         let best: { x: number; y: number; distance: number } | undefined;
-        if (n.fx != null)
+        if (n.fx != null && free(size.width / 2, size.height / 2))
           best = { x: size.width / 2, y: size.height / 2, distance: 0 };
         else
           for (
@@ -240,20 +282,26 @@ export function GoalCloud({
       }
       if (fits) break;
       for (const n of nodes) {
-        n.width *= 0.93;
-        n.height *= 0.93;
+        n.width = (n.width - padding) * 0.93 + padding;
+        n.height = (n.height - padding) * 0.93 + padding;
         n.font *= 0.93;
       }
     }
-    for (const node of nodes) memory.current.set(node.id, node);
+    for (const node of nodes) {
+      memory.current.delete(node.id);
+      memory.current.set(node.id, node);
+    }
+    // Keep recent positions without retaining every attention ID in a long reading.
+    while (memory.current.size > 64)
+      memory.current.delete(memory.current.keys().next().value!);
     setWords(nodes);
-  }, [identity, size.width, size.height, list, active]);
-  const dense = list || goals.length > 12;
+  }, [identity, size.width, size.height, list, active, visible]);
+  const dense = list || goals.length > 40;
   const dominant = [...goals].sort((a, b) => weight(b) - weight(a))[0]?.id;
   return (
     <div
       ref={host}
-      className={`living-cloud ${dense ? "cloud-list" : ""}`}
+      className={`living-cloud ${goals.length > 8 ? "cloud-combined" : ""} ${dense ? (list ? "cloud-list" : "cloud-overflow") : ""} ${visible ? "" : "cloud-suspended"}`}
       data-testid="goals"
     >
       {(active ? (dense ? goals : displayed) : []).map((old) => {
@@ -279,14 +327,15 @@ export function GoalCloud({
             className={`cloud-position ${leaving ? "cloud-leaving" : ""} ${h.id === dominant ? "cloud-center" : ""}`}
             style={
               dense
-                ? undefined
+                ? list
+                  ? undefined
+                  : { fontSize: 9 + weight(h) * 16, color }
                 : {
                     left: n?.x ?? size.width / 2,
                     top: n?.y ?? size.height / 2,
                     fontSize: n?.font ?? 18,
                     color,
                     maxWidth: size.width - 12,
-                    animationDelay: `${-(Array.from(h.id).reduce((sum, c) => sum + c.charCodeAt(0), 0) % 80) / 10}s`,
                   }
             }
           >
@@ -301,14 +350,22 @@ export function GoalCloud({
                 </>
               }
             >
-              <button onClick={() => onInspect(h)}>{h.label}</button>
+              <button aria-label={h.label} onClick={() => onInspect(h)}>
+                {(dense ? [h.label] : (n?.lines ?? [h.label])).map(
+                  (line, i) => (
+                    <span className="cloud-line" key={i}>
+                      {line}{" "}
+                    </span>
+                  ),
+                )}
+              </button>
             </HoverCard>
           </div>
         );
       })}
       {(!active || !goals.length) && (
         <span className="attention-cue">
-          {active ? "No attention supplied" : "<- hover"}
+          {active ? "No attention supplied" : "hover"}
         </span>
       )}
     </div>

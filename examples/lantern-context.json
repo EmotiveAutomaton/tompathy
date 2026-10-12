@@ -1,0 +1,45 @@
+{
+  "id": "context-notebook",
+  "source": "Fictional studio notebook · Lantern House",
+  "selected": true,
+  "retrievedAt": "2026-09-14T10:00:00.000Z",
+  "lineage": "synthetic",
+  "excerpt": "Mara Vale makes cooperative puzzle games. A collaborator supplied the visual cues and pause control requirements; Mara added the persistent latch after a playtest. Drafts include selected AI suggestions, light copy edits, and an unreviewed generated claim. All people, records and dates here are fictional.",
+  "facts": [
+    {
+      "date": "2026-09-04",
+      "label": "First playtest",
+      "quote": "Mara's handwritten notes describe players waiting at the door. The original instruction draft predates any AI session.",
+      "source": "Fictional studio notebook · Lantern House",
+      "dateKind": "event"
+    },
+    {
+      "date": "2026-09-06",
+      "label": "Review recordings",
+      "quote": "Three pairs of players were observed. The second pair had an unreliable controller; the third had prior puzzle exposure.",
+      "source": "Fictional studio notebook · Lantern House",
+      "dateKind": "event"
+    },
+    {
+      "date": "2026-09-09",
+      "label": "Access review",
+      "quote": "A collaborator's checklist already required paired sound and visual cues and a pause control. Mara added the persistent latch after the one-handed playtest.",
+      "source": "Fictional studio notebook · Lantern House",
+      "dateKind": "event"
+    },
+    {
+      "date": "2026-09-12",
+      "label": "Draft with an assistant",
+      "quote": "An assistant proposed 'room to notice'; Mara selected and revised that phrasing. A later automated assembly step generated a universal-inclusion claim after her final review.",
+      "source": "Fictional studio notebook · Lantern House",
+      "dateKind": "event"
+    },
+    {
+      "date": "2026-09-14",
+      "label": "Copy edit and response",
+      "quote": "Mara accepted shortening edits and restored the controller detail. Her draft already cautioned against guarantees. An automated assembly step then inserted a guarantee she never reviewed; the publication copy contradicts her draft's caution.",
+      "source": "Fictional studio notebook · Lantern House",
+      "dateKind": "event"
+    }
+  ]
+}

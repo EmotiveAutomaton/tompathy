@@ -111,9 +111,14 @@ export async function markPage(
   tabId: number | null,
   artifact: Artifact | null,
   packet: Packet | null,
+  maker?: string,
 ) {
   await pageCommand(tabId, artifact, "TOMPATHY_MARK", {
     estimates: packet?.estimates ?? [],
+    ghostReadings: packet?.ghostReadings,
+    evidence: packet?.evidence,
+    origin: packet?.origin,
+    maker,
     documentContribution: packet?.documentContribution,
   });
 }

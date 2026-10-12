@@ -4,7 +4,7 @@
 
 Chrome build 0.1.2, display label “0.2 development 2”.
 
-- Creator terminology throughout the interface; Previous attention (expertise and habit) heading and quiet `<- hover` cue. Existing data fields and publisher metadata remain compatible.
+- Creator terminology throughout the interface; Expertise and habit (previous attention) heading and quiet `hover` cue. Existing data fields and publisher metadata remain compatible.
 - Deeper, right-shifted dot arcs with full-circle clearance; uniform Order uncertain tooltips.
 - Top-left odometer lock follows its reel as it expands. Several rapid blocked focus changes gently emphasize both locks, with cooldown and reduced-motion support.
 - Expanded options inspect their own branch independently of previous hover; arrow keys navigate options before selection.
@@ -12,6 +12,13 @@ Chrome build 0.1.2, display label “0.2 development 2”.
 - Context cancellation and empty-state improvements; deselecting the last context source restores artifact scope. Pending-context exports preserve the prior account in history and reimport successfully.
 - Measured heading clearance prevents wider platform fonts from covering top dots; hierarchy layout remains cached across pointer updates.
 - Expanded regression coverage and a detailed UX review in `docs/UX_REVIEW_0.1.2.md`.
+
+- Longer fictional cooperative-game design reading, with thirty sentence accounts, a draft timeline and independent attention frames. Contract 1.6 adds supplied sentence involvement, assessment confidence and portable emphasis.
+- Ghost Scale ink and variable font grade distinguish involvement from confidence. Original bold is underlined; sentence cards show visual scales and up to three evidence bullets. Private native tooltip details stay in a closed shadow root.
+- Zoomable, pannable hierarchy with all sentence nodes, editing and automated-insertion branches. Cell-anchored labels reveal together; minimum zoom and the fit button restore the full graph smoothly.
+- Soft inspection holds between targets; broader graph nodes combine their sentence attention frames. Resolved held sentences can be found in the article with the lower-left arrow/magnifier.
+- Creator selection moves above Current attention; Options moves to the Core values footer. Twelve new local logo studies combine left-facing heads and lateral teardrop graphs; the production icon is unchanged.
+- Finite cloud and selection animations, hidden-view layout skipping, bounded position memory and test-browser cleanup reduce idle work.
 
 ## 0.2.0-dev.1 — unreleased development toward 0.2
 

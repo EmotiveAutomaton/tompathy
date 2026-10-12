@@ -3,6 +3,7 @@ import {
   matchPacket,
   makeArtifact,
   type Session,
+  type Artifact,
 } from "./model";
 
 const escapeHTML = (s: string) =>
@@ -13,6 +14,25 @@ const escapeHTML = (s: string) =>
         c
       ]!,
   );
+function formattedRegion(r: Artifact["regions"][number]) {
+  const text = r.anchor.exact,
+    cuts = [
+      ...new Set([
+        0,
+        text.length,
+        ...(r.emphasis ?? []).flatMap((e) => [e.start, e.end]),
+      ]),
+    ].sort((a, b) => a - b);
+  return cuts
+    .slice(0, -1)
+    .map((start, i) => {
+      const value = escapeHTML(text.slice(start, cuts[i + 1]));
+      return r.emphasis?.some((e) => e.start <= start && e.end > start)
+        ? `<strong>${value}</strong>`
+        : value;
+    })
+    .join("");
+}
 /** A readable, inert page copy and its exact analysis travel in one file. */
 export function readingFile(session: Session): string {
   if (!session.artifact) throw Error("Open a page before exporting a reading.");
@@ -53,7 +73,7 @@ export function readingFile(session: Session): string {
     version: 1,
     session: { ...portable, savedPageId: undefined },
   }).replace(/</g, "\\u003c");
-  return `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'"><title>${escapeHTML(a.title)}</title><style>body{max-width:740px;margin:60px auto;padding:0 24px;font:19px/1.75 Georgia,serif;color:#24382e;background:#fbfcf8}header{font:13px/1.6 system-ui;color:#64726a}p{white-space:pre-wrap}</style><header>ToMpathy saved reading · ${escapeHTML(a.source)}<br>Readable text snapshot${a.truncated ? " · capture was truncated" : ""}. Import this file in ToMpathy to explore its analysis.</header><article>${a.regions.map((r) => `<p>${escapeHTML(r.anchor.exact)}</p>`).join("\n")}</article><script type="application/json" id="tompathy-reading">${payload}</script></html>`;
+  return `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'"><title>${escapeHTML(a.title)}</title><style>body{max-width:740px;margin:60px auto;padding:0 24px;font:19px/1.75 Georgia,serif;color:#24382e;background:#fbfcf8}header{font:13px/1.6 system-ui;color:#64726a}p{white-space:pre-wrap}</style><header>ToMpathy saved reading · ${escapeHTML(a.source)}<br>Readable text snapshot${a.truncated ? " · capture was truncated" : ""}. Import this file in ToMpathy to explore its analysis.</header><article>${a.regions.map((r) => `<p>${formattedRegion(r)}</p>`).join("\n")}</article><script type="application/json" id="tompathy-reading">${payload}</script></html>`;
 }
 export async function parseReadingFile(text: string): Promise<Session> {
   const payload = text.trimStart().startsWith("<")

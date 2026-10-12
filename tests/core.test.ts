@@ -85,8 +85,145 @@ import {
   contextTimeline,
   contextBrief,
 } from "../src/core/creator-context";
-import { attentionAt } from "../src/core/attention";
+import { attentionAt, attentionForNode } from "../src/core/attention";
+
+test("branch attention retains every distinct supplied focus without duplicating shared sentences", async () => {
+  const packet = await createExample();
+  const nodes = packet.goalHierarchy!.nodes;
+  const leaf = nodes.find((n) => n.id === "sentence-3-2")!;
+  assert.deepEqual(
+    attentionForNode(packet, "maker-1", leaf),
+    attentionAt(packet, "maker-1", "p4", leaf.span!.start),
+  );
+  const paragraph = nodes.find((n) => n.id === "paragraph-3")!;
+  const frames = packet.currentAttention!.filter((f) => f.span.region === "p4");
+  const overview = attentionForNode(packet, "maker-1", paragraph);
+  assert.deepEqual(
+    new Set(overview.map((h) => h.id)),
+    new Set(frames.flatMap((f) => f.items.map((i) => i.hypothesis))),
+  );
+  assert.ok(overview.length > 6);
+  const focus = overview.find((h) => h.id === "focus-11")!;
+  const expected =
+    frames.reduce(
+      (sum, f) =>
+        sum +
+        (f.items.find((i) => i.hypothesis === focus.id)?.support?.value ?? 0),
+      0,
+    ) / 4;
+  assert.equal(focus.support!.value, expected);
+  assert.equal(focus.support!.semantics, "relative");
+  assert.deepEqual(
+    attentionForNode(
+      packet,
+      "maker-1",
+      nodes.find((n) => n.id === "assembly")!,
+    ),
+    [],
+  );
+  assert.deepEqual(attentionForNode(packet, "unknown", paragraph), []);
+  // A duplicate path in the graph is not a duplicate observation.
+  const extra = structuredClone(paragraph);
+  extra.id = "parallel-process";
+  extra.parentId = "story";
+  nodes.push(extra);
+  const shared = nodes.find((n) => n.id === "sentence-3-1")!;
+  shared.parentIds = ["paragraph-3", "parallel-process"];
+  const before = attentionForNode(
+    packet,
+    "maker-1",
+    nodes.find((n) => n.id === "story")!,
+  );
+  shared.parentIds = ["paragraph-3"];
+  assert.deepEqual(
+    attentionForNode(
+      packet,
+      "maker-1",
+      nodes.find((n) => n.id === "story")!,
+    ),
+    before,
+  );
+});
 import { sentences } from "../src/core/sentences";
+import { ghostAt, ghostInk, contrast, rgb, grade } from "../src/core/ghost";
+
+test("Ghost Scale is independent, creator-bound, contrast-safe and portable", async () => {
+  const p = await createExample(),
+    first = p.ghostReadings![0];
+  assert.equal(
+    ghostAt(
+      p,
+      "someone-else",
+      first.span.region,
+      first.span.start,
+      first.span.end,
+    ),
+    undefined,
+  );
+  assert.equal(grade(null), 0);
+  assert.equal(grade(0), -50);
+  assert.equal(grade(1), 100);
+  for (const [foreground, background] of [
+    [
+      [38, 58, 50],
+      [250, 249, 245],
+    ],
+    [
+      [224, 232, 225],
+      [31, 43, 38],
+    ],
+    [
+      [140, 140, 140],
+      [255, 255, 255],
+    ],
+  ] as [number[], number[]][]) {
+    for (const kind of ["original", "edited", "curated", "ghost"] as const) {
+      const ink = ghostInk(
+        kind,
+        foreground as [number, number, number],
+        background as [number, number, number],
+      );
+      assert.ok(
+        contrast(
+          rgb(ink.color),
+          kind === "ghost"
+            ? rgb(ink.background)
+            : (background as [number, number, number]),
+        ) >= 4.5,
+      );
+    }
+  }
+  assert.equal(ghostInk("edited", [38, 58, 50], [250, 249, 245]).opacity, 0.95);
+  for (const change of [
+    (q: typeof p) => (q.ghostReadings![0].maker = "missing"),
+    (q: typeof p) => (q.ghostReadings![0].evidence = ["missing"]),
+    (q: typeof p) => (q.ghostReadings![0].span.end = 99999),
+    (q: typeof p) =>
+      q.ghostReadings!.push(structuredClone(q.ghostReadings![0])),
+    (q: typeof p) => (q.ghostReadings![0].confidence = 1.1),
+    (q: typeof p) => (q.ghostReadings![0].span.start = 1),
+  ]) {
+    const q = structuredClone(p);
+    change(q);
+    assert.throws(() => parsePacket(JSON.stringify(q)));
+  }
+  const session = {
+    sessionVersion: "1.0" as const,
+    artifact: p.artifact,
+    packet: p,
+    context: [{ ...exampleContext, selected: false }],
+    scope: "artifact" as const,
+  };
+  const exported = readingFile(session),
+    imported = await parseReadingFile(exported);
+  assert.match(exported, /<strong>leaving enough time<\/strong>/);
+  assert.deepEqual(imported.packet!.ghostReadings, p.ghostReadings);
+  assert.deepEqual(
+    imported.artifact!.regions[2].emphasis,
+    p.artifact.regions[2].emphasis,
+  );
+  assert.equal(imported.context[0].facts!.length, 5);
+});
 
 test("goal hierarchy preserves exact sentence spans, branches and historical independence", async () => {
   const packet = await createExample(),
@@ -97,7 +234,7 @@ test("goal hierarchy preserves exact sentence spans, branches and historical ind
   )!.anchor.exact;
   assert.equal(
     text.slice(sentence.span!.start, sentence.span!.end),
-    "We counted pauses, sketched the paths people took, and listened when someone offered a comment.",
+    "A tester pointed out that I kept calling silence confusion when it sometimes meant someone was waiting for their partner.",
   );
   assert.equal(goalAt(nodes, "p4", sentence.span!.start)?.id, sentence.id);
   const graph = goalGraph(nodes);
@@ -322,7 +459,7 @@ test("bounded fetch rejects status, content type and oversized body; cancellatio
 
 test("historical partial orders, joint accounts and typed meanings reject contradictory references", async () => {
   const p = await createExample();
-  assert.equal(p.schemaVersion, "1.5");
+  assert.equal(p.schemaVersion, "1.6");
   assert.equal(p.alternatives[0].kind, "coexisting");
   p.process.edges.push({
     from: "iterate",
@@ -457,6 +594,7 @@ test("1.3 accepts unnamed deep goal paths while retaining cycle, depth and legac
 // Deliberately convert only the new contract fields for legacy acceptance checks.
 function legacyExample(packet: Awaited<ReturnType<typeof createExample>>) {
   const p = structuredClone(packet);
+  delete p.ghostReadings;
   delete p.currentAttention;
   delete p.goalHierarchy?.orderUncertainGroups;
   p.hypotheses = p.hypotheses.filter((h) => h.kind !== "attention");
@@ -468,6 +606,8 @@ function legacyExample(packet: Awaited<ReturnType<typeof createExample>>) {
       n.parentId = n.parentIds[0];
       delete n.parentIds;
     }
+  for (const n of p.goalHierarchy!.nodes)
+    if (n.id !== "purpose" && !n.parentId) n.parentId = "purpose";
   return p;
 }
 
@@ -475,7 +615,7 @@ test("independent attention supports sub-sentence snapshots and rejects invalid 
   const p = await createExample();
   const frame = p.currentAttention!.find((f) => f.span.region === "p4")!;
   const first = attentionAt(p, "maker-1", "p4", frame.span.start);
-  assert.equal(first[0].label, "Watching closely");
+  assert.equal(first[0].label, "Watching the players");
   assert.ok(first.every((h) => h.kind === "attention"));
   assert.ok(
     first.every((h) => !p.goalHierarchy!.nodes.some((n) => n.id === h.id)),
@@ -522,17 +662,31 @@ test("independent attention supports sub-sentence snapshots and rejects invalid 
   assert.equal(attentionAt(p, "maker-1", "p4", 0)[0].support, null);
 });
 
-test("two peaks retain shared parents, ambiguity in both directions, and usable brick edges", async () => {
+test("story branches retain shared parents, ambiguity in both directions, and usable brick edges", async () => {
   const p = await createExample(),
     graph = goalGraph(p.goalHierarchy!.nodes);
   assert.deepEqual(
     graph.roots.map((n) => [n.id, n.rank]),
     [
-      ["purpose", 3],
+      ["purpose", 4],
+      ["next-test", 2],
       ["practical-care", 2],
+      ["assembly", 1],
     ],
   );
   const paragraph = graph.byId.get("paragraph-3")!;
+  for (const reading of p.ghostReadings ?? []) {
+    const leaf = goalAt(
+      p.goalHierarchy!.nodes,
+      reading.span.region,
+      reading.span.start,
+    );
+    assert.deepEqual(
+      leaf?.span,
+      reading.span,
+      "Every sentence must remain reachable, including later paragraphs",
+    );
+  }
   assert.equal(reelCandidates(graph, paragraph, 0).nodes.length, 4);
   assert.deepEqual(
     reelCandidates(graph, paragraph, 2)
@@ -540,8 +694,8 @@ test("two peaks retain shared parents, ambiguity in both directions, and usable 
       .sort(),
     ["practical-care", "story"],
   );
-  assert.equal(reelCandidates(graph, paragraph, 3).ended, true);
-  assert.equal(reelCandidates(graph, paragraph, 3).ambiguous, true);
+  assert.equal(reelCandidates(graph, paragraph, 4).ended, true);
+  assert.equal(reelCandidates(graph, paragraph, 4).ambiguous, true);
   for (const nodes of [
     p.goalHierarchy!.nodes,
     legacyExample(p).goalHierarchy!.nodes,
@@ -550,6 +704,16 @@ test("two peaks retain shared parents, ambiguity in both directions, and usable 
       const g = goalGraph(nodes),
         layout = hierarchyLayout(g, height);
       assert.ok(layout.tiles.length >= nodes.length);
+      const sentenceWidth = layout.tiles.find((t) => t.node.rank === 0)!.width;
+      const oneTier = layout.tiles.find(
+        (t) =>
+          t.node.rank === 1 &&
+          t.parentKey &&
+          g.byId.get(layout.tiles.find((p) => p.key === t.parentKey)!.node.id)!
+            .rank === 2,
+      )!.width;
+      assert.ok(Math.abs(sentenceWidth / oneTier - 1.5) < 0.0001);
+
       const byKey = new Map(layout.tiles.map((t) => [t.key, t]));
       for (const tile of layout.tiles) {
         if (tile.parentKey) {
@@ -693,6 +857,7 @@ test("supplied order uncertainty validates sibling references and preserves olde
   );
   const legacy = structuredClone(packet);
   legacy.schemaVersion = "1.4";
+  delete legacy.ghostReadings;
   delete legacy.goalHierarchy!.orderUncertainGroups;
   assert.doesNotThrow(() => parsePacket(JSON.stringify(legacy)));
   for (const nodes of [

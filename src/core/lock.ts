@@ -2,7 +2,7 @@
 export const LOCK_PATH =
   "M7 11V7a5 5 0 0 1 10 0v4M6 11h12a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2ZM12 15v3";
 export const LOCK_INK = "#426f5d";
-export const LOCK_BACKGROUND = "#dcebe1";
+export const LOCK_BACKGROUND = "#edf3ec";
 /** Local interaction hint only: no cursor history or telemetry is persisted. */
 export function blockedFocusTracker() {
   let previous = "",

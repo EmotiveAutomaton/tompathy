@@ -1,3 +1,7 @@
+import { findSentence } from "./find-sentence";
+import { selectionTransition } from "./selection-transition";
+import { ReadingText, textOffset } from "./components/ReadingText";
+import { ghostAt } from "./core/ghost";
 import { readingFile, parseReadingFile } from "./core/reading-file";
 import { ReadingPreview } from "./components/ReadingPreview";
 import { ContextTimeline } from "./components/ContextTimeline";
@@ -11,7 +15,7 @@ import {
   ContextProgress,
   type ContextWork,
 } from "./components/ContextProgress";
-import { attentionAt } from "./core/attention";
+import { attentionAt, attentionForNode } from "./core/attention";
 import { ValueTabs } from "./components/ValueTabs";
 import { SelectionLock } from "./components/SelectionLock";
 import { blockedFocusTracker } from "./core/lock";
@@ -59,7 +63,12 @@ import {
   matchPacket,
   parsePacket,
 } from "./core/model";
-import { createExample, exampleContext, exampleText } from "./core/example";
+import {
+  createExample,
+  exampleContext,
+  exampleText,
+  exampleEmphasis,
+} from "./core/example";
 import { collectSources, publicURL, contextSourceURL } from "./core/collector";
 import {
   acceptRevision,
@@ -183,6 +192,7 @@ export function App({ preview = false }: { preview?: boolean }) {
     [tabId, setTabId] = useState<number | null>(null),
     [region, setRegion] = useState("p2"),
     [pinned, setPinned] = useState(false),
+    [foundInPage, setFoundInPage] = useState(false),
     [lockReminder, setLockReminder] = useState(0),
     [valuesTab, setValuesTab] = useState<"creator" | "global">("creator"),
     [sentenceOffset, setSentenceOffset] = useState(0),
@@ -234,6 +244,25 @@ export function App({ preview = false }: { preview?: boolean }) {
     current = useRef({ session, tabId, pinned }),
     blockedFocus = useRef(blockedFocusTracker());
   current.current = { session, tabId, pinned };
+  const sentenceTransition = useRef(selectionTransition());
+  useEffect(() => {
+    const node = document.querySelector<HTMLElement>(
+      ".example-page .active-sentence",
+    );
+    if (!node) return sentenceTransition.current.clear();
+    const range = document.createRange();
+    range.selectNodeContents(node);
+    const key = `${node.closest("[data-passage]")?.getAttribute("data-passage")}:${node.dataset.sentence}`;
+    sentenceTransition.current.show(range, key);
+  }, [region, sentenceOffset, relatedNode, pinned, sourceHover]);
+  useEffect(() => {
+    const clear = () => sentenceTransition.current.clear();
+    window.addEventListener("scroll", clear, true);
+    return () => {
+      window.removeEventListener("scroll", clear, true);
+      clear();
+    };
+  }, []);
   useEffect(() => {
     blockedFocus.current.reset();
     setLockReminder(0);
@@ -292,15 +321,18 @@ export function App({ preview = false }: { preview?: boolean }) {
       : sourceHover
         ? { region, start: sentenceOffset }
         : null;
+  const attentionNode = pinned ? lockedNode : relatedNode;
   const goals =
-    ready && attentionTarget
-      ? attentionAt(
-          packet,
-          activeMaker!.id,
-          attentionTarget.region,
-          attentionTarget.start,
-        )
-      : [];
+    ready && attentionNode
+      ? attentionForNode(packet!, activeMaker!.id, attentionNode)
+      : ready && attentionTarget
+        ? attentionAt(
+            packet,
+            activeMaker!.id,
+            attentionTarget.region,
+            attentionTarget.start,
+          )
+        : [];
   const values = hypotheses.filter(
     (h) => h.kind === "value" && h.status !== "unknown",
   );
@@ -377,7 +409,11 @@ export function App({ preview = false }: { preview?: boolean }) {
           packet: resultPacket,
           scope: resultPacket?.scope.kind ?? "artifact",
           context:
-            resultPacket?.scope.kind === "context" ? previous.context : [],
+            resultPacket?.scope.kind === "context"
+              ? previous.context
+              : resultPacket?.origin === "synthetic example"
+                ? [{ ...exampleContext, selected: false }]
+                : [],
           history: resultPacket ? previous.history : [],
           authorLabel:
             previous.artifact?.id === result.artifact.id
@@ -409,18 +445,46 @@ export function App({ preview = false }: { preview?: boolean }) {
       });
       setTabId(tab.id ?? null);
       const p = await createExample(chrome.runtime.getURL("example.html"));
-      setSession({ ...empty, artifact: p.artifact, packet: p });
+      setSession({
+        ...empty,
+        artifact: p.artifact,
+        packet: p,
+        context: [{ ...exampleContext, selected: false }],
+      });
       setNotice("Move across the example text to explore.");
     } else {
       const p = await createExample();
-      setSession({ ...empty, artifact: p.artifact, packet: p });
+      setSession({
+        ...empty,
+        artifact: p.artifact,
+        packet: p,
+        context: [{ ...exampleContext, selected: false }],
+      });
     }
   }
   useEffect(() => {
     let alive = true;
     (async () => {
       const saved = SessionSchema.safeParse(await readSession());
-      if (alive && saved.success) setSession(saved.data);
+      if (alive && saved.success) {
+        if (
+          saved.data.artifact?.source === "tompathy:example" &&
+          saved.data.packet?.origin === "synthetic example" &&
+          (saved.data.artifact.title !== exampleText[0] ||
+            !saved.data.packet.goalHierarchy?.nodes.some(
+              (n) => n.id === "editing",
+            ))
+        ) {
+          const p = await createExample();
+          if (alive)
+            setSession({
+              ...empty,
+              artifact: p.artifact,
+              packet: p,
+              context: [{ ...exampleContext, selected: false }],
+            });
+        } else setSession(saved.data);
+      }
       const t = await readTheme();
       if (alive) {
         setTheme(t);
@@ -474,6 +538,8 @@ export function App({ preview = false }: { preview?: boolean }) {
         m.revision !== c.session.artifact?.revision
       )
         return;
+      if (m.type === "TOMPATHY_SCROLLED") setFoundInPage(false);
+      if (m.type === "TOMPATHY_FOUND") setFoundInPage(true);
       if (m.type === "TOMPATHY_SELECT") {
         setRegion(m.region);
         setSentenceOffset(m.offset ?? 0);
@@ -493,7 +559,7 @@ export function App({ preview = false }: { preview?: boolean }) {
         blockedFocus.current.acknowledge(performance.now());
         setLockReminder((n) => n + 1);
       }
-      if (m.type === "TOMPATHY_LEAVE") setSourceHover(false);
+      // Pointer gaps retain the last inspected frame; the next SELECT replaces it.
       if (m.type === "TOMPATHY_STALE") {
         cancelWork();
         setStale(true);
@@ -555,8 +621,8 @@ export function App({ preview = false }: { preview?: boolean }) {
     void pageCommand(tabId, artifact, "TOMPATHY_RELEASE");
   }, [packet?.id, packet?.revision, activeMaker?.id, ready]);
   useEffect(() => {
-    void markPage(tabId, artifact, ready ? packet : null);
-  }, [tabId, artifact, packet, ready]);
+    void markPage(tabId, artifact, ready ? packet : null, activeMaker?.id);
+  }, [tabId, artifact, packet, ready, activeMaker?.id]);
   useEffect(() => {
     const key = (e: KeyboardEvent) => {
       if (
@@ -590,6 +656,50 @@ export function App({ preview = false }: { preview?: boolean }) {
     window.addEventListener("dblclick", release);
     return () => window.removeEventListener("dblclick", release);
   }, [tabId, artifact]);
+  const cancelFind = useRef<() => void>(() => {});
+  useEffect(() => {
+    setFoundInPage(false);
+    cancelFind.current();
+  }, [pinned, lockedNode?.id, region, sentenceOffset, tabId]);
+  useEffect(() => {
+    if (!preview) return;
+    const scroll = (e: Event) => {
+      if (
+        e.target === document ||
+        (e.target as Element).closest?.(".example-page")
+      )
+        setFoundInPage(false);
+    };
+    document.addEventListener("scroll", scroll, true);
+    return () => {
+      document.removeEventListener("scroll", scroll, true);
+      cancelFind.current();
+    };
+  }, [preview]);
+  const findLocked = () => {
+    if (!pinned || !artifact) return;
+    const id = lockedNode?.span?.region ?? region,
+      start = lockedNode?.span?.start ?? sentenceOffset;
+    if (isExtension) {
+      void pageCommand(tabId, artifact, "TOMPATHY_FIND", {
+        region: id,
+        offset: start,
+      });
+      return;
+    }
+    const passage = artifact.regions.find((r) => r.id === id);
+    const index = sentences(passage?.anchor.exact ?? "").findIndex(
+      (s) => s.start <= start && start < s.end,
+    );
+    const element = document.querySelector(
+      `[data-passage="${CSS.escape(id)}"] [data-sentence="${index}"]`,
+    );
+    if (!element) return;
+    const range = document.createRange();
+    range.selectNodeContents(element);
+    cancelFind.current();
+    cancelFind.current = findSentence(range, () => setFoundInPage(true));
+  };
   const move = (id: string, pin = false, offset = 0) => {
     if (pinned && !pin) {
       const text =
@@ -911,6 +1021,8 @@ export function App({ preview = false }: { preview?: boolean }) {
     <div className={preview ? "workspace" : "extension-root"}>
       {preview && artifact && artifact.source !== "tompathy:example" ? (
         <ReadingPreview
+          packet={ready ? packet : null}
+          maker={activeMaker?.id}
           lockReminder={lockReminder}
           artifact={artifact}
           region={region}
@@ -918,12 +1030,14 @@ export function App({ preview = false }: { preview?: boolean }) {
           pinned={pinned}
           active={pinned || sourceHover}
           onMove={move}
-          onLeave={() => setSourceHover(false)}
+          onLeave={() => {}}
           onUnlock={unlock}
         />
       ) : (
         preview && (
           <ExampleArticle
+            packet={ready ? packet : null}
+            maker={activeMaker?.id}
             lockReminder={lockReminder}
             active={
               pinned || sourceHover || relatedNode?.span
@@ -939,7 +1053,7 @@ export function App({ preview = false }: { preview?: boolean }) {
             }
             sentenceOffset={relatedNode?.span?.start ?? sentenceOffset}
             onUnlock={unlock}
-            onLeave={() => setSourceHover(false)}
+            onLeave={() => {}}
             onMove={move}
           />
         )
@@ -983,9 +1097,78 @@ export function App({ preview = false }: { preview?: boolean }) {
           >
             <div className="section-heading">
               <SectionTitle kind="goals">Current attention</SectionTitle>
-              <IconButton label="Reader menu" onClick={() => setModal("menu")}>
-                <MoreHorizontal size={20} />
-              </IconButton>
+              <label className="creator-control">
+                <svg
+                  className="creator-brain"
+                  viewBox="0 0 48 34"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M39 25C43 17 37 5 27 4C17 2 11 7 7 12L3 17Q1 19 5 20L8 21Q7 26 13 27L29 27Q34 27 37 31L41 31Q37 26 39 25Z"
+                    fill="currentColor"
+                    opacity=".12"
+                  />
+                  <path
+                    d="M39 25C43 17 37 5 27 4C17 2 11 7 7 12L3 17Q1 19 5 20L8 21Q7 26 13 27L29 27Q34 27 37 31L41 31Q37 26 39 25Z M12 12Q17 6 23 10Q30 5 35 13 M14 18Q21 12 25 18Q31 11 36 19 M18 24Q22 19 28 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <span className="sr-only">Creator selection</span>
+                <span className="creator-choice">
+                  <select
+                    title={creatorName}
+                    value={
+                      ready
+                        ? activeMaker?.id
+                        : (session.authorLabel ?? creatorName)
+                    }
+                    onChange={(e) => {
+                      setMaker(e.target.value);
+                      setDetail(null);
+                      setContextEnabled(false);
+                      setContextWork(null);
+                      setContextReport(null);
+                      collector.current?.abort();
+                      if (!ready)
+                        setSession((s) => ({
+                          ...s,
+                          authorLabel: e.target.value,
+                        }));
+                    }}
+                  >
+                    {ready ? (
+                      packet!.makers.map((m) => (
+                        <option key={m.id} value={m.id}>
+                          {m.label}
+                        </option>
+                      ))
+                    ) : artifact?.authors?.length ? (
+                      artifact.authors.map((a) => (
+                        <option key={a.label}>{a.label}</option>
+                      ))
+                    ) : (
+                      <option>{creatorName}</option>
+                    )}
+                  </select>
+                  <span className="creator-current" aria-hidden="true">
+                    <span>{creatorName}</span>
+                    <svg viewBox="0 0 12 12" width="9" height="9">
+                      <path
+                        d="M3 4.5 6 7.5 9 4.5"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.1"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </span>
+              </label>
             </div>
             {error && (
               <div className="message error" role="alert">
@@ -1066,7 +1249,7 @@ export function App({ preview = false }: { preview?: boolean }) {
               <GoalCloud
                 key={packet!.id}
                 goals={goals}
-                active={!!attentionTarget}
+                active={!!attentionTarget || !!attentionNode}
                 onInspect={inspect}
               />
             )}
@@ -1077,7 +1260,7 @@ export function App({ preview = false }: { preview?: boolean }) {
           >
             <div className="section-heading">
               <SectionTitle kind="process">
-                Previous attention (expertise and habit)
+                Expertise and habit (previous attention)
               </SectionTitle>
             </div>
             <ProcessHierarchy
@@ -1091,6 +1274,7 @@ export function App({ preview = false }: { preview?: boolean }) {
               region={region}
               offset={sentenceOffset}
               sourceHover={sourceHover}
+              softNodeId={relatedNode?.id}
               pinned={pinned}
               lockedNodeId={lockedNode?.id}
               onSelect={(node) => {
@@ -1106,7 +1290,8 @@ export function App({ preview = false }: { preview?: boolean }) {
                 });
               }}
               onHighlight={(node) => {
-                if (pinned) return;
+                if (pinned || !node) return;
+                setSourceHover(false);
                 setRelatedNode(node);
                 void pageCommand(tabId, artifact, "TOMPATHY_RELATED", {
                   regions: node?.regions ?? [],
@@ -1114,6 +1299,8 @@ export function App({ preview = false }: { preview?: boolean }) {
                 });
               }}
               onLock={unlock}
+              onFind={findLocked}
+              found={foundInPage}
             />
           </section>
           <section
@@ -1141,6 +1328,9 @@ export function App({ preview = false }: { preview?: boolean }) {
             <div className="values-bottom">
               <ValueTabs tab={valuesTab} onTab={setValuesTab} />
               <ContextProgress work={contextWork} />
+              <IconButton label="Reader menu" onClick={() => setModal("menu")}>
+                <MoreHorizontal size={18} />
+              </IconButton>
             </div>
           </section>
           <span className="sr-only" role="status">
@@ -1336,43 +1526,6 @@ export function App({ preview = false }: { preview?: boolean }) {
           )}
           {modal === "menu" && (
             <div className="options-content">
-              <label className="maker-picker creator-selection">
-                Creator selection
-                <select
-                  value={
-                    ready
-                      ? activeMaker?.id
-                      : (session.authorLabel ?? creatorName)
-                  }
-                  onChange={(e) => {
-                    setMaker(e.target.value);
-                    setDetail(null);
-                    setContextEnabled(false);
-                    setContextWork(null);
-                    setContextReport(null);
-                    collector.current?.abort();
-                    if (!ready)
-                      setSession((s) => ({
-                        ...s,
-                        authorLabel: e.target.value,
-                      }));
-                  }}
-                >
-                  {ready ? (
-                    packet!.makers.map((m) => (
-                      <option key={m.id} value={m.id}>
-                        {m.label}
-                      </option>
-                    ))
-                  ) : artifact?.authors?.length ? (
-                    artifact.authors.map((a) => (
-                      <option key={a.label}>{a.label}</option>
-                    ))
-                  ) : (
-                    <option>{creatorName}</option>
-                  )}
-                </select>
-              </label>
               <section
                 className="options-section context-options"
                 aria-labelledby="context-options-title"
@@ -1603,10 +1756,22 @@ export function App({ preview = false }: { preview?: boolean }) {
               </ol>
               <h3>Current attention</h3>
               <p>{explanations.goals}</p>
-              <h3>Previous attention (expertise and habit)</h3>
+              <h3>Expertise and habit (previous attention)</h3>
               <p>{explanations.process}</p>
               <h3>Core values</h3>
               <p>{explanations.values}</p>
+              <h3>Reading the text</h3>
+              <p>
+                Sentence ink follows the supplied Ghost Scale account: full ink
+                for creator-written text, 95% opacity for light AI edits,
+                readable grey for curated material, and reversed colours for
+                unreviewed generation. Grey is adjusted to retain at least 4.5:1
+                contrast against its surface. Existing bold becomes an
+                underline. Stroke grade shows confidence in that classification;
+                it does not measure truth or quality. Pause over a sentence, or
+                focus it with Tab, to inspect its evidence. Missing information
+                leaves the original styling alone.
+              </p>
               <h3>This account</h3>
               <p>
                 {packet
@@ -2256,6 +2421,8 @@ function sourceLabel(source: string) {
   }
 }
 export function ExampleArticle({
+  packet = null,
+  maker,
   lockReminder = 0,
   active = "",
   pinned = false,
@@ -2265,6 +2432,8 @@ export function ExampleArticle({
   onUnlock = () => {},
   sentenceOffset = 0,
 }: {
+  packet?: Packet | null;
+  maker?: string;
   lockReminder?: number;
   active?: string;
   pinned?: boolean;
@@ -2281,13 +2450,7 @@ export function ExampleArticle({
     y: number,
     sentence: { start: number; text: string },
   ) => {
-    const caret = document.caretRangeFromPoint(x, y);
-    return (
-      sentence.start +
-      (caret?.startContainer === el.firstChild
-        ? Math.min(caret.startOffset, sentence.text.length - 1)
-        : 0)
-    );
+    return sentence.start + textOffset(el, x, y, sentence.text.length);
   };
   return (
     <div className="example-page">
@@ -2296,7 +2459,7 @@ export function ExampleArticle({
           FIELDNOTES<span>ON EVERYDAY DESIGN</span>
         </span>
         <span className="journal-issue">
-          No. 014 <span>—</span> Places & people
+          No. 015 <span>—</span> Play & people
         </span>
       </nav>
       <div className="example-ribbon">
@@ -2329,7 +2492,7 @@ export function ExampleArticle({
       </div>
       <article onMouseLeave={onLeave}>
         <div className="article-kicker" data-tompathy-ui>
-          SMALL INTERVENTIONS / 06 MIN READ
+          SMALL INTERVENTIONS / 04 MIN READ
         </div>
         <h1
           data-passage="p1"
@@ -2341,15 +2504,14 @@ export function ExampleArticle({
           {exampleText[0]}
         </h1>
         <div className="article-deck" data-tompathy-ui>
-          On making room for the things
+          Two players, one stubborn door,
           <br />
-          we cannot quite plan.
+          and a lesson in waiting.
         </div>
         <div className="article-byline" data-tompathy-ui>
-          <span className="creator-avatar">F</span>
+          <span className="creator-avatar">M</span>
           <span>
-            The garden designer{" "}
-            <small>September 19, 2026 · Fictional creator</small>
+            Mara Vale <small>September 14, 2026 · Fictional creator</small>
           </span>
           <span className="article-rule" />
         </div>
@@ -2360,11 +2522,22 @@ export function ExampleArticle({
             tabIndex={0}
             className={`${active === `p${i + 2}` ? "active-passage" : ""} ${related.includes(`p${i + 2}`) ? "related-passage" : ""}`}
 
-            onFocus={() => onMove(`p${i + 2}`)}
+            onFocus={(e) => {
+              if (e.target === e.currentTarget) onMove(`p${i + 2}`);
+            }}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
-                onMove(`p${i + 2}`, true);
+                const sentence = (e.target as HTMLElement).closest<HTMLElement>(
+                  "[data-sentence]",
+                );
+                onMove(
+                  `p${i + 2}`,
+                  true,
+                  sentence
+                    ? sentences(text)[Number(sentence.dataset.sentence)].start
+                    : 0,
+                );
               }
             }}
           >
@@ -2372,60 +2545,80 @@ export function ExampleArticle({
               {String(i + 1).padStart(2, "0")}
               {pinned && active === `p${i + 2}` ? " ·" : ""}
             </span>
-            {standalone
-              ? text
-              : sentences(text).map((sentence, j) => (
-                  <span
-                    key={j}
-                    data-sentence={j}
-                    className={
-                      active === `p${i + 2}` &&
-                      sentenceOffset >= sentence.start &&
-                      sentenceOffset < sentence.end
-                        ? "active-sentence"
-                        : ""
-                    }
-                    onMouseMove={(e) => {
-                      if ((e.target as Element).closest("button")) return;
-                      onMove(
-                        `p${i + 2}`,
-                        false,
-                        pointedOffset(
-                          e.currentTarget,
-                          e.clientX,
-                          e.clientY,
-                          sentence,
-                        ),
-                      );
-                    }}
-                    onClick={(e) =>
-                      !window.getSelection()?.toString() &&
-                      onMove(
-                        `p${i + 2}`,
-                        true,
-                        pointedOffset(
-                          e.currentTarget,
-                          e.clientX,
-                          e.clientY,
-                          sentence,
-                        ),
-                      )
-                    }
-                  >
-                    {sentence.text}
-                    {pinned &&
-                      active === `p${i + 2}` &&
-                      sentenceOffset >= sentence.start &&
-                      sentenceOffset < sentence.end && (
-                        <SelectionLock
-                          reminder={lockReminder}
-                          className="inline-lock"
-                          onUnlock={onUnlock}
-                        />
-                      )}
-                    {j < sentences(text).length - 1 ? " " : ""}
-                  </span>
-                ))}
+            {standalone ? (
+              <ReadingText
+                text={text}
+                emphasis={exampleEmphasis(`p${i + 2}`, text)}
+                annotate={false}
+              />
+            ) : (
+              sentences(text).map((sentence, j) => (
+                <span
+                  key={j}
+                  data-sentence={j}
+                  tabIndex={0}
+                  onFocus={() => onMove(`p${i + 2}`, false, sentence.start)}
+                  className={
+                    active === `p${i + 2}` &&
+                    sentenceOffset >= sentence.start &&
+                    sentenceOffset < sentence.end
+                      ? "active-sentence"
+                      : ""
+                  }
+                  onMouseMove={(e) => {
+                    if ((e.target as Element).closest("button")) return;
+                    onMove(
+                      `p${i + 2}`,
+                      false,
+                      pointedOffset(
+                        e.currentTarget,
+                        e.clientX,
+                        e.clientY,
+                        sentence,
+                      ),
+                    );
+                  }}
+                  onClick={(e) =>
+                    !window.getSelection()?.toString() &&
+                    onMove(
+                      `p${i + 2}`,
+                      true,
+                      pointedOffset(
+                        e.currentTarget,
+                        e.clientX,
+                        e.clientY,
+                        sentence,
+                      ),
+                    )
+                  }
+                >
+                  <ReadingText
+                    text={sentence.text}
+                    start={sentence.start}
+                    emphasis={exampleEmphasis(`p${i + 2}`, text)}
+                    reading={ghostAt(
+                      packet,
+                      maker,
+                      `p${i + 2}`,
+                      sentence.start,
+                      sentence.end,
+                    )}
+                    packet={packet}
+                  />
+                  {pinned &&
+                    active === `p${i + 2}` &&
+                    sentenceOffset >= sentence.start &&
+                    sentenceOffset < sentence.end && (
+                      <SelectionLock
+                        reminder={lockReminder}
+                        className="inline-lock"
+                        onUnlock={onUnlock}
+                      />
+                    )}
+                  {j < sentences(text).length - 1 ? " " : ""}
+                </span>
+              ))
+            )}
           </p>
         ))}
         <div className="article-end" data-tompathy-ui>

@@ -22,25 +22,25 @@ test("independent attention, two peaks, bidirectional ambiguity and matching loc
   await expect(
     page.locator(".app-header, .app-footer, .node-explanation"),
   ).toHaveCount(0);
-  await expect(page.getByTestId("goals")).toHaveText("<- hover");
+  await expect(page.getByTestId("goals")).toHaveText("hover");
   const values = await page.getByTestId("values").innerHTML();
   const first = page.locator('[data-passage="p2"] [data-sentence="0"]');
   await first.hover();
   await expect(page.locator('[data-dominant="true"]')).toHaveText(
-    "Noticing pauses",
+    "Noticing hesitation",
   );
   const shared = await page.locator('[data-goal="focus-11"]').elementHandle();
   const sentence = page.locator('[data-passage="p4"] [data-sentence="1"]');
   await sentence.hover();
   await expect(page.locator('[data-dominant="true"]')).toHaveText(
-    "Learning from others",
+    "Learning together",
   );
   expect(await shared!.evaluate((el) => el.isConnected)).toBe(true);
-  await expect(page.locator('.spool[data-level="3"]')).toHaveAttribute(
+  await expect(page.locator('.spool[data-rank="0"]')).toHaveAttribute(
     "data-selected",
     "sentence-3-2",
   );
-  await expect(page.locator('.spool[data-level="1"]')).toHaveAttribute(
+  await expect(page.locator('.spool[data-rank="2"]')).toHaveAttribute(
     "data-candidates",
     "story,practical-care",
   );
@@ -52,28 +52,28 @@ test("independent attention, two peaks, bidirectional ambiguity and matching loc
   await sentence.click();
   await first.hover();
   await expect(page.locator('[data-dominant="true"]')).toHaveText(
-    "Learning from others",
+    "Learning together",
   );
   await expect(
     page.getByRole("button", { name: "Unlock selection" }),
   ).toHaveCount(2);
-  await expect(page.locator(".pyramid svg")).toHaveAttribute("data-peaks", "2");
+  await expect(page.locator(".pyramid svg")).toHaveAttribute("data-peaks", "4");
   const pyramid = await page.locator(".pyramid").boundingBox();
   const reels = await page.getByTestId("odometer").boundingBox();
   expect(reels!.y).toBeGreaterThanOrEqual(pyramid!.y + pyramid!.height);
   expect(reels!.height).toBeLessThan(50);
   await page.locator('[data-node="paragraph-3"] circle').first().hover();
-  await expect(page.locator('.spool[data-level="2"]')).toHaveClass(
+  await expect(page.locator('.spool[data-rank="1"]')).toHaveClass(
     /spool-emphasis/,
   );
-  await expect(page.locator('.spool[data-level="3"]')).toHaveAttribute(
+  await expect(page.locator('.spool[data-rank="0"]')).toHaveAttribute(
     "data-selected",
     "sentence-3-2",
   );
   await expect(page.locator('[data-dominant="true"]')).toHaveText(
-    "Learning from others",
+    "Learning together",
   );
-  const reel = page.locator('.spool[data-level="3"]');
+  const reel = page.locator('.spool[data-rank="0"]');
   await reel.hover();
   await page.mouse.wheel(0, 100);
   await expect(reel).toHaveAttribute("data-selected", "sentence-3-3");
@@ -81,13 +81,13 @@ test("independent attention, two peaks, bidirectional ambiguity and matching loc
   await page.keyboard.press("ArrowUp");
   await expect(reel).toHaveAttribute("data-selected", "sentence-3-2");
   await page.locator(".process-lock").click();
-  await expect(page.getByTestId("goals")).toHaveText("<- hover");
+  await expect(page.getByTestId("goals")).toHaveText("hover");
   await expect(
     page.getByRole("button", { name: "Unlock selection" }),
   ).toHaveCount(0);
   await sentence.click();
   await page.locator(".inline-lock").click();
-  await expect(page.getByTestId("goals")).toHaveText("<- hover");
+  await expect(page.getByTestId("goals")).toHaveText("hover");
   await page.locator('[data-node="paragraph-3"] circle').first().hover();
   expect(
     await page
@@ -109,21 +109,21 @@ test("independent attention, two peaks, bidirectional ambiguity and matching loc
       '[data-root="practical-care"].ancestor, [data-root="practical-care"].descendant',
     ),
   ).toHaveCount(0);
-  await expect(page.getByTestId("goals")).toHaveText("<- hover");
+  await expect.poll(() => page.locator("[data-goal]:not([aria-hidden])").count()).toBeGreaterThan(6);
   await expect(page.locator('[data-passage="p4"]')).toHaveClass(
     /related-passage/,
   );
   await page.screenshot({ path: "evidence/design-branch.png" });
   await page.locator('[data-node="sentence-3-2"] circle').first().click();
   await expect(page.locator('[data-dominant="true"]')).toHaveText(
-    "Learning from others",
+    "Learning together",
   );
-  await expect(page.locator('.spool[data-level="1"]')).toHaveAttribute(
+  await expect(page.locator('.spool[data-rank="2"]')).toHaveAttribute(
     "data-candidates",
     "story",
   );
   await sentence.click();
-  await expect(page.locator('.spool[data-level="1"]')).toHaveAttribute(
+  await expect(page.locator('.spool[data-rank="2"]')).toHaveAttribute(
     "data-candidates",
     "story,practical-care",
   );
@@ -131,7 +131,7 @@ test("independent attention, two peaks, bidirectional ambiguity and matching loc
   await page.getByRole("button", { name: "Reader menu", exact: true }).click();
   await expect(page.getByLabel("Show hypotheses as a list")).toHaveCount(0);
   await expect(page.getByRole("dialog")).toHaveAccessibleName("Options");
-  await expect(page.getByLabel("Creator selection")).toBeVisible();
+  await expect(page.getByRole("dialog").getByLabel("Creator selection")).toHaveCount(0);
 });
 test("cloud phrases do not overlap at native width; heading and value explanations work by keyboard", async ({
   page,
@@ -207,9 +207,9 @@ test("context changes invalidate scope; explicit revision updates fixed values",
     .getByLabel("Excerpt", { exact: true })
     .fill("A pasted notebook with a competing account.");
   await page.getByRole("button", { name: "Add excerpt", exact: true }).click();
-  await expect(page.locator(".context-item")).toContainText(
-    "competing account",
-  );
+  await expect(
+    page.locator(".context-item").filter({ hasText: "Pasted excerpt" }),
+  ).toContainText("competing account");
   await page.getByLabel("Analysis scope").selectOption("context");
   await page.getByRole("button", { name: "Close dialog" }).click();
   await expect(page.getByText("A different evidence scope")).toBeVisible();
@@ -258,7 +258,7 @@ test("compact creator header and source export preserve the selected creator and
   // A new requested subject never relabels an existing account.
   await tool(page, "Source text");
   await expect(page.getByRole("dialog")).toContainText(
-    "Analysis subject: The garden designer",
+    "Analysis subject: Mara Vale",
   );
 });
 test("malformed packet, pasted text and session clear expose honest empty state", async ({
@@ -328,7 +328,7 @@ test("session save/load, file context and explicit imported-context selection", 
     mimeType: "text/markdown",
     buffer: Buffer.from("A note from a synthetic source."),
   });
-  await page.locator(".context-item input[type=checkbox]").check();
+  await page.getByRole("checkbox", { name: "notes.md", exact: true }).check();
   await page.getByRole("button", { name: "Close dialog" }).click();
   await tool(page, "Reader settings");
   const downloadPromise = page.waitForEvent("download");
@@ -342,9 +342,13 @@ test("session save/load, file context and explicit imported-context selection", 
     page.getByText("Session loaded as a detached snapshot.", { exact: false }),
   ).toBeVisible();
   await tool(page, "Context");
-  await expect(page.locator(".context-item input")).not.toBeChecked();
+  for (const input of await page.locator(".context-item input").all())
+    await expect(input).not.toBeChecked();
   await page.getByRole("button", { name: "Remove notes.md" }).click();
-  await expect(page.locator(".context-item")).toHaveCount(0);
+  await expect(page.locator(".context-item")).toHaveCount(1);
+  await expect(page.locator(".context-item")).toContainText(
+    "Fictional studio notebook",
+  );
 });
 test("collection cancellation and 200% zoom preserve usable controls", async ({
   page,
@@ -366,7 +370,10 @@ test("collection cancellation and 200% zoom preserve usable controls", async ({
   await page.getByRole("button", { name: "Collect selected sources" }).click();
   await page.getByRole("button", { name: "Cancel collection" }).click();
   await expect(page.getByRole("dialog")).toContainText("Collection cancelled");
-  await expect(page.locator(".context-item")).toHaveCount(0);
+  await expect(page.locator(".context-item")).toHaveCount(1);
+  await expect(page.locator(".context-item")).toContainText(
+    "Fictional studio notebook",
+  );
   await page.getByRole("button", { name: "Close dialog" }).click();
   await page.setViewportSize({ width: 640, height: 1000 });
   await page.evaluate(() => {
@@ -387,13 +394,13 @@ test("collection cancellation and 200% zoom preserve usable controls", async ({
   await page.screenshot({ path: "evidence/zoom-200.png" });
 });
 
-test("unnamed eight-level hierarchy and top nine values fit a narrow panel", async ({
+test("unnamed nine-level hierarchy and top nine values fit a narrow panel", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 360, height: 900 });
   await page.goto("/?panel&qa");
   const packet = await createExample();
-  packet.schemaVersion = "1.5";
+  packet.schemaVersion = "1.6";
   packet.revisionOf = packet.id;
   packet.id = "deep-review-fixture";
   packet.revision = 2;
@@ -430,7 +437,7 @@ test("unnamed eight-level hierarchy and top nine values fit a narrow panel", asy
   );
   await expect(page.locator(".core-value-row").last()).toBeInViewport();
   await page.locator('[data-node="sentence-1-1"] circle').first().click();
-  await expect(page.locator(".spool")).toHaveCount(8);
+  await expect(page.locator(".spool")).toHaveCount(9);
   await expect(page.locator(".spool small")).toHaveCount(0);
   const broadest = page.locator('.spool[data-level="0"]');
   await broadest.focus();
@@ -543,25 +550,28 @@ test("attention can change within a sentence and lock the pointed frame", async 
   const points = await sentence.evaluate((el) =>
     [5, 35].map((offset) => {
       const range = document.createRange();
-      range.setStart(el.firstChild!, offset);
-      range.setEnd(el.firstChild!, offset + 2);
+      const text = document
+        .createTreeWalker(el, NodeFilter.SHOW_TEXT)
+        .nextNode()!;
+      range.setStart(text, offset);
+      range.setEnd(text, offset + 2);
       const r = range.getBoundingClientRect();
       return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
     }),
   );
   await page.mouse.move(points[0].x, points[0].y);
   await expect(page.locator('[data-dominant="true"]')).toHaveText(
-    "Watching closely",
+    "Watching the players",
   );
   await page.mouse.move(points[1].x, points[1].y);
   await expect(page.locator('[data-dominant="true"]')).toHaveText(
-    "Small details",
+    "Small discoveries",
   );
   await page.mouse.click(points[1].x, points[1].y);
   await page.mouse.move(points[0].x, points[0].y);
   await expect(page.locator('[data-dominant="true"]')).toHaveText(
-    "Small details",
+    "Small discoveries",
   );
   await page.locator(".process-lock").click();
-  await expect(page.getByTestId("goals")).toHaveText("<- hover");
+  await expect(page.getByTestId("goals")).toHaveText("hover");
 });

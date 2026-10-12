@@ -1,6 +1,6 @@
-# ToMpathy result contract · 1.0–1.5
+# ToMpathy result contract · 1.0–1.6
 
-`src/core/model.ts` is the authoritative runtime validator. `examples/bench-result.json` is a complete valid packet; `bench-revision.json` demonstrates a context-conditioned revision. `bench-source.txt` is the corresponding synthetic text. Fixtures use `tompathy:example` as their portable origin. In the installed extension, use **Development tools → Import result → Download example format** on the bundled source to obtain a packet bound to that installation's source URL.
+`src/core/model.ts` is the authoritative runtime validator. `examples/lantern-result.json` is a complete valid packet; `lantern-revision.json` demonstrates a context-conditioned revision. `lantern-source.txt` is the corresponding synthetic text. Fixtures use `tompathy:example` as their portable origin. In the installed extension, use **Development tools → Import result → Download example format** on the bundled source to obtain a packet bound to that installation's source URL.
 
 ## Producing a result
 
@@ -13,21 +13,21 @@ No transport endpoint has been invented. `configuredProvider` is null; ordinary 
 
 ## Fields
 
-| Field                             | Meaning                                                                                                                                                         |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `schemaVersion`                   | `"1.0"` (legacy, including Sounding Line Stage 13), `"1.1"`, `"1.2"`, `"1.3"`, `"1.4"`, or `"1.5"` |
-| `id`, `revision`                  | Analysis identity and positive integer revision                                                                                                                 |
-| `artifact`                        | ID, source, title, capture timestamp, content revision, truncation flag and regions                                                                             |
-| `provider`                        | Stable provider ID and method description                                                                                                                       |
-| `origin`                          | `synthetic example`, `imported`, or `live provider`; separate from claim status                                                                                 |
-| `scope`                           | `artifact` or `context`, plus exactly the selected context IDs                                                                                                  |
-| `makers`                          | Analysis-local IDs, labels, identity status (`unknown`, `supplied`, `synthetic`) and relationship to the artifact                                               |
-| `hypotheses`                      | ID, kind (`attention` in 1.4, `goal`, `process`, `value`), label, description, maker and region associations, claim status, optional support/alternative set and evidence IDs       |
-| `alternatives`                    | Explicit member IDs, `competing` or `coexisting`, and whether exhaustive; legacy `independent` remains readable as coexistence without a new independence claim |
-| `process`                         | Process node IDs and explicit directed edges with supplied relationship labels                                                                                  |
-| `estimates`                       | Region ID, optional contribution value with quantity and 0–1 scale, independent uncertainty level and meaning                                                   |
-| `evidence`                        | ID, source identity/URL, excerpt, capture time and supplied relationship to the claim                                                                           |
-| `revisionOf`, `changeExplanation` | Optional predecessor analysis ID and explanation to review before accepting                                                                                     |
+| Field                             | Meaning                                                                                                                                                                       |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `schemaVersion`                   | `"1.0"` (legacy, including Sounding Line Stage 13), `"1.1"`, `"1.2"`, `"1.3"`, `"1.4"`, `"1.5"`, or `"1.6"`                                                                   |
+| `id`, `revision`                  | Analysis identity and positive integer revision                                                                                                                               |
+| `artifact`                        | ID, source, title, capture timestamp, content revision, truncation flag and regions                                                                                           |
+| `provider`                        | Stable provider ID and method description                                                                                                                                     |
+| `origin`                          | `synthetic example`, `imported`, or `live provider`; separate from claim status                                                                                               |
+| `scope`                           | `artifact` or `context`, plus exactly the selected context IDs                                                                                                                |
+| `makers`                          | Analysis-local IDs, labels, identity status (`unknown`, `supplied`, `synthetic`) and relationship to the artifact                                                             |
+| `hypotheses`                      | ID, kind (`attention` in 1.4, `goal`, `process`, `value`), label, description, maker and region associations, claim status, optional support/alternative set and evidence IDs |
+| `alternatives`                    | Explicit member IDs, `competing` or `coexisting`, and whether exhaustive; legacy `independent` remains readable as coexistence without a new independence claim               |
+| `process`                         | Process node IDs and explicit directed edges with supplied relationship labels                                                                                                |
+| `estimates`                       | Region ID, optional contribution value with quantity and 0–1 scale, independent uncertainty level and meaning                                                                 |
+| `evidence`                        | ID, source identity/URL, excerpt, capture time and supplied relationship to the claim                                                                                         |
+| `revisionOf`, `changeExplanation` | Optional predecessor analysis ID and explanation to review before accepting                                                                                                   |
 
 Claim status is one of `hypothesis`, `creator-reported`, `observed`, `unknown`. An observation of text is not an observation of intent. Makers are explicitly scoped; the UI lets readers select a maker and never merges identities by name.
 
@@ -150,3 +150,15 @@ Primary implementation references: [Chrome side panels](https://developer.chrome
 The interface and context collector use **creator**. Existing packet/session/request fields `authors`, `authorLabel`, `author` and provenance basis `explicit-author-link` retain their serialized spelling so saved readings and backend producers remain compatible. Standard HTML `author` metadata, `rel=author` links and schema.org `author` fields are still read as specified by their publishers. No schema version changed for this vocabulary update. Source quotations are not rewritten.
 
 Exporting after a context selection changes stores the previous, now mismatched account in reading history and leaves the active packet empty. The requested context stays selected. Reimport therefore preserves the page, prior account and pending selection without presenting outdated estimates as current.
+
+## Additions in 1.6: sentence reading treatment
+
+`ghostReadings[]` is optional and independent of contribution estimates, current attention and the goal hierarchy. Each record contains `maker`, a normalized half-open UTF-16 `span` (`region`, `start`, `end`), `kind` (`original`, `edited`, `curated`, `ghost`, or `unknown`), nullable `confidence` from 0 to 1, `explanation`, `confidenceExplanation`, evidence IDs, and an optional exact `prompt`. Supply complete sentence spans in this release; partial or word spans are reserved for later work. Records for a creator cannot overlap. Creator, complete sentence boundaries, region, bounds and evidence references are validated. Legacy packets remain readable without this field; contribution scores never become Ghost classifications by inference.
+
+The first visual axis follows the [Ghost Scale essay](https://abrahamhaskins.org/art/): original ink, nominal 95% opacity for light edits, nominal 60% for curated text, reversed colours for unreviewed generation. Ink is composited against the actual solid page surface; curator and edited ink are raised to at least WCAG 4.5:1 where needed. A solid backplate prevents images and translucent site layers from undermining that calculation. The second axis uses Roboto Serif’s GRAD axis from -50 to 100 at fixed weight, width and optical size. Unknown confidence uses grade zero. This is confidence in the classification, not a percentage of human thought, factual reliability, or necessarily a calibrated probability. The supplied explanation must describe its meaning.
+
+Original bold emphasis becomes underline within classified text. Captures may retain `regions[].emphasis[]` with normalized `start`/`end` ranges; saved readings preserve these without retaining executable page markup. The native adapter wraps text nodes, preserves existing elements and links, restores its changes when cleared, and invalidates annotations on content changes. Supplied prompts appear beneath ghost text and in the sentence evidence tooltip. Word-level painting is not enabled.
+
+Native sentence evidence lives in an isolated-world WeakMap. Tooltip and prompt text renders inside closed shadow roots, and remains available to the accessibility tree. The website can observe the styling but does not receive the detailed record in data attributes.
+
+Sentence evidence cards show a large sample combining involvement ink and confidence grade, with separately labelled involvement and classification confidence. They display at most the first three distinct resolved evidence excerpts, in provider order; producers should rank these by explanatory usefulness. Missing evidence remains explicit. No decision-share percentage is manufactured from ink opacity or confidence. The bundled example includes draft-record and contextual evidence for this demonstration.

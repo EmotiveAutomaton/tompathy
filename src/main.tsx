@@ -2,6 +2,8 @@ import { createRoot } from "react-dom/client";
 import "./styles.css";
 import "./reader.css";
 import "./mind.css";
+import "./reading.css";
+import { attachReadingHelp } from "./reading-help";
 import { SavedPage } from "./components/SavedPage";
 import { App, ExampleArticle } from "./App";
 import { isExtension } from "./browser";
@@ -20,3 +22,4 @@ createRoot(document.getElementById("root")!).render(
   ),
 );
 if (example) void import("./content");
+else if (!location.pathname.endsWith("snapshot.html")) attachReadingHelp();

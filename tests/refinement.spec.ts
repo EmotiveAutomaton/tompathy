@@ -86,7 +86,7 @@ test("corner heading leaves top dots reachable with wider platform fonts and zoo
     );
     await dot.hover();
     await expect(page.locator('[data-dominant="true"]')).toHaveText(
-      "Noticing pauses",
+      "Noticing hesitation",
     );
     const heading = await page
       .locator(".process-region .section-heading h2")
@@ -143,10 +143,10 @@ test("blocked focus changes pulse both locks, ignore jitter, cool down and respe
   ).toBe(1);
   await page.locator(".process-lock").click();
   await expect(page.locator('[data-lock-reminder="active"]')).toHaveCount(0);
-  await expect(page.getByTestId("goals")).toHaveText("<- hover");
+  await expect(page.getByTestId("goals")).toHaveText("hover");
 });
 
-test("dots fit their bricks; cue contrast and layout hold in light, dark and system dark", async ({
+test("dots fit their bricks; decorative cue and layout hold in light, dark and system dark", async ({
   page,
 }) => {
   await page.goto("/?panel");
@@ -157,9 +157,14 @@ test("dots fit their bricks; cue contrast and layout hold in light, dark and sys
       nodes.flatMap((el) => {
         const circle = el.querySelector("circle")!;
         const path = el.querySelector("path")!;
-        const x = +circle.getAttribute("cx")!,
-          y = +circle.getAttribute("cy")!,
-          r = +circle.getAttribute("r")!;
+        const matrix = path
+          .getScreenCTM()!
+          .inverse()
+          .multiply(circle.getScreenCTM()!);
+        const center = new DOMPoint(0, 0).matrixTransform(matrix);
+        const x = center.x,
+          y = center.y,
+          r = +circle.getAttribute("r")! * Math.max(matrix.a, matrix.d);
         return Array.from({ length: 24 }, (_, i) => {
           const a = (i * Math.PI) / 12;
           return path.isPointInFill(
@@ -208,7 +213,9 @@ test("dots fit their bricks; cue contrast and layout hold in light, dark and sys
         b = luminance(foreground);
       return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
     });
-    expect(contrast).toBeGreaterThanOrEqual(4.5);
+    // The owner explicitly requested a faint decorative cue below text contrast.
+    expect(contrast).toBeGreaterThan(1.2);
+    await expect(page.locator(".attention-cue")).toHaveCSS("opacity", "0.32");
     await page.screenshot({ path: `evidence/refined-${theme}.png` });
   }
   const creator = page.getByRole("tab", { name: "creator", exact: true });

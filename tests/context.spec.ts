@@ -5,7 +5,7 @@ test("free linked-source timeline: bounded discovery, dates, cache, coverage, ex
   page,
 }) => {
   const packet = await createExample();
-  const creator = "The garden designer",
+  const creator = "Mara Vale",
     origin = "https://creator.example.org";
   packet.artifact.authors = [{ label: creator, basis: "byline" }];
   await page.addInitScript(
@@ -73,7 +73,7 @@ test("free linked-source timeline: bounded discovery, dates, cache, coverage, ex
   await expect(dialog).toContainText("Source updated");
   await expect(dialog).toContainText("Listed event");
   await expect(dialog).toContainText("2024-06");
-  await expect(dialog).toContainText("Page byline: The garden designer");
+  await expect(dialog).toContainText("Page byline: Mara Vale");
   await dialog.getByText("Collection coverage", { exact: true }).click();
   await expect(dialog).toContainText("Six-source collection limit");
   await expect(dialog).toContainText("429");
@@ -127,7 +127,7 @@ test("timeline cancellation keeps completed byline and rejects late source respo
   page,
 }) => {
   const packet = await createExample();
-  packet.artifact.authors = [{ label: "The garden designer", basis: "byline" }];
+  packet.artifact.authors = [{ label: "Mara Vale", basis: "byline" }];
   await page.addInitScript((packet) => {
     localStorage.setItem("tompathy-guide-offered-040", "yes");
     sessionStorage.setItem(
@@ -140,7 +140,7 @@ test("timeline cancellation keeps completed byline and rejects late source respo
         context: [],
         contextSources: [
           {
-            author: "The garden designer",
+            author: "Mara Vale",
             url: "https://creator.example.org/slow",
           },
         ],

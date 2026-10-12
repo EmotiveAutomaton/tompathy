@@ -31,3 +31,8 @@ Close the panel to remove its page interaction layer. Uncheck Light context to c
 For questions or defects, use the [project issue tracker](https://github.com/EmotiveAutomaton/tompathy/issues). Do not include private reading files or personal page content in a public issue.
 
 This policy describes this development checkout. The published 0.1 beta retains its tagged policy. A future broad search, model or Sounding Line connection will require updated behavior disclosures before release.
+
+
+Sentence reading treatment uses only the accepted packet's supplied Ghost Scale records. It does not classify text locally or send it to a font service. A bundled font resource is accessible to the page while annotations are applied; it contains no reading data. The adapter temporarily wraps text nodes and restores them on cleanup. Exported readings may include captured bold-emphasis ranges, exact supplied generation prompts, and sentence-level production explanations, alongside the existing text and analysis.
+
+On ordinary pages, detailed sentence explanations and evidence are held in the content script’s isolated memory. Tooltips and supplied prompts use closed shadow content rather than embedding those details in page-readable attributes. The visual text styling itself remains visible to the page.

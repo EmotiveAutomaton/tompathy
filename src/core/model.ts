@@ -1,8 +1,24 @@
+import { sentences } from "./sentences";
 import { z } from "zod";
 import { calendarDate } from "./dates";
 
 const id = z.string().min(1).max(200);
 const timestamp = z.iso.datetime();
+export const GhostReadingSchema = z.object({
+  maker: id,
+  span: z.object({
+    region: id,
+    start: z.number().int().nonnegative(),
+    end: z.number().int().positive(),
+  }),
+  kind: z.enum(["original", "edited", "curated", "ghost", "unknown"]),
+  confidence: z.number().min(0).max(1).nullable(),
+  explanation: z.string().min(1).max(3000),
+  confidenceExplanation: z.string().min(1).max(2000),
+  evidence: z.array(id).max(30),
+  prompt: z.string().min(1).max(4000).optional(),
+});
+export type GhostReading = z.infer<typeof GhostReadingSchema>;
 export const AnchorSchema = z.object({
   exact: z.string().min(1).max(20000),
   prefix: z.string().max(160),
@@ -17,7 +33,29 @@ export const ArtifactSchema = z.object({
   source: z.string().max(4000),
   capturedAt: timestamp,
   regions: z
-    .array(z.object({ id, anchor: AnchorSchema }))
+    .array(
+      z
+        .object({
+          id,
+          anchor: AnchorSchema,
+          emphasis: z
+            .array(
+              z.object({
+                start: z.number().int().nonnegative(),
+                end: z.number().int().positive(),
+              }),
+            )
+            .max(2000)
+            .optional(),
+        })
+        .refine(
+          (r) =>
+            (r.emphasis ?? []).every(
+              (e) => e.start < e.end && e.end <= r.anchor.exact.length,
+            ),
+          "Invalid emphasis span",
+        ),
+    )
     .min(1)
     .max(1500),
   truncated: z.boolean().default(false),
@@ -127,7 +165,8 @@ export const HypothesisSchema = z.object({
 });
 export const PacketSchema = z
   .object({
-    schemaVersion: z.enum(["1.0", "1.1", "1.2", "1.3", "1.4", "1.5"]),
+    schemaVersion: z.enum(["1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6"]),
+    ghostReadings: z.array(GhostReadingSchema).max(6000).optional(),
     id,
     revision: z.number().int().positive(),
     artifact: ArtifactSchema,
@@ -311,9 +350,52 @@ export const PacketSchema = z
     const hierarchy = p.goalHierarchy?.nodes ?? [];
     unique(hierarchy, "goal hierarchy");
     const hierarchyById = new Map(hierarchy.map((n) => [n.id, n]));
+    if (p.ghostReadings?.length && p.schemaVersion !== "1.6")
+      error("Sentence Ghost Scale readings require contract 1.6.");
+    const ghostFrames = [...(p.ghostReadings ?? [])].sort(
+      (a, b) =>
+        a.maker.localeCompare(b.maker) ||
+        a.span.region.localeCompare(b.span.region) ||
+        a.span.start - b.span.start,
+    );
+    const ghostBounds = new Map<string, Set<string>>();
+    for (const [i, frame] of ghostFrames.entries()) {
+      const region = p.artifact.regions.find((r) => r.id === frame.span.region);
+      if (
+        !ms.has(frame.maker) ||
+        !region ||
+        frame.span.start >= frame.span.end ||
+        frame.span.end > region.anchor.exact.length ||
+        frame.evidence.some((e) => !es.has(e))
+      )
+        error("Invalid Ghost Scale maker, span or evidence.");
+      if (region) {
+        if (!ghostBounds.has(region.id))
+          ghostBounds.set(
+            region.id,
+            new Set(
+              sentences(region.anchor.exact).map((s) => `${s.start}:${s.end}`),
+            ),
+          );
+        if (
+          !ghostBounds
+            .get(region.id)!
+            .has(`${frame.span.start}:${frame.span.end}`)
+        )
+          error("Ghost Scale readings must cover one complete sentence.");
+      }
+      const previous = ghostFrames[i - 1];
+      if (
+        previous &&
+        previous.maker === frame.maker &&
+        previous.span.region === frame.span.region &&
+        previous.span.end > frame.span.start
+      )
+        error("Ghost Scale spans must not overlap for the same maker.");
+    }
     const uncertain = p.goalHierarchy?.orderUncertainGroups ?? [];
     unique(uncertain, "order uncertainty group");
-    if (uncertain.length && p.schemaVersion !== "1.5")
+    if (uncertain.length && !["1.5", "1.6"].includes(p.schemaVersion))
       error("Order uncertainty groups require contract 1.5.");
     for (const group of uncertain) {
       const members = group.nodes.map((id) => hierarchyById.get(id));
@@ -332,7 +414,7 @@ export const PacketSchema = z
     }
     for (const n of hierarchy) {
       if (
-        !["1.3", "1.4", "1.5"].includes(p.schemaVersion) &&
+        !["1.3", "1.4", "1.5", "1.6"].includes(p.schemaVersion) &&
         !["document", "section", "paragraph", "sentence"].includes(
           n.level ?? "",
         )
@@ -348,7 +430,7 @@ export const PacketSchema = z
         error(`Unresolved hierarchy references in ${n.id}.`);
       if (
         n.parentIds &&
-        (!["1.4", "1.5"].includes(p.schemaVersion) ||
+        (!["1.4", "1.5", "1.6"].includes(p.schemaVersion) ||
           n.parentId ||
           new Set(n.parentIds).size !== n.parentIds.length)
       )
@@ -376,7 +458,9 @@ export const PacketSchema = z
     }
     const depths = new Map<string, number>(),
       visitingHierarchy = new Set<string>();
-    const maxDepth = ["1.3", "1.4", "1.5"].includes(p.schemaVersion) ? 64 : 12;
+    const maxDepth = ["1.3", "1.4", "1.5", "1.6"].includes(p.schemaVersion)
+      ? 64
+      : 12;
     const visitHierarchy = (id: string): number => {
       if (visitingHierarchy.has(id) || visitingHierarchy.size >= maxDepth) {
         error(
@@ -404,14 +488,14 @@ export const PacketSchema = z
       return depth;
     };
     hierarchy.forEach((n) => visitHierarchy(n.id));
-    if (!["1.4", "1.5"].includes(p.schemaVersion))
+    if (!["1.4", "1.5", "1.6"].includes(p.schemaVersion))
       for (const m of p.makers) {
         const nodes = hierarchy.filter((n) => n.maker === m.id);
         if (nodes.length && nodes.filter((n) => !n.parentId).length !== 1)
           error("Each legacy maker hierarchy needs exactly one root.");
       }
     if (
-      !["1.4", "1.5"].includes(p.schemaVersion) &&
+      !["1.4", "1.5", "1.6"].includes(p.schemaVersion) &&
       (p.currentAttention || p.hypotheses.some((h) => h.kind === "attention"))
     )
       error("Independent current attention requires contract 1.4.");

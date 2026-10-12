@@ -1,3 +1,5 @@
+import { Scan, ArrowLeft, Search } from "lucide-react";
+import { useHierarchyZoom } from "./useHierarchyZoom";
 import {
   useEffect,
   useLayoutEffect,
@@ -17,11 +19,40 @@ import {
 } from "../core/hierarchy";
 import { SelectionLock } from "./SelectionLock";
 const REEL_HEIGHT = 42;
+// Measure the same system font used by the cells, so short labels can appear early.
+const labelMeasure = document.createElement("canvas").getContext("2d")!;
+labelMeasure.font = "12px system-ui";
+function labelLines(text: string, width: number) {
+  const capacity = Math.max(1, width - 4);
+  let lines = 1,
+    used = 0;
+  for (const word of text.split(/\s+/)) {
+    const space = used ? labelMeasure.measureText(" ").width : 0;
+    const length = labelMeasure.measureText(word).width;
+    if (used && used + space + length > capacity) {
+      lines++;
+      used = 0;
+    }
+    if (length <= capacity) used += (used ? space : 0) + length;
+    else {
+      for (const letter of word) {
+        const size = labelMeasure.measureText(letter).width;
+        if (used && used + size > capacity) {
+          lines++;
+          used = 0;
+        }
+        used += size;
+      }
+    }
+  }
+  return lines;
+}
 function Reel({
   column,
   candidates,
   ended,
   level,
+  rank,
   onSelect,
   active,
   emphasized,
@@ -33,6 +64,7 @@ function Reel({
   candidates: GraphNode[];
   ended: boolean;
   level: number;
+  rank: number;
   onSelect: (n: GoalNode) => void;
   active: boolean;
   emphasized: boolean;
@@ -85,10 +117,11 @@ function Reel({
       ref={host}
       role="group"
       tabIndex={active ? 0 : -1}
-      className={`spool ${ambiguous || !active ? "ambiguous" : ""} ${active && ended && !candidates.length ? "path-ended" : ""} ${emphasized ? "spool-emphasis" : ""} ${expanded && ambiguous ? "is-expanded" : ""}`}
+      className={`spool ${ambiguous || !active ? "ambiguous" : ""} ${active && !candidates.length ? "aperture-closed" : ""} ${emphasized ? "spool-emphasis" : ""} ${expanded && ambiguous ? "is-expanded" : ""}`}
       onMouseEnter={onExpand}
       onFocus={onExpand}
       data-level={level}
+      data-rank={rank}
       data-selected={exact?.id ?? ""}
       data-candidates={[
         ...candidates.map((n) => n.id),
@@ -97,7 +130,7 @@ function Reel({
       aria-label={
         !active
           ? "No goal selected"
-          : `${ambiguous ? `${candidates.length + Number(ended)} possible goals or endings; none selected` : (choice?.data.label ?? "This path ends before this level")}. Scroll or use arrow keys to choose.`
+          : `${ambiguous ? `${candidates.length + Number(ended)} possible goals or endings; none selected` : (choice?.data.label ?? (ended ? "This path ends before this level" : "No supplied goal at this level"))}. Scroll or use arrow keys to choose.`
       }
       onKeyDown={(e) => {
         if (e.target !== e.currentTarget) return;
@@ -117,9 +150,12 @@ function Reel({
         className="spool-window"
         style={{
           height:
-            expanded && ambiguous
-              ? Math.min(7, candidates.length + Number(ended)) * REEL_HEIGHT + 2
-              : REEL_HEIGHT,
+            active && !candidates.length
+              ? 2
+              : expanded && ambiguous
+                ? Math.min(7, candidates.length + Number(ended)) * REEL_HEIGHT +
+                  2
+                : REEL_HEIGHT,
         }}
       >
         {expanded && ambiguous ? (
@@ -176,9 +212,7 @@ function Reel({
                   <span>{n.data.label}</span>
                 </div>
               ))}
-              <div className="spool-item spool-ending" aria-hidden="true">
-                —
-              </div>
+              <div className="spool-item spool-ending" aria-hidden="true" />
             </div>
           </>
         )}
@@ -192,10 +226,13 @@ export function ProcessHierarchy({
   region,
   offset,
   sourceHover,
+  softNodeId,
   pinned,
   lockedNodeId,
   onHighlight,
   onLock,
+  onFind,
+  found = false,
   onSelect,
   lockReminder = 0,
   onBlockedFocus = () => {},
@@ -205,10 +242,13 @@ export function ProcessHierarchy({
   region: string;
   offset: number;
   sourceHover: boolean;
+  softNodeId?: string;
   pinned: boolean;
   lockedNodeId?: string;
   onHighlight: (node: GoalNode | null) => void;
   onLock: () => void;
+  onFind: () => void;
+  found?: boolean;
   onSelect: (node: GoalNode) => void;
   lockReminder?: number;
   onBlockedFocus?: (key: string) => void;
@@ -222,7 +262,9 @@ export function ProcessHierarchy({
       key?: string;
     } | null>(null),
     [height, setHeight] = useState(300),
+    [width, setWidth] = useState(320),
     [expanded, setExpanded] = useState(false);
+  const svg = useRef<SVGSVGElement>(null);
   const host = useRef<HTMLDivElement>(null),
     spools = useRef<HTMLDivElement>(null),
     clip = useId().replace(/:/g, "");
@@ -233,6 +275,9 @@ export function ProcessHierarchy({
       setHeldInstance(null);
     }
   }, [pinned]);
+  useEffect(() => {
+    if (!pinned && !softNodeId) setHovered(null);
+  }, [pinned, softNodeId, region, offset]);
   useEffect(() => {
     if (!expanded) return;
     const move = (e: PointerEvent) => {
@@ -268,22 +313,23 @@ export function ProcessHierarchy({
     return () => observer.disconnect();
   }, [nodes.length]);
   useEffect(() => {
-    const observer = new ResizeObserver(([entry]) =>
-      setHeight(Math.max(160, entry.contentRect.height)),
-    );
+    const observer = new ResizeObserver(([entry]) => {
+      setHeight(Math.max(160, entry.contentRect.height));
+      setWidth(entry.contentRect.width);
+    });
     if (host.current) observer.observe(host.current);
     return () => observer.disconnect();
   }, [nodes.length]);
   const sourceId = goalAt(nodes, region, offset)?.id;
   const selected = graph.byId.get(
-    (pinned ? (lockedNodeId ?? sourceId) : (hovered?.id ?? sourceId)) ?? "",
+    (pinned ? (lockedNodeId ?? sourceId) : (softNodeId ?? sourceId)) ?? "",
   );
   const inspected = expanded
     ? (graph.byId.get(hovered?.id ?? "") ?? selected)
     : selected;
   const ancestors = graph.ancestors(inspected),
     descendants = graph.descendants(inspected);
-  const visible = !!selected && (sourceHover || pinned || !!hovered);
+  const visible = !!selected && (sourceHover || pinned || !!softNodeId);
   const layout = useMemo(() => hierarchyLayout(graph, height), [graph, height]);
   useLayoutEffect(() => {
     const el = host.current;
@@ -322,11 +368,69 @@ export function ProcessHierarchy({
     observer.observe(heading);
     return () => observer.disconnect();
   }, [layout, height]);
+  const labelBoxes = useMemo(
+    () =>
+      layout.tiles.map((t) =>
+        layout.labelBox(
+          t,
+          { left: 0, top: 0, right: layout.width, bottom: layout.height },
+          layout.width,
+          layout.height,
+        ),
+      ),
+    [layout],
+  );
+  const labelZoom = useMemo(() => {
+    // One threshold, set by the hardest label. It depends on cell geometry,
+    // never on which part of the graph happens to be inside the viewport.
+    const fits = (k: number) =>
+      layout.tiles.every((t, i) => {
+        const box = labelBoxes[i],
+          w = Math.min(240, ((box.width * width) / layout.width) * k - 4);
+        const h = box.height * k - 4;
+        return w >= 28 && h >= labelLines(t.node.data.label, w) * 15 + 4;
+      });
+    let low = 0,
+      high = 1;
+    while (!fits(high) && high < 2048) high *= 2;
+    for (let i = 0; i < 18; i++) {
+      const mid = (low + high) / 2;
+      if (fits(mid)) high = mid;
+      else low = mid;
+    }
+    return high;
+  }, [layout, labelBoxes, width]);
+  const navigation = useHierarchyZoom(
+    svg,
+    layout.width,
+    layout.height,
+    !layout.dense,
+    Math.max(32, labelZoom * 1.5),
+  );
+  const reveal = Math.max(
+    0,
+    Math.min(1, (navigation.transform.k / labelZoom - 1) / 0.045),
+  );
+  const stretch = Math.max(
+    0,
+    Math.min(1, (navigation.transform.k / labelZoom - 0.35) / 0.65),
+  );
+  const scaleX = (width / layout.width) * navigation.transform.k;
+  const scaleY =
+    ((height -
+      (parseFloat(
+        host.current?.style.getPropertyValue("--hierarchy-heading-clearance") ??
+          "0",
+      ) || 0)) /
+      layout.height) *
+    navigation.transform.k;
   const selectedKey = pinned
     ? lockedNodeId && heldInstance?.id === selected?.id
       ? heldInstance?.key
       : undefined
-    : hovered?.key;
+    : softNodeId === hovered?.id
+      ? hovered?.key
+      : undefined;
   const branch = instanceNeighborhood(
     layout,
     expanded ? (hovered?.key ?? selectedKey) : selectedKey,
@@ -337,14 +441,15 @@ export function ProcessHierarchy({
   const columns = Array.from({ length: graph.depth + 1 }, (_, rank) =>
     graph.all.filter((n) => n.rank === rank),
   );
-  const showList = nodes.length > 120 || graph.roots.length > 4 || layout.dense;
+  const showList = layout.dense;
   const canExpand =
     pinned && columns.some((_, rank) => candidatesAt(rank).ambiguous);
   const highlight = (node: GraphNode | null, key?: string) => {
+    if (navigation.dragging.current) return;
     if (pinned && node && node.id !== selected?.id)
       onBlockedFocus(key ?? node.id);
-    setHovered(node ? { id: node.id, key } : null);
-    if (!pinned) onHighlight(node?.data ?? null);
+    if (node || pinned) setHovered(node ? { id: node.id, key } : null);
+    if (!pinned && node) onHighlight(node.data);
   };
   const choose = (node: GoalNode, key?: string) => {
     const related = instanceNeighborhood(layout, selectedKey);
@@ -377,7 +482,9 @@ export function ProcessHierarchy({
             end = top + ((bottom - top) * (i + 1)) / steps;
           return ` Q${x + (i % 2 ? -2.8 : 2.8)},${(y + end) / 2} ${x},${end}`;
         }).join("");
-      return [{ ...group, root: root.id, d }];
+      const parent = layout.tiles.find((t) => t.key === tiles[0].parentKey);
+      if (!parent || !tiles.every((t) => t.parentKey === parent.key)) return [];
+      return [{ ...group, root: root.id, d, parent }];
     }),
   );
   return (
@@ -417,73 +524,186 @@ export function ProcessHierarchy({
               ))
             ) : (
               <svg
+                ref={svg}
+                tabIndex={0}
+                role="group"
+                onKeyDown={navigation.key}
+                onClick={(e) => {
+                  if (
+                    !(e.target as Element).closest(
+                      ".pyramid-node,.order-uncertain",
+                    )
+                  ) {
+                    setHovered(null);
+                    onLock();
+                  }
+                }}
+                onDoubleClick={onLock}
+                data-zoom={navigation.transform.k.toFixed(3)}
+                data-label-zoom={labelZoom.toFixed(3)}
+                data-label-reveal={reveal.toFixed(3)}
                 viewBox={`0 0 ${layout.width} ${layout.height}`}
                 preserveAspectRatio="none"
-                aria-label="Continuous hierarchy"
+                aria-label="Continuous hierarchy. Wheel or pinch to zoom, drag to pan. Keyboard: plus, minus, arrows; Home to fit."
                 data-peaks={graph.roots.length}
               >
-                <defs>
-                  <clipPath id={clip}>
-                    {layout.outline.map((d, i) => (
-                      <path key={i} d={d} />
-                    ))}
-                  </clipPath>
-                </defs>
-                {layout.outline.map((d, i) => (
-                  <path key={i} d={d} className="pyramid-silhouette" />
-                ))}
-                <g clipPath={`url(#${clip})`}>
-                  {layout.tiles.map((t) => (
+                <g transform={navigation.transform.toString()}>
+                  <defs>
+                    <clipPath id={clip}>
+                      {layout.outline.map((d, i) => (
+                        <path key={i} d={d} />
+                      ))}
+                    </clipPath>
+                  </defs>
+                  {layout.outline.map((d, i) => (
+                    <path key={i} d={d} className="pyramid-silhouette" />
+                  ))}
+                  <g clipPath={`url(#${clip})`}>
+                    {layout.tiles.map((t, i) => {
+                      const box = labelBoxes[i];
+                      const availableWidth = Math.max(
+                          0,
+                          box.width * scaleX - 4,
+                        ),
+                        availableHeight = Math.max(0, box.height * scaleY - 4);
+                      const lineWidth =
+                        Math.min(
+                          230,
+                          t.node.data.label.length * 6.6,
+                          availableWidth,
+                        ) * stretch;
+                      const waveX = t.dotX + (box.x - t.dotX) * stretch,
+                        waveY = t.dotY + (box.y - t.dotY) * stretch;
+                      return (
+                        <g
+                          key={t.key}
+                          role="button"
+                          tabIndex={0}
+                          data-node={t.node.id}
+                          data-label-x={box.x}
+                          data-label-y={box.y}
+                          data-instance={t.key}
+                          data-parent-instance={t.parentKey}
+                          data-root={t.rootId}
+                          data-exposure={t.exposure}
+                          data-rank={t.node.rank}
+                          className={classes(t.node, t.key)}
+                          aria-label={`${t.node.data.level ?? "Hierarchy"} goal: ${t.node.data.label}`}
+                          aria-pressed={
+                            pinned &&
+                            selected?.id === t.node.id &&
+                            (!selectedKey || selectedKey === t.key)
+                          }
+                          onMouseEnter={() => highlight(t.node, t.key)}
+                          onFocus={() => highlight(t.node, t.key)}
+                          onClick={() => choose(t.node.data, t.key)}
+                          onKeyDown={(e) => {
+                            if (e.key === " " || e.key === "Enter") {
+                              e.preventDefault();
+                              choose(t.node.data, t.key);
+                            }
+                          }}
+                        >
+                          <path d={t.path} className="brick-face" />
+                          <g
+                            pointerEvents="none"
+                            transform={`translate(${waveX},${waveY}) scale(${1 / scaleX},${1 / scaleY})`}
+                            opacity={
+                              t.dotHeight * scaleY < 3 ? 0 : (1 - reveal) * 0.5
+                            }
+                          >
+                            <path
+                              className="hierarchy-wave"
+                              d={Array.from(
+                                { length: 17 },
+                                (_, j) =>
+                                  `${j ? "L" : "M"}${(j / 16 - 0.5) * Math.max(1.3, lineWidth)},${j && j < 16 ? Math.sin(j * 2.7) * Math.sin((j * Math.PI) / 16) * stretch * 1.8 : 0}`,
+                              ).join(" ")}
+                            />
+                            <circle
+                              r={
+                                Math.min(1.05, (t.dotHeight * scaleY) / 5) *
+                                (1 - stretch)
+                              }
+                              pointerEvents="auto"
+                            />
+                          </g>
+                          {reveal > 0 && (
+                            <g
+                              transform={`translate(${box.x},${box.y}) scale(${1 / scaleX},${1 / scaleY})`}
+                              pointerEvents="none"
+                            >
+                              <foreignObject
+                                x={-Math.min(240, availableWidth) / 2}
+                                y={
+                                  -Math.min(
+                                    labelLines(
+                                      t.node.data.label,
+                                      Math.min(240, availableWidth),
+                                    ) *
+                                      15 +
+                                      6,
+                                    availableHeight,
+                                  ) / 2
+                                }
+                                width={Math.min(240, availableWidth)}
+                                height={Math.min(
+                                  labelLines(
+                                    t.node.data.label,
+                                    Math.min(240, availableWidth),
+                                  ) *
+                                    15 +
+                                    6,
+                                  availableHeight,
+                                )}
+                                style={{ opacity: reveal }}
+                              >
+                                <div className="hierarchy-label">
+                                  {t.node.data.label}
+                                </div>
+                              </foreignObject>
+                            </g>
+                          )}
+                        </g>
+                      );
+                    })}
+                  </g>
+                  {orderMarks.map((m) => (
                     <g
-                      key={t.key}
-                      role="button"
+                      key={`${m.id}:${m.root}`}
+                      className="order-uncertain"
                       tabIndex={0}
-                      data-node={t.node.id}
-                      data-instance={t.key}
-                      data-parent-instance={t.parentKey}
-                      data-root={t.rootId}
-                      data-exposure={t.exposure}
-                      data-rank={t.node.rank}
-                      className={classes(t.node, t.key)}
-                      aria-label={`${t.node.data.level ?? "Hierarchy"} goal: ${t.node.data.label}`}
-                      aria-pressed={
-                        pinned &&
-                        selected?.id === t.node.id &&
-                        (!selectedKey || selectedKey === t.key)
+                      role="button"
+                      aria-label="Order uncertain"
+                      onMouseEnter={() =>
+                        highlight(m.parent.node, m.parent.key)
                       }
-                      onMouseEnter={() => highlight(t.node, t.key)}
-                      onFocus={() => highlight(t.node, t.key)}
-                      onClick={() => choose(t.node.data, t.key)}
+                      onFocus={() => highlight(m.parent.node, m.parent.key)}
+                      onClick={() => choose(m.parent.node.data, m.parent.key)}
                       onKeyDown={(e) => {
-                        if (e.key === " " || e.key === "Enter") {
+                        if (["Enter", " "].includes(e.key)) {
                           e.preventDefault();
-                          choose(t.node.data, t.key);
+                          choose(m.parent.node.data, m.parent.key);
                         }
                       }}
                     >
-                      <path d={t.path} className="brick-face" />
-                      <circle
-                        cx={t.dotX}
-                        cy={t.dotY}
-                        r={t.node.parents.length ? 1.6 : 2.7}
-                      />
+                      <title>Order uncertain</title>
+                      <path d={m.d} className="order-hit" />
+                      <path d={m.d} className="order-line" />
                     </g>
                   ))}
                 </g>
-                {orderMarks.map((m) => (
-                  <g
-                    key={`${m.id}:${m.root}`}
-                    className="order-uncertain"
-                    tabIndex={0}
-                    role="img"
-                    aria-label="Order uncertain"
-                  >
-                    <title>Order uncertain</title>
-                    <path d={m.d} className="order-hit" />
-                    <path d={m.d} className="order-line" />
-                  </g>
-                ))}
               </svg>
+            )}
+            {navigation.transform.k > 1.005 && !showList && (
+              <button
+                className="hierarchy-fit"
+                aria-label="Fit whole hierarchy"
+                title="Fit whole hierarchy (Home)"
+                onClick={navigation.reset}
+              >
+                <Scan size={16} />
+              </button>
             )}
           </div>
           <div
@@ -491,7 +711,7 @@ export function ProcessHierarchy({
             className={`spool-area ${visible ? "is-visible" : "is-idle"}`}
             onMouseLeave={() => {
               setExpanded(false);
-              setHovered(null);
+              if (pinned) setHovered(null);
             }}
             onBlur={(e) => {
               if (!e.currentTarget.contains(e.relatedTarget))
@@ -518,11 +738,13 @@ export function ProcessHierarchy({
                     candidates={candidates.nodes}
                     ended={candidates.ended}
                     level={graph.depth - rank}
+                    rank={rank}
                     onSelect={choose}
                     active={visible}
                     emphasized={
-                      (expanded && selected?.rank === rank) ||
-                      graph.byId.get(hovered?.id ?? "")?.rank === rank
+                      visible &&
+                      ((expanded && selected?.rank === rank) ||
+                        graph.byId.get(hovered?.id ?? "")?.rank === rank)
                     }
                     expanded={expanded && canExpand}
                     onExpand={() => {
@@ -542,6 +764,20 @@ export function ProcessHierarchy({
                 );
               })}
             </div>
+            {pinned &&
+              selected?.data.span &&
+              columns.every((_, rank) => !candidatesAt(rank).ambiguous) && (
+                <button
+                  className={`process-find ${found ? "was-found" : ""}`}
+                  aria-label="Find locked sentence in page"
+                  title="Find locked sentence in page"
+                  onClick={onFind}
+                  aria-pressed={found}
+                >
+                  <ArrowLeft size={10} />
+                  <Search size={12} />
+                </button>
+              )}
             {pinned && (
               <SelectionLock
                 className="process-lock"

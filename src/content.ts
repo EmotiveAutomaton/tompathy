@@ -1,3 +1,7 @@
+import { findSentence } from "./find-sentence";
+import { selectionTransition } from "./selection-transition";
+import { textPoints, annotatePage } from "./page-reading";
+import { attachReadingHelp } from "./reading-help";
 import {
   LOCK_SVG,
   LOCK_INK,
@@ -39,7 +43,33 @@ export function installPageAdapter() {
     timer: ReturnType<typeof setTimeout> | undefined;
   const abort = new AbortController(),
     sheet = new CSSStyleSheet();
+  const transition = selectionTransition();
+  window.addEventListener("scroll", () => transition.clear(), {
+    capture: true,
+    passive: true,
+    signal: abort.signal,
+  });
   let ownTabId: number | undefined;
+  let removeReading = () => {};
+  const removeHelp = attachReadingHelp(document, true);
+  const font = new FontFace(
+    "ToMpathy Reading",
+    `url("${chrome.runtime.getURL("reader-grade.woff")}")`,
+  );
+  let fontRequested = false;
+  const ensureFont = () => {
+    if (fontRequested) return;
+    fontRequested = true;
+    void font
+      .load()
+      .then((f) => {
+        if (!abort.signal.aborted) {
+          document.fonts.add(f);
+          positionMarker();
+        }
+      })
+      .catch(() => {});
+  };
   const originalTitles = new Map<HTMLElement, string | null>();
   if (location.protocol === "chrome-extension:")
     void chrome.tabs.getCurrent().then((tab) => {
@@ -70,7 +100,7 @@ export function installPageAdapter() {
   marker.setAttribute("aria-label", "Unlock selection");
   marker.title = "Unlock selection · Escape";
   marker.innerHTML = LOCK_SVG;
-  marker.style.cssText = `all:initial;box-sizing:border-box;position:fixed;z-index:2147483647;cursor:pointer;width:23px;height:23px;align-items:center;justify-content:center;color:${LOCK_INK};background:${LOCK_BACKGROUND};border:1px solid #91b7a4;border-radius:50%;padding:0;box-shadow:0 1px 5px #426f5d22;display:none`;
+  marker.style.cssText = `all:initial;box-sizing:border-box;position:fixed;z-index:2147483647;cursor:pointer;width:23px;height:23px;align-items:center;justify-content:center;color:${LOCK_INK};background:${LOCK_BACKGROUND};border:1px solid #c7d8ca;border-radius:50%;padding:0;box-shadow:0 1px 3px #426f5d10;display:none`;
   document.documentElement.append(marker);
   const paint = (name: string, rs: Range[]) => {
     if (highlights && (globalThis as any).Highlight)
@@ -97,6 +127,9 @@ export function installPageAdapter() {
   window.addEventListener("resize", positionMarker, { signal: abort.signal });
   document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
   const clear = () => {
+    transition.clear();
+    removeReading();
+    removeReading = () => {};
     blockedFocus.reset();
     cancelPulse();
     highlights?.delete("tompathy-active");
@@ -150,7 +183,12 @@ export function installPageAdapter() {
       /* extension reloaded */
     }
   };
+  let cancelFind = () => {};
+  let findAcknowledged = false;
   const release = () => {
+    transition.clear();
+    cancelFind();
+    findAcknowledged = false;
     blockedFocus.reset();
     cancelPulse();
     pinned = false;
@@ -196,6 +234,8 @@ export function installPageAdapter() {
       return;
     }
     if (pin) {
+      cancelFind();
+      findAcknowledged = false;
       blockedFocus.reset();
       cancelPulse();
     }
@@ -207,6 +247,7 @@ export function installPageAdapter() {
     if (pin) pinned = true;
     byId.get(id)?.setAttribute("data-tompathy-selected", "");
     paint("tompathy-active", sentence ? [sentence.range] : []);
+    if (sentence) transition.show(sentence.range, `${id}:${sentence.start}`);
     highlights?.delete("tompathy-related");
     elements.forEach((el) => el.removeAttribute("data-tompathy-related"));
     positionMarker();
@@ -214,22 +255,45 @@ export function installPageAdapter() {
       send("TOMPATHY_SELECT", { region: id, offset: selectedOffset, pinned });
   };
   const leave = () => {
-    if (!pinned) {
-      highlights?.delete("tompathy-active");
-      byId.get(selected)?.removeAttribute("data-tompathy-selected");
-      selected = "";
-    }
-    send("TOMPATHY_LEAVE");
+    // Soft hold: crossing whitespace must not clear the last inspected sentence.
+    // Explicit release, navigation and stale-source cleanup still clear it.
   };
   const observer = new MutationObserver((records) => {
     if (!artifact || stale || !records.length) return;
     clearTimeout(timer);
     timer = setTimeout(() => {
       stale = true;
+      observer.disconnect();
       clear();
       send("TOMPATHY_STALE");
     }, 200);
   });
+  let observedRoot: Element | null = null;
+  const reindex = () => {
+    ranges.clear();
+    pointOffsets = new WeakMap();
+    for (const [id, el] of byId) {
+      const points = textPoints(el, excluded);
+      points.forEach((p, i) => {
+        const offsets = pointOffsets.get(p.node) ?? [];
+        offsets[p.offset] = i;
+        pointOffsets.set(p.node, offsets);
+      });
+      const text = artifact!.regions.find((r) => r.id === id)!.anchor.exact;
+      ranges.set(
+        id,
+        sentences(text).flatMap((s) => {
+          const start = points[s.start],
+            end = points[s.end - 1];
+          if (!start || !end) return [];
+          const range = document.createRange();
+          range.setStart(start.node, start.offset);
+          range.setEnd(end.node, end.offset + 1);
+          return [{ start: s.start, end: s.end, range }];
+        }),
+      );
+    }
+  };
   const capture = async () => {
     clearTimeout(timer);
     observer.disconnect();
@@ -298,55 +362,33 @@ export function installPageAdapter() {
       );
     index = new WeakMap();
     byId = new Map();
-    ranges.clear();
-    pointOffsets = new WeakMap();
     elements.forEach((el, i) => {
       index.set(el, artifact!.regions[i].id);
-      const id = artifact!.regions[i].id;
-      byId.set(id, el);
-      // Map normalized UTF-16 offsets back to original text nodes without wrapping or rewriting the page.
-      const points: { node: Node; offset: number }[] = [];
-      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
-      let node: Node | null,
-        pendingSpace: { node: Node; offset: number } | null = null;
-      while ((node = walker.nextNode())) {
-        if (
-          !node.parentElement ||
-          node.parentElement.closest(excluded) ||
-          !node.parentElement.checkVisibility({ checkVisibilityCSS: true })
-        )
-          continue;
-        const raw = node.textContent ?? "";
-        for (let offset = 0; offset < raw.length; offset++) {
-          if (/\s/u.test(raw[offset])) {
-            if (points.length) pendingSpace = { node, offset };
-          } else {
-            if (pendingSpace) {
-              points.push(pendingSpace);
-              pendingSpace = null;
-            }
-            points.push({ node, offset });
-          }
-        }
-      }
-      for (let i = 0; i < points.length; i++) {
-        const point = points[i],
-          offsets = pointOffsets.get(point.node) ?? [];
-        offsets[point.offset] = i;
-        pointOffsets.set(point.node, offsets);
-      }
-      ranges.set(
-        id,
-        sentences(texts[i]).map((s) => {
-          const range = document.createRange(),
-            start = points[s.start],
-            end = points[s.end - 1];
-          range.setStart(start.node, start.offset);
-          range.setEnd(end.node, end.offset + 1);
-          return { start: s.start, end: s.end, range };
-        }),
-      );
+      byId.set(artifact!.regions[i].id, el);
     });
+    if (!restored)
+      for (const [id, el] of byId) {
+        const points = textPoints(el, excluded),
+          emphasis: { start: number; end: number }[] = [];
+        let lastParent: HTMLElement | null = null,
+          bold = false;
+        points.forEach((p, i) => {
+          const parent = p.node.parentElement!;
+          if (parent !== lastParent) {
+            bold = Number(getComputedStyle(parent).fontWeight) >= 600;
+            lastParent = parent;
+          }
+          if (bold) {
+            const previous = emphasis.at(-1);
+            if (previous?.end === i) previous.end = i + 1;
+            else emphasis.push({ start: i, end: i + 1 });
+          }
+        });
+        if (emphasis.length)
+          artifact!.regions.find((r) => r.id === id)!.emphasis = emphasis;
+      }
+    reindex();
+    observedRoot = root;
     observer.observe(root, {
       subtree: true,
       childList: true,
@@ -430,6 +472,20 @@ export function installPageAdapter() {
     "keydown",
     (e) => {
       if (e.key === "Escape") release();
+      const reading = (e.target as Element).closest<HTMLElement>(
+        "[data-tompathy-reading]",
+      );
+      if (
+        reading &&
+        !reading.closest("a,button") &&
+        (e.key === "Enter" || e.key === " ")
+      ) {
+        const id = target(e);
+        if (id) {
+          e.preventDefault();
+          select(id, true, true, Number(reading.dataset.tompathyOffset));
+        }
+      }
     },
     { signal: abort.signal },
   );
@@ -437,6 +493,32 @@ export function installPageAdapter() {
     signal: abort.signal,
     passive: true,
   });
+  document.addEventListener(
+    "focusin",
+    (e) => {
+      const reading = (e.target as Element).closest<HTMLElement>(
+        "[data-tompathy-reading]",
+      );
+      const id = target(e);
+      if (reading && id)
+        select(id, false, true, Number(reading.dataset.tompathyOffset));
+    },
+    { signal: abort.signal },
+  );
+  document.addEventListener(
+    "scroll",
+    (e) => {
+      if (
+        pinned &&
+        findAcknowledged &&
+        !(e.target instanceof Element && e.target.closest("[data-tompathy-ui]"))
+      ) {
+        findAcknowledged = false;
+        send("TOMPATHY_SCROLLED");
+      }
+    },
+    { capture: true, passive: true, signal: abort.signal },
+  );
   const listener = (
     m: any,
     _sender: chrome.runtime.MessageSender,
@@ -469,18 +551,43 @@ export function installPageAdapter() {
     )
       return;
     if (m.type === "TOMPATHY_MARK") {
+      observer.disconnect();
       clear();
+      if (m.ghostReadings?.length) {
+        ensureFont();
+        removeReading = annotatePage(
+          byId,
+          artifact,
+          {
+            ghostReadings: m.ghostReadings,
+            evidence: m.evidence ?? [],
+            origin: m.origin ?? "imported",
+          },
+          m.maker,
+          excluded,
+        );
+      }
+      reindex();
+      if (observedRoot)
+        observer.observe(observedRoot, {
+          subtree: true,
+          childList: true,
+          characterData: true,
+          attributes: true,
+          attributeFilter: ["hidden", "aria-hidden", "class"],
+        });
       for (const e of (m.estimates ?? []) as Packet["estimates"]) {
         const el = elements.find((el) => index.get(el) === e.region);
         if (el) {
           originalTitles.set(el, el.getAttribute("title"));
-          el.title = contributionExplanation(
-            {
-              estimates: m.estimates,
-              documentContribution: m.documentContribution,
-            },
-            e.region,
-          );
+          if (!m.ghostReadings?.length)
+            el.title = contributionExplanation(
+              {
+                estimates: m.estimates,
+                documentContribution: m.documentContribution,
+              },
+              e.region,
+            );
           el.setAttribute("data-tompathy-mark", "");
           if (e.contribution != null)
             el.style.setProperty(
@@ -492,6 +599,7 @@ export function installPageAdapter() {
       }
     }
     if (m.type === "TOMPATHY_FOCUS") {
+      cancelFind();
       pinned = false;
       select(m.region, true, false, m.offset ?? 0);
       if (Array.isArray(m.regions))
@@ -501,19 +609,30 @@ export function installPageAdapter() {
             (ranges.get(id) ?? []).map((s) => s.range),
           ),
         );
-      elements
-        .find((el) => index.get(el) === m.region)
-        ?.scrollIntoView({
-          block: "center",
-          behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
-            ? "instant"
-            : "smooth",
-        });
     }
-    if (m.type === "TOMPATHY_RELEASE") release();
+    if (m.type === "TOMPATHY_FIND" && pinned && m.region === selected) {
+      const sentence = (ranges.get(m.region) ?? []).find(
+        (s) => s.start <= (m.offset ?? 0) && s.end > (m.offset ?? 0),
+      );
+      if (sentence) {
+        cancelFind();
+        cancelFind = findSentence(sentence.range, () => {
+          findAcknowledged = true;
+          send("TOMPATHY_FOUND");
+        });
+      }
+    }
+    if (m.type === "TOMPATHY_RELEASE") {
+      cancelFind();
+      release();
+    }
     if (m.type === "TOMPATHY_LOCK_REMINDER") remind();
     if (m.type === "TOMPATHY_RELATED") {
-      if (!pinned) highlights?.delete("tompathy-active");
+      if (!pinned) {
+        highlights?.delete("tompathy-active");
+        byId.get(selected)?.removeAttribute("data-tompathy-selected");
+        selected = "";
+      }
       paint(
         "tompathy-related",
         m.span
@@ -533,11 +652,14 @@ export function installPageAdapter() {
   };
   chrome.runtime.onMessage.addListener(listener);
   window.__tompathyCleanup = () => {
+    cancelFind();
     abort.abort();
     observer.disconnect();
     clearTimeout(timer);
     clear();
     marker.remove();
+    removeHelp();
+    document.fonts.delete(font);
     chrome.runtime.onMessage.removeListener(listener);
     document.adoptedStyleSheets = document.adoptedStyleSheets.filter(
       (s) => s !== sheet,

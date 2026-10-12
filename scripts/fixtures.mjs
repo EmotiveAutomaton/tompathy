@@ -11,15 +11,15 @@ await build({
 const { createExample, exampleText, exampleContext } =
   await import("../.local/example-generator.mjs");
 await writeFile(
-  "examples/bench-result.json",
+  "examples/lantern-result.json",
   JSON.stringify(await createExample(), null, 2),
 );
 await writeFile(
-  "examples/bench-revision.json",
+  "examples/lantern-revision.json",
   JSON.stringify(await createExample("tompathy:example", true), null, 2),
 );
-await writeFile("examples/bench-source.txt", exampleText.join("\n\n") + "\n");
+await writeFile("examples/lantern-source.txt", exampleText.join("\n\n") + "\n");
 await writeFile(
-  "examples/bench-context.json",
+  "examples/lantern-context.json",
   JSON.stringify(exampleContext, null, 2),
 );

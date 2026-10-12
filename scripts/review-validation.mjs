@@ -34,16 +34,33 @@ try {
     `Installed · 0.2 development 2 · build ${receipt.build}`,
   );
   await expect(
-    guide.getByRole("heading", { name: "Your first five-minute review" }),
+    guide.getByRole("heading", { name: "A place to look closer." }),
   ).toBeVisible();
   await guide.screenshot({
     path: "evidence/review-desk.png",
     fullPage: true,
     scale: "css",
   });
+  await expect(guide.locator(".destination")).toHaveCount(3);
+  await expect(
+    guide.getByRole("button", { name: /Live creator/ }),
+  ).toBeDisabled();
+  await guide.getByRole("link", { name: /Icon studies/ }).click();
+  await expect(guide.locator(".study-card")).toHaveCount(12);
+  await guide.getByRole("button", { name: "Explore The literal map" }).click();
+  await expect(guide.getByRole("dialog")).toBeVisible();
+  await guide.screenshot({
+    path: "evidence/icons-native.png",
+    scale: "css",
+  });
+  await guide.keyboard.press("Escape");
+  await guide.getByRole("link", { name: "← Review desk" }).click();
+  receipt.checks.push(
+    "Three-entry dashboard and twelve local face-and-brain SVG icon studies, open in ordinary Chrome",
+  );
   const [source] = await Promise.all([
     context.waitForEvent("page"),
-    guide.getByRole("link", { name: "Open the guided example" }).click(),
+    guide.getByRole("link", { name: /Open the testing environment/ }).click(),
   ]);
   await source.waitForLoadState();
   const widthBefore = await source.evaluate(() => innerWidth);
@@ -79,9 +96,14 @@ try {
   const values = await panel.getByTestId("values").innerHTML();
   // Aim at text, not a paragraph's empty rectangular padding.
   const point = await source.locator('[data-passage="p4"]').evaluate((el) => {
-    const text = Array.from(el.childNodes).find(
-      (n) => n.nodeType === Node.TEXT_NODE && n.textContent.trim().length > 20,
-    );
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    let text;
+    while ((text = walker.nextNode()))
+      if (
+        !text.parentElement.closest("[data-tompathy-ui],[aria-hidden]") &&
+        text.textContent.trim().length > 20
+      )
+        break;
     const range = document.createRange();
     range.setStart(text, 4);
     range.setEnd(text, 12);
@@ -89,10 +111,16 @@ try {
     return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
   });
   await source.mouse.move(point.x, point.y);
-  await expect(panel.locator('.spool[data-level="3"]')).toHaveAttribute(
+  await expect(panel.locator('.spool[data-rank="0"]')).toHaveAttribute(
     "data-selected",
     "sentence-3-1",
   );
+  await source.mouse.move(1, 1);
+  await expect(panel.locator('.spool[data-rank="0"]')).toHaveAttribute(
+    "data-selected",
+    "sentence-3-1",
+  );
+  await expect(panel.locator(".process-lock")).toHaveCount(0);
   expect(await panel.getByTestId("values").innerHTML()).toBe(values);
   await source.mouse.click(point.x, point.y);
   await expect(
@@ -120,29 +148,26 @@ try {
   const blockedPoints = await source
     .locator('[data-passage="p3"]')
     .evaluate((el) => {
-      const text = Array.from(el.childNodes).find(
-        (n) =>
-          n.nodeType === Node.TEXT_NODE && n.textContent.trim().length > 20,
-      );
       return [
-        ...new Intl.Segmenter("en", { granularity: "sentence" }).segment(
-          text.textContent,
-        ),
-      ].map((s) => {
+        ...el.querySelectorAll('[data-tompathy-reading][tabindex="0"]'),
+      ].map((span) => {
+        const text = document
+          .createTreeWalker(span, NodeFilter.SHOW_TEXT)
+          .nextNode();
         const range = document.createRange();
-        range.setStart(text, s.index + 4);
-        range.setEnd(text, s.index + 8);
+        range.setStart(text, 4);
+        range.setEnd(text, 8);
         const r = range.getBoundingClientRect();
         return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
       });
     });
-  for (const p of blockedPoints) {
+  for (const p of blockedPoints.slice(0, 4)) {
     await source.mouse.move(p.x, p.y);
     await source.waitForTimeout(75);
   }
   await expect(source.locator('[data-lock-reminder="active"]')).toHaveCount(1);
   await expect(panel.locator('[data-lock-reminder="active"]')).toHaveCount(1);
-  await expect(panel.locator('.spool[data-level="3"]')).toHaveAttribute(
+  await expect(panel.locator('.spool[data-rank="0"]')).toHaveAttribute(
     "data-selected",
     "sentence-3-1",
   );
@@ -155,7 +180,7 @@ try {
     scale: "css",
   });
   await source.locator('[data-passage="p2"]').hover();
-  await expect(panel.locator('.spool[data-level="3"]')).toHaveAttribute(
+  await expect(panel.locator('.spool[data-rank="0"]')).toHaveAttribute(
     "data-selected",
     "sentence-3-1",
   );
@@ -169,7 +194,7 @@ try {
   const reelBounds = await panel.getByTestId("odometer").boundingBox();
   expect(reelBounds.y).toBeGreaterThan(pyramidBounds.y + pyramidBounds.height);
   expect(reelBounds.height).toBeLessThan(50);
-  const reel = panel.locator('.spool[data-level="3"]');
+  const reel = panel.locator('.spool[data-rank="0"]');
   await reel.hover();
   await panel.mouse.wheel(0, 100);
   await expect(reel).toHaveAttribute("data-selected", "sentence-3-2");
@@ -181,7 +206,7 @@ try {
           .join(" "),
       ),
     )
-    .toContain("We counted pauses");
+    .toContain("A tester pointed out");
   await panel.locator('[data-node="paragraph-3"] circle').first().click();
   await expect(reel).toHaveClass(/ambiguous/);
   await expect
@@ -190,15 +215,15 @@ try {
     )
     .toBe(4);
   await source.getByRole("button", { name: "Unlock selection" }).click();
-  await expect(panel.getByTestId("goals")).toHaveText("<- hover");
+  await expect(panel.getByTestId("goals")).toHaveText("hover");
   await expect(
     panel.getByRole("button", { name: "Unlock selection" }),
   ).toHaveCount(0);
   await panel.locator('[data-node="sentence-3-2"] circle').first().click();
   await expect(panel.locator('[data-dominant="true"]')).toHaveText(
-    "Learning from others",
+    "Learning together",
   );
-  await expect(panel.locator('.spool[data-level="1"]')).toHaveAttribute(
+  await expect(panel.locator('.spool[data-rank="2"]')).toHaveAttribute(
     "data-selected",
     "story",
   );
@@ -210,7 +235,7 @@ try {
   await expect(
     source.getByRole("button", { name: "Unlock selection" }),
   ).toBeHidden();
-  await expect(panel.getByTestId("goals")).toHaveText("<- hover");
+  await expect(panel.getByTestId("goals")).toHaveText("hover");
   const lowerBranch = panel.locator(
     '[data-root="practical-care"][data-node="paragraph-3"] circle',
   );
@@ -220,9 +245,9 @@ try {
       '[data-root="purpose"].ancestor, [data-root="purpose"].descendant',
     ),
   ).toHaveCount(0);
-  await expect(panel.locator('.spool[data-level="0"]')).toHaveCSS(
-    "opacity",
-    "0.18",
+  await expect(panel.locator('.spool[data-level="0"] .spool-window')).toHaveCSS(
+    "height",
+    "2px",
   );
   await source.locator("h1").dblclick();
   await expect(
@@ -234,10 +259,10 @@ try {
     source.getByRole("button", { name: "Unlock selection" }),
   ).toBeHidden();
   await expect(
-    panel.getByRole("img", { name: /^Order uncertain/ }),
+    panel.getByRole("button", { name: /^Order uncertain/ }),
   ).toHaveCount(2);
   receipt.checks.push(
-    "Direct node selection stays on its visual branch; shorter paths fade the final reel; double-clicking either page or panel releases both locks; two supplied order-uncertainty marks render",
+    "Direct node selection stays on its visual branch; shorter paths close the final reel; double-clicking either page or panel releases both locks; two supplied order-uncertainty marks render",
   );
   await panel.locator("#process-title button").hover();
   await panel.locator('[data-node="paragraph-3"] circle').first().hover();
@@ -254,6 +279,189 @@ try {
   );
   await panel.waitForTimeout(1000);
   await panel.screenshot({ path: "evidence/review-branch.png", scale: "css" });
+  await panel.locator('[data-node="purpose"] circle').hover();
+  await expect
+    .poll(() => panel.locator("[data-goal]:not([aria-hidden])").count())
+    .toBeGreaterThan(12);
+  await panel.mouse.move(1, 1);
+  await expect
+    .poll(() => panel.locator("[data-goal]:not([aria-hidden])").count())
+    .toBeGreaterThan(12);
+  await expect
+    .poll(() =>
+      panel
+        .getByTestId("goals")
+        .evaluate(
+          (el) =>
+            el
+              .getAnimations({ subtree: true })
+              .filter((a) => a.playState === "running").length,
+        ),
+    )
+    .toBe(0);
+  const cloudBounds = await panel.getByTestId("goals").evaluate((el) => {
+    const box = el.getBoundingClientRect();
+    return [
+      ...el.querySelectorAll("[data-goal]:not([aria-hidden]) button"),
+    ].every((word) => {
+      const r = word.getBoundingClientRect();
+      return (
+        r.left >= box.left &&
+        r.right <= box.right &&
+        r.top >= box.top &&
+        r.bottom <= box.bottom
+      );
+    });
+  });
+  expect(cloudBounds).toBe(true);
+  await panel.screenshot({
+    path: "evidence/attention-native-combined.png",
+    scale: "css",
+  });
+  await panel
+    .getByRole("button", { name: "Order uncertain", exact: true })
+    .first()
+    .focus();
+  await expect(panel.locator('[data-node="paragraph-1"].chosen')).toHaveCount(
+    1,
+  );
+  await expect(panel.locator('[data-rank="0"].descendant')).toHaveCount(3);
+  receipt.checks.push(
+    "Soft hover holds across gaps without a lock; broader nodes combine all supplied attention items; uncertainty marks inspect their common parent and subordinate choices",
+  );
+  // The real native panel and the source page must agree on navigation state.
+  await source.keyboard.press("Escape");
+  const lateSentence = source
+    .locator('[data-passage="p9"] [data-tompathy-reading]')
+    .first();
+  await lateSentence.focus();
+  await source.keyboard.press("Enter");
+  const findButton = panel.getByRole("button", {
+    name: "Find locked sentence in page",
+  });
+  await expect(findButton).toBeVisible();
+  await source.evaluate(() => window.scrollTo(0, 0));
+  await findButton.click();
+  await expect(findButton).toHaveAttribute("aria-pressed", "true");
+  expect(await source.evaluate(() => scrollY)).toBeGreaterThan(100);
+  await source.evaluate(() => window.scrollBy(0, -80));
+  await expect(findButton).toHaveAttribute("aria-pressed", "false");
+  const graph = panel.locator(".pyramid > svg");
+  const anchor = await panel
+    .locator('[data-node="sentence-3-1"][data-root="purpose"]')
+    .evaluate((el) => {
+      const svg = el.closest("svg"),
+        p = new DOMPoint(
+          Number(el.getAttribute("data-label-x")),
+          Number(el.getAttribute("data-label-y")),
+        ).matrixTransform(svg.getScreenCTM());
+      return { x: p.x, y: p.y };
+    });
+  await panel.mouse.move(anchor.x, anchor.y);
+  const threshold = Number(await graph.getAttribute("data-label-zoom"));
+  await panel.mouse.wheel(0, -Math.log2(threshold * 1.3) / 0.002);
+  await expect(graph).toHaveAttribute("data-label-reveal", "1.000");
+  await expect(
+    panel.getByRole("button", { name: "Fit whole hierarchy" }),
+  ).toBeVisible();
+  expect(await panel.locator(".hierarchy-label").count()).toBe(
+    await panel.locator(".pyramid-node").count(),
+  );
+  await expect(
+    panel.locator(
+      '[data-node="sentence-3-1"][data-root="purpose"] .hierarchy-label',
+    ),
+  ).toBeInViewport();
+  await panel.screenshot({
+    path: "evidence/navigation-native-zoom.png",
+    scale: "css",
+  });
+  const rectangle = await graph.boundingBox();
+  const transformBefore = await graph
+    .locator(":scope > g")
+    .getAttribute("transform");
+  await panel.mouse.move(
+    rectangle.x + rectangle.width / 2,
+    rectangle.y + rectangle.height / 2,
+  );
+  await panel.mouse.down();
+  await panel.mouse.move(
+    rectangle.x + rectangle.width * 0.7,
+    rectangle.y + rectangle.height * 0.6,
+    { steps: 8 },
+  );
+  await panel.mouse.up();
+  await expect(graph.locator(":scope > g")).not.toHaveAttribute(
+    "transform",
+    transformBefore,
+  );
+  await expect(
+    panel.locator('.spool[data-selected="sentence-8-1"]'),
+  ).toHaveCount(1);
+  await panel.getByRole("button", { name: "Fit whole hierarchy" }).click();
+  await expect(graph).toHaveAttribute("data-zoom", "1.000");
+  await panel.mouse.move(1, 1);
+  await panel.screenshot({
+    path: "evidence/navigation-native-fit.png",
+    scale: "css",
+  });
+  await graph.click({
+    position: { x: rectangle.width - 3, y: rectangle.height - 3 },
+  });
+  await expect(panel.locator(".process-lock")).toHaveCount(0);
+  await source
+    .locator('[data-passage="p5"] [data-tompathy-reading]')
+    .first()
+    .focus();
+  await expect(source.locator(".tompathy-reading-help")).toBeVisible();
+  const sourceCDP = await source.context().newCDPSession(source);
+  const ax = await sourceCDP.send("Accessibility.getFullAXTree");
+  expect(JSON.stringify(ax)).toContain("Less · confidence · More");
+  expect(JSON.stringify(ax)).toContain("Less · creator involvement · More");
+  expect(JSON.stringify(ax)).not.toContain("Ink represents involvement");
+  await sourceCDP.detach();
+  await source.screenshot({
+    path: "evidence/navigation-native-evidence.png",
+    scale: "css",
+  });
+  await source.keyboard.press("Escape");
+  await source.locator('[data-ghost-kind="ghost"]').focus();
+  await expect(source.locator(".tompathy-reading-help")).toBeVisible();
+  const ghostInspector = await source.context().newCDPSession(source);
+  await expect
+    .poll(async () => {
+      const ghostAX = await ghostInspector.send("Accessibility.getFullAXTree");
+      return ghostAX.nodes
+        .filter((n) => !n.ignored)
+        .map((n) => n.name?.value ?? "")
+        .join(" ");
+    })
+    .toContain("Estimated generation prompt");
+  expect(await source.locator("article").textContent()).not.toContain(
+    "Generation prompt:",
+  );
+  // Focus can scroll the article; capture the restored, settled card.
+  await source.waitForTimeout(250);
+  await expect(source.locator(".tompathy-reading-help")).toBeVisible();
+  await source.screenshot({
+    path: "evidence/ghost-tooltip-native.png",
+    scale: "css",
+  });
+  await ghostInspector.detach();
+  await source.keyboard.press("Escape");
+  await expect(panel.getByLabel("Creator selection")).toBeVisible();
+  await expect(panel.locator(".creator-brain")).toBeVisible();
+  await expect(
+    panel
+      .locator(".values-bottom")
+      .getByRole("button", { name: "Reader menu" }),
+  ).toBeVisible();
+  receipt.checks.push(
+    "Creator selection is above attention, Options is in Core values, and the estimated ghost prompt appears only inside the private evidence tooltip",
+  );
+  receipt.checks.push(
+    "All thirty sentences represented; native zoom, readable labels, drag without changing the lock, fit, blank-space unlock, exact-sentence find, grey acknowledgement and scroll rearming; private visual evidence card exposed accessibly",
+  );
   await panel.getByRole("tab", { name: "global", exact: true }).click();
   await expect(panel.getByRole("tabpanel")).toHaveText(
     "Global view · coming later",
@@ -316,7 +524,7 @@ try {
   };
   receipt.checks.push(
     "Guide opens a native panel beside its bundled source without a server",
-    "Independent attention, two hierarchy peaks, bidirectional ambiguity, page/panel green unlock controls, sentence hover, single-click locks for sentences and branches, wheel-driven source selection, compact reels below a persistent hierarchy, Escape, fixed values and provenance",
+    "Independent attention, four hierarchy peaks, bidirectional ambiguity, page/panel green unlock controls, sentence hover, single-click locks for sentences and branches, wheel-driven source selection, compact reels below a persistent hierarchy, Escape, fixed values and provenance",
   );
   receipt.localAI = await panel.evaluate(async () => {
     const inspect = async (name) => {
@@ -466,7 +674,9 @@ try {
     throw Error(
       "The extension action did not open the native panel on an ordinary page",
     );
-  await expect(panel.locator(".sr-only")).toContainText("Awaiting analysis");
+  await expect(panel.locator('.sr-only[role="status"]')).toContainText(
+    "Awaiting analysis",
+  );
   await expect
     .poll(() =>
       panel.evaluate(
@@ -475,7 +685,10 @@ try {
             .length,
       ),
     )
-    .toBe(6);
+    .toBe(
+      JSON.parse(await readFile("public/testbed-result.json", "utf8")).artifact
+        .regions.length,
+    );
   receipt.checks.push(
     "Chrome extension action grants activeTab and captures a normal HTTP article with the delivered manifest",
   );
@@ -503,7 +716,9 @@ try {
       .pages()
       .find((page) => page.url().includes("/panel.html"));
     if (!panel) throw Error("The panel did not open on the public article");
-    await expect(panel.locator(".sr-only")).toContainText("Awaiting analysis");
+    await expect(panel.locator('.sr-only[role="status"]')).toContainText(
+      "Awaiting analysis",
+    );
     const captured = await panel.evaluate(
       async () =>
         (await chrome.storage.session.get("reading")).reading.artifact,

@@ -1,0 +1,5460 @@
+{
+  "schemaVersion": "1.6",
+  "ghostReadings": [
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p2",
+        "start": 0,
+        "end": 54
+      },
+      "kind": "original",
+      "confidence": 0.93,
+      "explanation": "A dated handwritten draft contains this wording before the assistant session.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-1",
+        "production-context-1"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p2",
+        "start": 55,
+        "end": 80
+      },
+      "kind": "original",
+      "confidence": 0.885,
+      "explanation": "A dated handwritten draft contains this wording before the assistant session.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-1",
+        "production-context-1"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p2",
+        "start": 81,
+        "end": 282
+      },
+      "kind": "original",
+      "confidence": 0.8400000000000001,
+      "explanation": "A dated handwritten draft contains this wording before the assistant session.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-1",
+        "production-context-1"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p3",
+        "start": 0,
+        "end": 42
+      },
+      "kind": "edited",
+      "confidence": 0.84,
+      "explanation": "A saved copy-edit diff shortens the phrasing without changing the described design choice.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-2",
+        "production-context-2"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p3",
+        "start": 43,
+        "end": 127
+      },
+      "kind": "edited",
+      "confidence": 0.7949999999999999,
+      "explanation": "A saved copy-edit diff shortens the phrasing without changing the described design choice.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-2",
+        "production-context-2"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p3",
+        "start": 128,
+        "end": 167
+      },
+      "kind": "edited",
+      "confidence": 0.75,
+      "explanation": "A saved copy-edit diff shortens the phrasing without changing the described design choice.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-2",
+        "production-context-2"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p3",
+        "start": 168,
+        "end": 264
+      },
+      "kind": "edited",
+      "confidence": 0.705,
+      "explanation": "A saved copy-edit diff shortens the phrasing without changing the described design choice.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-2",
+        "production-context-2"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p4",
+        "start": 0,
+        "end": 66
+      },
+      "kind": "original",
+      "confidence": 0.91,
+      "explanation": "The observation log and personal draft agree; the interpretation remains Mara's account.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-3",
+        "production-context-3"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p4",
+        "start": 67,
+        "end": 188
+      },
+      "kind": "original",
+      "confidence": 0.865,
+      "explanation": "The observation log and personal draft agree; the interpretation remains Mara's account.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-3",
+        "production-context-3"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p4",
+        "start": 189,
+        "end": 236
+      },
+      "kind": "original",
+      "confidence": 0.8200000000000001,
+      "explanation": "The observation log and personal draft agree; the interpretation remains Mara's account.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-3",
+        "production-context-3"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p4",
+        "start": 237,
+        "end": 308
+      },
+      "kind": "original",
+      "confidence": 0.775,
+      "explanation": "The observation log and personal draft agree; the interpretation remains Mara's account.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-3",
+        "production-context-3"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p5",
+        "start": 0,
+        "end": 66
+      },
+      "kind": "curated",
+      "confidence": 0.78,
+      "explanation": "A collaborator's checklist supplies some of the decisions, which Mara selects and explains.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-4",
+        "production-context-4"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p5",
+        "start": 67,
+        "end": 147
+      },
+      "kind": "curated",
+      "confidence": 0.735,
+      "explanation": "A collaborator's checklist supplies some of the decisions, which Mara selects and explains.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-4",
+        "production-context-4"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p5",
+        "start": 148,
+        "end": 227
+      },
+      "kind": "original",
+      "confidence": 0.78,
+      "explanation": "The playtest note records Mara proposing the persistent latch; the collaborator's checklist did not contain it.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-4",
+        "production-context-4"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p5",
+        "start": 228,
+        "end": 323
+      },
+      "kind": "original",
+      "confidence": 0.735,
+      "explanation": "The playtest note records Mara proposing the persistent latch; the collaborator's checklist did not contain it.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-4",
+        "production-context-4"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p6",
+        "start": 0,
+        "end": 58
+      },
+      "kind": "original",
+      "confidence": 0.65,
+      "explanation": "This reflection appears in the personal draft, but its earlier drafting history is incomplete.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-5",
+        "production-context-5"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p6",
+        "start": 59,
+        "end": 178
+      },
+      "kind": "original",
+      "confidence": 0.605,
+      "explanation": "This reflection appears in the personal draft, but its earlier drafting history is incomplete.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-5",
+        "production-context-5"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p6",
+        "start": 179,
+        "end": 278
+      },
+      "kind": "original",
+      "confidence": 0.56,
+      "explanation": "This reflection appears in the personal draft, but its earlier drafting history is incomplete.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-5",
+        "production-context-5"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p7",
+        "start": 0,
+        "end": 77
+      },
+      "kind": "original",
+      "confidence": 0.87,
+      "explanation": "This distinction appears in Mara's draft before the assisted phrase is introduced.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-6",
+        "production-context-6"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p7",
+        "start": 78,
+        "end": 245
+      },
+      "kind": "curated",
+      "confidence": 0.9149999999999999,
+      "explanation": "The assistant transcript and revision log show a deliberately selected phrase woven into Mara's own account.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-6",
+        "production-context-6"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p7",
+        "start": 246,
+        "end": 344
+      },
+      "kind": "ghost",
+      "confidence": 0.99,
+      "explanation": "An automated assembly step inserted this assistant-generated guarantee after Mara's final review. It contradicts the caution already in her draft. The fictional version log records no review of the added sentence.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-ghost",
+        "production-caution"
+      ],
+      "prompt": "Write one upbeat concluding sentence claiming the tutorial makes all players feel included."
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p8",
+        "start": 0,
+        "end": 58
+      },
+      "kind": "original",
+      "confidence": 0.89,
+      "explanation": "Mara's draft already cautioned against generalizing from three pairs. This predates the unreviewed guarantee inserted during assembly.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-7",
+        "production-context-7"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p8",
+        "start": 59,
+        "end": 195
+      },
+      "kind": "original",
+      "confidence": 0.845,
+      "explanation": "Mara's draft already cautioned against generalizing from three pairs. This predates the unreviewed guarantee inserted during assembly.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-7",
+        "production-context-7"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p8",
+        "start": 196,
+        "end": 338
+      },
+      "kind": "original",
+      "confidence": 0.8,
+      "explanation": "Mara's draft already cautioned against generalizing from three pairs. This predates the unreviewed guarantee inserted during assembly.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-7",
+        "production-context-7"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p9",
+        "start": 0,
+        "end": 109
+      },
+      "kind": "edited",
+      "confidence": 0.94,
+      "explanation": "The visible diff records sentence shortening; the controller detail was restored by Mara.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-8",
+        "production-context-8"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p9",
+        "start": 110,
+        "end": 199
+      },
+      "kind": "edited",
+      "confidence": 0.8949999999999999,
+      "explanation": "The visible diff records sentence shortening; the controller detail was restored by Mara.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-8",
+        "production-context-8"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p9",
+        "start": 200,
+        "end": 336
+      },
+      "kind": "edited",
+      "confidence": 0.85,
+      "explanation": "The visible diff records sentence shortening; the controller detail was restored by Mara.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-8",
+        "production-context-8"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p10",
+        "start": 0,
+        "end": 70
+      },
+      "kind": "original",
+      "confidence": 0.48,
+      "explanation": "A draft fragment contains this plan; no record shows whether earlier phrasing was assisted.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-9",
+        "production-context-9"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p10",
+        "start": 71,
+        "end": 176
+      },
+      "kind": "original",
+      "confidence": 0.435,
+      "explanation": "A draft fragment contains this plan; no record shows whether earlier phrasing was assisted.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-9",
+        "production-context-9"
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p10",
+        "start": 177,
+        "end": 272
+      },
+      "kind": "original",
+      "confidence": 0.39,
+      "explanation": "A draft fragment contains this plan; no record shows whether earlier phrasing was assisted.",
+      "confidenceExplanation": "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
+      "evidence": [
+        "production-9",
+        "production-context-9"
+      ]
+    }
+  ],
+  "id": "lantern-analysis-2",
+  "revision": 2,
+  "artifact": {
+    "id": "tompathy:example",
+    "revision": "f3fdb86b7607bb96d81ca159414f954193edbd251381ef5b9f5d1702aff43a39",
+    "title": "The door we stopped explaining",
+    "source": "tompathy:example",
+    "capturedAt": "2026-10-12T22:09:15.520Z",
+    "regions": [
+      {
+        "id": "p1",
+        "anchor": {
+          "exact": "The door we stopped explaining",
+          "prefix": "",
+          "suffix": "\n\nThe first thing we noticed was not where players died. It was where they waite",
+          "start": 0,
+          "index": 0
+        },
+        "emphasis": []
+      },
+      {
+        "id": "p2",
+        "anchor": {
+          "exact": "The first thing we noticed was not where players died. It was where they waited. In our little cooperative game, two strangers stood on opposite sides of a greenhouse door, each holding a lantern, while the instruction I had polished for an afternoon faded politely from the screen.",
+          "prefix": "The door we stopped explaining\n\n",
+          "suffix": "\n\nWe could have made the instruction louder. Instead, we put warm light beyond t",
+          "start": 32,
+          "index": 1
+        },
+        "emphasis": []
+      },
+      {
+        "id": "p3",
+        "anchor": {
+          "exact": "We could have made the instruction louder. Instead, we put warm light beyond the glass and let each player open half the latch. Nothing flashed when they got it wrong. The door simply waited for both of them, leaving enough time for one player to notice the other.",
+          "prefix": "he instruction I had polished for an afternoon faded politely from the screen.\n\n",
+          "suffix": "\n\nFor two evenings, I watched recordings without touching the build. A tester po",
+          "start": 316,
+          "index": 2
+        },
+        "emphasis": [
+          {
+            "start": 209,
+            "end": 228
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "anchor": {
+          "exact": "For two evenings, I watched recordings without touching the build. A tester pointed out that I kept calling silence confusion when it sometimes meant someone was waiting for their partner. Our first revision opened the door too quickly. We slowed it down again, until a shared action had time to feel shared.",
+          "prefix": "ited for both of them, leaving enough time for one player to notice the other.\n\n",
+          "suffix": "\n\nThe next build kept the lanterns bright without making them blink. Every sound",
+          "start": 582,
+          "index": 3
+        },
+        "emphasis": []
+      },
+      {
+        "id": "p5",
+        "anchor": {
+          "exact": "The next build kept the lanterns bright without making them blink. Every sound cue had a visible companion, and either player could pause the room. One tester played with a single hand and asked for a latch that stayed pressed. These are small decisions, but small decisions decide who gets to remain part of the adventure.",
+          "prefix": "ickly. We slowed it down again, until a shared action had time to feel shared.\n\n",
+          "suffix": "\n\nI cannot tell you that a gentler door makes a kinder game. I can tell you that",
+          "start": 892,
+          "index": 4
+        },
+        "emphasis": [
+          {
+            "start": 282,
+            "end": 300
+          }
+        ]
+      },
+      {
+        "id": "p6",
+        "anchor": {
+          "exact": "I cannot tell you that a gentler door makes a kinder game. I can tell you that on Thursday, a veteran player stopped racing ahead and waited beside someone learning the controls. For now, that is a useful place to begin, even if a useful beginning is not yet a design principle.",
+          "prefix": "ecisions, but small decisions decide who gets to remain part of the adventure.\n\n",
+          "suffix": "\n\nSolving a puzzle is not quite the same as finding a way to solve it together. ",
+          "start": 1217,
+          "index": 5
+        },
+        "emphasis": []
+      },
+      {
+        "id": "p7",
+        "anchor": {
+          "exact": "Solving a puzzle is not quite the same as finding a way to solve it together. The pause leaves room to notice: a partner moving toward the wrong latch, a lantern changing hands, a small attempt at helping that the old instruction had covered up. This approach guarantees that every player feels equally included from the very first interaction.",
+          "prefix": "eful place to begin, even if a useful beginning is not yet a design principle.\n\n",
+          "suffix": "\n\nThe test was much smaller than the story I wanted to tell. The recordings show",
+          "start": 1497,
+          "index": 6
+        },
+        "emphasis": []
+      },
+      {
+        "id": "p8",
+        "anchor": {
+          "exact": "The test was much smaller than the story I wanted to tell. The recordings show three pairs of players, one unreliable controller, and a tester who already knew the puzzle from an earlier session. There is a difference between an invitation and a guarantee, and the difference matters most when a polished sentence makes it easy to forget.",
+          "prefix": "tees that every player feels equally included from the very first interaction.\n\n",
+          "suffix": "\n\nBefore sending the draft, I shortened the explanation, then restored the awkwa",
+          "start": 1843,
+          "index": 7
+        },
+        "emphasis": [
+          {
+            "start": 226,
+            "end": 255
+          }
+        ]
+      },
+      {
+        "id": "p9",
+        "anchor": {
+          "exact": "Before sending the draft, I shortened the explanation, then restored the awkward detail about the controller. My collaborator asked whether removing an instruction merely hid the work somewhere else. She was right: the timing, the light, and the forgiving latch were still teaching, just without borrowing the player's entire attention.",
+          "prefix": " the difference matters most when a polished sentence makes it easy to forget.\n\n",
+          "suffix": "\n\nNext week we will try a room where the partners cannot see each other. I am te",
+          "start": 2183,
+          "index": 8
+        },
+        "emphasis": []
+      },
+      {
+        "id": "p10",
+        "anchor": {
+          "exact": "Next week we will try a room where the partners cannot see each other. I am tempted to carry the same solution across unchanged, which is probably a good reason to watch first. The door can wait; I want to find out what the people on either side are actually trying to do.",
+          "prefix": "tch were still teaching, just without borrowing the player's entire attention.\n\n",
+          "suffix": "",
+          "start": 2521,
+          "index": 9
+        },
+        "emphasis": []
+      }
+    ],
+    "truncated": false
+  },
+  "provider": {
+    "id": "tompathy-example",
+    "method": "Hand-written interaction fixture"
+  },
+  "origin": "synthetic example",
+  "scope": {
+    "kind": "context",
+    "contextIds": [
+      "context-notebook"
+    ]
+  },
+  "makers": [
+    {
+      "id": "maker-1",
+      "label": "Mara Vale",
+      "identity": "synthetic",
+      "relationship": "Fictional cooperative-game designer and creator of this reflection"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "focus-0",
+      "kind": "attention",
+      "label": "Noticing hesitation",
+      "description": "A possible current attentional focus: noticing hesitation. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e1"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-1",
+      "kind": "attention",
+      "label": "An invitation to connect",
+      "description": "A possible current attentional focus: an invitation to connect. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e1"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-2",
+      "kind": "attention",
+      "label": "Watching the players",
+      "description": "A possible current attentional focus: watching the players. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e1"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-3",
+      "kind": "attention",
+      "label": "Trying again",
+      "description": "A possible current attentional focus: trying again. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e2"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-4",
+      "kind": "attention",
+      "label": "Making room for others",
+      "description": "A possible current attentional focus: making room for others. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e2"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-5",
+      "kind": "attention",
+      "label": "Small discoveries",
+      "description": "A possible current attentional focus: small discoveries. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e2"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-6",
+      "kind": "attention",
+      "label": "Keeping claims modest",
+      "description": "A possible current attentional focus: keeping claims modest. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e3"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-7",
+      "kind": "attention",
+      "label": "Sharing surprise",
+      "description": "A possible current attentional focus: sharing surprise. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e3"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-8",
+      "kind": "attention",
+      "label": "What happens next",
+      "description": "A possible current attentional focus: what happens next. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e3"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-9",
+      "kind": "attention",
+      "label": "Letting the moment linger",
+      "description": "A possible current attentional focus: letting the moment linger. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e4"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-10",
+      "kind": "attention",
+      "label": "Learning together",
+      "description": "A possible current attentional focus: learning together. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e4"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-11",
+      "kind": "attention",
+      "label": "Uncertainty",
+      "description": "A possible current attentional focus: uncertainty. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e4"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-12",
+      "kind": "attention",
+      "label": "Finding better words",
+      "description": "A possible current attentional focus: finding better words. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e5"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-13",
+      "kind": "attention",
+      "label": "Resisting overstatement",
+      "description": "A possible current attentional focus: resisting overstatement. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e5"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-14",
+      "kind": "attention",
+      "label": "AI assistance",
+      "description": "A possible current attentional focus: ai assistance. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e5"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-15",
+      "kind": "attention",
+      "label": "Another perspective",
+      "description": "A possible current attentional focus: another perspective. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e5"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-16",
+      "kind": "attention",
+      "label": "Playtesting",
+      "description": "A possible current attentional focus: playtesting. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e5"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "focus-17",
+      "kind": "attention",
+      "label": "Teaching without instructions",
+      "description": "A possible current attentional focus: teaching without instructions. This is an independent illustration, not a node in the goal hierarchy.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": null,
+      "evidence": [
+        "e5"
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "id": "assist",
+      "kind": "process",
+      "label": "Select assisted phrasing",
+      "description": "Choose room to notice from an assistant session; an automated assembly step later adds an unreviewed guarantee.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p7"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.86,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "production-6"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "qualify",
+      "kind": "process",
+      "label": "Challenge the guarantee",
+      "description": "Set the polished claim against the limits of three playtests.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p8"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.87,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e7"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "copyedit",
+      "kind": "process",
+      "label": "Edit without adding claims",
+      "description": "Keep a controller detail and a collaborator’s objection after a shortening pass.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p9"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.82,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "production-8"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "concrete",
+      "kind": "goal",
+      "label": "Make it tangible",
+      "description": "Ground an abstract invitation in observable design choices.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.53,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate.",
+        "candidateSet": "aims"
+      },
+      "evidence": [
+        "e2",
+        "e4"
+      ],
+      "interpretation": "local-goal"
+    },
+    {
+      "id": "ordinary",
+      "kind": "goal",
+      "label": "Reframe",
+      "description": "Suggest that an everyday object can carry a social purpose.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.31,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate.",
+        "candidateSet": "aims"
+      },
+      "evidence": [
+        "e1",
+        "e5"
+      ],
+      "interpretation": "local-goal"
+    },
+    {
+      "id": "reflection",
+      "kind": "goal",
+      "label": "Reflection",
+      "description": "Leave the reader room to form their own judgment.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.38,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate.",
+        "candidateSet": "aims"
+      },
+      "evidence": [
+        "e5"
+      ],
+      "interpretation": "local-goal"
+    },
+    {
+      "id": "attention",
+      "kind": "goal",
+      "label": "Look closer",
+      "description": "Use a close observation to let the situation become visible.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p2",
+        "p4"
+      ],
+      "spans": [
+        {
+          "region": "p2",
+          "start": 0,
+          "end": 54
+        },
+        {
+          "region": "p4",
+          "start": 0,
+          "end": 66
+        }
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.24,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate.",
+        "candidateSet": "aims"
+      },
+      "evidence": [
+        "e1",
+        "e3"
+      ],
+      "interpretation": "local-goal"
+    },
+    {
+      "id": "modesty",
+      "kind": "goal",
+      "label": "Keep the claim modest",
+      "description": "Qualify what this small intervention can establish.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p3",
+        "p6"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.34,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate.",
+        "candidateSet": "aims"
+      },
+      "evidence": [
+        "e2",
+        "e5"
+      ],
+      "interpretation": "local-goal"
+    },
+    {
+      "id": "invite",
+      "kind": "goal",
+      "label": "Invite connection",
+      "description": "The writer may be making an everyday encounter feel possible.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.88,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate.",
+        "candidateSet": "aims"
+      },
+      "evidence": [
+        "e1",
+        "e2",
+        "e5"
+      ],
+      "interpretation": "governing-purpose"
+    },
+    {
+      "id": "notice",
+      "kind": "goal",
+      "label": "Help us notice",
+      "description": "Directing attention to quiet behavior before proposing a change.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p1",
+        "p2",
+        "p4"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.62,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate.",
+        "candidateSet": "aims"
+      },
+      "evidence": [
+        "e1",
+        "e3"
+      ],
+      "interpretation": "local-goal"
+    },
+    {
+      "id": "persuade",
+      "kind": "goal",
+      "label": "Make a case",
+      "description": "The story may also make the design project feel worthwhile.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p1",
+        "p2",
+        "p3",
+        "p5",
+        "p6"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.46,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate.",
+        "candidateSet": "aims"
+      },
+      "evidence": [
+        "e2",
+        "e5"
+      ],
+      "interpretation": "local-goal"
+    },
+    {
+      "id": "test",
+      "kind": "goal",
+      "label": "Test an assumption",
+      "description": "The writer may be showing how observation changed a decision.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p4"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.91,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate.",
+        "candidateSet": "aims"
+      },
+      "evidence": [
+        "e3"
+      ],
+      "interpretation": "local-goal"
+    },
+    {
+      "id": "include",
+      "kind": "goal",
+      "label": "Reduce barriers",
+      "description": "Making access tangible through a persistent latch.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p5"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.48,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate.",
+        "candidateSet": "aims"
+      },
+      "evidence": [
+        "e4",
+        "notebook"
+      ],
+      "interpretation": "local-goal"
+    },
+    {
+      "id": "observe",
+      "kind": "process",
+      "label": "Observe everyday life",
+      "description": "Attention to pauses and joint actions offers a possible starting point.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.8,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e1",
+        "e3"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "reframe",
+      "kind": "process",
+      "label": "Reframe the problem",
+      "description": "A place to pause becomes a question of invitation, rather than instruction volume.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.82,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e2"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "iterate",
+      "kind": "process",
+      "label": "Test & refine",
+      "description": "The recordings and the slower second latch support an iterative account.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p4"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.92,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e3"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "craft",
+      "kind": "process",
+      "label": "Work within a brief",
+      "description": "The notebook attributes sound cues and pause control to the brief.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p5"
+      ],
+      "status": "creator-reported",
+      "support": {
+        "value": 0.83,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "notebook"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "reflect",
+      "kind": "process",
+      "label": "Reflect without closure",
+      "description": "The creator may have selected and qualified a final observation while composing the reflection. The finished text alone cannot establish when this happened.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p6"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.8,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e5"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "convention",
+      "kind": "process",
+      "label": "Adapt a familiar pattern",
+      "description": "A familiar design or editorial convention could produce the same text.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.38,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e2"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "history",
+      "kind": "process",
+      "label": "Earlier experience",
+      "description": "No records identify the earlier events that shaped this work. Their timing and influence are unresolved.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6"
+      ],
+      "status": "unknown",
+      "support": null,
+      "evidence": [],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "care",
+      "kind": "value",
+      "label": "Practical care",
+      "description": "A possible concern for everyday comfort, limited to this fictional artifact.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.64,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e2",
+        "e4",
+        "notebook"
+      ],
+      "decisionNodes": [
+        "sentence-4-3"
+      ],
+      "interpretation": "value"
+    },
+    {
+      "id": "curiosity",
+      "kind": "value",
+      "label": "Curiosity",
+      "description": "A possible preference for learning through observation.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.64,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e1",
+        "e3"
+      ],
+      "interpretation": "preference"
+    },
+    {
+      "id": "accessibility",
+      "kind": "value",
+      "label": "Access for everyone",
+      "description": "An illustrative recurring preference: access for everyone.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.51,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e4"
+      ],
+      "interpretation": "preference"
+    },
+    {
+      "id": "adaptability",
+      "kind": "value",
+      "label": "Willingness to revise",
+      "description": "An illustrative recurring preference: willingness to revise.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.48,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e3"
+      ],
+      "interpretation": "preference"
+    },
+    {
+      "id": "stewardship",
+      "kind": "value",
+      "label": "Thoughtful use of tools",
+      "description": "An illustrative recurring preference: thoughtful use of tools.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.44,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e4"
+      ],
+      "interpretation": "preference"
+    },
+    {
+      "id": "belonging",
+      "kind": "value",
+      "label": "Shared belonging",
+      "description": "An illustrative recurring preference: shared belonging.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.4,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e2"
+      ],
+      "interpretation": "preference"
+    },
+    {
+      "id": "patience",
+      "kind": "value",
+      "label": "Patient observation",
+      "description": "An illustrative recurring preference: patient observation.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.36,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e1"
+      ],
+      "interpretation": "preference"
+    },
+    {
+      "id": "restraint",
+      "kind": "value",
+      "label": "Restraint",
+      "description": "A possible preference for modest interventions and qualified claims.",
+      "makers": [
+        "maker-1"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.55,
+        "scale": [
+          0,
+          1
+        ],
+        "semantics": "relative",
+        "meaning": "Illustrative relative support, not a probability or calibrated estimate."
+      },
+      "evidence": [
+        "e2",
+        "e5"
+      ],
+      "interpretation": "preference"
+    }
+  ],
+  "currentAttention": [
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p1",
+        "start": 0,
+        "end": 30
+      },
+      "items": [
+        {
+          "hypothesis": "focus-1",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-4",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-2",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-8",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-6",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p2",
+        "start": 0,
+        "end": 54
+      },
+      "items": [
+        {
+          "hypothesis": "focus-0",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-3",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-1",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-7",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-5",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p2",
+        "start": 55,
+        "end": 80
+      },
+      "items": [
+        {
+          "hypothesis": "focus-0",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-3",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-1",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-7",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-5",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p2",
+        "start": 81,
+        "end": 282
+      },
+      "items": [
+        {
+          "hypothesis": "focus-9",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-12",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-10",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-16",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-14",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p3",
+        "start": 0,
+        "end": 42
+      },
+      "items": [
+        {
+          "hypothesis": "focus-1",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-4",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-2",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-8",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-6",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p3",
+        "start": 43,
+        "end": 127
+      },
+      "items": [
+        {
+          "hypothesis": "focus-4",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-7",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-5",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-9",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p3",
+        "start": 128,
+        "end": 167
+      },
+      "items": [
+        {
+          "hypothesis": "focus-1",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-4",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-2",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-8",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-6",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p3",
+        "start": 168,
+        "end": 264
+      },
+      "items": [
+        {
+          "hypothesis": "focus-7",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-10",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-8",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-14",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-12",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p4",
+        "start": 0,
+        "end": 66
+      },
+      "items": [
+        {
+          "hypothesis": "focus-2",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-5",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-3",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-9",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-7",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p4",
+        "start": 67,
+        "end": 188
+      },
+      "items": [
+        {
+          "hypothesis": "focus-10",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-13",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-17",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-15",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p4",
+        "start": 189,
+        "end": 236
+      },
+      "items": [
+        {
+          "hypothesis": "focus-3",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-6",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-4",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-10",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-8",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p4",
+        "start": 237,
+        "end": 308
+      },
+      "items": [
+        {
+          "hypothesis": "focus-3",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-6",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-4",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-10",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-8",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p5",
+        "start": 0,
+        "end": 66
+      },
+      "items": [
+        {
+          "hypothesis": "focus-5",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-8",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-6",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-12",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-10",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p5",
+        "start": 67,
+        "end": 147
+      },
+      "items": [
+        {
+          "hypothesis": "focus-5",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-8",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-6",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-12",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-10",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p5",
+        "start": 148,
+        "end": 227
+      },
+      "items": [
+        {
+          "hypothesis": "focus-4",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-7",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-5",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-9",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p5",
+        "start": 228,
+        "end": 323
+      },
+      "items": [
+        {
+          "hypothesis": "focus-4",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-7",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-5",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-9",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p6",
+        "start": 0,
+        "end": 58
+      },
+      "items": [
+        {
+          "hypothesis": "focus-6",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-9",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-7",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-13",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p6",
+        "start": 59,
+        "end": 178
+      },
+      "items": [
+        {
+          "hypothesis": "focus-7",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-10",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-8",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-14",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-12",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p6",
+        "start": 179,
+        "end": 278
+      },
+      "items": [
+        {
+          "hypothesis": "focus-8",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-9",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-15",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-13",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p7",
+        "start": 0,
+        "end": 77
+      },
+      "items": [
+        {
+          "hypothesis": "focus-7",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-10",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-8",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-14",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-12",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p7",
+        "start": 78,
+        "end": 245
+      },
+      "items": [
+        {
+          "hypothesis": "focus-12",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-15",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-13",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-1",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-17",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p7",
+        "start": 246,
+        "end": 344
+      },
+      "items": []
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p8",
+        "start": 0,
+        "end": 58
+      },
+      "items": [
+        {
+          "hypothesis": "focus-13",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-16",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-14",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-2",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-0",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p8",
+        "start": 59,
+        "end": 195
+      },
+      "items": [
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-14",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-12",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-0",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-16",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p8",
+        "start": 196,
+        "end": 338
+      },
+      "items": [
+        {
+          "hypothesis": "focus-6",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-9",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-7",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-13",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p9",
+        "start": 0,
+        "end": 109
+      },
+      "items": [
+        {
+          "hypothesis": "focus-5",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-8",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-6",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-12",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-10",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p9",
+        "start": 110,
+        "end": 199
+      },
+      "items": [
+        {
+          "hypothesis": "focus-15",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-0",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-16",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-4",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-2",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p9",
+        "start": 200,
+        "end": 336
+      },
+      "items": [
+        {
+          "hypothesis": "focus-17",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-2",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-0",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-6",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-4",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p10",
+        "start": 0,
+        "end": 70
+      },
+      "items": [
+        {
+          "hypothesis": "focus-16",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-1",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-17",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-5",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-3",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p10",
+        "start": 71,
+        "end": 176
+      },
+      "items": [
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-14",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-12",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-0",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-16",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "maker-1",
+      "span": {
+        "region": "p10",
+        "start": 177,
+        "end": 272
+      },
+      "items": [
+        {
+          "hypothesis": "focus-2",
+          "support": {
+            "value": 0.94,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-5",
+          "support": {
+            "value": 0.61,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-3",
+          "support": {
+            "value": 0.44,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-11",
+          "support": {
+            "value": 0.28,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-9",
+          "support": {
+            "value": 0.17,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        },
+        {
+          "hypothesis": "focus-7",
+          "support": {
+            "value": 0.1,
+            "scale": [
+              0,
+              1
+            ],
+            "semantics": "relative",
+            "meaning": "Hand-written demonstration of shifting attention; not live inference or a calibrated likelihood."
+          }
+        }
+      ]
+    }
+  ],
+  "alternatives": [
+    {
+      "id": "aims",
+      "kind": "coexisting",
+      "members": [
+        "invite",
+        "notice",
+        "persuade",
+        "test",
+        "include",
+        "concrete",
+        "ordinary",
+        "reflection",
+        "attention",
+        "modesty"
+      ],
+      "exhaustive": false
+    },
+    {
+      "id": "routes",
+      "kind": "competing",
+      "members": [
+        "observe",
+        "convention"
+      ],
+      "exhaustive": false
+    }
+  ],
+  "process": {
+    "interpretation": "historical-production",
+    "nodes": [
+      "assist",
+      "qualify",
+      "copyedit",
+      "observe",
+      "reframe",
+      "iterate",
+      "craft",
+      "reflect",
+      "convention",
+      "history"
+    ],
+    "edges": [
+      {
+        "from": "assist",
+        "to": "qualify",
+        "relationship": "The creator bounds the playtest claim while drafting",
+        "kind": "precedes",
+        "status": "creator-reported",
+        "evidence": [
+          "production-6",
+          "production-7"
+        ]
+      },
+      {
+        "from": "qualify",
+        "to": "copyedit",
+        "relationship": "Draft revision and copy editing overlap; precise order unresolved",
+        "kind": "related",
+        "status": "hypothesis",
+        "evidence": [
+          "production-7",
+          "production-8"
+        ]
+      },
+      {
+        "from": "observe",
+        "to": "reframe",
+        "relationship": "May inform the decision",
+        "kind": "enables",
+        "status": "hypothesis",
+        "evidence": [
+          "e1",
+          "e2"
+        ]
+      },
+      {
+        "from": "observe",
+        "to": "iterate",
+        "relationship": "Reported before the later move",
+        "kind": "precedes",
+        "status": "creator-reported",
+        "evidence": [
+          "e3"
+        ]
+      },
+      {
+        "from": "iterate",
+        "to": "craft",
+        "relationship": "Order unresolved",
+        "kind": "order-unknown",
+        "status": "unknown",
+        "evidence": [
+          "e3",
+          "e4"
+        ]
+      },
+      {
+        "from": "craft",
+        "to": "reflect",
+        "relationship": "Related; timing unknown",
+        "kind": "related",
+        "status": "hypothesis",
+        "evidence": [
+          "e4",
+          "e5"
+        ]
+      }
+    ]
+  },
+  "goalHierarchy": {
+    "orderUncertainGroups": [
+      {
+        "id": "noticing-order",
+        "nodes": [
+          "sentence-1-1",
+          "sentence-1-2",
+          "sentence-1-3"
+        ],
+        "explanation": "The supplied account does not establish the order of these noticing steps. Vertical position is not a timeline.",
+        "evidence": [
+          "e1"
+        ]
+      },
+      {
+        "id": "invitation-order",
+        "nodes": [
+          "sentence-2-1",
+          "sentence-2-2",
+          "sentence-2-3",
+          "sentence-2-4"
+        ],
+        "explanation": "These design choices may have developed together; their production order is uncertain.",
+        "evidence": [
+          "e2"
+        ]
+      }
+    ],
+    "nodes": [
+      {
+        "id": "purpose",
+        "maker": "maker-1",
+        "label": "Make room for discovery",
+        "description": "A possible governing purpose: show how cooperative design can invite players to notice each other. Hand-written example, not established intent.",
+        "level": "document",
+        "regions": [
+          "p1",
+          "p2",
+          "p3",
+          "p4",
+          "p5",
+          "p6",
+          "p7",
+          "p8",
+          "p9",
+          "p10"
+        ],
+        "evidence": [
+          "e1",
+          "e2",
+          "e3",
+          "e4",
+          "e5"
+        ]
+      },
+      {
+        "id": "story",
+        "parentId": "purpose",
+        "maker": "maker-1",
+        "label": "Tell a design story",
+        "description": "Build an argument through noticing, trying and revising a shared game mechanic.",
+        "level": "section",
+        "regions": [
+          "p2",
+          "p3",
+          "p4",
+          "p5"
+        ],
+        "evidence": [
+          "e1",
+          "e2",
+          "e3",
+          "e4",
+          "e5"
+        ]
+      },
+      {
+        "id": "limits",
+        "parentId": "purpose",
+        "maker": "maker-1",
+        "label": "Leave room for doubt",
+        "description": "Qualify the claim and close with a concrete encounter.",
+        "level": "section",
+        "regions": [
+          "p6",
+          "p8",
+          "p10"
+        ],
+        "evidence": [
+          "e1",
+          "e2",
+          "e3",
+          "e4",
+          "e5"
+        ]
+      },
+      {
+        "id": "draft",
+        "parentId": "purpose",
+        "maker": "maker-1",
+        "label": "Turn experience into an essay",
+        "description": "Select language, invite a challenge, then edit without losing the troublesome details.",
+        "level": "section",
+        "regions": [
+          "p7",
+          "p9"
+        ],
+        "evidence": [
+          "production-6",
+          "production-8"
+        ]
+      },
+      {
+        "id": "editing",
+        "parentId": "draft",
+        "maker": "maker-1",
+        "label": "Revise without erasing friction",
+        "description": "The copy-edit pass shortened the account; Mara restored the controller detail and kept the collaborator’s objection.",
+        "level": "section",
+        "regions": [
+          "p9"
+        ],
+        "evidence": [
+          "production-8"
+        ]
+      },
+      {
+        "id": "assembly",
+        "maker": "maker-1",
+        "label": "Complete automated assembly",
+        "description": "A later tool step inserted a guarantee after review. This is a recorded tool operation, not an inferred creator intention.",
+        "level": "document",
+        "regions": [
+          "p7"
+        ],
+        "evidence": [
+          "production-ghost"
+        ]
+      },
+      {
+        "id": "next-test",
+        "maker": "maker-1",
+        "label": "Keep learning from play",
+        "description": "A separate practical aim survives the essay: test partners who cannot see one another before reusing the door mechanism.",
+        "level": "section",
+        "regions": [
+          "p10"
+        ],
+        "evidence": [
+          "production-9"
+        ]
+      },
+      {
+        "id": "paragraph-1",
+        "parentId": "story",
+        "maker": "maker-1",
+        "label": "Notice hesitation",
+        "description": "A possible role for this paragraph: notice hesitation. Grounded in the quoted passage, with alternatives still possible.",
+        "level": "paragraph",
+        "regions": [
+          "p2"
+        ],
+        "evidence": [
+          "e1"
+        ]
+      },
+      {
+        "id": "sentence-1-1",
+        "parentId": "paragraph-1",
+        "maker": "maker-1",
+        "label": "Shift our attention",
+        "description": "“The first thing we noticed was not where players died.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p2"
+        ],
+        "span": {
+          "region": "p2",
+          "start": 0,
+          "end": 54
+        },
+        "evidence": [
+          "e1"
+        ]
+      },
+      {
+        "id": "sentence-1-2",
+        "parentId": "paragraph-1",
+        "maker": "maker-1",
+        "label": "Notice the pauses",
+        "description": "“It was where they waited.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p2"
+        ],
+        "span": {
+          "region": "p2",
+          "start": 55,
+          "end": 80
+        },
+        "evidence": [
+          "e1"
+        ]
+      },
+      {
+        "id": "sentence-1-3",
+        "parentId": "paragraph-1",
+        "maker": "maker-1",
+        "label": "Make hesitation visible",
+        "description": "“In our little cooperative game, two strangers stood on opposite sides of a greenhouse door, each holding a lantern, while the instruction I had polished for an afternoon faded politely from the screen.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p2"
+        ],
+        "span": {
+          "region": "p2",
+          "start": 81,
+          "end": 282
+        },
+        "evidence": [
+          "e1"
+        ]
+      },
+      {
+        "id": "paragraph-2",
+        "parentId": "story",
+        "maker": "maker-1",
+        "label": "Offer an invitation",
+        "description": "A possible role for this paragraph: offer an invitation. Grounded in the quoted passage, with alternatives still possible.",
+        "level": "paragraph",
+        "regions": [
+          "p3"
+        ],
+        "evidence": [
+          "e2"
+        ]
+      },
+      {
+        "id": "sentence-2-1",
+        "parentId": "paragraph-2",
+        "maker": "maker-1",
+        "label": "Consider a simple fix",
+        "description": "“We could have made the instruction louder.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p3"
+        ],
+        "span": {
+          "region": "p3",
+          "start": 0,
+          "end": 42
+        },
+        "evidence": [
+          "e2"
+        ]
+      },
+      {
+        "id": "sentence-2-2",
+        "parentId": "paragraph-2",
+        "maker": "maker-1",
+        "label": "Reframe the invitation",
+        "description": "“Instead, we put warm light beyond the glass and let each player open half the latch.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p3"
+        ],
+        "span": {
+          "region": "p3",
+          "start": 43,
+          "end": 127
+        },
+        "evidence": [
+          "e2"
+        ]
+      },
+      {
+        "id": "sentence-2-3",
+        "parentId": "paragraph-2",
+        "maker": "maker-1",
+        "label": "Avoid demanding contact",
+        "description": "“Nothing flashed when they got it wrong.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p3"
+        ],
+        "span": {
+          "region": "p3",
+          "start": 128,
+          "end": 167
+        },
+        "evidence": [
+          "e2"
+        ]
+      },
+      {
+        "id": "sentence-2-4",
+        "parentId": "paragraph-2",
+        "maker": "maker-1",
+        "label": "Make space for encounter",
+        "description": "“The door simply waited for both of them, leaving enough time for one player to notice the other.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p3"
+        ],
+        "span": {
+          "region": "p3",
+          "start": 168,
+          "end": 264
+        },
+        "evidence": [
+          "e2"
+        ]
+      },
+      {
+        "id": "paragraph-3",
+        "parentIds": [
+          "story",
+          "practical-care"
+        ],
+        "maker": "maker-1",
+        "label": "Show the iteration",
+        "description": "A possible role for this paragraph: show the iteration. Grounded in the quoted passage, with alternatives still possible.",
+        "level": "paragraph",
+        "regions": [
+          "p4"
+        ],
+        "evidence": [
+          "e3"
+        ]
+      },
+      {
+        "id": "sentence-3-1",
+        "parentId": "paragraph-3",
+        "maker": "maker-1",
+        "label": "Show sustained attention",
+        "description": "“For two evenings, I watched recordings without touching the build.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p4"
+        ],
+        "span": {
+          "region": "p4",
+          "start": 0,
+          "end": 66
+        },
+        "evidence": [
+          "e3"
+        ]
+      },
+      {
+        "id": "sentence-3-2",
+        "parentId": "paragraph-3",
+        "maker": "maker-1",
+        "label": "Make observation concrete",
+        "description": "“A tester pointed out that I kept calling silence confusion when it sometimes meant someone was waiting for their partner.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p4"
+        ],
+        "span": {
+          "region": "p4",
+          "start": 67,
+          "end": 188
+        },
+        "evidence": [
+          "e3"
+        ]
+      },
+      {
+        "id": "sentence-3-3",
+        "parentId": "paragraph-3",
+        "maker": "maker-1",
+        "label": "Admit a failed attempt",
+        "description": "“Our first revision opened the door too quickly.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p4"
+        ],
+        "span": {
+          "region": "p4",
+          "start": 189,
+          "end": 236
+        },
+        "evidence": [
+          "e3"
+        ]
+      },
+      {
+        "id": "sentence-3-4",
+        "parentId": "paragraph-3",
+        "maker": "maker-1",
+        "label": "Show willingness to revise",
+        "description": "“We slowed it down again, until a shared action had time to feel shared.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p4"
+        ],
+        "span": {
+          "region": "p4",
+          "start": 237,
+          "end": 308
+        },
+        "evidence": [
+          "e3"
+        ]
+      },
+      {
+        "id": "paragraph-4",
+        "parentIds": [
+          "story",
+          "practical-care"
+        ],
+        "maker": "maker-1",
+        "label": "Explain the constraints",
+        "description": "A possible role for this paragraph: explain the constraints. Grounded in the quoted passage, with alternatives still possible.",
+        "level": "paragraph",
+        "regions": [
+          "p5"
+        ],
+        "evidence": [
+          "e4",
+          "notebook"
+        ]
+      },
+      {
+        "id": "sentence-4-1",
+        "parentId": "paragraph-4",
+        "maker": "maker-1",
+        "label": "Acknowledge the access brief",
+        "description": "“The next build kept the lanterns bright without making them blink.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p5"
+        ],
+        "span": {
+          "region": "p5",
+          "start": 0,
+          "end": 66
+        },
+        "evidence": [
+          "e4",
+          "notebook"
+        ]
+      },
+      {
+        "id": "sentence-4-2",
+        "parentId": "paragraph-4",
+        "maker": "maker-1",
+        "label": "Describe the shared checklist",
+        "description": "“Every sound cue had a visible companion, and either player could pause the room.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p5"
+        ],
+        "span": {
+          "region": "p5",
+          "start": 67,
+          "end": 147
+        },
+        "evidence": [
+          "e4",
+          "notebook"
+        ]
+      },
+      {
+        "id": "sentence-4-3",
+        "parentId": "paragraph-4",
+        "maker": "maker-1",
+        "label": "Anticipate a player’s needs",
+        "description": "“One tester played with a single hand and asked for a latch that stayed pressed.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p5"
+        ],
+        "span": {
+          "region": "p5",
+          "start": 148,
+          "end": 227
+        },
+        "evidence": [
+          "e4",
+          "notebook"
+        ]
+      },
+      {
+        "id": "sentence-4-4",
+        "parentId": "paragraph-4",
+        "maker": "maker-1",
+        "label": "Connect details to belonging",
+        "description": "“These are small decisions, but small decisions decide who gets to remain part of the adventure.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p5"
+        ],
+        "span": {
+          "region": "p5",
+          "start": 228,
+          "end": 323
+        },
+        "evidence": [
+          "e4",
+          "notebook"
+        ]
+      },
+      {
+        "id": "paragraph-5",
+        "parentId": "limits",
+        "maker": "maker-1",
+        "label": "Close without certainty",
+        "description": "A possible role for this paragraph: close without certainty. Grounded in the quoted passage, with alternatives still possible.",
+        "level": "paragraph",
+        "regions": [
+          "p6"
+        ],
+        "evidence": [
+          "e5"
+        ]
+      },
+      {
+        "id": "sentence-5-1",
+        "parentId": "paragraph-5",
+        "maker": "maker-1",
+        "label": "Bound the claim",
+        "description": "“I cannot tell you that a gentler door makes a kinder game.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p6"
+        ],
+        "span": {
+          "region": "p6",
+          "start": 0,
+          "end": 58
+        },
+        "evidence": [
+          "e5"
+        ]
+      },
+      {
+        "id": "sentence-5-2",
+        "parentId": "paragraph-5",
+        "maker": "maker-1",
+        "label": "Offer one observed encounter",
+        "description": "“I can tell you that on Thursday, a veteran player stopped racing ahead and waited beside someone learning the controls.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p6"
+        ],
+        "span": {
+          "region": "p6",
+          "start": 59,
+          "end": 178
+        },
+        "evidence": [
+          "e5"
+        ]
+      },
+      {
+        "id": "sentence-5-3",
+        "parentId": "paragraph-5",
+        "maker": "maker-1",
+        "label": "Invite a modest beginning",
+        "description": "“For now, that is a useful place to begin, even if a useful beginning is not yet a design principle.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p6"
+        ],
+        "span": {
+          "region": "p6",
+          "start": 179,
+          "end": 278
+        },
+        "evidence": [
+          "e5"
+        ]
+      },
+      {
+        "id": "paragraph-6",
+        "parentId": "draft",
+        "maker": "maker-1",
+        "label": "Shape an assisted draft",
+        "description": "A possible role for this paragraph: shape an assisted draft. Grounded in the quoted passage, with alternatives still possible.",
+        "level": "paragraph",
+        "regions": [
+          "p7"
+        ],
+        "evidence": [
+          "e6"
+        ]
+      },
+      {
+        "id": "sentence-6-1",
+        "parentId": "paragraph-6",
+        "maker": "maker-1",
+        "label": "Separate solo and shared discovery",
+        "description": "“Solving a puzzle is not quite the same as finding a way to solve it together.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p7"
+        ],
+        "span": {
+          "region": "p7",
+          "start": 0,
+          "end": 77
+        },
+        "evidence": [
+          "e6"
+        ]
+      },
+      {
+        "id": "sentence-6-2",
+        "parentId": "paragraph-6",
+        "maker": "maker-1",
+        "label": "Select room to notice",
+        "description": "“The pause leaves room to notice: a partner moving toward the wrong latch, a lantern changing hands, a small attempt at helping that the old instruction had covered up.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p7"
+        ],
+        "span": {
+          "region": "p7",
+          "start": 78,
+          "end": 245
+        },
+        "evidence": [
+          "e6"
+        ]
+      },
+      {
+        "id": "sentence-6-3",
+        "parentId": "assembly",
+        "maker": "maker-1",
+        "label": "No reviewed creator choice",
+        "description": "No reviewed creator choice is supplied for this generated insertion. Its surrounding paragraph provides context, not evidence of an intended claim.",
+        "level": "sentence",
+        "regions": [
+          "p7"
+        ],
+        "span": {
+          "region": "p7",
+          "start": 246,
+          "end": 344
+        },
+        "evidence": [
+          "e6"
+        ]
+      },
+      {
+        "id": "paragraph-7",
+        "parentId": "limits",
+        "maker": "maker-1",
+        "label": "Question the polished claim",
+        "description": "A possible role for this paragraph: question the polished claim. Grounded in the quoted passage, with alternatives still possible.",
+        "level": "paragraph",
+        "regions": [
+          "p8"
+        ],
+        "evidence": [
+          "e7"
+        ]
+      },
+      {
+        "id": "sentence-7-1",
+        "parentId": "paragraph-7",
+        "maker": "maker-1",
+        "label": "Bound the scale of the test",
+        "description": "“The test was much smaller than the story I wanted to tell.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p8"
+        ],
+        "span": {
+          "region": "p8",
+          "start": 0,
+          "end": 58
+        },
+        "evidence": [
+          "e7"
+        ]
+      },
+      {
+        "id": "sentence-7-2",
+        "parentId": "paragraph-7",
+        "maker": "maker-1",
+        "label": "Expose the sample limits",
+        "description": "“The recordings show three pairs of players, one unreliable controller, and a tester who already knew the puzzle from an earlier session.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p8"
+        ],
+        "span": {
+          "region": "p8",
+          "start": 59,
+          "end": 195
+        },
+        "evidence": [
+          "e7"
+        ]
+      },
+      {
+        "id": "sentence-7-3",
+        "parentId": "paragraph-7",
+        "maker": "maker-1",
+        "label": "Separate invitation from guarantee",
+        "description": "“There is a difference between an invitation and a guarantee, and the difference matters most when a polished sentence makes it easy to forget.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p8"
+        ],
+        "span": {
+          "region": "p8",
+          "start": 196,
+          "end": 338
+        },
+        "evidence": [
+          "e7"
+        ]
+      },
+      {
+        "id": "paragraph-8",
+        "parentId": "editing",
+        "maker": "maker-1",
+        "label": "Keep the awkward detail",
+        "description": "A possible role for this paragraph: keep the awkward detail. Grounded in the quoted passage, with alternatives still possible.",
+        "level": "paragraph",
+        "regions": [
+          "p9"
+        ],
+        "evidence": [
+          "e8"
+        ]
+      },
+      {
+        "id": "sentence-8-1",
+        "parentId": "paragraph-8",
+        "maker": "maker-1",
+        "label": "Keep a troublesome detail",
+        "description": "“Before sending the draft, I shortened the explanation, then restored the awkward detail about the controller.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p9"
+        ],
+        "span": {
+          "region": "p9",
+          "start": 0,
+          "end": 109
+        },
+        "evidence": [
+          "e8"
+        ]
+      },
+      {
+        "id": "sentence-8-2",
+        "parentId": "paragraph-8",
+        "maker": "maker-1",
+        "label": "Include a collaborator’s objection",
+        "description": "“My collaborator asked whether removing an instruction merely hid the work somewhere else.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p9"
+        ],
+        "span": {
+          "region": "p9",
+          "start": 110,
+          "end": 199
+        },
+        "evidence": [
+          "e8"
+        ]
+      },
+      {
+        "id": "sentence-8-3",
+        "parentId": "paragraph-8",
+        "maker": "maker-1",
+        "label": "Reframe what teaching means",
+        "description": "“She was right: the timing, the light, and the forgiving latch were still teaching, just without borrowing the player's entire attention.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p9"
+        ],
+        "span": {
+          "region": "p9",
+          "start": 200,
+          "end": 336
+        },
+        "evidence": [
+          "e8"
+        ]
+      },
+      {
+        "id": "paragraph-9",
+        "parentIds": [
+          "limits",
+          "next-test"
+        ],
+        "maker": "maker-1",
+        "label": "Watch before repeating",
+        "description": "A possible role for this paragraph: watch before repeating. Grounded in the quoted passage, with alternatives still possible.",
+        "level": "paragraph",
+        "regions": [
+          "p10"
+        ],
+        "evidence": [
+          "e9"
+        ]
+      },
+      {
+        "id": "sentence-9-1",
+        "parentId": "paragraph-9",
+        "maker": "maker-1",
+        "label": "Introduce a different problem",
+        "description": "“Next week we will try a room where the partners cannot see each other.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p10"
+        ],
+        "span": {
+          "region": "p10",
+          "start": 0,
+          "end": 70
+        },
+        "evidence": [
+          "e9"
+        ]
+      },
+      {
+        "id": "sentence-9-2",
+        "parentId": "paragraph-9",
+        "maker": "maker-1",
+        "label": "Resist copying the solution",
+        "description": "“I am tempted to carry the same solution across unchanged, which is probably a good reason to watch first.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p10"
+        ],
+        "span": {
+          "region": "p10",
+          "start": 71,
+          "end": 176
+        },
+        "evidence": [
+          "e9"
+        ]
+      },
+      {
+        "id": "sentence-9-3",
+        "parentId": "paragraph-9",
+        "maker": "maker-1",
+        "label": "Watch the players first",
+        "description": "“The door can wait; I want to find out what the people on either side are actually trying to do.” — a possible proximal goal, supplied by the fictional example account.",
+        "level": "sentence",
+        "regions": [
+          "p10"
+        ],
+        "span": {
+          "region": "p10",
+          "start": 177,
+          "end": 272
+        },
+        "evidence": [
+          "e9"
+        ]
+      },
+      {
+        "id": "practical-care",
+        "maker": "maker-1",
+        "label": "Keep play accessible",
+        "description": "A second possible end: accessible play may matter independently of the broader social story. A written stress-test branch.",
+        "regions": [
+          "p4",
+          "p5"
+        ],
+        "evidence": [
+          "e1",
+          "e2",
+          "e3",
+          "e4",
+          "e5"
+        ]
+      }
+    ]
+  },
+  "accounts": [
+    {
+      "id": "account-observation",
+      "label": "Learning through observation",
+      "members": [
+        "invite",
+        "observe",
+        "iterate",
+        "curiosity"
+      ],
+      "explanation": "These hypotheses can form one compatible account. They are not independent measurements of the creator."
+    },
+    {
+      "id": "account-convention",
+      "label": "Adapting an existing brief",
+      "members": [
+        "convention",
+        "craft",
+        "care"
+      ],
+      "explanation": "A brief or familiar pattern may explain the same choices; the notebook can change which decisions belong to this maker."
+    }
+  ],
+  "documentContribution": {
+    "value": 0.55,
+    "quantity": "Synthetic support for consequential creator choices",
+    "explanation": "The notebook attributes sound cues and pause control to the brief. Choosing latch timing remains a possible consequential contribution.",
+    "evidence": [
+      "e2",
+      "notebook"
+    ]
+  },
+  "estimates": [
+    {
+      "region": "p1",
+      "contribution": null,
+      "uncertainty": {
+        "level": "medium",
+        "meaning": "Illustrative uncertainty about the production account, independent of contribution."
+      }
+    },
+    {
+      "region": "p2",
+      "contribution": {
+        "value": 0.6,
+        "quantity": "Synthetic support for consequential creator choices",
+        "scale": "0–1",
+        "explanation": "The document-wide choice supplies context; the described observation or intervention supplies local evidence. No arithmetic decomposition is asserted.",
+        "evidence": [
+          "e1"
+        ],
+        "basis": "global-and-local"
+      },
+      "uncertainty": {
+        "level": "medium",
+        "meaning": "Illustrative uncertainty about the production account, independent of contribution."
+      }
+    },
+    {
+      "region": "p3",
+      "contribution": {
+        "value": 0.8,
+        "quantity": "Synthetic support for consequential creator choices",
+        "scale": "0–1",
+        "explanation": "The document-wide choice supplies context; the described observation or intervention supplies local evidence. No arithmetic decomposition is asserted.",
+        "evidence": [
+          "e2"
+        ],
+        "basis": "global-and-local"
+      },
+      "uncertainty": {
+        "level": "medium",
+        "meaning": "Illustrative uncertainty about the production account, independent of contribution."
+      }
+    },
+    {
+      "region": "p4",
+      "contribution": {
+        "value": 0.7,
+        "quantity": "Synthetic support for consequential creator choices",
+        "scale": "0–1",
+        "explanation": "The document-wide choice supplies context; the described observation or intervention supplies local evidence. No arithmetic decomposition is asserted.",
+        "evidence": [
+          "e3"
+        ],
+        "basis": "global-and-local"
+      },
+      "uncertainty": {
+        "level": "medium",
+        "meaning": "Illustrative uncertainty about the production account, independent of contribution."
+      }
+    },
+    {
+      "region": "p5",
+      "contribution": {
+        "value": 0.85,
+        "quantity": "Synthetic support for consequential creator choices",
+        "scale": "0–1",
+        "explanation": "The sound cues and pause control may be local choices or requirements from the brief. These scores are illustrative, not calibrated.",
+        "evidence": [
+          "e4"
+        ],
+        "basis": "global-and-local"
+      },
+      "uncertainty": {
+        "level": "high",
+        "meaning": "Illustrative uncertainty about the production account, independent of contribution."
+      }
+    },
+    {
+      "region": "p6",
+      "contribution": {
+        "value": 0.65,
+        "quantity": "Synthetic support for consequential creator choices",
+        "scale": "0–1",
+        "explanation": "The document-wide choice supplies context; the described observation or intervention supplies local evidence. No arithmetic decomposition is asserted.",
+        "evidence": [
+          "e5"
+        ],
+        "basis": "global-and-local"
+      },
+      "uncertainty": {
+        "level": "medium",
+        "meaning": "Illustrative uncertainty about the production account, independent of contribution."
+      }
+    },
+    {
+      "region": "p7",
+      "contribution": {
+        "value": 0.4,
+        "quantity": "Synthetic support for consequential creator choices",
+        "scale": "0–1",
+        "explanation": "The document-wide choice supplies context; the described observation or intervention supplies local evidence. No arithmetic decomposition is asserted.",
+        "evidence": [
+          "e6"
+        ],
+        "basis": "global-and-local"
+      },
+      "uncertainty": {
+        "level": "medium",
+        "meaning": "Illustrative uncertainty about the production account, independent of contribution."
+      }
+    },
+    {
+      "region": "p8",
+      "contribution": {
+        "value": 0.7,
+        "quantity": "Synthetic support for consequential creator choices",
+        "scale": "0–1",
+        "explanation": "The document-wide choice supplies context; the described observation or intervention supplies local evidence. No arithmetic decomposition is asserted.",
+        "evidence": [
+          "e7"
+        ],
+        "basis": "global-and-local"
+      },
+      "uncertainty": {
+        "level": "medium",
+        "meaning": "Illustrative uncertainty about the production account, independent of contribution."
+      }
+    },
+    {
+      "region": "p9",
+      "contribution": {
+        "value": 0.8,
+        "quantity": "Synthetic support for consequential creator choices",
+        "scale": "0–1",
+        "explanation": "The document-wide choice supplies context; the described observation or intervention supplies local evidence. No arithmetic decomposition is asserted.",
+        "evidence": [
+          "e8"
+        ],
+        "basis": "global-and-local"
+      },
+      "uncertainty": {
+        "level": "medium",
+        "meaning": "Illustrative uncertainty about the production account, independent of contribution."
+      }
+    },
+    {
+      "region": "p10",
+      "contribution": {
+        "value": 0.65,
+        "quantity": "Synthetic support for consequential creator choices",
+        "scale": "0–1",
+        "explanation": "The document-wide choice supplies context; the described observation or intervention supplies local evidence. No arithmetic decomposition is asserted.",
+        "evidence": [
+          "e9"
+        ],
+        "basis": "global-and-local"
+      },
+      "uncertainty": {
+        "level": "medium",
+        "meaning": "Illustrative uncertainty about the production account, independent of contribution."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1",
+      "source": "tompathy:example",
+      "excerpt": "The first thing we noticed was not where players died. It was where they waited. In our little cooperative game, two strangers stood on opposite sides of a greenhouse door, each holding a lantern, while the instruction I had polished for an afternoon faded politely from the screen.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "Text compatible with this account; it does not establish the maker’s intent."
+    },
+    {
+      "id": "e2",
+      "source": "tompathy:example",
+      "excerpt": "We could have made the instruction louder. Instead, we put warm light beyond the glass and let each player open half the latch. Nothing flashed when they got it wrong. The door simply waited for both of them, leaving enough time for one player to notice the other.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "Text compatible with this account; it does not establish the maker’s intent."
+    },
+    {
+      "id": "e3",
+      "source": "tompathy:example",
+      "excerpt": "For two evenings, I watched recordings without touching the build. A tester pointed out that I kept calling silence confusion when it sometimes meant someone was waiting for their partner. Our first revision opened the door too quickly. We slowed it down again, until a shared action had time to feel shared.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "Text compatible with this account; it does not establish the maker’s intent."
+    },
+    {
+      "id": "e4",
+      "source": "tompathy:example",
+      "excerpt": "The next build kept the lanterns bright without making them blink. Every sound cue had a visible companion, and either player could pause the room. One tester played with a single hand and asked for a latch that stayed pressed. These are small decisions, but small decisions decide who gets to remain part of the adventure.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "Text compatible with this account; it does not establish the maker’s intent."
+    },
+    {
+      "id": "e5",
+      "source": "tompathy:example",
+      "excerpt": "I cannot tell you that a gentler door makes a kinder game. I can tell you that on Thursday, a veteran player stopped racing ahead and waited beside someone learning the controls. For now, that is a useful place to begin, even if a useful beginning is not yet a design principle.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "Text compatible with this account; it does not establish the maker’s intent."
+    },
+    {
+      "id": "e6",
+      "source": "tompathy:example",
+      "excerpt": "Solving a puzzle is not quite the same as finding a way to solve it together. The pause leaves room to notice: a partner moving toward the wrong latch, a lantern changing hands, a small attempt at helping that the old instruction had covered up. This approach guarantees that every player feels equally included from the very first interaction.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "Text compatible with this account; it does not establish the maker’s intent."
+    },
+    {
+      "id": "e7",
+      "source": "tompathy:example",
+      "excerpt": "The test was much smaller than the story I wanted to tell. The recordings show three pairs of players, one unreliable controller, and a tester who already knew the puzzle from an earlier session. There is a difference between an invitation and a guarantee, and the difference matters most when a polished sentence makes it easy to forget.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "Text compatible with this account; it does not establish the maker’s intent."
+    },
+    {
+      "id": "e8",
+      "source": "tompathy:example",
+      "excerpt": "Before sending the draft, I shortened the explanation, then restored the awkward detail about the controller. My collaborator asked whether removing an instruction merely hid the work somewhere else. She was right: the timing, the light, and the forgiving latch were still teaching, just without borrowing the player's entire attention.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "Text compatible with this account; it does not establish the maker’s intent."
+    },
+    {
+      "id": "e9",
+      "source": "tompathy:example",
+      "excerpt": "Next week we will try a room where the partners cannot see each other. I am tempted to carry the same solution across unchanged, which is probably a good reason to watch first. The door can wait; I want to find out what the people on either side are actually trying to do.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "Text compatible with this account; it does not establish the maker’s intent."
+    },
+    {
+      "id": "production-1",
+      "source": "Fictional draft record · Lantern House",
+      "excerpt": "A dated handwritten draft contains this wording before the assistant session.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "An authored production history for this fictional reading; no real creator is being assessed."
+    },
+    {
+      "id": "production-2",
+      "source": "Fictional draft record · Lantern House",
+      "excerpt": "A saved copy-edit diff shortens the phrasing without changing the described design choice.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "An authored production history for this fictional reading; no real creator is being assessed."
+    },
+    {
+      "id": "production-3",
+      "source": "Fictional draft record · Lantern House",
+      "excerpt": "The observation log and personal draft agree; the interpretation remains Mara's account.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "An authored production history for this fictional reading; no real creator is being assessed."
+    },
+    {
+      "id": "production-4",
+      "source": "Fictional draft record · Lantern House",
+      "excerpt": "A collaborator's checklist supplies some of the decisions, which Mara selects and explains.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "An authored production history for this fictional reading; no real creator is being assessed."
+    },
+    {
+      "id": "production-5",
+      "source": "Fictional draft record · Lantern House",
+      "excerpt": "This reflection appears in the personal draft, but its earlier drafting history is incomplete.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "An authored production history for this fictional reading; no real creator is being assessed."
+    },
+    {
+      "id": "production-6",
+      "source": "Fictional draft record · Lantern House",
+      "excerpt": "An assistant proposed 'room to notice'; Mara selected and revised that phrasing. A later automated assembly step generated a universal-inclusion claim after her final review.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "An authored production history for this fictional reading; no real creator is being assessed."
+    },
+    {
+      "id": "production-7",
+      "source": "Fictional draft record · Lantern House",
+      "excerpt": "Mara's draft already cautioned against generalizing from three pairs. This predates the unreviewed guarantee inserted during assembly.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "An authored production history for this fictional reading; no real creator is being assessed."
+    },
+    {
+      "id": "production-8",
+      "source": "Fictional draft record · Lantern House",
+      "excerpt": "The visible diff records sentence shortening; the controller detail was restored by Mara.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "An authored production history for this fictional reading; no real creator is being assessed."
+    },
+    {
+      "id": "production-9",
+      "source": "Fictional draft record · Lantern House",
+      "excerpt": "A draft fragment contains this plan; no record shows whether earlier phrasing was assisted.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "An authored production history for this fictional reading; no real creator is being assessed."
+    },
+    {
+      "id": "production-context-1",
+      "source": "Fictional notebook · context and limitations",
+      "excerpt": "The first playtest predates the assistant session by eight days; its notes already describe waiting at the greenhouse door.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "Authored demonstration record"
+    },
+    {
+      "id": "production-context-2",
+      "source": "Fictional notebook · context and limitations",
+      "excerpt": "The copy-edit changes phrasing, while the joint latch and waiting-for-a-partner decisions already appear in the earlier draft.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "Authored demonstration record"
+    },
+    {
+      "id": "production-context-3",
+      "source": "Fictional notebook · context and limitations",
+      "excerpt": "A tester challenged Mara’s interpretation of silence. The draft keeps both that objection and the failed faster-door experiment.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "Authored demonstration record"
+    },
+    {
+      "id": "production-context-4",
+      "source": "Fictional notebook · context and limitations",
+      "excerpt": "The access checklist required paired cues and a pause control. The persistent latch was a later response to a one-handed player.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "Authored demonstration record"
+    },
+    {
+      "id": "production-context-5",
+      "source": "Fictional notebook · context and limitations",
+      "excerpt": "The record preserves one veteran waiting for a newcomer, not a broad test of lasting social effects.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "Authored demonstration record"
+    },
+    {
+      "id": "production-context-6",
+      "source": "Fictional notebook · context and limitations",
+      "excerpt": "The assistant supplied ‘room to notice’; the revision log records Mara selecting it. Selection establishes review, not sole invention.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "Authored demonstration record"
+    },
+    {
+      "id": "production-context-7",
+      "source": "Fictional notebook · context and limitations",
+      "excerpt": "Only three pairs played; a faulty controller and prior puzzle exposure are alternative explanations the draft explicitly retains.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "Authored demonstration record"
+    },
+    {
+      "id": "production-context-8",
+      "source": "Fictional notebook · context and limitations",
+      "excerpt": "Mara restored the controller detail after shortening. Keeping the collaborator’s objection makes the polished account less one-sided.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "Authored demonstration record"
+    },
+    {
+      "id": "production-context-9",
+      "source": "Fictional notebook · context and limitations",
+      "excerpt": "The next test changes whether partners can see each other. The proposed plan is recorded, but earlier wording is missing.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "Authored demonstration record"
+    },
+    {
+      "id": "production-ghost",
+      "source": "Fictional assembly log",
+      "excerpt": "The guarantee was generated and inserted after Mara’s final review; the version log records no later review of that sentence.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "Authored demonstration record"
+    },
+    {
+      "id": "production-caution",
+      "source": "Fictional earlier draft",
+      "excerpt": "The earlier draft already distinguishes an invitation from a guarantee. The inserted universal claim conflicts with that explicit caution.",
+      "capturedAt": "2026-10-12T22:09:15.520Z",
+      "relationship": "Authored demonstration record"
+    },
+    {
+      "id": "notebook",
+      "source": "Fictional studio notebook · Lantern House",
+      "excerpt": "Mara Vale makes cooperative puzzle games. A collaborator supplied the visual cues and pause control requirements; Mara added the persistent latch after a playtest. Drafts include selected AI suggestions, light copy edits, and an unreviewed generated claim. All people, records and dates here are fictional.",
+      "capturedAt": "2026-09-14T10:00:00.000Z",
+      "relationship": "Creator-reported constraints offer an alternative to original design choices."
+    }
+  ],
+  "revisionOf": "lantern-analysis-1",
+  "changeExplanation": "The notebook shows that sound cues and pause control were requirements. “Design for inclusion” is replaced by “Work within a brief”; the values snapshot is explicitly revised."
+}

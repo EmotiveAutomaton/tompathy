@@ -107,10 +107,8 @@ type Interval = [number, number];
  * visual instances, never a brick straddling unrelated parent outcomes. */
 export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
   const columns = graph.depth + 1;
-  const firstWidth =
-    columns === 1
-      ? width
-      : Math.max(width / columns, Math.min(width * 0.45, height / 2));
+  // Sentence choices get one and a half shares, rather than half the chart.
+  const firstWidth = (width * 1.5) / (columns + 0.5);
   const edges = Array.from({ length: columns + 1 }, (_, i) =>
     i === 0
       ? 0
@@ -236,6 +234,7 @@ export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
     dotX: number;
     dotY: number;
     exposure: number;
+    dotHeight: number;
     path: string;
   }[] = [];
   const visit = (
@@ -257,8 +256,12 @@ export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
     }).filter((p) => p.b >= p.a);
     const y = Math.min(...samples.map((p) => p.a)),
       extent = Math.max(...samples.map((p) => p.b)) - y;
-    // Dot arcs follow this node's root lobe, independently of the shared back.
-    const localY = from + to - 1;
+    // The leaf tier follows the single shared back; higher tiers follow
+    // their own ultimate root. Use the uncut band centre for a smooth leaf arc.
+    const localY =
+      node.rank === 0
+        ? ((la + ((lb - la) * (from + to)) / 2) / height) * 2 - 1
+        : from + to - 1;
     const desiredX = x + (end - x) * (0.46 + 0.4 * Math.abs(localY) ** 1.5);
     const radius = node.parents.length ? 1.6 : 2.7;
     // Fit the whole dot inside its brick, including the curved upper/lower edge.
@@ -302,6 +305,7 @@ export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
       dotX,
       dotY,
       exposure: 1,
+      dotHeight: middle.b - middle.a,
       path: pathFor(l, x, end, from, to),
     });
     let offset = from;
@@ -322,6 +326,37 @@ export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
   };
   const dense = graph.roots.reduce((s, n) => s + count(n), 0) > 600;
   if (!dense) for (const l of lobes) visit(l.root, l, 0, 1);
+  // Find an inscribed label rectangle. The reader calls this once against the
+  // whole world, so labels stay attached to cells while the camera moves.
+  const labelBox = (
+    tile: (typeof tiles)[number],
+    view: { left: number; right: number; top: number; bottom: number },
+    maxWidth: number,
+    maxHeight: number,
+  ) => {
+    const lobe = lobes.find((l) => l.root.id === tile.rootId)!;
+    const left = Math.max(tile.x, view.left),
+      right = Math.min(tile.x + tile.width, view.right);
+    let best = { x: tile.dotX, y: tile.dotY, width: 0, height: 0 },
+      score = 0;
+    for (let i = 1; i < 10; i++) {
+      const x = left + ((right - left) * i) / 10;
+      const half = Math.min(maxWidth / 2, x - left, right - x);
+      if (half <= 0) continue;
+      const spans = [-1, 0, 1].map((d) =>
+        band(lobe, x + d * half, tile.from, tile.to),
+      );
+      const top = Math.max(view.top, ...spans.map((b) => b[0])),
+        bottom = Math.min(view.bottom, ...spans.map((b) => b[1]));
+      const height = Math.max(0, Math.min(maxHeight, bottom - top));
+      const area = half * 2 * height;
+      if (area > score) {
+        score = area;
+        best = { x, y: (top + bottom) / 2, width: half * 2, height };
+      }
+    }
+    return best;
+  };
   return {
     width,
     height,
@@ -330,6 +365,7 @@ export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
     columns,
     slices,
     dense,
+    labelBox,
   };
 }
 

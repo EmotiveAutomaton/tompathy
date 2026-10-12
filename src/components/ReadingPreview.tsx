@@ -1,8 +1,12 @@
-import type { Artifact } from "../core/model";
+import { ReadingText, textOffset } from "./ReadingText";
+import { ghostAt } from "../core/ghost";
+import type { Artifact, Packet } from "../core/model";
 import { sentences } from "../core/sentences";
 import { SelectionLock } from "./SelectionLock";
 export function ReadingPreview({
   artifact,
+  packet,
+  maker,
   region,
   offset,
   pinned,
@@ -13,6 +17,8 @@ export function ReadingPreview({
   lockReminder = 0,
 }: {
   artifact: Artifact;
+  packet?: Packet | null;
+  maker?: string;
   region: string;
   offset: number;
   pinned: boolean;
@@ -42,33 +48,31 @@ export function ReadingPreview({
                       : ""
                   }
                   onMouseMove={(e) => {
-                    const caret = document.caretRangeFromPoint(
-                      e.clientX,
-                      e.clientY,
-                    );
                     onMove(
                       r.id,
                       false,
                       s.start +
-                        (caret?.startContainer === e.currentTarget.firstChild
-                          ? Math.min(caret.startOffset, s.text.length - 1)
-                          : 0),
+                        textOffset(
+                          e.currentTarget,
+                          e.clientX,
+                          e.clientY,
+                          s.text.length,
+                        ),
                     );
                   }}
                   onFocus={() => onMove(r.id, false, s.start)}
                   onClick={(e) => {
                     if (!getSelection()?.toString()) {
-                      const caret = document.caretRangeFromPoint(
-                        e.clientX,
-                        e.clientY,
-                      );
                       onMove(
                         r.id,
                         true,
                         s.start +
-                          (caret?.startContainer === e.currentTarget.firstChild
-                            ? Math.min(caret.startOffset, s.text.length - 1)
-                            : 0),
+                          textOffset(
+                            e.currentTarget,
+                            e.clientX,
+                            e.clientY,
+                            s.text.length,
+                          ),
                       );
                     }
                   }}
@@ -79,7 +83,13 @@ export function ReadingPreview({
                     }
                   }}
                 >
-                  {s.text}
+                  <ReadingText
+                    text={s.text}
+                    start={s.start}
+                    emphasis={r.emphasis}
+                    reading={ghostAt(packet, maker, r.id, s.start, s.end)}
+                    packet={packet}
+                  />
                 </span>
                 {pinned &&
                   region === r.id &&

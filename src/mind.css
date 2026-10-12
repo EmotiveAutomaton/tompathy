@@ -121,6 +121,7 @@
   position: relative;
   width: 100%;
   isolation: isolate;
+  overflow: clip;
 }
 .cloud-position {
   position: absolute;
@@ -144,22 +145,110 @@
 }
 .cloud-position button {
   font: inherit;
-  padding: 6px;
+  padding: 3px;
   letter-spacing: -0.025em;
   animation: cloud-arrive 0.65s cubic-bezier(0.16, 0.8, 0.23, 1) both;
   border-radius: 45%;
 }
+.cloud-line {
+  display: block;
+}
+.creator-control {
+  position: absolute;
+  top: 7px;
+  left: 10px;
+  width: max-content;
+  max-width: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  pointer-events: auto;
+  color: var(--trace);
+}
+.creator-brain {
+  width: 34px;
+  height: 25px;
+}
+.creator-choice {
+  position: relative;
+  max-width: 140px;
+}
+.creator-current {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--muted);
+  font: 10px/1.3 system-ui;
+  padding: 2px 0;
+  pointer-events: none;
+}
+.creator-current > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.creator-current svg {
+  flex: 0 0 9px;
+  opacity: 0.65;
+}
+.creator-choice select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  font: 12px system-ui;
+}
+.creator-choice:has(select:focus-visible) {
+  outline: 1px solid var(--trace);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+.creator-choice option {
+  background: var(--surface);
+  color: var(--ink);
+}
+.values-bottom > .icon-button {
+  width: 25px;
+  height: 28px;
+  flex: 0 0 25px;
+  opacity: 0.65;
+  border-radius: 50%;
+}
+.values-bottom > .icon-button:hover {
+  opacity: 1;
+}
+.value-tabs .search-toggle {
+  opacity: 0.72;
+}
+.value-tabs .search-toggle:hover,
+.value-tabs .search-toggle:focus-visible {
+  opacity: 1;
+}
 .cloud-position button:hover,
 .cloud-position button:focus-visible {
   background: color-mix(in srgb, var(--trace) 8%, transparent);
+}
+.cloud-combined .cloud-position button {
+  padding: 3px;
 }
 .cloud-center {
   color: var(--green);
   z-index: 1;
 }
 .cloud-position:not(.cloud-center) .hover-anchor {
-  animation: cloud-drift 8s ease-in-out infinite;
-  animation-delay: inherit;
+  /* A brief settling motion; a held reading should not animate indefinitely. */
+  animation: cloud-drift 2.4s ease-in-out;
+}
+.cloud-suspended .cloud-position,
+.cloud-suspended .cloud-position button,
+.cloud-suspended .hover-anchor {
+  animation: none !important;
+  transition: none !important;
 }
 .cloud-position:hover .hover-anchor,
 .cloud-position:focus-within .hover-anchor {
@@ -353,10 +442,10 @@
   display: inline-grid;
   place-items: center;
   color: #426f5d;
-  background: #dcebe1;
-  border: 1px solid #91b7a4;
+  background: #edf3ec;
+  border: 1px solid #c7d8ca;
   border-radius: 50%;
-  box-shadow: 0 1px 5px #426f5d22;
+  box-shadow: 0 1px 3px #426f5d10;
   cursor: pointer;
   z-index: 6;
 }
@@ -622,10 +711,10 @@
   inset: 0;
   display: grid;
   place-items: center;
-  color: var(--ink);
-  opacity: 0.7;
+  color: var(--cue-ink);
+  opacity: 0.32;
   font:
-    12px Georgia,
+    10px Georgia,
     serif;
 }
 .values-region #values-view {
@@ -708,7 +797,7 @@
 }
 .goals-region .welcome,
 .goals-region .message {
-  margin-top: 24px;
+  margin-top: 56px;
 }
 
 .spool-area.is-idle .spool {
@@ -1179,4 +1268,123 @@
 }
 .odometer {
   max-height: 300px;
+}
+
+/* Navigation is confined to the graph; the rest of the reader scrolls normally. */
+.pyramid > svg {
+  overflow: hidden;
+  touch-action: none;
+  cursor: grab;
+}
+.pyramid > svg:active {
+  cursor: grabbing;
+}
+.hierarchy-label {
+  overflow-wrap: anywhere;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2px;
+  box-sizing: border-box;
+  font: 12px/1.25 system-ui;
+  color: var(--ink);
+  overflow: hidden;
+}
+.chosen .hierarchy-label {
+  color: var(--surface);
+}
+.hierarchy-fit {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--muted);
+  opacity: 0.8;
+}
+.hierarchy-fit:hover,
+.hierarchy-fit:focus-visible {
+  opacity: 1;
+  color: var(--ink);
+}
+.process-find {
+  position: absolute;
+  z-index: 9;
+  left: 1px;
+  top: auto;
+  bottom: -10px;
+  transform: translate(-50%, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: 23px;
+  height: 23px;
+  padding: 0;
+  border: 1px solid #b9d2c1;
+  border-radius: 50%;
+  color: #426f5d;
+  background: #edf3ec;
+}
+.process-find.was-found {
+  color: var(--muted);
+  background: var(--surface);
+  border-color: var(--line);
+}
+
+.pyramid > svg:focus-visible {
+  outline: 1px solid var(--trace);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Absent levels close their aperture at the old centre without shifting reels. */
+.spool.aperture-closed .spool-window {
+  transform: translateY(-20px);
+  opacity: 0.4;
+}
+.spool.aperture-closed .spool-strip {
+  visibility: hidden;
+}
+.spool-window {
+  transition:
+    height 0.19s ease,
+    transform 0.19s ease,
+    border-color 0.15s;
+}
+.hierarchy-wave {
+  fill: none;
+  stroke: var(--trace);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+.chosen .hierarchy-wave {
+  stroke: var(--surface);
+}
+.cloud-overflow {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  gap: 7px 12px;
+  overflow: auto;
+  padding-top: 25px;
+}
+.cloud-overflow .cloud-position {
+  position: static;
+  transform: none;
+  max-width: 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .spool-window {
+    transition: none;
+  }
 }

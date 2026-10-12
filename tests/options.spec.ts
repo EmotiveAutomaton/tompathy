@@ -52,7 +52,7 @@ test("Options, persistent idle reels, connected alternatives and overlay dismiss
   await expect(page.locator(".process-lock")).toBeVisible();
   await page.getByRole("button", { name: "Reader menu", exact: true }).click();
   await expect(page.getByRole("dialog")).toHaveAccessibleName("Options");
-  await expect(page.getByLabel("Creator selection")).toBeVisible();
+  await expect(page.getByRole("dialog").getByLabel("Creator selection")).toHaveCount(0);
   await expect(page.getByRole("checkbox")).toHaveCount(5);
   await expect(
     page.getByRole("checkbox", { name: /Word-level analysis/ }),
@@ -120,7 +120,7 @@ test("portable reading restores exact source and rejects changed anchors", async
   );
   await page.locator('[data-passage="p4"] [data-sentence="1"]').click();
   await expect(page.locator('[data-dominant="true"]')).toHaveText(
-    "Learning from others",
+    "Learning together",
   );
   session.artifact.regions[0].anchor.exact =
     "Tampered page with different source text";
@@ -151,7 +151,7 @@ test("context wheel follows real completed fetches and never updates estimates",
           packet: p,
           scope: "artifact",
           context: [],
-          contextSources: [{ author: "The garden designer", url: source }],
+          contextSources: [{ author: "Mara Vale", url: source }],
         }),
       );
     },
@@ -164,7 +164,7 @@ test("context wheel follows real completed fetches and never updates estimates",
     await route.fulfill({
       status: 200,
       contentType: "text/plain",
-      body: "The garden designer writes about public spaces and iterative design.",
+      body: "Mara Vale writes about public spaces and iterative design.",
     });
   });
   await page.goto("/?panel");
@@ -228,15 +228,15 @@ test("pointed branches, faded endings, precise reel hover gaps and double-click 
     ),
   ).toHaveCount(0);
   await expect(page.locator('.spool[data-level="0"]')).toHaveClass(
-    /path-ended/,
+    /aperture-closed/,
   );
-  await expect(page.locator('.spool[data-level="0"]')).toHaveCSS(
-    "opacity",
-    "0.18",
+  await expect(page.locator('.spool[data-level="0"] .spool-window')).toHaveCSS(
+    "height",
+    "2px",
   );
   await page.screenshot({ path: "evidence/short-branch.png" });
   await lower.click();
-  const exact = page.locator('.spool[data-level="2"] .spool-window');
+  const exact = page.locator('.spool[data-rank="1"] .spool-window');
   await exact.hover();
   await expect(page.locator(".spool.is-expanded")).toHaveCount(1);
   await expect(page.locator(".spool.is-expanded .spool-window")).toHaveCSS(
@@ -263,7 +263,7 @@ test("pointed branches, faded endings, precise reel hover gaps and double-click 
   await expect(page.locator(".process-lock")).toHaveCount(0);
   await lower.dblclick();
   await expect(page.locator(".process-lock")).toHaveCount(0);
-  await expect(page.getByRole("img", { name: /^Order uncertain/ })).toHaveCount(
+  await expect(page.getByRole("button", { name: /^Order uncertain/ })).toHaveCount(
     2,
   );
 });

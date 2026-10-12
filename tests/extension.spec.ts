@@ -190,10 +190,10 @@ test("installed page adapter: anchors, dynamic revision, cleanup and long-page l
       await readFile("public/testbed-result.json", "utf8"),
     );
     expect(testbed.artifact.authors).toEqual([
-      { label: "The garden designer", basis: "page-metadata" },
+      { label: "Mara Vale", basis: "page-metadata" },
     ]);
     expect(matchPacket(fixture, testbed.artifact, "artifact", [])).toBeNull();
-    expect(testbed.artifact.regions).toHaveLength(6);
+    expect(testbed.artifact.regions).toHaveLength(fixture.artifact.regions.length);
     await source.setContent(
       `<meta name="author" content="Fixture Creator"><nav><p>Navigation not part of this article.</p></nav><div class="entry entryPage"><div><h1>A legacy blog article</h1><p>The creator's actual article paragraph with useful content.</p></div><div class="entryFooter"><p>Subscribe to our unrelated newsletter.</p></div></div><div class="recent-articles"><p>More recent articles and promotional links.</p></div>`,
     );

@@ -79,6 +79,6 @@ export function analysisHandoff(session: Session) {
       session.scope === "context"
         ? session.context.filter((c) => c.selected)
         : [],
-    accepts: ["1.0", "1.1", "1.2", "1.3", "1.4", "1.5"],
+    accepts: ["1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6"],
   };
 }
