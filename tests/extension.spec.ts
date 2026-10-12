@@ -3,6 +3,7 @@ import { cp, mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { matchPacket, parsePacket } from "../src/core/model";
 test("installed page adapter: anchors, dynamic revision, cleanup and long-page latency", async () => {
+  await mkdir("evidence", { recursive: true });
   const root = path.resolve(".local/extension-test");
   await mkdir(root, { recursive: true });
   await cp("dist", root, { recursive: true });

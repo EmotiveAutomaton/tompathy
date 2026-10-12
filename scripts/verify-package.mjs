@@ -1,4 +1,4 @@
-import { readFile, readdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { unzipSync } from "fflate";
 import assert from "node:assert/strict";
@@ -23,6 +23,7 @@ const receipt = {
   matchesBuild: true,
   permanentHostPermissions: false,
 };
+await mkdir("evidence", { recursive: true });
 await writeFile(
   "evidence/package-verification.json",
   JSON.stringify(receipt, null, 2),

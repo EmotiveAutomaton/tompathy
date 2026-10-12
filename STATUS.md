@@ -21,6 +21,8 @@ Build **846d62d5c803** passed:
 
 The broader browser run initially found the odometer intercepting the unlock button. Its stacking order was corrected; the complete browser suite and native Chrome check then passed. Screenshots of Options, expanded reels, the native panel and active README example were visually inspected.
 
+The first clean CI checkout exposed a missing generated-evidence directory. The page-adapter test and package verifier now create their output directory explicitly, independent of tracked screenshots or earlier test order.
+
 Local receipts are in ignored `evidence/`; CI retains its own test artifacts. Chrome's local Prompt/Summarizer availability was `downloadable`; neither model was downloaded or executed. The physical folder picker is not claimed as automated.
 
 ## Public-repository preparation
