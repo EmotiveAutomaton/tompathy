@@ -207,8 +207,9 @@
 }
 .pyramid > svg {
   position: absolute;
+  top: var(--hierarchy-heading-clearance, 0px);
   width: 100%;
-  height: 100%;
+  height: calc(100% - var(--hierarchy-heading-clearance, 0px));
   overflow: visible;
 }
 .pyramid-silhouette {

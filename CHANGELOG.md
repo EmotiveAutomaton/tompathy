@@ -10,6 +10,7 @@ Chrome build 0.1.2, display label “0.2 development 2”.
 - Expanded options inspect their own branch independently of previous hover; arrow keys navigate options before selection.
 - System dark surfaces, viewport-contained document locks and keyboard value tabs.
 - Context cancellation and empty-state improvements; deselecting the last context source restores artifact scope. Pending-context exports preserve the prior account in history and reimport successfully.
+- Measured heading clearance prevents wider platform fonts from covering top dots; hierarchy layout remains cached across pointer updates.
 - Expanded regression coverage and a detailed UX review in `docs/UX_REVIEW_0.1.2.md`.
 
 ## 0.2.0-dev.1 — unreleased development toward 0.2

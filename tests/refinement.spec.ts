@@ -11,6 +11,10 @@ test("every expanded option inspects one leaf, in either direction, without chan
 }) => {
   await page.setViewportSize({ width: 360, height: 900 });
   await page.goto("/?panel");
+  // Simulate a platform font that makes the corner label wider.
+  await page.addStyleTag({
+    content: ".process-region .heading-help { font-family: monospace; }",
+  });
   await page
     .locator('[data-root="purpose"][data-node="paragraph-3"] circle')
     .click();
@@ -59,6 +63,40 @@ test("every expanded option inspects one leaf, in either direction, without chan
   await page.locator(".spool").nth(1).hover();
   await page.locator(".process-lock").click();
   await expect(page.locator(".process-lock")).toHaveCount(0);
+});
+
+test("corner heading leaves top dots reachable with wider platform fonts and zoom", async ({
+  page,
+}) => {
+  await page.goto("/?panel");
+  await page.addStyleTag({
+    content: ".process-region .heading-help { font-family: monospace; }",
+  });
+  for (const [width, zoom] of [
+    [360, 1],
+    [320, 1],
+    [640, 2],
+  ]) {
+    await page.setViewportSize({ width, height: 1000 });
+    await page.evaluate((zoom) => {
+      document.documentElement.style.zoom = String(zoom);
+    }, zoom);
+    const dot = page.locator(
+      '[data-root="purpose"][data-node="sentence-1-1"] circle',
+    );
+    await dot.hover();
+    await expect(page.locator('[data-dominant="true"]')).toHaveText(
+      "Noticing pauses",
+    );
+    const heading = await page
+      .locator(".process-region .section-heading h2")
+      .boundingBox();
+    const point = await dot.boundingBox();
+    expect(
+      point!.x + point!.width < heading!.x ||
+        point!.y > heading!.y + heading!.height,
+    ).toBe(true);
+  }
 });
 
 test("blocked focus changes pulse both locks, ignore jitter, cool down and respect reduced motion", async ({

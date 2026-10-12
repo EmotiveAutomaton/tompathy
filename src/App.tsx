@@ -21,7 +21,7 @@ import { ValueList } from "./components/ValueList";
 import { SectionTitle, explanations } from "./components/HoverCard";
 import { sentences } from "./core/sentences";
 import type { GoalNode } from "./core/hierarchy";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import {
   ArrowDownLeft,
   ArrowRight,
@@ -262,6 +262,15 @@ export function App({ preview = false }: { preview?: boolean }) {
   }, [ready]);
   const activeMaker =
     packet?.makers.find((m) => m.id === maker) ?? packet?.makers[0];
+  const hierarchyNodes = useMemo(
+    () =>
+      ready
+        ? (packet?.goalHierarchy?.nodes ?? []).filter(
+            (n) => n.maker === activeMaker?.id,
+          )
+        : [],
+    [ready, packet, activeMaker?.id],
+  );
   const creatorName =
     (ready && activeMaker?.identity !== "unknown"
       ? activeMaker?.label
@@ -1075,13 +1084,7 @@ export function App({ preview = false }: { preview?: boolean }) {
               lockReminder={lockReminder}
               onBlockedFocus={blocked}
               key={`${packet?.id}:${packet?.revision}:${activeMaker?.id}`}
-              nodes={
-                ready
-                  ? (packet!.goalHierarchy?.nodes ?? []).filter(
-                      (n) => n.maker === activeMaker!.id,
-                    )
-                  : []
-              }
+              nodes={hierarchyNodes}
               orderUncertainGroups={
                 ready ? packet?.goalHierarchy?.orderUncertainGroups : []
               }

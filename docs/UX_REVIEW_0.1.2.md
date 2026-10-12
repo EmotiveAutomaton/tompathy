@@ -20,6 +20,10 @@ The cue's previous color/opacity combination was already too faint for ordinary 
 
 ## Defects found and corrected
 
+**A wider heading could cover a top dot.** The initial Linux CI run exposed a real pointer obstruction from different font metrics. The graph now measures the heading and uses only the extra clearance needed to keep those dots reachable; no inset is added when they already clear it. A regression exercises a wider monospace heading at 320/360 pixels and 200% zoom. The bottom of the diagram and reel position stay fixed.
+
+**Repeated graph work during pointing.** The selected creator’s node array was recreated on every pointer update, invalidating the layout cache. It now remains stable until the accepted packet, creator or analysis availability changes.
+
 **Sibling hover depended on the previous sibling.** After inspecting one option, the next lookup searched within that option's neighborhood. A sibling was sometimes absent, causing a fallback to the whole locked group. The lookup now uses the stable locked branch. Regression checks move through all four “Show the iteration” options in both directions and revisit them out of order.
 
 **Keyboard navigation selected too early.** Arrow keys on an expanded candidate bubbled to the reel's selection handler. They now move focus between candidates; Enter or Space makes the selection. The held node remains held during inspection. Only the selected visual instance reports itself pressed to assistive technology.

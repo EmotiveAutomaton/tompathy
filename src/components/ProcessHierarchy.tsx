@@ -1,4 +1,11 @@
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   goalAt,
   goalGraph,
@@ -278,6 +285,43 @@ export function ProcessHierarchy({
     descendants = graph.descendants(inspected);
   const visible = !!selected && (sourceHover || pinned || !!hovered);
   const layout = useMemo(() => hierarchyLayout(graph, height), [graph, height]);
+  useLayoutEffect(() => {
+    const el = host.current;
+    const heading = el
+      ?.closest(".region")
+      ?.querySelector(".section-heading h2");
+    if (!el || !heading) return;
+    const fit = () => {
+      const box = el.getBoundingClientRect(),
+        label = heading.getBoundingClientRect();
+      if (!box.width || !box.height) return;
+      let clearance = 0;
+      for (const tile of layout.tiles) {
+        const radius = tile.node.parents.length ? 1.6 : 2.7;
+        const left =
+          box.left + ((tile.dotX - radius) / layout.width) * box.width;
+        const right =
+          box.left + ((tile.dotX + radius) / layout.width) * box.width;
+        if (right < label.left - 2 || left > label.right + 2) continue;
+        const fraction = (tile.dotY - radius) / layout.height;
+        // Inset only when actual font metrics put the corner heading over a dot.
+        // Shrinking the SVG by the same amount keeps its bottom and reels fixed.
+        clearance = Math.max(
+          clearance,
+          (label.bottom + 2 - box.top - fraction * box.height) / (1 - fraction),
+        );
+      }
+      el.style.setProperty(
+        "--hierarchy-heading-clearance",
+        `${Math.max(0, Math.ceil((clearance * height) / box.height))}px`,
+      );
+    };
+    fit();
+    const observer = new ResizeObserver(fit);
+    observer.observe(el);
+    observer.observe(heading);
+    return () => observer.disconnect();
+  }, [layout, height]);
   const selectedKey = pinned
     ? lockedNodeId && heldInstance?.id === selected?.id
       ? heldInstance?.key
