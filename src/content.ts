@@ -17,7 +17,12 @@ import {
   type Packet,
   type Session,
 } from "./core/model";
-import { pageCreators, pageCreatorSources, readingRoot } from "./core/page";
+import {
+  pageCreators,
+  pageCreatorSources,
+  pageRepositoryLinks,
+  readingRoot,
+} from "./core/page";
 import { contributionExplanation } from "./core/reading";
 declare global {
   interface Window {
@@ -186,6 +191,9 @@ export function installPageAdapter() {
   let cancelFind = () => {};
   let findAcknowledged = false;
   const release = () => {
+    const focused = document.activeElement as HTMLElement | null;
+    if (focused?.matches("[data-tompathy-help],[data-tompathy-reading]"))
+      focused.blur();
     transition.clear();
     cancelFind();
     findAcknowledged = false;
@@ -226,6 +234,7 @@ export function installPageAdapter() {
         blockedFocus.attempt(
           `text:${id}:${sentence?.start ?? 0}`,
           performance.now(),
+          2,
         )
       ) {
         remind();
@@ -533,6 +542,7 @@ export function installPageAdapter() {
             artifact: a,
             restored,
             contextSources: restored ? [] : pageCreatorSources(document),
+            repositoryLinks: restored ? [] : pageRepositoryLinks(document),
           }),
         )
         .catch((e) => respond({ error: e.message }));
@@ -610,16 +620,28 @@ export function installPageAdapter() {
           ),
         );
     }
-    if (m.type === "TOMPATHY_FIND" && pinned && m.region === selected) {
-      const sentence = (ranges.get(m.region) ?? []).find(
-        (s) => s.start <= (m.offset ?? 0) && s.end > (m.offset ?? 0),
-      );
-      if (sentence) {
+    if (
+      (m.type === "TOMPATHY_FIND" ||
+        (m.type === "TOMPATHY_FOCUS" && m.center)) &&
+      pinned &&
+      m.region === selected
+    ) {
+      const selectedRanges = [
+        ...(highlights?.get("tompathy-active") ?? []),
+      ] as Range[];
+      if (selectedRanges.length) {
         cancelFind();
-        cancelFind = findSentence(sentence.range, () => {
-          findAcknowledged = true;
-          send("TOMPATHY_FOUND");
-        });
+        cancelFind = findSentence(
+          selectedRanges,
+          () => {
+            findAcknowledged = true;
+            send("TOMPATHY_FOUND");
+          },
+          () => {
+            findAcknowledged = false;
+            send("TOMPATHY_SCROLLED");
+          },
+        );
       }
     }
     if (m.type === "TOMPATHY_RELEASE") {
@@ -684,6 +706,9 @@ if (typeof chrome !== "undefined" && chrome.runtime?.id) {
               respond({
                 artifact,
                 restored: window.__tompathySnapshot,
+                repositoryLinks: window.__tompathySnapshot
+                  ? []
+                  : pageRepositoryLinks(document),
                 contextSources: window.__tompathySnapshot
                   ? []
                   : pageCreatorSources(document),

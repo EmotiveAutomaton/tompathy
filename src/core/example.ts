@@ -13,6 +13,7 @@ import {
   productionEvidence,
 } from "./example-production";
 export { exampleContext, exampleEmphasis } from "./example-production";
+import { demoPreference } from "./example-values";
 import { sentences } from "./sentences";
 export const exampleText = [
   "The door we stopped explaining",
@@ -73,7 +74,8 @@ export async function createExample(
       value === null
         ? null
         : {
-            value,
+            value:
+              kind === "value" ? Math.round(value * 0.28 * 100) / 100 : value,
             scale: [0, 1],
             semantics: "relative",
             ...(kind === "goal" ? { candidateSet: "aims" } : {}),
@@ -81,6 +83,7 @@ export async function createExample(
               "Illustrative relative support, not a probability or calibrated estimate.",
           },
     evidence: ev,
+    ...(kind === "value" ? { preferenceTrace: demoPreference(id) } : {}),
     ...(id === "attention"
       ? {
           spans: ["p2", "p4"].map((region) => ({

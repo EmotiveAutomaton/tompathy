@@ -32,8 +32,26 @@ export async function retrieveContextSource(
     !(githubProfile && /application\/json/i.test(type))
   )
     throw Error("Choose an HTML, text, Markdown, RSS, or Atom source.");
-  if (Number(response.headers.get("content-length")) > COLLECT_LIMITS.bytes)
+  const text = await readBoundedBody(response);
+  const parsed = parseContextSource(text, type, url);
+  const excerpt = parsed.excerpt;
+  if (!excerpt) throw Error("No readable excerpt in this source.");
+  const item: ContextItem = {
+    id: await contextIdentity(url.href, excerpt),
+    source: url.href,
+    excerpt,
+    retrievedAt: new Date().toISOString(),
+    selected: false,
+    lineage: "public-url",
+    facts: parsed.facts,
+  };
+  return { item, links: parsed.links };
+}
+export async function readBoundedBody(response: Response) {
+  if (Number(response.headers.get("content-length")) > COLLECT_LIMITS.bytes) {
+    await response.body?.cancel();
     throw Error("Source exceeds the 256 KB retrieval limit.");
+  }
   const reader = response.body?.getReader();
   if (!reader) throw Error("Source returned no readable body.");
   const chunks: Uint8Array[] = [];
@@ -56,20 +74,7 @@ export async function retrieveContextSource(
     bytes.set(c, offset);
     offset += c.length;
   }
-  const text = new TextDecoder().decode(bytes);
-  const parsed = parseContextSource(text, type, url);
-  const excerpt = parsed.excerpt;
-  if (!excerpt) throw Error("No readable excerpt in this source.");
-  const item: ContextItem = {
-    id: await contextIdentity(url.href, excerpt),
-    source: url.href,
-    excerpt,
-    retrievedAt: new Date().toISOString(),
-    selected: false,
-    lineage: "public-url",
-    facts: parsed.facts,
-  };
-  return { item, links: parsed.links };
+  return new TextDecoder().decode(bytes);
 }
 export async function retrieve(
   url: URL,

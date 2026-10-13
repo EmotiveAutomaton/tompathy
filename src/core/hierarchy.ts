@@ -103,10 +103,27 @@ export function reelCandidates(
 }
 
 type Interval = [number, number];
-/** Unfold each supplied path into adjoining bands. Shared nodes get linked
- * visual instances, never a brick straddling unrelated parent outcomes. */
+/** Each node has one visual home. A spanning forest packs the bricks; supplied
+ * extra parents remain explicit links and participate in inspection and reels. */
 export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
   const columns = graph.depth + 1;
+  const owner = new Map(
+    graph.all.flatMap((n) =>
+      n.parents.length ? [[n.id, n.parents[0].id] as const] : [],
+    ),
+  );
+  const owned = (n: GraphNode) =>
+    n.children.filter((c) => owner.get(c.id) === n.id);
+  // Give a secondary end a branch when its shared children can move without
+  // emptying another parent. This is placement, never a preferred interpretation.
+  for (const n of [...graph.all].sort((a, b) => b.rank - a.rank)) {
+    if (!n.children.length || owned(n).length) continue;
+    const movable = [...n.children].reverse().find((c) => {
+      const previous = graph.byId.get(owner.get(c.id) ?? "");
+      return previous && owned(previous).length > 1;
+    });
+    if (movable) owner.set(movable.id, n.id);
+  }
   // Sentence choices get one and a half shares, rather than half the chart.
   const firstWidth = (width * 1.5) / (columns + 0.5);
   const edges = Array.from({ length: columns + 1 }, (_, i) =>
@@ -121,10 +138,10 @@ export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
     if (!weights.has(n.id))
       weights.set(
         n.id,
-        n.children.length
+        owned(n).length
           ? Math.min(
               100000,
-              n.children.reduce((sum, c) => sum + weight(c), 0),
+              owned(n).reduce((sum, c) => sum + weight(c), 0),
             )
           : 1,
       );
@@ -187,12 +204,14 @@ export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
       const [top, bottom] = band(l, px, from, to);
       return { x: px, top, bottom };
     };
-    const steps = Math.max(32, Math.ceil((end - x) * 1.25));
+    const steps = Math.max(96, Math.ceil((end - x) * 2));
     const points: ReturnType<typeof sample>[] = [];
     let previous = sample(x);
     if (previous.bottom >= previous.top) points.push(previous);
     for (let i = 1; i <= steps; i++) {
-      const next = sample(x + ((end - x) * i) / steps);
+      const next = sample(
+        x + (end - x) * Math.sin((Math.PI * i) / (2 * steps)) ** 2,
+      );
       const wasVisible = previous.bottom >= previous.top;
       const isVisible = next.bottom >= next.top;
       if (wasVisible !== isVisible) {
@@ -289,8 +308,13 @@ export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
       a: la,
       b: lb,
     };
-    const dotX = middle.x,
-      dotY = (middle.a + middle.b) / 2;
+    const leafY = height * (l.from + ((l.to - l.from) * (from + to)) / 2);
+    const v = (leafY / height) * 2 - 1;
+    const arcLeft = cw * 0.9 * (1 - Math.sqrt(Math.max(0, 1 - v * v)));
+    // An analytic inset ellipse, shared by every leaf, never snapped to samples.
+    const dotX = node.rank === 0 ? arcLeft + (cw - arcLeft) * 0.48 : middle.x,
+      dotY = node.rank === 0 ? leafY : (middle.a + middle.b) / 2;
+    const dotBand = band(l, dotX, from, to);
     tiles.push({
       node,
       key,
@@ -305,27 +329,47 @@ export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
       dotX,
       dotY,
       exposure: 1,
-      dotHeight: middle.b - middle.a,
+      dotHeight: dotBand[1] - dotBand[0],
       path: pathFor(l, x, end, from, to),
     });
     let offset = from;
-    for (const child of node.children) {
+    for (const child of owned(node)) {
       const next = offset + ((to - from) * weight(child)) / weight(node);
       visit(child, l, offset, next, key, node.rank);
       offset = next;
     }
   };
-  // Dense graphs use the existing scrollable detail surface; don't unfold an
-  // exponentially branching DAG merely to discover it cannot fit on screen.
-  const unfoldedCount = (n: GraphNode): number =>
-    1 + n.children.reduce((s, c) => s + count(c), 0);
-  const counts = new Map<string, number>();
-  const count = (n: GraphNode): number => {
-    if (!counts.has(n.id)) counts.set(n.id, Math.min(601, unfoldedCount(n)));
-    return counts.get(n.id)!;
-  };
-  const dense = graph.roots.reduce((s, n) => s + count(n), 0) > 600;
+  const dense = graph.all.length > 600;
   if (!dense) for (const l of lobes) visit(l.root, l, 0, 1);
+  const byNode = new Map(tiles.map((t) => [t.node.id, t]));
+  const links = tiles.flatMap((child) =>
+    child.node.parents.flatMap((parent) => {
+      if (owner.get(child.node.id) === parent.id) return [];
+      const target = byNode.get(parent.id);
+      if (!target) return [];
+      const x1 = child.x + child.width,
+        y1 = band(
+          lobes.find((l) => l.root.id === child.rootId)!,
+          x1,
+          child.from,
+          child.to,
+        )[1],
+        x2 = target.x,
+        y2 = band(
+          lobes.find((l) => l.root.id === target.rootId)!,
+          x2,
+          target.from,
+          target.to,
+        )[0];
+      return [
+        {
+          child: child.node.id,
+          parent: parent.id,
+          path: `M${x1},${y1} V${y2} H${x2}`,
+        },
+      ];
+    }),
+  );
   // Find an inscribed label rectangle. The reader calls this once against the
   // whole world, so labels stay attached to cells while the camera moves.
   const labelBox = (
@@ -360,9 +404,21 @@ export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
   return {
     width,
     height,
-    outline: lobes.map((l) => pathFor(l, 0, l.end, 0, 1)),
+    outline: lobes.map((l) => {
+      const top = height * l.from,
+        bottom = height * l.to;
+      const backX = (y: number) =>
+        cw *
+        0.9 *
+        (1 - Math.sqrt(Math.max(0, 1 - ((y / height) * 2 - 1) ** 2)));
+      return (
+        pathFor(l, fork, l.end, 0, 1).replace(/ Z$/, "") +
+        ` L${backX(bottom)},${bottom} A${cw * 0.9},${height / 2} 0 0 1 ${backX(top)},${top} Z`
+      );
+    }),
     tiles,
     columns,
+    links,
     slices,
     dense,
     labelBox,
@@ -374,15 +430,21 @@ export function instanceNeighborhood(layout: HierarchyLayout, key?: string) {
   const tile = layout.tiles.find((t) => t.key === key);
   const ancestors = new Set<string>(),
     descendants = new Set<string>();
-  let current = tile;
-  while (current) {
-    ancestors.add(current.key);
-    current = layout.tiles.find((t) => t.key === current!.parentKey);
-  }
-  if (tile)
-    for (const t of layout.tiles)
-      if (t.key === tile.key || t.key.startsWith(tile.key + "/"))
-        descendants.add(t.key);
+  const byId = new Map(layout.tiles.map((t) => [t.node.id, t]));
+  const walk = (direction: "parents" | "children", output: Set<string>) => {
+    const pending = tile ? [tile.node] : [],
+      seen = new Set<string>();
+    while (pending.length) {
+      const current = pending.pop()!;
+      if (seen.has(current.id)) continue;
+      seen.add(current.id);
+      const item = byId.get(current.id);
+      if (item) output.add(item.key);
+      pending.push(...current[direction]);
+    }
+  };
+  walk("parents", ancestors);
+  walk("children", descendants);
   return { tile, ancestors, descendants };
 }
 
@@ -393,14 +455,7 @@ export function instanceReelCandidates(
   rank: number,
   key?: string,
 ) {
-  const branch = instanceNeighborhood(layout, key);
-  if (!branch.tile || branch.tile.node.id !== selected?.id)
-    return reelCandidates(graph, selected, rank);
-  const keys = rank >= selected.rank ? branch.ancestors : branch.descendants;
-  const ids = new Set(
-    layout.tiles.filter((t) => keys.has(t.key)).map((t) => t.node.id),
-  );
-  const nodes = graph.all.filter((n) => n.rank === rank && ids.has(n.id));
-  const ended = rank > graph.byId.get(branch.tile.rootId)!.rank;
-  return { nodes, ended, ambiguous: nodes.length + Number(ended) > 1 };
+  // A single brick can have several supplied parents. Never hide those paths
+  // merely because packing gave it one geometrical neighbor.
+  return reelCandidates(graph, selected, rank);
 }

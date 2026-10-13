@@ -6,7 +6,7 @@ export const LOCK_BACKGROUND = "#edf3ec";
 /** Local interaction hint only: no cursor history or telemetry is persisted. */
 export function blockedFocusTracker() {
   let previous = "",
-    times: number[] = [],
+    times: { time: number; weight: number }[] = [],
     lastPulse = -Infinity;
   return {
     reset() {
@@ -18,14 +18,14 @@ export function blockedFocusTracker() {
       times = [];
       lastPulse = now;
     },
-    attempt(key: string, now: number) {
+    attempt(key: string, now: number, weight = 1) {
       if (key === previous) return false;
       previous = key;
       if (now - lastPulse < 6000) return false;
-      if (times.length && now - times[times.length - 1] < 40) return false;
-      times = times.filter((t) => now - t < 1200);
-      times.push(now);
-      if (times.length < 4) return false;
+      if (times.length && now - times[times.length - 1].time < 40) return false;
+      times = times.filter((t) => now - t.time < 1200);
+      times.push({ time: now, weight: weight === 2 ? 2 : 1 });
+      if (times.reduce((sum, t) => sum + t.weight, 0) < 12) return false;
       times = [];
       lastPulse = now;
       return true;

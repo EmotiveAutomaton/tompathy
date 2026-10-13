@@ -275,6 +275,12 @@ export function parseContextSource(
       if (!href) continue;
       const u = new URL(href);
       if (
+        u.hostname === "github.com" &&
+        (a.rel.split(/\s+/).includes("me") ||
+          /github|source|repository/i.test(a.textContent ?? ""))
+      )
+        addLink(href);
+      if (
         u.origin === url.origin &&
         !u.search &&
         !/\/(?:login|admin|search|tags?|categories|contact)(?:\/|$)/i.test(

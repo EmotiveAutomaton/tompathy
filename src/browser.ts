@@ -11,6 +11,7 @@ export async function capturePage(): Promise<{
   tabId: number;
   restored?: Session;
   contextSources?: Session["contextSources"];
+  repositoryLinks?: Session["repositoryLinks"];
 }> {
   if (!isExtension)
     throw Error("Open the installed extension on a page, or paste text below.");
@@ -42,6 +43,7 @@ export async function capturePage(): Promise<{
       tabId: tab.id,
       restored: result.restored,
       contextSources: result.contextSources,
+      repositoryLinks: result.repositoryLinks,
     };
   } catch (e) {
     throw Error(

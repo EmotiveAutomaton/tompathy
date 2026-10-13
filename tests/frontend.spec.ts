@@ -102,14 +102,19 @@ test("independent attention, two peaks, bidirectional ambiguity and matching loc
       .evaluateAll(
         (es) => new Set(es.map((e) => e.getAttribute("data-node"))).size,
       ),
-  ).toBe(3);
-  await expect(page.locator(".spool.ambiguous")).toHaveCount(1);
+  ).toBe(4);
+  await expect(page.locator(".spool.ambiguous")).toHaveCount(3);
+  await expect(
+    page.locator('[data-node="practical-care"].ancestor'),
+  ).toHaveCount(1);
   await expect(
     page.locator(
-      '[data-root="practical-care"].ancestor, [data-root="practical-care"].descendant',
+      '.hierarchy-crosslink[data-child="paragraph-3"][data-parent="practical-care"]',
     ),
-  ).toHaveCount(0);
-  await expect.poll(() => page.locator("[data-goal]:not([aria-hidden])").count()).toBeGreaterThan(6);
+  ).toHaveCount(1);
+  await expect
+    .poll(() => page.locator("[data-goal]:not([aria-hidden])").count())
+    .toBeGreaterThan(6);
   await expect(page.locator('[data-passage="p4"]')).toHaveClass(
     /related-passage/,
   );
@@ -120,7 +125,7 @@ test("independent attention, two peaks, bidirectional ambiguity and matching loc
   );
   await expect(page.locator('.spool[data-rank="2"]')).toHaveAttribute(
     "data-candidates",
-    "story",
+    "story,practical-care",
   );
   await sentence.click();
   await expect(page.locator('.spool[data-rank="2"]')).toHaveAttribute(
@@ -131,7 +136,9 @@ test("independent attention, two peaks, bidirectional ambiguity and matching loc
   await page.getByRole("button", { name: "Reader menu", exact: true }).click();
   await expect(page.getByLabel("Show hypotheses as a list")).toHaveCount(0);
   await expect(page.getByRole("dialog")).toHaveAccessibleName("Options");
-  await expect(page.getByRole("dialog").getByLabel("Creator selection")).toHaveCount(0);
+  await expect(
+    page.getByRole("dialog").getByLabel("Creator selection"),
+  ).toHaveCount(0);
 });
 test("cloud phrases do not overlap at native width; heading and value explanations work by keyboard", async ({
   page,
@@ -190,8 +197,8 @@ test("cloud phrases do not overlap at native width; heading and value explanatio
     .getByRole("button", { name: "Care for others", exact: true })
     .focus();
   await expect(
-    page.getByRole("tooltip").filter({ hasText: "Where this comes from" }),
-  ).toContainText("Specific decision");
+    page.getByRole("tooltip").filter({ hasText: "Everyday comfort" }),
+  ).toContainText("persistent latch");
   await page.keyboard.press("Escape");
   await tool(page, "Reader settings");
   await expect(
@@ -489,9 +496,8 @@ test("corner headings, compact attention, expanded values and prototype tabs", a
   expect(menu!.x - cloud!.x).toBeGreaterThanOrEqual(8);
   expect(menu!.y - cloud!.y).toBeGreaterThanOrEqual(6);
   await page.getByRole("tab", { name: "global", exact: true }).click();
-  await expect(page.getByRole("tabpanel")).toHaveText(
-    "Global view · coming later",
-  );
+  await expect(page.locator(".core-value-row")).toHaveCount(8);
+  await expect(page.getByRole("tabpanel")).toContainText("Personal agency");
   await page.getByRole("tab", { name: "creator", exact: true }).click();
   await expect(page.locator(".core-value-row")).toHaveCount(8);
   const world = await page

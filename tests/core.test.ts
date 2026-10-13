@@ -32,6 +32,108 @@ import {
 import { calendarDate } from "../src/core/dates";
 import { blockedFocusTracker } from "../src/core/lock";
 import { readingFile, parseReadingFile } from "../src/core/reading-file";
+import {
+  retrieveGitHubContext,
+  githubRepository,
+} from "../src/core/github-context";
+import { ContextSchema } from "../src/core/model";
+
+test("explicit GitHub file history resolves slash refs, preserves provenance and respects bounds", async () => {
+  const calls: string[] = [];
+  const sha = "a".repeat(40);
+  const fetcher = (async (input: string, options: RequestInit) => {
+    calls.push(input);
+    assert.equal(options.credentials, "omit");
+    assert.equal(options.redirect, "error");
+    const url = new URL(input);
+    let data: unknown;
+    if (url.pathname.endsWith("/docs"))
+      data = {
+        private: false,
+        default_branch: "main",
+        description: "A public essay",
+      };
+    else if (url.pathname.includes("/contents/revision/"))
+      return new Response("", { status: 404 });
+    else if (url.pathname.endsWith("/contents/article.md")) {
+      assert.equal(url.searchParams.get("ref"), "draft/revision");
+      data = {
+        type: "file",
+        path: "article.md",
+        encoding: "base64",
+        content: btoa("An explicit source file."),
+      };
+    } else if (url.pathname.endsWith("/commits")) {
+      assert.equal(url.searchParams.get("path"), "article.md");
+      data = [
+        {
+          sha,
+          commit: {
+            author: { name: "A contributor", date: "2024-03-01T12:00:00Z" },
+            committer: { date: "2024-03-02T12:00:00Z" },
+            message: "Clarify wording",
+          },
+        },
+      ];
+    } else
+      data = {
+        files: [
+          {
+            filename: "article.md",
+            status: "modified",
+            additions: 2,
+            deletions: 1,
+            patch: "-before\n+after",
+          },
+        ],
+      };
+    return Response.json(data);
+  }) as typeof fetch;
+  const result = await retrieveGitHubContext(
+    new URL("https://github.com/example/docs/blob/draft/revision/article.md"),
+    new AbortController().signal,
+    fetcher,
+  );
+  assert.equal(calls.length, 5);
+  assert.equal(result.item.facts?.[2].date, "2024-03-01");
+  assert.match(result.item.excerpt, /committer timestamp: 2024-03-02/);
+  assert.match(result.item.excerpt, /\+after/);
+  assert.match(result.item.excerpt, /do not establish who wrote/);
+  assert.equal(ContextSchema.safeParse(result.item).success, true);
+  assert.equal(
+    githubRepository("https://github.com/example/docs/issues/1"),
+    null,
+  );
+  let attempts = 0;
+  await assert.rejects(
+    () =>
+      retrieveGitHubContext(
+        new URL("https://github.com/example/docs"),
+        new AbortController().signal,
+        (async () => {
+          attempts++;
+          return new Response("limited", { status: 403 });
+        }) as typeof fetch,
+      ),
+    /rate limit/,
+  );
+  assert.equal(attempts, 1);
+  await assert.rejects(
+    () =>
+      retrieveGitHubContext(
+        new URL("https://github.com/example/docs"),
+        new AbortController().signal,
+        (async () =>
+          new Response("{}", {
+            headers: {
+              "content-type": "application/json",
+              "content-length": "256001",
+            },
+          })) as typeof fetch,
+      ),
+    /256 KB/,
+  );
+});
 
 test("lock reminder rejects jitter and slow exploration, bounds bursts, and resets", () => {
   const tracker = blockedFocusTracker();
@@ -41,16 +143,21 @@ test("lock reminder rejects jitter and slow exploration, bounds bursts, and rese
   for (let i = 0; i < 5; i++)
     assert.equal(tracker.attempt(String(i), i * 1500), false);
   tracker.reset();
-  for (let i = 0; i < 3; i++)
-    assert.equal(tracker.attempt(String(i), i * 100), false);
-  assert.equal(tracker.attempt("last", 300), true);
+  for (let i = 0; i < 11; i++)
+    assert.equal(tracker.attempt(String(i), i * 75), false);
+  assert.equal(tracker.attempt("last", 825), true);
   for (let i = 0; i < 50; i++)
-    assert.equal(tracker.attempt(String(i), 400 + i * 100), false);
+    assert.equal(tracker.attempt(String(i), 900 + i * 100), false);
   tracker.acknowledge(6000);
-  assert.equal(tracker.attempt("remote", 6100), false);
+  assert.equal(tracker.attempt("remote", 6100, 2), false);
   tracker.reset();
-  for (let i = 0; i < 3; i++) tracker.attempt(String(i), i * 100);
-  assert.equal(tracker.attempt("last", 300), true);
+  for (let i = 0; i < 5; i++)
+    assert.equal(tracker.attempt(String(i), i * 100, 2), false);
+  assert.equal(tracker.attempt("sixth sentence", 500, 2), true);
+  tracker.reset();
+  for (let i = 0; i < 8; i++)
+    assert.equal(tracker.attempt(String(i), i * 75, i < 3 ? 2 : 1), false);
+  assert.equal(tracker.attempt("mixed final", 600), true);
 });
 
 test("reading export round-trips pending context without losing the previous account", async () => {
@@ -703,7 +810,7 @@ test("story branches retain shared parents, ambiguity in both directions, and us
     for (const height of [160, 300, 550]) {
       const g = goalGraph(nodes),
         layout = hierarchyLayout(g, height);
-      assert.ok(layout.tiles.length >= nodes.length);
+      assert.equal(layout.tiles.length, nodes.length);
       const sentenceWidth = layout.tiles.find((t) => t.node.rank === 0)!.width;
       const oneTier = layout.tiles.find(
         (t) =>
@@ -803,49 +910,87 @@ test("GitHub context uses only explicit profiles and preserves the meaning of da
   );
 });
 
-test("visual instances keep a shared node on its pointed branch and close the curved back", async () => {
+test("one visual home per sentence, semantic extra parents, and one smooth leaf arc", async () => {
   const packet = await createExample(),
     graph = goalGraph(packet.goalHierarchy!.nodes);
-  const layout = hierarchyLayout(graph, 300),
-    selected = graph.byId.get("paragraph-3")!;
-  for (const root of ["purpose", "practical-care"]) {
-    const tile = layout.tiles.find(
-      (t) => t.rootId === root && t.node.id === selected.id,
-    )!;
+  for (const height of [160, 300, 550]) {
+    const layout = hierarchyLayout(graph, height);
+    assert.equal(layout.tiles.length, graph.all.length);
+    const leaves = layout.tiles.filter((t) => t.node.data.span);
+    assert.equal(leaves.length, 30);
+    assert.equal(new Set(leaves.map((t) => t.node.id)).size, 30);
+    assert.equal(layout.links.length, 3);
+    const selected = graph.byId.get("paragraph-3")!,
+      tile = layout.tiles.find((t) => t.node.id === selected.id)!;
     const related = instanceNeighborhood(layout, tile.key);
-    assert.ok(
-      layout.tiles
-        .filter(
-          (t) => related.ancestors.has(t.key) || related.descendants.has(t.key),
-        )
-        .every((t) => t.rootId === root),
+    assert.deepEqual(
+      new Set(
+        layout.tiles
+          .filter((t) => related.ancestors.has(t.key))
+          .map((t) => t.node.id),
+      ),
+      new Set(["paragraph-3", "story", "purpose", "practical-care"]),
     );
     assert.deepEqual(
       instanceReelCandidates(graph, layout, selected, 2, tile.key).nodes.map(
         (n) => n.id,
       ),
-      [root === "purpose" ? "story" : root],
+      ["story", "practical-care"],
     );
     assert.equal(
-      instanceReelCandidates(graph, layout, selected, 3, tile.key).ended,
-      root === "practical-care",
+      instanceReelCandidates(graph, layout, selected, 4, tile.key).ended,
+      true,
     );
-    assert.equal(
-      instanceReelCandidates(graph, layout, selected, 0, tile.key).nodes.length,
-      4,
+    const width = leaves[0].width;
+    for (const leaf of leaves) {
+      const v = (leaf.dotY / height) * 2 - 1;
+      const edge = width * 0.9 * (1 - Math.sqrt(1 - v * v));
+      assert.ok(Math.abs(leaf.dotX - (edge + (width - edge) * 0.48)) < 1e-7);
+    }
+    assert.ok(
+      layout.outline.every((d) => d.includes(" A")),
+      "Exact arcs close the shared back",
     );
+    for (const leaf of leaves) {
+      const points = leaf.path.match(/-?\d+\.\d+,-?\d+\.\d+/g)!;
+      assert.equal(
+        points[0],
+        points.at(-1),
+        "No clipped wedge at the curved entrance",
+      );
+    }
   }
-  // A brick entering the curved back starts at a closed intersection rather
-  // than a visibly vertical segment cut at the first valid sampled column.
-  const curved = layout.tiles
-    .filter((t) => t.x === 0)
-    .map((t) =>
-      t.path
-        .match(/-?\d+\.\d+,-?\d+\.\d+/g)!
-        .map((s) => s.split(",").map(Number)),
-    );
-  assert.ok(curved.length > 10);
-  for (const points of curved) assert.deepEqual(points[0], points.at(-1));
+});
+
+test("batch attention combines recurrence and confidence without rewarding frame duplication", async () => {
+  const p = await createExample(),
+    node = p.goalHierarchy!.nodes.find((n) => n.id === "paragraph-1")!;
+  const frames = p.currentAttention!.filter((f) => f.span.region === "p2");
+  const support = (value: number) => ({
+    value,
+    scale: [0, 1] as [number, number],
+    semantics: "relative" as const,
+    meaning: "Fixture confidence",
+  });
+  frames[0].items = [
+    { hypothesis: "focus-0", support: support(0.6) },
+    { hypothesis: "focus-1", support: support(0.95) },
+  ];
+  frames[1].items = [{ hypothesis: "focus-0", support: support(0.6) }];
+  frames[2].items = [];
+  const first = attentionForNode(p, "maker-1", node);
+  assert.equal(first[0].id, "focus-0");
+  assert.ok(Math.abs(first[0].support!.value - 0.4) < 1e-10);
+  assert.ok(Math.abs(first[1].support!.value - 0.95 / 3) < 1e-10);
+  assert.match(first[0].description, /2 of 3 selected sentences/);
+  const original = frames[0],
+    mid = Math.floor((original.span.start + original.span.end) / 2);
+  p.currentAttention = p.currentAttention!.filter((f) => f !== original);
+  p.currentAttention.push(
+    { ...original, span: { ...original.span, end: mid } },
+    { ...original, span: { ...original.span, start: mid } },
+  );
+  assert.deepEqual(attentionForNode(p, "maker-1", node), first);
 });
 
 test("supplied order uncertainty validates sibling references and preserves older contracts", async () => {
@@ -956,4 +1101,50 @@ test("calendar extraction keeps precision and rejects imaginary dates", () => {
     "around 2024",
   ])
     assert.equal(calendarDate(date), undefined);
+});
+
+test("preference traces and directional evidence round-trip without inventing legacy data", async () => {
+  const p = await createExample();
+  const { demoGlobalValues } = await import("../src/core/example-values");
+  const { readingHelp } = await import("../src/core/ghost");
+  const values = p.hypotheses.filter((h) => h.kind === "value");
+  assert.equal(values.length, 8);
+  assert.ok(values.every((h) => h.support!.value < 0.25));
+  const globals = demoGlobalValues(p, values);
+  assert.equal(globals.length, 8);
+  assert.equal(
+    globals.filter((g) => values.some((v) => v.label === g.label)).length,
+    4,
+  );
+  assert.ok(globals.every((h) => h.support!.value > 0.8));
+  assert.deepEqual(
+    demoGlobalValues({ ...p, origin: "live provider" }, values),
+    [],
+  );
+  const roundTrip = parsePacket(JSON.stringify(p));
+  assert.equal(
+    roundTrip.hypotheses.find((h) => h.id === "care")!.preferenceTrace!
+      .observations.length,
+    3,
+  );
+  const reading = p.ghostReadings![3];
+  assert.deepEqual(
+    readingHelp(reading, p).evidence.map((e) => e.direction),
+    ["less", "more"],
+  );
+  assert.ok(
+    readingHelp(
+      { ...reading, evidenceDirections: undefined },
+      p,
+    ).evidence.every((e) => e.direction === "neutral"),
+  );
+  const bad = structuredClone(p);
+  bad.ghostReadings![0].evidenceDirections = [
+    { id: "missing", direction: "more" },
+  ];
+  assert.throws(() => parsePacket(JSON.stringify(bad)));
+  const legacy = structuredClone(p);
+  legacy.ghostReadings!.forEach((g) => delete g.evidenceDirections);
+  legacy.hypotheses.forEach((h) => delete h.preferenceTrace);
+  assert.ok(parsePacket(JSON.stringify(legacy)));
 });

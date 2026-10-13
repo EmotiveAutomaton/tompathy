@@ -48,3 +48,22 @@ export function contextSourceURL(input: string, useGitHub: boolean): URL {
     return new URL(`https://api.github.com/users/${match[1]}`);
   return url;
 }
+
+/** Accept an explicit repository or file link, never infer one from a site name. */
+export function githubRepository(input: string) {
+  const url = publicURL(input);
+  if (url.hostname !== "github.com") return null;
+  const parts = url.pathname.split("/").filter(Boolean).map(decodeURIComponent);
+  const [owner, repository, kind, ...tail] = parts;
+  if (
+    !/^[A-Za-z0-9-]{1,39}$/.test(owner ?? "") ||
+    !/^[A-Za-z0-9_.-]{1,100}$/.test(repository ?? "") ||
+    repository === "." ||
+    repository === ".." ||
+    (kind && (kind !== "blob" || tail.length < 2))
+  )
+    return null;
+  if (tail.some((p) => p === "." || p === ".." || /[\\\x00-\x1f]/.test(p)))
+    return null;
+  return { owner, repository: repository.replace(/\.git$/, ""), tail };
+}

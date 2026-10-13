@@ -463,30 +463,73 @@ export function ProcessHierarchy({
     setExpanded(false);
     onSelect(node);
   };
+  const moveCell = (e: React.KeyboardEvent, node: GraphNode) => {
+    if (!e.key.startsWith("Arrow")) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const origin = layout.tiles.find((t) => t.node.id === node.id);
+    if (!origin) {
+      const column = columns[node.rank];
+      const adjacent =
+        e.key === "ArrowUp"
+          ? column[column.indexOf(node) - 1]
+          : e.key === "ArrowDown"
+            ? column[column.indexOf(node) + 1]
+            : (e.key === "ArrowRight" ? node.parents : node.children)[0];
+      if (adjacent) {
+        choose(adjacent.data);
+        host.current
+          ?.querySelector<HTMLElement>(
+            `[data-node="${CSS.escape(adjacent.id)}"]`,
+          )
+          ?.focus({ preventScroll: true });
+      }
+      return;
+    }
+    const vertical = e.key === "ArrowUp" || e.key === "ArrowDown";
+    const candidates = layout.tiles.filter((t) =>
+      vertical
+        ? t.node.rank === node.rank &&
+          (e.key === "ArrowUp" ? t.dotY < origin.dotY : t.dotY > origin.dotY)
+        : (e.key === "ArrowRight" ? node.parents : node.children).some(
+            (n) => n.id === t.node.id,
+          ),
+    );
+    const next = candidates.sort(
+      (a, b) => Math.abs(a.dotY - origin.dotY) - Math.abs(b.dotY - origin.dotY),
+    )[0];
+    if (!next) return;
+    choose(next.node.data, next.key);
+    host.current
+      ?.querySelector<SVGElement>(`[data-node="${CSS.escape(next.node.id)}"]`)
+      ?.focus({ preventScroll: true });
+    navigation.reveal(next.dotX, next.dotY);
+  };
   const classes = (n: GraphNode, key?: string) =>
     `pyramid-node ${visible && (branch.tile ? branch.ancestors.has(key ?? "") : ancestors.has(n.id)) ? "ancestor" : ""} ${visible && (branch.tile ? branch.descendants.has(key ?? "") : descendants.has(n.id)) ? "descendant" : ""} ${visible && selected?.id === n.id && (!selectedKey || key === selectedKey) ? "chosen" : ""}`;
-  const orderMarks = orderUncertainGroups.flatMap((group) =>
-    graph.roots.flatMap((root) => {
-      const tiles = layout.tiles.filter(
-        (t) => t.rootId === root.id && group.nodes.includes(t.node.id),
-      );
-      if (tiles.length < 2) return [];
-      const x = Math.max(...tiles.map((t) => t.x + t.width)) - 4;
-      const top = Math.min(...tiles.map((t) => t.dotY)),
-        bottom = Math.max(...tiles.map((t) => t.dotY));
-      const steps = Math.max(2, Math.round((bottom - top) / 9));
-      const d =
-        `M${x},${top}` +
-        Array.from({ length: steps }, (_, i) => {
-          const y = top + ((bottom - top) * i) / steps,
-            end = top + ((bottom - top) * (i + 1)) / steps;
-          return ` Q${x + (i % 2 ? -2.8 : 2.8)},${(y + end) / 2} ${x},${end}`;
-        }).join("");
-      const parent = layout.tiles.find((t) => t.key === tiles[0].parentKey);
-      if (!parent || !tiles.every((t) => t.parentKey === parent.key)) return [];
-      return [{ ...group, root: root.id, d, parent }];
-    }),
-  );
+  const orderMarks = orderUncertainGroups.flatMap((group) => {
+    const tiles = layout.tiles.filter((t) => group.nodes.includes(t.node.id));
+    if (tiles.length < 2) return [];
+    // Membership is semantic: packing shared siblings under different parents
+    // must not silently remove a supplied order-uncertainty mark.
+    const common = tiles[0].node.parents.find((parent) =>
+      tiles.every((t) => t.node.parents.some((p) => p.id === parent.id)),
+    );
+    const parent = layout.tiles.find((t) => t.node.id === common?.id);
+    if (!parent) return [];
+    const x = Math.max(...tiles.map((t) => t.x + t.width)) - 4;
+    const top = Math.min(...tiles.map((t) => t.dotY)),
+      bottom = Math.max(...tiles.map((t) => t.dotY));
+    const steps = Math.max(2, Math.round((bottom - top) / 9));
+    const d =
+      `M${x},${top}` +
+      Array.from({ length: steps }, (_, i) => {
+        const y = top + ((bottom - top) * i) / steps,
+          end = top + ((bottom - top) * (i + 1)) / steps;
+        return ` Q${x + (i % 2 ? -2.8 : 2.8)},${(y + end) / 2} ${x},${end}`;
+      }).join("");
+    return [{ ...group, root: parent.rootId, d, parent }];
+  });
   return (
     <div
       className={`goal-process ${expanded && canExpand ? "reels-open" : ""}`}
@@ -516,6 +559,7 @@ export function ProcessHierarchy({
                       onMouseEnter={() => highlight(n)}
                       onFocus={() => highlight(n)}
                       onClick={() => choose(n.data)}
+                      onKeyDown={(e) => moveCell(e, n)}
                     >
                       {n.data.label}
                     </button>
@@ -527,7 +571,16 @@ export function ProcessHierarchy({
                 ref={svg}
                 tabIndex={0}
                 role="group"
-                onKeyDown={navigation.key}
+                onPointerDown={(e) => {
+                  e.currentTarget.dataset.pointerFocus = "true";
+                }}
+                onKeyDown={(e) => {
+                  delete e.currentTarget.dataset.pointerFocus;
+                  navigation.key(e);
+                }}
+                onBlur={(e) => {
+                  delete e.currentTarget.dataset.pointerFocus;
+                }}
                 onClick={(e) => {
                   if (
                     !(e.target as Element).closest(
@@ -596,8 +649,12 @@ export function ProcessHierarchy({
                           }
                           onMouseEnter={() => highlight(t.node, t.key)}
                           onFocus={() => highlight(t.node, t.key)}
-                          onClick={() => choose(t.node.data, t.key)}
+                          onClick={(e) => {
+                            e.currentTarget.focus({ preventScroll: true });
+                            choose(t.node.data, t.key);
+                          }}
                           onKeyDown={(e) => {
+                            moveCell(e, t.node);
                             if (e.key === " " || e.key === "Enter") {
                               e.preventDefault();
                               choose(t.node.data, t.key);
@@ -668,6 +725,25 @@ export function ProcessHierarchy({
                       );
                     })}
                   </g>
+                  {visible &&
+                    layout.links
+                      .filter(
+                        (link) =>
+                          (ancestors.has(link.child) &&
+                            ancestors.has(link.parent)) ||
+                          (descendants.has(link.child) &&
+                            descendants.has(link.parent)),
+                      )
+                      .map((link) => (
+                        <path
+                          key={`${link.child}:${link.parent}`}
+                          d={link.path}
+                          className="hierarchy-crosslink"
+                          data-child={link.child}
+                          data-parent={link.parent}
+                          pointerEvents="none"
+                        />
+                      ))}
                   {orderMarks.map((m) => (
                     <g
                       key={`${m.id}:${m.root}`}
@@ -764,20 +840,18 @@ export function ProcessHierarchy({
                 );
               })}
             </div>
-            {pinned &&
-              selected?.data.span &&
-              columns.every((_, rank) => !candidatesAt(rank).ambiguous) && (
-                <button
-                  className={`process-find ${found ? "was-found" : ""}`}
-                  aria-label="Find locked sentence in page"
-                  title="Find locked sentence in page"
-                  onClick={onFind}
-                  aria-pressed={found}
-                >
-                  <ArrowLeft size={10} />
-                  <Search size={12} />
-                </button>
-              )}
+            {pinned && !found && !!selected?.data.regions.length && (
+              <button
+                className={`process-find ${found ? "was-found" : ""}`}
+                aria-label="Find highlighted text in page"
+                title="Find highlighted text in page"
+                onClick={onFind}
+                aria-pressed={found}
+              >
+                <ArrowLeft size={10} />
+                <Search size={12} />
+              </button>
+            )}
             {pinned && (
               <SelectionLock
                 className="process-lock"

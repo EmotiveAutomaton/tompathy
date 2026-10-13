@@ -19,6 +19,7 @@ test("complete story: zoom, readable cells, drag without selecting, fit and clea
       ...new Set(es.map((e) => e.getAttribute("data-node"))),
     ]);
   expect(ids).toHaveLength(30);
+  await expect(page.locator('.pyramid-node[data-rank="0"]')).toHaveCount(30);
   expect(ids).toContain("sentence-9-3");
   await expect(page.locator('[data-node="editing"]')).toHaveCount(1);
   await page.locator('[data-passage="p10"] [data-sentence="2"]').click();
@@ -65,6 +66,10 @@ test("complete story: zoom, readable cells, drag without selecting, fit and clea
   await expect(graph).toHaveAttribute("data-zoom", "1.000");
   await graph.click({ position: { x: box.width - 4, y: box.height - 4 } });
   await expect(page.locator(".process-lock")).toHaveCount(0);
+  await expect(graph).toHaveCSS("outline-style", "none");
+  await graph.focus();
+  await page.keyboard.press("Home");
+  await expect(graph).toHaveCSS("outline-style", "solid");
   await page.screenshot({ path: "evidence/navigation-fit.png" });
 });
 
@@ -73,7 +78,7 @@ test("find holds the sentence, settles grey, rearms on article scroll; tooltip s
 }) => {
   await page.locator('[data-passage="p9"] [data-sentence="0"]').click();
   const find = page.getByRole("button", {
-    name: "Find locked sentence in page",
+    name: "Find highlighted text in page",
   });
   await expect(find).toBeVisible();
   const lockBox = (await page.locator(".process-lock").boundingBox())!;
@@ -83,7 +88,8 @@ test("find holds the sentence, settles grey, rearms on article scroll; tooltip s
   expect(findBox.y).toBeGreaterThan(lockBox.y + lockBox.height);
   await page.evaluate(() => window.scrollTo(0, 0));
   await find.click();
-  await expect(find).toHaveAttribute("aria-pressed", "true");
+  await expect(find).toBeHidden();
+  await page.waitForTimeout(900);
   await expect(
     page.locator('.spool[data-selected="sentence-8-1"]'),
   ).toHaveCount(1);
@@ -92,7 +98,7 @@ test("find holds the sentence, settles grey, rearms on article scroll; tooltip s
   await expect
     .poll(() => page.evaluate(() => scrollY))
     .toBeLessThan(scrollBefore);
-  await expect(find).toHaveAttribute("aria-pressed", "false");
+  await expect(find).toBeVisible();
   await page.keyboard.press("Escape");
   await page
     .locator('[data-passage="p5"] [data-sentence="0"] .tompathy-ghost')
@@ -104,4 +110,36 @@ test("find holds the sentence, settles grey, rearms on article scroll; tooltip s
   await expect(tooltip).toContainText("Less · confidence · More");
   await expect(tooltip.locator("li")).toHaveCount(2);
   await page.screenshot({ path: "evidence/reading-evidence-card.png" });
+});
+
+test("all thirty article sentences resolve to exactly one matching graph cell and back", async ({
+  page,
+}) => {
+  // Each passage's source offset must select the same cell as that cell itself.
+  const source = page.locator("[data-passage] [data-sentence]");
+  await expect(source).toHaveCount(30);
+  for (let i = 0; i < 30; i++) {
+    const item = source.nth(i);
+    const passage = await item.evaluate((el) =>
+      el.closest("[data-passage]")!.getAttribute("data-passage"),
+    );
+    const index = Number(await item.getAttribute("data-sentence"));
+    const id = `sentence-${Number(passage!.slice(1)) - 1}-${index + 1}`;
+    await item.focus();
+    await expect(page.locator(".pyramid-node.chosen")).toHaveCount(1);
+    await expect(page.locator(".pyramid-node.chosen")).toHaveAttribute(
+      "data-node",
+      id,
+    );
+    await page.locator(`[data-node="${id}"] circle`).click();
+    await expect(page.locator('.spool[data-rank="0"]')).toHaveAttribute(
+      "data-selected",
+      id,
+    );
+    await expect(item).toHaveClass(/active-sentence/);
+    await expect(
+      item.getByRole("button", { name: "Unlock selection" }),
+    ).toBeVisible();
+    await page.keyboard.press("Escape");
+  }
 });

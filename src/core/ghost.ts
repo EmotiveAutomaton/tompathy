@@ -72,7 +72,11 @@ export type ReadingHelp = {
   confidence: number | null;
   confidenceExplanation: string;
   summary: string;
-  evidence: { source: string; text: string }[];
+  evidence: {
+    source: string;
+    text: string;
+    direction: "more" | "less" | "neutral";
+  }[];
   fictional: boolean;
   prompt?: string;
 };
@@ -86,7 +90,15 @@ export function readingHelp(
       const e = packet?.evidence.find((e) => e.id === id);
       if (!e || seen.has(e.excerpt)) return [];
       seen.add(e.excerpt);
-      return [{ source: e.source, text: e.excerpt }];
+      return [
+        {
+          source: e.source,
+          text: e.excerpt,
+          direction:
+            reading?.evidenceDirections?.find((d) => d.id === id)?.direction ??
+            "neutral",
+        },
+      ];
     })
     .slice(0, 3);
   return {

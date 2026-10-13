@@ -114,8 +114,9 @@ export function attentionAt(
   });
 }
 
-/** A union of supplied attention frames, never goal labels. Each frame counts
- * once even when its sentence belongs to several branches of the DAG. */
+/** Frequency × mean supplied confidence, with one unit of weight per sentence.
+ * The most specific frame wins where frames overlap; shared graph paths and
+ * splitting a frame into smaller frames cannot multiply an observation. */
 export function attentionForNode(
   packet: Packet,
   maker: string,
@@ -124,60 +125,112 @@ export function attentionForNode(
   const graph = goalGraph(
     (packet.goalHierarchy?.nodes ?? []).filter((n) => n.maker === maker),
   );
+  if (!graph.byId.has(node.id)) return [];
   const ids = graph.descendants(graph.byId.get(node.id));
   const spans = graph.all
     .filter((n) => ids.has(n.id) && n.data.span)
     .map((n) => n.data.span!);
   const frames = (packet.currentAttention ?? []).filter(
-    (f) =>
-      f.maker === maker &&
-      (spans.length
-        ? spans.some(
-            (s) =>
-              s.region === f.span.region &&
-              s.start < f.span.end &&
-              s.end > f.span.start,
-          )
-        : node.regions.includes(f.span.region)),
+    (f) => f.maker === maker,
   );
-  const totals = new Map<string, { sum: number; supplied: boolean }>();
-  if (frames.length === 1)
-    return attentionAt(
-      packet,
-      maker,
-      frames[0].span.region,
-      frames[0].span.start,
-    );
-  for (const f of frames)
-    for (const item of f.items) {
-      const h = packet.hypotheses.find(
-        (h) =>
-          h.id === item.hypothesis &&
-          h.kind === "attention" &&
-          h.makers.includes(maker),
+  const covered = packet.artifact.regions.flatMap((region) =>
+    sentences(region.anchor.exact)
+      .filter((s) =>
+        spans.length
+          ? spans.some(
+              (span) =>
+                span.region === region.id &&
+                span.start < s.end &&
+                span.end > s.start,
+            )
+          : node.regions.includes(region.id),
+      )
+      .map((s) => ({ ...s, region: region.id })),
+  );
+  if (covered.length === 1 && node.span)
+    return attentionAt(packet, maker, node.span.region, node.span.start);
+  const totals = new Map<
+    string,
+    { sum: number; mass: number; present: number; known: boolean }
+  >();
+  for (const sentence of covered) {
+    const candidates = frames
+      .filter(
+        (f) =>
+          f.span.region === sentence.region &&
+          f.span.start < sentence.end &&
+          f.span.end > sentence.start,
+      )
+      .sort((a, b) => a.span.end - a.span.start - (b.span.end - b.span.start));
+    const cuts = [
+      ...new Set([
+        sentence.start,
+        sentence.end,
+        ...candidates.flatMap((f) => [
+          Math.max(sentence.start, f.span.start),
+          Math.min(sentence.end, f.span.end),
+        ]),
+      ]),
+    ].sort((a, b) => a - b);
+    const present = new Set<string>();
+    for (let i = 0; i < cuts.length - 1; i++) {
+      const frame = candidates.find(
+        (f) => f.span.start <= cuts[i] && f.span.end >= cuts[i + 1],
       );
-      if (!h) continue;
-      const support = item.support === undefined ? h.support : item.support;
-      const old = totals.get(h.id) ?? { sum: 0, supplied: false };
-      totals.set(h.id, {
-        sum:
-          old.sum +
-          (support
-            ? (support.value - support.scale[0]) /
-              (support.scale[1] - support.scale[0])
-            : 0),
-        supplied: old.supplied || !!support,
-      });
-    }
-  return [...totals].map(([id, total]) => ({
-    ...packet.hypotheses.find((h) => h.id === id)!,
-    support: total.supplied
-      ? {
-          value: total.sum / frames.length,
-          scale: [0, 1] as [number, number],
-          semantics: "relative" as const,
-          meaning: `Mean normalized support across ${frames.length} supplied attention frames in this branch, counting absent items as zero. An overview, not a combined probability.`,
+      const fraction =
+        (cuts[i + 1] - cuts[i]) / (sentence.end - sentence.start);
+      for (const item of frame?.items ?? []) {
+        const h = packet.hypotheses.find(
+          (h) =>
+            h.id === item.hypothesis &&
+            h.kind === "attention" &&
+            h.makers.includes(maker),
+        );
+        if (!h) continue;
+        const support = item.support === undefined ? h.support : item.support;
+        const old = totals.get(h.id) ?? {
+          sum: 0,
+          mass: 0,
+          present: 0,
+          known: false,
+        };
+        if (support) {
+          old.sum +=
+            (fraction * (support.value - support.scale[0])) /
+            (support.scale[1] - support.scale[0]);
+          old.mass += fraction;
+          old.known = true;
         }
-      : null,
-  }));
+        totals.set(h.id, old);
+        present.add(h.id);
+      }
+    }
+    for (const id of present) totals.get(id)!.present++;
+  }
+  return [...totals]
+    .map(([id, total]) => {
+      const h = packet.hypotheses.find((h) => h.id === id)!;
+      const meaning =
+        `Appears in ${total.present} of ${covered.length} selected sentences. ` +
+        (total.known
+          ? `Mean supplied confidence/support where scored: ${Math.round((total.sum / total.mass) * 100)}%. Size combines recurrence with supplied confidence; missing scores add no weight. This is relative prominence, not a combined probability.`
+          : "Confidence is not supplied; no weighted score is inferred.");
+      return {
+        ...h,
+        attentionOverview: {
+          sentences: covered.length,
+          occurrences: total.present,
+        },
+        description: `${h.description}\n\n${meaning}`,
+        support: total.known
+          ? {
+              value: total.sum / covered.length,
+              scale: [0, 1] as [number, number],
+              semantics: "relative" as const,
+              meaning,
+            }
+          : null,
+      };
+    })
+    .sort((a, b) => (b.support?.value ?? -1) - (a.support?.value ?? -1));
 }

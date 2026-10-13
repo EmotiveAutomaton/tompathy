@@ -12,7 +12,15 @@ import { icons } from "./icons.mjs";
 import path from "node:path";
 await mkdir("dist", { recursive: true });
 // Remove only the superseded, known gallery outputs from this build directory.
-for (const file of ["showcase.html", "showcase.css", "showcase.js"])
+for (const file of [
+  "showcase.html",
+  "showcase.css",
+  "showcase.js",
+  "icons.html",
+  "icons.css",
+  "icons.js",
+  "logo-study-2.png",
+])
   await unlink(path.resolve("dist", file)).catch((error) => {
     if (error.code !== "ENOENT") throw error;
   });
@@ -42,21 +50,30 @@ await build({
   sourcemap: true,
 });
 await copyFile("public/manifest.json", "dist/manifest.json");
-for (const file of ["review.html", "review.css", "review.js", "icons.css"])
+for (const file of [
+  "review.html",
+  "review.css",
+  "review.js",
+  "icon-prompts.css",
+  "logo-study-1.png",
+  "logo-study-2-refined.png",
+  "logo-study-3.png",
+  "logo-study-4.png",
+])
   await copyFile(`public/${file}`, `dist/${file}`);
 await build({
-  entryPoints: ["src/icon-studies.ts"],
+  entryPoints: ["src/icon-prompts.ts"],
   bundle: true,
-  outfile: "dist/icons.js",
+  outfile: "dist/icon-prompts.js",
   format: "esm",
   minify: true,
   target: "chrome116",
 });
 await writeFile(
-  "dist/icons.html",
-  (await readFile("public/icons.html", "utf8")).replace(
-    "/src/icon-studies.ts",
-    "icons.js",
+  "dist/icon-prompts.html",
+  (await readFile("public/icon-prompts.html", "utf8")).replace(
+    "/src/icon-prompts.ts",
+    "icon-prompts.js",
   ),
 );
 const html =

@@ -109,9 +109,16 @@ test("blocked focus changes pulse both locks, ignore jitter, cool down and respe
   );
   for (let i = 0; i < 8; i++) await nodes.first().hover();
   await expect(page.locator('[data-lock-reminder="active"]')).toHaveCount(0);
-  for (let i = 0; i < 4; i++) {
-    await nodes.nth(i % 3).hover();
-    await page.waitForTimeout(75);
+  const targets = await nodes.evaluateAll((es) =>
+    es.map((el) => {
+      const b = el.getBoundingClientRect();
+      return { x: b.x + b.width / 2, y: b.y + b.height / 2 };
+    }),
+  );
+  for (let i = 0; i < 12; i++) {
+    const target = targets[(i + 1) % 3];
+    await page.mouse.move(target.x, target.y);
+    await page.waitForTimeout(45);
   }
   await expect(page.locator('[data-lock-reminder="active"]')).toHaveCount(2);
   const pulse = await page
@@ -125,15 +132,16 @@ test("blocked focus changes pulse both locks, ignore jitter, cool down and respe
   await expect(page.locator('[data-lock-reminder="active"]')).toHaveCount(0);
   for (let i = 0; i < 5; i++) {
     await nodes.nth(i % 3).hover();
-    await page.waitForTimeout(75);
+    await page.waitForTimeout(45);
   }
   await expect(page.locator('[data-lock-reminder="active"]')).toHaveCount(0);
   await page.locator(".process-lock").click();
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.locator('[data-passage="p4"] [data-sentence="0"]').click();
-  for (let i = 0; i < 4; i++) {
-    await nodes.nth(i % 3).hover();
-    await page.waitForTimeout(75);
+  for (let i = 0; i < 12; i++) {
+    const target = targets[(i + 1) % 3];
+    await page.mouse.move(target.x, target.y);
+    await page.waitForTimeout(45);
   }
   await expect(page.locator('[data-lock-reminder="active"]')).toHaveCount(2);
   expect(

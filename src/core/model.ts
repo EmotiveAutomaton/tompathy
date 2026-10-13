@@ -16,6 +16,15 @@ export const GhostReadingSchema = z.object({
   explanation: z.string().min(1).max(3000),
   confidenceExplanation: z.string().min(1).max(2000),
   evidence: z.array(id).max(30),
+  evidenceDirections: z
+    .array(
+      z.object({
+        id,
+        direction: z.enum(["more", "less", "neutral"]),
+      }),
+    )
+    .max(30)
+    .optional(),
   prompt: z.string().min(1).max(4000).optional(),
 });
 export type GhostReading = z.infer<typeof GhostReadingSchema>;
@@ -128,6 +137,36 @@ const SupportSchema = z.object({
   calibration: z.string().max(1000).optional(),
   candidateSet: id.optional(),
 });
+// Normalized display coordinates, not calibrated utilities or discount rates.
+export const PreferenceTraceSchema = z.object({
+  domain: z.string().min(1).max(160),
+  start: z.string().min(1).max(40),
+  end: z.string().min(1).max(40),
+  points: z
+    .array(
+      z.object({
+        x: z.number().min(0).max(1),
+        y: z.number().min(0).max(1),
+        uncertainty: z.number().min(0).max(0.4),
+      }),
+    )
+    .min(2)
+    .max(30),
+  observations: z
+    .array(
+      z.object({
+        date: z.string().min(1).max(40),
+        label: z.string().min(1).max(200),
+        explanation: z.string().min(1).max(700),
+        from: z.tuple([z.number().min(0).max(1), z.number().min(0).max(1)]),
+        to: z.tuple([z.number().min(0).max(1), z.number().min(0).max(1)]),
+        cost: z.number().min(0).max(1),
+        horizon: z.string().min(1).max(80),
+      }),
+    )
+    .min(1)
+    .max(6),
+});
 export const HypothesisSchema = z.object({
   id,
   kind: z.enum(["goal", "process", "value", "attention"]),
@@ -150,6 +189,7 @@ export const HypothesisSchema = z.object({
   alternativeSet: id.optional(),
   evidence: z.array(id),
   decisionNodes: z.array(id).optional(),
+  preferenceTrace: PreferenceTraceSchema.optional(),
   interpretation: z
     .enum([
       "current-attention",
@@ -369,6 +409,12 @@ export const PacketSchema = z
         frame.evidence.some((e) => !es.has(e))
       )
         error("Invalid Ghost Scale maker, span or evidence.");
+      if (
+        frame.evidenceDirections?.some((d) => !frame.evidence.includes(d.id)) ||
+        new Set(frame.evidenceDirections?.map((d) => d.id)).size !==
+          (frame.evidenceDirections?.length ?? 0)
+      )
+        error("Ghost Scale directions must refer once to supplied evidence.");
       if (region) {
         if (!ghostBounds.has(region.id))
           ghostBounds.set(
@@ -730,6 +776,7 @@ export const SessionSchema = z.object({
   context: z.array(ContextSchema).max(30),
   scope: z.enum(["artifact", "context"]),
   authorLabel: z.string().max(250).optional(),
+  repositoryLinks: z.array(z.string().max(4000)).max(3).optional(),
   savedPageId: z.uuid().optional(),
   contextSources: z
     .array(z.object({ author: z.string().max(250), url: z.string().max(4000) }))

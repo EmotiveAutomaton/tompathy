@@ -2,6 +2,7 @@ import type { Artifact, ContextItem } from "./model";
 import { contextIdentity } from "./context";
 import { contextSourceURL, publicURL } from "./public-source";
 import { COLLECT_LIMITS, retrieveContextSource } from "./collector";
+import { githubRepository, retrieveGitHubContext } from "./github-context";
 
 const CACHE_TTL = 15 * 60 * 1000;
 const cache = new Map<
@@ -51,9 +52,12 @@ export async function bylineContext(
   };
 }
 
-/** Six bounded requests at most, on the explicitly granted source origins only. */
+/** Six sources, including at most one bounded repository lookup, on granted origins. */
 export async function collectCreatorContext(options: {
   sources: { url: string; author: string }[];
+  repositoryLinks?: string[];
+  pageSource?: string;
+  existingContext?: ContextItem[];
   creator: string;
   useGitHub: boolean;
   followLinks: boolean;
@@ -90,8 +94,22 @@ export async function collectCreatorContext(options: {
         (s) => contextSourceURL(s.url, useGitHub).href === url,
       )?.url ?? url,
   }));
+  const repository = useGitHub
+    ? (options.repositoryLinks ?? []).find((url) => githubRepository(url))
+    : undefined;
+  if (repository && !seeds.includes(repository))
+    queue.push({
+      url: repository,
+      basis: "linked-source",
+      linkedFrom: options.pageSource ?? repository,
+    });
+  if (useGitHub) origins.add("https://api.github.com");
+  const allowedOrigin = (url: string) =>
+    useGitHub && githubRepository(url)
+      ? "https://api.github.com"
+      : new URL(url).origin;
   const seen = new Set(seeds),
-    budget = followLinks ? 6 : seeds.length;
+    budget = followLinks ? 6 : queue.length;
   const report: ContextReport = {
     attempted: 0,
     collected: 0,
@@ -111,23 +129,64 @@ export async function collectCreatorContext(options: {
           : "Collection timed out after 30 seconds.",
       );
   };
+  let repositoryRead = false;
   for (let i = 0; i < queue.length && i < budget; i++) {
     check();
     const job = queue[i];
-    onProgress(i, queue.length, `Reading ${new URL(job.url).hostname}`);
+    if (useGitHub && githubRepository(job.url)) {
+      if (repositoryRead) {
+        report.skipped.push({
+          source: job.url,
+          reason: "One-repository collection limit",
+        });
+        continue;
+      }
+      repositoryRead = true;
+    }
+    onProgress(
+      i,
+      queue.length,
+      /github\.com/.test(new URL(job.url).hostname)
+        ? "Fetching GitHub"
+        : "Reading creator links",
+    );
     report.attempted++;
     try {
       const hit = cache.get(job.url);
+      const saved =
+        useGitHub &&
+        githubRepository(job.url) &&
+        options.existingContext?.find(
+          (item) =>
+            item.source === job.url &&
+            item.lineage === "public-url" &&
+            item.facts?.length &&
+            item.provenance?.author === creator &&
+            now() - Date.parse(item.retrievedAt) >= 0 &&
+            now() - Date.parse(item.retrievedAt) < CACHE_TTL,
+        );
       let result: Awaited<ReturnType<typeof retrieveContextSource>>;
-      if (hit && hit.expires > now()) {
+      if (saved) {
+        result = { item: structuredClone(saved), links: [] };
+        report.cached++;
+      } else if (hit && hit.expires > now()) {
         result = structuredClone(hit.value);
         report.cached++;
       } else {
-        result = await retrieveContextSource(
-          publicURL(job.url),
-          combined,
-          fetcher,
-        );
+        result =
+          useGitHub && githubRepository(job.url)
+            ? await retrieveGitHubContext(
+                publicURL(job.url),
+                combined,
+                fetcher,
+                (step) =>
+                  onProgress(i * 8 + step, queue.length * 8, "Fetching GitHub"),
+              )
+            : await retrieveContextSource(
+                publicURL(job.url),
+                combined,
+                fetcher,
+              );
         check();
         cache.delete(job.url);
         cache.set(job.url, {
@@ -150,10 +209,10 @@ export async function collectCreatorContext(options: {
       // One discovery hop from an explicit source; never recursively crawl.
       if (followLinks && job.basis === "explicit-author-link")
         for (const href of result.links) {
-          const url = publicURL(href).href;
+          const url = contextSourceURL(href, useGitHub).href;
           if (seen.has(url)) continue;
           seen.add(url);
-          const reason = !origins.has(new URL(url).origin)
+          const reason = !origins.has(allowedOrigin(url))
             ? "Outside the explicitly granted source sites"
             : queue.length >= budget
               ? "Six-source collection limit"

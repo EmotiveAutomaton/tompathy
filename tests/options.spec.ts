@@ -52,7 +52,9 @@ test("Options, persistent idle reels, connected alternatives and overlay dismiss
   await expect(page.locator(".process-lock")).toBeVisible();
   await page.getByRole("button", { name: "Reader menu", exact: true }).click();
   await expect(page.getByRole("dialog")).toHaveAccessibleName("Options");
-  await expect(page.getByRole("dialog").getByLabel("Creator selection")).toHaveCount(0);
+  await expect(
+    page.getByRole("dialog").getByLabel("Creator selection"),
+  ).toHaveCount(0);
   await expect(page.getByRole("checkbox")).toHaveCount(5);
   await expect(
     page.getByRole("checkbox", { name: /Word-level analysis/ }),
@@ -218,15 +220,9 @@ test("pointed branches, faded endings, precise reel hover gaps and double-click 
   );
   await page.setViewportSize({ width: 360, height: 900 });
   await page.goto("/?panel");
-  const lower = page.locator(
-    '[data-root="practical-care"][data-node="paragraph-3"] circle',
-  );
+  const lower = page.locator('[data-node="practical-care"] circle');
   await lower.hover();
-  await expect(
-    page.locator(
-      '[data-root="purpose"].ancestor, [data-root="purpose"].descendant',
-    ),
-  ).toHaveCount(0);
+  await expect(page.locator('[data-node="purpose"].ancestor')).toHaveCount(0);
   await expect(page.locator('.spool[data-level="0"]')).toHaveClass(
     /aperture-closed/,
   );
@@ -235,27 +231,26 @@ test("pointed branches, faded endings, precise reel hover gaps and double-click 
     "2px",
   );
   await page.screenshot({ path: "evidence/short-branch.png" });
-  await lower.click();
+  await page.locator('[data-node="paragraph-3"] circle').click();
   const exact = page.locator('.spool[data-rank="1"] .spool-window');
   await exact.hover();
-  await expect(page.locator(".spool.is-expanded")).toHaveCount(1);
-  await expect(page.locator(".spool.is-expanded .spool-window")).toHaveCSS(
-    "height",
-    "170px",
-  );
+  await expect(page.locator(".spool.is-expanded")).toHaveCount(3);
+  await expect(
+    page.locator('.spool.is-expanded[data-rank="0"] .spool-window'),
+  ).toHaveCSS("height", "170px");
   const tall = await page
-    .locator(".spool.is-expanded .spool-window")
+    .locator('.spool.is-expanded[data-rank="0"] .spool-window')
     .boundingBox();
   const short = await exact.boundingBox();
   // The adjacent gap is navigable; empty space above the short reel is not sticky.
   await page.mouse.move(short!.x - 2, short!.y + 10);
-  await expect(page.locator(".spool.is-expanded")).toHaveCount(1);
+  await expect(page.locator(".spool.is-expanded")).toHaveCount(3);
   await page.mouse.move(short!.x + short!.width / 2, short!.y - 12);
   await expect(page.locator(".spool.is-expanded")).toHaveCount(0);
   expect(tall!.height).toBeGreaterThan(short!.height * 3);
   await exact.hover();
   await expect(page.locator(".odometer")).toHaveCSS("scrollbar-width", "none");
-  await expect(page.locator(".reel-options")).toHaveCSS(
+  await expect(page.locator('.spool[data-rank="0"] .reel-options')).toHaveCSS(
     "scrollbar-width",
     "none",
   );
@@ -263,7 +258,7 @@ test("pointed branches, faded endings, precise reel hover gaps and double-click 
   await expect(page.locator(".process-lock")).toHaveCount(0);
   await lower.dblclick();
   await expect(page.locator(".process-lock")).toHaveCount(0);
-  await expect(page.getByRole("button", { name: /^Order uncertain/ })).toHaveCount(
-    2,
-  );
+  await expect(
+    page.getByRole("button", { name: /^Order uncertain/ }),
+  ).toHaveCount(2);
 });

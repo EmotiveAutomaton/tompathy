@@ -113,6 +113,13 @@ export function exampleGhostReadings(artifact: Artifact): GhostReading[] {
             ? "The playtest note records Mara proposing the persistent latch; the collaborator's checklist did not contain it."
             : "This distinction appears in Mara's draft before the assisted phrase is introduced.";
       }
+      const evidence = ghost
+        ? ["production-ghost", "production-caution"]
+        : i === 3 && j >= 2
+          ? ["production-latch", "production-context-4"]
+          : i === 5 && j === 0
+            ? ["production-distinction", "production-context-7"]
+            : [`production-${i + 1}`, `production-context-${i + 1}`];
       return {
         maker: "maker-1",
         span: { region: r.id, start: s.start, end: s.end },
@@ -123,9 +130,21 @@ export function exampleGhostReadings(artifact: Artifact): GhostReading[] {
           : explanation,
         confidenceExplanation:
           "Illustrative support from the fictional draft record, not a calibrated probability. Missing intermediate versions lower confidence.",
-        evidence: ghost
-          ? ["production-ghost", "production-caution"]
-          : [`production-${i + 1}`, `production-context-${i + 1}`],
+        evidence,
+        evidenceDirections: evidence.map((id, k) => ({
+          id,
+          direction: ghost
+            ? ("less" as const)
+            : kind === "original"
+              ? (i === 4 || i === 8 || i === 3) && k === 1
+                ? ("neutral" as const)
+                : ("more" as const)
+              : kind === "edited"
+                ? k === 0
+                  ? ("less" as const)
+                  : ("more" as const)
+                : ("less" as const),
+        })),
         ...(ghost
           ? {
               prompt:
@@ -149,6 +168,22 @@ export function productionEvidence(artifact: Artifact) {
     "The next test changes whether partners can see each other. The proposed plan is recorded, but earlier wording is missing.",
   ];
   return [
+    ...[
+      [
+        "production-latch",
+        "The playtest note records Mara adding a persistent latch after a one-handed player asked for it; the earlier collaborator checklist did not include this change.",
+      ],
+      [
+        "production-distinction",
+        "Mara's own draft distinguishes completing a puzzle from solving it together before the assisted phrase was introduced.",
+      ],
+    ].map(([id, excerpt]) => ({
+      id,
+      excerpt,
+      source: "Fictional draft record · Lantern House",
+      capturedAt: artifact.capturedAt,
+      relationship: "Authored demonstration record",
+    })),
     ...production.map(([, , excerpt], i) => ({
       id: `production-${i + 1}`,
       source: "Fictional draft record · Lantern House",

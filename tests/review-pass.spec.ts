@@ -7,6 +7,51 @@ test.beforeEach(async ({ page }) => {
   );
 });
 
+test("order uncertainty survives shared siblings with different visual homes", async ({
+  page,
+}) => {
+  const packet = await createExample();
+  packet.goalHierarchy!.orderUncertainGroups = [
+    {
+      ...packet.goalHierarchy!.orderUncertainGroups![0],
+      id: "shared-paragraph-order",
+      nodes: ["paragraph-3", "paragraph-4"],
+    },
+  ];
+  await page.addInitScript(
+    (p) =>
+      sessionStorage.setItem(
+        "tompathy-session",
+        JSON.stringify({
+          sessionVersion: "1.0",
+          artifact: p.artifact,
+          packet: p,
+          context: [],
+          scope: "artifact",
+        }),
+      ),
+    packet,
+  );
+  await page.goto("/?panel");
+  expect(
+    await page.locator('[data-node="paragraph-3"]').getAttribute("data-root"),
+  ).not.toBe(
+    await page.locator('[data-node="paragraph-4"]').getAttribute("data-root"),
+  );
+  await expect(
+    page.getByRole("button", { name: "Order uncertain", exact: true }),
+  ).toHaveCount(1);
+  await page
+    .getByRole("button", { name: "Order uncertain", exact: true })
+    .focus();
+  await expect(page.locator(".pyramid-node.chosen")).toHaveAttribute(
+    "data-node",
+    "story",
+  );
+  for (const id of ["paragraph-3", "paragraph-4"])
+    await expect(page.locator(`[data-node="${id}"]`)).toHaveClass(/descendant/);
+});
+
 test("soft inspection persists, replaces freely, aggregates whole branches and leaves deliberate locks intact", async ({
   page,
 }) => {
@@ -143,38 +188,65 @@ test("evidence card shows two visual scales and at most three bullets, no explan
       const value = row
         .querySelector(".reading-value")!
         .getBoundingClientRect();
-      return { right: scale.right, below: scale.top >= value.bottom };
+      return {
+        right: scale.right,
+        below: scale.top >= value.bottom - 2,
+        leftAligned: Math.abs(value.left - scale.left) < 1,
+      };
     }),
   );
-  expect(axes.every((a) => a.below)).toBe(true);
+  expect(axes.every((a) => a.below && a.leftAligned)).toBe(true);
   expect(axes[0].right).toBeCloseTo(axes[1].right, 1);
   await page.screenshot({ path: "evidence/pass-tooltip.png" });
 });
 
-test("review desk opens twelve face-and-brain icon studies at actual toolbar sizes", async ({
+test("review desk offers twelve distinct prompts, copy and a portable download", async ({
   page,
+  context,
 }) => {
+  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
   await page.goto("/review.html");
   await expect(page.locator(".destination")).toHaveCount(3);
   await expect(
     page.getByRole("button", { name: /Live creator/ }),
   ).toBeDisabled();
-  await page.getByRole("link", { name: /Icon studies/ }).click();
-  await expect(page.locator(".study-card")).toHaveCount(12);
-  for (const size of [16, 24, 32, 48])
-    await expect(
-      page.locator(`.size-samples svg[width="${size}"]`),
-    ).toHaveCount(12);
-  await page.screenshot({ path: "evidence/icons-gallery.png", fullPage: true });
-  await page.getByRole("button", { name: "Explore The literal map" }).click();
-  await expect(page.getByRole("dialog")).toBeVisible();
-  await page.screenshot({ path: "evidence/icons-detail.png" });
-  await page.keyboard.press("ArrowRight");
-  await expect(page.locator("#study-title")).toHaveText(
-    "Overlapping hemispheres",
+  await page.getByRole("link", { name: /Icon prompts/ }).click();
+  await expect(page.locator("#prompts .prompt-card")).toHaveCount(12);
+  const prompts = await page
+    .locator("#prompts .prompt-card textarea")
+    .evaluateAll((es) => es.map((e) => (e as HTMLTextAreaElement).value));
+  expect(new Set(prompts).size).toBe(12);
+  expect(prompts.every((p) => p.split(/\s+/).length > 65)).toBe(true);
+  await page.locator("#prompts .prompt-card button").first().click();
+  await expect(page.getByRole("status")).toContainText("Copied");
+  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
+    prompts[0],
   );
-  await page.keyboard.press("Escape");
-  await expect(page.getByRole("dialog")).toBeHidden();
+  const [download] = await Promise.all([
+    page.waitForEvent("download"),
+    page.getByRole("button", { name: "Download all 12 prompts" }).click(),
+  ]);
+  expect(download.suggestedFilename()).toBe("tompathy-icon-prompts.txt");
+  const stream = await download.createReadStream();
+  const chunks = [];
+  for await (const chunk of stream!) chunks.push(chunk);
+  const text = Buffer.concat(chunks).toString("utf8");
+  for (const prompt of prompts) expect(text).toContain(prompt);
+  await page.screenshot({ path: "evidence/icon-prompts-preview.png" });
+  await page.setViewportSize({ width: 360, height: 900 });
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.locator("#prompts .prompt-card textarea").first().focus();
+  await page.keyboard.press("Tab");
+  await expect(page.locator("#prompts .prompt-card button").first()).toBeFocused();
+  await expect(page.locator("#prompts .prompt-card button").first()).toHaveCSS(
+    "outline-style",
+    "solid",
+  );
+  await page.screenshot({ path: "evidence/icon-prompts-narrow.png" });
 });
 
 test("creator switch lives above attention, clears another creator's account, and Options lives in values", async ({

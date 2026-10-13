@@ -118,5 +118,19 @@ export function useHierarchyZoom(
         );
     }
   };
-  return { transform, reset, key, dragging };
+  const reveal = (x: number, y: number) => {
+    const svg = ref.current,
+      control = behavior.current;
+    if (!svg || !control || transform.k <= 1) return;
+    const px = transform.applyX(x),
+      py = transform.applyY(y);
+    if (px >= 15 && px <= width - 15 && py >= 15 && py <= height - 15) return;
+    select(svg).call(
+      control.transform,
+      zoomIdentity
+        .translate(width / 2 - x * transform.k, height / 2 - y * transform.k)
+        .scale(transform.k),
+    );
+  };
+  return { transform, reset, key, dragging, reveal };
 }

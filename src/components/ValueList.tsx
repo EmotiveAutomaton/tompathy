@@ -1,4 +1,5 @@
 import type { Hypothesis, Packet } from "../core/model";
+import { PreferenceChart, PreferenceObservations } from "./PreferenceChart";
 import { HoverCard } from "./HoverCard";
 import { supportText, weight } from "./GoalCloud";
 export function Wheel({
@@ -36,6 +37,58 @@ export function Wheel({
     </svg>
   );
 }
+export function ValueDetails({
+  h,
+  packet,
+}: {
+  h: Hypothesis;
+  packet: Packet | null;
+}) {
+  return (
+    <>
+      <strong className="value-card-title">{h.label}</strong>
+      {h.preferenceTrace ? (
+        <>
+          <div className="value-visual-summary">
+            <div className="value-confidence" title={h.support?.meaning}>
+              <Wheel value={h.support ? weight(h) : null} large />
+              <strong>
+                {h.support ? `${Math.round(weight(h) * 100)}%` : "?"}
+              </strong>
+              <span>confidence</span>
+            </div>
+            <PreferenceChart trace={h.preferenceTrace} />
+          </div>
+          <PreferenceObservations trace={h.preferenceTrace} />
+        </>
+      ) : (
+        <>
+          <div className="value-detail-heading">
+            <Wheel value={h.support ? weight(h) : null} large />
+            <span>{supportText(h)}</span>
+          </div>
+          <p>{h.description}</p>
+          {h.evidence.slice(0, 3).map((id) => {
+            const e = packet?.evidence.find((e) => e.id === id);
+            return (
+              e && (
+                <div key={id} className="source-note">
+                  <strong>
+                    {e.source === packet?.artifact.source
+                      ? "This page"
+                      : "Context"}
+                  </strong>
+                  <p>{e.excerpt}</p>
+                </div>
+              )
+            );
+          })}
+        </>
+      )}
+    </>
+  );
+}
+
 export function ValueList({
   values,
   packet,
@@ -56,61 +109,7 @@ export function ValueList({
           <HoverCard
             key={h.id}
             className="value-hover"
-            content={
-              <>
-                <div className="value-detail-heading">
-                  <Wheel value={h.support ? weight(h) : null} large />
-                  <div>
-                    <strong>{h.label}</strong>
-                    <p>{supportText(h)}</p>
-                  </div>
-                </div>
-                <p className="value-summary">{h.description}</p>
-                <p className="muted support-summary">
-                  {h.support?.meaning ??
-                    "No reliability estimate was supplied."}
-                </p>
-                <h3>Where this comes from</h3>
-                {h.evidence.length ? (
-                  h.evidence.slice(0, 3).map((id) => {
-                    const e = packet?.evidence.find((e) => e.id === id);
-                    return (
-                      e && (
-                        <div key={id} className="source-note">
-                          <strong>
-                            {e.source === packet?.artifact.source
-                              ? "This page"
-                              : packet?.scope.kind === "context"
-                                ? "Context"
-                                : "External source"}
-                          </strong>
-                          <p className="source-excerpt">{e.excerpt}</p>
-                        </div>
-                      )
-                    );
-                  })
-                ) : (
-                  <p>No evidence supplied.</p>
-                )}
-                {h.decisionNodes?.slice(0, 1).map((id) => {
-                  const n = packet?.goalHierarchy?.nodes.find(
-                    (n) => n.id === id,
-                  );
-                  return (
-                    n && (
-                      <div key={id} className="source-note">
-                        <strong>Specific decision · {n.label}</strong>
-                      </div>
-                    )
-                  );
-                })}
-                <p className="muted">
-                  Sources support an interpretation; they are not additive
-                  slices of confidence. Select the row to inspect the full
-                  account.
-                </p>
-              </>
-            }
+            content={<ValueDetails h={h} packet={packet} />}
           >
             <button className="core-value-row" onClick={() => inspect(h)}>
               <Wheel value={h.support ? weight(h) : null} />

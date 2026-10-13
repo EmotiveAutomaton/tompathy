@@ -99,11 +99,11 @@ export function HoverCard({
 }
 export const explanations = {
   goals:
-    "What might be occupying the creator’s attention at this point in the text? These supplied interpretations are independent of the goal hierarchy. Word size follows declared likelihood when available, otherwise relative support. The strongest current item gathers near the center; shared phrases persist while newcomers bubble into place. Hover text or a sentence brick to reveal attention. Click to hold it, then select a phrase for its evidence. The example uses hand-written snapshots, not live inference.",
+    "What might be occupying the creator’s attention at this point in the text? These supplied interpretations are independent of the goal hierarchy. For a sentence, word size follows supplied likelihood or relative support. For a broader branch, size combines how often a focus occurs with its supplied confidence, giving each sentence equal weight. Shared sentences count once; unscored items receive no invented confidence. Hover a phrase for its coverage and evidence. The strongest item gathers near the center; shared phrases persist while newcomers bubble into place. Click to hold a selection. The example uses hand-written snapshots, not live inference.",
   process:
     "Expertise is a kind of lossy, compressed record of all of the creator’s previous attentional focuses — nerves that fired together, wired together. This is the project’s conceptual model. A hierarchy of possible goals: possible broader ends are on the right; subordinate goals branch toward individual sentences on the left. Hover a block to trace its ancestors and descendants. Hover page text to roll through the corresponding goal spools. Click a sentence or block to lock; either green lock or Escape releases. Scroll a reel to explore neighboring goals at that level. The triangle stays visible throughout. This hierarchy does not establish the historical order of writing.",
   values:
-    "Recurring latent preferences that may explain the creator’s choices across this text and any explicitly selected context. The creator considers ‘core values’ imprecise; ‘latent preferences’ is the preferred term. Wheels show the supplied support, not an invented confidence score. Hover a row for sources. Values stay steady until you accept a new account.",
+    "‘Core values’ is shorthand; the project prefers ‘latent preferences.’ Working model: compare a person’s initial situation with the changes their actions appear to seek. Correlate those observations with their history to suggest preferred states, or a homeostatic range, rather than reading motives directly from a sentence. That preferred range may drift over a lifetime; it is a trajectory, not a fixed target. The curve depicts a proposed preferred state; its tube depicts uncertainty. Each numbered vector starts at an observed or inferred state and points toward a sought change. Its angle suggests how far into the future the reward is sought; its reach and weight suggest the cost the person may accept to move toward that state. Tube shading echoes that proposed strength. Each vector has its own observation below the graph. The pie represents confidence in the preference account, independently of the strength of the preference. Research caution: homeostatic models have a basis in physiological regulation. Extending them to abstract personal values, equating vector angle with a discount rate, and inferring willingness to pay from prose remain proposals here. Actions can also reflect constraints, habits or other goals; they do not uniquely identify a latent preference. These demo trajectories and confidence scores are authored illustrations, not measurements.",
 };
 export function SectionTitle({
   kind,
@@ -156,6 +156,8 @@ export function SectionTitle({
                 Local choices on the left feed into broader goals on the right.
                 Hover a brick to trace both its ancestors and its possible
                 subordinate goals; the same green connects them to the page.
+                Each sentence has one cell. A connecting line reveals an
+                additional supplied parent when that relationship is inspected.
               </p>
               <p>
                 Click text or a brick to hold a selection. Scroll a reel, or

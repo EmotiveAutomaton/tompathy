@@ -3,7 +3,7 @@ import { ghostInk, grade, type ReadingHelp } from "./core/ghost";
 export const readingCSS = `
 .tompathy-ghost{font-family:"ToMpathy Reading",Georgia,serif!important;font-weight:400!important;font-synthesis:none;box-decoration-break:clone;-webkit-box-decoration-break:clone;border-radius:3px}
 .tompathy-emphasis{text-decoration-line:underline!important;text-decoration-thickness:1px;text-underline-offset:.17em}
-.tompathy-reading-help{all:initial;box-sizing:border-box;position:fixed;z-index:2147483646;width:min(410px,calc(100vw - 24px));padding:17px 19px;background:#f8faf5;color:#273e39;border:1px solid #b9cabc;border-radius:12px;box-shadow:0 8px 30px #183c2926;font:12px/1.6 system-ui,sans-serif;overflow:auto;max-height:calc(100vh - 24px)}
+.tompathy-reading-help{all:initial;box-sizing:border-box;position:fixed;z-index:2147483646;width:min(450px,calc(100vw - 24px));padding:17px 19px;background:#f8faf5;color:#273e39;border:1px solid #b9cabc;border-radius:12px;box-shadow:0 8px 30px #183c2926;font:12px/1.6 system-ui,sans-serif;overflow:auto;max-height:calc(100vh - 24px)}
  .tompathy-reading-help[hidden]{display:none}
 `;
 const detailCSS = `
@@ -12,12 +12,13 @@ const detailCSS = `
 .reading-sample span{padding:3px;border-radius:5px}
 .reading-leaders{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
 .reading-scales{min-width:0}
-.reading-axis{position:relative;margin:0 0 12px;padding-top:2px}
+.reading-axis{position:relative;margin:0 0 10px;padding-top:2px}
 .reading-axis:last-child{margin-bottom:0}
-.reading-scale{position:relative;display:block;width:100%;box-sizing:border-box;text-align:right;white-space:nowrap;padding:9px 0 0;font:10px/1.5 "ToMpathy Reading",Georgia,serif}
+.reading-scale{position:relative;display:block;width:100%;box-sizing:border-box;text-align:right;white-space:nowrap;padding:5px 12px 0 0;font:9px/1.5 "ToMpathy Reading",Georgia,serif}
 .reading-scale span{padding:1px 0}
-.reading-value{display:block;width:fit-content;margin:0 0 3px auto;border-radius:3px;font:13px/1.5 "ToMpathy Reading",Georgia,serif}
-ul{margin:0;padding-left:16px;border-top:1px solid #d6dfd4;padding-top:4px}li{font:12px/1.55 system-ui;margin:9px 0 0;padding-left:2px}
+.reading-value{display:block;width:fit-content;max-width:100%;text-align:left;margin:0 0 -1px;border-radius:3px;font:16px/1.4 "ToMpathy Reading",Georgia,serif}
+.reading-ramp{display:inline-block;background:linear-gradient(to right,#263a32,transparent 30%);border-radius:2px}
+ul{list-style:none;margin:0;padding:4px 0 0;border-top:1px solid #d6dfd4}li{display:grid;grid-template-columns:15px 1fr;gap:7px;font:12px/1.55 system-ui;margin:9px 0 0}.evidence-direction{font:16px/1.2 system-ui;color:#496e60}
 .reading-prompt{margin-top:12px;padding-top:9px;border-top:1px solid #d6dfd4}.reading-prompt strong{font:600 11px/1.5 system-ui}.reading-prompt blockquote{margin:4px 0 0;font:12px/1.55 Georgia,serif}
 @media (max-width:360px){.reading-summary{grid-template-columns:56px minmax(0,1fr);gap:12px}.reading-sample{font-size:34px}.reading-scale{font-size:9px}}
 `;
@@ -99,6 +100,7 @@ export function attachReadingHelp(root: Document = document, isolated = false) {
         scale = el("span", "", "reading-scale");
       scale.setAttribute("aria-label", text);
       scale.setAttribute("role", "img");
+      const ramp = el("span", "", confidence ? "" : "reading-ramp");
       const count = text.length;
       for (let i = 0; i < count; i++) {
         const part = el(
@@ -109,6 +111,8 @@ export function attachReadingHelp(root: Document = document, isolated = false) {
           ),
         );
         part.setAttribute("aria-hidden", "true");
+        if (text[i] === " ") part.style.whiteSpace = "pre";
+        if (text[i] === "·") part.style.marginInline = "5px";
         if (confidence) {
           const t = i / (count - 1);
           part.style.fontVariationSettings = `"GRAD" ${Math.round(-50 + 150 * t)}`;
@@ -124,16 +128,16 @@ export function attachReadingHelp(root: Document = document, isolated = false) {
             Math.round(v * ink + [248, 250, 245][j] * (1 - ink)),
           );
           part.style.color = `rgb(${normal.map((v, j) => Math.round(v * (1 - reverse) + [248, 250, 245][j] * reverse)).join(",")})`;
-          part.style.backgroundColor = `rgba(38,58,50,${reverse})`;
         }
-        scale.append(part);
+        ramp.append(part);
       }
+      scale.append(ramp);
       const value = el(
         "span",
         confidence
           ? help.confidence === null
             ? "Not supplied"
-            : `${Math.round(help.confidence * 100)}%`
+            : `${Math.round(help.confidence * 100)}% confident`
           : help.label,
         "reading-value",
       );
@@ -144,13 +148,30 @@ export function attachReadingHelp(root: Document = document, isolated = false) {
       return row;
     };
     labels.append(
-      axis("Less · creator involvement · More", false),
-      axis("Less · confidence · More", true),
+      axis("Less  ·  creator involvement  ·  More", false),
+      axis("Less  ·  confidence  ·  More", true),
     );
     summary.append(sample, labels);
     const list = el("ul");
-    for (const evidence of help.evidence.slice(0, 3))
-      list.append(el("li", evidence.text));
+    for (const evidence of help.evidence.slice(0, 3)) {
+      const item = el("li"),
+        direction = evidence.direction ?? "neutral";
+      const icon = el(
+        "span",
+        direction === "more" ? "↑" : direction === "less" ? "↓" : "↔",
+        "evidence-direction",
+      );
+      icon.setAttribute("role", "img");
+      icon.setAttribute(
+        "aria-label",
+        direction === "neutral"
+          ? "Does not establish an involvement direction"
+          : `${direction === "more" ? "More" : "Less"} creator involvement`,
+      );
+      icon.title = icon.getAttribute("aria-label")!;
+      item.append(icon, el("span", evidence.text));
+      list.append(item);
+    }
     content.replaceChildren(summary, ...(help.evidence.length ? [list] : []));
     if (help.kind === "ghost" && help.prompt) {
       const prompt = el("div", "", "reading-prompt");

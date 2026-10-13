@@ -47,6 +47,7 @@ export function annotatePage(
   excluded: string,
 ) {
   const restores: (() => void)[] = [];
+  const opacityCandidates = new Set<HTMLElement>();
   for (const r of artifact.regions) {
     const el = elements.get(r.id);
     if (!el) continue;
@@ -98,12 +99,19 @@ export function annotatePage(
         registerReadingHelp(span, readingHelp(reading, packet));
         span.textContent = raw.slice(run.start, run.end);
         if (reading && reading.kind !== "unknown") {
+          for (
+            let ancestor: HTMLElement | null = parent;
+            ancestor && ancestor !== document.body;
+            ancestor = ancestor.parentElement
+          )
+            opacityCandidates.add(ancestor);
           const ink = ghostInk(reading.kind, foreground, background);
           span.className =
             "tompathy-ghost" +
             (Number(computed.fontWeight) >= 600 ? " tompathy-emphasis" : "");
           span.dataset.ghostKind = reading.kind;
           span.style.setProperty("color", ink.color, "important");
+          span.style.setProperty("opacity", "1", "important");
           span.style.setProperty(
             "background-color",
             ink.background,
@@ -143,6 +151,48 @@ export function annotatePage(
               p.replaceWith(...p.childNodes);
       });
     }
+  }
+  // Opacity on an ancestor multiplies every descendant: child opacity cannot
+  // undo it. Reset only text-only subtrees wholly covered by our treatment.
+  // Unrelated text, images, controls and page-level overlays retain their styles.
+  for (const ancestor of opacityCandidates) {
+    if (
+      Number(getComputedStyle(ancestor).opacity) >= 1 ||
+      ancestor.matches(excluded) ||
+      ancestor.querySelector(
+        `img,svg,video,canvas,iframe,input,button,select,textarea,${excluded}`,
+      )
+    )
+      continue;
+    const walker = document.createTreeWalker(ancestor, NodeFilter.SHOW_TEXT);
+    let node: Node | null,
+      covered = true;
+    while ((node = walker.nextNode())) {
+      if (
+        node.textContent?.trim() &&
+        !node.parentElement?.closest(".tompathy-ghost")
+      ) {
+        covered = false;
+        break;
+      }
+    }
+    if (!covered) continue;
+    const value = ancestor.style.getPropertyValue("opacity"),
+      priority = ancestor.style.getPropertyPriority("opacity"),
+      hadStyle = ancestor.hasAttribute("style");
+    ancestor.style.setProperty("opacity", "1", "important");
+    restores.push(() => {
+      // A site's subsequent edit owns the property; do not overwrite it.
+      if (
+        ancestor.style.getPropertyValue("opacity") !== "1" ||
+        ancestor.style.getPropertyPriority("opacity") !== "important"
+      )
+        return;
+      if (value) ancestor.style.setProperty("opacity", value, priority);
+      else ancestor.style.removeProperty("opacity");
+      if (!hadStyle && !ancestor.style.length)
+        ancestor.removeAttribute("style");
+    });
   }
   return () => {
     restores.forEach((restore) => restore());

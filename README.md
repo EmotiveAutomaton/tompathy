@@ -20,8 +20,8 @@ No account, API key, paid service or model download is needed for the example, r
 ## Three views, one reading
 
 - **Current attention** is an independent, animated word cloud. It follows the pointed sentence or supplied sub-sentence frame; word size reflects the supplied support. It retains the last inspected frame between targets; broader graph nodes combine their constituent attention frames.
-- **Expertise and habit (previous attention)** shows local choices flowing toward broader goals. Wheel to zoom, drag to pan, and use the corner-bracket button to fit the whole hierarchy. Cell-anchored goal labels fade in together as the graph grows. Hold a node and hover the odometer: ambiguous reels grow upward into selectable lists over the faded hierarchy. A held sentence can be located in the article with the arrow/magnifier below the lock.
-- **Core values** shows a stable set of supplied latent-preference hypotheses with evidence and support indicators.
+- **Expertise and habit (previous attention)** shows local choices flowing toward broader goals. Wheel to zoom, drag to pan, and use the corner-bracket button to fit the whole hierarchy. Cell-anchored goal labels fade in together as the graph grows. Hold a node and hover the odometer: ambiguous reels grow upward into selectable lists over the faded hierarchy. The arrow/magnifier below the lock centers highlighted text in the article, including groups with ambiguous reels.
+- **Core values** shows a stable set of supplied latent-preference hypotheses. The demo contrasts low-confidence creator values with a higher-confidence Global set. Hover or select a value for a preferred-state curve, uncertainty band, and individually explained observation vectors.
 
 The development reading, **The door we stopped explaining**, follows a fictional cooperative-game designer. Sentence ink shows supplied Ghost Scale involvement; font grade independently shows confidence in that classification. Original bold becomes underline. Pause over a sentence for its evidence and open **Options → View context and timeline** for the fictional draft record. These are authored demonstration judgments, not live inference. The Latin reading font is bundled locally (about 53 KB); it adds no font-service requests.
 
@@ -29,11 +29,13 @@ The reader supports keyboard focus, reduced motion, system/light/dark themes, mu
 
 ## Context and saved readings
 
-In this development branch, **Light context** records the byline and follows up to three explicit creator links. **Use GitHub when possible** retrieves a linked public profile without authentication. **Agent search** now adds a deterministic, bounded follow-up on the permitted sites: at most six sources total, including linked pages and RSS/Atom feeds. It uses no model or paid search. **View context and timeline** opens dated source entries, undated facts, retrieval coverage and a downloadable brief. Creator-like local models and word-level analysis remain planned controls; Global and value search remain interface previews. See [implementation and limits](docs/CONTEXT_RESEARCH.md).
+In this development branch, **Light context** records the byline and follows up to three explicit creator links. The setting persists: opening a reading refreshes context where Chrome already grants source access. **Use GitHub when possible** reads linked public profiles and an explicitly linked repository or source file, with up to three recent revisions and small change excerpts. **Agent search** adds one bounded hop of linked pages and feeds: at most six sources, including one repository lookup. It uses no account, model or paid search. Compact progress bars beside Options become a checkmark and fade. **View context and timeline** opens dated source entries, undated facts, retrieval coverage and an exportable brief. Sources remain available for selection into the next backend request; fetching context does not invent new scores. See [implementation and limits](docs/CONTEXT_RESEARCH.md).
+
+Click a hierarchy cell to lock it and gently center its source text. Up/down arrows move between nearby cells; left/right moves between subordinate and broader goals. Scrolling away reveals Find. The Review desk also includes four generated head-and-teardrop logo studies, their prompts and small-icon previews; the production icon is unchanged.
 
 **Export** saves one HTML reading containing captured text, analysis and context. **Import** restores its text beside the reader. The file also opens offline as plain text with reading styles; original site images, CSS and active features are not archived.
 
-Read the [0.1.2 UX review and next priorities](docs/UX_REVIEW_0.1.2.md).
+Read the [current UX review and next priorities](docs/UX_REVIEW_0.2_DEVELOPMENT.md).
 
 See [Privacy](PRIVACY.md) for storage, network behavior and permissions.
 
@@ -46,7 +48,7 @@ npm ci
 npm run review
 ```
 
-The launcher builds the extension and opens a persistent, separate Chrome review profile. Its small dashboard links to the testing environment and a temporary gallery of twelve face-and-teardrop logo studies. On Windows, **Review ToMpathy.cmd** provides the same entry point. It leaves normal Chrome profiles alone. For the design preview, run `npm run dev` and open `http://127.0.0.1:5173/`.
+The launcher builds the extension and opens a persistent, separate Chrome review profile. Its small dashboard links to the testing environment and twelve copyable image-generation prompts in contrasting visual styles. On Windows, **Review ToMpathy.cmd** provides the same entry point. It leaves normal Chrome profiles alone. For the design preview, run `npm run dev` and open `http://127.0.0.1:5173/`.
 
 ```sh
 npm run build

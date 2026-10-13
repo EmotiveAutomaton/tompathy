@@ -1,3 +1,4 @@
+import { demoGlobalValues } from "./core/example-values";
 import { findSentence } from "./find-sentence";
 import { selectionTransition } from "./selection-transition";
 import { ReadingText, textOffset } from "./components/ReadingText";
@@ -21,7 +22,7 @@ import { SelectionLock } from "./components/SelectionLock";
 import { blockedFocusTracker } from "./core/lock";
 import { GoalCloud } from "./components/GoalCloud";
 import { ProcessHierarchy } from "./components/ProcessHierarchy";
-import { ValueList } from "./components/ValueList";
+import { ValueList, ValueDetails } from "./components/ValueList";
 import { SectionTitle, explanations } from "./components/HoverCard";
 import { sentences } from "./core/sentences";
 import type { GoalNode } from "./core/hierarchy";
@@ -70,6 +71,7 @@ import {
   exampleEmphasis,
 } from "./core/example";
 import { collectSources, publicURL, contextSourceURL } from "./core/collector";
+import { githubRepository } from "./core/public-source";
 import {
   acceptRevision,
   analysisHandoff,
@@ -193,6 +195,7 @@ export function App({ preview = false }: { preview?: boolean }) {
     [region, setRegion] = useState("p2"),
     [pinned, setPinned] = useState(false),
     [foundInPage, setFoundInPage] = useState(false),
+    [navigationRequest, setNavigationRequest] = useState(0),
     [lockReminder, setLockReminder] = useState(0),
     [valuesTab, setValuesTab] = useState<"creator" | "global">("creator"),
     [sentenceOffset, setSentenceOffset] = useState(0),
@@ -203,7 +206,9 @@ export function App({ preview = false }: { preview?: boolean }) {
     [stale, setStale] = useState(false),
     [notice, setNotice] = useState(""),
     [error, setError] = useState(""),
-    [contextEnabled, setContextEnabled] = useState(false),
+    [contextEnabled, setContextEnabled] = useState(
+      () => localStorage.getItem("tompathy-context-enabled") === "true",
+    ),
     [followLinks, setFollowLinks] = useState(
       () => localStorage.getItem("tompathy-follow-links") === "true",
     ),
@@ -267,8 +272,11 @@ export function App({ preview = false }: { preview?: boolean }) {
     blockedFocus.current.reset();
     setLockReminder(0);
   }, [pinned, lockedNode?.id, region, sentenceOffset]);
-  const blocked = (key: string) => {
-    if (pinned && blockedFocus.current.attempt(key, performance.now())) {
+  const blocked = (key: string, weight = 1) => {
+    if (
+      pinned &&
+      blockedFocus.current.attempt(key, performance.now(), weight)
+    ) {
       setLockReminder((n) => n + 1);
       void pageCommand(tabId, session.artifact, "TOMPATHY_LOCK_REMINDER");
     }
@@ -400,12 +408,12 @@ export function App({ preview = false }: { preview?: boolean }) {
           resultPacket = candidate;
       }
       if (request !== serial.current) return;
-      setContextEnabled(false);
       setSession(
         result.restored ?? {
           sessionVersion: "1.0",
           artifact: result.artifact,
           contextSources: result.contextSources,
+          repositoryLinks: result.repositoryLinks,
           packet: resultPacket,
           scope: resultPacket?.scope.kind ?? "artifact",
           context:
@@ -638,6 +646,8 @@ export function App({ preview = false }: { preview?: boolean }) {
         setLockedNode(null);
         setRelatedNode(null);
         setSourceHover(false);
+        if (document.activeElement?.closest(".example-page"))
+          (document.activeElement as HTMLElement).blur();
         void pageCommand(tabId, artifact, "TOMPATHY_RELEASE");
       }
     };
@@ -649,6 +659,8 @@ export function App({ preview = false }: { preview?: boolean }) {
     setLockedNode(null);
     setRelatedNode(null);
     setSourceHover(false);
+    if (document.activeElement?.closest(".example-page"))
+      (document.activeElement as HTMLElement).blur();
     void pageCommand(tabId, artifact, "TOMPATHY_RELEASE");
   };
   useEffect(() => {
@@ -657,9 +669,12 @@ export function App({ preview = false }: { preview?: boolean }) {
     return () => window.removeEventListener("dblclick", release);
   }, [tabId, artifact]);
   const cancelFind = useRef<() => void>(() => {});
+  const autoFind = useRef(false);
+  const finding = useRef(false);
   useEffect(() => {
     setFoundInPage(false);
     cancelFind.current();
+    finding.current = false;
   }, [pinned, lockedNode?.id, region, sentenceOffset, tabId]);
   useEffect(() => {
     if (!preview) return;
@@ -668,7 +683,7 @@ export function App({ preview = false }: { preview?: boolean }) {
         e.target === document ||
         (e.target as Element).closest?.(".example-page")
       )
-        setFoundInPage(false);
+        if (!finding.current) setFoundInPage(false);
     };
     document.addEventListener("scroll", scroll, true);
     return () => {
@@ -678,6 +693,7 @@ export function App({ preview = false }: { preview?: boolean }) {
   }, [preview]);
   const findLocked = () => {
     if (!pinned || !artifact) return;
+    setFoundInPage(true);
     const id = lockedNode?.span?.region ?? region,
       start = lockedNode?.span?.start ?? sentenceOffset;
     if (isExtension) {
@@ -687,19 +703,50 @@ export function App({ preview = false }: { preview?: boolean }) {
       });
       return;
     }
-    const passage = artifact.regions.find((r) => r.id === id);
-    const index = sentences(passage?.anchor.exact ?? "").findIndex(
-      (s) => s.start <= start && start < s.end,
-    );
-    const element = document.querySelector(
-      `[data-passage="${CSS.escape(id)}"] [data-sentence="${index}"]`,
-    );
-    if (!element) return;
-    const range = document.createRange();
-    range.selectNodeContents(element);
+    const elements =
+      lockedNode && !lockedNode.span
+        ? lockedNode.regions.flatMap((region) => [
+            ...document.querySelectorAll(
+              `[data-passage="${CSS.escape(region)}"] [data-sentence]`,
+            ),
+          ])
+        : (() => {
+            const passage = artifact.regions.find((r) => r.id === id);
+            const index = sentences(passage?.anchor.exact ?? "").findIndex(
+              (s) => s.start <= start && start < s.end,
+            );
+            return [
+              ...document.querySelectorAll(
+                `[data-passage="${CSS.escape(id)}"] [data-sentence="${index}"]`,
+              ),
+            ];
+          })();
+    const ranges = elements.map((element) => {
+      const range = document.createRange();
+      range.selectNodeContents(element);
+      return range;
+    });
+    if (!ranges.length) return;
     cancelFind.current();
-    cancelFind.current = findSentence(range, () => setFoundInPage(true));
+    finding.current = true;
+    cancelFind.current = findSentence(
+      ranges,
+      () => {
+        finding.current = false;
+        setFoundInPage(true);
+      },
+      () => {
+        finding.current = false;
+        setFoundInPage(false);
+      },
+    );
   };
+  useEffect(() => {
+    if (!autoFind.current || !pinned || !lockedNode) return;
+    autoFind.current = false;
+    setFoundInPage(true);
+    if (!isExtension) findLocked();
+  }, [navigationRequest, lockedNode, pinned]);
   const move = (id: string, pin = false, offset = 0) => {
     if (pinned && !pin) {
       const text =
@@ -712,7 +759,7 @@ export function App({ preview = false }: { preview?: boolean }) {
         (sentence &&
           !(sentence.start <= sentenceOffset && sentence.end > sentenceOffset))
       )
-        blocked(`text:${id}:${sentence?.start ?? 0}`);
+        blocked(`text:${id}:${sentence?.start ?? 0}`, 2);
       return;
     }
     setRegion(id);
@@ -827,9 +874,12 @@ export function App({ preview = false }: { preview?: boolean }) {
     enabled: boolean,
     discover = followLinks,
     refresh = false,
+    automatic = false,
+    github = useGitHub,
   ) {
     collector.current?.abort();
     setContextEnabled(enabled);
+    localStorage.setItem("tompathy-context-enabled", String(enabled));
     setContextWork(null);
     setContextReport(null);
     if (!enabled || !artifact) return;
@@ -841,24 +891,51 @@ export function App({ preview = false }: { preview?: boolean }) {
     const job = new AbortController();
     collector.current = job;
     try {
-      const urls = sources.map((s) => contextSourceURL(s.url, useGitHub));
-      if (
-        isExtension &&
-        urls.length &&
-        !(await chrome.permissions.request({
-          origins: [...new Set(urls.map((u) => u.origin + "/*"))],
-        }))
-      )
-        throw Error("Context source access was declined.");
+      const urls = sources.map((s) => contextSourceURL(s.url, github));
+      const origins = [
+        ...new Set([
+          ...urls.map(
+            (u) =>
+              (github && githubRepository(u.href)
+                ? "https://api.github.com"
+                : u.origin) + "/*",
+          ),
+          ...(github &&
+          (session.repositoryLinks?.length || (discover && sources.length))
+            ? ["https://api.github.com/*"]
+            : []),
+        ]),
+      ];
+      const allowed =
+        !isExtension ||
+        !origins.length ||
+        (await (automatic
+          ? chrome.permissions.contains({ origins })
+          : chrome.permissions.request({ origins })));
       if (request !== serial.current || job.signal.aborted) return;
+      setContextWork({
+        phase: "working",
+        completed: 0,
+        total: 1,
+        label: "Reading byline",
+      });
       const byline = await bylineContext(artifact, creatorName);
       if (request !== serial.current || job.signal.aborted) return;
       if (byline)
         setSession((s) => ({ ...s, context: mergeContext(s.context, byline) }));
+      if (!allowed)
+        throw Error(
+          automatic
+            ? "Open Options and refresh context to allow access to these sources."
+            : "Context source access was declined.",
+        );
       const report = await collectCreatorContext({
         sources,
+        repositoryLinks: session.repositoryLinks,
+        pageSource: artifact.source,
+        existingContext: refresh ? [] : session.context,
         creator: creatorName,
-        useGitHub,
+        useGitHub: github,
         followLinks: discover,
         signal: job.signal,
         onResult: (item) => {
@@ -884,7 +961,7 @@ export function App({ preview = false }: { preview?: boolean }) {
         total: report.attempted || 1,
         label: report.failures.length
           ? "Some context sources were unavailable. Open the timeline for coverage."
-          : !sources.length
+          : !sources.length && !(github && session.repositoryLinks?.length)
             ? byline
               ? "Page byline recorded; no explicit creator links found."
               : "No creator byline or explicit public profile links found."
@@ -900,6 +977,14 @@ export function App({ preview = false }: { preview?: boolean }) {
         });
     }
   }
+  const automaticContextKey = useRef("");
+  useEffect(() => {
+    if (!hydrated || !artifact || !contextEnabled) return;
+    const key = `${artifact.id}:${artifact.revision}:${creatorName}:${useGitHub}:${followLinks}`;
+    if (automaticContextKey.current === key) return;
+    automaticContextKey.current = key;
+    void toggleContext(true, followLinks, false, true);
+  }, [hydrated, artifact?.id, artifact?.revision, creatorName]);
   function exportReading() {
     try {
       const url = URL.createObjectURL(
@@ -1129,7 +1214,6 @@ export function App({ preview = false }: { preview?: boolean }) {
                     onChange={(e) => {
                       setMaker(e.target.value);
                       setDetail(null);
-                      setContextEnabled(false);
                       setContextWork(null);
                       setContextReport(null);
                       collector.current?.abort();
@@ -1278,6 +1362,9 @@ export function App({ preview = false }: { preview?: boolean }) {
               pinned={pinned}
               lockedNodeId={lockedNode?.id}
               onSelect={(node) => {
+                autoFind.current = true;
+                setNavigationRequest((n) => n + 1);
+                setFoundInPage(true);
                 setLockedNode(node);
                 setPinned(true);
                 setRelatedNode(null);
@@ -1287,6 +1374,7 @@ export function App({ preview = false }: { preview?: boolean }) {
                   region: node.regions[0],
                   offset: node.span?.start ?? 0,
                   regions: node.span ? undefined : node.regions,
+                  center: true,
                 });
               }}
               onHighlight={(node) => {
@@ -1317,13 +1405,15 @@ export function App({ preview = false }: { preview?: boolean }) {
                 valuesTab === "creator" ? "Creator values" : "Global preview"
               }
             >
-              {valuesTab === "creator" ? (
-                <ValueList values={values} packet={packet} inspect={inspect} />
-              ) : (
-                <span className="quiet-empty world-placeholder">
-                  Global view · coming later
-                </span>
-              )}
+              <ValueList
+                values={
+                  valuesTab === "creator"
+                    ? values
+                    : demoGlobalValues(ready ? packet : null, values)
+                }
+                packet={packet}
+                inspect={inspect}
+              />
             </div>
             <div className="values-bottom">
               <ValueTabs tab={valuesTab} onTab={setValuesTab} />
@@ -1353,111 +1443,116 @@ export function App({ preview = false }: { preview?: boolean }) {
               });
             }}
           >
-            <section
-              className="evidence-panel"
-              aria-label="Hypothesis evidence"
-            >
-              <span className="eyebrow">
-                {detail.status} · {detail.kind}
-              </span>
-              <p>{detail.description}</p>
-              <p className="muted">{interpretationLabel(detail)}</p>
-              {detail.support ? (
-                <p className="support-line">
-                  {detail.support.semantics === "probability"
-                    ? `${(detail.support.value * 100).toFixed(0)}% probability`
-                    : `Support ${detail.support.value} on ${detail.support.scale.join("–")}`}
-                  . {detail.support.meaning}{" "}
-                  {detail.support.calibration ?? "Calibration not supplied."}
-                </p>
-              ) : (
-                <p className="support-line">Support is unquantified.</p>
-              )}
-              <p className="muted">
-                Maker: {activeMaker?.label} · {activeMaker?.relationship}
-              </p>
-              {packet!.alternatives
-                .filter((a) => a.members.includes(detail.id))
-                .map((a) => (
-                  <p className="muted" key={a.id}>
-                    {a.kind === "competing"
-                      ? "Competing account with"
-                      : "Can coexist with"}
-                    :{" "}
-                    {a.members
-                      .filter((id) => id !== detail.id)
-                      .map(
-                        (id) =>
-                          packet!.hypotheses.find((h) => h.id === id)!.label,
-                      )
-                      .join(", ") || "no other supplied accounts"}
-                    .
-                    {a.exhaustive
-                      ? " Complete candidate set."
-                      : " Other accounts may be possible."}
-                    {a.kind !== "competing" &&
-                      " Coexistence does not imply statistical independence."}
+            {detail.kind === "value" && detail.preferenceTrace ? (
+              <ValueDetails h={detail} packet={packet} />
+            ) : (
+              <section
+                className="evidence-panel"
+                aria-label="Hypothesis evidence"
+              >
+                <span className="eyebrow">
+                  {detail.status} · {detail.kind}
+                </span>
+                <p>{detail.description}</p>
+                <p className="muted">{interpretationLabel(detail)}</p>
+                {detail.support ? (
+                  <p className="support-line">
+                    {detail.support.semantics === "probability"
+                      ? `${(detail.support.value * 100).toFixed(0)}% probability`
+                      : `Support ${detail.support.value} on ${detail.support.scale.join("–")}`}
+                    . {detail.support.meaning}{" "}
+                    {detail.support.calibration ?? "Calibration not supplied."}
                   </p>
-                ))}
-              {detail.kind === "process" &&
-                packet!.process.edges
-                  .filter((e) => e.from === detail.id || e.to === detail.id)
-                  .map((e, i) => (
-                    <p className="muted" key={i}>
-                      {packet!.hypotheses.find((h) => h.id === e.from)!.label} →{" "}
-                      {packet!.hypotheses.find((h) => h.id === e.to)!.label}:{" "}
-                      {e.relationship}.{" "}
-                      {e.kind
-                        ? `Relationship: ${e.kind}.`
-                        : "Order unspecified."}{" "}
-                      {e.status ?? "hypothesis"}.
-                    </p>
-                  ))}
-              {packet!.accounts
-                ?.filter((a) => a.members.includes(detail.id))
-                .map((a) => (
-                  <details key={a.id}>
-                    <summary>{a.label}</summary>
-                    <p>{a.explanation}</p>
-                    <p className="muted">
-                      Compatible hypotheses:{" "}
+                ) : (
+                  <p className="support-line">Support is unquantified.</p>
+                )}
+                <p className="muted">
+                  Maker: {activeMaker?.label} · {activeMaker?.relationship}
+                </p>
+                {packet!.alternatives
+                  .filter((a) => a.members.includes(detail.id))
+                  .map((a) => (
+                    <p className="muted" key={a.id}>
+                      {a.kind === "competing"
+                        ? "Competing account with"
+                        : "Can coexist with"}
+                      :{" "}
                       {a.members
+                        .filter((id) => id !== detail.id)
                         .map(
                           (id) =>
                             packet!.hypotheses.find((h) => h.id === id)!.label,
                         )
-                        .join(" · ")}
+                        .join(", ") || "no other supplied accounts"}
+                      .
+                      {a.exhaustive
+                        ? " Complete candidate set."
+                        : " Other accounts may be possible."}
+                      {a.kind !== "competing" &&
+                        " Coexistence does not imply statistical independence."}
                     </p>
-                  </details>
-                ))}
-              {detailEvidence.length ? (
-                detailEvidence.map((id) => {
-                  const e = packet!.evidence.find((e) => e.id === id)!;
-                  return (
-                    <blockquote key={id}>
-                      <p>“{e.excerpt}”</p>
-                      <cite>
-                        <SourceLink source={e.source} /> ·{" "}
-                        {new Date(e.capturedAt).toLocaleDateString()}
-                      </cite>
-                      <small>{e.relationship}</small>
-                    </blockquote>
-                  );
-                })
-              ) : (
-                <p className="muted">
-                  No evidence was supplied for this unresolved account.
-                </p>
-              )}
-              <div className="source-links">
-                {detail.regions.map((id) => (
-                  <button key={id} onClick={() => move(id, true)}>
-                    <ArrowDownLeft size={13} /> Passage{" "}
-                    {artifact!.regions.findIndex((r) => r.id === id) + 1}
-                  </button>
-                ))}
-              </div>
-            </section>
+                  ))}
+                {detail.kind === "process" &&
+                  packet!.process.edges
+                    .filter((e) => e.from === detail.id || e.to === detail.id)
+                    .map((e, i) => (
+                      <p className="muted" key={i}>
+                        {packet!.hypotheses.find((h) => h.id === e.from)!.label}{" "}
+                        → {packet!.hypotheses.find((h) => h.id === e.to)!.label}
+                        : {e.relationship}.{" "}
+                        {e.kind
+                          ? `Relationship: ${e.kind}.`
+                          : "Order unspecified."}{" "}
+                        {e.status ?? "hypothesis"}.
+                      </p>
+                    ))}
+                {packet!.accounts
+                  ?.filter((a) => a.members.includes(detail.id))
+                  .map((a) => (
+                    <details key={a.id}>
+                      <summary>{a.label}</summary>
+                      <p>{a.explanation}</p>
+                      <p className="muted">
+                        Compatible hypotheses:{" "}
+                        {a.members
+                          .map(
+                            (id) =>
+                              packet!.hypotheses.find((h) => h.id === id)!
+                                .label,
+                          )
+                          .join(" · ")}
+                      </p>
+                    </details>
+                  ))}
+                {detailEvidence.length ? (
+                  detailEvidence.map((id) => {
+                    const e = packet!.evidence.find((e) => e.id === id)!;
+                    return (
+                      <blockquote key={id}>
+                        <p>“{e.excerpt}”</p>
+                        <cite>
+                          <SourceLink source={e.source} /> ·{" "}
+                          {new Date(e.capturedAt).toLocaleDateString()}
+                        </cite>
+                        <small>{e.relationship}</small>
+                      </blockquote>
+                    );
+                  })
+                ) : (
+                  <p className="muted">
+                    No evidence was supplied for this unresolved account.
+                  </p>
+                )}
+                <div className="source-links">
+                  {detail.regions.map((id) => (
+                    <button key={id} onClick={() => move(id, true)}>
+                      <ArrowDownLeft size={13} /> Passage{" "}
+                      {artifact!.regions.findIndex((r) => r.id === id) + 1}
+                    </button>
+                  ))}
+                </div>
+              </section>
+            )}
           </Modal>
         )}
       </div>
@@ -1579,14 +1674,21 @@ export function App({ preview = false }: { preview?: boolean }) {
                           "tompathy-use-github",
                           String(e.target.checked),
                         );
-                        if (contextEnabled) void toggleContext(false);
+                        if (contextEnabled)
+                          void toggleContext(
+                            true,
+                            followLinks,
+                            false,
+                            false,
+                            e.target.checked,
+                          );
                       }}
                     />
                     <span>
                       Use GitHub when possible
                       <small>
-                        Use public profile data when the creator links their
-                        account.
+                        Read explicitly linked profiles, repositories and
+                        source-file revisions. No paid API or model.
                       </small>
                     </span>
                   </label>

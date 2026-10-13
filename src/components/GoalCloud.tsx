@@ -12,13 +12,17 @@ export const weight = (h: Hypothesis) =>
   h.support
     ? (h.support.value - h.support.scale[0]) /
       (h.support.scale[1] - h.support.scale[0])
-    : 0.25;
+    : "attentionOverview" in h
+      ? 0
+      : 0.25;
 export const supportText = (h: Hypothesis) =>
   !h.support
     ? "Support not supplied"
-    : h.support.semantics === "probability"
-      ? `${Math.round(h.support.value * 100)}% declared probability`
-      : `${h.support.value} on a ${h.support.scale.join("–")} relative support scale`;
+    : "attentionOverview" in h
+      ? `${Math.round(weight(h) * 100)}% weighted prominence across the selected sentences`
+      : h.support.semantics === "probability"
+        ? `${Math.round(h.support.value * 100)}% declared probability`
+        : `${h.support.value} on a ${h.support.scale.join("–")} relative support scale`;
 type Word = SimulationNodeDatum & {
   id: string;
   width: number;
@@ -87,7 +91,8 @@ export function GoalCloud({
       return;
     }
     const canvas = document.createElement("canvas").getContext("2d")!;
-    const combined = goals.length > 8;
+    const combined =
+      goals.length > 8 || goals.some((h) => "attentionOverview" in h);
     const peak = combined ? Math.max(0.01, ...goals.map(weight)) : 1;
     const padding = 6;
     const gapX = 2,
@@ -345,7 +350,8 @@ export function GoalCloud({
                   <strong>{h.label}</strong>
                   <p className="hypothesis-summary">{h.description}</p>
                   <p className="muted support-summary">
-                    {supportText(h)}. {h.support?.meaning}
+                    {supportText(h)}.{" "}
+                    {"attentionOverview" in h ? null : h.support?.meaning}
                   </p>
                 </>
               }

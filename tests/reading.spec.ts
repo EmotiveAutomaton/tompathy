@@ -109,7 +109,7 @@ test("page treatment preserves inline elements, anchors, edits, keyboard and cle
     await source.route("**/ghost-fixture", (r) =>
       r.fulfill({
         contentType: "text/html",
-        body: '<html><body style="background:#faf9f5;color:#263a32"><article><p id="text">One <strong>bold choice</strong> and <a href="#kept">a linked detail</a> remain intact. This claim was curated from suggestions. Nobody reviewed this generated claim.</p></article></body></html>',
+        body: '<html><body style="background:#faf9f5;color:#263a32"><article><p id="text" style="opacity:.6">One <strong style="opacity:.5">bold choice</strong> and <a href="#kept">a linked detail</a> remain intact. This claim was curated from suggestions. Nobody reviewed this generated claim.</p></article><aside style="opacity:.4">Unrelated page text.</aside></body></html>',
       }),
     );
     await source.goto("http://127.0.0.1:5173/ghost-fixture");
@@ -173,6 +173,9 @@ test("page treatment preserves inline elements, anchors, edits, keyboard and cle
         estimates: [],
       });
     await mark();
+    await expect(source.locator("#text")).toHaveCSS("opacity", "1");
+    await expect(source.locator("strong")).toHaveCSS("opacity", "1");
+    await expect(source.locator("aside")).toHaveCSS("opacity", "0.4");
     await expect(source.locator("strong .tompathy-emphasis")).toHaveCount(1);
     expect(
       await source.evaluate(
@@ -230,6 +233,8 @@ test("page treatment preserves inline elements, anchors, edits, keyboard and cle
     await source.keyboard.press("Escape");
     await command("TOMPATHY_MARK", { estimates: [] });
     await expect(source.locator("[data-tompathy-reading]")).toHaveCount(0);
+    await expect(source.locator("#text")).toHaveCSS("opacity", "0.6");
+    await expect(source.locator("strong")).toHaveCSS("opacity", "0.5");
     expect(
       await source.evaluate(
         () =>

@@ -45,18 +45,20 @@ try {
   await expect(
     guide.getByRole("button", { name: /Live creator/ }),
   ).toBeDisabled();
-  await guide.getByRole("link", { name: /Icon studies/ }).click();
-  await expect(guide.locator(".study-card")).toHaveCount(12);
-  await guide.getByRole("button", { name: "Explore The literal map" }).click();
-  await expect(guide.getByRole("dialog")).toBeVisible();
+  await guide.getByRole("link", { name: /Icon prompts/ }).click();
+  await expect(guide.locator("#prompts .prompt-card")).toHaveCount(12);
+  await expect(guide.locator(".logo-study")).toHaveCount(4);
+  await guide.locator(".prompt-card button").first().click();
+  await expect(guide.getByRole("status")).toContainText(
+    /Copied|Prompt selected/,
+  );
   await guide.screenshot({
-    path: "evidence/icons-native.png",
+    path: "evidence/icon-prompts-native.png",
     scale: "css",
   });
-  await guide.keyboard.press("Escape");
   await guide.getByRole("link", { name: "← Review desk" }).click();
   receipt.checks.push(
-    "Three-entry dashboard and twelve local face-and-brain SVG icon studies, open in ordinary Chrome",
+    "Three-entry dashboard, four generated logo studies and twelve copyable prompts open in ordinary Chrome",
   );
   const [source] = await Promise.all([
     context.waitForEvent("page"),
@@ -128,13 +130,18 @@ try {
   ).toBeVisible();
   await expect(source.locator('[aria-label="Unlock selection"]')).toBeVisible();
   // Native panel → document reminder, with no unlock or selection change.
-  for (let i = 0; i < 4; i++) {
-    await panel
-      .locator(
-        `[data-root="purpose"][data-node="sentence-1-${(i % 3) + 1}"] circle`,
-      )
-      .hover();
-    await panel.waitForTimeout(75);
+  const blockedNodes = await panel
+    .locator('[data-node^="sentence-1-"] circle')
+    .evaluateAll((es) =>
+      es.map((el) => {
+        const b = el.getBoundingClientRect();
+        return { x: b.x + b.width / 2, y: b.y + b.height / 2 };
+      }),
+    );
+  for (let i = 0; i < 12; i++) {
+    const target = blockedNodes[i % blockedNodes.length];
+    await panel.mouse.move(target.x, target.y);
+    await panel.waitForTimeout(45);
   }
   await expect(panel.locator('[data-lock-reminder="active"]')).toHaveCount(1);
   await expect(source.locator('[data-lock-reminder="active"]')).toHaveCount(1);
@@ -143,7 +150,7 @@ try {
   await panel
     .locator('[data-root="purpose"][data-node="sentence-3-1"] circle')
     .click();
-  // Document → native panel reminder, using four distinct sentence targets.
+  // Document → native panel reminder, using six transitions, each worth two points.
   await source.locator('[data-passage="p3"]').scrollIntoViewIfNeeded();
   const blockedPoints = await source
     .locator('[data-passage="p3"]')
@@ -161,7 +168,8 @@ try {
         return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
       });
     });
-  for (const p of blockedPoints.slice(0, 4)) {
+  for (let i = 0; i < 6; i++) {
+    const p = blockedPoints[i % blockedPoints.length];
     await source.mouse.move(p.x, p.y);
     await source.waitForTimeout(75);
   }
@@ -224,27 +232,21 @@ try {
     "Learning together",
   );
   await expect(panel.locator('.spool[data-rank="2"]')).toHaveAttribute(
-    "data-selected",
-    "story",
+    "data-candidates",
+    "story,practical-care",
   );
   await expect(panel.locator('.spool[data-level="0"]')).toHaveAttribute(
-    "data-selected",
-    "purpose",
+    "data-candidates",
+    "purpose,end",
   );
   await panel.getByRole("button", { name: "Unlock selection" }).click();
   await expect(
     source.getByRole("button", { name: "Unlock selection" }),
   ).toBeHidden();
   await expect(panel.getByTestId("goals")).toHaveText("hover");
-  const lowerBranch = panel.locator(
-    '[data-root="practical-care"][data-node="paragraph-3"] circle',
-  );
+  const lowerBranch = panel.locator('[data-node="practical-care"] circle');
   await lowerBranch.click();
-  await expect(
-    panel.locator(
-      '[data-root="purpose"].ancestor, [data-root="purpose"].descendant',
-    ),
-  ).toHaveCount(0);
+  await expect(panel.locator('[data-node="purpose"].ancestor')).toHaveCount(0);
   await expect(panel.locator('.spool[data-level="0"] .spool-window')).toHaveCSS(
     "height",
     "2px",
@@ -262,7 +264,13 @@ try {
     panel.getByRole("button", { name: /^Order uncertain/ }),
   ).toHaveCount(2);
   receipt.checks.push(
-    "Direct node selection stays on its visual branch; shorter paths close the final reel; double-clicking either page or panel releases both locks; two supplied order-uncertainty marks render",
+    "Each node has one visual home while selection retains every supplied parent; shorter paths close the final reel; double-clicking either page or panel releases both locks; two supplied order-uncertainty marks render",
+  );
+  await panel.locator("#values-title button").hover();
+  await expect(panel.getByRole("tooltip")).toContainText("homeostatic");
+  const theoryBounds = await panel.getByRole("tooltip").boundingBox();
+  expect(theoryBounds.height).toBeLessThan(
+    await panel.evaluate(() => innerHeight - 20),
   );
   await panel.locator("#process-title button").hover();
   await panel.locator('[data-node="paragraph-3"] circle').first().hover();
@@ -298,7 +306,27 @@ try {
               .filter((a) => a.playState === "running").length,
         ),
     )
-    .toBe(0);
+    .toBe(0)
+    .catch(async (error) => {
+      console.error(
+        await panel.getByTestId("goals").evaluate((el) => ({
+          visibility: document.visibilityState,
+          goals: el.textContent,
+          animations: el
+            .getAnimations({ subtree: true })
+            .filter((a) => a.playState === "running")
+            .map((a) => ({
+              target: a.effect.target?.outerHTML?.slice(0, 300),
+              time: a.currentTime,
+              start: a.startTime,
+              timing: a.effect.getComputedTiming(),
+              property: a.transitionProperty,
+              name: a.animationName,
+            })),
+        })),
+      );
+      throw error;
+    });
   const cloudBounds = await panel.getByTestId("goals").evaluate((el) => {
     const box = el.getBoundingClientRect();
     return [
@@ -337,15 +365,21 @@ try {
   await lateSentence.focus();
   await source.keyboard.press("Enter");
   const findButton = panel.getByRole("button", {
-    name: "Find locked sentence in page",
+    name: "Find highlighted text in page",
   });
   await expect(findButton).toBeVisible();
   await source.evaluate(() => window.scrollTo(0, 0));
   await findButton.click();
-  await expect(findButton).toHaveAttribute("aria-pressed", "true");
+  await expect(findButton).toBeHidden();
+  await expect
+    .poll(() => source.evaluate(() => CSS.highlights.has("tompathy-found")), {
+      intervals: [100],
+      timeout: 10000,
+    })
+    .toBe(true);
   expect(await source.evaluate(() => scrollY)).toBeGreaterThan(100);
   await source.evaluate(() => window.scrollBy(0, -80));
-  await expect(findButton).toHaveAttribute("aria-pressed", "false");
+  await expect(findButton).toBeVisible();
   const graph = panel.locator(".pyramid > svg");
   const anchor = await panel
     .locator('[data-node="sentence-3-1"][data-root="purpose"]')
@@ -415,10 +449,19 @@ try {
     .focus();
   await expect(source.locator(".tompathy-reading-help")).toBeVisible();
   const sourceCDP = await source.context().newCDPSession(source);
-  const ax = await sourceCDP.send("Accessibility.getFullAXTree");
-  expect(JSON.stringify(ax)).toContain("Less · confidence · More");
-  expect(JSON.stringify(ax)).toContain("Less · creator involvement · More");
-  expect(JSON.stringify(ax)).not.toContain("Ink represents involvement");
+  // Focusing can scroll the sentence into view and briefly dismiss the card.
+  // Check the restored, exposed content rather than sampling a stale AX tree.
+  const evidenceText = async () =>
+    (await sourceCDP.send("Accessibility.getFullAXTree")).nodes
+      .filter((n) => !n.ignored)
+      .map((n) => n.name?.value ?? "")
+      .join(" ")
+      .replace(/\s+/g, " ");
+  await expect.poll(evidenceText).toContain("Less · confidence · More");
+  await expect
+    .poll(evidenceText)
+    .toContain("Less · creator involvement · More");
+  expect(await evidenceText()).not.toContain("Ink represents involvement");
   await sourceCDP.detach();
   await source.screenshot({
     path: "evidence/navigation-native-evidence.png",
@@ -460,12 +503,72 @@ try {
     "Creator selection is above attention, Options is in Core values, and the estimated ghost prompt appears only inside the private evidence tooltip",
   );
   receipt.checks.push(
-    "All thirty sentences represented; native zoom, readable labels, drag without changing the lock, fit, blank-space unlock, exact-sentence find, grey acknowledgement and scroll rearming; private visual evidence card exposed accessibly",
+    "All thirty sentences represented; native zoom, readable labels, drag without changing the lock, fit, blank-space unlock, exact-sentence find, hidden Find acknowledgement and scroll rearming; private visual evidence card exposed accessibly",
+  );
+  await panel.keyboard.press("Escape");
+  await panel.locator('[data-node="sentence-3-1"] circle').click();
+  await panel.keyboard.press("ArrowDown");
+  await expect(panel.locator(".pyramid-node.chosen")).toHaveAttribute(
+    "data-node",
+    "sentence-3-2",
+  );
+  await expect
+    .poll(() =>
+      source.evaluate(() =>
+        [...CSS.highlights.get("tompathy-active")]
+          .map((r) => r.toString())
+          .join(" "),
+      ),
+    )
+    .toContain("A tester pointed out");
+  await panel.keyboard.press("ArrowRight");
+  await expect(panel.locator(".pyramid-node.chosen")).toHaveAttribute(
+    "data-node",
+    "paragraph-3",
+  );
+  receipt.checks.push(
+    "Arrow keys navigate cells and hierarchy levels in the native side panel and update the actual source highlight",
+  );
+  await expect(panel.locator(".spool.ambiguous").first()).toBeVisible();
+  await expect(panel.locator(".process-find")).toBeHidden();
+  await expect
+    .poll(() => source.evaluate(() => CSS.highlights.has("tompathy-found")), {
+      intervals: [100],
+      timeout: 10000,
+    })
+    .toBe(true);
+  const groupCenterError = await source.evaluate(() => {
+    const rs = [...CSS.highlights.get("tompathy-active")].flatMap((r) => [
+      ...r.getClientRects(),
+    ]);
+    return Math.abs(
+      (Math.min(...rs.map((r) => r.top)) +
+        Math.max(...rs.map((r) => r.bottom))) /
+        2 -
+        innerHeight / 2,
+    );
+  });
+  expect(groupCenterError).toBeLessThan(3);
+  receipt.checks.push(
+    "Ambiguous branch Find centers the full highlighted text group in the native source page",
   );
   await panel.getByRole("tab", { name: "global", exact: true }).click();
-  await expect(panel.getByRole("tabpanel")).toHaveText(
-    "Global view · coming later",
-  );
+  await expect(panel.locator(".core-value-row")).toHaveCount(8);
+  await expect(panel.getByRole("tabpanel")).toContainText("Personal agency");
+  await panel
+    .getByRole("button", { name: "Personal agency", exact: true })
+    .hover();
+  await expect(
+    panel.getByRole("tooltip").locator(".value-confidence"),
+  ).toContainText("88%");
+  await expect(
+    panel.getByRole("tooltip").locator(".preference-observations li"),
+  ).toHaveCount(3);
+  await panel.waitForTimeout(250);
+  await panel.screenshot({
+    path: "evidence/review-global-values.png",
+    scale: "css",
+  });
   await panel.getByRole("tab", { name: "creator", exact: true }).click();
   await expect(panel.locator(".core-value-row")).toHaveCount(8);
   await panel.getByRole("button", { name: "Open search preview" }).click();
@@ -478,12 +581,12 @@ try {
   ).toBeVisible();
   await panel.getByRole("button", { name: "Close search" }).click();
   receipt.checks.push(
-    "Eight creator values, global placeholder and expandable typing-only search work in the native panel",
+    "Eight creator values, eight higher-confidence Global demo values and expandable typing-only search work in the native panel",
   );
   await panel
     .getByRole("button", { name: "Care for others", exact: true })
     .hover();
-  await expect(panel.getByRole("tooltip")).toContainText("Specific decision");
+  await expect(panel.getByRole("tooltip")).toContainText("persistent latch");
   await panel.getByRole("button", { name: "Restraint", exact: true }).hover();
   await panel.getByRole("button", { name: "Curiosity", exact: true }).hover();
   await expect(panel.getByRole("tooltip")).toContainText("Curiosity");
