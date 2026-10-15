@@ -4,9 +4,10 @@ Updated 14 October 2026. Version **0.2.0** is the owner-approved frontend milest
 
 ## Verified baseline
 
-Package and Chrome versions are aligned at **0.2.0**. The reviewed build is
-**2ddebffebb65**, with a new installable `v0.2.0` milestone. Main is the baseline
-for the next feature; the completed milestone branch is retired after merge.
+Package and Chrome versions are aligned at **0.2.0**, with an installable
+`v0.2.0` milestone. Main is the baseline for the next feature; the completed
+milestone branch is retired after merge. Exact build identifiers live in the
+verification receipts and packaged `build-info.json`.
 
 - Live demo on the public essay/homepage; other pages accept matching supplied analysis.
 - Linked attention, zoomable multi-peak hierarchy, wheel/keyboard reels and source navigation.
@@ -35,8 +36,9 @@ Detailed earlier checks remain in [the development archive](docs/archive/0.2-dev
   source/panel locks, wheel and keyboard navigation, graph zoom, saved-reading
   import/export, revision retention, normal-page capture and full restart
   restoration passed with **zero panel errors**. No model download was requested.
-- The ZIP matches every built file: **2,069,869 bytes**, SHA-256
-  `10c6863ead309f678edbb80d945d17562bf32ddc1de1cc0fa9186667582f0732`.
+- The ZIP is verified byte-for-byte against every built file. The release carries
+  a checksum for its exact downloadable archive; ZIP timestamps can differ between
+  otherwise equivalent local and CI packages.
 - Pull requests and main updates run the full [CI checks](https://github.com/EmotiveAutomaton/tompathy/actions).
   Source maps, local inputs/profiles and generated evidence are excluded from Git
   and the installable package. Disposable browsers and servers close after checks.
