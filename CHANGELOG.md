@@ -14,6 +14,7 @@ creator-commissioned demonstrations. Ordinary pages await matching supplied anal
 - Current work only, Creator and Global demonstrate distinct value perspectives. Contour currents distinguish drives and constructed values. Cards show confidence arrows, definitions, compact drive-network sketches and full-width preferred-state curves.
 - Free, bounded context collection follows explicit creator/GitHub links and assembles dated sources and an exportable timeline. Progress bars finish with a checkmark; missing permissions and incomplete retrieval remain visible.
 - Portable HTML readings retain text, analysis, context and revisions. Contract 1.6 documents optional sentence readings, evidence directions and preference traces while retaining older packet compatibility.
+- Font-loading-aware value-heading clearance and zoom-correct creator cutouts preserve readable labels across platforms.
 - Consistent theme, keyboard and reduced-motion behavior; source hover survives entering the panel. Protected/ungranted pages show neutral access guidance while unexpected errors keep their diagnostic messages.
 - New identity artwork and small-size icon variant, bundled variable fonts, settled animations, cached graph geometry and bounded cloud position memory.
 - Versioned package, current documentation and reproducible browser/native Chrome checks. Build output is cleaned before packaging; local profiles, research inputs and generated evidence stay outside the repository.

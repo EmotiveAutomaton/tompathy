@@ -19,6 +19,7 @@ test("review heading and help geometry at narrow and short sizes", async ({
     await page.setViewportSize({ width, height });
     await page.goto("/?panel&demo=fieldnotes");
     await expect(page.locator(".core-value-row")).toHaveCount(9);
+    await page.evaluate(() => document.fonts.ready);
     const heading = await page.locator("#values-title").boundingBox();
     const second = await page
       .locator(".core-value-row > span")

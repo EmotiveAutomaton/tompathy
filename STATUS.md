@@ -31,7 +31,10 @@ Detailed earlier checks remain in [the development archive](docs/archive/0.2-dev
   Release validation caught and fixed packing stopping at the first oversized
   attention phrase. Tests now reflect capped clouds, scrollable values, the
   Current work only default and live review links. One cold navigation timed out
-  in the broad run and passed unchanged on the targeted rerun.
+  in the broad run and passed unchanged on the targeted rerun. Linux CI also
+  exposed zoom-coordinate and late-font heading clearance issues; both were
+  corrected. Font continuity is checked by rendered ink, since platforms can
+  preserve advance widths across different weights.
 - Ordinary **Chrome 154.0.8037.98**, actual **360 px native panel**: installation,
   source/panel locks, wheel and keyboard navigation, graph zoom, saved-reading
   import/export, revision retention, normal-page capture and full restart

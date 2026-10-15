@@ -120,14 +120,31 @@ test("essay is the default; one graph Tab entry, arrow navigation, real variable
   await first.hover();
   await expect(page.locator(".cloud-position")).not.toHaveCount(0);
   await page.evaluate(() => document.fonts.ready);
-  const widths = await page.evaluate(() => {
-    const canvas = document.createElement("canvas").getContext("2d")!;
-    return [337, 355, 399].map((weight) => {
+  const ink = await page.evaluate(async () => {
+    const weights = [337, 355, 399];
+    await Promise.all(
+      weights.map((weight) =>
+        document.fonts.load(`${weight} 30px "ToMpathy Confidence"`),
+      ),
+    );
+    const element = document.createElement("canvas");
+    element.width = 700;
+    element.height = 70;
+    const canvas = element.getContext("2d")!;
+    return weights.map((weight) => {
+      canvas.clearRect(0, 0, 700, 70);
       canvas.font = `${weight} 30px "ToMpathy Confidence"`;
-      return canvas.measureText("Understanding other minds").width;
+      canvas.fillText("Understanding other minds", 5, 45);
+      const pixels = canvas.getImageData(0, 0, 700, 70).data;
+      let coverage = 0;
+      for (let i = 3; i < pixels.length; i += 4) coverage += pixels[i];
+      return coverage;
     });
   });
-  expect(new Set(widths).size).toBe(3);
+  // Stroke weight must change continuously; advance widths may stay constant.
+  expect(new Set(ink).size).toBe(3);
+  expect(ink[0]).toBeLessThan(ink[1]);
+  expect(ink[1]).toBeLessThan(ink[2]);
   await expect(page.locator(".cloud-position").first()).toHaveCSS(
     "font-family",
     /ToMpathy Confidence/,

@@ -170,7 +170,21 @@ export function ValueList({
     const observer = new ResizeObserver(fit);
     observer.observe(grid.current);
     observer.observe(heading);
-    return () => observer.disconnect();
+    // Font loading can wrap a label without resizing the fixed-height grid.
+    for (const label of Array.from(
+      grid.current.querySelectorAll(".core-value-row > span"),
+    ).slice(0, 2))
+      observer.observe(label);
+    let alive = true;
+    void document.fonts.ready.then(() => {
+      if (alive) fit();
+    });
+    document.fonts.addEventListener("loadingdone", fit);
+    return () => {
+      alive = false;
+      observer.disconnect();
+      document.fonts.removeEventListener("loadingdone", fit);
+    };
   }, [identity]);
   return (
     <div ref={grid} className="core-values" data-testid="values">

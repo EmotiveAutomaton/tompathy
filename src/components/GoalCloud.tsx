@@ -120,6 +120,7 @@ export function GoalCloud({
       gapY = 3;
     const dominant = [...goals].sort((a, b) => weight(b) - weight(a))[0]?.id;
     const bounds = host.current?.getBoundingClientRect();
+    const scale = bounds ? bounds.width / size.width : 1;
     const obstacles = bounds
       ? Array.from(
           host.current!.parentElement!.querySelectorAll(
@@ -128,12 +129,18 @@ export function GoalCloud({
         ).map((el) => {
           const r = el.getBoundingClientRect();
           return {
-            left: el.matches(".creator-control") ? 0 : r.left - bounds.left - 5,
+            left: el.matches(".creator-control")
+              ? 0
+              : (r.left - bounds.left) / scale - 5,
             right:
-              r.right - bounds.left + (el.matches(".creator-control") ? 12 : 5),
-            top: el.matches(".creator-control") ? 0 : r.top - bounds.top - 5,
+              (r.right - bounds.left) / scale +
+              (el.matches(".creator-control") ? 12 : 5),
+            top: el.matches(".creator-control")
+              ? 0
+              : (r.top - bounds.top) / scale - 5,
             bottom:
-              r.bottom - bounds.top + (el.matches(".creator-control") ? 10 : 5),
+              (r.bottom - bounds.top) / scale +
+              (el.matches(".creator-control") ? 10 : 5),
           };
         })
       : [];
