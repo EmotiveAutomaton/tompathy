@@ -4,19 +4,20 @@ test.beforeEach(async ({ page }) => {
   await page.addInitScript(() =>
     localStorage.setItem("tompathy-guide-offered-040", "yes"),
   );
-  await page.goto("/");
+  await page.goto("/?demo=fieldnotes");
   await expect(page.getByTestId("values")).toBeVisible();
 });
 
 test("value trajectories and independent perspectives fit a narrow panel", async ({
   page,
 }) => {
+  await page.getByRole("tab", { name: "creator", exact: true }).click();
   const creatorNames = await page.locator(".core-value-row").allTextContents();
   await page
     .getByRole("button", { name: "Care for others", exact: true })
     .hover();
   const card = page.getByRole("tooltip");
-  await expect(card.locator(".value-confidence")).toContainText("22%");
+  await expect(card.locator(".value-confidence-axis")).toContainText("22%");
   await expect(card.locator(".preference-vector")).toHaveCount(3);
   await expect(card.locator(".preference-observations li")).toHaveCount(3);
   await page.waitForTimeout(220);
@@ -28,11 +29,11 @@ test("value trajectories and independent perspectives fit a narrow panel", async
   await page
     .getByRole("button", { name: "Personal agency", exact: true })
     .hover();
-  await expect(card.locator(".value-confidence")).toContainText("88%");
+  await expect(card.locator(".value-confidence-axis")).toContainText("88%");
   await page.waitForTimeout(220);
   await page.screenshot({ path: "evidence/values-global.png" });
   await page.setViewportSize({ width: 360, height: 800 });
-  await page.goto("/?panel");
+  await page.goto("/?panel&demo=fieldnotes");
   await page
     .getByRole("button", { name: "Care for others", exact: true })
     .focus();

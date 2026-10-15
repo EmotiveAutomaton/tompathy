@@ -6,6 +6,8 @@ import {
 } from "./core/model";
 export const isExtension =
   typeof chrome !== "undefined" && !!chrome.runtime?.id;
+/** Expected browser access states are guidance, not failed analysis. */
+export class PageCaptureUnavailable extends Error {}
 export async function capturePage(): Promise<{
   artifact: Artifact;
   tabId: number;
@@ -17,7 +19,7 @@ export async function capturePage(): Promise<{
     throw Error("Open the installed extension on a page, or paste text below.");
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   if (!tab?.id)
-    throw Error(
+    throw new PageCaptureUnavailable(
       "No active page. Open a text page, then click ToMpathy in the toolbar.",
     );
   try {
@@ -28,6 +30,7 @@ export async function capturePage(): Promise<{
         targetTabId: tab.id,
       });
     } catch {}
+    if (result?.error) throw Error(result.error);
     if (!result?.artifact) {
       await chrome.scripting.executeScript({
         target: { tabId: tab.id },
@@ -38,6 +41,7 @@ export async function capturePage(): Promise<{
       });
     }
     if (result.error) throw Error(result.error);
+    if (!result.artifact) throw Error("The page adapter returned no capture.");
     return {
       artifact: result.artifact,
       tabId: tab.id,
@@ -46,9 +50,20 @@ export async function capturePage(): Promise<{
       repositoryLinks: result.repositoryLinks,
     };
   } catch (e) {
-    throw Error(
-      `This page cannot be captured yet. Click ToMpathy’s toolbar icon on an ordinary text page, or paste text. ${e instanceof Error && e.message.startsWith("No readable") ? e.message : ""}`,
-    );
+    const message = e instanceof Error ? e.message : String(e);
+    if (/No readable/i.test(message))
+      throw new PageCaptureUnavailable(
+        "No readable text is available here yet. Open a page with text, then click ToMpathy in the toolbar.",
+      );
+    if (
+      /Cannot access|Missing host permission|not allowed to access|extensions gallery cannot be scripted|cannot be scripted/i.test(
+        message,
+      )
+    )
+      throw new PageCaptureUnavailable(
+        "This page has not granted reading access, or is protected by Chrome. On a webpage, click ToMpathy’s toolbar icon to connect.",
+      );
+    throw Error(`The page could not be read. ${message}`);
   }
 }
 export async function captureSelection(): Promise<Artifact> {

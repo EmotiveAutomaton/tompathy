@@ -357,7 +357,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-Roboto Serif · Latin subset, fixed width/weight/optical size, variable GRAD axis.
+Roboto Serif · Latin subsets: variable GRAD for reading; variable wght (100–900) for confidence labels.
 https://github.com/google/fonts/tree/main/ofl/robotoserif
 
 Copyright 2020 The Roboto Serif Project Authors (https://github.com/googlefonts/RobotoSerif)

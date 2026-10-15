@@ -811,15 +811,14 @@ test("story branches retain shared parents, ambiguity in both directions, and us
       const g = goalGraph(nodes),
         layout = hierarchyLayout(g, height);
       assert.equal(layout.tiles.length, nodes.length);
-      const sentenceWidth = layout.tiles.find((t) => t.node.rank === 0)!.width;
-      const oneTier = layout.tiles.find(
-        (t) =>
-          t.node.rank === 1 &&
-          t.parentKey &&
-          g.byId.get(layout.tiles.find((p) => p.key === t.parentKey)!.node.id)!
-            .rank === 2,
-      )!.width;
-      assert.ok(Math.abs(sentenceWidth / oneTier - 1.5) < 0.0001);
+      const widths = layout.edges
+        .slice(1)
+        .map((edge, i) => edge - layout.edges[i]);
+      assert.equal(widths.indexOf(Math.max(...widths)), layout.usefulTier);
+      assert.ok(widths.every((w) => w > 0));
+      assert.ok(
+        Math.abs(widths.reduce((a, b) => a + b, 0) - layout.width) < 1e-7,
+      );
 
       const byKey = new Map(layout.tiles.map((t) => [t.key, t]));
       for (const tile of layout.tiles) {
@@ -920,6 +919,32 @@ test("one visual home per sentence, semantic extra parents, and one smooth leaf 
     assert.equal(leaves.length, 30);
     assert.equal(new Set(leaves.map((t) => t.node.id)).size, 30);
     assert.equal(layout.links.length, 3);
+    for (const link of layout.links) {
+      const corners = (id: string) => {
+        const tile = layout.tiles.find((t) => t.node.id === id)!;
+        const points = [...tile.path.matchAll(/(-?[\d.]+),(-?[\d.]+)/g)].map(
+          (p) => ({ x: Number(p[1]), y: Number(p[2]) }),
+        );
+        return [
+          Math.min(...points.map((p) => p.x)),
+          Math.max(...points.map((p) => p.x)),
+        ].flatMap((x) => points.filter((p) => p.x === x));
+      };
+      const [x1, y1, y2, x2] = link.path.match(/-?[\d.]+/g)!.map(Number);
+      const distance = Math.abs(x2 - x1) + Math.abs(y2 - y1);
+      const shortest = Math.min(
+        ...corners(link.child).flatMap((a) =>
+          corners(link.parent).map(
+            (b) => Math.abs(a.x - b.x) + Math.abs(a.y - b.y),
+          ),
+        ),
+      );
+      assert.ok(
+        Math.abs(distance - shortest) < 0.01,
+        `${link.child}: shortest corner route`,
+      );
+      assert.equal(x1, x2, "Adjacent tiers need only a direct vertical drop");
+    }
     const selected = graph.byId.get("paragraph-3")!,
       tile = layout.tiles.find((t) => t.node.id === selected.id)!;
     const related = instanceNeighborhood(layout, tile.key);
@@ -944,8 +969,15 @@ test("one visual home per sentence, semantic extra parents, and one smooth leaf 
     const width = leaves[0].width;
     for (const leaf of leaves) {
       const v = (leaf.dotY / height) * 2 - 1;
-      const edge = width * 0.9 * (1 - Math.sqrt(1 - v * v));
-      assert.ok(Math.abs(leaf.dotX - (edge + (width - edge) * 0.48)) < 1e-7);
+      const t = (leaf.dotX / width - 0.46) / 0.43;
+      assert.ok(
+        Math.abs((1 - t) ** 2 + v * v - 1) < 1e-7,
+        "Every leaf is on one continuous inset ellipse",
+      );
+      assert.ok(
+        leaf.dotX < width * 0.92,
+        "Leaf dots stay before the taper begins",
+      );
     }
     assert.ok(
       layout.outline.every((d) => d.includes(" A")),
@@ -1108,7 +1140,7 @@ test("preference traces and directional evidence round-trip without inventing le
   const { demoGlobalValues } = await import("../src/core/example-values");
   const { readingHelp } = await import("../src/core/ghost");
   const values = p.hypotheses.filter((h) => h.kind === "value");
-  assert.equal(values.length, 8);
+  assert.equal(values.length, 9);
   assert.ok(values.every((h) => h.support!.value < 0.25));
   const globals = demoGlobalValues(p, values);
   assert.equal(globals.length, 8);

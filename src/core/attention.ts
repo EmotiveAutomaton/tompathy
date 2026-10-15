@@ -1,5 +1,5 @@
 import type { Artifact, Hypothesis, Packet } from "./model";
-import { sentences } from "./sentences";
+import { regionSentences } from "./sentences";
 import { goalGraph, type GoalNode } from "./hierarchy";
 
 const labels = [
@@ -57,7 +57,7 @@ export function exampleAttention(artifact: Artifact) {
   }));
   const currentAttention: NonNullable<Packet["currentAttention"]> =
     artifact.regions.flatMap((region, p) =>
-      sentences(region.anchor.exact).map((sentence, j) => {
+      regionSentences(region).map((sentence, j) => {
         const dominant = leaders[p]?.[j] ?? 8;
         const order = [
           ...new Set([
@@ -134,7 +134,7 @@ export function attentionForNode(
     (f) => f.maker === maker,
   );
   const covered = packet.artifact.regions.flatMap((region) =>
-    sentences(region.anchor.exact)
+    regionSentences(region)
       .filter((s) =>
         spans.length
           ? spans.some(

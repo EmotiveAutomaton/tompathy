@@ -1,6 +1,6 @@
 import type { Artifact, Packet } from "./core/model";
 import { ghostAt, ghostInk, grade, readingHelp, rgb } from "./core/ghost";
-import { sentences } from "./core/sentences";
+import { regionSentences } from "./core/sentences";
 import { registerReadingHelp } from "./reading-help";
 
 export function textPoints(el: HTMLElement, excluded: string) {
@@ -52,7 +52,7 @@ export function annotatePage(
     const el = elements.get(r.id);
     if (!el) continue;
     const points = textPoints(el, excluded),
-      regions = sentences(r.anchor.exact);
+      regions = regionSentences(r);
     const byNode = new Map<Text, { offset: number; index: number }[]>();
     points.forEach((p, index) => {
       const entries = byNode.get(p.node) ?? [];

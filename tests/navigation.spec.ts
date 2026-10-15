@@ -4,7 +4,7 @@ test.beforeEach(async ({ page }) => {
   await page.addInitScript(() =>
     localStorage.setItem("tompathy-guide-offered-040", "yes"),
   );
-  await page.goto("/");
+  await page.goto("/?demo=fieldnotes");
   await expect(page.getByTestId("values")).toContainText("Care for others");
 });
 

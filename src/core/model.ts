@@ -1,4 +1,4 @@
-import { sentences } from "./sentences";
+import { regionSentences } from "./sentences";
 import { z } from "zod";
 import { calendarDate } from "./dates";
 
@@ -47,6 +47,16 @@ export const ArtifactSchema = z.object({
         .object({
           id,
           anchor: AnchorSchema,
+          pageHint: z
+            .object({
+              heading: z.number().int().min(1).max(6).optional(),
+              unit: z.enum(["group"]).optional(),
+              section: z.string().max(300).optional(),
+              involvement: z
+                .enum(["original", "edited", "curated", "ghost", "unknown"])
+                .optional(),
+            })
+            .optional(),
           emphasis: z
             .array(
               z.object({
@@ -190,6 +200,7 @@ export const HypothesisSchema = z.object({
   evidence: z.array(id),
   decisionNodes: z.array(id).optional(),
   preferenceTrace: PreferenceTraceSchema.optional(),
+  valueCategory: z.enum(["drive", "constructed"]).optional(),
   interpretation: z
     .enum([
       "current-attention",
@@ -419,16 +430,16 @@ export const PacketSchema = z
         if (!ghostBounds.has(region.id))
           ghostBounds.set(
             region.id,
-            new Set(
-              sentences(region.anchor.exact).map((s) => `${s.start}:${s.end}`),
-            ),
+            new Set(regionSentences(region).map((s) => `${s.start}:${s.end}`)),
           );
         if (
           !ghostBounds
             .get(region.id)!
             .has(`${frame.span.start}:${frame.span.end}`)
         )
-          error("Ghost Scale readings must cover one complete sentence.");
+          error(
+            "Ghost Scale readings must cover one complete sentence or declared text group.",
+          );
       }
       const previous = ghostFrames[i - 1];
       if (

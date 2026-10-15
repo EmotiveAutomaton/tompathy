@@ -1,50 +1,63 @@
 # Versions and public development
 
-Decision recorded 11 October 2026 (Pacific time).
+Updated 14 October 2026. The owner accepted the 0.2 frontend milestone.
 
-Public work in progress is normal. A commit records an iteration; a release is a deliberately chosen, named snapshot for people to install. Do not publish a release or increment the patch number after every design conversation. Clear status, reproducible checks and honest release notes matter more than a tidy-looking sequence of numbers.
-
-## Our workflow toward 0.2
+## Current baseline
 
 | Place | Meaning |
 | --- | --- |
-| `main` | The reviewed public 0.1 frontend baseline |
-| `codex/0.2-development` | Public work toward the complete 0.2 frontend; expect changes |
-| `v0.1.0-beta.1` | The existing downloadable beta snapshot; keep its assets unchanged |
-| A future `v0.2.0-beta.N` | Optional review milestone when a downloadable preview is useful |
-| A future `v0.2.0` | The agreed frontend completion milestone after review and checks |
+| `main` | Reviewed 0.2 frontend, ready for the next feature specification |
+| `v0.2.0` | Installable frontend milestone; npm and Chrome version 0.2.0 |
+| `v0.1.0-beta.1` | Historical beta; its tag and download remain unchanged |
+| `codex/<feature>` | Focused work branched from current main when a feature is defined |
 
-Commit and push useful iterations to the development branch. CI runs on each push and retains a tested ZIP and verification evidence for 14 days. It does **not** publish a release or update installed extensions. The local persistent Chrome review profile uses the current checkout through `npm run review`.
+The completed `codex/0.2-development` branch is retired after its reviewed merge.
+Its commits remain in main. No next-version branch or feature implementation is
+created before the next specification arrives.
 
-Use focused topic branches off the development branch if parallel or risky work warrants isolation. When the 0.2 milestone is ready, review the accumulated changes in a pull request, pass CI, merge to main, and create a new tag/release. A draft pull request can be opened earlier for feedback. The milestone branch is intentionally longer lived than the short branches in ordinary GitHub flow; this keeps the user's first public preview separate while the design develops.
+Public work in progress is normal. Commits record iterations; tags/releases mark
+chosen installable snapshots. There is no need to bump a patch number after every
+conversation or create a release branch for a single maintained baseline.
 
-There is no need for a separate `release/0.1` branch now. If a published 0.1 defect needs an independent fix, branch from main or the release tag, fix and test it, publish a new patch snapshot, then bring that fix into 0.2. Do not rewrite an already downloaded release.
+## Next development cycle
 
-## Privacy and common methods
+1. Start a focused `codex/<feature>` branch from up-to-date main.
+2. Make reviewable commits and run checks appropriate to the change.
+3. Open a pull request. CI builds, tests the browser and native Chrome workflows,
+   then retains the verified ZIP and evidence for 14 days.
+4. Merge after checks and owner review. Remove the completed feature branch.
+5. Tag and publish a release only for an agreed installable milestone. Keep old
+   release assets unchanged. Installed unpacked extensions update manually.
 
-Repository visibility applies to its branches: a branch pushed to a public repository is public. Branch protection controls changes, not visibility. Truly private development needs a separate private repository or unpushed local work. That extra arrangement is unnecessary here because the owner explicitly accepts public iterations. [GitHub repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories).
+CI does not deploy or publish releases automatically. The local review profile
+uses the current checkout through `npm run review`. A release tag is distinct from
+an ordinary commit or CI artifact. See [GitHub flow](https://docs.github.com/en/get-started/using-github/github-flow)
+and [GitHub releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases).
 
-- **GitHub flow:** a focused branch, commits, a pull request, checks/review, merge. A good small-project default. [Official workflow](https://docs.github.com/en/get-started/using-github/github-flow).
-- **Trunk-based development:** small changes reach main frequently, often with unfinished features behind switches. Useful when main can remain usable throughout development.
-- **GitFlow-style release branches:** separate development, release preparation and hotfix branches. Useful when maintaining several shipping versions, but more coordination than this project presently needs.
+Repository visibility applies to every pushed branch; branch protection does not
+make a branch private. The owner accepts public iterations. Separate private work
+would require a separate private repository or unpushed local changes.
 
-These are choices, not social obligations. Release branches are not a prerequisite for publishing responsibly. GitHub releases are tag-backed snapshots, distinct from the full development history. [About releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases).
+## Version and contract rules
 
-## Version labels in this checkout
+Use `0.2.x` for compatible fixes to this milestone. Choose the next minor version
+when the next feature's scope is understood. npm may use a prerelease suffix during
+that work; Chrome's numeric version must increase for every published update.
+The build fingerprint identifies exact frontend contents between version bumps.
+See [Chrome version fields](https://developer.chrome.com/docs/extensions/reference/manifest/version).
 
-The development package is **`0.2.0-dev.2`**. Chrome's numeric field is **`0.1.2`**, with a human-readable **`0.2 development 2`** label. This is the second review iteration, following Chrome 0.1.1. Neither is a new public GitHub release. Chrome requires a numeric version, so later installable previews can use `0.1.3`, `0.1.4`, and so on before `0.2.0`. Individual commits need no bump: the build fingerprint identifies their exact contents. [Chrome version fields](https://developer.chrome.com/docs/extensions/reference/manifest/version).
+The packet contract has its own version (currently 1.6); frontend release numbers
+do not imply a contract change. Pre-1.0 versions indicate initial development,
+not a stable API guarantee. See [SemVer](https://semver.org/).
 
-Semantic versioning uses major/minor/patch to communicate compatibility. `0.y.z` explicitly means initial development, where the interface is not yet stable. After 1.0, incompatible API changes increment major, compatible features minor, and fixes patch. Our packet contract has its own version because frontend releases and data compatibility are separate concerns. [SemVer 2.0](https://semver.org/).
+## What this milestone means
 
-## Proposed 0.2 completion criteria
+0.2 is the owner's accepted frontend baseline: attention, hierarchy/reels, values,
+creator selection, reading treatments, optional linked context, saved readings,
+and the native Chrome review loop. It does not mean that live inference exists.
+Sounding Line's provider boundary remains unconnected. Website confidence and
+values are demo data; broad model-driven search, word-level analysis, creator-like
+models and value search remain future work. Global is an illustrative perspective.
 
-The owner's target is a complete frontend that can accept the backend when ready, not a claim that inference already exists. Use this as the review checklist:
-
-- Final attention, hierarchy, reel, values and Options interactions, including deep/ambiguous graphs and keyboard/reduced-motion behavior.
-- Consistent empty, loading, cancellation, unavailable-source, stale-result and invalid-packet states.
-- Stable capture, creator selection, context timeline, saved readings and revision handling across page changes and browser restarts.
-- A documented provider boundary exercised with deterministic success, error and delayed-response fixtures; no invented estimates when fields are absent.
-- A repeatable native Chrome review loop, green CI, current privacy/contract documentation, and an installable verified package.
-- Owner review of the interface and explicit decisions about features that remain marked future, such as Global, value search, word-level analysis and creator-like models.
-
-The current iteration advances these criteria; it does not declare 0.2 complete.
+Preserve these distinctions in release notes and future specifications. Update
+privacy disclosures and contract documentation when actual backend behavior changes.

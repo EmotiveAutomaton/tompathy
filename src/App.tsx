@@ -1,10 +1,13 @@
-import { demoGlobalValues } from "./core/example-values";
+import { demoGlobalValues, demoWorkValues } from "./core/example-values";
 import { findSentence } from "./find-sentence";
 import { selectionTransition } from "./selection-transition";
 import { ReadingText, textOffset } from "./components/ReadingText";
 import { ghostAt } from "./core/ghost";
 import { readingFile, parseReadingFile } from "./core/reading-file";
 import { ReadingPreview } from "./components/ReadingPreview";
+import { createArtExample, artContext } from "./core/art-example";
+import { createWebsiteDemo } from "./core/website-demo";
+import { isWebsiteDemo } from "./core/site-demo-scope";
 import { ContextTimeline } from "./components/ContextTimeline";
 import {
   bylineContext,
@@ -17,14 +20,14 @@ import {
   type ContextWork,
 } from "./components/ContextProgress";
 import { attentionAt, attentionForNode } from "./core/attention";
-import { ValueTabs } from "./components/ValueTabs";
+import { ValueTabs, type ValuesTab } from "./components/ValueTabs";
 import { SelectionLock } from "./components/SelectionLock";
 import { blockedFocusTracker } from "./core/lock";
 import { GoalCloud } from "./components/GoalCloud";
 import { ProcessHierarchy } from "./components/ProcessHierarchy";
 import { ValueList, ValueDetails } from "./components/ValueList";
 import { SectionTitle, explanations } from "./components/HoverCard";
-import { sentences } from "./core/sentences";
+import { sentences, regionSentences } from "./core/sentences";
 import type { GoalNode } from "./core/hierarchy";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import {
@@ -44,7 +47,6 @@ import {
   MousePointer2,
   Pin,
   Plus,
-  RefreshCw,
   Search,
   Settings2,
   Sparkles,
@@ -81,6 +83,7 @@ import {
 import { contextIdentity, mergeContext } from "./core/context";
 import {
   capturePage,
+  PageCaptureUnavailable,
   captureSelection,
   isExtension,
   pageCommand,
@@ -95,11 +98,7 @@ import {
 export function Brand() {
   return (
     <div className="brand">
-      <img
-        className="brand-symbol"
-        src={isExtension ? "./icon32.png" : "./favicon.svg"}
-        alt=""
-      />
+      <img className="brand-symbol" src="./icon32.png" alt="" />
       <div>
         <strong>
           ToMpathy<span className="brand-dot">.</span>
@@ -197,7 +196,7 @@ export function App({ preview = false }: { preview?: boolean }) {
     [foundInPage, setFoundInPage] = useState(false),
     [navigationRequest, setNavigationRequest] = useState(0),
     [lockReminder, setLockReminder] = useState(0),
-    [valuesTab, setValuesTab] = useState<"creator" | "global">("creator"),
+    [valuesTab, setValuesTab] = useState<ValuesTab>("work"),
     [sentenceOffset, setSentenceOffset] = useState(0),
     [sourceHover, setSourceHover] = useState(false),
     [relatedNode, setRelatedNode] = useState<GoalNode | null>(null),
@@ -248,6 +247,21 @@ export function App({ preview = false }: { preview?: boolean }) {
     port = useRef<chrome.runtime.Port | null>(null),
     current = useRef({ session, tabId, pinned }),
     blockedFocus = useRef(blockedFocusTracker());
+  const helpSection = useRef<keyof typeof explanations | null>(null);
+  const openSectionHelp = (kind: keyof typeof explanations) => {
+    helpSection.current = kind;
+    setModal("help");
+  };
+  useEffect(() => {
+    if (modal !== "help" || !helpSection.current) return;
+    const heading = document.getElementById(`help-${helpSection.current}`);
+    if (heading) {
+      const header = heading.closest("dialog")?.querySelector("header");
+      heading.style.scrollMarginTop = `${(header?.offsetHeight ?? 64) + 12}px`;
+      heading.scrollIntoView({ block: "start" });
+    }
+    helpSection.current = null;
+  }, [modal]);
   current.current = { session, tabId, pinned };
   const sentenceTransition = useRef(selectionTransition());
   useEffect(() => {
@@ -297,6 +311,13 @@ export function App({ preview = false }: { preview?: boolean }) {
       setTour(-1);
     }
   }, [ready]);
+  useEffect(() => {
+    // Dismiss the invitation after selection, but never move controls under a
+    // pointer using the panel (notably the first wheel gesture on a reel).
+    // A deliberately started tour remains until the reader dismisses it.
+    if (pinned && tour === -1 && !document.querySelector(".reader:hover"))
+      setTour(null);
+  }, [pinned, tour]);
   const activeMaker =
     packet?.makers.find((m) => m.id === maker) ?? packet?.makers[0];
   const hierarchyNodes = useMemo(
@@ -372,6 +393,7 @@ export function App({ preview = false }: { preview?: boolean }) {
     const request = serial.current;
     setBusy(true);
     setError("");
+    setNotice("");
     setStale(false);
     setDetail(null);
     await pageCommand(
@@ -398,12 +420,32 @@ export function App({ preview = false }: { preview?: boolean }) {
         ) === null
           ? previous.packet
           : null;
+      // The live DOM is the source of truth. The commissioned website gets a
+      // fresh demo packet for exactly the text currently visible in this capture.
+      if (
+        isWebsiteDemo(result.artifact.source) &&
+        !result.restored &&
+        (!resultPacket ||
+          ["tompathy-art-demo", "tompathy-website-demo"].includes(
+            resultPacket.provider.id,
+          ))
+      )
+        resultPacket = createWebsiteDemo(result.artifact);
       if (
         !resultPacket &&
         result.artifact.source.split("?")[0] ===
           chrome.runtime.getURL("example.html")
       ) {
         const candidate = await createExample(result.artifact.source);
+        if (!matchPacket(candidate, result.artifact, "artifact", []))
+          resultPacket = candidate;
+      }
+      if (
+        !resultPacket &&
+        result.artifact.source.split("?")[0] ===
+          chrome.runtime.getURL("art.html")
+      ) {
+        const candidate = await createArtExample(result.artifact.source);
         if (!matchPacket(candidate, result.artifact, "artifact", []))
           resultPacket = candidate;
       }
@@ -419,9 +461,11 @@ export function App({ preview = false }: { preview?: boolean }) {
           context:
             resultPacket?.scope.kind === "context"
               ? previous.context
-              : resultPacket?.origin === "synthetic example"
-                ? [{ ...exampleContext, selected: false }]
-                : [],
+              : resultPacket?.provider.id === "tompathy-art-demo"
+                ? [{ ...artContext, selected: false }]
+                : resultPacket?.origin === "synthetic example"
+                  ? [{ ...exampleContext, selected: false }]
+                  : [],
           history: resultPacket ? previous.history : [],
           authorLabel:
             previous.artifact?.id === result.artifact.id
@@ -433,7 +477,8 @@ export function App({ preview = false }: { preview?: boolean }) {
       if (request !== serial.current) return;
       setTabId(null);
       setSession(empty);
-      setError((e as Error).message);
+      if (e instanceof PageCaptureUnavailable) setNotice(e.message);
+      else setError((e as Error).message);
     } finally {
       if (request === serial.current) setBusy(false);
     }
@@ -447,26 +492,38 @@ export function App({ preview = false }: { preview?: boolean }) {
     setLockedNode(null);
     setRelatedNode(null);
     setRegion("p2");
+    const fieldnotes =
+      new URLSearchParams(location.search).get("demo") === "fieldnotes";
+    const create = fieldnotes ? createExample : createArtExample;
+    const context = fieldnotes ? exampleContext : artContext;
+    const file = fieldnotes ? "example.html" : "art.html";
     if (isExtension) {
+      if (!fieldnotes) {
+        await chrome.tabs.create({ url: "https://abrahamhaskins.org/art/" });
+        setNotice(
+          "On the website, click the ToMpathy toolbar icon to open its reader.",
+        );
+        return;
+      }
       const tab = await chrome.tabs.create({
-        url: chrome.runtime.getURL("example.html"),
+        url: chrome.runtime.getURL(file),
       });
       setTabId(tab.id ?? null);
-      const p = await createExample(chrome.runtime.getURL("example.html"));
+      const p = await create(chrome.runtime.getURL(file));
       setSession({
         ...empty,
         artifact: p.artifact,
         packet: p,
-        context: [{ ...exampleContext, selected: false }],
+        context: [{ ...context, selected: false }],
       });
       setNotice("Move across the example text to explore.");
     } else {
-      const p = await createExample();
+      const p = await create();
       setSession({
         ...empty,
         artifact: p.artifact,
         packet: p,
-        context: [{ ...exampleContext, selected: false }],
+        context: [{ ...context, selected: false }],
       });
     }
   }
@@ -476,6 +533,19 @@ export function App({ preview = false }: { preview?: boolean }) {
       const saved = SessionSchema.safeParse(await readSession());
       if (alive && saved.success) {
         if (
+          !isExtension &&
+          new URLSearchParams(location.search).get("demo") !== "fieldnotes" &&
+          saved.data.artifact?.source === "tompathy:example"
+        ) {
+          const p = await createArtExample();
+          if (alive)
+            setSession({
+              ...empty,
+              artifact: p.artifact,
+              packet: p,
+              context: [artContext],
+            });
+        } else if (
           saved.data.artifact?.source === "tompathy:example" &&
           saved.data.packet?.origin === "synthetic example" &&
           (saved.data.artifact.title !== exampleText[0] ||
@@ -533,7 +603,11 @@ export function App({ preview = false }: { preview?: boolean }) {
     connect();
     const receive = (m: any, sender: chrome.runtime.MessageSender) => {
       if (m.type === "TOMPATHY_INVOKED") {
-        void capture();
+        void chrome.tabs
+          .query({ active: true, currentWindow: true })
+          .then(([tab]) => {
+            if (tab?.id === m.tabId) void capture();
+          });
         return;
       }
       const c = current.current;
@@ -572,9 +646,17 @@ export function App({ preview = false }: { preview?: boolean }) {
         cancelWork();
         setStale(true);
         setDetail(null);
+        if (c.session.artifact && isWebsiteDemo(c.session.artifact.source))
+          void capture();
       }
     };
-    const changed = () => {
+    const changed = async (info: chrome.tabs.OnActivatedInfo) => {
+      // Activation in another Chrome window must not disturb this reader.
+      const [active] = await chrome.tabs.query({
+        active: true,
+        currentWindow: true,
+      });
+      if (active?.id !== info.tabId) return;
       cancelWork();
       void pageCommand(
         current.current.tabId,
@@ -712,7 +794,7 @@ export function App({ preview = false }: { preview?: boolean }) {
           ])
         : (() => {
             const passage = artifact.regions.find((r) => r.id === id);
-            const index = sentences(passage?.anchor.exact ?? "").findIndex(
+            const index = (passage ? regionSentences(passage) : []).findIndex(
               (s) => s.start <= start && start < s.end,
             );
             return [
@@ -1143,7 +1225,13 @@ export function App({ preview = false }: { preview?: boolean }) {
           />
         )
       )}
-      <div className="reader" data-tompathy-ui>
+      <div
+        className="reader"
+        data-tompathy-ui
+        onPointerLeave={() => {
+          if (pinned && tour === -1) setTour(null);
+        }}
+      >
         {new URLSearchParams(location.search).has("qa") && (
           <button className="qa-entry" onClick={() => setModal("qa")}>
             Development tools
@@ -1172,36 +1260,20 @@ export function App({ preview = false }: { preview?: boolean }) {
             </button>
           </div>
         )}
-        <div
-          className={`reader-content ${ready ? "is-ready" : ""}`}
-          onMouseEnter={() => setSourceHover(false)}
-        >
+        <div className={`reader-content ${ready ? "is-ready" : ""}`}>
           <section
             className="region goals-region"
             aria-labelledby="goals-title"
           >
             <div className="section-heading">
-              <SectionTitle kind="goals">Current attention</SectionTitle>
+              <SectionTitle
+                kind="goals"
+                onOpen={() => openSectionHelp("goals")}
+              >
+                Current attention
+              </SectionTitle>
               <label className="creator-control">
-                <svg
-                  className="creator-brain"
-                  viewBox="0 0 48 34"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M39 25C43 17 37 5 27 4C17 2 11 7 7 12L3 17Q1 19 5 20L8 21Q7 26 13 27L29 27Q34 27 37 31L41 31Q37 26 39 25Z"
-                    fill="currentColor"
-                    opacity=".12"
-                  />
-                  <path
-                    d="M39 25C43 17 37 5 27 4C17 2 11 7 7 12L3 17Q1 19 5 20L8 21Q7 26 13 27L29 27Q34 27 37 31L41 31Q37 26 39 25Z M12 12Q17 6 23 10Q30 5 35 13 M14 18Q21 12 25 18Q31 11 36 19 M18 24Q22 19 28 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <img className="creator-brain" src="./icon128.png" alt="" />
                 <span className="sr-only">Creator selection</span>
                 <span className="creator-choice">
                   <select
@@ -1343,7 +1415,10 @@ export function App({ preview = false }: { preview?: boolean }) {
             aria-labelledby="process-title"
           >
             <div className="section-heading">
-              <SectionTitle kind="process">
+              <SectionTitle
+                kind="process"
+                onOpen={() => openSectionHelp("process")}
+              >
                 Expertise and habit (previous attention)
               </SectionTitle>
             </div>
@@ -1396,20 +1471,31 @@ export function App({ preview = false }: { preview?: boolean }) {
             aria-labelledby="values-title"
           >
             <div className="section-heading">
-              <SectionTitle kind="values">Core values</SectionTitle>
+              <SectionTitle
+                kind="values"
+                onOpen={() => openSectionHelp("values")}
+              >
+                Core values
+              </SectionTitle>
             </div>
             <div
               id="values-view"
               role="tabpanel"
               aria-label={
-                valuesTab === "creator" ? "Creator values" : "Global preview"
+                valuesTab === "work"
+                  ? "Current work only values"
+                  : valuesTab === "creator"
+                    ? "Creator values"
+                    : "Global preview"
               }
             >
               <ValueList
                 values={
-                  valuesTab === "creator"
-                    ? values
-                    : demoGlobalValues(ready ? packet : null, values)
+                  valuesTab === "work"
+                    ? demoWorkValues(ready ? packet : null, values)
+                    : valuesTab === "creator"
+                      ? values
+                      : demoGlobalValues(ready ? packet : null, values)
                 }
                 packet={packet}
                 inspect={inspect}
@@ -1467,7 +1553,7 @@ export function App({ preview = false }: { preview?: boolean }) {
                   <p className="support-line">Support is unquantified.</p>
                 )}
                 <p className="muted">
-                  Maker: {activeMaker?.label} · {activeMaker?.relationship}
+                  Creator: {activeMaker?.label} · {activeMaker?.relationship}
                 </p>
                 {packet!.alternatives
                   .filter((a) => a.members.includes(detail.id))
@@ -1567,7 +1653,7 @@ export function App({ preview = false }: { preview?: boolean }) {
               source: "The source text",
               settings: "Your reader",
               import: "Connect an analysis",
-              help: "A little closer to the maker",
+              help: "A little closer to the creator",
               revision: "Review the new perspective",
               history: "Earlier accounts",
               claims: "All supplied hypotheses",
@@ -1856,11 +1942,13 @@ export function App({ preview = false }: { preview?: boolean }) {
                   full evidence account.
                 </li>
               </ol>
-              <h3>Current attention</h3>
+              <h3 id="help-goals">Current attention</h3>
               <p>{explanations.goals}</p>
-              <h3>Expertise and habit (previous attention)</h3>
+              <h3 id="help-process">
+                Expertise and habit (previous attention)
+              </h3>
               <p>{explanations.process}</p>
-              <h3>Core values</h3>
+              <h3 id="help-values">Core values</h3>
               <p>{explanations.values}</p>
               <h3>Reading the text</h3>
               <p>

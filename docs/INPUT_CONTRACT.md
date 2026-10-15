@@ -9,7 +9,7 @@
 3. Supply makers, hypotheses, evidence and the declared scope. Use empty hypothesis/estimate arrays and unknown states when no useful inference is available.
 4. Return a packet through result import, or implement `InferenceProvider.analyze(AnalysisRequest)` when Sounding Line has a callable service contract.
 
-No transport endpoint has been invented. `configuredProvider` is null; ordinary text pages remain in the “awaiting an analysis source” state. Hover is entirely local and never invokes inference or retrieval.
+No transport endpoint has been invented. `configuredProvider` is null; ordinary text pages remain in the “awaiting an analysis source” state. Hover is entirely local and never invokes inference or retrieval. The commissioned demo on `abrahamhaskins.org` is an explicit exception to the empty-analysis state: it creates an imported-origin, locally authored packet bound to the live capture. It is not a live provider. An already matching imported packet takes precedence. Changed visible text on that demo site automatically recaptures; other sites retain the stale-source gate.
 
 ## Fields
 
@@ -168,6 +168,39 @@ Sentence evidence cards show a large sample combining involvement ink and confid
 
 `hypotheses[].preferenceTrace` optionally supplies a preference-domain label, start/end labels, 2–30 normalized curve points (`x`, `y`, `uncertainty`), and 1–6 observations. Each observation has `date`, `label`, `explanation`, normalized `from`/`to` coordinate pairs, `cost` from 0 to 1 and a textual `horizon`. Coordinates are drawing inputs, not calibrated utilities or discount rates. An observation row matches its numbered chart vector. The existing hypothesis support drives the confidence pie separately. Older packets retain the ordinary description/source card and remain valid. These optional fields survive export/import; no producer must supply them.
 
-The demo creator scores range from 10% to 22%; Global scores range from 81% to 94%. Four labels overlap and four are additional. Both sets are authored illustrations. Global fixtures are enabled only for the bundled example provider and synthetic origin, never fabricated for imported/live analysis. Historical demo observations do not claim to be research findings.
+The legacy fictional fixture has creator scores from 10% to 22% and Global scores from 81% to 94%. Four labels overlap and four are additional. The commissioned website demo has its own categorized Creator/Global fixtures. Both providers use authored illustrations; unrelated imported/live analyses never receive fabricated Global values. Historical demo observations do not claim to be research findings.
 
 Before styling known sentence readings, the native adapter resets existing CSS opacity on wholly annotated, text-only subtrees and applies opaque wrapper styling. It preserves and restores original inline values and priorities; subsequent site edits take precedence during cleanup. Ancestors shared with unannotated text, controls or media retain their opacity to avoid changing unrelated content. Whole-page compositing filters and overlays are not normalized; they can still affect the displayed result. Element opacity cannot be canceled by a child’s opacity. The color calculation itself still handles ordinary alpha-color input and produces contrast-aware ink against a solid surface.
+
+## Optional website-demo metadata (1.6-compatible)
+
+- A region may include `pageHint`: `heading` (1–6), `section` (string), and `involvement` (a Ghost Scale kind). These preserve source structure and creator-disclosed markings; they are not independent assessments. Existing producers may omit them.
+- A hypothesis may include `valueCategory: "drive" | "constructed"`. The UI uses a category icon while confidence remains in support/label weight and the detail card. Older uncategorized value packets keep their confidence icon.
+- `tompathy-art-demo` and `tompathy-website-demo` identify commissioned fixtures. The method records authored versus provisional sentence counts and explicitly identifies invented confidence and trajectories. They do not authorize inference or retrieval on unrelated domains.
+- Every demo sentence binds to the current capture’s exact region/start/end span. Normalized corpus matching selects a handwritten interpretation; it never changes the current source anchor or relaxes imported-packet validation.
+- Tier widths are view state, independent of hierarchy ownership and semantic depth. Dragging a separator changes adjacent widths without changing graph relationships.
+
+The prototype’s seven drive labels follow [Panksepp’s primary-process systems](https://doi.org/10.1371/journal.pone.0021236). Generated higher-order entries are inspired by [Barrett’s theory of constructed emotion](https://pmc.ncbi.nlm.nih.gov/articles/PMC5390700/). These theories are distinct; placing them in this interface is a product hypothesis, not an established combined taxonomy or a measured personality assessment.
+
+
+## Reading units and demo perspectives (development)
+
+A captured region may supply `pageHint.unit: "group"` to declare its entire
+normalized `anchor.exact` as one reading unit. This is used for the commissioned
+website's References & Assets footer. Without this marker, prose still uses
+`Intl.Segmenter` sentence boundaries. Graph spans, annotations, attention
+aggregation, saved-reading previews and Ghost Scale validation share the same
+unit boundaries; a grouped block must be covered in full. This optional capture
+metadata does not relax ordinary sentence validation. Transient tooltip/popover
+contents are excluded from capture.
+
+The website's Current work only, Creator and Global perspectives are local demo
+projections. Current work only uses its own authored data; other imported packets
+only show values explicitly bound to regions in that work. There is no new
+inference endpoint or invented global dataset for arbitrary imported packets.
+PANIC/GRIEF uses the display name Belonging in the website fixture; imported
+labels are preserved. Confidence remains distinct from preference strength.
+
+Attention ranking retains confidence-weighted recurrence across the selected
+units. The cloud presents the highest-ranked prefix that fits its measured space
+(up to 18 phrases), without changing those scores or deleting packet hypotheses.

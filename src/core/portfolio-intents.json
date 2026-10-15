@@ -1,0 +1,649 @@
+{
+  "source": "https://abrahamhaskins.org/",
+  "capturedAt": "2026-10-14T22:44:14.017Z",
+  "note": "Authored demo interpretations of publicly displayed project descriptions. No private project documents were used.",
+  "entries": [
+    {
+      "text": "To address the human factors angle of the Alaska door plug incident, senior leadership called me up to see if I could come up with a human factors or AI solution to prevent recurrences.",
+      "intent": "Establish responsibility for a consequential safety problem",
+      "section": "Root Cause Analysis & Systemic Redesign",
+      "cue": "Safety and restraint"
+    },
+    {
+      "text": "The immediate investigation highlighted failures in documentation protocols, but a deeper analysis revealed a more insidious systemic issue: compounding rework cycles.",
+      "intent": "Distinguish documentation symptoms from rework-system causes",
+      "section": "Root Cause Analysis & Systemic Redesign",
+      "cue": "Safety and restraint"
+    },
+    {
+      "text": "When errors occurred, the process for rectifying them induced new opportunities for error, creating a negative feedback loop that accelerated organizational friction and obscured baseline safety metrics.",
+      "intent": "Explain how correction can create further error",
+      "section": "Root Cause Analysis & Systemic Redesign",
+      "cue": "Safety and restraint"
+    },
+    {
+      "text": "To address the issue, we implemented two parallel solutions.",
+      "intent": "Organize the response into two parallel interventions",
+      "section": "Root Cause Analysis & Systemic Redesign",
+      "cue": "Safety and restraint"
+    },
+    {
+      "text": "First, by addressing the immediate need for rigorous, accessible documentation and targeted training.",
+      "intent": "Meet the immediate documentation and training need",
+      "section": "Root Cause Analysis & Systemic Redesign",
+      "cue": "Safety and restraint"
+    },
+    {
+      "text": "Second, and more critically, we fundamentally redesigned the workflow using specialized software tools designed to \"short-circuit\" rework cycles.",
+      "intent": "Address the deeper workflow loop",
+      "section": "Root Cause Analysis & Systemic Redesign",
+      "cue": "Safety and restraint"
+    },
+    {
+      "text": "By introducing digital guardrails and forcing function protocols, we ensured that necessary rework did not compound into further errors, stabilizing the production pipeline.",
+      "intent": "Explain how guardrails stabilize the process",
+      "section": "Root Cause Analysis & Systemic Redesign",
+      "cue": "Safety and restraint"
+    },
+    {
+      "text": "I want to note that while Senior Leadership came to me for a specific AI solution, we managed to successfully de-risk a GraphRAG solution implementation before it resulted in any cost to Boeing.",
+      "intent": "Show willingness to reject an unsuitable AI solution early",
+      "section": "Root Cause Analysis & Systemic Redesign",
+      "cue": "Safety and restraint"
+    },
+    {
+      "text": "I'm a big fan of fail-fast testing in the early stages of solution workshopping, and AI solutions shouldn't be applied in situations that are inappropriate to their strengths.",
+      "intent": "State a preference for testing fit before investing",
+      "section": "Root Cause Analysis & Systemic Redesign",
+      "cue": "Safety and restraint"
+    },
+    {
+      "text": "Note on Visual Assets: Due to the proprietary nature of this investigation, all specific flowcharts, technical artifacts, and photographs are protected.",
+      "intent": "Explain why project details cannot be pictured",
+      "section": "Root Cause Analysis & Systemic Redesign",
+      "cue": "Safety and restraint"
+    },
+    {
+      "text": "The images provided here are contextual and illustrative, representing the overarching themes of the work rather than the specific confidential project details.",
+      "intent": "Distinguish illustrative images from confidential evidence",
+      "section": "Root Cause Analysis & Systemic Redesign",
+      "cue": "Safety and restraint"
+    },
+    {
+      "text": "Contact me for a verbal walkthrough of the investigation.",
+      "intent": "Offer an appropriate route for further discussion",
+      "section": "Root Cause Analysis & Systemic Redesign",
+      "cue": "Safety and restraint"
+    },
+    {
+      "text": "I'd like to believe that modern coding is incorporating more and more high-level cognitive reasoning, such that the use of research from fields like organizational psychology can actually be used in the conducting of an agent swarm.",
+      "intent": "Connect organizational psychology with coordinating coding agents",
+      "section": "App Development & AI Consulting",
+      "cue": "Practical governance"
+    },
+    {
+      "text": "I could speak about this at length.",
+      "intent": "Signal depth beyond this short summary",
+      "section": "App Development & AI Consulting",
+      "cue": "Practical governance"
+    },
+    {
+      "text": "Despite being first and foremost a knowledge worker, I can't help but love to build things.",
+      "intent": "Express enjoyment of making as well as advising",
+      "section": "App Development & AI Consulting",
+      "cue": "Practical governance"
+    },
+    {
+      "text": "I continue to cooperatively architect and sometimes personally build hands-on tools, while simultaneously serving as a primary Human Factors consultant for high-impact internal Boeing teams and academic partners (such as Carnegie Mellon) attempting to integrate complex agentic workflows.",
+      "intent": "Describe a role bridging architecture construction and consultation",
+      "section": "App Development & AI Consulting",
+      "cue": "Practical governance"
+    },
+    {
+      "text": "I advise multiple workstreams on architecting necessary guardrails for AI systems.",
+      "intent": "Make safety guidance a concrete professional responsibility",
+      "section": "App Development & AI Consulting",
+      "cue": "Practical governance"
+    },
+    {
+      "text": "This involves developing artifacts and structures that help make Human-Computer Interaction frameworks effective: Joint Cognitive Systems Orchestration Graphs, STPI and FRAM safety analyses, Dynamic Trust Calibration Plots, even the occasional Lexical Entrainment index or RAG Citation Integrity Report.",
+      "intent": "Name the analytical artifacts used to support it",
+      "section": "App Development & AI Consulting",
+      "cue": "Practical governance"
+    },
+    {
+      "text": "But I'll always be most proud of the things I personally created all on my own.",
+      "intent": "Express particular pride in independent creation",
+      "section": "App Development & AI Consulting",
+      "cue": "Practical governance"
+    },
+    {
+      "text": "Here are a few examples: Example Tool 1: Glassbox Prompt Optimizer I actually made this tool twice, And there's quite a bit of interesting story to it.",
+      "intent": "Introduce Glassbox through its revision history",
+      "section": "App Development & AI Consulting",
+      "cue": "Practical governance"
+    },
+    {
+      "text": "I believe that the way forward right now is to create the tools that make AI governance automatic.",
+      "intent": "Frame automatic governance as the desired direction",
+      "section": "App Development & AI Consulting",
+      "cue": "Practical governance"
+    },
+    {
+      "text": "Top-down control is important, but bottom-up control has to come from guidance.",
+      "intent": "Distinguish imposed control from usable guidance",
+      "section": "App Development & AI Consulting",
+      "cue": "Practical governance"
+    },
+    {
+      "text": "Like applying chemical gradients near a slime mold.",
+      "intent": "Use a biological analogy for shaping behavior",
+      "section": "App Development & AI Consulting",
+      "cue": "Practical governance"
+    },
+    {
+      "text": "However, the acceptance and trust of those tools is the largest barrier.",
+      "intent": "Identify acceptance and trust as adoption barriers",
+      "section": "App Development & AI Consulting",
+      "cue": "Practical governance"
+    },
+    {
+      "text": "Making self-validating implementations that fully expose their backend and implement simple, validated concepts from recent academic journal articles you can force an organization to follow the correct way of implementing AI solutions.",
+      "intent": "Propose transparent self-validation as a route to better practice",
+      "section": "App Development & AI Consulting",
+      "cue": "Practical governance"
+    },
+    {
+      "text": "Example Tool 2: SLE Matcher (Standard Library Element) This was an early attempt to demonstrate the viability of the above idea.",
+      "intent": "Introduce SLE Matcher as a practical test of the idea",
+      "section": "App Development & AI Consulting",
+      "cue": "Practical governance"
+    },
+    {
+      "text": "I just wanted to show how easy it was to make a small bespoke tool for a large project with a repetitive task in front of it that could be used by the participants of that project to safely accelerate their workflows.",
+      "intent": "Make the case for narrow tools with large workflow value",
+      "section": "App Development & AI Consulting",
+      "cue": "Practical governance"
+    },
+    {
+      "text": "The tool validated the architectural capability to automate 20,000+ complex installation plans before we handed it off for further development and use.",
+      "intent": "Report scale before subsequent development and handoff",
+      "section": "App Development & AI Consulting",
+      "cue": "Practical governance"
+    },
+    {
+      "text": "Industry Experimental Design: While at InfoSytex working on military contracts using a secret clearance, I applied experimental design principles to real-world testing environments.",
+      "intent": "Ground research methods in demanding field work",
+      "section": "Ph.D. Research & Experimental Design",
+      "cue": "Research craft"
+    },
+    {
+      "text": "This required rigorous structuring of tests for novel systems to extract usable data in chaotic, high-stakes operational contexts.",
+      "intent": "Explain the challenge of extracting usable experimental evidence",
+      "section": "Ph.D. Research & Experimental Design",
+      "cue": "Research craft"
+    },
+    {
+      "text": "Biometric Data Wrangling: A core component of my research involved creating pipelines to translate raw physiological signals into actionable system intelligence.",
+      "intent": "Describe translating physiology into operational information",
+      "section": "Ph.D. Research & Experimental Design",
+      "cue": "Research craft"
+    },
+    {
+      "text": "We took noisy streams of eye-tracking and raw biometric data and filtered them into discrete markers indicative of pilot cognitive state.",
+      "intent": "Specify the transformation from noisy signals to cognitive markers",
+      "section": "Ph.D. Research & Experimental Design",
+      "cue": "Research craft"
+    },
+    {
+      "text": "This data became a real-time input for adaptive systems to recognize when an operator was becoming taxed.",
+      "intent": "Connect the markers to real-time adaptation",
+      "section": "Ph.D. Research & Experimental Design",
+      "cue": "Research craft"
+    },
+    {
+      "text": "Dissertation: \"Capturing Intentional Testing of an Automated System\" My dissertation revolved around the idea that we aren't passive observers of systems we interact with.",
+      "intent": "Reject the picture of users as passive observers",
+      "section": "Ph.D. Research & Experimental Design",
+      "cue": "Research craft"
+    },
+    {
+      "text": "Rather, I made the case that we actively seek out information through a testing process that I defined, captured, and analyzed.",
+      "intent": "Describe defining and studying intentional system testing",
+      "section": "Ph.D. Research & Experimental Design",
+      "cue": "Research craft"
+    },
+    {
+      "text": "Honestly, I was quite proud of the work.",
+      "intent": "Express satisfaction with an original contribution",
+      "section": "Ph.D. Research & Experimental Design",
+      "cue": "Research craft"
+    },
+    {
+      "text": "My master's thesis wasn't quite so foundational, but I still think it found an interesting relationship.",
+      "intent": "Contrast the master's contribution without dismissing it",
+      "section": "Ph.D. Research & Experimental Design",
+      "cue": "Research craft"
+    },
+    {
+      "text": "The Broader Scope: I have served on three distinct AI Governance Councils at Boeing, acting as the primary conduit for the human side of the technical problem statement.",
+      "intent": "Establish experience representing human concerns in AI governance",
+      "section": "AI Governance & Human Engineering Councils",
+      "cue": "Human integration"
+    },
+    {
+      "text": "My current role on the Human Engineering through AI-Teaming (HEAT) subcouncil is the latest iteration of this ongoing work.",
+      "intent": "Locate the current council role within continued work",
+      "section": "AI Governance & Human Engineering Councils",
+      "cue": "Human integration"
+    },
+    {
+      "text": "Specific Achievements: My governance work involves designing intake processes that force development teams to confront human-system integration challenges early.",
+      "intent": "Describe governance that surfaces integration problems early",
+      "section": "AI Governance & Human Engineering Councils",
+      "cue": "Human integration"
+    },
+    {
+      "text": "Prior to Boeing's most recent AI restructuring, we built the foundation in governance structures that allowed the current administration to take off so quickly.",
+      "intent": "Credit earlier foundations for later progress",
+      "section": "AI Governance & Human Engineering Councils",
+      "cue": "Human integration"
+    },
+    {
+      "text": "Most recently, however, I am leading the charge in Human Factors at Boeing in making the tools that help make governance automatic.",
+      "intent": "Return to tools that make good practice automatic",
+      "section": "AI Governance & Human Engineering Councils",
+      "cue": "Human integration"
+    },
+    {
+      "text": "Cross-Domain Leadership: I led efforts to bridge the gap between Boeing's commercial safety culture and the unique demands of the BDS military side regarding AI integration.",
+      "intent": "Describe bridging distinct safety cultures",
+      "section": "AI Governance & Human Engineering Councils",
+      "cue": "Human integration"
+    },
+    {
+      "text": "This included establishing frameworks for determining equivalent levels of safety for AI-enabled systems and engagement with the FAA representatives on aligning emerging safety regulations with technical reality.",
+      "intent": "Make the bridge concrete through assurance and regulatory work",
+      "section": "AI Governance & Human Engineering Councils",
+      "cue": "Human integration"
+    },
+    {
+      "text": "UAV Swarms: Fresh out of my PhD program, I stepped into a lead design role for a military-industrial development team creating control systems for UAV swarms.",
+      "intent": "Establish responsibility for an early demanding design role",
+      "section": "Adaptive UIs & Biometric Integration",
+      "cue": "Operator needs"
+    },
+    {
+      "text": "The target user was not the pilot, but the second-seater operating in a high-intensity battlespace.",
+      "intent": "Identify the actual operator rather than assuming the pilot",
+      "section": "Adaptive UIs & Biometric Integration",
+      "cue": "Operator needs"
+    },
+    {
+      "text": "The core innovation was a context-aware UI paradigm—dynamically modulating information density based on real-time operator workload assessment.",
+      "intent": "State adaptation to workload as the core innovation",
+      "section": "Adaptive UIs & Biometric Integration",
+      "cue": "Operator needs"
+    },
+    {
+      "text": "The UI was designed to constrict or expand information availability—taking over lower-level tasks autonomously when the battle space became chaotic, and returning control when cognitive bandwidth became available.",
+      "intent": "Describe sharing task responsibility as workload changes",
+      "section": "Adaptive UIs & Biometric Integration",
+      "cue": "Operator needs"
+    },
+    {
+      "text": "Testing & Validation: These designs weren't theoretical.",
+      "intent": "Emphasize that the design was implemented",
+      "section": "Adaptive UIs & Biometric Integration",
+      "cue": "Operator needs"
+    },
+    {
+      "text": "They were fully built and then we validated them in full-scale mock-up piloting environments, demoing the adaptive capabilities with ex-pilot SMEs to ensure the system reduced, rather than exacerbated, cognitive burden.",
+      "intent": "Describe realistic validation with experienced users",
+      "section": "Adaptive UIs & Biometric Integration",
+      "cue": "Operator needs"
+    },
+    {
+      "text": "While we did do live flight-testing, the meatiest experimental design was done for and with a nearby lab.",
+      "intent": "Distinguish flight trials from the main experimental setting",
+      "section": "Adaptive UIs & Biometric Integration",
+      "cue": "Operator needs"
+    },
+    {
+      "text": "At Boeing, I do a fair amount of traditional interface design as well.",
+      "intent": "Include experience beyond adaptive software interfaces",
+      "section": "Adaptive UIs & Biometric Integration",
+      "cue": "Operator needs"
+    },
+    {
+      "text": "Working within the constraints of real buttons and switches adds a new layer of complexity in requirements to UI design.",
+      "intent": "Identify physical controls as another design constraint",
+      "section": "Adaptive UIs & Biometric Integration",
+      "cue": "Operator needs"
+    },
+    {
+      "text": "The puzzles to be solved can be more constrained, but still fascinating.",
+      "intent": "Express enjoyment of constrained design problems",
+      "section": "Adaptive UIs & Biometric Integration",
+      "cue": "Operator needs"
+    },
+    {
+      "text": "Ghost Scale Simulation: A working computational model of the argument in \"Art: A Unifying Model.\"",
+      "intent": "Introduce a computational implementation of the essay",
+      "section": "Personal Engineering & Side Projects",
+      "cue": "Constructive ambition"
+    },
+    {
+      "text": "It explores how people read intent through empathizing with a creator at a distance, the neuromechanical mechanism through which empathy operates, and what that means with AI involved.",
+      "intent": "Connect intent reading empathy and AI in the simulation",
+      "section": "Personal Engineering & Side Projects",
+      "cue": "Constructive ambition"
+    },
+    {
+      "text": "A threat was uncovered, and a solution was proposed and modeled for completeness. 10 model versions, and I took a special effort to validate heavily and report anything that even smelled negative.",
+      "intent": "Describe iteration and deliberate reporting of negative evidence",
+      "section": "Personal Engineering & Side Projects",
+      "cue": "Constructive ambition"
+    },
+    {
+      "text": "The headline results are still pretty eye-catching.",
+      "intent": "Express interest in the resulting headline findings",
+      "section": "Personal Engineering & Side Projects",
+      "cue": "Constructive ambition"
+    },
+    {
+      "text": "You can find the repo linked below.",
+      "intent": "Make the implementation inspectable through its repository",
+      "section": "Personal Engineering & Side Projects",
+      "cue": "Constructive ambition"
+    },
+    {
+      "text": "Sounding Line: The magic of active inference is that if you think you understand something properly you can play that record backwards to reverse engineer the evidence of processes in the world around you... but you can also play it forwards to produce that object yourself.",
+      "intent": "Explain inverse and forward use of one predictive model",
+      "section": "Personal Engineering & Side Projects",
+      "cue": "Constructive ambition"
+    },
+    {
+      "text": "Same predictive architecture, in fact.",
+      "intent": "Emphasize shared architecture",
+      "section": "Personal Engineering & Side Projects",
+      "cue": "Constructive ambition"
+    },
+    {
+      "text": "So, the best proof that you understand something is to build something new (Mr.",
+      "intent": "Make construction a test of understanding",
+      "section": "Personal Engineering & Side Projects",
+      "cue": "Constructive ambition"
+    },
+    {
+      "text": "Feynman wasn't joking).",
+      "intent": "Credit the construction-as-understanding maxim",
+      "section": "Personal Engineering & Side Projects",
+      "cue": "Constructive ambition"
+    },
+    {
+      "text": "I think I understand the mathematical underpinnings of art and empathy, and that I can use that to both build an intentionality detector... and eventually give AI a model for human empathy.",
+      "intent": "Describe the intended detector and longer-term empathy goal",
+      "section": "Personal Engineering & Side Projects",
+      "cue": "Constructive ambition"
+    },
+    {
+      "text": "This is me putting my money where my mouth is.",
+      "intent": "Present implementation as personal accountability",
+      "section": "Personal Engineering & Side Projects",
+      "cue": "Constructive ambition"
+    },
+    {
+      "text": "Current work.",
+      "intent": "Mark the work as ongoing",
+      "section": "Personal Engineering & Side Projects",
+      "cue": "Constructive ambition"
+    },
+    {
+      "text": "Build the Future (Early Development): An ambitious human factors approach to the AI alignment problem.",
+      "intent": "Introduce a distinct alignment project",
+      "section": "Personal Engineering & Side Projects",
+      "cue": "Constructive ambition"
+    },
+    {
+      "text": "The goal is to create a voluntary, distributed network where individuals contribute to generating reasoning traces that reflect their diverse worldviews.",
+      "intent": "Describe voluntary collection of varied perspectives",
+      "section": "Personal Engineering & Side Projects",
+      "cue": "Constructive ambition"
+    },
+    {
+      "text": "This crowdsourced data aims to counter the proliferation of narrow, authoritarian training content, democratizing the ethical foundations of future AI models through a kind of opt-in botnet.",
+      "intent": "Connect participation with a broader ethical training base",
+      "section": "Personal Engineering & Side Projects",
+      "cue": "Constructive ambition"
+    },
+    {
+      "text": "This project is in its early conceptual phase but represents the work most critical to my long-term hopes for humanity.",
+      "intent": "State the project's early stage and personal importance",
+      "section": "Personal Engineering & Side Projects",
+      "cue": "Constructive ambition"
+    },
+    {
+      "text": "Hypnotize My Partner (HMP): A friendly, trust-based, self-improvement and relationship-building application.",
+      "intent": "Introduce a collaborative self-improvement application",
+      "section": "Personal Engineering & Side Projects",
+      "cue": "Constructive ambition"
+    },
+    {
+      "text": "My wife and I were developing this for fun, but viewing the clear ethical difficulties as an engineering puzzle can only get you so far.",
+      "intent": "Acknowledge ethical limits alongside technical interest",
+      "section": "Personal Engineering & Side Projects",
+      "cue": "Constructive ambition"
+    },
+    {
+      "text": "Fetch: A comprehensive Smart Home interface designed as a catch-all assistant, integrating standard home controls with specific business feature requirements for my wife's operations.",
+      "intent": "Describe Fetch through practical household and business needs",
+      "section": "Personal Engineering & Side Projects",
+      "cue": "Constructive ambition"
+    },
+    {
+      "text": "Currently being restructured into a pattern following the free energy principle in cognitive engineering by using active inference to model the environment rather than being a purely reactive system.",
+      "intent": "Explain a move from reactive behavior to active inference",
+      "section": "Personal Engineering & Side Projects",
+      "cue": "Constructive ambition"
+    },
+    {
+      "text": "I'm also (rather… ambitiously) trying to integrate it with my 3D printer.",
+      "intent": "Add a playful ambitious integration goal",
+      "section": "Personal Engineering & Side Projects",
+      "cue": "Constructive ambition"
+    },
+    {
+      "text": "Bio: Being a bridge professional means always being willing to learn.",
+      "intent": "Define interdisciplinary work as continual learning",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "In a room full of specialist programmers, I may be far and away the best cognitive psychologist (and maybe also the best designer) - but definitely the worst programmer.",
+      "intent": "Admit uneven expertise across disciplines",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "I'm okay with this, I love to learn.",
+      "intent": "Frame that asymmetry as welcome",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "I really wish there were more humility - even a willingness to be vulnerable - in public spaces.",
+      "intent": "Express a preference for public humility and vulnerability",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "Trust requires it, and is a beautiful thing.",
+      "intent": "Connect vulnerability with trust",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "Animals, and Family: I love my dogs Sif, Toby, and Jackson.",
+      "intent": "Introduce affection for named family animals",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "I've had Sif for almost a decade now, but Jackson and Toby are newer additions.",
+      "intent": "Give a small sense of their shared history",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "Even newer still are our chickens: Stardew, Leia, and Beakachu.",
+      "intent": "Introduce the newer chickens playfully",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "I love animals of all kinds so much.",
+      "intent": "State broad affection for animals",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "My Partner, Melissa, brings a particular flavor of joy to the way I get to live with them, too.",
+      "intent": "Connect shared life with a partner's contribution",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "Also our wedding was super weird, which is frankly how I prefer things.",
+      "intent": "Reveal a preference for an unconventional celebration",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "Army Therapist: I joined so that I could get my Master's in Counseling and use it... but the moment I finished it, I realized what was coming in AI.",
+      "intent": "Explain the original counseling plan and its interruption",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "I dropped it (and everything from counseling but the cognitive research and empathy), pivoted my life entirely, and did the work to specialize in Human Factors instead.",
+      "intent": "Describe a deliberate career change toward AI and human factors",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "Still, I was an active duty therapist in the US Army for awhile.",
+      "intent": "Retain the earlier therapist identity in the story",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "While I was in Afghanistan I also: had a surprisingly successful Frasier-style international radio show, created a full gym myself out of spare parts for our patients, and started and ran a D&D group for several months.",
+      "intent": "Show several ways of building community during deployment",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "On top of finishing the Master's.",
+      "intent": "Emphasize the simultaneous academic effort",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "Also some bad stuff happened too.",
+      "intent": "Acknowledge difficult experiences without elaboration",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "Oof.",
+      "intent": "Let discomfort show briefly",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "Anyway...",
+      "intent": "Choose to move past the difficult aside",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "Solo Travel: I spent six months solo backpacking around Europe to sort of... wash the Army off of me.",
+      "intent": "Describe travel as a transition after military service",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "It is one of the most treasured experiences of my life, and I still keep in touch with many of the friends I met.",
+      "intent": "Emphasize lasting relationships and personal significance",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "When I got back, I immediately pivoted to my new academic and professional life, and the decade following has been a fair bit of payoff (AI isn't going away anytime soon, no sooner than \"intelligence\" stops being useful).",
+      "intent": "Connect that transition to the subsequent professional direction",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "You can see all of that on all of the other cards, though.",
+      "intent": "Point readers back to the professional cards",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "Friends and Games: I've always used games as a quick hack to make friends when moving around.",
+      "intent": "Describe games as a way to make friends",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "If watching your friends make decisions is one of the best ways to get to know them, then why not share in activities that have a high decision density per second?",
+      "intent": "Connect shared decisions with learning about people",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "Or maybe I just love games.",
+      "intent": "Leave room for simple enjoyment rather than a grand explanation",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "Politics: I was Bernie's caucus site lead in Washington state all the way back in 2016, and since then I've been doing what I can both locally and with my meager resources to enourage a world of fairness, equality, and truth.",
+      "intent": "State publicly chosen civic commitments",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "I want nothing more than for us to become what humanity has always promised it is truly capable of.",
+      "intent": "Express hope for human potential",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "I'm actually shockingly optimistic about our future, given the current circumstances.",
+      "intent": "Admit optimism despite present difficulties",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "It's complicated.",
+      "intent": "Preserve complexity rather than resolving it in a slogan",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "I try to give back to my community, make connections when I can, and regularly make an effort to both constantly better myself and better understand the world around me.",
+      "intent": "Describe continuing community and self-development efforts",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    },
+    {
+      "text": "I read constantly, love to converse deeply, and work to care just as much.",
+      "intent": "Connect curiosity conversation and care",
+      "section": "About Abraham",
+      "cue": "Connection and humility"
+    }
+  ]
+}

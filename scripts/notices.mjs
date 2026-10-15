@@ -17,7 +17,7 @@ for (const [folder, entry] of Object.entries(lock.packages)) {
     parts.push(await readFile(`${folder}/${name}`, "utf8"));
 }
 parts.push(
-  "\nRoboto Serif · Latin subset, fixed width/weight/optical size, variable GRAD axis.\nhttps://github.com/google/fonts/tree/main/ofl/robotoserif\n",
+  "\nRoboto Serif · Latin subsets: variable GRAD for reading; variable wght (100–900) for confidence labels.\nhttps://github.com/google/fonts/tree/main/ofl/robotoserif\n",
   (await readFile("src/assets/RobotoSerif-OFL.txt", "utf8")).replace(/[ \t]+$/gm, ""),
 );
 await writeFile("THIRD_PARTY_NOTICES.txt", parts.join("\n"));

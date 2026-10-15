@@ -92,16 +92,42 @@ function Reel({
     currentIndex = useRef(index);
   action.current = select;
   currentIndex.current = index;
+  const wheelState = useRef({
+    active,
+    expanded,
+    ambiguous,
+    candidates: candidates.length,
+    ended,
+    length: column.length,
+  });
+  wheelState.current = {
+    active,
+    expanded,
+    ambiguous,
+    candidates: candidates.length,
+    ended,
+    length: column.length,
+  };
   useEffect(() => {
     const el = host.current;
     if (!el) return;
     let delta = 0,
       last = 0;
     const wheel = (e: WheelEvent) => {
-      if (!active || e.ctrlKey || !column.length) return;
-      if (expanded && ambiguous && candidates.length + Number(ended) > 7)
+      const state = wheelState.current;
+      if (!state.active || e.ctrlKey || !state.length || !state.candidates)
+        return;
+      // Long unresolved lists keep native scrolling. A resolved position always
+      // advances this tier and pins the new node, even while its neighbors expand.
+      if (
+        state.expanded &&
+        state.ambiguous &&
+        state.candidates + Number(state.ended) > 7
+      )
         return;
       e.preventDefault();
+      e.stopPropagation();
+      if (Math.sign(delta) !== Math.sign(e.deltaY)) delta = 0;
       delta +=
         e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? 100 : 1);
       if (Math.abs(delta) < 28 || performance.now() - last < 130) return;
@@ -109,9 +135,17 @@ function Reel({
       delta = 0;
       last = performance.now();
     };
+    const leave = () => {
+      delta = 0;
+    };
     el.addEventListener("wheel", wheel, { passive: false });
-    return () => el.removeEventListener("wheel", wheel);
-  }, [active, column.length, expanded, ambiguous, candidates.length, ended]);
+    el.addEventListener("mouseleave", leave);
+    return () => {
+      el.removeEventListener("wheel", wheel);
+      el.removeEventListener("mouseleave", leave);
+    };
+    // Keep the wheel accumulator/cooldown across pinning and reel expansion.
+  }, []);
   return (
     <div
       ref={host}
@@ -254,6 +288,10 @@ export function ProcessHierarchy({
   onBlockedFocus?: (key: string) => void;
 }) {
   const graph = useMemo(() => goalGraph(nodes), [nodes]);
+  const [entryId, setEntryId] = useState<string>();
+  const tabEntry = graph.byId.has(entryId ?? "")
+    ? entryId
+    : (graph.all.find((n) => n.rank === 0) ?? graph.all[0])?.id;
   const [hovered, setHovered] = useState<{ id: string; key?: string } | null>(
       null,
     ),
@@ -330,7 +368,26 @@ export function ProcessHierarchy({
   const ancestors = graph.ancestors(inspected),
     descendants = graph.descendants(inspected);
   const visible = !!selected && (sourceHover || pinned || !!softNodeId);
-  const layout = useMemo(() => hierarchyLayout(graph, height), [graph, height]);
+  const [tierShares, setTierShares] = useState<number[]>();
+  const dividerDrag = useRef<{
+    index: number;
+    clientX: number;
+    edges: number[];
+    units: number;
+  } | null>(null);
+  const layout = useMemo(
+    () => hierarchyLayout(graph, height, 320, tierShares),
+    [graph, height, tierShares],
+  );
+  const resizeTier = (index: number, x: number, edges = layout.edges) => {
+    const next = [...edges];
+    const min = Math.min(24, (edges[index + 1] - edges[index - 1]) / 3);
+    next[index] = Math.max(
+      edges[index - 1] + min,
+      Math.min(edges[index + 1] - min, x),
+    );
+    setTierShares(next.slice(1).map((edge, i) => edge - next[i]));
+  };
   useLayoutEffect(() => {
     const el = host.current;
     const heading = el
@@ -445,7 +502,7 @@ export function ProcessHierarchy({
   const canExpand =
     pinned && columns.some((_, rank) => candidatesAt(rank).ambiguous);
   const highlight = (node: GraphNode | null, key?: string) => {
-    if (navigation.dragging.current) return;
+    if (navigation.dragging.current || dividerDrag.current) return;
     if (pinned && node && node.id !== selected?.id)
       onBlockedFocus(key ?? node.id);
     if (node || pinned) setHovered(node ? { id: node.id, key } : null);
@@ -555,9 +612,13 @@ export function ProcessHierarchy({
                     <button
                       key={n.id}
                       data-node={n.id}
+                      tabIndex={n.id === tabEntry ? 0 : -1}
                       className={classes(n)}
                       onMouseEnter={() => highlight(n)}
-                      onFocus={() => highlight(n)}
+                      onFocus={() => {
+                        setEntryId(n.id);
+                        highlight(n);
+                      }}
                       onClick={() => choose(n.data)}
                       onKeyDown={(e) => moveCell(e, n)}
                     >
@@ -569,7 +630,7 @@ export function ProcessHierarchy({
             ) : (
               <svg
                 ref={svg}
-                tabIndex={0}
+                tabIndex={-1}
                 role="group"
                 onPointerDown={(e) => {
                   e.currentTarget.dataset.pointerFocus = "true";
@@ -584,7 +645,7 @@ export function ProcessHierarchy({
                 onClick={(e) => {
                   if (
                     !(e.target as Element).closest(
-                      ".pyramid-node,.order-uncertain",
+                      ".pyramid-node,.order-uncertain,.tier-divider",
                     )
                   ) {
                     setHovered(null);
@@ -597,7 +658,7 @@ export function ProcessHierarchy({
                 data-label-reveal={reveal.toFixed(3)}
                 viewBox={`0 0 ${layout.width} ${layout.height}`}
                 preserveAspectRatio="none"
-                aria-label="Continuous hierarchy. Wheel or pinch to zoom, drag to pan. Keyboard: plus, minus, arrows; Home to fit."
+                aria-label="Continuous hierarchy. Wheel or pinch to zoom, drag to pan. Drag a vertical divider to resize tiers. Keyboard: plus, minus, arrows; Home to fit."
                 data-peaks={graph.roots.length}
               >
                 <g transform={navigation.transform.toString()}>
@@ -614,6 +675,13 @@ export function ProcessHierarchy({
                   <g clipPath={`url(#${clip})`}>
                     {layout.tiles.map((t, i) => {
                       const box = labelBoxes[i];
+                      const camera = navigation.transform;
+                      const inView =
+                        graph.all.length <= 600 ||
+                        (camera.applyX(t.x + t.width) >= 0 &&
+                          camera.applyX(t.x) <= layout.width &&
+                          camera.applyY(t.dotY + t.dotHeight) >= 0 &&
+                          camera.applyY(t.dotY - t.dotHeight) <= layout.height);
                       const availableWidth = Math.max(
                           0,
                           box.width * scaleX - 4,
@@ -631,7 +699,7 @@ export function ProcessHierarchy({
                         <g
                           key={t.key}
                           role="button"
-                          tabIndex={0}
+                          tabIndex={t.node.id === tabEntry ? 0 : -1}
                           data-node={t.node.id}
                           data-label-x={box.x}
                           data-label-y={box.y}
@@ -648,7 +716,10 @@ export function ProcessHierarchy({
                             (!selectedKey || selectedKey === t.key)
                           }
                           onMouseEnter={() => highlight(t.node, t.key)}
-                          onFocus={() => highlight(t.node, t.key)}
+                          onFocus={() => {
+                            setEntryId(t.node.id);
+                            highlight(t.node, t.key);
+                          }}
                           onClick={(e) => {
                             e.currentTarget.focus({ preventScroll: true });
                             choose(t.node.data, t.key);
@@ -661,31 +732,44 @@ export function ProcessHierarchy({
                             }
                           }}
                         >
-                          <path d={t.path} className="brick-face" />
-                          <g
-                            pointerEvents="none"
-                            transform={`translate(${waveX},${waveY}) scale(${1 / scaleX},${1 / scaleY})`}
-                            opacity={
-                              t.dotHeight * scaleY < 3 ? 0 : (1 - reveal) * 0.5
-                            }
-                          >
-                            <path
-                              className="hierarchy-wave"
-                              d={Array.from(
-                                { length: 17 },
-                                (_, j) =>
-                                  `${j ? "L" : "M"}${(j / 16 - 0.5) * Math.max(1.3, lineWidth)},${j && j < 16 ? Math.sin(j * 2.7) * Math.sin((j * Math.PI) / 16) * stretch * 1.8 : 0}`,
-                              ).join(" ")}
-                            />
-                            <circle
-                              r={
-                                Math.min(1.05, (t.dotHeight * scaleY) / 5) *
-                                (1 - stretch)
+                          <path
+                            d={t.path}
+                            className="brick-face"
+                            style={{
+                              strokeWidth: Math.min(
+                                1.6,
+                                Math.max(0.025, t.dotHeight * scaleY * 0.14),
+                              ),
+                            }}
+                          />
+                          {inView && (
+                            <g
+                              pointerEvents="none"
+                              transform={`translate(${waveX},${waveY}) scale(${1 / scaleX},${1 / scaleY})`}
+                              opacity={
+                                t.dotHeight * scaleY < 3
+                                  ? 0
+                                  : (1 - reveal) * 0.5
                               }
-                              pointerEvents="auto"
-                            />
-                          </g>
-                          {reveal > 0 && (
+                            >
+                              <path
+                                className="hierarchy-wave"
+                                d={Array.from(
+                                  { length: 17 },
+                                  (_, j) =>
+                                    `${j ? "L" : "M"}${(j / 16 - 0.5) * Math.max(1.3, lineWidth)},${j && j < 16 ? Math.sin(j * 2.7) * Math.sin((j * Math.PI) / 16) * stretch * 1.8 : 0}`,
+                                ).join(" ")}
+                              />
+                              <circle
+                                r={
+                                  Math.min(1.05, (t.dotHeight * scaleY) / 5) *
+                                  (1 - stretch)
+                                }
+                                pointerEvents="auto"
+                              />
+                            </g>
+                          )}
+                          {inView && reveal > 0 && (
                             <g
                               transform={`translate(${box.x},${box.y}) scale(${1 / scaleX},${1 / scaleY})`}
                               pointerEvents="none"
@@ -735,14 +819,27 @@ export function ProcessHierarchy({
                             descendants.has(link.parent)),
                       )
                       .map((link) => (
-                        <path
+                        <g
                           key={`${link.child}:${link.parent}`}
-                          d={link.path}
-                          className="hierarchy-crosslink"
-                          data-child={link.child}
-                          data-parent={link.parent}
                           pointerEvents="none"
-                        />
+                        >
+                          <path
+                            d={link.path}
+                            className="hierarchy-crosslink"
+                            data-child={link.child}
+                            data-parent={link.parent}
+                          />
+                          {[link.from, link.to].map((point, i) => (
+                            <ellipse
+                              key={i}
+                              className="hierarchy-link-end"
+                              cx={point.x}
+                              cy={point.y}
+                              rx={1.3 / scaleX}
+                              ry={1.3 / scaleY}
+                            />
+                          ))}
+                        </g>
                       ))}
                   {orderMarks.map((m) => (
                     <g
@@ -768,6 +865,97 @@ export function ProcessHierarchy({
                       <path d={m.d} className="order-line" />
                     </g>
                   ))}
+                  {layout.edges.slice(1, -1).map((x, i) => {
+                    const index = i + 1;
+                    const d = layout
+                      .slices(x)
+                      .map(([a, b]) => `M${x},${a} V${b}`)
+                      .join(" ");
+                    return (
+                      <g
+                        key={index}
+                        className="tier-divider"
+                        role="separator"
+                        tabIndex={0}
+                        aria-label={`Resize tiers ${index} and ${index + 1}`}
+                        aria-orientation="vertical"
+                        aria-valuemin={Math.round(
+                          (layout.edges[index - 1] / layout.width) * 100,
+                        )}
+                        aria-valuemax={Math.round(
+                          (layout.edges[index + 1] / layout.width) * 100,
+                        )}
+                        aria-valuenow={Math.round((x / layout.width) * 100)}
+                        data-boundary={index}
+                        data-x={x}
+                        onPointerDown={(e) => {
+                          if (e.button !== 0) return;
+                          e.preventDefault();
+                          e.stopPropagation();
+                          e.currentTarget.setPointerCapture(e.pointerId);
+                          dividerDrag.current = {
+                            index,
+                            clientX: e.clientX,
+                            edges: [...layout.edges],
+                            units:
+                              layout.width /
+                              (svg.current!.getBoundingClientRect().width *
+                                navigation.transform.k),
+                          };
+                        }}
+                        onPointerMove={(e) => {
+                          const drag = dividerDrag.current;
+                          if (drag?.index === index) {
+                            e.stopPropagation();
+                            resizeTier(
+                              index,
+                              drag.edges[index] +
+                                (e.clientX - drag.clientX) * drag.units,
+                              drag.edges,
+                            );
+                          }
+                        }}
+                        onPointerUp={(e) => {
+                          e.stopPropagation();
+                          dividerDrag.current = null;
+                          if (e.currentTarget.hasPointerCapture(e.pointerId))
+                            e.currentTarget.releasePointerCapture(e.pointerId);
+                        }}
+                        onLostPointerCapture={() => {
+                          dividerDrag.current = null;
+                        }}
+                        onClick={(e) => e.stopPropagation()}
+                        onDoubleClick={(e) => {
+                          e.stopPropagation();
+                          setTierShares(undefined);
+                        }}
+                        onKeyDown={(e) => {
+                          if (
+                            ["ArrowLeft", "ArrowRight", "Home"].includes(e.key)
+                          ) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            if (e.key === "Home") setTierShares(undefined);
+                            else
+                              resizeTier(
+                                index,
+                                x + (e.key === "ArrowLeft" ? -4 : 4),
+                              );
+                          }
+                        }}
+                      >
+                        <title>
+                          Drag to resize tiers · double-click to reset widths
+                        </title>
+                        <path
+                          d={d}
+                          className="tier-divider-hit"
+                          style={{ strokeWidth: 10 / scaleX }}
+                        />
+                        <path d={d} className="tier-divider-line" />
+                      </g>
+                    );
+                  })}
                 </g>
               </svg>
             )}

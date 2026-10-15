@@ -15,6 +15,10 @@ export const weight = (h: Hypothesis) =>
     : "attentionOverview" in h
       ? 0
       : 0.25;
+// Absolute supplied support, including weighted prominence for a branch.
+// Missing confidence stays neutral rather than being presented as low confidence.
+export const confidenceWeight = (h: Hypothesis) =>
+  h.support ? Math.round(300 + 450 * Math.max(0, Math.min(1, weight(h)))) : 400;
 export const supportText = (h: Hypothesis) =>
   !h.support
     ? "Support not supplied"
@@ -33,7 +37,7 @@ type Word = SimulationNodeDatum & {
   ty: number;
 };
 export function GoalCloud({
-  goals,
+  goals: allGoals,
   onInspect,
   list = false,
   active = true,
@@ -46,7 +50,24 @@ export function GoalCloud({
   const host = useRef<HTMLDivElement>(null),
     memory = useRef(new Map<string, Word>());
   const [size, setSize] = useState({ width: 300, height: 260 });
+  const budget = Math.max(
+    5,
+    Math.min(18, Math.floor((size.width * size.height - 7000) / 3800)),
+  );
+  const goals = [...allGoals]
+    .sort((a, b) => weight(b) - weight(a))
+    .slice(0, budget);
   const [words, setWords] = useState<Word[]>([]);
+  const [fontReady, setFontReady] = useState(false);
+  useEffect(() => {
+    let alive = true;
+    void document.fonts.load('450 16px "ToMpathy Confidence"').then(() => {
+      if (alive) setFontReady(true);
+    });
+    return () => {
+      alive = false;
+    };
+  }, []);
   const [displayed, setDisplayed] = useState(goals);
   const [visible, setVisible] = useState(() => !document.hidden);
   useEffect(() => {
@@ -86,7 +107,7 @@ export function GoalCloud({
       setDisplayed([]);
       return;
     }
-    if (goals.length > 40 || list) {
+    if (list) {
       setWords([]);
       return;
     }
@@ -107,18 +128,21 @@ export function GoalCloud({
         ).map((el) => {
           const r = el.getBoundingClientRect();
           return {
-            left: r.left - bounds.left - 3,
-            right: r.right - bounds.left + 3,
-            top: r.top - bounds.top - 3,
-            bottom: r.bottom - bounds.top + 3,
+            left: el.matches(".creator-control") ? 0 : r.left - bounds.left - 5,
+            right:
+              r.right - bounds.left + (el.matches(".creator-control") ? 12 : 5),
+            top: el.matches(".creator-control") ? 0 : r.top - bounds.top - 5,
+            bottom:
+              r.bottom - bounds.top + (el.matches(".creator-control") ? 10 : 5),
           };
         })
       : [];
     const nodes: Word[] = goals.map((h) => {
+      const boldness = confidenceWeight(h);
       let font =
         (7 + Math.pow(weight(h) / peak, 1.65) * 27) *
         Math.min(1, size.width / 330);
-      canvas.font = `${font}px Georgia`;
+      canvas.font = `${boldness} ${font}px "ToMpathy Confidence", Georgia`;
       const parts = h.label.split(/\s+/);
       let lines = [h.label];
       if (
@@ -148,7 +172,7 @@ export function GoalCloud({
         (size.width - 28) /
           Math.max(...lines.map((line) => canvas.measureText(line).width)),
       );
-      canvas.font = `${font}px Georgia`;
+      canvas.font = `${boldness} ${font}px "ToMpathy Confidence", Georgia`;
       const width =
           Math.max(...lines.map((line) => canvas.measureText(line).width)) +
           padding,
@@ -238,11 +262,11 @@ export function GoalCloud({
     // edge-clamped phrases overlapping in Chrome's narrow native panel.
     const ordered = [...nodes].sort(
       (a, b) =>
-        Number(b.fx != null) - Number(a.fx != null) || b.width - a.width,
+        goals.findIndex((h) => h.id === a.id) -
+        goals.findIndex((h) => h.id === b.id),
     );
-    for (let attempt = 0; attempt < 12; attempt++) {
+    for (let attempt = 0; attempt < 1; attempt++) {
       const placed: Word[] = [];
-      let fits = true;
       for (const n of ordered) {
         const free = (x: number, y: number) =>
           obstacles.every(
@@ -277,20 +301,15 @@ export function GoalCloud({
               if ((!best || distance < best.distance) && free(x, y))
                 best = { x, y, distance };
             }
-        if (!best) {
-          fits = false;
-          break;
-        }
+        // A long phrase can fail while smaller, lower-ranked phrases still fit.
+        if (!best) continue;
         n.x = best.x;
         n.y = best.y;
         placed.push(n);
       }
-      if (fits) break;
-      for (const n of nodes) {
-        n.width = (n.width - padding) * 0.93 + padding;
-        n.height = (n.height - padding) * 0.93 + padding;
-        n.font *= 0.93;
-      }
+      // Keep the highest-ranked phrases that fit without compressing them
+      // into an illegible wall. Scores/aggregation stay unchanged upstream.
+      nodes.splice(0, nodes.length, ...placed);
     }
     for (const node of nodes) {
       memory.current.delete(node.id);
@@ -300,16 +319,24 @@ export function GoalCloud({
     while (memory.current.size > 64)
       memory.current.delete(memory.current.keys().next().value!);
     setWords(nodes);
-  }, [identity, size.width, size.height, list, active, visible]);
-  const dense = list || goals.length > 40;
+  }, [identity, size.width, size.height, list, active, visible, fontReady]);
+  const dense = list;
   const dominant = [...goals].sort((a, b) => weight(b) - weight(a))[0]?.id;
   return (
     <div
       ref={host}
       className={`living-cloud ${goals.length > 8 ? "cloud-combined" : ""} ${dense ? (list ? "cloud-list" : "cloud-overflow") : ""} ${visible ? "" : "cloud-suspended"}`}
       data-testid="goals"
+      data-total={allGoals.length}
+      data-visible={words.length}
+      aria-label={`Current attention: strongest ${words.length} of ${allGoals.length} supplied focuses`}
     >
-      {(active ? (dense ? goals : displayed) : []).map((old) => {
+      {(active
+        ? dense
+          ? goals
+          : displayed.filter((h) => words.some((w) => w.id === h.id))
+        : []
+      ).map((old) => {
         const h = goals.find((g) => g.id === old.id) ?? old;
         const leaving = !goals.some((g) => g.id === h.id);
         const n = words.find((w) => w.id === h.id) ?? memory.current.get(h.id);
@@ -333,12 +360,17 @@ export function GoalCloud({
             style={
               dense
                 ? list
-                  ? undefined
-                  : { fontSize: 9 + weight(h) * 16, color }
+                  ? { fontWeight: confidenceWeight(h) }
+                  : {
+                      fontSize: 9 + weight(h) * 16,
+                      fontWeight: confidenceWeight(h),
+                      color,
+                    }
                 : {
                     left: n?.x ?? size.width / 2,
                     top: n?.y ?? size.height / 2,
                     fontSize: n?.font ?? 18,
+                    fontWeight: confidenceWeight(h),
                     color,
                     maxWidth: size.width - 12,
                   }

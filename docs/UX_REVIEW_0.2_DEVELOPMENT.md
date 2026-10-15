@@ -1,4 +1,167 @@
-# UX review — 0.2 development, October 12, 2026
+# UX review — 0.2 development, October 14, 2026
+
+## Current pass: contour currents and reliable reel handoff
+
+Contour currents is the selected visual direction. Both category marks now share
+rounded lobes, tapering ends and a continuous central curve: a rising current for
+drives, accumulated currents for constructed values. The same marks appear in
+card titles, using the graph/attention/preference palette. They are static SVGs,
+with no continuous animation or new dependency. Their contour count and intensity
+do not encode another score.
+
+Definitions align on the left in both card types. Drive cards add a smaller
+76 × 70 px brain on the right: anatomy at 36% opacity, brighter channel paths and
+larger relative nodes. The visible schematic caption is removed; its accessible
+qualification remains. The confidence legend grows from 8 to 12 px and nestles
+under the arrow. Long headers wrap at narrow widths instead of clipping the legend.
+Reload reading and its title offset are removed.
+
+The wheel issue was a real handoff defect: entering the reader cleared the source
+hover and deactivated its reels. That reset is removed. A resolved reel can now
+advance and lock directly from an unlocked page hover; reverse wheel movement
+returns to the previous choice. Wheel accumulation persists across lock/expansion
+changes, while long unresolved lists retain ordinary scrolling. The first-use
+invitation waits until the pointer leaves the reader before dismissing after an
+in-panel selection, preventing the first wheel gesture from moving its own target.
+
+A matching red banner was reproduced on protected Chrome tabs. Those access
+states, ungranted pages and pages without readable text now show neutral guidance.
+Unexpected capture failures retain their diagnostic error. Activation/action
+messages from other Chrome windows are filtered, preserving the current selection.
+The user's original transient message was not recorded, so this identifies a
+confirmed matching case rather than every possible error they may have seen.
+
+Remaining design review: compare the rising and layered marks at normal list size;
+check that the pale brain remains a secondary cue and the highlighted channel is
+legible. At 320 px a long title may put the confidence scale on the following line;
+this preserves full words and the larger legend. The taxonomy and trajectories
+remain illustrative. Sources and the selected design are in
+[Core values design](CORE_VALUES_DESIGN.md).
+
+## Previous pass: citation recovery, quieter attention and value perspectives
+
+Citation hover was injecting temporary popup prose into the capture. A resulting
+oversized heading invalidated the demo packet and left the reader disconnected.
+Tooltips/popovers are now excluded and generated labels are bounded. A visible
+Reload reading button reconnects the active page without closing the panel.
+Chrome owns its pin toolbar; the button is at the top right inside the reader.
+
+Current work only is the initial value perspective and has separate fictional
+confidence, trajectories and observations. Creator and Global remain available.
+PANIC/GRIEF displays as Belonging. Cards replace the pie with a straight confidence
+arrow; concise definitions and approximate network sketches precede a full-width
+lifetime curve. The initial guide now occupies its own temporary space rather
+than covering tabs. Screenshot review also caught and fixed unresolved SVG colors
+in portal tooltips and a reload/title overlap.
+
+Broad attention selections retain their confidence-weighted recurrence ranking,
+but show only the strongest phrases that fit. The creator control has a measured
+cutout, and the portrait centers over the name. Stable page headings and footer
+text are included on the commissioned website. References & Assets is a single
+unit throughout highlights, hierarchy, attention and portable-reading validation.
+The fully expanded essay now has 1,004 reading units, four with provisional cues;
+these counts reflect the inspected public page, not a permanent corpus size.
+
+[Three visual directions for Core values](CORE_VALUES_DESIGN.md) explore contour
+currents, living strata and a neural atlas. Contour currents is my recommendation
+for refining the small category icons while keeping the list quiet; the atlas
+thumbnail already adds detail within the card.
+
+Remaining review questions:
+
+- **Scope:** can a reader distinguish evidence from this work, a creator-wide
+  account and the broader Global catalogue? These are separate demo perspectives,
+  not three measured inference pipelines.
+- **Confidence versus strength:** the arrow deliberately matches the sentence
+  cards. Check that high confidence does not look like a stronger drive.
+- **Anatomical precision:** the network diagrams are approximate visual indices.
+  They must not be read as scans, calibrated activity or definitive pathways.
+- **Temporal interpretation:** the life axis is the intended conceptual scale.
+  The present demo has no real lifetime observations; invented positions should
+  not be used as a test of historical accuracy.
+- **Selection after substantive page changes:** citation hovers are now harmless;
+  opening a real new section still rebuilds the capture and clears selection.
+  Preserving a uniquely matched selection remains a useful later refinement.
+
+## Previous pass: actual website, adaptable tiers and populated value cards
+
+The Review desk now opens the live essay and homepage. The extension captures their real DOM and applies sentence interactions in place. Expanding an essay aside or opening a homepage project refreshes the current packet; images, math, links and site controls remain live. The preview snapshot remains only an offline development fixture.
+
+The previous generic sentence labels are replaced by authored possible intentions. The public-text corpus covers 997 essay sentences, 21 homepage sentences and 107 project-description sentences. The expanded live essay currently produces 999 prose spans because displayed prompts/controls and math segmentation differ from the offline fixture; every span still has exactly one node. All diagram purposes, attention weights, confidence and value trajectories are synthetic demo material. The Help method reports unmatched/provisional text when the website changes.
+
+The graph gives a useful, populated intermediate tier more width by default. Draggable separators resize two adjacent columns without changing cell ownership; keyboard arrows do the same, and Home or a separator double-click resets widths. Lowest-tier dots use one analytic arc; deeper dots follow their own goal lobe. Six essay roots end at different levels. At whole-essay scale, tiny sentence dots are omitted rather than drawn as a noisy solid mass; zoom exposes them.
+
+Core values restores full charts, tubes, vectors and three observations per entry. Creator has seven drives plus three constructed entries; Global has seven drives plus eighteen constructed entries. Category icons replace list confidence pies; the detail card retains its pie. The list keeps the established two-column scrolling height. The initial interaction hint now disappears once a selection is held, fixing an overlay that blocked the value tabs in the native narrow panel.
+
+Remaining refinements worth testing with you:
+
+1. **Orientation in a thousand-sentence graph.** The whole-essay silhouette communicates scope, but cannot make individual sentences easy targets. Page selection and zoom are the primary route. A small current-section cue or jump list may help more than additional marks.
+2. **Divider discoverability.** Hover/cursor and keyboard focus expose the handles without adding permanent clutter. If reviewers miss resizing, show a one-time hint on the first graph focus rather than another button.
+3. **Local focus after page changes.** Expanding content rebuilds exact anchors and currently clears the held selection. Preserving a uniquely matched sentence through that refresh would reduce interruption; it must not silently bind a changed sentence to its old analysis.
+4. **Category comprehension.** Flame/layers distinguishes drive versus constructed value visually. Test whether the icons communicate that distinction without opening Help. Keep confidence separate from drive strength and from the category itself.
+5. **Sparse-page wording.** The homepage is a useful opposite of the essay, but its interface headings are still text targets. Review whether every navigation-like heading needs attention analysis, or whether a future capture policy should prioritize substantive claims.
+6. **Demo versus backend.** These invented accounts support usability testing, not conclusions about the creator. Before inviting external testers, explain that once in the review instructions. A backend connection and measured uncertainty remain outstanding.
+
+See `evidence/website-validation.json` for the live native-Chrome receipt and `evidence/review-validation.json` for the separate deterministic native regression receipt. Images and receipts are ignored local QA evidence.
+
+## Previous follow-up: snapshot text, graph entry and continuous type
+
+The accepted keyboard, connector, font and small-icon recommendations are implemented. Tab enters one remembered graph cell, additional relationships have subtle endpoint dots, and a locally bundled continuous weight face removes regular/bold quantization. The creator portrait remains the supplied full artwork; 16/32 px icons use the new thin-outline variant.
+
+The default reading now uses the public Art essay. Every sentence has exactly one graph location, including the appendix. Its 1,402 cells revealed two real defects: cell borders erased the overview at very small scale, and the capture adapter skipped five short headings/captions. Both are corrected. Offscreen detail is omitted only for large graphs; a regression check caught and corrected that optimization affecting small graphs.
+
+The next review should distinguish **content fidelity** from **interpretation quality**. The page’s involvement disclosures are observed; the topical attention ranking and functional grouping are editorial demonstrations. Unspecified confidence stays unspecified, and nine possible values cite public text without scores. Git records can establish saved revisions, not a private mental sequence or AI authorship by themselves.
+
+Remaining review priorities:
+
+- Test whether the very dense whole-essay overview still helps orientation. A section jump control may be more useful than adding more marks, but is not added without a demonstrated need.
+- Review section purposes and possible values with the creator before treating them as a reference analysis. Sentence labels currently quote the sentence, avoiding a fabricated fine-grained intention.
+- Check whether readers understand “Not supplied” confidence and question-mark value indicators. These are intentional gaps in the evidence, not failed loading.
+- The snapshot is text-focused. Figures, interactive citations and original site layout are outside this pass; the original essay is linked prominently.
+- The small icon is now optically simplified. Compare its actual 16 px appearance with the retained creator image before selecting it for publication.
+
+Build and native validation are recorded in [STATUS.md](../STATUS.md). This remains an engineering review, not participant research or a live backend validation.
+
+## Previous review: typography, identity and compact values
+
+The three-panel composition still works best as a restrained reading companion. Keep the graph shape and use the supplied head artwork for identity; adding a face behind the graph would compete with its already dense marks. This pass makes no new claims about inference accuracy.
+
+The three titles now share Current attention's 11 px type. The supplied `ToMpathy.png` appears above the creator name and supplies the extension's 16/32/48/128 px icons and development favicon. The original artwork remains intact. Attention size and boldness both respond to supplied support; branch boldness uses weighted prominence, not an invented probability. Value-label boldness uses the same absolute confidence mapping. Missing confidence remains neutral. Cloud collision measurements include the heavier text.
+
+Core values retains two columns. Four complete rows plus half of a fifth expose the beginning of the ninth entry. A ninth authored demo preference, Player agency, makes the affordance inspectable. This is a display fixture, not a new inferred conclusion. Row heights remain consistent, long labels use up to two lines, and keyboard focus scrolls the ninth entry fully into view.
+
+Extra-parent connectors now choose the nearest valid corners by the actual vertical/horizontal route length. The three demo relationships use direct vertical drops, including the relationship that travels upward. No relationship or hierarchy ownership was changed.
+
+### Defects found and addressed
+
+- At 320 px, the Core values corner title covered the end of Curiosity. Clearance now responds to the actual first-row text and heading bounds; both columns remain aligned. No extra heading band is reserved when there is no collision.
+- In a 600 px-high viewport, an automatic grid track squeezed the values panel below its contents. The values track now retains its content height and the reader scrolls as needed, keeping the footer reachable.
+- At 320 × 450 px, the Core values explanation was about 526 px high and extended above the viewport. Hover previews are now bounded. Clicking a heading, or activating it with the keyboard, opens the existing scrollable Help dialog at that section; Escape returns focus. The surface remains three panels with no added persistent control.
+
+Heading clicks wait half a second so the existing double-click-to-unlock gesture still works; keyboard activation is immediate. Escape and focus changes cancel that pending click. This is an interaction tradeoff worth observing in the next review, rather than hiding it behind an apparently unresponsive button.
+
+### Recommended next improvements
+
+| Priority | Observation | Recommendation |
+| --- | --- | --- |
+| High | Every graph cell is a Tab stop, despite working arrow-key navigation. A large graph makes it laborious to reach the controls below. | Use one Tab entry for the active graph cell, move among cells with arrows, and let the next Tab leave the graph. Keep separate access to zoom and order-uncertainty controls. |
+| High | Several dotted relationships can share the same short vertical route. They are geometrically correct, but a line crossing intervening tiers can look like a relationship to those tiers. | Test a selected shared-parent example with a new reader. If they misread it, add subtle endpoint emphasis only during inspection; retain the requested dotted vertical route. Avoid adding permanent labels or line decorations before that observation. |
+| High | Size and boldness reinforce the same score, while sentence ink, sentence grade and value wheels have distinct meanings. The visual distinction is clear to the builder but remains untested with outsiders. | Ask a participant to explain a large attention phrase, a faint sentence and a thin value label separately. Check that they understand confidence in an assessment is different from creator involvement or importance of a value. Keep the present treatment as an experiment until then. |
+| Medium | The small creator confidence range produces intentionally subtle weight differences. Georgia also has discrete regular/bold faces rather than a continuous weight axis. | Judge this pass by readability first. If continuous changes are preferable, use a locally bundled variable weight face and remeasure word packing. Do not stretch each view's confidence range merely to exaggerate its differences. |
+| Medium | Broader clouds retain all supplied focuses, so many labels become very small. They can be inspected, but are poor scanning targets at the widest branch. | Test a broad branch at native panel width before changing density again. Preserve all supplied focuses; investigate temporary magnification of the attention panel if users cannot reach a desired phrase. Do not silently drop low-ranked items. |
+| Medium | Heading explanations are reachable now, but the Core values help is still a long theoretical paragraph. | Split the full explanation into “how to read this,” one concrete example, and the limitations. Keep the deeper theory in Help rather than adding instructional prose to the main panels. |
+| Medium | The new icon reads as a left-facing profile at small sizes; the inner teardrop becomes much less distinct at 16 px. | Review the actual Chrome title/toolbar size before finalizing. A separate optically simplified 16 px drawing may preserve the inner opening better than scaling the master. The current pass deliberately retains the supplied drawing. |
+| Medium | Small windows need both reader scrolling and values scrolling. This is preferable to clipped controls, but the nested scrolling can surprise people using a trackpad. | Include a laptop-height session and observe where wheel gestures land. If it causes confusion, review minimum graph height before reducing text or interaction targets further. |
+| Medium | Global and Search remain demo previews, and linked-source context is not a trained search agent. | Keep the distinction explicit in the review introduction and Help before outside testing. Do not interpret a completed context progress bar as refreshed backend estimates. |
+| Lower | Several visual controls and sentence cells are small, and the idle cue intentionally falls below normal contrast guidance. | Include keyboard and magnified-text tasks in the first participant trial. This pass is not a WCAG certification; preserving the requested faint cue does not establish broad accessibility. |
+
+### Review coverage and limits
+
+Code inspection and automated browser flows cover every sentence's unique graph cell, shared parents, click-to-center, arrow navigation, zoom/pan/fit, ambiguous reels, lock release/reminders, creator switching, missing/invalid input, revised accounts, export/import, context cancellation/cache, light/dark themes, reduced motion and 200% zoom. The added compact-layout checks exercise 320/360/400 px widths, the ninth-entry scroll affordance and short-window Help. Exact run outcomes and the ordinary Chrome build are recorded in [STATUS.md](../STATUS.md).
+
+This is an engineering and visual review, not observed user research or a screen-reader certification. The most useful next validation is a person unfamiliar with the design completing five tasks: inspect a sentence, hold and release it, explain a shared-parent route, find its source again, and explain what a confidence cue means. No new context model or inference backend is implied by the UI changes.
+
+## Earlier review and decision history
 
 The three-panel reader is ready for a small, observed usability trial with the fictional article. It is not yet ready for an unsupervised test of live analysis: no inference backend is connected, and this review cannot establish whether readers correctly interpret the scientific claims. The main remaining issues concern orientation and meaning rather than needing a different visual layout.
 

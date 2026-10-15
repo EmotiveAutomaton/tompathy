@@ -17,7 +17,7 @@ async function tool(page: Page, name: string) {
 test("independent attention, two peaks, bidirectional ambiguity and matching locks", async ({
   page,
 }) => {
-  await page.goto("/?qa");
+  await page.goto("/?qa&demo=fieldnotes");
   await expect(page.locator(".reader-content > .region")).toHaveCount(3);
   await expect(
     page.locator(".app-header, .app-footer, .node-explanation"),
@@ -29,13 +29,20 @@ test("independent attention, two peaks, bidirectional ambiguity and matching loc
   await expect(page.locator('[data-dominant="true"]')).toHaveText(
     "Noticing hesitation",
   );
-  const shared = await page.locator('[data-goal="focus-11"]').elementHandle();
+  // Check continuity for a displayed phrase: lower-ranked phrases can now be
+  // omitted when the creator cutout leaves insufficient cloud space.
+  const shared = await page.locator('[data-goal="focus-0"]').elementHandle();
+  await page.locator('[data-passage="p2"] [data-sentence="1"]').hover();
+  await expect(page.locator('.spool[data-rank="0"]')).toHaveAttribute(
+    "data-selected",
+    "sentence-1-2",
+  );
+  expect(await shared!.evaluate((el) => el.isConnected)).toBe(true);
   const sentence = page.locator('[data-passage="p4"] [data-sentence="1"]');
   await sentence.hover();
   await expect(page.locator('[data-dominant="true"]')).toHaveText(
     "Learning together",
   );
-  expect(await shared!.evaluate((el) => el.isConnected)).toBe(true);
   await expect(page.locator('.spool[data-rank="0"]')).toHaveAttribute(
     "data-selected",
     "sentence-3-2",
@@ -112,9 +119,11 @@ test("independent attention, two peaks, bidirectional ambiguity and matching loc
       '.hierarchy-crosslink[data-child="paragraph-3"][data-parent="practical-care"]',
     ),
   ).toHaveCount(1);
+  await expect(page.getByTestId("goals")).toHaveAttribute("data-total", "13");
+  // The aggregate retains all constituent focuses; only those that fit render.
   await expect
     .poll(() => page.locator("[data-goal]:not([aria-hidden])").count())
-    .toBeGreaterThan(6);
+    .toBeGreaterThan(0);
   await expect(page.locator('[data-passage="p4"]')).toHaveClass(
     /related-passage/,
   );
@@ -144,7 +153,7 @@ test("cloud phrases do not overlap at native width; heading and value explanatio
   page,
 }) => {
   await page.setViewportSize({ width: 360, height: 900 });
-  await page.goto("/?panel&qa");
+  await page.goto("/?panel&qa&demo=fieldnotes");
   await page.locator('[data-node="sentence-1-1"] circle').first().click();
   await page.waitForTimeout(1100);
   const boxes = await page
@@ -208,7 +217,7 @@ test("cloud phrases do not overlap at native width; heading and value explanatio
 test("context changes invalidate scope; explicit revision updates fixed values", async ({
   page,
 }) => {
-  await page.goto("/?qa");
+  await page.goto("/?qa&demo=fieldnotes");
   await tool(page, "Context");
   await page
     .getByLabel("Excerpt", { exact: true })
@@ -244,7 +253,7 @@ test("context changes invalidate scope; explicit revision updates fixed values",
 test("compact creator header and source export preserve the selected creator and context boundary", async ({
   page,
 }) => {
-  await page.goto("/?panel&qa");
+  await page.goto("/?panel&qa&demo=fieldnotes");
   await expect(page.locator(".app-header")).toHaveCount(0);
   await tool(page, "Source text");
   await page
@@ -271,7 +280,7 @@ test("compact creator header and source export preserve the selected creator and
 test("malformed packet, pasted text and session clear expose honest empty state", async ({
   page,
 }) => {
-  await page.goto("/?qa");
+  await page.goto("/?qa&demo=fieldnotes");
   await tool(page, "Import result");
   await page.getByText("Or paste JSON").click();
   await page.getByLabel("Result JSON").fill("{broken");
@@ -297,7 +306,7 @@ test("narrow dark panel, reduced motion and keyboard dialog focus", async ({
 }) => {
   await page.setViewportSize({ width: 320, height: 900 });
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/?panel&qa");
+  await page.goto("/?panel&qa&demo=fieldnotes");
   await tool(page, "Reader settings");
   await page.getByRole("button", { name: "dark", exact: true }).click();
   await page.keyboard.press("Escape");
@@ -328,7 +337,7 @@ test("narrow dark panel, reduced motion and keyboard dialog focus", async ({
 test("session save/load, file context and explicit imported-context selection", async ({
   page,
 }) => {
-  await page.goto("/?qa");
+  await page.goto("/?qa&demo=fieldnotes");
   await tool(page, "Context");
   await page.locator("input[type=file]").setInputFiles({
     name: "notes.md",
@@ -360,7 +369,7 @@ test("session save/load, file context and explicit imported-context selection", 
 test("collection cancellation and 200% zoom preserve usable controls", async ({
   page,
 }) => {
-  await page.goto("/?qa");
+  await page.goto("/?qa&demo=fieldnotes");
   await tool(page, "Context");
   await page.getByText("Retrieve public sources", { exact: true }).click();
   await page.route("https://example.com/slow", async (route) => {
@@ -401,11 +410,11 @@ test("collection cancellation and 200% zoom preserve usable controls", async ({
   await page.screenshot({ path: "evidence/zoom-200.png" });
 });
 
-test("unnamed nine-level hierarchy and top nine values fit a narrow panel", async ({
+test("unnamed nine-level hierarchy and all supplied values remain reachable in a narrow panel", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 360, height: 900 });
-  await page.goto("/?panel&qa");
+  await page.goto("/?panel&qa&demo=fieldnotes");
   const packet = await createExample();
   packet.schemaVersion = "1.6";
   packet.revisionOf = packet.id;
@@ -435,14 +444,23 @@ test("unnamed nine-level hierarchy and top nine values fit a narrow panel", asyn
   await page.getByLabel("Result JSON").fill(JSON.stringify(packet));
   await page.getByRole("button", { name: "Validate & import" }).click();
   await page.getByRole("button", { name: "Accept this revision" }).click();
-  await expect(page.locator(".core-value-row")).toHaveCount(9);
+  await page.getByRole("tab", { name: "creator", exact: true }).click();
+  await expect(page.locator(".core-value-row")).toHaveCount(19);
   await expect(page.locator(".core-value-row").first()).toHaveText(
     "Fixture preference 1",
   );
-  await expect(page.locator(".core-value-row").last()).toHaveText(
-    "Fixture preference 9",
+  expect(
+    new Set(await page.locator(".core-value-row").allTextContents()),
+  ).toEqual(
+    new Set(
+      packet.hypotheses.filter((h) => h.kind === "value").map((h) => h.label),
+    ),
   );
+  await page.locator(".core-value-row").last().focus();
   await expect(page.locator(".core-value-row").last()).toBeInViewport();
+  expect(
+    await page.locator("#values-view").evaluate((el) => el.scrollTop),
+  ).toBeGreaterThan(0);
   await page.locator('[data-node="sentence-1-1"] circle').first().click();
   await expect(page.locator(".spool")).toHaveCount(9);
   await expect(page.locator(".spool small")).toHaveCount(0);
@@ -458,15 +476,18 @@ test("unnamed nine-level hierarchy and top nine values fit a narrow panel", asyn
   ).toBe(true);
 });
 
-test("corner headings, compact attention, expanded values and prototype tabs", async ({
+test("corner headings, compact attention, four and a half value rows and prototype tabs", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 360, height: 900 });
-  await page.goto("/?panel&qa");
+  await page.goto("/?panel&qa&demo=fieldnotes");
   const cloud = await page.locator(".goals-region").boundingBox();
-  const values = await page.locator(".values-region").boundingBox();
   expect(cloud!.height).toBeLessThanOrEqual(190);
-  expect(values!.height).toBeGreaterThanOrEqual(240);
+  const valuesView = (await page.locator("#values-view").boundingBox())!;
+  const ninth = (await page.locator(".core-value-row").nth(8).boundingBox())!;
+  expect(
+    (valuesView.y + valuesView.height - ninth.y) / ninth.height,
+  ).toBeCloseTo(0.5, 1);
   for (const selector of [
     ".goals-region",
     ".process-region",
@@ -481,14 +502,14 @@ test("corner headings, compact attention, expanded values and prototype tabs", a
       Math.abs(title!.x + title!.width - region!.x - region!.width),
     ).toBeLessThan(2);
   }
-  await expect(page.locator(".core-value-row")).toHaveCount(8);
+  await expect(page.locator(".core-value-row")).toHaveCount(9);
   const rows = await page.locator(".core-value-row").evaluateAll((es) =>
     es.map((e) => {
       const r = e.getBoundingClientRect();
       return r.y + r.height / 2;
     }),
   );
-  for (let i = 0; i < rows.length; i += 2)
+  for (let i = 0; i + 1 < rows.length; i += 2)
     expect(Math.abs(rows[i] - rows[i + 1])).toBeLessThan(1);
   const menu = await page
     .getByRole("button", { name: "Reader menu", exact: true })
@@ -499,7 +520,7 @@ test("corner headings, compact attention, expanded values and prototype tabs", a
   await expect(page.locator(".core-value-row")).toHaveCount(8);
   await expect(page.getByRole("tabpanel")).toContainText("Personal agency");
   await page.getByRole("tab", { name: "creator", exact: true }).click();
-  await expect(page.locator(".core-value-row")).toHaveCount(8);
+  await expect(page.locator(".core-value-row")).toHaveCount(9);
   const world = await page
     .getByRole("tab", { name: "global", exact: true })
     .boundingBox();
@@ -511,9 +532,11 @@ test("corner headings, compact attention, expanded values and prototype tabs", a
   const search = page.getByRole("textbox", { name: "Search preview" });
   const searchAfter = await toggle.boundingBox();
   expect(searchAfter!.x).toBe(searchBefore!.x);
-  expect((await search.boundingBox())!.x).toBeGreaterThan(
-    searchAfter!.x + searchAfter!.width,
-  );
+  const searchBox = (await search.boundingBox())!;
+  expect(
+    searchBox.x > searchAfter!.x + searchAfter!.width ||
+      searchBox.y >= searchAfter!.y + searchAfter!.height,
+  ).toBe(true);
   await expect(search).toBeFocused();
   await search.fill("curiosity");
   const requests: string[] = [];
@@ -535,7 +558,7 @@ test("corner headings, compact attention, expanded values and prototype tabs", a
 test("attention can change within a sentence and lock the pointed frame", async ({
   page,
 }) => {
-  await page.goto("/?qa");
+  await page.goto("/?qa&demo=fieldnotes");
   const packet = await createExample();
   packet.revisionOf = packet.id;
   packet.id = "attention-offset-fixture";

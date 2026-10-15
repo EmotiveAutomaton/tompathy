@@ -3,6 +3,7 @@ import {
   isValidElement,
   useId,
   useRef,
+  useEffect,
   useLayoutEffect,
   useState,
   type ReactNode,
@@ -99,19 +100,25 @@ export function HoverCard({
 }
 export const explanations = {
   goals:
-    "What might be occupying the creator’s attention at this point in the text? These supplied interpretations are independent of the goal hierarchy. For a sentence, word size follows supplied likelihood or relative support. For a broader branch, size combines how often a focus occurs with its supplied confidence, giving each sentence equal weight. Shared sentences count once; unscored items receive no invented confidence. Hover a phrase for its coverage and evidence. The strongest item gathers near the center; shared phrases persist while newcomers bubble into place. Click to hold a selection. The example uses hand-written snapshots, not live inference.",
+    "What might be occupying the creator’s attention at this point in the text? These supplied interpretations are independent of the goal hierarchy. For a sentence, word size and boldness follow supplied likelihood or relative support. For a broader branch, size and boldness combine how often a focus occurs with its supplied confidence, giving each sentence equal weight. Shared sentences count once; unscored items receive no invented confidence. Only the strongest phrases that comfortably fit are shown; the full ranking remains in the supplied data. Hover a phrase for its coverage and evidence. The strongest item gathers near the center; shared phrases persist while newcomers bubble into place. Click to hold a selection. The example uses hand-written snapshots, not live inference.",
   process:
-    "Expertise is a kind of lossy, compressed record of all of the creator’s previous attentional focuses — nerves that fired together, wired together. This is the project’s conceptual model. A hierarchy of possible goals: possible broader ends are on the right; subordinate goals branch toward individual sentences on the left. Hover a block to trace its ancestors and descendants. Hover page text to roll through the corresponding goal spools. Click a sentence or block to lock; either green lock or Escape releases. Scroll a reel to explore neighboring goals at that level. The triangle stays visible throughout. This hierarchy does not establish the historical order of writing.",
+    "Expertise is a kind of lossy, compressed record of all of the creator’s previous attentional focuses — nerves that fired together, wired together. This is the project’s conceptual model. A hierarchy of possible goals: possible broader ends are on the right; subordinate goals branch toward individual sentences on the left. Hover a block to trace its ancestors and descendants. Hover page text to roll through the corresponding goal spools. Click a sentence or block to lock; either green lock or Escape releases. Scroll a reel to explore neighboring goals at that level. Drag a vertical tier boundary to resize adjacent layers; focus a separator and use left/right arrows for the same adjustment, or Home to reset. The widest initial tier favors a useful intermediate level. The triangle stays visible throughout. This hierarchy does not establish the historical order of writing.",
   values:
-    "‘Core values’ is shorthand; the project prefers ‘latent preferences.’ Working model: compare a person’s initial situation with the changes their actions appear to seek. Correlate those observations with their history to suggest preferred states, or a homeostatic range, rather than reading motives directly from a sentence. That preferred range may drift over a lifetime; it is a trajectory, not a fixed target. The curve depicts a proposed preferred state; its tube depicts uncertainty. Each numbered vector starts at an observed or inferred state and points toward a sought change. Its angle suggests how far into the future the reward is sought; its reach and weight suggest the cost the person may accept to move toward that state. Tube shading echoes that proposed strength. Each vector has its own observation below the graph. The pie represents confidence in the preference account, independently of the strength of the preference. Research caution: homeostatic models have a basis in physiological regulation. Extending them to abstract personal values, equating vector angle with a discount rate, and inferring willingness to pay from prose remain proposals here. Actions can also reflect constraints, habits or other goals; they do not uniquely identify a latent preference. These demo trajectories and confidence scores are authored illustrations, not measurements.",
+    "‘Core values’ is shorthand; the project prefers ‘latent preferences.’ Working model: compare a person’s initial situation with the changes their actions appear to seek. Correlate those observations with their history to suggest preferred states, or a homeostatic range, rather than reading motives directly from a sentence. That preferred range may drift over a lifetime; it is a trajectory, not a fixed target. The curve depicts a proposed preferred state; its tube depicts uncertainty. Each numbered vector starts at an observed or inferred state and points toward a sought change. Its angle suggests how far into the future the reward is sought; its reach and weight suggest the cost the person may accept to move toward that state. Tube shading echoes that proposed strength. Each vector has its own observation below the graph. On the website demo, a rising contour current marks a drive and layered currents mark a constructed value; the seven drives follow Panksepp’s proposed systems, with PANIC/GRIEF displayed here as Belonging. The miniature brain sketches show approximate networks, not a measurement of this creator’s brain. Constructed entries are a prototype inspired by Barrett’s account, not a claim that the two theories form a single established taxonomy. Current work only, Creator and Global supply different demo perspectives. Current work only concerns evidence from this page; Creator concerns the person across works; Global is a broader catalogue for this prototype. The straight confidence arrow in the card and the label’s boldness represent confidence in the preference account, independently of the strength of the preference. Research caution: homeostatic models have a basis in physiological regulation. Extending them to abstract personal values, equating vector angle with a discount rate, and inferring willingness to pay from prose remain proposals here. Actions can also reflect constraints, habits or other goals; they do not uniquely identify a latent preference. These demo trajectories and confidence scores are authored illustrations, not measurements.",
 };
 export function SectionTitle({
   kind,
   children,
+  onOpen,
 }: {
   kind: keyof typeof explanations;
   children: ReactNode;
+  onOpen: () => void;
 }) {
+  const openTimer = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  );
+  useEffect(() => () => clearTimeout(openTimer.current), []);
   return (
     <h2 id={`${kind}-title`}>
       <HoverCard
@@ -181,6 +188,19 @@ export function SectionTitle({
         <button
           className="heading-help"
           aria-label={`About ${typeof children === "string" ? children : kind}`}
+          aria-haspopup="dialog"
+          onClick={(e) => {
+            clearTimeout(openTimer.current);
+            if (e.detail === 0) onOpen();
+            // Leave a double-click available for the reader's global unlock.
+            else if (e.detail === 1)
+              openTimer.current = setTimeout(onOpen, 500);
+          }}
+          onDoubleClick={() => clearTimeout(openTimer.current)}
+          onBlur={() => clearTimeout(openTimer.current)}
+          onKeyDown={(e) => {
+            if (e.key === "Escape") clearTimeout(openTimer.current);
+          }}
         >
           {children}
         </button>

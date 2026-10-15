@@ -9,7 +9,7 @@ test("fictional reading: independent ink and grade, evidence, scale-aware dots a
   await page.addInitScript(() =>
     localStorage.setItem("tompathy-guide-offered-040", "yes"),
   );
-  await page.goto("/");
+  await page.goto("/?demo=fieldnotes");
   await expect(page.locator("h1")).toHaveText("The door we stopped explaining");
   await expect(page.locator("[data-ghost-kind]")).toHaveCount(30);
   await expect(page.locator(".attention-cue")).toHaveText("hover");

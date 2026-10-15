@@ -9,7 +9,7 @@ import {
   blockedFocusTracker,
   pulseLock,
 } from "./core/lock";
-import { sentences } from "./core/sentences";
+import { regionSentences } from "./core/sentences";
 import { makeArtifact, normalize } from "./core/artifact";
 import {
   SessionSchema,
@@ -24,6 +24,7 @@ import {
   readingRoot,
 } from "./core/page";
 import { contributionExplanation } from "./core/reading";
+import { isWebsiteDemo } from "./core/site-demo-scope";
 declare global {
   interface Window {
     __tompathyCleanup?: () => void;
@@ -153,7 +154,8 @@ export function installPageAdapter() {
     });
   };
   const excluded =
-    'nav,header,footer,aside,button,input,textarea,select,[contenteditable]:not([contenteditable="false"]),[hidden],[aria-hidden="true"],[data-tompathy-ui],.entryFooter,.entry-footer,.post-footer,.related,.related-posts,.recent-articles,.subscription,.newsletter,.comments,#comments';
+    (isWebsiteDemo(location.href) ? "" : "nav,header,footer,aside,") +
+    '[role="tooltip"],.citation-tooltip-portal,[popover],button,input,textarea,select,script,style,.katex,[contenteditable]:not([contenteditable="false"]),[hidden],[aria-hidden="true"],[data-tompathy-ui],.entryFooter,.entry-footer,.post-footer,.related,.related-posts,.recent-articles,.subscription,.newsletter,.comments,#comments';
   const readable = (el: HTMLElement) => {
     const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
     let text = "",
@@ -172,7 +174,59 @@ export function installPageAdapter() {
   const eligible = (el: HTMLElement) =>
     !el.closest(excluded) &&
     el.checkVisibility({ checkVisibilityCSS: true }) &&
-    readable(el).length >= 12;
+    readable(el).length >=
+      (isWebsiteDemo(location.href) ||
+      (location.protocol === "chrome-extension:" &&
+        location.pathname === "/art.html" &&
+        el.hasAttribute("data-passage"))
+        ? 1
+        : 12);
+  const blockSelector = "h1,h2,h3,h4,p,li,blockquote,pre,dd,dt,td";
+  const captureElements = (root: Element) => {
+    const groups = isWebsiteDemo(location.href)
+      ? Array.from(root.querySelectorAll<HTMLElement>("footer")).filter(
+          eligible,
+        )
+      : [];
+    const candidates = Array.from(
+      root.querySelectorAll<HTMLElement>(blockSelector),
+    ).filter(
+      (el) => eligible(el) && !groups.some((group) => group.contains(el)),
+    );
+    candidates.push(...groups);
+    if (isWebsiteDemo(location.href)) {
+      // The portfolio's project descriptions are plain divs rather than p tags.
+      // Include text leaves, never whole containers that would duplicate children.
+      candidates.push(
+        ...Array.from(root.querySelectorAll<HTMLElement>("div,section")).filter(
+          (el) =>
+            eligible(el) &&
+            !groups.some((group) => group.contains(el)) &&
+            !el.querySelector(
+              `div,section,${blockSelector},button,canvas,svg`,
+            ) &&
+            Array.from(el.childNodes).some(
+              (n) =>
+                (n.nodeType === Node.TEXT_NODE && !!n.textContent?.trim()) ||
+                (n instanceof HTMLElement &&
+                  n.hasAttribute("data-tompathy-reading")),
+            ),
+        ),
+      );
+      candidates.sort((a, b) =>
+        a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING
+          ? -1
+          : 1,
+      );
+    }
+    const set = new Set(candidates);
+    return candidates.filter(
+      (el) =>
+        !Array.from(el.querySelectorAll(blockSelector)).some((other) =>
+          set.has(other as HTMLElement),
+        ),
+    );
+  };
   const send = (type: string, data: object = {}) => {
     try {
       void chrome.runtime
@@ -267,10 +321,29 @@ export function installPageAdapter() {
     // Soft hold: crossing whitespace must not clear the last inspected sentence.
     // Explicit release, navigation and stale-source cleanup still clear it.
   };
+  let themeChanged = false;
   const observer = new MutationObserver((records) => {
     if (!artifact || stale || !records.length) return;
+    themeChanged ||= records.some(
+      (record) => record.attributeName === "data-theme",
+    );
     clearTimeout(timer);
     timer = setTimeout(() => {
+      // Hover classes and our own affordances are not new text. Theme changes
+      // do need fresh annotation colors even when the source text is unchanged.
+      // Opening a details element or adding a project dialog is new readable content.
+      const now = observedRoot && captureElements(observedRoot);
+      if (
+        !themeChanged &&
+        now &&
+        now.length === elements.length &&
+        now.every(
+          (el, i) =>
+            el === elements[i] &&
+            readable(el) === artifact?.regions[i]?.anchor.exact,
+        )
+      )
+        return;
       stale = true;
       observer.disconnect();
       clear();
@@ -278,6 +351,26 @@ export function installPageAdapter() {
     }, 200);
   });
   let observedRoot: Element | null = null;
+  const observeSource = () => {
+    if (!observedRoot) return;
+    // The live site's theme switch and project dialogs sit outside its article.
+    observer.observe(
+      isWebsiteDemo(location.href) ? document.body : observedRoot,
+      {
+        subtree: true,
+        childList: true,
+        characterData: true,
+        attributes: true,
+        attributeFilter: [
+          "hidden",
+          "aria-hidden",
+          "class",
+          "open",
+          "data-theme",
+        ],
+      },
+    );
+  };
   const reindex = () => {
     ranges.clear();
     pointOffsets = new WeakMap();
@@ -291,15 +384,17 @@ export function installPageAdapter() {
       const text = artifact!.regions.find((r) => r.id === id)!.anchor.exact;
       ranges.set(
         id,
-        sentences(text).flatMap((s) => {
-          const start = points[s.start],
-            end = points[s.end - 1];
-          if (!start || !end) return [];
-          const range = document.createRange();
-          range.setStart(start.node, start.offset);
-          range.setEnd(end.node, end.offset + 1);
-          return [{ start: s.start, end: s.end, range }];
-        }),
+        regionSentences(artifact!.regions.find((r) => r.id === id)!).flatMap(
+          (s) => {
+            const start = points[s.start],
+              end = points[s.end - 1];
+            if (!start || !end) return [];
+            const range = document.createRange();
+            range.setStart(start.node, start.offset);
+            range.setEnd(end.node, end.offset + 1);
+            return [{ start: s.start, end: s.end, range }];
+          },
+        ),
       );
     }
   };
@@ -319,21 +414,11 @@ export function installPageAdapter() {
         window.__tompathySnapshot = restored;
       }
     }
-    const { root, capture: captureInfo } = readingRoot(document);
-    const candidates = Array.from(
-      root.querySelectorAll<HTMLElement>(
-        "h1,h2,h3,h4,p,li,blockquote,pre,dd,dt,td",
-      ),
-    ).filter(eligible);
-    const candidateSet = new Set(candidates);
-    elements = candidates
-      .filter(
-        (el) =>
-          !Array.from(
-            el.querySelectorAll("h1,h2,h3,h4,p,li,blockquote,pre,dd,dt,td"),
-          ).some((other) => candidateSet.has(other as HTMLElement)),
-      )
-      .slice(0, 1500);
+    const resolved = readingRoot(document);
+    const root = isWebsiteDemo(location.href) ? document.body : resolved.root;
+    const captureInfo = resolved.capture;
+    const candidates = captureElements(root);
+    elements = candidates.slice(0, 1500);
     if (!elements.length)
       elements = Array.from(root.querySelectorAll<HTMLElement>("div,section"))
         .filter((el) => eligible(el) && !el.querySelector("div,section,p"))
@@ -361,6 +446,32 @@ export function installPageAdapter() {
       artifact.authors = pageCreators(document);
       artifact.capture = captureInfo;
       artifact.truncated = candidates.length > 1500 || length > 300000;
+      let section = "";
+      elements.forEach((el, i) => {
+        const heading = /^H[1-6]$/.test(el.tagName)
+          ? Number(el.tagName[1])
+          : undefined;
+        if (heading) section = readable(el).slice(0, 300);
+        const ghost = el
+          .closest('[class*="ghost-"]')
+          ?.className.match(/(?:^|\s)ghost-(\d+)(?:\s|$)/)?.[1];
+        const involvement = el.querySelector(".art-bright-span")
+          ? "unknown"
+          : ghost === "100"
+            ? "original"
+            : ghost === "95"
+              ? "edited"
+              : ghost === "60"
+                ? "curated"
+                : ghost === "0"
+                  ? "ghost"
+                  : undefined;
+        artifact!.regions[i].pageHint = {
+          ...(heading ? { heading } : {}),
+          ...(section ? { section } : {}),
+          ...(involvement ? { involvement } : {}),
+        };
+      });
     }
     if (
       source !== location.href ||
@@ -396,15 +507,18 @@ export function installPageAdapter() {
         if (emphasis.length)
           artifact!.regions.find((r) => r.id === id)!.emphasis = emphasis;
       }
+    for (const [i, el] of elements.entries()) {
+      if (el.matches("footer"))
+        artifact!.regions[i].pageHint = {
+          ...artifact!.regions[i].pageHint,
+          unit: "group",
+          section: "References & Assets",
+        };
+    }
     reindex();
     observedRoot = root;
-    observer.observe(root, {
-      subtree: true,
-      childList: true,
-      characterData: true,
-      attributes: true,
-      attributeFilter: ["hidden", "aria-hidden", "class"],
-    });
+    themeChanged = false;
+    observeSource();
     return artifact;
   };
   const target = (e: Event) => {
@@ -578,14 +692,7 @@ export function installPageAdapter() {
         );
       }
       reindex();
-      if (observedRoot)
-        observer.observe(observedRoot, {
-          subtree: true,
-          childList: true,
-          characterData: true,
-          attributes: true,
-          attributeFilter: ["hidden", "aria-hidden", "class"],
-        });
+      observeSource();
       for (const e of (m.estimates ?? []) as Packet["estimates"]) {
         const el = elements.find((el) => index.get(el) === e.region);
         if (el) {

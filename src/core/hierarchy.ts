@@ -105,7 +105,12 @@ export function reelCandidates(
 type Interval = [number, number];
 /** Each node has one visual home. A spanning forest packs the bricks; supplied
  * extra parents remain explicit links and participate in inspection and reels. */
-export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
+export function hierarchyLayout(
+  graph: GoalGraph,
+  height = 300,
+  width = 320,
+  tierShares?: number[],
+) {
   const columns = graph.depth + 1;
   const owner = new Map(
     graph.all.flatMap((n) =>
@@ -124,14 +129,31 @@ export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
     });
     if (movable) owner.set(movable.id, n.id);
   }
-  // Sentence choices get one and a half shares, rather than half the chart.
-  const firstWidth = (width * 1.5) / (columns + 0.5);
-  const edges = Array.from({ length: columns + 1 }, (_, i) =>
-    i === 0
-      ? 0
-      : firstWidth +
-        ((i - 1) * (width - firstWidth)) / Math.max(1, columns - 1),
+  // Favor the most detailed tier that is still practical to target at overview.
+  // On a long essay that is usually the section tier, not hundreds of sentences.
+  const counts = Array.from(
+    { length: columns },
+    (_, rank) => graph.all.filter((n) => n.rank === rank).length,
   );
+  const useful =
+    counts
+      .map((count, rank) => ({ count, rank }))
+      .filter(
+        (t) => t.rank < columns - 1 && t.count > 1 && height / t.count >= 5,
+      )
+      .sort((a, b) => b.count - a.count)[0]?.rank ?? 0;
+  const defaults = counts.map((_, rank) =>
+    rank === useful ? 2.35 : rank === 0 ? 1.3 : rank === columns - 1 ? 0.85 : 1,
+  );
+  const shares =
+    tierShares?.length === columns &&
+    tierShares.every((n) => Number.isFinite(n) && n > 0)
+      ? tierShares
+      : defaults;
+  const sum = shares.reduce((a, b) => a + b, 0);
+  const edges = [0];
+  for (const share of shares) edges.push(edges.at(-1)! + (width * share) / sum);
+  const firstWidth = edges[1];
   const cw = firstWidth;
   const weights = new Map<string, number>();
   const weight = (n: GraphNode): number => {
@@ -282,38 +304,21 @@ export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
         ? ((la + ((lb - la) * (from + to)) / 2) / height) * 2 - 1
         : from + to - 1;
     const desiredX = x + (end - x) * (0.46 + 0.4 * Math.abs(localY) ** 1.5);
-    const radius = node.parents.length ? 1.6 : 2.7;
-    // Fit the whole dot inside its brick, including the curved upper/lower edge.
-    const safe = samples.filter((p) => {
-      const cy = (p.a + p.b) / 2;
-      return (
-        p.x - x > radius + 1 &&
-        end - p.x > radius + 1 &&
-        [-1, 0, 1].every((dx) => {
-          const [a, b] = band(l, p.x + dx * (radius + 1), from, to);
-          return cy - a > radius + 1 && b - cy > radius + 1;
-        })
-      );
-    });
-    const middle = (safe.length ? safe : samples).reduce<
-      (typeof samples)[number] | undefined
-    >(
-      (best, p) =>
-        !best || Math.abs(p.x - desiredX) < Math.abs(best.x - desiredX)
-          ? p
-          : best,
-      undefined,
-    ) ?? {
-      x: x + cw / 2,
-      a: la,
-      b: lb,
-    };
     const leafY = height * (l.from + ((l.to - l.from) * (from + to)) / 2);
     const v = (leafY / height) * 2 - 1;
-    const arcLeft = cw * 0.9 * (1 - Math.sqrt(Math.max(0, 1 - v * v)));
     // An analytic inset ellipse, shared by every leaf, never snapped to samples.
-    const dotX = node.rank === 0 ? arcLeft + (cw - arcLeft) * 0.48 : middle.x,
-      dotY = node.rank === 0 ? leafY : (middle.a + middle.b) / 2;
+    // Analytic curves avoid snapping different cells to a coarse sampling grid.
+    // The whole leaf arc stays before the forward taper, inside its own bands.
+    const dotX =
+      node.rank === 0
+        ? cw * (0.46 + 0.43 * (1 - Math.sqrt(Math.max(0, 1 - v * v))))
+        : Math.max(
+            x + 0.08 * (end - x),
+            Math.min(end - 0.08 * (end - x), desiredX),
+          );
+    const analyticBand = band(l, dotX, from, to);
+    const dotY =
+      node.rank === 0 ? leafY : (analyticBand[0] + analyticBand[1]) / 2;
     const dotBand = band(l, dotX, from, to);
     tiles.push({
       node,
@@ -339,33 +344,49 @@ export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
       offset = next;
     }
   };
-  const dense = graph.all.length > 600;
+  const dense = graph.all.length > 1800;
   if (!dense) for (const l of lobes) visit(l.root, l, 0, 1);
   const byNode = new Map(tiles.map((t) => [t.node.id, t]));
+  const vertices = (tile: (typeof tiles)[number], rightFirst = false) => {
+    const lobe = lobes.find((l) => l.root.id === tile.rootId)!;
+    const sides = [tile.x, tile.x + tile.width];
+    if (rightFirst) sides.reverse();
+    return sides.flatMap((x) => {
+      const [top, bottom] = band(lobe, x, tile.from, tile.to);
+      // A curved back can remove a nominal corner. Never anchor in that void.
+      return bottom < top
+        ? []
+        : [
+            { x, y: top },
+            { x, y: bottom },
+          ];
+    });
+  };
   const links = tiles.flatMap((child) =>
     child.node.parents.flatMap((parent) => {
       if (owner.get(child.node.id) === parent.id) return [];
       const target = byNode.get(parent.id);
       if (!target) return [];
-      const x1 = child.x + child.width,
-        y1 = band(
-          lobes.find((l) => l.root.id === child.rootId)!,
-          x1,
-          child.from,
-          child.to,
-        )[1],
-        x2 = target.x,
-        y2 = band(
-          lobes.find((l) => l.root.id === target.rootId)!,
-          x2,
-          target.from,
-          target.to,
-        )[0];
+      const pairs = vertices(child, true).flatMap((from) =>
+        vertices(target).map((to) => ({
+          from,
+          to,
+          distance: Math.abs(to.x - from.x) + Math.abs(to.y - from.y),
+        })),
+      );
+      // Manhattan distance is the actual length of the vertical/horizontal
+      // route. Facing edges win ties; parent order cannot force a detour.
+      const nearest = pairs.reduce((best, pair) =>
+        pair.distance < best.distance - 1e-7 ? pair : best,
+      );
+      const { from, to } = nearest;
       return [
         {
           child: child.node.id,
           parent: parent.id,
-          path: `M${x1},${y1} V${y2} H${x2}`,
+          from,
+          to,
+          path: `M${from.x},${from.y} V${to.y} H${to.x}`,
         },
       ];
     }),
@@ -418,6 +439,9 @@ export function hierarchyLayout(graph: GoalGraph, height = 300, width = 320) {
     }),
     tiles,
     columns,
+    edges,
+    shares,
+    usefulTier: useful,
     links,
     slices,
     dense,

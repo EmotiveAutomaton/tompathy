@@ -60,7 +60,12 @@ export function useHierarchyZoom(
         [width * 1.5, height * 1.5],
       ])
       .clickDistance(5)
-      .filter((e) => e.type !== "dblclick" && (!e.button || e.type === "wheel"))
+      .filter(
+        (e) =>
+          e.type !== "dblclick" &&
+          !(e.target as Element)?.closest?.(".tier-divider") &&
+          (!e.button || e.type === "wheel"),
+      )
       .on("start", (e) => {
         dragging.current =
           e.sourceEvent?.type === "mousedown" ||
@@ -90,7 +95,9 @@ export function useHierarchyZoom(
   const key = (e: React.KeyboardEvent<SVGSVGElement>) => {
     const svg = ref.current,
       control = behavior.current;
-    if (!svg || !control || e.target !== e.currentTarget) return;
+    if (!svg || !control) return;
+    // Cell arrows navigate the graph; zoom/Home remain available at its single Tab stop.
+    if (e.target !== e.currentTarget && e.key.startsWith("Arrow")) return;
     if (
       [
         "+",

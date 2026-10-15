@@ -11,19 +11,14 @@ import { createHash } from "node:crypto";
 import { icons } from "./icons.mjs";
 import path from "node:path";
 await mkdir("dist", { recursive: true });
-// Remove only the superseded, known gallery outputs from this build directory.
-for (const file of [
-  "showcase.html",
-  "showcase.css",
-  "showcase.js",
-  "icons.html",
-  "icons.css",
-  "icons.js",
-  "logo-study-2.png",
-])
-  await unlink(path.resolve("dist", file)).catch((error) => {
-    if (error.code !== "ENOENT") throw error;
-  });
+// dist is flat, generated output. Never package leftovers from earlier builds.
+const previousOutput = await readdir("dist", { withFileTypes: true });
+if (previousOutput.some((entry) => !entry.isFile()))
+  throw Error(
+    "Unexpected directory or link in dist; inspect it before rebuilding.",
+  );
+for (const entry of previousOutput)
+  await unlink(path.resolve("dist", entry.name));
 await icons("dist");
 await import("./notices.mjs");
 for (const file of ["LICENSE", "THIRD_PARTY_NOTICES.txt"])
@@ -80,6 +75,13 @@ const html =
   '<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ToMpathy - What&#39;s on the creator&#39;s mind?</title><link rel="stylesheet" href="panel.css"></head><body><div id="root"></div><script type="module" src="panel.js"></script></body></html>';
 await writeFile("dist/panel.html", html);
 await writeFile("dist/snapshot.html", html);
+await writeFile(
+  "dist/art.html",
+  html.replace(
+    "<title>ToMpathy - What&#39;s on the creator&#39;s mind?</title>",
+    "<title>Art: A Unifying Model</title>",
+  ),
+);
 await writeFile(
   "dist/example.html",
   html.replace(

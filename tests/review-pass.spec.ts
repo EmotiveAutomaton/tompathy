@@ -32,7 +32,7 @@ test("order uncertainty survives shared siblings with different visual homes", a
       ),
     packet,
   );
-  await page.goto("/?panel");
+  await page.goto("/?panel&demo=fieldnotes");
   expect(
     await page.locator('[data-node="paragraph-3"]').getAttribute("data-root"),
   ).not.toBe(
@@ -55,7 +55,7 @@ test("order uncertainty survives shared siblings with different visual homes", a
 test("soft inspection persists, replaces freely, aggregates whole branches and leaves deliberate locks intact", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/?demo=fieldnotes");
   await expect(page.locator(".attention-cue")).toHaveText("hover");
   const sentence = page.locator('[data-passage="p4"] [data-sentence="0"]');
   await sentence.hover();
@@ -70,8 +70,13 @@ test("soft inspection persists, replaces freely, aggregates whole branches and l
   const root = page.locator('[data-node="purpose"] circle');
   await root.hover();
   await expect
-    .poll(() => page.locator("[data-goal]:not([aria-hidden])").count())
+    .poll(async () =>
+      Number(await page.getByTestId("goals").getAttribute("data-total")),
+    )
     .toBeGreaterThan(12);
+  await expect
+    .poll(() => page.locator("[data-goal]:not([aria-hidden])").count())
+    .toBeGreaterThan(0);
   const count = await page.locator("[data-goal]:not([aria-hidden])").count();
   await page.mouse.move(2, 2);
   await expect(page.locator("[data-goal]:not([aria-hidden])")).toHaveCount(
@@ -122,7 +127,7 @@ test("soft inspection persists, replaces freely, aggregates whole branches and l
 test("one label threshold, fixed anchors, smooth home, uncertain siblings and closed absent reels", async ({
   page,
 }) => {
-  await page.goto("/?panel");
+  await page.goto("/?panel&demo=fieldnotes");
   await page.setViewportSize({ width: 360, height: 950 });
   const graph = page.locator(".pyramid>svg");
   await page.locator(".order-uncertain").first().focus();
@@ -171,7 +176,7 @@ test("one label threshold, fixed anchors, smooth home, uncertain siblings and cl
 test("evidence card shows two visual scales and at most three bullets, no explanatory prose", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/?demo=fieldnotes");
   await page.locator('[data-passage="p5"] [data-sentence="0"]').focus();
   const tooltip = page.locator(".tompathy-reading-help");
   await expect(tooltip).toBeVisible();
@@ -208,8 +213,11 @@ test("review desk offers twelve distinct prompts, copy and a portable download",
   await page.goto("/review.html");
   await expect(page.locator(".destination")).toHaveCount(3);
   await expect(
-    page.getByRole("button", { name: /Live creator/ }),
-  ).toBeDisabled();
+    page.getByRole("link", { name: /Open the live essay/ }),
+  ).toHaveAttribute("href", "https://abrahamhaskins.org/art/");
+  await expect(
+    page.getByRole("link", { name: /Open the live homepage/ }),
+  ).toHaveAttribute("href", "https://abrahamhaskins.org/");
   await page.getByRole("link", { name: /Icon prompts/ }).click();
   await expect(page.locator("#prompts .prompt-card")).toHaveCount(12);
   const prompts = await page
@@ -241,7 +249,9 @@ test("review desk offers twelve distinct prompts, copy and a portable download",
   ).toBe(true);
   await page.locator("#prompts .prompt-card textarea").first().focus();
   await page.keyboard.press("Tab");
-  await expect(page.locator("#prompts .prompt-card button").first()).toBeFocused();
+  await expect(
+    page.locator("#prompts .prompt-card button").first(),
+  ).toBeFocused();
   await expect(page.locator("#prompts .prompt-card button").first()).toHaveCSS(
     "outline-style",
     "solid",
@@ -272,7 +282,7 @@ test("creator switch lives above attention, clears another creator's account, an
       ),
     packet,
   );
-  await page.goto("/");
+  await page.goto("/?demo=fieldnotes");
   const picker = page.getByLabel("Creator selection");
   await expect(picker).toBeVisible();
   const nameArrow = await page.locator(".creator-current").evaluate((el) => {

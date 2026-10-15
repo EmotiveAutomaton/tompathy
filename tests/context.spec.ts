@@ -52,7 +52,7 @@ test("free linked-source timeline: bounded discovery, dates, cache, coverage, ex
     });
   });
   await page.setViewportSize({ width: 360, height: 900 });
-  await page.goto("/?panel");
+  await page.goto("/?panel&demo=fieldnotes");
   const values = await page.getByTestId("values").innerHTML();
   await page.getByRole("button", { name: "Reader menu", exact: true }).click();
   await page.getByRole("checkbox", { name: /^Light context/ }).check();
@@ -162,7 +162,7 @@ test("timeline cancellation keeps completed byline and rejects late source respo
       })
       .catch(() => {});
   });
-  await page.goto("/?panel");
+  await page.goto("/?panel&demo=fieldnotes");
   await page.getByRole("button", { name: "Reader menu", exact: true }).click();
   await page.getByRole("checkbox", { name: /^Light context/ }).check();
   await expect.poll(() => requested).toBe(true);
@@ -184,7 +184,7 @@ test("timeline cancellation keeps completed byline and rejects late source respo
 test("feed and metadata extraction rejects malformed dates and never executes fetched markup", async ({
   page,
 }) => {
-  await page.goto("/?panel");
+  await page.goto("/?panel&demo=fieldnotes");
   const result = await page.evaluate(async () => {
     const moduleURL = "/src/core/context-source.ts";
     const { parseContextSource } = (await import(

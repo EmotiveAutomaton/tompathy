@@ -1,6 +1,6 @@
 # Context without paid services
 
-Research checked 12 October 2026 UTC; implementation updated 11 October 2026 Pacific. The collector and timeline below are implemented in the 0.2 development branch. Broader-search and model sections remain proposals, not inference-quality results. No paid service, model download, training run or scientific experiment was started.
+Research checked 12 October 2026 UTC; implementation updated 11 October 2026 Pacific. The collector and timeline below are included in 0.2. Broader-search and model sections remain proposals, not inference-quality results. No paid service, model download, training run or scientific experiment was started.
 
 ## Recommendation
 
@@ -8,7 +8,7 @@ Make useful context work without a model or search provider: collect the byline 
 
 The user's constraint is **no paid services**. The default should need no account or API key and must stop at source limits. “Search every source” should be presented as a bounded search with visible coverage, never a promise of completeness.
 
-## What the 0.2 development branch does
+## What 0.2 does
 
 - The page adapter identifies bylines and explicit creator links. Light context follows up to three links for the selected creator after the reader enables it and Chrome grants the needed host access.
 - Requests omit credentials and referrers, reject redirects, and enforce size/time limits. Canceling stops collection. The progress wheel measures completed retrievals.

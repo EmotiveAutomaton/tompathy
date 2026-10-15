@@ -10,7 +10,7 @@ test("every expanded option inspects one leaf, in either direction, without chan
   page,
 }) => {
   await page.setViewportSize({ width: 360, height: 900 });
-  await page.goto("/?panel");
+  await page.goto("/?panel&demo=fieldnotes");
   // Simulate a platform font that makes the corner label wider.
   await page.addStyleTag({
     content: ".process-region .heading-help { font-family: monospace; }",
@@ -68,7 +68,7 @@ test("every expanded option inspects one leaf, in either direction, without chan
 test("corner heading leaves top dots reachable with wider platform fonts and zoom", async ({
   page,
 }) => {
-  await page.goto("/?panel");
+  await page.goto("/?panel&demo=fieldnotes");
   await page.addStyleTag({
     content: ".process-region .heading-help { font-family: monospace; }",
   });
@@ -102,7 +102,7 @@ test("corner heading leaves top dots reachable with wider platform fonts and zoo
 test("blocked focus changes pulse both locks, ignore jitter, cool down and respect reduced motion", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/?demo=fieldnotes");
   await page.locator('[data-passage="p4"] [data-sentence="0"]').click();
   const nodes = page.locator(
     '[data-root="purpose"][data-node^="sentence-1-"] circle',
@@ -157,7 +157,7 @@ test("blocked focus changes pulse both locks, ignore jitter, cool down and respe
 test("dots fit their bricks; decorative cue and layout hold in light, dark and system dark", async ({
   page,
 }) => {
-  await page.goto("/?panel");
+  await page.goto("/?panel&demo=fieldnotes");
   for (const height of [660, 900, 1250]) {
     await page.setViewportSize({ width: 360, height });
     await page.waitForTimeout(100);
@@ -233,6 +233,8 @@ test("dots fit their bricks; decorative cue and layout hold in light, dark and s
     page.getByRole("tab", { name: "global", exact: true }),
   ).toBeFocused();
   await page.keyboard.press("Home");
-  await expect(creator).toBeFocused();
+  await expect(
+    page.getByRole("tab", { name: "current work only", exact: true }),
+  ).toBeFocused();
   await expect(page.getByTestId("values")).toBeVisible();
 });

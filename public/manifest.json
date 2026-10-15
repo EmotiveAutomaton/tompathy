@@ -2,8 +2,8 @@
   "manifest_version": 3,
   "name": "ToMpathy - What's on the creator's mind?",
   "description": "Explore goals, processes, and values behind a text. A reader for externally supplied maker hypotheses.",
-  "version": "0.1.2",
-  "version_name": "0.2 development 2",
+  "version": "0.2.0",
+  "version_name": "0.2",
   "icons": {
     "16": "icon16.png",
     "32": "icon32.png",

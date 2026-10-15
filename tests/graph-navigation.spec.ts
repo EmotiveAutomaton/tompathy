@@ -6,7 +6,7 @@ test("graph click centers source; keys navigate cells; Find appears only after s
   await page.addInitScript(() =>
     localStorage.setItem("tompathy-guide-offered-040", "yes"),
   );
-  await page.goto("/");
+  await page.goto("/?demo=fieldnotes");
   const cell = page.locator('[data-node="sentence-3-1"]');
   await cell.locator("circle").click();
   const find = page.getByRole("button", {

@@ -16,6 +16,8 @@ export async function verifyBuild() {
     "panel.css",
     "content.js",
     "reader-grade.woff",
+    "confidence-weight.woff",
+    "art.html",
     "example.html",
     "snapshot.html",
     "review.html",

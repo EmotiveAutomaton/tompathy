@@ -1,12 +1,12 @@
 # ToMpathy privacy
 
-Updated 12 October 2026 (Pacific time) · 0.2 development branch
+Updated 14 October 2026 (Pacific time) · 0.2.0
 
 ToMpathy is a local browser reader for externally supplied analyses. This release has no developer-operated analytics, advertising, telemetry or inference server. No account is required.
 
 ## Page text and analyses
 
-After you invoke ToMpathy on a page, the extension captures readable text and available creator attribution in browser-session storage. It uses the text to connect page highlights with supplied analysis. Captures exclude editable fields; extraction is heuristic and you should review a capture before sharing it. The beta does not send page text to an inference service.
+After you invoke ToMpathy on a page, the extension captures readable text and available creator attribution in browser-session storage. It uses the text to connect page highlights with supplied analysis. Captures exclude editable fields; extraction is heuristic and you should review a capture before sharing it. The extension does not send page text to an inference service. On `https://abrahamhaskins.org` and its `www` hostname, this release matches captured public text to a creator-commissioned, hand-authored demo. It assigns invented analysis and provisional cues locally for UX testing. This site-specific behavior does not classify other websites. Newly visible sections and project descriptions refresh the local capture. On this commissioned site, stable navigation, headings and footer text are also captured; References & Assets is grouped as one reading unit. Temporary citation tooltips and popovers are excluded. No private website history is bundled.
 
 Imported analyses, retrieved excerpts, extracted timeline facts, saved-page tabs and retained revisions remain in the current browser session. Theme, guide state, Light context, the GitHub preference and the Agent search preference persist locally. Readings do not sync to other devices. Export creates a file on your device containing the captured text, analysis and context; anyone you share that file with can read its contents. The context brief export also contains source excerpts and URLs. Exported files are not deleted by closing Chrome.
 
@@ -30,9 +30,9 @@ Close the panel to remove its page interaction layer. Uncheck Light context to c
 
 For questions or defects, use the [project issue tracker](https://github.com/EmotiveAutomaton/tompathy/issues). Do not include private reading files or personal page content in a public issue.
 
-This policy describes this development checkout. The published 0.1 beta retains its tagged policy. A future broad search, model or Sounding Line connection will require updated behavior disclosures before release.
+This policy describes release 0.2.0. The published 0.1 beta retains its tagged policy. A future broad search, model or Sounding Line connection will require updated behavior disclosures before release.
 
 
-Sentence reading treatment uses only the accepted packet's supplied Ghost Scale records. It does not classify text locally or send it to a font service. A bundled font resource is accessible to the page while annotations are applied; it contains no reading data. The adapter temporarily wraps text nodes and restores them on cleanup. Exported readings may include captured bold-emphasis ranges, exact supplied generation prompts, and sentence-level production explanations, alongside the existing text and analysis.
+Sentence reading treatment uses only the accepted packet's supplied Ghost Scale records. The ordinary-page adapter does not classify text or send it to a font service; the commissioned website demo supplies locally authored classifications as described above. A bundled font resource is accessible to the page while annotations are applied; it contains no reading data. The adapter temporarily wraps text nodes and restores them on cleanup. Exported readings may include captured bold-emphasis ranges, exact supplied generation prompts, and sentence-level production explanations, alongside the existing text and analysis.
 
 On ordinary pages, detailed sentence explanations and evidence are held in the content script’s isolated memory. Tooltips and supplied prompts use closed shadow content rather than embedding those details in page-readable attributes. The visual text styling itself remains visible to the page.

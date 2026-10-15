@@ -61,10 +61,7 @@ export function PreferenceChart({ trace }: { trace: Trace }) {
           <path d={`${upper} ${lower.replace(/^M/, "L")} Z`} />
         </clipPath>
       </defs>
-      <path className="preference-axes" d="M20 18 V136 H286" />
-      <text x="24" y="12">
-        {trace.domain}
-      </text>
+      <path className="preference-axes" d="M20 136 H286" />
       <path
         className="preference-band"
         d={`${upper} ${lower.replace(/^M/, "L")} Z`}
@@ -86,11 +83,8 @@ export function PreferenceChart({ trace }: { trace: Trace }) {
           </g>
         ))}
       </g>
-      <text x="24" y="152">
-        {trace.start}
-      </text>
-      <text x="280" y="152" textAnchor="end">
-        {trace.end} →
+      <text x="151" y="152" textAnchor="middle">
+        Time across the creator’s life →
       </text>
     </svg>
   );
@@ -119,9 +113,6 @@ export function PreferenceObservations({ trace }: { trace: Trace }) {
               />
             </svg>
             <div>
-              <strong>
-                {o.date} · {o.horizon}
-              </strong>
               <p>{o.explanation}</p>
             </div>
           </li>

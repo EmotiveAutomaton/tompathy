@@ -9,7 +9,7 @@ test("Options, persistent idle reels, connected alternatives and overlay dismiss
     localStorage.setItem("tompathy-guide-offered-040", "yes"),
   );
   await page.setViewportSize({ width: 360, height: 900 });
-  await page.goto("/?panel");
+  await page.goto("/?panel&demo=fieldnotes");
   await expect(page.getByTestId("odometer")).toBeVisible();
   const idle = await page.getByTestId("odometer").boundingBox();
   await page.mouse.move(idle!.x + 10, idle!.y + 20);
@@ -90,7 +90,7 @@ test("portable reading restores exact source and rejects changed anchors", async
   await page.addInitScript(() =>
     localStorage.setItem("tompathy-guide-offered-040", "yes"),
   );
-  await page.goto("/");
+  await page.goto("/?demo=fieldnotes");
   await page.getByRole("button", { name: "Reader menu", exact: true }).click();
   const [download] = await Promise.all([
     page.waitForEvent("download"),
@@ -169,7 +169,7 @@ test("context wheel follows real completed fetches and never updates estimates",
       body: "Mara Vale writes about public spaces and iterative design.",
     });
   });
-  await page.goto("/?panel");
+  await page.goto("/?panel&demo=fieldnotes");
   const values = await page.getByTestId("values").innerHTML();
   await page.getByRole("button", { name: "Reader menu", exact: true }).click();
   await page.getByRole("checkbox", { name: /^Light context/ }).check();
@@ -192,7 +192,7 @@ test("context wheel follows real completed fetches and never updates estimates",
 test("first-use guide is optional, dismissible, and replayable from Help", async ({
   page,
 }) => {
-  await page.goto("/?panel");
+  await page.goto("/?panel&demo=fieldnotes");
   await page.getByRole("button", { name: "Show me", exact: true }).click();
   await expect(page.locator(".interaction-guide")).toContainText(
     "Move over a sentence",
@@ -219,7 +219,7 @@ test("pointed branches, faded endings, precise reel hover gaps and double-click 
     localStorage.setItem("tompathy-guide-offered-040", "yes"),
   );
   await page.setViewportSize({ width: 360, height: 900 });
-  await page.goto("/?panel");
+  await page.goto("/?panel&demo=fieldnotes");
   const lower = page.locator('[data-node="practical-care"] circle');
   await lower.hover();
   await expect(page.locator('[data-node="purpose"].ancestor')).toHaveCount(0);

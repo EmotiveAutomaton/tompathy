@@ -21,10 +21,7 @@
 .reader-content.is-ready {
   padding: 10px;
   display: grid;
-  grid-template-rows: clamp(155px, 20dvh, 185px) minmax(310px, 1fr) minmax(
-      230px,
-      28dvh
-    );
+  grid-template-rows: clamp(155px, 20dvh, 185px) minmax(310px, 1fr) max-content;
   gap: 9px;
   overflow: auto;
 }
@@ -68,9 +65,6 @@
   cursor: help;
   text-align: right;
 }
-.process-region .heading-help {
-  font-size: 10px;
-}
 .reader-content > .region > .section-heading .icon-button {
   position: absolute;
   top: 7px;
@@ -87,6 +81,8 @@
 .hover-card {
   position: fixed;
   width: min(560px, calc(100vw - 20px));
+  max-height: calc(100dvh - 20px);
+  overflow: hidden;
   z-index: 100;
   pointer-events: none;
   padding: 15px;
@@ -123,6 +119,68 @@
   isolation: isolate;
   overflow: clip;
 }
+@font-face {
+  font-family: "ToMpathy Confidence";
+  src: url("./assets/confidence-weight.woff") format("woff");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+.art-page-snapshot > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 6%;
+  font-size: 12px;
+}
+.art-page-snapshot > header span {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+}
+.art-page-snapshot article {
+  max-width: 760px;
+  margin: auto;
+  padding: 30px 7% 60px;
+}
+.example-page.art-page-snapshot article h1 {
+  font:
+    42px/1.2 Georgia,
+    serif;
+  margin: 25px 0 30px;
+}
+.art-page-snapshot h2 {
+  font:
+    27px/1.3 Georgia,
+    serif;
+  margin: 50px 0 20px;
+}
+.art-page-snapshot h3 {
+  font:
+    21px/1.4 Georgia,
+    serif;
+  margin: 32px 0 16px;
+}
+.art-page-snapshot .art-block-caption {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 16px 0;
+}
+.art-page-snapshot pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 13px;
+}
+.art-page-snapshot > footer {
+  padding: 24px 6%;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.hierarchy-link-end {
+  fill: var(--ink, #42685b);
+  opacity: 0.72;
+}
 .cloud-position {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -135,7 +193,7 @@
   line-height: 1.25;
   white-space: nowrap;
   color: var(--trace);
-  font-family: Georgia, serif;
+  font-family: "ToMpathy Confidence", Georgia, serif;
 }
 .cloud-position:nth-child(3n + 2) {
   color: #8b7964;
@@ -168,7 +226,8 @@
 }
 .creator-brain {
   width: 34px;
-  height: 25px;
+  height: 34px;
+  object-fit: contain;
 }
 .creator-choice {
   position: relative;
@@ -308,6 +367,29 @@
 .pyramid-node {
   cursor: pointer;
   outline: none;
+}
+.tier-divider {
+  cursor: col-resize;
+  outline: none;
+  touch-action: none;
+}
+.tier-divider-hit {
+  stroke: transparent;
+  fill: none;
+  pointer-events: stroke;
+}
+.tier-divider-line {
+  stroke: var(--trace);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  fill: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s;
+}
+.tier-divider:hover .tier-divider-line,
+.tier-divider:focus-visible .tier-divider-line {
+  opacity: 0.55;
 }
 .pyramid-node .brick-face {
   fill: color-mix(in srgb, var(--trace) 11%, var(--surface));
@@ -477,18 +559,23 @@
   gap: 3px 10px;
   padding-top: 0;
   align-items: center;
+  grid-auto-rows: var(--value-row-height, 37px);
 }
 .value-hover {
   display: block;
   min-width: 0;
+  height: 100%;
 }
 .core-value-row {
+  font-family: "ToMpathy Confidence", Georgia, serif;
+  font-synthesis: none;
   display: flex;
   align-items: center;
   gap: 7px;
   text-align: left;
   width: 100%;
   min-height: 37px;
+  height: 100%;
   padding: 4px 2px;
   font-size: 11px;
   line-height: 1.35;
@@ -496,6 +583,26 @@
 }
 .core-value-row:hover {
   background: color-mix(in srgb, var(--trace) 7%, transparent);
+}
+.value-category-icon {
+  width: 17px;
+  height: 17px;
+  flex: none;
+  stroke-width: 1.45;
+  opacity: 0.74;
+  color: var(--accent);
+}
+.value-category-label {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin: 2px 0 9px;
+}
+.core-value-row > span {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .cloud-leaving {
   opacity: 0;
@@ -719,10 +826,16 @@
     serif;
 }
 .values-region #values-view {
-  flex: 1;
+  /* Four complete pairs, the row gaps, and half of the next pair. */
+  flex: 0 0 auto;
+  height: calc(4.5 * var(--value-row-height, 37px) + 4 * 3px);
   min-height: 0;
   overflow-y: auto;
   scrollbar-width: thin;
+  scroll-padding-block: 4px;
+}
+.reader-content > .values-region {
+  padding-top: calc(8px + var(--values-heading-clearance, 0px));
 }
 .value-tabs {
   display: flex;
@@ -1159,13 +1272,11 @@
   background: var(--bg);
 }
 .interaction-guide {
-  position: fixed;
-  left: 12px;
-  right: 12px;
-  bottom: 14px;
-  z-index: 30;
+  position: relative;
+  order: 1;
+  flex-shrink: 0;
   max-width: 440px;
-  margin-left: auto;
+  margin: 0 10px 10px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1477,7 +1588,7 @@
 }
 .preference-chart {
   width: 100%;
-  color: var(--trace);
+  color: var(--green);
   overflow: visible;
 }
 .preference-chart text {
@@ -1519,7 +1630,7 @@
 }
 .preference-observations svg {
   width: 36px;
-  color: var(--trace);
+  color: var(--green);
 }
 .preference-observations path {
   stroke: currentColor;
@@ -1538,4 +1649,199 @@
 }
 .preference-observations strong {
   font-size: 10px;
+}
+.creator-control {
+  align-items: center;
+}
+.creator-brain {
+  margin-right: 12px;
+}
+.values-bottom {
+  flex-wrap: wrap;
+}
+.values-bottom .value-tabs {
+  flex: 1 0 220px;
+  flex-wrap: wrap;
+}
+.value-tabs [role="tab"] {
+  padding-inline: 6px;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.value-tabs.searching .value-search {
+  flex-basis: 100%;
+  max-width: none;
+}
+.context-progress {
+  margin-left: auto;
+}
+.value-confidence-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 3px 9px;
+  margin-bottom: 8px;
+}
+.value-confidence-header .value-card-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: 1 0 min-content;
+  padding-top: 9px;
+  margin: 0;
+  max-width: 100%;
+  line-height: 1.2;
+}
+.value-confidence-axis {
+  flex: 1 0 172px;
+  min-width: 172px;
+  position: relative;
+}
+.value-confidence-number {
+  display: block;
+  text-align: center;
+  font:
+    18px/1.25 "ToMpathy Confidence",
+    Georgia,
+    serif;
+}
+.value-confidence-axis svg {
+  display: block;
+  width: 100%;
+  height: 12px;
+  fill: var(--green);
+}
+.value-confidence-legend {
+  display: block;
+  text-align: right;
+  padding-right: 13px;
+  margin-top: -5px;
+  font:
+    12px/1.25 "ToMpathy Confidence",
+    Georgia,
+    serif;
+  white-space: pre;
+}
+.value-introduction {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin: 4px 0 7px;
+}
+.value-introduction p {
+  margin: 4px 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.drive-brain {
+  margin: 0;
+  flex: 0 0 76px;
+  color: var(--green);
+}
+.drive-brain svg {
+  width: 100%;
+  height: 70px;
+  display: block;
+}
+.brain-anatomy {
+  opacity: 0.36;
+}
+.brain-head {
+  stroke: var(--muted);
+  stroke-width: 1;
+  fill: none;
+}
+.brain-cortex {
+  fill: var(--soft);
+  stroke: var(--green);
+  stroke-width: 0.8;
+}
+.brain-folds {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 0.7;
+  opacity: 0.48;
+}
+.brain-stem,
+.brain-cerebellum {
+  fill: var(--soft);
+  stroke: var(--green);
+  stroke-width: 0.7;
+}
+.brain-network path {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.brain-network circle {
+  fill: var(--green);
+}
+.brain-network .brain-halo {
+  opacity: 0.2;
+}
+.value-introduction + .preference-chart {
+  display: block;
+  width: 100%;
+  max-height: 225px;
+}
+.preference-observations li {
+  padding-top: 5px;
+  margin-top: 5px;
+}
+.preference-observations p {
+  font-size: 11px;
+}
+
+/* Contour currents echo the hierarchy's rounded lobes and the preference curve.
+   Shape marks category; opacity and contour count never encode confidence. */
+.contour-current {
+  width: 21px;
+  height: 21px;
+  flex: none;
+  color: var(--green);
+  overflow: visible;
+}
+.current-wash {
+  fill: currentColor;
+  fill-opacity: 0.1;
+  stroke: currentColor;
+  stroke-opacity: 0.38;
+  stroke-width: 0.65;
+}
+.current-contour {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 0.8;
+  opacity: 0.55;
+  stroke-linecap: round;
+}
+.current-spine {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.value-category-icon {
+  opacity: 0.9;
+  transition: opacity 140ms ease;
+}
+.core-value-row:hover .value-category-icon,
+.core-value-row:focus-visible .value-category-icon {
+  opacity: 1;
+}
+.value-card-title .contour-current {
+  width: 23px;
+  height: 23px;
+}
+.value-introduction p {
+  flex: 1;
+  min-width: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .value-category-icon {
+    transition: none;
+  }
 }

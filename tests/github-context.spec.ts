@@ -29,7 +29,7 @@ test("changing creators preserves the enabled context preference and collects th
       }),
     );
   }, packet);
-  await page.goto("/?panel");
+  await page.goto("/?panel&demo=fieldnotes");
   await expect(page.locator(".context-progress.done")).toBeVisible();
   await page.getByLabel("Creator selection").selectOption("maker-2");
   await expect
@@ -117,7 +117,7 @@ test("saved context option starts bounded GitHub history, shows a bar and retain
     });
   });
   await page.setViewportSize({ width: 360, height: 800 });
-  await page.goto("/?panel");
+  await page.goto("/?panel&demo=fieldnotes");
   await expect(page.getByRole("progressbar")).toBeVisible();
   await expect(page.locator(".context-progress")).toContainText(
     "Fetching GitHub",

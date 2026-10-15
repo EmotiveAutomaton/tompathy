@@ -31,7 +31,7 @@ try {
   const errors = [];
   guide.on("pageerror", (error) => errors.push(error.message));
   await expect(guide.locator("#build")).toContainText(
-    `Installed · 0.2 development 2 · build ${receipt.build}`,
+    `Installed · ${JSON.parse(await readFile("dist/manifest.json", "utf8")).version_name} · build ${receipt.build}`,
   );
   await expect(
     guide.getByRole("heading", { name: "A place to look closer." }),
@@ -43,8 +43,11 @@ try {
   });
   await expect(guide.locator(".destination")).toHaveCount(3);
   await expect(
-    guide.getByRole("button", { name: /Live creator/ }),
-  ).toBeDisabled();
+    guide.getByRole("link", { name: /Open the live essay/ }),
+  ).toHaveAttribute("href", "https://abrahamhaskins.org/art/");
+  await expect(
+    guide.getByRole("link", { name: /Open the live homepage/ }),
+  ).toHaveAttribute("href", "https://abrahamhaskins.org/");
   await guide.getByRole("link", { name: /Icon prompts/ }).click();
   await expect(guide.locator("#prompts .prompt-card")).toHaveCount(12);
   await expect(guide.locator(".logo-study")).toHaveCount(4);
@@ -60,10 +63,10 @@ try {
   receipt.checks.push(
     "Three-entry dashboard, four generated logo studies and twelve copyable prompts open in ordinary Chrome",
   );
-  const [source] = await Promise.all([
-    context.waitForEvent("page"),
-    guide.getByRole("link", { name: /Open the testing environment/ }).click(),
-  ]);
+  // Deterministic native regression uses the offline fixture. The separate
+  // website-validation command exercises the real public website.
+  const source = await context.newPage();
+  await source.goto(new URL("example.html", current.receipt.reviewUrl).href);
   await source.waitForLoadState();
   const widthBefore = await source.evaluate(() => innerWidth);
   await source.getByRole("button", { name: "Open Maker Reader" }).click();
@@ -79,10 +82,33 @@ try {
       "The actual native side panel did not open from the guided example",
     );
   panel.on("pageerror", (error) => errors.push(error.message));
+  await expect
+    .poll(
+      async () =>
+        (
+          await panel.evaluate(
+            async () => (await chrome.storage.session.get("reading")).reading,
+          )
+        )?.artifact?.regions?.length ?? 0,
+    )
+    .toBeGreaterThan(0);
   await expect(panel).toHaveTitle("ToMpathy - What's on the creator's mind?");
   await expect(panel.locator(".reader-content > .region")).toHaveCount(3);
   await expect(panel.locator(".app-header, .app-footer")).toHaveCount(0);
   await expect(panel.getByTestId("values")).toContainText("Care for others");
+  await expect(
+    panel.getByRole("tab", { name: "current work only", exact: true }),
+  ).toHaveAttribute("aria-selected", "true");
+  await panel.getByRole("tab", { name: "creator", exact: true }).click();
+  await expect(panel.locator(".creator-brain")).toHaveJSProperty(
+    "naturalWidth",
+    128,
+  );
+  expect(
+    await panel
+      .locator(".heading-help")
+      .evaluateAll((els) => els.map((el) => getComputedStyle(el).fontSize)),
+  ).toEqual(["11px", "11px", "11px"]);
   if (
     await panel
       .getByRole("button", { name: "Dismiss interaction guide" })
@@ -289,12 +315,20 @@ try {
   await panel.screenshot({ path: "evidence/review-branch.png", scale: "css" });
   await panel.locator('[data-node="purpose"] circle').hover();
   await expect
-    .poll(() => panel.locator("[data-goal]:not([aria-hidden])").count())
+    .poll(async () =>
+      Number(await panel.getByTestId("goals").getAttribute("data-total")),
+    )
     .toBeGreaterThan(12);
-  await panel.mouse.move(1, 1);
   await expect
     .poll(() => panel.locator("[data-goal]:not([aria-hidden])").count())
-    .toBeGreaterThan(12);
+    .toBeGreaterThan(0);
+  const visibleFocuses = await panel
+    .locator("[data-goal]:not([aria-hidden])")
+    .count();
+  await panel.mouse.move(1, 1);
+  await expect(panel.locator("[data-goal]:not([aria-hidden])")).toHaveCount(
+    visibleFocuses,
+  );
   await expect
     .poll(() =>
       panel
@@ -559,7 +593,7 @@ try {
     .getByRole("button", { name: "Personal agency", exact: true })
     .hover();
   await expect(
-    panel.getByRole("tooltip").locator(".value-confidence"),
+    panel.getByRole("tooltip").locator(".value-confidence-axis"),
   ).toContainText("88%");
   await expect(
     panel.getByRole("tooltip").locator(".preference-observations li"),
@@ -570,7 +604,7 @@ try {
     scale: "css",
   });
   await panel.getByRole("tab", { name: "creator", exact: true }).click();
-  await expect(panel.locator(".core-value-row")).toHaveCount(8);
+  await expect(panel.locator(".core-value-row")).toHaveCount(9);
   await panel.getByRole("button", { name: "Open search preview" }).click();
   await panel
     .getByRole("textbox", { name: "Search preview" })
@@ -581,7 +615,7 @@ try {
   ).toBeVisible();
   await panel.getByRole("button", { name: "Close search" }).click();
   receipt.checks.push(
-    "Eight creator values, eight higher-confidence Global demo values and expandable typing-only search work in the native panel",
+    "Nine creator values with a partial-row scroll cue, eight higher-confidence Global demo values and expandable typing-only search work in the native panel",
   );
   await panel
     .getByRole("button", { name: "Care for others", exact: true })
@@ -674,6 +708,10 @@ try {
     .getByRole("button", { name: "Open ToMpathy", exact: true })
     .waitFor();
   await expect(panel.getByTestId("values")).toContainText("Care for others");
+  await expect(
+    panel.getByRole("tab", { name: "creator", exact: true }),
+  ).toHaveAttribute("aria-selected", "true");
+  await panel.getByRole("tab", { name: "creator", exact: true }).click();
   await restored
     .locator('[data-snapshot-region="p4"]')
     .click({ position: { x: 30, y: 18 } });
@@ -689,7 +727,10 @@ try {
   receipt.checks.push(
     "Options export saves a portable readable page with analysis; import opens it in Chrome and restores two-way sentence locking",
   );
-  if (!panel.url().includes("qa")) await panel.goto(panel.url() + "?qa");
+  if (!panel.url().includes("qa"))
+    await panel.goto(
+      panel.url() + (panel.url().includes("?") ? "&" : "?") + "qa",
+    );
   await panel
     .getByRole("button", { name: "Development tools", exact: true })
     .click();
@@ -709,6 +750,10 @@ try {
     .toBe(2);
   await source.bringToFront();
   await expect(panel.getByTestId("values")).toContainText("Care for others");
+  await expect(
+    panel.getByRole("tab", { name: "current work only", exact: true }),
+  ).toHaveAttribute("aria-selected", "true");
+  await panel.getByRole("tab", { name: "creator", exact: true }).click();
   await restored.bringToFront();
   await expect(panel.getByTestId("values")).toContainText("Practical care");
   receipt.checks.push(
@@ -716,7 +761,14 @@ try {
   );
   await source.bringToFront();
   await expect(panel.getByTestId("values")).toContainText("Care for others");
-  if (!panel.url().includes("qa")) await panel.goto(panel.url() + "?qa");
+  await expect(
+    panel.getByRole("tab", { name: "creator", exact: true }),
+  ).toHaveAttribute("aria-selected", "true");
+  await panel.getByRole("tab", { name: "creator", exact: true }).click();
+  if (!panel.url().includes("qa"))
+    await panel.goto(
+      panel.url() + (panel.url().includes("?") ? "&" : "?") + "qa",
+    );
   await panel
     .getByRole("button", { name: "Development tools", exact: true })
     .click();

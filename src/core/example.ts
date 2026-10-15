@@ -366,6 +366,7 @@ export async function createExample(
         ["stewardship", "Thoughtful use of tools", 0.44, "e4"],
         ["belonging", "Shared belonging", 0.4, "e2"],
         ["patience", "Patient observation", 0.36, "e1"],
+        ["agency", "Player agency", 0.3, "e2"],
       ].map(([id, label, value, evidence]) =>
         h(
           String(id),

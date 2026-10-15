@@ -1,4 +1,5 @@
 import type { Hypothesis, Packet } from "./model";
+import { isWebsitePacket, websiteValues } from "./website-values";
 
 // Authored illustration records; no scores or trajectories are inferred here.
 const stories: Record<string, [string, string, string, string]> = {
@@ -55,6 +56,12 @@ const stories: Record<string, [string, string, string, string]> = {
     "A fictional play group traded a faster start for the ability to choose roles.",
     "The group asked for defaults when setup choices became burdensome.",
     "Participants kept an opt-out even though it complicated matchmaking.",
+  ],
+  agency: [
+    "Room to choose",
+    "Mara left room for either player to decide when to open the door.",
+    "She restored a simple cue when silence left the players without a useful choice.",
+    "She kept the forgiving latch so players could choose their own pace.",
   ],
   fairness: [
     "Fair contribution",
@@ -129,6 +136,7 @@ export function demoGlobalValues(
   packet: Packet | null,
   values: Hypothesis[],
 ): Hypothesis[] {
+  if (isWebsitePacket(packet)) return websiteValues(packet!.makers[0].id, true);
   if (
     packet?.origin !== "synthetic example" ||
     packet.provider.id !== "tompathy-example"
@@ -170,4 +178,29 @@ export function demoGlobalValues(
       }),
     ),
   ];
+}
+
+export function demoWorkValues(
+  packet: Packet | null,
+  values: Hypothesis[],
+): Hypothesis[] {
+  if (isWebsitePacket(packet))
+    return websiteValues(packet!.makers[0].id, false, true);
+  if (
+    packet?.origin === "synthetic example" &&
+    packet.provider.id === "tompathy-example"
+  )
+    return values.map((h, i) => ({
+      ...h,
+      id: `work-${h.id}`,
+      support: h.support
+        ? {
+            ...h.support,
+            value: 0.18 + (i % 5) * 0.09,
+            meaning: "Invented confidence from this work alone.",
+          }
+        : null,
+    }));
+  // Imported data has no invented perspective. Show only explicitly page-linked claims.
+  return values.filter((h) => h.regions.length > 0);
 }

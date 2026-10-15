@@ -6,7 +6,7 @@ test("attention settles while held and responds again to a new sentence", async 
   await page.addInitScript(() =>
     localStorage.setItem("tompathy-guide-offered-040", "yes"),
   );
-  await page.goto("/?panel");
+  await page.goto("/?panel&demo=fieldnotes");
   const first = page.locator(
     '[data-root="purpose"][data-node="sentence-1-1"] circle',
   );
