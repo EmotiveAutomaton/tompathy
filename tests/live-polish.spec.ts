@@ -114,7 +114,7 @@ test("capped cloud clears the creator cutout; work cards and keyboard tabs fit n
       .locator(".brain-cortex")
       .evaluate((el) => getComputedStyle(el).fill),
   ).not.toBe("rgb(0, 0, 0)");
-  await expect(card.locator(".value-confidence-number")).toHaveText("91%");
+  await expect(card.locator(".value-confidence-number")).toHaveText("0.91 on 0–1");
   await expect(card.locator(".preference-chart")).toContainText(
     "Time across the creator’s life",
   );

@@ -1,6 +1,28 @@
 # ToMpathy status
 
-Updated 14 October 2026. Version **0.2.0** is the owner-approved frontend milestone.
+Updated 14 October 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
+based on the merged, owner-approved **0.2.0** frontend milestone.
+
+## Engine v1
+
+The theory review is complete. The branch contains the CPU-first ledger, source
+adapters, model/evaluation components, gated fitted-preference packets, registry
+generation and authenticated local companion. The extension can opt into a
+registry or companion and render exact-capture 1.7 packets, recorded production
+history and supplied population comparisons. Default provider selection is None.
+
+The pinned CoAuthor census and 234-target baseline reproduce exactly. All 16,855
+chronologically eligible decisions score in 129.15 seconds on one CPU thread.
+Four real-source reading packets validate and render; CoAuthor remains internal.
+The real extension-to-companion flow and ordinary Chrome native-panel/restart
+checks pass. See [Engine v1 verification](docs/ENGINE_V1.md) for measurements and
+the remaining milestone gates, and [the engine guide](engine/README.md) to run it.
+
+No production scientific admissions are shipped. Real readings show observed
+records and unknown estimates until the relevant evidence and admission exist.
+The full Wikipedia fetch → admitted fit → inferred packet acceptance check and
+real transcriber batteries remain pending. No registry hosting or release is
+included. CI is configured; a remote run has not been claimed.
 
 ## Verified baseline
 
@@ -16,15 +38,15 @@ verification receipts and packaged `build-info.json`.
 - No live inference backend or Chrome Web Store submission. Demo confidence and values
   remain explicitly invented. Future model/search/word-level controls remain unfinished.
 
-The next feature awaits the owner's specification; no replacement development
-branch has been opened. Follow [the branch workflow](docs/VERSIONING.md).
+The retained 0.2 baseline below describes the released frontend. Follow
+[the branch workflow](docs/VERSIONING.md) for the active 0.3 feature branch.
 
 Review locally with **Review ToMpathy.cmd → Open the live essay → ToMpathy toolbar icon**.
 See [development and QA](docs/DEVELOPMENT.md), [release notes](CHANGELOG.md),
 [the input contract](docs/INPUT_CONTRACT.md), and [the 0.2 UX review](docs/UX_REVIEW_0.2_DEVELOPMENT.md).
 Detailed earlier checks remain in [the development archive](docs/archive/0.2-development.md).
 
-## Validation
+## Retained 0.2 validation
 
 - TypeScript/build and **29 core tests passed**.
 - **All 51 browser scenarios passed** across the broad run and affected reruns.

@@ -7,6 +7,15 @@ playwright-report/
 .playwright-mcp/
 *.log
 evidence/
+engine/.venv/
+**/__pycache__/
+**/*.egg-info/
+.pytest_cache/
+engine/.pytest_cache/
+engine/.ruff_cache/
+engine/data/
+engine/build/
+engine/dist/
 
 # Local design inputs and unpublished owner notes
 /*_REVIEW_*.md

@@ -6,6 +6,42 @@ import { confidenceWeight, weight } from "./GoalCloud";
 import { DriveBrain } from "./DriveBrain";
 import { driveFor } from "../core/drive-systems";
 import { ContourCurrent } from "./ContourCurrent";
+import {
+  Compass,
+  Flame,
+  Shield,
+  Heart,
+  HandHeart,
+  Users,
+  Smile,
+  Activity,
+  Layers,
+} from "lucide-react";
+
+function ValueIcon({ h }: { h: Hypothesis }) {
+  const icons = {
+    seeking: Compass,
+    rage: Flame,
+    fear: Shield,
+    lust: Heart,
+    care: HandHeart,
+    "panic-grief": Users,
+    play: Smile,
+    body: Activity,
+    value: Layers,
+  };
+  const Icon = h.icon ? icons[h.icon] : null;
+  return Icon ? (
+    <Icon className="value-category-icon" size={20} aria-hidden="true" />
+  ) : h.valueCategory ? (
+    <ContourCurrent
+      category={h.valueCategory}
+      className="value-category-icon"
+    />
+  ) : (
+    <Wheel value={h.support ? weight(h) : null} />
+  );
+}
 export function Wheel({
   value,
   large = false,
@@ -49,27 +85,28 @@ export function ValueDetails({
   packet: Packet | null;
 }) {
   const drive = driveFor(h);
-  const scale = "Less  ·  confidence  ·  More";
+  const probability = h.support?.semantics === "probability";
+  const score = h.support
+    ? probability
+      ? `${Math.round(h.support.value * 100)}% probability`
+      : `${h.support.value.toFixed(2)} on ${h.support.scale.join("–")}`
+    : "Unspecified";
+  const scale = probability
+    ? "Less  ·  probability  ·  More"
+    : "Less  ·  support  ·  More";
   return (
     <>
       <div className="value-confidence-header" title={h.support?.meaning}>
         <strong className="value-card-title">
-          {h.valueCategory && <ContourCurrent category={h.valueCategory} />}
+          <ValueIcon h={h} />
           <span>{h.label}</span>
         </strong>
-        <div
-          className="value-confidence-axis"
-          aria-label={
-            h.support
-              ? `${Math.round(weight(h) * 100)}% confidence`
-              : "Confidence not supplied"
-          }
-        >
+        <div className="value-confidence-axis" aria-label={score}>
           <strong
             className="value-confidence-number"
             style={{ fontWeight: Math.max(400, confidenceWeight(h)) }}
           >
-            {h.support ? `${Math.round(weight(h) * 100)}%` : "Unspecified"}
+            {score}
           </strong>
           <svg
             viewBox="0 0 220 12"
@@ -190,7 +227,13 @@ export function ValueList({
     <div ref={grid} className="core-values" data-testid="values">
       {[...values]
         .sort(
-          (a, b) => (b.support ? weight(b) : -1) - (a.support ? weight(a) : -1),
+          (a, b) =>
+            Number(
+              b.interpretation === "drive" || b.valueCategory === "drive",
+            ) -
+              Number(
+                a.interpretation === "drive" || a.valueCategory === "drive",
+              ) || (b.support ? weight(b) : -1) - (a.support ? weight(a) : -1),
         )
         .map((h) => (
           <HoverCard
@@ -203,14 +246,7 @@ export function ValueList({
               style={{ fontWeight: confidenceWeight(h) }}
               onClick={() => inspect(h)}
             >
-              {h.valueCategory ? (
-                <ContourCurrent
-                  category={h.valueCategory}
-                  className="value-category-icon"
-                />
-              ) : (
-                <Wheel value={h.support ? weight(h) : null} />
-              )}
+              <ValueIcon h={h} />
               <span>{h.label}</span>
             </button>
           </HoverCard>

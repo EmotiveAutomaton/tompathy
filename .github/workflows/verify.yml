@@ -14,6 +14,42 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  engine:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: "22"
+          cache: npm
+      - run: python -m pip install -e "engine[dev]"
+      - run: python -m pytest engine/tests
+        env:
+          OPENBLAS_NUM_THREADS: "1"
+          OMP_NUM_THREADS: "1"
+      - run: python -m ruff check engine/tompathy_engine engine/tests
+      - run: npm ci
+      - run: python engine/scripts/generate_fixture_packets.py
+      - run: node engine/scripts/validate_with_packet_schema.mjs
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test tests/engine.spec.ts
+        env:
+          TOMPATHY_PYTHON: python
+      - name: Save engine integration evidence
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: engine-verification-${{ github.sha }}
+          path: |
+            evidence/engine-*.json
+            evidence/engine-*.png
+            test-results/
+          retention-days: 14
   verify:
     runs-on: ubuntu-24.04
     timeout-minutes: 15

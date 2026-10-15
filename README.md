@@ -4,9 +4,11 @@
 
 **What’s on the creator’s mind?** ToMpathy is a Chrome side-panel reader for exploring a creator’s current attention, expertise, habits, process and core values alongside a text.
 
-**0.2 · MIT licensed · frontend milestone.** A live Sounding Line backend is not connected. The demo runs directly on Abraham Haskins’s public website with hand-authored, fictional analysis commissioned by its creator. Other pages can be captured and paired with a matching imported analysis.
+**0.3 beta development · MIT licensed · Engine v1.** The Python engine in [engine/](engine/README.md) provides the decision ledger, source adapters, model/evaluation components, static registry generation and authenticated local companion. Scientific admissions remain separate from software checks: unadmitted modules do not supply maker estimates. The commissioned website demo remains hand-authored, fictional analysis.
 
-Package and Chrome versions are **0.2.0**. The reviewed frontend lives on `main`; new features begin on focused branches. See [our branch and version workflow](docs/VERSIONING.md).
+This branch is **codex/0.3-engine**, based on the reviewed 0.2 frontend. npm uses **0.3.0-beta.1** and Chrome uses **0.3.0** with a beta display name. The stable 0.2 download remains available below. See [our branch and version workflow](docs/VERSIONING.md).
+
+For engine readings, open **Options → Analysis source** and choose a public registry or your local companion. The default is None. **Analyze capture** requests an exact matching reading; an existing account stays in place until you accept its proposed revision. The Global tab displays supplied population comparisons and observed domain summaries. With final text alone and no admitted model, missing values and attention remain unknown.
 
 ## Try 0.2
 

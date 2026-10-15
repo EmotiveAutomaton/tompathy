@@ -201,6 +201,19 @@ export const HypothesisSchema = z.object({
   decisionNodes: z.array(id).optional(),
   preferenceTrace: PreferenceTraceSchema.optional(),
   valueCategory: z.enum(["drive", "constructed"]).optional(),
+  icon: z
+    .enum([
+      "seeking",
+      "rage",
+      "fear",
+      "lust",
+      "care",
+      "panic-grief",
+      "play",
+      "body",
+      "value",
+    ])
+    .optional(),
   interpretation: z
     .enum([
       "current-attention",
@@ -211,12 +224,22 @@ export const HypothesisSchema = z.object({
       "repertoire",
       "preference",
       "value",
+      "drive",
     ])
     .optional(),
 });
 export const PacketSchema = z
   .object({
-    schemaVersion: z.enum(["1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6"]),
+    schemaVersion: z.enum([
+      "1.0",
+      "1.1",
+      "1.2",
+      "1.3",
+      "1.4",
+      "1.5",
+      "1.6",
+      "1.7",
+    ]),
     ghostReadings: z.array(GhostReadingSchema).max(6000).optional(),
     id,
     revision: z.number().int().positive(),
@@ -234,10 +257,36 @@ export const PacketSchema = z
           label: z.string().max(250),
           identity: z.enum(["unknown", "supplied", "synthetic"]),
           relationship: z.string().max(1000),
+          predictability: SupportSchema.optional(),
         }),
       )
       .min(1),
     hypotheses: z.array(HypothesisSchema).max(1000),
+    population: z
+      .object({
+        populationId: id,
+        makersPooled: z.number().int().nonnegative(),
+        description: z.string().min(1).max(4000),
+        items: z
+          .array(
+            z.object({
+              hypothesis: id,
+              populationSupport: SupportSchema,
+              makerRecords: z.number().int().nonnegative(),
+              shrinkage: z.number().min(0).max(1),
+              curve: z
+                .array(
+                  z.object({
+                    records: z.number().int().nonnegative(),
+                    intervalWidth: z.number().finite().nonnegative(),
+                  }),
+                )
+                .max(100),
+            }),
+          )
+          .max(1000),
+      })
+      .optional(),
     currentAttention: z
       .array(
         z.object({
@@ -401,7 +450,95 @@ export const PacketSchema = z
     const hierarchy = p.goalHierarchy?.nodes ?? [];
     unique(hierarchy, "goal hierarchy");
     const hierarchyById = new Map(hierarchy.map((n) => [n.id, n]));
-    if (p.ghostReadings?.length && p.schemaVersion !== "1.6")
+    if (
+      p.schemaVersion !== "1.7" &&
+      (p.population ||
+        p.makers.some((m) => m.predictability) ||
+        p.hypotheses.some((h) => h.icon || h.interpretation === "drive"))
+    )
+      error(
+        "Population, predictability and drive fields require contract 1.7.",
+      );
+    for (const maker of p.makers) {
+      const s = maker.predictability;
+      if (
+        s &&
+        (s.semantics !== "relative" ||
+          s.scale[0] !== 0 ||
+          s.scale[1] !== 1 ||
+          s.value < 0 ||
+          s.value > 1)
+      )
+        error(
+          "Predictability is a relative coordinate on [0,1], not a value probability.",
+        );
+    }
+    const populationItems = p.population?.items ?? [];
+    if (
+      new Set(populationItems.map((i) => i.hypothesis)).size !==
+      populationItems.length
+    )
+      error("Duplicate population hypothesis.");
+    for (const item of populationItems) {
+      const h = hs.get(item.hypothesis),
+        s = item.populationSupport;
+      if (!h || h.kind !== "value" || h.makers.length !== 1)
+        error(
+          "Population comparisons require a value hypothesis for one maker.",
+        );
+      if (
+        s.scale[0] >= s.scale[1] ||
+        s.value < s.scale[0] ||
+        s.value > s.scale[1] ||
+        (h?.support &&
+          (h.support.scale[0] !== s.scale[0] ||
+            h.support.scale[1] !== s.scale[1]))
+      )
+        error("Population and maker support must use the same valid scale.");
+      if (
+        s.semantics === "probability" &&
+        (!s.calibration ||
+          s.scale[0] !== 0 ||
+          s.scale[1] !== 1 ||
+          !s.candidateSet)
+      )
+        error(
+          "Population probability needs calibration, [0,1] and a candidate set.",
+        );
+      if (
+        s.candidateSet &&
+        !p.alternatives.some(
+          (a) => a.id === s.candidateSet && a.members.includes(item.hypothesis),
+        )
+      )
+        error("Invalid population candidate set.");
+      if (item.makerRecords === 0 && item.shrinkage !== 0)
+        error("A maker without records cannot contribute personal evidence.");
+      if (
+        item.curve.some(
+          (point, i) => i > 0 && point.records <= item.curve[i - 1].records,
+        )
+      )
+        error("Population curves require increasing record counts.");
+    }
+    for (const set of p.alternatives.filter(
+      (a) => a.exhaustive && a.kind === "competing",
+    )) {
+      const scores = set.members.map(
+        (id) =>
+          populationItems.find((i) => i.hypothesis === id)?.populationSupport,
+      );
+      if (
+        scores.some((s) => s?.semantics === "probability") &&
+        (scores.some(
+          (s) => s?.semantics !== "probability" || s.candidateSet !== set.id,
+        ) ||
+          Math.abs(scores.reduce((sum, s) => sum + (s?.value ?? 0), 0) - 1) >
+            0.000001)
+      )
+        error("Exhaustive population probability sets must sum to one.");
+    }
+    if (p.ghostReadings?.length && !["1.6", "1.7"].includes(p.schemaVersion))
       error("Sentence Ghost Scale readings require contract 1.6.");
     const ghostFrames = [...(p.ghostReadings ?? [])].sort(
       (a, b) =>
@@ -452,7 +589,7 @@ export const PacketSchema = z
     }
     const uncertain = p.goalHierarchy?.orderUncertainGroups ?? [];
     unique(uncertain, "order uncertainty group");
-    if (uncertain.length && !["1.5", "1.6"].includes(p.schemaVersion))
+    if (uncertain.length && !["1.5", "1.6", "1.7"].includes(p.schemaVersion))
       error("Order uncertainty groups require contract 1.5.");
     for (const group of uncertain) {
       const members = group.nodes.map((id) => hierarchyById.get(id));
@@ -471,7 +608,7 @@ export const PacketSchema = z
     }
     for (const n of hierarchy) {
       if (
-        !["1.3", "1.4", "1.5", "1.6"].includes(p.schemaVersion) &&
+        !["1.3", "1.4", "1.5", "1.6", "1.7"].includes(p.schemaVersion) &&
         !["document", "section", "paragraph", "sentence"].includes(
           n.level ?? "",
         )
@@ -487,7 +624,7 @@ export const PacketSchema = z
         error(`Unresolved hierarchy references in ${n.id}.`);
       if (
         n.parentIds &&
-        (!["1.4", "1.5", "1.6"].includes(p.schemaVersion) ||
+        (!["1.4", "1.5", "1.6", "1.7"].includes(p.schemaVersion) ||
           n.parentId ||
           new Set(n.parentIds).size !== n.parentIds.length)
       )
@@ -515,7 +652,9 @@ export const PacketSchema = z
     }
     const depths = new Map<string, number>(),
       visitingHierarchy = new Set<string>();
-    const maxDepth = ["1.3", "1.4", "1.5", "1.6"].includes(p.schemaVersion)
+    const maxDepth = ["1.3", "1.4", "1.5", "1.6", "1.7"].includes(
+      p.schemaVersion,
+    )
       ? 64
       : 12;
     const visitHierarchy = (id: string): number => {
@@ -545,14 +684,14 @@ export const PacketSchema = z
       return depth;
     };
     hierarchy.forEach((n) => visitHierarchy(n.id));
-    if (!["1.4", "1.5", "1.6"].includes(p.schemaVersion))
+    if (!["1.4", "1.5", "1.6", "1.7"].includes(p.schemaVersion))
       for (const m of p.makers) {
         const nodes = hierarchy.filter((n) => n.maker === m.id);
         if (nodes.length && nodes.filter((n) => !n.parentId).length !== 1)
           error("Each legacy maker hierarchy needs exactly one root.");
       }
     if (
-      !["1.4", "1.5", "1.6"].includes(p.schemaVersion) &&
+      !["1.4", "1.5", "1.6", "1.7"].includes(p.schemaVersion) &&
       (p.currentAttention || p.hypotheses.some((h) => h.kind === "attention"))
     )
       error("Independent current attention requires contract 1.4.");
@@ -671,7 +810,7 @@ export const PacketSchema = z
         attention: ["current-attention"],
         goal: ["governing-purpose", "local-goal"],
         process: ["historical-event", "reader-route", "repertoire"],
-        value: ["preference", "value"],
+        value: ["preference", "value", "drive"],
       };
       if (
         h.interpretation &&

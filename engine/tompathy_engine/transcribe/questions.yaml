@@ -1,0 +1,15 @@
+{
+  "template_version": "literal-v1",
+  "questions": {
+    "Q1": {"question": "Does this text continue the topic of the last sentence?", "answers": ["yes", "no", "unclear"]},
+    "Q2": {"question": "Does this text introduce a person, place or object not mentioned before?", "answers": ["yes", "no", "unclear"]},
+    "Q3": {"question": "Register of this text", "answers": ["formal", "neutral", "casual", "unclear"]},
+    "Q4": {"question": "Compared with the last sentence, is this text more positive, the same, or more negative in tone?", "answers": ["more positive", "same", "more negative", "unclear"]},
+    "Q5": {"question": "Does this text contain dialogue?", "answers": ["yes", "no", "unclear"]},
+    "Q6": {"question": "Grammatical person", "answers": ["first", "second", "third", "mixed", "unclear"]},
+    "Q7": {"question": "Does this text contradict a statement earlier in the document?", "answers": ["yes", "no", "unclear"]},
+    "Q8": {"question": "Edit type", "answers": ["typo", "grammar", "wording", "add content", "remove content", "reorder", "tone", "format", "unclear"]},
+    "Q9": {"question": "Does the edit change what the sentence claims?", "answers": ["yes", "no", "unclear"]},
+    "Q10": {"question": "Theme tags present in the text (not the maker's motives)", "multi": true, "answers": ["danger", "care", "play or humor", "conflict", "loss or separation", "desire", "discovery", "status", "food or body", "unclear"]}
+  }
+}

@@ -9,6 +9,7 @@ const meanings: Record<string, string> = {
   repertoire: "Possible repertoire",
   preference: "Recurring preference",
   value: "Value hypothesis",
+  drive: "Drive hypothesis",
 };
 export const interpretationLabel = (h: Hypothesis) =>
   meanings[h.interpretation ?? ""] ?? "Interpretation not specified";
@@ -79,6 +80,6 @@ export function analysisHandoff(session: Session) {
       session.scope === "context"
         ? session.context.filter((c) => c.selected)
         : [],
-    accepts: ["1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6"],
+    accepts: ["1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7"],
   };
 }

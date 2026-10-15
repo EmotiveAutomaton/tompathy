@@ -598,7 +598,7 @@ try {
     .hover();
   await expect(
     panel.getByRole("tooltip").locator(".value-confidence-axis"),
-  ).toContainText("88%");
+  ).toContainText("0.88 on 0–1");
   await expect(
     panel.getByRole("tooltip").locator(".preference-observations li"),
   ).toHaveCount(3);

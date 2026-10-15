@@ -1,4 +1,9 @@
 import { test } from "node:test";
+import {
+  localProvider,
+  registryProvider,
+  providerOrigin,
+} from "../src/core/provider";
 import assert from "node:assert/strict";
 import {
   createExample,
@@ -37,6 +42,168 @@ import {
   githubRepository,
 } from "../src/core/github-context";
 import { ContextSchema } from "../src/core/model";
+
+test("provider validation and registry fetch bind to the exact capture", async () => {
+  assert.equal(providerOrigin({ kind: "none" }), null);
+  for (const url of [
+    "https://127.0.0.1:8765",
+    "http://localhost:8765",
+    "http://192.168.1.1",
+    "http://127.0.0.1:8765/path",
+  ])
+    assert.throws(() =>
+      providerOrigin({ kind: "local", url, token: "a".repeat(64) }),
+    );
+  assert.throws(() =>
+    providerOrigin({ kind: "registry", url: "http://example.com" }),
+  );
+  const p = await createExample();
+  const hash = createHash("sha256").update(p.artifact.id).digest("hex");
+  const path = `packets/${hash}/${p.artifact.revision}.json`;
+  const calls: string[] = [];
+  const fake = (async (url, init) => {
+    calls.push(String(url));
+    assert.equal(init?.credentials, "omit");
+    return Response.json(
+      calls.length === 1
+        ? [
+            {
+              artifact_id_hash: hash,
+              revisions: [p.artifact.revision],
+              packet_paths: { [p.artifact.revision]: path },
+            },
+          ]
+        : p,
+    );
+  }) as typeof fetch;
+  const request = {
+    requestId: "test",
+    artifact: p.artifact,
+    scope: "artifact" as const,
+    context: [],
+    signal: new AbortController().signal,
+  };
+  assert.equal(
+    (
+      await registryProvider("https://registry.example/v1", fake).analyze(
+        request,
+      )
+    ).id,
+    p.id,
+  );
+  assert.deepEqual(calls, [
+    `https://registry.example/v1/index/${hash.slice(0, 4)}.json`,
+    `https://registry.example/v1/${path}`,
+  ]);
+  await assert.rejects(
+    registryProvider("https://registry.example", fake).analyze({
+      ...request,
+      scope: "context",
+    }),
+    /work only/,
+  );
+  const changed = structuredClone(p);
+  changed.artifact.title = "Different title";
+  changed.artifact.regions[0].anchor.prefix = "wrong";
+  await assert.rejects(
+    localProvider("http://127.0.0.1:8765", "a".repeat(64), (async () =>
+      Response.json(changed)) as typeof fetch).analyze(request),
+  );
+});
+
+test("local analysis sends only selected context and cancels server work", async () => {
+  const p = await createExample();
+  const job = new AbortController();
+  const calls: { url: string; init?: RequestInit }[] = [];
+  const fake = (async (url, init) => {
+    calls.push({ url: String(url), init });
+    if (init?.method === "DELETE") return Response.json({ cancelled: true });
+    job.abort();
+    throw new DOMException("Aborted", "AbortError");
+  }) as typeof fetch;
+  await assert.rejects(
+    localProvider("http://127.0.0.1:8765", "b".repeat(64), fake).analyze({
+      requestId: "request-test",
+      artifact: p.artifact,
+      scope: "context",
+      signal: job.signal,
+      context: [
+        { ...exampleContext, selected: true },
+        { ...exampleContext, id: "unselected", selected: false },
+      ],
+    }),
+    /Aborted/,
+  );
+  assert.equal(calls.length, 2);
+  assert.equal(calls[1].init?.method, "DELETE");
+  const body = JSON.parse(calls[0].init!.body as string);
+  assert.equal(body.context.length, 1);
+  assert.equal(body.context[0].id, exampleContext.id);
+  assert.equal(
+    (calls[0].init?.headers as Record<string, string>).Authorization,
+    `Bearer ${"b".repeat(64)}`,
+  );
+});
+
+test("engine contract preserves legacy readings and validates population evidence", async () => {
+  const p = await createExample();
+  p.schemaVersion = "1.7";
+  const value = p.hypotheses.find((h) => h.kind === "value" && h.support)!;
+  value.interpretation = "drive";
+  value.icon = "care";
+  p.makers[0].predictability = {
+    value: 0.5,
+    scale: [0, 1],
+    semantics: "relative",
+    meaning: "Constructed consistency fixture",
+  };
+  p.population = {
+    populationId: "writing-fixture",
+    makersPooled: 20,
+    description: "Constructed writing population; no real makers",
+    items: [
+      {
+        hypothesis: value.id,
+        populationSupport: { ...value.support! },
+        makerRecords: 0,
+        shrinkage: 0,
+        curve: [
+          { records: 0, intervalWidth: 1 },
+          { records: 10, intervalWidth: 0.5 },
+        ],
+      },
+    ],
+  };
+  assert.equal(parsePacket(JSON.stringify(p)).population!.makersPooled, 20);
+  for (const change of [
+    (q: typeof p) => {
+      q.schemaVersion = "1.6";
+    },
+    (q: typeof p) => {
+      q.population!.items[0].hypothesis = "absent";
+    },
+    (q: typeof p) => {
+      q.population!.items[0].shrinkage = 0.1;
+    },
+    (q: typeof p) => {
+      q.population!.items[0].populationSupport.value = 200;
+    },
+    (q: typeof p) => {
+      q.population!.items[0].populationSupport.semantics = "probability";
+    },
+    (q: typeof p) => {
+      q.population!.items[0].curve.reverse();
+    },
+    (q: typeof p) => {
+      q.makers[0].predictability!.semantics = "probability";
+    },
+  ]) {
+    const invalid = structuredClone(p);
+    change(invalid);
+    assert.throws(() => parsePacket(JSON.stringify(invalid)));
+  }
+  assert.ok(parsePacket(JSON.stringify(await createExample())));
+});
 
 test("explicit GitHub file history resolves slash refs, preserves provenance and respects bounds", async () => {
   const calls: string[] = [];

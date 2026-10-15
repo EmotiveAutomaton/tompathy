@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tompathy-engine"
+version = "0.1.0a1"
+description = "Evidence-ledger inference companion for ToMpathy"
+requires-python = ">=3.12"
+license = "MIT"
+license-files = ["LICENSE", "NOTICE-SOUNDING-LINE.txt"]
+dependencies = [
+  "numpy>=2.1,<3", "scipy>=1.14,<2", "pandas>=2.2,<4",
+  "pyarrow>=18,<24", "duckdb>=1.1,<2", "pydantic>=2.10,<3",
+  "fastapi>=0.115,<1", "uvicorn>=0.32,<1", "zstandard>=0.23,<1",
+  "httpx>=0.27,<1", "python-chess>=1.999,<2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "ruff>=0.9,<1"]
+research = ["numpyro>=0.16", "jax[cpu]>=0.4", "spacy>=3.8", "sentence-transformers>=3"]
+
+[project.scripts]
+tompathy-engine = "tompathy_engine.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["tompathy_engine*"]
+
+[tool.setuptools.package-data]
+tompathy_engine = ["transcribe/questions.yaml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["tompathy_engine/adapters/quill.py", "tompathy_engine/adapters/replay.py", "tompathy_engine/adapters/relations.py", "tompathy_engine/models/reference.py", "tests/replay_fixtures.py"]

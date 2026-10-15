@@ -1,4 +1,4 @@
-# ToMpathy result contract · 1.0–1.6
+# ToMpathy result contract · 1.0–1.7
 
 `src/core/model.ts` is the authoritative runtime validator. `examples/lantern-result.json` is a complete valid packet; `lantern-revision.json` demonstrates a context-conditioned revision. `lantern-source.txt` is the corresponding synthetic text. Fixtures use `tompathy:example` as their portable origin. In the installed extension, use **Development tools → Import result → Download example format** on the bundled source to obtain a packet bound to that installation's source URL.
 
@@ -7,15 +7,44 @@
 1. Export the current capture from **Development tools → Source text**.
 2. Preserve its `artifact` object, region IDs and anchors in the result. Infer only against this snapshot and explicitly selected context.
 3. Supply makers, hypotheses, evidence and the declared scope. Use empty hypothesis/estimate arrays and unknown states when no useful inference is available.
-4. Return a packet through result import, or implement `InferenceProvider.analyze(AnalysisRequest)` when Sounding Line has a callable service contract.
+4. Return a packet through import, a configured static registry, or the local companion's `POST /v1/analyze` endpoint.
 
-No transport endpoint has been invented. `configuredProvider` is null; ordinary text pages remain in the “awaiting an analysis source” state. Hover is entirely local and never invokes inference or retrieval. The commissioned demo on `abrahamhaskins.org` is an explicit exception to the empty-analysis state: it creates an imported-origin, locally authored packet bound to the live capture. It is not a live provider. An already matching imported packet takes precedence. Changed visible text on that demo site automatically recaptures; other sites retain the stale-source gate.
+Provider selection defaults to None. Options accepts an HTTPS registry or a token-authenticated loopback companion. **Analyze capture** is an explicit action in Options. Hover and capture never invoke inference. Responses pass `PacketSchema` and exact artifact/scope matching; changes to evidence abort pending work. Replacing an existing packet uses the retained-revision review flow. The commissioned demo on `abrahamhaskins.org` remains an imported-origin, locally authored packet bound to the live capture. Changed visible text on that demo site automatically recaptures; other sites retain the stale-source gate. See [Privacy](../PRIVACY.md) for each provider's requests and storage.
+
+## Additions in 1.7: engine population comparisons
+
+Version 1.7 retains all earlier fields. The engine brief originally assigned these
+additions to 1.5; that version and 1.6 already shipped other reader fields.
+
+- A value hypothesis may use `interpretation: "drive"` and an `icon` key:
+  `seeking`, `rage`, `fear`, `lust`, `care`, `panic-grief`, `play`, `body`, or `value`.
+  Existing `valueCategory` remains available.
+- A maker may supply `predictability`, a Support object with relative semantics
+  and scale `[0,1]`. It describes consistency of observed choices under a model,
+  never certainty about the maker's values.
+- Optional `population` has `populationId`, `makersPooled`, a domain/dataset
+  `description`, and `items`. Each item refers to a single-maker value hypothesis
+  and includes `populationSupport`, `makerRecords`, `shrinkage` (the model's
+  estimated share of personal evidence), and `curve: [{records, intervalWidth}]`.
+  The comparison uses the same support scale. Curve record counts increase.
+  Zero maker records require zero personal share. A model must describe any
+  approximation in the support meaning; these numbers are not human authorship
+  shares or guarantees about identifiability.
+
+Population references, scales, duplicates and probability candidate sets are
+validated. Probability semantics also require named calibration evidence;
+exhaustive competing sets sum to one. The initial engine emits relative support.
+No population object is required when no admitted population estimate exists.
+An observed domain summary may supply an empty `items` array and explicitly state
+that no admitted value estimates exist. Maker counts are source-scoped identities,
+not a claim that identities across datasets were reconciled.
+These fields require 1.7 and do not reinterpret earlier packets or demo values.
 
 ## Fields
 
 | Field                             | Meaning                                                                                                                                                                       |
 | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `schemaVersion`                   | `"1.0"` (legacy, including Sounding Line Stage 13), `"1.1"`, `"1.2"`, `"1.3"`, `"1.4"`, `"1.5"`, or `"1.6"`                                                                   |
+| `schemaVersion`                   | `"1.0"` (legacy, including Sounding Line Stage 13), `"1.1"`, `"1.2"`, `"1.3"`, `"1.4"`, `"1.5"`, `"1.6"`, or `"1.7"`                                                                   |
 | `id`, `revision`                  | Analysis identity and positive integer revision                                                                                                                               |
 | `artifact`                        | ID, source, title, capture timestamp, content revision, truncation flag and regions                                                                                           |
 | `provider`                        | Stable provider ID and method description                                                                                                                                     |

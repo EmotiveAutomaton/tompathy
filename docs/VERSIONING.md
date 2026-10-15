@@ -1,6 +1,6 @@
 # Versions and public development
 
-Updated 14 October 2026. The owner accepted the 0.2 frontend milestone.
+Updated 14 October 2026. The owner accepted 0.2 and authorized Engine v1 for 0.3 beta.
 
 ## Current baseline
 
@@ -10,10 +10,10 @@ Updated 14 October 2026. The owner accepted the 0.2 frontend milestone.
 | `v0.2.0` | Installable frontend milestone; npm and Chrome version 0.2.0 |
 | `v0.1.0-beta.1` | Historical beta; its tag and download remain unchanged |
 | `codex/<feature>` | Focused work branched from current main when a feature is defined |
+| `codex/0.3-engine` | Engine v1 and opt-in providers; npm 0.3.0-beta.1, Chrome 0.3.0 |
 
 The completed `codex/0.2-development` branch is retired after its reviewed merge.
-Its commits remain in main. No next-version branch or feature implementation is
-created before the next specification arrives.
+Its commits remain in main. The October 14 engine specification starts the 0.3 cycle.
 
 Public work in progress is normal. Commits record iterations; tags/releases mark
 chosen installable snapshots. There is no need to bump a patch number after every
@@ -46,7 +46,7 @@ that work; Chrome's numeric version must increase for every published update.
 The build fingerprint identifies exact frontend contents between version bumps.
 See [Chrome version fields](https://developer.chrome.com/docs/extensions/reference/manifest/version).
 
-The packet contract has its own version (currently 1.6); frontend release numbers
+The packet contract has its own version (1.7 for engine fields; 1.0–1.6 remain readable); frontend release numbers
 do not imply a contract change. Pre-1.0 versions indicate initial development,
 not a stable API guarantee. See [SemVer](https://semver.org/).
 

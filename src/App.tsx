@@ -1,4 +1,8 @@
 import { demoGlobalValues, demoWorkValues } from "./core/example-values";
+import { ProviderOptions, readProvider } from "./components/ProviderOptions";
+import { PopulationValues } from "./components/PopulationValues";
+import { RecordedProcess } from "./components/RecordedProcess";
+import { makeProvider, type ProviderSettings } from "./core/provider";
 import { findSentence } from "./find-sentence";
 import { selectionTransition } from "./selection-transition";
 import { ReadingText, textOffset } from "./components/ReadingText";
@@ -188,6 +192,19 @@ const empty: Session = {
   context: [],
 };
 export function App({ preview = false }: { preview?: boolean }) {
+  const [provider, setProvider] = useState<ProviderSettings>({ kind: "none" });
+  const [analyzing, setAnalyzing] = useState(false);
+  const analyzer = useRef<AbortController | null>(null);
+  useEffect(() => {
+    let live = true;
+    void readProvider().then((p) => {
+      if (live) setProvider(p);
+    });
+    return () => {
+      live = false;
+      analyzer.current?.abort();
+    };
+  }, []);
   const [session, setSession] = useState<Session>(empty),
     [hydrated, setHydrated] = useState(false),
     [tabId, setTabId] = useState<number | null>(null),
@@ -302,6 +319,56 @@ export function App({ preview = false }: { preview?: boolean }) {
     }
   }, [contextWork]);
   const { artifact, packet, scope, context } = session;
+  // Invalidate in-flight requests when their evidence changes, including a
+  // same-ID context edit. A late response must never replace a newer reading.
+  const analysisKey = JSON.stringify([
+    artifact,
+    scope,
+    context.filter((c) => c.selected),
+    provider,
+    stale,
+  ]);
+  const analysisCurrent = useRef(analysisKey);
+  analysisCurrent.current = analysisKey;
+  useEffect(() => {
+    analyzer.current?.abort();
+    setAnalyzing(false);
+  }, [analysisKey]);
+  async function analyze() {
+    if (!artifact || stale || provider.kind === "none") return;
+    analyzer.current?.abort();
+    const job = new AbortController();
+    analyzer.current = job;
+    const key = analysisKey;
+    setAnalyzing(true);
+    setError("");
+    setNotice("");
+    try {
+      const result = await makeProvider(provider)!.analyze({
+        requestId: crypto.randomUUID(),
+        artifact,
+        scope,
+        context,
+        signal: job.signal,
+      });
+      if (job.signal.aborted || analysisCurrent.current !== key) return;
+      if (current.current.session.packet) {
+        setPending(result);
+        setModal("revision");
+      } else {
+        setSession((s) => ({ ...s, packet: result }));
+        setMaker(result.makers[0].id);
+      }
+      setNotice(
+        "Analysis received. Estimates depend on the source's available evidence and admissions.",
+      );
+    } catch (e) {
+      if (!job.signal.aborted && analysisCurrent.current === key)
+        setError((e as Error).message);
+    } finally {
+      if (analyzer.current === job) setAnalyzing(false);
+    }
+  }
   const mismatch =
     packet && artifact ? matchPacket(packet, artifact, scope, context) : null;
   const ready = !!packet && !mismatch && !stale;
@@ -380,6 +447,8 @@ export function App({ preview = false }: { preview?: boolean }) {
     ]),
   ];
   function cancelWork() {
+    analyzer.current?.abort();
+    setAnalyzing(false);
     setContextReport(null);
     serial.current++;
     collector.current?.abort();
@@ -1405,7 +1474,11 @@ export function App({ preview = false }: { preview?: boolean }) {
               <GoalCloud
                 key={packet!.id}
                 goals={goals}
-                active={!!attentionTarget || !!attentionNode}
+                active={
+                  !!attentionTarget ||
+                  !!attentionNode ||
+                  !packet?.currentAttention?.length
+                }
                 onInspect={inspect}
               />
             )}
@@ -1422,49 +1495,60 @@ export function App({ preview = false }: { preview?: boolean }) {
                 Expertise and habit (previous attention)
               </SectionTitle>
             </div>
-            <ProcessHierarchy
-              lockReminder={lockReminder}
-              onBlockedFocus={blocked}
-              key={`${packet?.id}:${packet?.revision}:${activeMaker?.id}`}
-              nodes={hierarchyNodes}
-              orderUncertainGroups={
-                ready ? packet?.goalHierarchy?.orderUncertainGroups : []
-              }
-              region={region}
-              offset={sentenceOffset}
-              sourceHover={sourceHover}
-              softNodeId={relatedNode?.id}
-              pinned={pinned}
-              lockedNodeId={lockedNode?.id}
-              onSelect={(node) => {
-                autoFind.current = true;
-                setNavigationRequest((n) => n + 1);
-                setFoundInPage(true);
-                setLockedNode(node);
-                setPinned(true);
-                setRelatedNode(null);
-                setRegion(node.regions[0]);
-                setSentenceOffset(node.span?.start ?? 0);
-                void pageCommand(tabId, artifact, "TOMPATHY_FOCUS", {
-                  region: node.regions[0],
-                  offset: node.span?.start ?? 0,
-                  regions: node.span ? undefined : node.regions,
-                  center: true,
-                });
-              }}
-              onHighlight={(node) => {
-                if (pinned || !node) return;
-                setSourceHover(false);
-                setRelatedNode(node);
-                void pageCommand(tabId, artifact, "TOMPATHY_RELATED", {
-                  regions: node?.regions ?? [],
-                  span: node?.span,
-                });
-              }}
-              onLock={unlock}
-              onFind={findLocked}
-              found={foundInPage}
-            />
+            {ready &&
+            packet &&
+            !hierarchyNodes.length &&
+            packet.process.nodes.length > 0 ? (
+              <RecordedProcess
+                packet={packet}
+                maker={activeMaker?.id}
+                inspect={inspect}
+              />
+            ) : (
+              <ProcessHierarchy
+                lockReminder={lockReminder}
+                onBlockedFocus={blocked}
+                key={`${packet?.id}:${packet?.revision}:${activeMaker?.id}`}
+                nodes={hierarchyNodes}
+                orderUncertainGroups={
+                  ready ? packet?.goalHierarchy?.orderUncertainGroups : []
+                }
+                region={region}
+                offset={sentenceOffset}
+                sourceHover={sourceHover}
+                softNodeId={relatedNode?.id}
+                pinned={pinned}
+                lockedNodeId={lockedNode?.id}
+                onSelect={(node) => {
+                  autoFind.current = true;
+                  setNavigationRequest((n) => n + 1);
+                  setFoundInPage(true);
+                  setLockedNode(node);
+                  setPinned(true);
+                  setRelatedNode(null);
+                  setRegion(node.regions[0]);
+                  setSentenceOffset(node.span?.start ?? 0);
+                  void pageCommand(tabId, artifact, "TOMPATHY_FOCUS", {
+                    region: node.regions[0],
+                    offset: node.span?.start ?? 0,
+                    regions: node.span ? undefined : node.regions,
+                    center: true,
+                  });
+                }}
+                onHighlight={(node) => {
+                  if (pinned || !node) return;
+                  setSourceHover(false);
+                  setRelatedNode(node);
+                  void pageCommand(tabId, artifact, "TOMPATHY_RELATED", {
+                    regions: node?.regions ?? [],
+                    span: node?.span,
+                  });
+                }}
+                onLock={unlock}
+                onFind={findLocked}
+                found={foundInPage}
+              />
+            )}
           </section>
           <section
             className="region values-region"
@@ -1486,20 +1570,34 @@ export function App({ preview = false }: { preview?: boolean }) {
                   ? "Current work only values"
                   : valuesTab === "creator"
                     ? "Creator values"
-                    : "Global preview"
+                    : "Global population values"
               }
             >
-              <ValueList
-                values={
-                  valuesTab === "work"
-                    ? demoWorkValues(ready ? packet : null, values)
-                    : valuesTab === "creator"
-                      ? values
-                      : demoGlobalValues(ready ? packet : null, values)
-                }
-                packet={packet}
-                inspect={inspect}
-              />
+              {ready && valuesTab === "global" && packet?.population ? (
+                <PopulationValues packet={packet} maker={activeMaker?.id} />
+              ) : (
+                <ValueList
+                  values={
+                    valuesTab === "work"
+                      ? demoWorkValues(ready ? packet : null, values)
+                      : valuesTab === "creator"
+                        ? values
+                        : demoGlobalValues(ready ? packet : null, values)
+                  }
+                  packet={packet}
+                  inspect={inspect}
+                />
+              )}
+              {ready &&
+                valuesTab === "creator" &&
+                activeMaker?.predictability && (
+                  <p className="predictability-note">
+                    Predictability:{" "}
+                    {activeMaker.predictability.value.toFixed(2)} on{" "}
+                    {activeMaker.predictability.scale.join("–")}.{" "}
+                    {activeMaker.predictability.meaning}
+                  </p>
+                )}
             </div>
             <div className="values-bottom">
               <ValueTabs tab={valuesTab} onTab={setValuesTab} />
@@ -1707,6 +1805,38 @@ export function App({ preview = false }: { preview?: boolean }) {
           )}
           {modal === "menu" && (
             <div className="options-content">
+              <ProviderOptions
+                settings={provider}
+                onSave={(next) => {
+                  analyzer.current?.abort();
+                  setProvider(next);
+                }}
+              />
+              {provider.kind !== "none" && (
+                <div className="analysis-actions">
+                  <button
+                    className="secondary-button"
+                    disabled={!artifact || busy || stale || analyzing}
+                    onClick={() => {
+                      setModal(null);
+                      void analyze();
+                    }}
+                  >
+                    {analyzing ? "Analyzing capture…" : "Analyze capture"}
+                  </button>
+                  {analyzing && (
+                    <button
+                      className="text-button"
+                      onClick={() => {
+                        analyzer.current?.abort();
+                        setAnalyzing(false);
+                      }}
+                    >
+                      Cancel analysis
+                    </button>
+                  )}
+                </div>
+              )}
               <section
                 className="options-section context-options"
                 aria-labelledby="context-options-title"

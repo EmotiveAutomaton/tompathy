@@ -1,6 +1,10 @@
 # Development and QA
 
-ToMpathy owns the reader, Chrome integration, result validation and demo. Sounding Line will supply inference through `src/core/provider.ts`; no endpoint is currently configured.
+ToMpathy owns the reader, Chrome integration, result validation and canonical
+Python engine. Sounding Line and Ghost Scale evaluate pinned engine versions.
+`src/core/provider.ts` supports opt-in registries and the local companion; the
+default remains None. See [the engine guide](../engine/README.md) and
+[Engine v1 verification](ENGINE_V1.md) for setup and admission boundaries.
 
 ## Everyday review
 
@@ -83,7 +87,10 @@ Receipts and screenshots are generated under ignored `evidence/`; failure traces
 | `src/core/collector.ts`, `page.ts`, `creator-context.ts`, `context-source.ts` | Creator-link discovery, bounded retrieval, cache and timeline extraction |
 | `scripts`, `tests` | Build, fixtures, review launcher and repeatable checks |
 
-The reviewed milestone is **0.2**; npm and Chrome use numeric `0.2.0`. The historical 0.1 beta remains unchanged. See [versioning and the branch workflow](VERSIONING.md). Once uploaded to a Web Store listing, each later numeric version must increase.
+The reviewed frontend milestone is **0.2**. Active development uses npm
+`0.3.0-beta.1` and Chrome `0.3.0` with a beta display name. See [versioning and the
+branch workflow](VERSIONING.md). Once uploaded to a Web Store listing, each later
+numeric version must increase.
 
 
 ## Reading treatment review

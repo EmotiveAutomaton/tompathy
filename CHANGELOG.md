@@ -1,5 +1,22 @@
 # Release notes
 
+## 0.3.0-beta.1 — engine v1 development, unreleased
+
+- Add the Python CPU-first decision ledger, CoAuthor replay, bounded history and
+  normalized source adapters, pooled fitting, chronological evaluation, research
+  modules, literal transcriber and explicit admission gates.
+- Add schema 1.7 packets, recorded production events, gated feature preferences,
+  population comparisons and locally generated static registries.
+- Connect opt-in registry and authenticated loopback providers, cancellation and
+  exact capture matching. Tokens remain outside reading exports.
+- Render supplied drive icons and predictability, observed history and Global
+  population comparisons. Relative support is labeled as relative support.
+- Reproduce the source census and reference baseline; verify real-source reading
+  imports, Python companion integration and the ordinary Chrome native panel.
+- Extend CI with Python and authoritative TypeScript packet parity. Scientific
+  admission remains separate; production drive, attention and inferred-goal
+  estimates are not enabled. See [verification and pending gates](docs/ENGINE_V1.md).
+
 ## 0.2.0 — 14 October 2026
 
 The reviewed frontend milestone. npm and Chrome versions are both 0.2.0.

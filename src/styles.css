@@ -797,3 +797,74 @@ a {
     transform: rotate(360deg);
   }
 }
+
+/* Engine opt-in controls and supplied population evidence. */
+.provider-options label {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.75rem 0;
+}
+.provider-options input,
+.provider-options select {
+  width: 100%;
+  box-sizing: border-box;
+}
+.analysis-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+.population-values {
+  padding: 1.75rem 1rem 0.5rem;
+  font-size: 0.85rem;
+}
+.population-values article {
+  margin: 1rem 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+}
+.population-values dl {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.3rem;
+}
+.population-values dd {
+  margin: 0;
+}
+.population-values figure {
+  margin: 0.5rem 0;
+}
+.population-values svg {
+  width: 100%;
+  max-height: 120px;
+}
+.population-values figcaption,
+.predictability-note {
+  font-size: 0.75rem;
+  opacity: 0.75;
+}
+.predictability-note {
+  margin: 0.5rem 1rem;
+}
+
+.recorded-process {
+  position: absolute;
+  inset: 3rem 1rem 1rem;
+  overflow: auto;
+  font-size: 0.8rem;
+}
+.recorded-process ol {
+  padding-left: 1.25rem;
+}
+.recorded-process li {
+  margin: 0.75rem 0;
+}
+.recorded-process button {
+  display: grid;
+  gap: 0.3rem;
+  text-align: left;
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+}

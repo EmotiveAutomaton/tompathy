@@ -1,0 +1,222 @@
+{
+  "schemaVersion": "1.7",
+  "id": "d2361dc2ed9cb2ee949a05c0542556154dd72bd2c1f9c8eb61d0d13112280d0b",
+  "revision": 1,
+  "artifact": {
+    "id": "https://example.org/engine-fixture",
+    "revision": "442e345944aa5c11a28febface52e7ea544e44f63bed12079dce8bf9b814d5a6",
+    "title": "Constructed engine reading",
+    "source": "https://example.org/engine-fixture",
+    "capturedAt": "2026-01-03T00:00:00Z",
+    "regions": [
+      {
+        "id": "p1",
+        "anchor": {
+          "exact": "A deliberate revision. \ud83c\udf1e",
+          "prefix": "",
+          "suffix": "\n\nThe text discusses danger; motives remain unknown.",
+          "start": 0,
+          "index": 0
+        }
+      },
+      {
+        "id": "p2",
+        "anchor": {
+          "exact": "The text discusses danger; motives remain unknown.",
+          "prefix": "A deliberate revision. \ud83c\udf1e\n\n",
+          "suffix": "",
+          "start": 27,
+          "index": 1
+        }
+      }
+    ],
+    "truncated": false
+  },
+  "provider": {
+    "id": "tompathy-engine",
+    "method": "ToMpathy engine 0.1.0a1; commit 29728faeacb5408ce42a3d0b86deb9c1a4080831 + local engine changes; implementation d2759066839bf8293d8d8a84f0c99b778f27813969945639f9c25ec1825ac441; evidence tier T1; domain writing. Observed capture and ledger records only. Text alone does not update maker preferences. Available scientific module admissions: none. Fitted estimate contributions: none."
+  },
+  "origin": "synthetic example",
+  "scope": {
+    "kind": "artifact",
+    "contextIds": []
+  },
+  "makers": [
+    {
+      "id": "git:33aec8641234aa6ed0865e17bf182930170d7a51f9562124242f96d694e42fa4",
+      "label": "Constructed author",
+      "identity": "unknown",
+      "relationship": "Source-scoped ledger identity; display names are not joined"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "e4c0bbdb130983cf3484ab8093aa502d9a962d0e30d573307d795a1fcac090df",
+      "kind": "process",
+      "label": "Recorded revision",
+      "description": "A source revision was recorded at 2026-01-01T00:00:00Z. Its purpose is not inferred.",
+      "makers": [
+        "git:33aec8641234aa6ed0865e17bf182930170d7a51f9562124242f96d694e42fa4"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "c9c174e64479f2142327e88ba12c59b977f6425039a197de05e5b138cdabe827"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "33e23bd627fac878bd0dac0b363dc604175d588a6bbfe0a229684be48d0cc393",
+      "kind": "process",
+      "label": "Recorded revision",
+      "description": "A source revision was recorded at 2026-01-02T00:00:00Z. Its purpose is not inferred.",
+      "makers": [
+        "git:33aec8641234aa6ed0865e17bf182930170d7a51f9562124242f96d694e42fa4"
+      ],
+      "regions": [
+        "p1"
+      ],
+      "status": "observed",
+      "evidence": [
+        "0539f66bab240169467210de09e9ab17b76c44de17b7b6bbba31a19c600ac066"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "d41137cc9b18ca94c0c998433e09c5d0ff74ffa1aedb36149586a694f754d821",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-02T00:00:00+00:00. Its reason remains unestablished.",
+      "makers": [
+        "git:33aec8641234aa6ed0865e17bf182930170d7a51f9562124242f96d694e42fa4"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "64906de0daf5b7ad781e130c8a1dffb487c0b900241041581362e6d9bbe99dab"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "f4851b5d8843bdfe26a4bcc41fe629c596e7d1e75fad2af400d5ede6316c613a",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-02T00:00:00+00:00. Its reason remains unestablished.",
+      "makers": [
+        "git:33aec8641234aa6ed0865e17bf182930170d7a51f9562124242f96d694e42fa4"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "cc7a4ad3046c86f2cb1f5ed99674331aa0a3e9ec9986859c6793d9ed54b28329"
+      ],
+      "interpretation": "historical-event"
+    }
+  ],
+  "alternatives": [],
+  "process": {
+    "interpretation": "historical-production",
+    "nodes": [
+      "e4c0bbdb130983cf3484ab8093aa502d9a962d0e30d573307d795a1fcac090df",
+      "33e23bd627fac878bd0dac0b363dc604175d588a6bbfe0a229684be48d0cc393",
+      "d41137cc9b18ca94c0c998433e09c5d0ff74ffa1aedb36149586a694f754d821",
+      "f4851b5d8843bdfe26a4bcc41fe629c596e7d1e75fad2af400d5ede6316c613a"
+    ],
+    "edges": [
+      {
+        "from": "e4c0bbdb130983cf3484ab8093aa502d9a962d0e30d573307d795a1fcac090df",
+        "to": "33e23bd627fac878bd0dac0b363dc604175d588a6bbfe0a229684be48d0cc393",
+        "relationship": "Recorded parent revision",
+        "kind": "precedes",
+        "status": "observed",
+        "evidence": []
+      },
+      {
+        "from": "33e23bd627fac878bd0dac0b363dc604175d588a6bbfe0a229684be48d0cc393",
+        "to": "d41137cc9b18ca94c0c998433e09c5d0ff74ffa1aedb36149586a694f754d821",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "64906de0daf5b7ad781e130c8a1dffb487c0b900241041581362e6d9bbe99dab"
+        ]
+      },
+      {
+        "from": "33e23bd627fac878bd0dac0b363dc604175d588a6bbfe0a229684be48d0cc393",
+        "to": "f4851b5d8843bdfe26a4bcc41fe629c596e7d1e75fad2af400d5ede6316c613a",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "cc7a4ad3046c86f2cb1f5ed99674331aa0a3e9ec9986859c6793d9ed54b28329"
+        ]
+      }
+    ]
+  },
+  "estimates": [
+    {
+      "region": "p1",
+      "uncertainty": {
+        "level": "unknown",
+        "meaning": "T1 evidence; no admitted estimate of motive or contribution"
+      }
+    },
+    {
+      "region": "p2",
+      "uncertainty": {
+        "level": "unknown",
+        "meaning": "T1 evidence; no admitted estimate of motive or contribution"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "3f21856279d5ac146b376249b114f19033e596d2aefd7d7697ca9c5adc5a96a7",
+      "source": "https://example.org/engine-fixture",
+      "excerpt": "A deliberate revision. \ud83c\udf1e",
+      "capturedAt": "2026-01-03T00:00:00Z",
+      "relationship": "Observed final text; this alone does not establish a maker's choices or motives"
+    },
+    {
+      "id": "8d90ef30a51652ad8ab990749dcccf543d1f1dc6b1e8dbc30cd9b5bd5375e55d",
+      "source": "https://example.org/engine-fixture",
+      "excerpt": "The text discusses danger; motives remain unknown.",
+      "capturedAt": "2026-01-03T00:00:00Z",
+      "relationship": "Observed final text; this alone does not establish a maker's choices or motives"
+    },
+    {
+      "id": "c9c174e64479f2142327e88ba12c59b977f6425039a197de05e5b138cdabe827",
+      "source": "https://example.org/engine-fixture",
+      "excerpt": "A revision.",
+      "capturedAt": "2026-01-01T00:00:00Z",
+      "relationship": "Recorded revision snapshot; timestamp is source-recorded"
+    },
+    {
+      "id": "0539f66bab240169467210de09e9ab17b76c44de17b7b6bbba31a19c600ac066",
+      "source": "https://example.org/engine-fixture",
+      "excerpt": "A deliberate revision. \ud83c\udf1e",
+      "capturedAt": "2026-01-02T00:00:00Z",
+      "relationship": "Recorded revision snapshot; timestamp is source-recorded"
+    },
+    {
+      "id": "64906de0daf5b7ad781e130c8a1dffb487c0b900241041581362e6d9bbe99dab",
+      "source": "ledger:correction:00b680e5396d5c9cddfa81e60e8fb359a5d25363cf5fa5b98042ddab85d1d259",
+      "excerpt": "Before: \nAfter:  \ud83c\udf1e",
+      "capturedAt": "2026-01-02T00:00:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "cc7a4ad3046c86f2cb1f5ed99674331aa0a3e9ec9986859c6793d9ed54b28329",
+      "source": "ledger:correction:0cd0c910b3d17fe0b642cbafffb38dd7d63168955e1fe6bc9e1f82b40a10c8bd",
+      "excerpt": "Before: \nAfter:  deliberate",
+      "capturedAt": "2026-01-02T00:00:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    }
+  ],
+  "population": {
+    "populationId": "writing-v0",
+    "makersPooled": 1,
+    "description": "Observed writing ledger: 1 source-scoped maker identities and 0 decisions. Sources: git. These counts describe available records. No admitted population estimate of drives or values is loaded.",
+    "items": []
+  }
+}
