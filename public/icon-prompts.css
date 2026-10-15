@@ -1,0 +1,123 @@
+.intro {
+  padding: 48px 0 20px;
+}
+.intro > p:not(.eyebrow) {
+  max-width: 640px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.prompt-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.prompt-card {
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.number {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+}
+.prompt-card h2 {
+  font:
+    500 24px/1.2 Georgia,
+    serif;
+  margin: 14px 0 8px;
+}
+.prompt-family {
+  font-size: 11px;
+  color: var(--accent);
+  margin: 0 0 18px;
+}
+.prompt-card textarea {
+  resize: vertical;
+  width: 100%;
+  box-sizing: border-box;
+  height: 240px;
+  min-height: 160px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #f6f8f2;
+  color: var(--ink);
+  font: 13px/1.65 system-ui;
+}
+.prompt-note {
+  font: 12px/1.7 system-ui;
+  color: var(--muted);
+  flex: 1;
+  margin: 16px 0;
+}
+button {
+  font: 12px/1.5 system-ui;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 9px 15px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+button:hover {
+  border-color: var(--accent);
+  background: #eaf0e7;
+}
+button:focus-visible,
+a:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+#copy-status {
+  min-height: 24px;
+  font-size: 12px;
+}
+footer {
+  margin-top: 30px;
+  line-height: 1.7;
+}
+@media (max-width: 760px) {
+  .prompt-grid {
+    grid-template-columns: 1fr;
+  }
+  main {
+    padding: 24px;
+  }
+  .intro h1 {
+    font-size: 36px;
+  }
+}
+.logo-study > a {
+  display: flex;
+  justify-content: center;
+  background: #f8faf5;
+  border-radius: 14px;
+}
+.logo-study > a img {
+  width: 100%;
+  max-width: 310px;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+.logo-sizes {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  min-height: 56px;
+}
+.logo-sizes img {
+  object-fit: contain;
+}
+.logo-study details {
+  margin-top: auto;
+}
+.logo-study textarea {
+  margin-top: 12px;
+}

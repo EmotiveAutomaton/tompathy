@@ -1,13 +1,21 @@
-import { LOCK_PATH } from "../core/lock";
+import { useEffect, useRef } from "react";
+import { LOCK_PATH, pulseLock } from "../core/lock";
 export function SelectionLock({
   onUnlock,
   className = "",
+  reminder = 0,
 }: {
   onUnlock: () => void;
   className?: string;
+  reminder?: number;
 }) {
+  const ref = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (reminder && ref.current) return pulseLock(ref.current);
+  }, [reminder]);
   return (
     <button
+      ref={ref}
       type="button"
       className={`selection-lock ${className}`}
       aria-label="Unlock selection"

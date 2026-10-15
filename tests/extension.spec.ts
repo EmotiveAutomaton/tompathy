@@ -86,6 +86,11 @@ test("installed page adapter: anchors, dynamic revision, cleanup and long-page l
     await expect(
       source.locator('[aria-label="Unlock selection"]'),
     ).toBeVisible();
+    await source.locator("h1").dblclick();
+    await expect(
+      source.locator('[aria-label="Unlock selection"]'),
+    ).toBeHidden();
+    await source.locator("#repeat2").click();
     await source.keyboard.press("Escape");
     await expect(
       source.locator('[aria-label="Unlock selection"]'),
@@ -185,18 +190,18 @@ test("installed page adapter: anchors, dynamic revision, cleanup and long-page l
       await readFile("public/testbed-result.json", "utf8"),
     );
     expect(testbed.artifact.authors).toEqual([
-      { label: "The garden designer", basis: "page-metadata" },
+      { label: "Mara Vale", basis: "page-metadata" },
     ]);
     expect(matchPacket(fixture, testbed.artifact, "artifact", [])).toBeNull();
-    expect(testbed.artifact.regions).toHaveLength(6);
+    expect(testbed.artifact.regions).toHaveLength(fixture.artifact.regions.length);
     await source.setContent(
-      `<meta name="author" content="Fixture Author"><nav><p>Navigation not part of this article.</p></nav><div class="entry entryPage"><div><h1>A legacy blog article</h1><p>The author's actual article paragraph with useful content.</p></div><div class="entryFooter"><p>Subscribe to our unrelated newsletter.</p></div></div><div class="recent-articles"><p>More recent articles and promotional links.</p></div>`,
+      `<meta name="author" content="Fixture Creator"><nav><p>Navigation not part of this article.</p></nav><div class="entry entryPage"><div><h1>A legacy blog article</h1><p>The creator's actual article paragraph with useful content.</p></div><div class="entryFooter"><p>Subscribe to our unrelated newsletter.</p></div></div><div class="recent-articles"><p>More recent articles and promotional links.</p></div>`,
     );
     await install();
     const legacy = await capture();
     expect(legacy.artifact.regions).toHaveLength(2);
     expect(legacy.artifact.capture.method).toBe("content-container");
-    expect(legacy.artifact.authors[0].label).toBe("Fixture Author");
+    expect(legacy.artifact.authors[0].label).toBe("Fixture Creator");
     expect(
       legacy.artifact.regions.map((r: any) => r.anchor.exact).join(" "),
     ).not.toMatch(/Subscribe|promotional|Navigation/);

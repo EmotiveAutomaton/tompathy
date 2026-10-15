@@ -12,3 +12,13 @@ export function sentences(text: string) {
     },
   ).filter((s) => s.text.length);
 }
+
+/** Some stable page blocks (for example a reference shelf) are one reading unit. */
+export function regionSentences(region: {
+  anchor: { exact: string };
+  pageHint?: { unit?: "group" };
+}) {
+  return region.pageHint?.unit === "group"
+    ? [{ text: region.anchor.exact, start: 0, end: region.anchor.exact.length }]
+    : sentences(region.anchor.exact);
+}

@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "ToMpathy - What's on the author's mind?",
+  "name": "ToMpathy - What's on the creator's mind?",
   "description": "Explore goals, processes, and values behind a text. A reader for externally supplied maker hypotheses.",
-  "version": "0.1.0",
-  "version_name": "0.1 beta",
+  "version": "0.2.0",
+  "version_name": "0.2",
   "icons": {
     "16": "icon16.png",
     "32": "icon32.png",
@@ -18,7 +18,7 @@
     "type": "module"
   },
   "action": {
-    "default_title": "ToMpathy - What's on the author's mind?",
+    "default_title": "ToMpathy - What's on the creator's mind?",
     "default_icon": {
       "16": "icon16.png",
       "32": "icon32.png"
@@ -37,5 +37,11 @@
   },
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'none'"
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["reader-grade.woff"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

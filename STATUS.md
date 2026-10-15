@@ -1,36 +1,51 @@
-# ToMpathy status · 0.1 beta
+# ToMpathy status
 
-The first public frontend beta consolidates the earlier alpha passes. It is MIT licensed. The example is fictional and hand-authored; no live Sounding Line endpoint is connected.
+Updated 14 October 2026. Version **0.2.0** is the owner-approved frontend milestone.
 
-## Delivered interface
+## Verified baseline
 
-Exactly three panels remain. Options groups author selection, Light context, nested Agent search and GitHub preference, future controls, and a compact Color scheme selector. The process heading is **Expertise, Habits, and Process**. Its outline has a broad rounded back, pinched shoulders and soft tips; branch-local dots follow their own lobes. Shared nodes retain separate linked instances under their supplied parents.
+Package and Chrome versions are aligned at **0.2.0**, with an installable
+`v0.2.0` milestone. Main is the baseline for the next feature; the completed
+milestone branch is retired after merge. Exact build identifiers live in the
+verification receipts and packaged `build-info.json`.
 
-Locked ambiguous reels expand upward from the odometer over a faded, still-responsive hierarchy. Their baseline stays fixed. The selected reel glows; the green unlock control remains clickable above the expanded layer. Attention is an independent supplied stream and values remain stable.
+- Live demo on the public essay/homepage; other pages accept matching supplied analysis.
+- Linked attention, zoomable multi-peak hierarchy, wheel/keyboard reels and source navigation.
+- Sentence reading scales, contour-current value categories and three demo perspectives.
+- Bounded free linked context, GitHub revisions, timeline and portable reading files.
+- No live inference backend or Chrome Web Store submission. Demo confidence and values
+  remain explicitly invented. Future model/search/word-level controls remain unfinished.
 
-Light context has an unauthenticated GitHub profile path for explicitly linked accounts. Agent search, author-like models and word analysis remain planned controls. Global/search remain interface previews. The free context and Store distribution proposals are in [Context research](docs/CONTEXT_RESEARCH.md) and [Distribution](docs/DISTRIBUTION.md).
+The next feature awaits the owner's specification; no replacement development
+branch has been opened. Follow [the branch workflow](docs/VERSIONING.md).
 
-## Verification · 12 October 2026
+Review locally with **Review ToMpathy.cmd → Open the live essay → ToMpathy toolbar icon**.
+See [development and QA](docs/DEVELOPMENT.md), [release notes](CHANGELOG.md),
+[the input contract](docs/INPUT_CONTRACT.md), and [the 0.2 UX review](docs/UX_REVIEW_0.2_DEVELOPMENT.md).
+Detailed earlier checks remain in [the development archive](docs/archive/0.2-development.md).
 
-Build **846d62d5c803** passed:
+## Validation
 
-- 18/18 core tests, including graph geometry, retrieval limits, identity and profile-date semantics.
-- 16/16 browser tests, including upward reel expansion, Options, locks, import/export, keyboard, narrow/dark layouts and 200% zoom.
-- Ordinary Google Chrome **154.0.8037.98**: installation, actual native side panel, source/reader interaction, toolbar capture, portable reading round trip, revision retention across tab switching, unchanged-launcher continuity and full restart. No recorded page errors.
-- Package verification: 18 ZIP entries, 343,900 bytes, every member identical to the tested build. MIT and dependency notices included; source maps excluded.
+- TypeScript/build and **29 core tests passed**.
+- **All 51 browser scenarios passed** across the broad run and affected reruns.
+  Release validation caught and fixed packing stopping at the first oversized
+  attention phrase. Tests now reflect capped clouds, scrollable values, the
+  Current work only default and live review links. One cold navigation timed out
+  in the broad run and passed unchanged on the targeted rerun. Linux CI also
+  exposed zoom-coordinate and late-font heading clearance issues; both were
+  corrected. Font continuity is checked by rendered ink, since platforms can
+  preserve advance widths across different weights.
+- Ordinary **Chrome 154.0.8037.98**, actual **360 px native panel**: installation,
+  source/panel locks, wheel and keyboard navigation, graph zoom, saved-reading
+  import/export, revision retention, normal-page capture and full restart
+  restoration passed with **zero panel errors**. No model download was requested.
+- The ZIP is verified byte-for-byte against every built file. The release carries
+  a checksum for its exact downloadable archive; ZIP timestamps can differ between
+  otherwise equivalent local and CI packages.
+- Pull requests and main updates run the full [CI checks](https://github.com/EmotiveAutomaton/tompathy/actions).
+  Source maps, local inputs/profiles and generated evidence are excluded from Git
+  and the installable package. Disposable browsers and servers close after checks.
 
-The broader browser run initially found the odometer intercepting the unlock button. Its stacking order was corrected; the complete browser suite and native Chrome check then passed. Screenshots of Options, expanded reels, the native panel and active README example were visually inspected.
-
-The first clean CI checkout exposed a missing generated-evidence directory. The page-adapter test and package verifier now create their output directory explicitly, independent of tracked screenshots or earlier test order.
-
-Local receipts are in ignored `evidence/`; CI retains its own test artifacts. Chrome's local Prompt/Summarizer availability was `downloadable`; neither model was downloaded or executed. The physical folder picker is not claimed as automated.
-
-## Public-repository preparation
-
-The root README is rewritten around installation and real beta behavior, with one active screenshot. Privacy, MIT licensing, dependency notices, development instructions and release notes are included. Superseded alpha notes and one-off validation scripts have recoverable local copies; generated QA images/receipts are no longer tracked. Owner-supplied unpublished design inputs remain local. A local Git bundle preserves the pre-release history.
-
-Existing Git history is retained rather than destructively rewritten. The release is consolidated on main; no scientific repositories or jobs are changed. Credential-pattern and sensitive-filename scans cover all existing refs, with manual review of the public source scope; this is an audit, not a guarantee against every possible disclosure.
-
-## Next work
-
-Review the beta through **Review ToMpathy.cmd** or `npm run review`. Connect the selected-context request/revision boundary to Sounding Line when its callable contract is ready. Then add bounded caching and a source-backed timeline before considering optional local summarization. No paid service or Store submission is configured.
+Local receipts: ignored `evidence/review-validation.json` and
+`evidence/package-verification.json`. The README screenshot shows the built 0.2
+preview with half-width reader, a locked sentence and its evidence card.

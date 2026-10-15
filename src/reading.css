@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "ToMpathy Reading";
+  src: url("./assets/reader-grade.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+.example-page article p {
+  font-family: "ToMpathy Reading", Georgia, serif;
+  font-size: 16px;
+  line-height: 1.9;
+}

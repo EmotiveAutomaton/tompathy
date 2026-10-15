@@ -1,3 +1,4 @@
+import { ReadingText } from "./ReadingText";
 import { useEffect, useState } from "react";
 import { SessionSchema, type Session } from "../core/model";
 import { isExtension } from "../browser";
@@ -64,7 +65,11 @@ export function SavedPage() {
       <article>
         {session?.artifact?.regions.map((r) => (
           <p key={r.id} data-snapshot-region={r.id} tabIndex={0}>
-            {r.anchor.exact}
+            <ReadingText
+              text={r.anchor.exact}
+              emphasis={r.emphasis}
+              annotate={false}
+            />
           </p>
         ))}
       </article>

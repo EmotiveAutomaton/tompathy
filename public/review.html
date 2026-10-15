@@ -1,275 +1,60 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>ToMpathy · Review desk</title>
-    <link rel="icon" href="icon32.png" />
     <link rel="stylesheet" href="review.css" />
-    <script type="module" src="review.js"></script>
   </head>
   <body>
-    <main>
+    <main class="desk">
       <header>
         <a class="brand" href="review.html"
-          ><img src="icon32.png" width="20" height="20" alt="" />tompathy</a
-        >
-        <span id="build" class="build" role="status"
-          >Checking this installation…</span
-        >
+          ><img src="icon32.png" width="24" height="24" alt="" />ToMpathy</a
+        ><span class="build" id="build"></span>
       </header>
-      <section class="intro">
-        <p class="eyebrow">YOUR REVIEW DESK</p>
-        <h1>A small place to try things.</h1>
-        <p class="lead">
-          Start with a complete example. Then try a real author’s page.<br />This
-          guide and the example work without a local server.
-        </p>
-        <div class="actions">
-          <a class="primary" href="example.html" target="_blank"
-            >Open the guided example <span aria-hidden="true">↗</span></a
-          >
-          <a
-            class="secondary"
-            href="https://simonwillison.net/2022/May/4/datasette-lite/"
-            target="_blank"
-            rel="noreferrer"
-            >Try a real author <span aria-hidden="true">↗</span></a
-          >
-        </div>
-        <p class="bookmark">
-          Keep this page: press <kbd>Ctrl</kbd> + <kbd>D</kbd> to bookmark it in
-          this Chrome profile.
-        </p>
-      </section>
-
-      <section aria-labelledby="review-title">
-        <div class="section-heading">
-          <h2 id="review-title">Your first five-minute review</h2>
-          <span>Follow these in order</span>
-        </div>
-        <ol class="steps">
-          <li>
-            <div>
-              <h3>Open the reader beside its source</h3>
-              <p>
-                Choose <strong>Open the guided example</strong> above. On the
-                article, click <strong>Open Maker Reader</strong>. A native
-                Chrome side panel should appear beside the text.
-              </p>
-              <p class="expect">
-                Look for exactly three boxes: Current attention; Expertise,
-                Habits, and Process; and Core values. The Chrome
-                title reads “ToMpathy - What’s on the author’s mind?”
-              </p>
-            </div>
-          </li>
-          <li>
-            <div>
-              <h3>Move between the text and the three sections</h3>
-              <p>
-                Hover individual sentences. The strongest current attention
-                shifts; new phrases grow into place and shared phrases persist.
-                The compact reels roll to the selected sentence while the
-                triangle stays visible. Core values stay fixed. Click a sentence
-                to lock it, then scroll over an individual reel to explore that
-                level. Click either green lock or press
-                <kbd>Esc</kbd> to release it.
-              </p>
-              <p class="expect">
-                Explore the continuous right-pointing hierarchy. Hover or click
-                a block to light up its ancestors, descendants and matching page
-                text. The second, shorter peak shares subordinate goals; blurred
-                reels show multiple possible paths in either direction.
-                Attention stays empty for a parent block. Hover a value for its
-                support wheel and sources. Hover headings for explanations; the
-                ⋯ menu contains Help. The author/global tabs and expandable
-                search at the bottom are interface previews; search sends no
-                query.
-              </p>
-            </div>
-          </li>
-          <li>
-            <div>
-              <h3>Check why an interpretation is there</h3>
-              <p>
-                Click an attention phrase or core value. Read its evidence, then
-                follow a
-                <strong>Passage</strong> button back to the text. Uncertainty
-                and missing evidence should remain visible.
-              </p>
-            </div>
-          </li>
-          <li>
-            <div>
-              <h3>Review Options and keep a reading</h3>
-              <p>
-                Open the <strong>⋯ Options</strong> menu. Check author
-                selection, context, the two planned controls, and the theme
-                buttons. <strong>Export</strong> saves one file with a readable
-                page copy and its analysis. <strong>Import</strong> reopens that
-                copy beside the reader. Its original styling is not preserved.
-              </p>
-              <p class="expect">
-                Lock “Show the iteration,” then hover a reel. Its possible
-                sentence goals expand with connecting lines. Escape closes that
-                expansion before releasing your selection.
-              </p>
-            </div>
-          </li>
-          <li>
-            <div>
-              <h3>Try a real author</h3>
-              <p>
-                Open the real-author link above. Use Chrome’s puzzle-piece menu
-                to select
-                <strong>ToMpathy - What’s on the author’s mind?</strong>; pin it
-                for next time. Clicking its toolbar icon on the article grants
-                that page access.
-              </p>
-              <p class="expect">
-                The reader should say <strong>Awaiting analysis</strong>.
-                Options should list Simon Willison. Context can collect explicit
-                public author links when supplied by the page. A matching result
-                from Sounding Line is still required for estimates.
-              </p>
-            </div>
-          </li>
-        </ol>
-      </section>
-
-      <section class="return-note" aria-labelledby="return-title">
-        <h2 id="return-title">Come back whenever you like</h2>
-        <p>
-          Double-click <strong>Review ToMpathy.cmd</strong> in the project
-          folder. It opens this same Chrome profile, builds the current code,
-          and installs an update only when the build changed. You can close its
-          terminal when it finishes.
-        </p>
-        <p>
-          Within an open review session, your bookmark brings you straight back
-          here. After closing Chrome completely or restarting the computer, use
-          the launcher first; it restores the extension automatically. Before
-          installing a changed build or ending the browser session, use
-          <strong>Options → Export</strong> if you want to keep an analysis.
-          Captured readings are temporary.
-        </p>
-      </section>
-
-      <details>
-        <summary>Development tools and example revisions</summary>
-        <p>
-          <a href="example.html?qa" target="_blank"
-            >Open the example with development tools</a
-          >, then click Open Maker Reader. The small Development tools control
-          is only present in this testing mode. Context → Preview example
-          revision → Accept this revision changes values to Practical care.
-          Earlier accounts retains the original. Source capture exports,
-          malformed packet tests, and manual context inputs also live here,
-          outside Options.
-        </p>
-      </details>
-      <details>
-        <summary>What is working, and what is still to come?</summary>
-        <p>
-          <strong>Ready to review:</strong> the three-section reader, source
-          capture, attribution, evidence links, context selection, imported
-          results, revision history, and file exports.
-        </p>
-        <p>
-          <strong>Still to come:</strong> a connected Sounding Line service.
-          Real pages can be captured, but they do not yet produce new estimates
-          automatically. A matching result file is required. The bundled example
-          supplies fictional estimates so the whole reading experience can be
-          reviewed now.
-        </p>
-        <p>
-          The
-          <a
-            href="https://github.com/simonw/datasette-lite"
-            target="_blank"
-            rel="noreferrer"
-            >Datasette Lite repository</a
-          >
-          is a useful companion to the real article. A repository link is
-          context to inspect; it is not proof of an author’s goals or values.
-        </p>
-      </details>
-      <details>
-        <summary>How do updates and automated checks work?</summary>
-        <p>
-          After a code change, run <strong>Review ToMpathy.cmd</strong> again.
-          The launcher typechecks and rebuilds before it reloads Chrome. Refresh
-          any old article tabs, then reopen the reader. A build failure stops
-          the update and leaves the existing installation available.
-        </p>
-        <p>
-          The repository’s
-          <a
-            href="https://github.com/EmotiveAutomaton/tompathy/actions"
-            target="_blank"
-            rel="noreferrer"
-            >GitHub Actions checks</a
-          >
-          build, run the core and browser tests, and retain a downloadable
-          extension ZIP for each successful run. The launcher uses this local
-          checkout; it does not silently pull or deploy code from GitHub.
-        </p>
-      </details>
-      <details>
-        <summary>Optional: test a normal webpage with imported results</summary>
-        <p>
-          For the file-exchange path, run <code>npm run testbed</code> from the
-          project folder and keep that terminal open. Visit
-          <a href="http://127.0.0.1:5173/testbed.html" target="_blank"
-            >the local test article</a
-          >. Click ToMpathy in the toolbar, download its first account, then use
-          <strong>Options → Import</strong>.
-        </p>
-        <p>
-          This extra test uses a real HTTP page and a matching packet. It is
-          optional for everyday interface review. Those packets only match that
-          exact localhost article, not the bundled example or Simon’s article.
-        </p>
-      </details>
-      <details>
-        <summary>If something does not open</summary>
-        <ul>
-          <li>
-            <strong>No ToMpathy icon?</strong> Use the puzzle-piece menu in this
-            review Chrome window. Your regular Chrome profile has separate
-            extensions. The guided example also has its own Open Maker Reader
-            button.
-          </li>
-          <li>
-            <strong>No extension card?</strong> Run the launcher again. It
-            verifies that Chrome reports this build enabled. A Chrome instance
-            launched with <code>--disable-extensions</code> cannot serve as this
-            test environment.
-          </li>
-          <li>
-            <strong>Wrong page or stale text?</strong> Refresh the article,
-            click the toolbar icon there, and use Reader menu → Capture current
-            page if needed.
-          </li>
-          <li>
-            <strong>Localhost unavailable?</strong> Only the optional HTTP
-            testbed needs <code>npm run testbed</code>. This guide and the
-            bundled example work without it.
-          </li>
-        </ul>
-      </details>
+      <div class="intro">
+        <p class="eyebrow">YOUR LOCAL REVIEW DESK</p>
+        <h1>A place to look closer.</h1>
+      </div>
+      <nav class="destinations" aria-label="Review destinations">
+        <a
+          class="destination"
+          href="https://abrahamhaskins.org/art/"
+          target="_blank"
+          rel="noopener"
+          ><span class="number">01</span
+          ><strong>Open the live essay <span aria-hidden="true">↗</span></strong
+          ><span
+            >Art: A Unifying Model · live public page, with commissioned demo
+            analysis</span
+          ></a
+        >
+        <a
+          class="destination"
+          href="https://abrahamhaskins.org/"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="number">02</span
+          ><strong
+            >Open the live homepage <span aria-hidden="true">↗</span></strong
+          ><span>A sparse page, project cards and another reading scale</span>
+        </a>
+        <a class="destination" href="icon-prompts.html"
+          ><span class="number">03</span
+          ><strong>Icon prompts <span aria-hidden="true">→</span></strong
+          ><span
+            >Four generated logo studies and twelve prompt directions</span
+          ></a
+        >
+      </nav>
       <footer>
-        <p>
-          <strong>Useful feedback:</strong> copy the build label above, name the
-          page and passage, describe the action, what you expected, and what
-          happened. A screenshot helps with visual decisions.
-        </p>
-        <p class="quiet">
-          This is a separate Chrome development profile. Use it for test pages;
-          keep personal browsing and sign-ins in your usual profile.
-        </p>
+        On either page, click the <strong>ToMpathy toolbar icon</strong> to open
+        the reader. The website stays live; interpretations and value charts are
+        demo data.
       </footer>
     </main>
+    <script type="module" src="review.js"></script>
   </body>
 </html>

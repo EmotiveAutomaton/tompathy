@@ -6,32 +6,34 @@ import {
 } from "./model";
 import { exampleAttention } from "./attention";
 import { exampleHierarchy } from "./example-hierarchy";
+import {
+  exampleContext,
+  exampleEmphasis,
+  exampleGhostReadings,
+  productionEvidence,
+} from "./example-production";
+export { exampleContext, exampleEmphasis } from "./example-production";
+import { demoPreference } from "./example-values";
 import { sentences } from "./sentences";
 export const exampleText = [
-  "A bench is an invitation",
-  "The first thing we noticed was not where people sat. It was where they stopped. At the edge of the garden, visitors paused with their bags still on their shoulders, as if waiting for permission to stay.",
-  "We could have added a sign. Instead, we moved one bench into the shade and turned it slightly toward the path. Nothing about it demanded a conversation. It simply made room for one.",
-  "For two weeks, we returned at different hours. We counted pauses, sketched the paths people took, and listened when someone offered a comment. Our first arrangement was too close to the gate. We moved it again.",
-  "The final bench is made from reclaimed cedar. Its corners are rounded, its seat a little higher than the old one. A walking stick can rest against either arm. These are small decisions, but small decisions decide who feels welcome.",
-  "We do not know whether a bench can make a neighborhood kinder. We do know that on Thursday, two people who had never met sat down in the shade. For now, that is a useful place to begin.",
+  "The door we stopped explaining",
+  "The first thing we noticed was not where players died. It was where they waited. In our little cooperative game, two strangers stood on opposite sides of a greenhouse door, each holding a lantern, while the instruction I had polished for an afternoon faded politely from the screen.",
+  "We could have made the instruction louder. Instead, we put warm light beyond the glass and let each player open half the latch. Nothing flashed when they got it wrong. The door simply waited for both of them, leaving enough time for one player to notice the other.",
+  "For two evenings, I watched recordings without touching the build. A tester pointed out that I kept calling silence confusion when it sometimes meant someone was waiting for their partner. Our first revision opened the door too quickly. We slowed it down again, until a shared action had time to feel shared.",
+  "The next build kept the lanterns bright without making them blink. Every sound cue had a visible companion, and either player could pause the room. One tester played with a single hand and asked for a latch that stayed pressed. These are small decisions, but small decisions decide who gets to remain part of the adventure.",
+  "I cannot tell you that a gentler door makes a kinder game. I can tell you that on Thursday, a veteran player stopped racing ahead and waited beside someone learning the controls. For now, that is a useful place to begin, even if a useful beginning is not yet a design principle.",
+  "Solving a puzzle is not quite the same as finding a way to solve it together. The pause leaves room to notice: a partner moving toward the wrong latch, a lantern changing hands, a small attempt at helping that the old instruction had covered up. This approach guarantees that every player feels equally included from the very first interaction.",
+  "The test was much smaller than the story I wanted to tell. The recordings show three pairs of players, one unreliable controller, and a tester who already knew the puzzle from an earlier session. There is a difference between an invitation and a guarantee, and the difference matters most when a polished sentence makes it easy to forget.",
+  "Before sending the draft, I shortened the explanation, then restored the awkward detail about the controller. My collaborator asked whether removing an instruction merely hid the work somewhere else. She was right: the timing, the light, and the forgiving latch were still teaching, just without borrowing the player's entire attention.",
+  "Next week we will try a room where the partners cannot see each other. I am tempted to carry the same solution across unchanged, which is probably a good reason to watch first. The door can wait; I want to find out what the people on either side are actually trying to do.",
 ];
-export const exampleContext: ContextItem = {
-  id: "context-notebook",
-  source: "Synthetic designer’s notebook",
-  excerpt:
-    "The site brief required reclaimed cedar and a raised seat. The first layout came from a standard park plan. Observations led us to change the position twice; the material and seat height were constraints, not our original choices.",
-  retrievedAt: "2026-09-19T10:00:00.000Z",
-  selected: true,
-  lineage: "synthetic",
-};
 export async function createExample(
   source = "tompathy:example",
   revised = false,
 ): Promise<Packet> {
-  const artifact = await makeArtifact(
-    exampleText,
-    source,
-    "A bench is an invitation",
+  const artifact = await makeArtifact(exampleText, source, exampleText[0]);
+  artifact.regions.forEach(
+    (r) => (r.emphasis = exampleEmphasis(r.id, r.anchor.exact)),
   );
   const evidence = exampleText.slice(1).map((excerpt, i) => ({
     id: `e${i + 1}`,
@@ -41,6 +43,7 @@ export async function createExample(
     relationship:
       "Text compatible with this account; it does not establish the maker’s intent.",
   }));
+  evidence.push(...productionEvidence(artifact));
   if (revised)
     evidence.push({
       id: "notebook",
@@ -71,7 +74,8 @@ export async function createExample(
       value === null
         ? null
         : {
-            value,
+            value:
+              kind === "value" ? Math.round(value * 0.28 * 100) / 100 : value,
             scale: [0, 1],
             semantics: "relative",
             ...(kind === "goal" ? { candidateSet: "aims" } : {}),
@@ -79,6 +83,7 @@ export async function createExample(
               "Illustrative relative support, not a probability or calibrated estimate.",
           },
     evidence: ev,
+    ...(kind === "value" ? { preferenceTrace: demoPreference(id) } : {}),
     ...(id === "attention"
       ? {
           spans: ["p2", "p4"].map((region) => ({
@@ -103,15 +108,39 @@ export async function createExample(
   });
   const attention = exampleAttention(artifact);
   return PacketSchema.parse({
-    schemaVersion: "1.4",
+    schemaVersion: "1.6",
+    ghostReadings: exampleGhostReadings(artifact),
     currentAttention: attention.currentAttention,
-    goalHierarchy: { nodes: exampleHierarchy(artifact, revised) },
-    id: revised ? "bench-analysis-2" : "bench-analysis-1",
+    goalHierarchy: {
+      nodes: exampleHierarchy(artifact, revised),
+      orderUncertainGroups: [
+        {
+          id: "noticing-order",
+          nodes: ["sentence-1-1", "sentence-1-2", "sentence-1-3"],
+          explanation:
+            "The supplied account does not establish the order of these noticing steps. Vertical position is not a timeline.",
+          evidence: ["e1"],
+        },
+        {
+          id: "invitation-order",
+          nodes: [
+            "sentence-2-1",
+            "sentence-2-2",
+            "sentence-2-3",
+            "sentence-2-4",
+          ],
+          explanation:
+            "These design choices may have developed together; their production order is uncertain.",
+          evidence: ["e2"],
+        },
+      ],
+    },
+    id: revised ? "lantern-analysis-2" : "lantern-analysis-1",
     revision: revised ? 2 : 1,
     artifact,
     provider: {
       id: "tompathy-example",
-      method: "Hand-authored interaction fixture",
+      method: "Hand-written interaction fixture",
     },
     origin: "synthetic example",
     scope: {
@@ -121,13 +150,41 @@ export async function createExample(
     makers: [
       {
         id: "maker-1",
-        label: "The garden designer",
+        label: "Mara Vale",
         identity: "synthetic",
-        relationship: "Fictional designer and author of this reflection",
+        relationship:
+          "Fictional cooperative-game designer and creator of this reflection",
       },
     ],
     hypotheses: [
       ...attention.hypotheses,
+      h(
+        "assist",
+        "process",
+        "Select assisted phrasing",
+        "Choose room to notice from an assistant session; an automated assembly step later adds an unreviewed guarantee.",
+        ["p7"],
+        0.86,
+        ["production-6"],
+      ),
+      h(
+        "qualify",
+        "process",
+        "Challenge the guarantee",
+        "Set the polished claim against the limits of three playtests.",
+        ["p8"],
+        0.87,
+        ["e7"],
+      ),
+      h(
+        "copyedit",
+        "process",
+        "Edit without adding claims",
+        "Keep a controller detail and a collaborator’s objection after a shortening pass.",
+        ["p9"],
+        0.82,
+        ["production-8"],
+      ),
       h(
         "concrete",
         "goal",
@@ -213,7 +270,7 @@ export async function createExample(
         "include",
         "goal",
         "Reduce barriers",
-        "Making access tangible through the details of a seat.",
+        "Making access tangible through a persistent latch.",
         ["p5"],
         revised ? 0.48 : 0.85,
         ["e4", ...(revised ? ["notebook"] : [])],
@@ -222,7 +279,7 @@ export async function createExample(
         "observe",
         "process",
         "Observe everyday life",
-        "Attention to pauses and routes offers a possible starting point.",
+        "Attention to pauses and joint actions offers a possible starting point.",
         ["p1", "p2", "p3", "p4", "p5", "p6"],
         0.8,
         ["e1", "e3"],
@@ -231,7 +288,7 @@ export async function createExample(
         "reframe",
         "process",
         "Reframe the problem",
-        "A place to pause becomes a question of invitation, rather than signage.",
+        "A place to pause becomes a question of invitation, rather than instruction volume.",
         ["p1", "p2", "p3"],
         0.82,
         ["e2"],
@@ -240,7 +297,7 @@ export async function createExample(
         "iterate",
         "process",
         "Test & refine",
-        "The described visits and second move support an iterative account.",
+        "The recordings and the slower second latch support an iterative account.",
         ["p4"],
         0.92,
         ["e3"],
@@ -250,8 +307,8 @@ export async function createExample(
         "process",
         revised ? "Work within a brief" : "Design for inclusion",
         revised
-          ? "The notebook attributes material and seat height to the brief."
-          : "The details are compatible with attention to different visitors’ needs.",
+          ? "The notebook attributes sound cues and pause control to the brief."
+          : "The details are compatible with attention to different players’ needs.",
         ["p5"],
         0.83,
         [revised ? "notebook" : "e4"],
@@ -261,7 +318,7 @@ export async function createExample(
         "reflect",
         "process",
         "Reflect without closure",
-        "The author may have selected and qualified a final observation while composing the reflection. The finished text alone cannot establish when this happened.",
+        "The creator may have selected and qualified a final observation while composing the reflection. The finished text alone cannot establish when this happened.",
         ["p6"],
         0.8,
         ["e5"],
@@ -306,9 +363,10 @@ export async function createExample(
       ...[
         ["accessibility", "Access for everyone", 0.51, "e4"],
         ["adaptability", "Willingness to revise", 0.48, "e3"],
-        ["stewardship", "Thoughtful use of materials", 0.44, "e4"],
+        ["stewardship", "Thoughtful use of tools", 0.44, "e4"],
         ["belonging", "Shared belonging", 0.4, "e2"],
         ["patience", "Patient observation", 0.36, "e1"],
+        ["agency", "Player agency", 0.3, "e2"],
       ].map(([id, label, value, evidence]) =>
         h(
           String(id),
@@ -358,6 +416,9 @@ export async function createExample(
     process: {
       interpretation: "historical-production",
       nodes: [
+        "assist",
+        "qualify",
+        "copyedit",
         "observe",
         "reframe",
         "iterate",
@@ -367,6 +428,23 @@ export async function createExample(
         "history",
       ],
       edges: [
+        {
+          from: "assist",
+          to: "qualify",
+          kind: "precedes",
+          status: "creator-reported",
+          relationship: "The creator bounds the playtest claim while drafting",
+          evidence: ["production-6", "production-7"],
+        },
+        {
+          from: "qualify",
+          to: "copyedit",
+          kind: "related",
+          status: "hypothesis",
+          relationship:
+            "Draft revision and copy editing overlap; precise order unresolved",
+          evidence: ["production-7", "production-8"],
+        },
         {
           from: "observe",
           to: "reframe",
@@ -407,7 +485,7 @@ export async function createExample(
         label: "Learning through observation",
         members: ["invite", "observe", "iterate", "curiosity"],
         explanation:
-          "These hypotheses can form one compatible account. They are not independent measurements of the author.",
+          "These hypotheses can form one compatible account. They are not independent measurements of the creator.",
       },
       {
         id: "account-convention",
@@ -419,10 +497,10 @@ export async function createExample(
     ],
     documentContribution: {
       value: revised ? 0.55 : 0.7,
-      quantity: "Synthetic support for consequential maker choices",
+      quantity: "Synthetic support for consequential creator choices",
       explanation: revised
-        ? "The notebook attributes material and height to the brief. Choosing placement remains a possible consequential contribution."
-        : "Choosing to invite encounters by changing a bench may shape the whole artifact. This is an illustrative judgment, not a measured quantity of thought.",
+        ? "The notebook attributes sound cues and pause control to the brief. Choosing latch timing remains a possible consequential contribution."
+        : "Choosing to invite joint discovery by changing a cooperative door may shape the whole artifact. This is an illustrative judgment, not a measured quantity of thought.",
       evidence: revised ? ["e2", "notebook"] : ["e2"],
     },
     estimates: artifact.regions.map((r, i) => ({
@@ -431,13 +509,13 @@ export async function createExample(
         i === 0
           ? null
           : {
-              value: [0.6, 0.8, 0.7, 0.85, 0.65][i - 1],
-              quantity: "Synthetic support for consequential maker choices",
+              value: [0.6, 0.8, 0.7, 0.85, 0.65, 0.4, 0.7, 0.8, 0.65][i - 1],
+              quantity: "Synthetic support for consequential creator choices",
               scale: "0–1",
               basis: "global-and-local",
               explanation:
                 i === 4
-                  ? "The material and height may be local choices or requirements from the brief. These scores are illustrative, not calibrated."
+                  ? "The sound cues and pause control may be local choices or requirements from the brief. These scores are illustrative, not calibrated."
                   : "The document-wide choice supplies context; the described observation or intervention supplies local evidence. No arithmetic decomposition is asserted.",
               evidence: [`e${i}`],
             },
@@ -450,9 +528,9 @@ export async function createExample(
     evidence,
     ...(revised
       ? {
-          revisionOf: "bench-analysis-1",
+          revisionOf: "lantern-analysis-1",
           changeExplanation:
-            "The notebook shows that material and seat height were requirements. “Design for inclusion” is replaced by “Work within a brief”; the values snapshot is explicitly revised.",
+            "The notebook shows that sound cues and pause control were requirements. “Design for inclusion” is replaced by “Work within a brief”; the values snapshot is explicitly revised.",
         }
       : {}),
   });

@@ -1,7 +1,33 @@
+import { regionSentences } from "./sentences";
 import { z } from "zod";
+import { calendarDate } from "./dates";
 
 const id = z.string().min(1).max(200);
 const timestamp = z.iso.datetime();
+export const GhostReadingSchema = z.object({
+  maker: id,
+  span: z.object({
+    region: id,
+    start: z.number().int().nonnegative(),
+    end: z.number().int().positive(),
+  }),
+  kind: z.enum(["original", "edited", "curated", "ghost", "unknown"]),
+  confidence: z.number().min(0).max(1).nullable(),
+  explanation: z.string().min(1).max(3000),
+  confidenceExplanation: z.string().min(1).max(2000),
+  evidence: z.array(id).max(30),
+  evidenceDirections: z
+    .array(
+      z.object({
+        id,
+        direction: z.enum(["more", "less", "neutral"]),
+      }),
+    )
+    .max(30)
+    .optional(),
+  prompt: z.string().min(1).max(4000).optional(),
+});
+export type GhostReading = z.infer<typeof GhostReadingSchema>;
 export const AnchorSchema = z.object({
   exact: z.string().min(1).max(20000),
   prefix: z.string().max(160),
@@ -16,7 +42,39 @@ export const ArtifactSchema = z.object({
   source: z.string().max(4000),
   capturedAt: timestamp,
   regions: z
-    .array(z.object({ id, anchor: AnchorSchema }))
+    .array(
+      z
+        .object({
+          id,
+          anchor: AnchorSchema,
+          pageHint: z
+            .object({
+              heading: z.number().int().min(1).max(6).optional(),
+              unit: z.enum(["group"]).optional(),
+              section: z.string().max(300).optional(),
+              involvement: z
+                .enum(["original", "edited", "curated", "ghost", "unknown"])
+                .optional(),
+            })
+            .optional(),
+          emphasis: z
+            .array(
+              z.object({
+                start: z.number().int().nonnegative(),
+                end: z.number().int().positive(),
+              }),
+            )
+            .max(2000)
+            .optional(),
+        })
+        .refine(
+          (r) =>
+            (r.emphasis ?? []).every(
+              (e) => e.start < e.end && e.end <= r.anchor.exact.length,
+            ),
+          "Invalid emphasis span",
+        ),
+    )
     .min(1)
     .max(1500),
   truncated: z.boolean().default(false),
@@ -43,6 +101,43 @@ export const ContextSchema = z.object({
   retrievedAt: timestamp,
   selected: z.boolean(),
   lineage: z.enum(["pasted", "file", "public-url", "synthetic"]),
+  provenance: z
+    .object({
+      author: z.string().min(1).max(250),
+      basis: z.enum(["page-byline", "explicit-author-link", "linked-source"]),
+      linkedFrom: z.string().max(4000),
+    })
+    .optional(),
+  facts: z
+    .array(
+      z
+        .object({
+          label: z.string().min(1).max(600),
+          quote: z.string().min(1).max(1500),
+          source: z.string().max(4000),
+          date: z
+            .string()
+            .refine(
+              (s) => calendarDate(s) === s,
+              "Invalid or imprecise calendar date",
+            )
+            .optional(),
+          dateKind: z.enum([
+            "publication",
+            "event",
+            "account-created",
+            "profile-updated",
+            "source-updated",
+            "undated",
+          ]),
+        })
+        .refine(
+          (f) => (f.dateKind === "undated") === !f.date,
+          "Dated facts need a date; undated facts must not have one",
+        ),
+    )
+    .max(20)
+    .optional(),
 });
 const SupportSchema = z.object({
   value: z.number().finite(),
@@ -51,6 +146,36 @@ const SupportSchema = z.object({
   meaning: z.string().min(1).max(1000),
   calibration: z.string().max(1000).optional(),
   candidateSet: id.optional(),
+});
+// Normalized display coordinates, not calibrated utilities or discount rates.
+export const PreferenceTraceSchema = z.object({
+  domain: z.string().min(1).max(160),
+  start: z.string().min(1).max(40),
+  end: z.string().min(1).max(40),
+  points: z
+    .array(
+      z.object({
+        x: z.number().min(0).max(1),
+        y: z.number().min(0).max(1),
+        uncertainty: z.number().min(0).max(0.4),
+      }),
+    )
+    .min(2)
+    .max(30),
+  observations: z
+    .array(
+      z.object({
+        date: z.string().min(1).max(40),
+        label: z.string().min(1).max(200),
+        explanation: z.string().min(1).max(700),
+        from: z.tuple([z.number().min(0).max(1), z.number().min(0).max(1)]),
+        to: z.tuple([z.number().min(0).max(1), z.number().min(0).max(1)]),
+        cost: z.number().min(0).max(1),
+        horizon: z.string().min(1).max(80),
+      }),
+    )
+    .min(1)
+    .max(6),
 });
 export const HypothesisSchema = z.object({
   id,
@@ -74,6 +199,8 @@ export const HypothesisSchema = z.object({
   alternativeSet: id.optional(),
   evidence: z.array(id),
   decisionNodes: z.array(id).optional(),
+  preferenceTrace: PreferenceTraceSchema.optional(),
+  valueCategory: z.enum(["drive", "constructed"]).optional(),
   interpretation: z
     .enum([
       "current-attention",
@@ -89,7 +216,8 @@ export const HypothesisSchema = z.object({
 });
 export const PacketSchema = z
   .object({
-    schemaVersion: z.enum(["1.0", "1.1", "1.2", "1.3", "1.4"]),
+    schemaVersion: z.enum(["1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6"]),
+    ghostReadings: z.array(GhostReadingSchema).max(6000).optional(),
     id,
     revision: z.number().int().positive(),
     artifact: ArtifactSchema,
@@ -165,6 +293,17 @@ export const PacketSchema = z
     }),
     goalHierarchy: z
       .object({
+        orderUncertainGroups: z
+          .array(
+            z.object({
+              id,
+              nodes: z.array(id).min(2).max(30),
+              explanation: z.string().min(1).max(1500),
+              evidence: z.array(id).max(30),
+            }),
+          )
+          .max(30)
+          .optional(),
         nodes: z
           .array(
             z.object({
@@ -262,9 +401,77 @@ export const PacketSchema = z
     const hierarchy = p.goalHierarchy?.nodes ?? [];
     unique(hierarchy, "goal hierarchy");
     const hierarchyById = new Map(hierarchy.map((n) => [n.id, n]));
+    if (p.ghostReadings?.length && p.schemaVersion !== "1.6")
+      error("Sentence Ghost Scale readings require contract 1.6.");
+    const ghostFrames = [...(p.ghostReadings ?? [])].sort(
+      (a, b) =>
+        a.maker.localeCompare(b.maker) ||
+        a.span.region.localeCompare(b.span.region) ||
+        a.span.start - b.span.start,
+    );
+    const ghostBounds = new Map<string, Set<string>>();
+    for (const [i, frame] of ghostFrames.entries()) {
+      const region = p.artifact.regions.find((r) => r.id === frame.span.region);
+      if (
+        !ms.has(frame.maker) ||
+        !region ||
+        frame.span.start >= frame.span.end ||
+        frame.span.end > region.anchor.exact.length ||
+        frame.evidence.some((e) => !es.has(e))
+      )
+        error("Invalid Ghost Scale maker, span or evidence.");
+      if (
+        frame.evidenceDirections?.some((d) => !frame.evidence.includes(d.id)) ||
+        new Set(frame.evidenceDirections?.map((d) => d.id)).size !==
+          (frame.evidenceDirections?.length ?? 0)
+      )
+        error("Ghost Scale directions must refer once to supplied evidence.");
+      if (region) {
+        if (!ghostBounds.has(region.id))
+          ghostBounds.set(
+            region.id,
+            new Set(regionSentences(region).map((s) => `${s.start}:${s.end}`)),
+          );
+        if (
+          !ghostBounds
+            .get(region.id)!
+            .has(`${frame.span.start}:${frame.span.end}`)
+        )
+          error(
+            "Ghost Scale readings must cover one complete sentence or declared text group.",
+          );
+      }
+      const previous = ghostFrames[i - 1];
+      if (
+        previous &&
+        previous.maker === frame.maker &&
+        previous.span.region === frame.span.region &&
+        previous.span.end > frame.span.start
+      )
+        error("Ghost Scale spans must not overlap for the same maker.");
+    }
+    const uncertain = p.goalHierarchy?.orderUncertainGroups ?? [];
+    unique(uncertain, "order uncertainty group");
+    if (uncertain.length && !["1.5", "1.6"].includes(p.schemaVersion))
+      error("Order uncertainty groups require contract 1.5.");
+    for (const group of uncertain) {
+      const members = group.nodes.map((id) => hierarchyById.get(id));
+      const parents = (n: (typeof members)[number]) =>
+        n?.parentIds ?? (n?.parentId ? [n.parentId] : []);
+      if (
+        new Set(group.nodes).size !== group.nodes.length ||
+        members.some((n) => !n) ||
+        new Set(members.map((n) => n?.maker)).size !== 1 ||
+        !parents(members[0]).some((p) =>
+          members.every((n) => parents(n).includes(p)),
+        ) ||
+        group.evidence.some((e) => !es.has(e))
+      )
+        error(`Invalid sibling order uncertainty group ${group.id}.`);
+    }
     for (const n of hierarchy) {
       if (
-        !["1.3", "1.4"].includes(p.schemaVersion) &&
+        !["1.3", "1.4", "1.5", "1.6"].includes(p.schemaVersion) &&
         !["document", "section", "paragraph", "sentence"].includes(
           n.level ?? "",
         )
@@ -280,7 +487,7 @@ export const PacketSchema = z
         error(`Unresolved hierarchy references in ${n.id}.`);
       if (
         n.parentIds &&
-        (p.schemaVersion !== "1.4" ||
+        (!["1.4", "1.5", "1.6"].includes(p.schemaVersion) ||
           n.parentId ||
           new Set(n.parentIds).size !== n.parentIds.length)
       )
@@ -308,7 +515,9 @@ export const PacketSchema = z
     }
     const depths = new Map<string, number>(),
       visitingHierarchy = new Set<string>();
-    const maxDepth = ["1.3", "1.4"].includes(p.schemaVersion) ? 64 : 12;
+    const maxDepth = ["1.3", "1.4", "1.5", "1.6"].includes(p.schemaVersion)
+      ? 64
+      : 12;
     const visitHierarchy = (id: string): number => {
       if (visitingHierarchy.has(id) || visitingHierarchy.size >= maxDepth) {
         error(
@@ -336,14 +545,14 @@ export const PacketSchema = z
       return depth;
     };
     hierarchy.forEach((n) => visitHierarchy(n.id));
-    if (p.schemaVersion !== "1.4")
+    if (!["1.4", "1.5", "1.6"].includes(p.schemaVersion))
       for (const m of p.makers) {
         const nodes = hierarchy.filter((n) => n.maker === m.id);
         if (nodes.length && nodes.filter((n) => !n.parentId).length !== 1)
           error("Each legacy maker hierarchy needs exactly one root.");
       }
     if (
-      p.schemaVersion !== "1.4" &&
+      !["1.4", "1.5", "1.6"].includes(p.schemaVersion) &&
       (p.currentAttention || p.hypotheses.some((h) => h.kind === "attention"))
     )
       error("Independent current attention requires contract 1.4.");
@@ -578,6 +787,7 @@ export const SessionSchema = z.object({
   context: z.array(ContextSchema).max(30),
   scope: z.enum(["artifact", "context"]),
   authorLabel: z.string().max(250).optional(),
+  repositoryLinks: z.array(z.string().max(4000)).max(3).optional(),
   savedPageId: z.uuid().optional(),
   contextSources: z
     .array(z.object({ author: z.string().max(250), url: z.string().max(4000) }))

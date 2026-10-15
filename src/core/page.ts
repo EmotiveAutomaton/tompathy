@@ -1,4 +1,5 @@
 import type { Artifact } from "./model";
+import { githubRepository } from "./public-source";
 
 // Keep the live DOM as the anchor source. Never replace it with a parsed copy.
 export function readingRoot(doc: Document): {
@@ -42,7 +43,7 @@ export function readingRoot(doc: Document): {
   };
 }
 
-export function pageAuthors(doc: Document): NonNullable<Artifact["authors"]> {
+export function pageCreators(doc: Document): NonNullable<Artifact["authors"]> {
   const found: NonNullable<Artifact["authors"]> = [];
   const add = (
     label: string | null | undefined,
@@ -99,7 +100,7 @@ export function pageAuthors(doc: Document): NonNullable<Artifact["authors"]> {
 }
 
 /** Only explicit publisher-supplied author links are retrieval seeds. */
-export function pageAuthorSources(
+export function pageCreatorSources(
   doc: Document,
 ): { author: string; url: string }[] {
   const found: { author: string; url: string }[] = [];
@@ -147,4 +148,33 @@ export function pageAuthorSources(
     } catch {}
   }
   return found;
+}
+
+/** Explicit source links only. A repository link is not creator attribution. */
+export function pageRepositoryLinks(doc: Document): string[] {
+  const links: string[] = [];
+  for (const a of doc.querySelectorAll<HTMLAnchorElement>("a[href]")) {
+    try {
+      const url = new URL(a.getAttribute("href")!, doc.baseURI);
+      const repo = githubRepository(url.href);
+      if (
+        !repo ||
+        !/\b(edit|source|github|repository|repo)\b/i.test(
+          `${a.textContent} ${a.getAttribute("aria-label") ?? ""} ${a.title}`,
+        )
+      )
+        continue;
+      if (!links.includes(url.href)) links.push(url.href);
+      if (links.length >= 12) break;
+    } catch {
+      /* Not a public source link. */
+    }
+  }
+  return links
+    .sort(
+      (a, b) =>
+        Number(!!githubRepository(b)?.tail.length) -
+        Number(!!githubRepository(a)?.tail.length),
+    )
+    .slice(0, 3);
 }

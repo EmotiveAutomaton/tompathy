@@ -41,24 +41,8 @@
   display: none;
 }
 .brand-symbol {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  height: 12px;
-  transform: rotate(-17deg);
-}
-.brand-symbol i {
-  width: 2px;
-  height: 7px;
-  border-radius: 4px;
-  background: var(--green);
-}
-.brand-symbol i:nth-child(2) {
-  height: 12px;
-}
-.brand-symbol i:nth-child(3) {
-  height: 9px;
-  opacity: 0.55;
+  width: 20px;
+  height: 20px;
 }
 .icon-button {
   display: inline-flex;
@@ -100,17 +84,17 @@
   font-size: 9px;
   padding-top: 2px;
 }
-.author-identity {
+.creator-identity {
   min-width: 0;
   flex: 1;
 }
-.author-caption {
+.creator-caption {
   display: block;
   color: var(--muted);
   font-size: 9px;
   letter-spacing: 0.6px;
 }
-.author-name {
+.creator-name {
   display: block;
   padding: 2px 0;
   font-size: 14px;
@@ -121,7 +105,7 @@
   text-overflow: ellipsis;
   max-width: 100%;
 }
-.author-name:hover {
+.creator-name:hover {
   text-decoration: underline;
   text-underline-offset: 3px;
 }

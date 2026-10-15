@@ -1,0 +1,19 @@
+The door we stopped explaining
+
+The first thing we noticed was not where players died. It was where they waited. In our little cooperative game, two strangers stood on opposite sides of a greenhouse door, each holding a lantern, while the instruction I had polished for an afternoon faded politely from the screen.
+
+We could have made the instruction louder. Instead, we put warm light beyond the glass and let each player open half the latch. Nothing flashed when they got it wrong. The door simply waited for both of them, leaving enough time for one player to notice the other.
+
+For two evenings, I watched recordings without touching the build. A tester pointed out that I kept calling silence confusion when it sometimes meant someone was waiting for their partner. Our first revision opened the door too quickly. We slowed it down again, until a shared action had time to feel shared.
+
+The next build kept the lanterns bright without making them blink. Every sound cue had a visible companion, and either player could pause the room. One tester played with a single hand and asked for a latch that stayed pressed. These are small decisions, but small decisions decide who gets to remain part of the adventure.
+
+I cannot tell you that a gentler door makes a kinder game. I can tell you that on Thursday, a veteran player stopped racing ahead and waited beside someone learning the controls. For now, that is a useful place to begin, even if a useful beginning is not yet a design principle.
+
+Solving a puzzle is not quite the same as finding a way to solve it together. The pause leaves room to notice: a partner moving toward the wrong latch, a lantern changing hands, a small attempt at helping that the old instruction had covered up. This approach guarantees that every player feels equally included from the very first interaction.
+
+The test was much smaller than the story I wanted to tell. The recordings show three pairs of players, one unreliable controller, and a tester who already knew the puzzle from an earlier session. There is a difference between an invitation and a guarantee, and the difference matters most when a polished sentence makes it easy to forget.
+
+Before sending the draft, I shortened the explanation, then restored the awkward detail about the controller. My collaborator asked whether removing an instruction merely hid the work somewhere else. She was right: the timing, the light, and the forgiving latch were still teaching, just without borrowing the player's entire attention.
+
+Next week we will try a room where the partners cannot see each other. I am tempted to carry the same solution across unchanged, which is probably a good reason to watch first. The door can wait; I want to find out what the people on either side are actually trying to do.

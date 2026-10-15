@@ -1,1 +1,16 @@
-The site brief required reclaimed cedar and a raised seat. The first layout came from a standard park plan. Observations led us to change the position twice; the material and seat height were constraints, not our original choices.
+Mara Vale makes cooperative puzzle games. A collaborator supplied the visual cues and pause control requirements; Mara added the persistent latch after a playtest. Drafts include selected AI suggestions, light copy edits, and an unreviewed generated claim. All people, records and dates here are fictional.
+
+2026-09-04 � First playtest
+Mara's handwritten notes describe players waiting at the door. The original instruction draft predates any AI session.
+
+2026-09-06 � Review recordings
+Three pairs of players were observed. The second pair had an unreliable controller; the third had prior puzzle exposure.
+
+2026-09-09 � Access review
+A collaborator's checklist already required paired sound and visual cues and a pause control. Mara added the persistent latch after the one-handed playtest.
+
+2026-09-12 � Draft with an assistant
+An assistant proposed 'room to notice'; Mara selected and revised that phrasing. A later automated assembly step generated a universal-inclusion claim after her final review.
+
+2026-09-14 � Copy edit and response
+Mara accepted shortening edits and restored the controller detail. Her draft already cautioned against guarantees. An automated assembly step then inserted a guarantee she never reviewed; the publication copy contradicts her draft's caution.

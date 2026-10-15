@@ -1,11 +1,13 @@
 import { useRef, useState } from "react";
 import { Search, X } from "lucide-react";
+export type ValuesTab = "work" | "creator" | "global";
+const tabs = ["work", "creator", "global"] as const;
 export function ValueTabs({
   tab,
   onTab,
 }: {
-  tab: "author" | "global";
-  onTab: (tab: "author" | "global") => void;
+  tab: ValuesTab;
+  onTab: (tab: ValuesTab) => void;
 }) {
   const [search, setSearch] = useState(false),
     [query, setQuery] = useState(""),
@@ -19,15 +21,35 @@ export function ValueTabs({
   return (
     <div className={`value-tabs ${search ? "searching" : ""}`}>
       <div role="tablist" aria-label="Values perspective">
-        {(["author", "global"] as const).map((t) => (
+        {tabs.map((t) => (
           <button
             key={t}
             role="tab"
             aria-selected={tab === t}
             aria-controls="values-view"
+            tabIndex={tab === t ? 0 : -1}
+            onKeyDown={(e) => {
+              if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key))
+                return;
+              e.preventDefault();
+              const next =
+                tabs[
+                  e.key === "Home"
+                    ? 0
+                    : e.key === "End"
+                      ? 2
+                      : (tabs.indexOf(t) + (e.key === "ArrowRight" ? 1 : 2)) % 3
+                ];
+              onTab(next);
+              const buttons =
+                e.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>(
+                  '[role="tab"]',
+                );
+              buttons?.[tabs.indexOf(next)]?.focus();
+            }}
             onClick={() => onTab(t)}
           >
-            {t}
+            {t === "work" ? "current work only" : t}
           </button>
         ))}
       </div>

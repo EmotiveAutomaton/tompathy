@@ -5,11 +5,20 @@ import {
   writeFile,
   readdir,
   readFile,
+  unlink,
 } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { icons } from "./icons.mjs";
 import path from "node:path";
 await mkdir("dist", { recursive: true });
+// dist is flat, generated output. Never package leftovers from earlier builds.
+const previousOutput = await readdir("dist", { withFileTypes: true });
+if (previousOutput.some((entry) => !entry.isFile()))
+  throw Error(
+    "Unexpected directory or link in dist; inspect it before rebuilding.",
+  );
+for (const entry of previousOutput)
+  await unlink(path.resolve("dist", entry.name));
 await icons("dist");
 await import("./notices.mjs");
 for (const file of ["LICENSE", "THIRD_PARTY_NOTICES.txt"])
@@ -20,6 +29,8 @@ await build({
   outfile: "dist/panel.js",
   format: "esm",
   minify: true,
+  loader: { ".woff": "file" },
+  assetNames: "[name]",
   sourcemap: true,
   target: "chrome116",
   define: { "process.env.NODE_ENV": '"production"' },
@@ -34,17 +45,48 @@ await build({
   sourcemap: true,
 });
 await copyFile("public/manifest.json", "dist/manifest.json");
-for (const file of ["review.html", "review.css", "review.js"])
+for (const file of [
+  "review.html",
+  "review.css",
+  "review.js",
+  "icon-prompts.css",
+  "logo-study-1.png",
+  "logo-study-2-refined.png",
+  "logo-study-3.png",
+  "logo-study-4.png",
+])
   await copyFile(`public/${file}`, `dist/${file}`);
+await build({
+  entryPoints: ["src/icon-prompts.ts"],
+  bundle: true,
+  outfile: "dist/icon-prompts.js",
+  format: "esm",
+  minify: true,
+  target: "chrome116",
+});
+await writeFile(
+  "dist/icon-prompts.html",
+  (await readFile("public/icon-prompts.html", "utf8")).replace(
+    "/src/icon-prompts.ts",
+    "icon-prompts.js",
+  ),
+);
 const html =
-  '<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ToMpathy - What&#39;s on the author&#39;s mind?</title><link rel="stylesheet" href="panel.css"></head><body><div id="root"></div><script type="module" src="panel.js"></script></body></html>';
+  '<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ToMpathy - What&#39;s on the creator&#39;s mind?</title><link rel="stylesheet" href="panel.css"></head><body><div id="root"></div><script type="module" src="panel.js"></script></body></html>';
 await writeFile("dist/panel.html", html);
 await writeFile("dist/snapshot.html", html);
 await writeFile(
+  "dist/art.html",
+  html.replace(
+    "<title>ToMpathy - What&#39;s on the creator&#39;s mind?</title>",
+    "<title>Art: A Unifying Model</title>",
+  ),
+);
+await writeFile(
   "dist/example.html",
   html.replace(
-    "<title>ToMpathy - What&#39;s on the author&#39;s mind?</title>",
-    "<title>A bench is an invitation</title>",
+    "<title>ToMpathy - What&#39;s on the creator&#39;s mind?</title>",
+    "<title>The door we stopped explaining</title>",
   ),
 );
 const { verifyBuild } = await import("./check-build.mjs");

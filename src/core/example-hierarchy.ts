@@ -2,7 +2,7 @@ import type { Artifact } from "./model";
 import type { GoalNode } from "./hierarchy";
 import { sentences } from "./sentences";
 
-/** Authored fixture interpretations, never generated from arbitrary page text. */
+/** Written fixture interpretations, never generated from arbitrary page text. */
 export function exampleHierarchy(
   artifact: Artifact,
   revised: boolean,
@@ -12,9 +12,9 @@ export function exampleHierarchy(
     {
       ...base,
       id: "purpose",
-      label: "Make room for connection",
+      label: "Make room for discovery",
       description:
-        "A possible governing purpose: show how modest design choices can invite people to stay. Hand-authored example, not established intent.",
+        "A possible governing purpose: show how cooperative design can invite players to notice each other. Hand-written example, not established intent.",
       level: "document",
       regions: artifact.regions.map((r) => r.id),
     },
@@ -24,7 +24,7 @@ export function exampleHierarchy(
       parentId: "purpose",
       label: "Tell a design story",
       description:
-        "Build an argument through noticing, trying and revising a small intervention.",
+        "Build an argument through noticing, trying and revising a shared game mechanic.",
       level: "section",
       regions: ["p2", "p3", "p4", "p5"],
     },
@@ -35,15 +35,63 @@ export function exampleHierarchy(
       label: "Leave room for doubt",
       description: "Qualify the claim and close with a concrete encounter.",
       level: "section",
-      regions: ["p6"],
+      regions: ["p6", "p8", "p10"],
     },
   ];
+  nodes.push(
+    {
+      ...base,
+      id: "draft",
+      level: "section",
+      parentId: "purpose",
+      label: "Turn experience into an essay",
+      description:
+        "Select language, invite a challenge, then edit without losing the troublesome details.",
+      regions: ["p7", "p9"],
+      evidence: ["production-6", "production-8"],
+    },
+    {
+      ...base,
+      id: "editing",
+      level: "section",
+      parentId: "draft",
+      label: "Revise without erasing friction",
+      description:
+        "The copy-edit pass shortened the account; Mara restored the controller detail and kept the collaborator’s objection.",
+      regions: ["p9"],
+      evidence: ["production-8"],
+    },
+    {
+      ...base,
+      id: "assembly",
+      level: "document",
+      label: "Complete automated assembly",
+      description:
+        "A later tool step inserted a guarantee after review. This is a recorded tool operation, not an inferred creator intention.",
+      regions: ["p7"],
+      evidence: ["production-ghost"],
+    },
+    {
+      ...base,
+      id: "next-test",
+      level: "section",
+      label: "Keep learning from play",
+      description:
+        "A separate practical aim survives the essay: test partners who cannot see one another before reusing the door mechanism.",
+      regions: ["p10"],
+      evidence: ["production-9"],
+    },
+  );
   const paragraphLabels = [
     "Notice hesitation",
     "Offer an invitation",
     "Show the iteration",
     revised ? "Explain the constraints" : "Make inclusion tangible",
     "Close without certainty",
+    "Shape an assisted draft",
+    "Question the polished claim",
+    "Keep the awkward detail",
+    "Watch before repeating",
   ];
   const labels = [
     ["Shift our attention", "Notice the pauses", "Make hesitation visible"],
@@ -60,15 +108,35 @@ export function exampleHierarchy(
       "Show willingness to revise",
     ],
     [
-      revised ? "Acknowledge the material brief" : "Name a considered material",
-      revised ? "Describe the required seat" : "Show care in the details",
-      "Anticipate a visitor’s needs",
+      revised ? "Acknowledge the access brief" : "Avoid a flashing cue",
+      revised ? "Describe the shared checklist" : "Pair sound and vision",
+      "Anticipate a player’s needs",
       "Connect details to belonging",
     ],
     [
       "Bound the claim",
       "Offer one observed encounter",
       "Invite a modest beginning",
+    ],
+    [
+      "Separate solo and shared discovery",
+      "Select room to notice",
+      "No reviewed creator choice",
+    ],
+    [
+      "Bound the scale of the test",
+      "Expose the sample limits",
+      "Separate invitation from guarantee",
+    ],
+    [
+      "Keep a troublesome detail",
+      "Include a collaborator’s objection",
+      "Reframe what teaching means",
+    ],
+    [
+      "Introduce a different problem",
+      "Resist copying the solution",
+      "Watch the players first",
     ],
   ];
   artifact.regions.slice(1).forEach((r, i) => {
@@ -78,7 +146,14 @@ export function exampleHierarchy(
       ...base,
       evidence,
       id: paragraphId,
-      parentId: i === 4 ? "limits" : "story",
+      parentId:
+        i === 7
+          ? "editing"
+          : i === 5
+            ? "draft"
+            : [4, 6, 8].includes(i)
+              ? "limits"
+              : "story",
       label: paragraphLabels[i],
       description: `A possible role for this paragraph: ${paragraphLabels[i].toLowerCase()}. Grounded in the quoted passage, with alternatives still possible.`,
       level: "paragraph",
@@ -89,9 +164,12 @@ export function exampleHierarchy(
         ...base,
         evidence,
         id: `sentence-${i + 1}-${j + 1}`,
-        parentId: paragraphId,
+        parentId: i === 5 && j === 2 ? "assembly" : paragraphId,
         label: labels[i][j],
-        description: `“${s.text}” — a possible proximal goal, supplied by the fictional example account.`,
+        description:
+          i === 5 && j === 2
+            ? "No reviewed creator choice is supplied for this generated insertion. Its surrounding paragraph provides context, not evidence of an intended claim."
+            : `“${s.text}” — a possible proximal goal, supplied by the fictional example account.`,
         level: "sentence",
         regions: [r.id],
         span: { region: r.id, start: s.start, end: s.end },
@@ -103,9 +181,9 @@ export function exampleHierarchy(
   nodes.push({
     ...base,
     id: "practical-care",
-    label: "Make everyday life easier",
+    label: "Keep play accessible",
     description:
-      "A second possible end: practical care may matter independently of the broader social story. An authored stress-test branch.",
+      "A second possible end: accessible play may matter independently of the broader social story. A written stress-test branch.",
     regions: ["p4", "p5"],
   });
   for (const id of ["paragraph-3", "paragraph-4"]) {
@@ -113,5 +191,8 @@ export function exampleHierarchy(
     n.parentIds = [n.parentId!, "practical-care"];
     delete n.parentId;
   }
+  const next = nodes.find((n) => n.id === "paragraph-9")!;
+  next.parentIds = [next.parentId!, "next-test"];
+  delete next.parentId;
   return nodes;
 }
