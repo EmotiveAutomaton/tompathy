@@ -146,20 +146,20 @@ test("one label threshold, fixed anchors, smooth home, uncertain siblings and cl
   expect(await page.locator(".hierarchy-label").count()).toBe(
     await page.locator(".pyramid-node").count(),
   );
-  const anchors = await page
-    .locator(".pyramid-node foreignObject")
-    .evaluateAll((es) =>
-      es.map((e) => e.parentElement!.getAttribute("transform")),
+  // Label anchors stay fixed in graph space. Their inverse scale continues
+  // changing while the zoom animation settles, keeping text readable on screen.
+  const labelAnchors = () =>
+    page.locator(".pyramid-node foreignObject").evaluateAll((es) =>
+      es.map((e) => {
+        const group = e.parentElement as unknown as SVGGElement;
+        const translation = group.transform.baseVal.getItem(0).matrix;
+        return { x: translation.e, y: translation.f };
+      }),
     );
+  const anchors = await labelAnchors();
   await page.keyboard.press("ArrowRight");
   await page.waitForTimeout(230);
-  expect(
-    await page
-      .locator(".pyramid-node foreignObject")
-      .evaluateAll((es) =>
-        es.map((e) => e.parentElement!.getAttribute("transform")),
-      ),
-  ).toEqual(anchors);
+  expect(await labelAnchors()).toEqual(anchors);
   await page.screenshot({ path: "evidence/pass-graph-labels.png" });
   await page.getByRole("button", { name: "Fit whole hierarchy" }).click();
   await expect(graph).toHaveAttribute("data-zoom", "1.000");
