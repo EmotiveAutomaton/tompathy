@@ -295,8 +295,12 @@ try {
   await panel.locator("#values-title button").hover();
   await expect(panel.getByRole("tooltip")).toContainText("homeostatic");
   const theoryBounds = await panel.getByRole("tooltip").boundingBox();
-  expect(theoryBounds.height).toBeLessThan(
+  expect(theoryBounds.height).toBeLessThanOrEqual(
     await panel.evaluate(() => innerHeight - 20),
+  );
+  expect(theoryBounds.y).toBeGreaterThanOrEqual(0);
+  expect(theoryBounds.y + theoryBounds.height).toBeLessThanOrEqual(
+    await panel.evaluate(() => innerHeight),
   );
   await panel.locator("#process-title button").hover();
   await panel.locator('[data-node="paragraph-3"] circle').first().hover();
