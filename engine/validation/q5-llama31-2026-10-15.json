@@ -1,0 +1,1024 @@
+{
+  "admission_id": "65f191c3e09afa0072813f968b6bc05b05aa5e4aa0a5a2eae6bdfc271b6a3df9",
+  "question_id": "Q5",
+  "transcriber_pin": "2ffd1b203d54400a3331938ec2b474703c5fdec002f67929127f31bc8a3bc9ab",
+  "battery_hash": "398684f828646d42234085053509e0647ae9ce4a6254d71af9fd1002f2a1745d",
+  "items": 200,
+  "valid_rate": 1.0,
+  "accuracy": 0.755,
+  "crosscheck_agreement": 0.755,
+  "passed": false,
+  "status": "disabled",
+  "outcomes": [
+    {
+      "id": "constructed-Q5-0",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-1",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-2",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-3",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-4",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-5",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-6",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-7",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-8",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-9",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-10",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-11",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-12",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-13",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-14",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-15",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-16",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-17",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-18",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-19",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-20",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-21",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-22",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-23",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-24",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-25",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-26",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-27",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-28",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-29",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-30",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-31",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-32",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-33",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-34",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-35",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-36",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-37",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-38",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-39",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-40",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-41",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-42",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-43",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-44",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-45",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-46",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-47",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-48",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-49",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-50",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-51",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-52",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-53",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-54",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-55",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-56",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-57",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-58",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-59",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-60",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-61",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-62",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-63",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-64",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-65",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-66",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-67",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-68",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-69",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-70",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-71",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-72",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-73",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-74",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-75",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-76",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-77",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-78",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-79",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-80",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-81",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-82",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-83",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-84",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-85",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-86",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-87",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-88",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-89",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-90",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-91",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-92",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-93",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-94",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-95",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-96",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-97",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-98",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-99",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-100",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-101",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-102",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-103",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-104",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-105",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-106",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-107",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-108",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-109",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-110",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-111",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-112",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-113",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-114",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-115",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-116",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-117",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-118",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-119",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-120",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-121",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-122",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-123",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-124",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-125",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-126",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-127",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-128",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-129",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-130",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-131",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-132",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-133",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-134",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-135",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-136",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-137",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-138",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-139",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-140",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-141",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-142",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-143",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-144",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-145",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-146",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-147",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-148",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-149",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-150",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-151",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-152",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-153",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-154",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-155",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-156",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-157",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-158",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-159",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-160",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-161",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-162",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-163",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-164",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-165",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-166",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-167",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-168",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-169",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-170",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-171",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-172",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-173",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-174",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-175",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-176",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-177",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-178",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-179",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-180",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-181",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-182",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-183",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-184",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-185",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-186",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-187",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-188",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-189",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-190",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-191",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-192",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-193",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-194",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-195",
+      "answer": "no",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-196",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-197",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-198",
+      "answer": "yes",
+      "valid": true
+    },
+    {
+      "id": "constructed-Q5-199",
+      "answer": "yes",
+      "valid": true
+    }
+  ],
+  "elapsed_seconds": 2951.683544700005,
+  "model": "llama3.1:8b",
+  "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+  "device": "CPU, one inference thread",
+  "source": "constructed-writing-v1",
+  "items_file": "q5-writing-v1-items.json",
+  "cache_replay_verified": true,
+  "cache_replay_seconds": 0.054921000002650544,
+  "disabled_question_refused": true,
+  "production_scientific_admission": false
+}

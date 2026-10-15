@@ -1,0 +1,2602 @@
+[
+  {
+    "id": "constructed-Q5-0",
+    "context": "Alice carried the book.",
+    "text": "Alice said, \"Please bring the book.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:b057585a6758e70e4a7925131fc0105f1c951d7b705a3217fd42496eb3edcf07",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-1",
+    "context": "Bob carried the book.",
+    "text": "Bob carried the book without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:0ba10c433609f520b5e1ae2bacc05f8bd05a32558404825f3b0deebdf5590fc6",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-2",
+    "context": "Carol carried the book.",
+    "text": "\"Do not move the book,\" said Carol. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:c7db1059bbe53bc5ee4a712bcc07e8a4319e6b145c0092021ccedf61903938dd",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-3",
+    "context": "David carried the book.",
+    "text": "David silently watched the book. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:de181208e6f09a08c8e00caa04bd2d296f8d2ad09004043941b7e97500b7ea5c",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-4",
+    "context": "Elena carried the book.",
+    "text": "Elena said, \"Please bring the book.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:1eced0f3f6fe3d8a02e0457fb82de2184842981721fb15a9bc22ad8e6bab1ada",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-5",
+    "context": "Farah carried the book.",
+    "text": "Farah carried the book without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:1b5940d7c6647767c9ba6f1ff03a6526a45b41708dd8f51ce1d145632d27dd7c",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-6",
+    "context": "Grace carried the book.",
+    "text": "\"Do not move the book,\" said Grace. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:41e90f41fe0a1c93d0a97ace0023bc08e7c87658ad9ea1046c1541cda93c59a7",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-7",
+    "context": "Henry carried the book.",
+    "text": "Henry silently watched the book. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:6ea1431a75816676655fb5dd4b91ffb72e9447085f7a86f7a1ddf0a32548c15f",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-8",
+    "context": "Isabel carried the book.",
+    "text": "Isabel said, \"Please bring the book.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:e7e33812f8a9fda34c035a8cdba2f6f3a5c65f9091b1491c015460cdfd4b9f35",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-9",
+    "context": "Jonah carried the book.",
+    "text": "Jonah carried the book without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:9442d57ee2ae5529c71feb0ffcfb139d1569a158b91af7280e60698cfac574fd",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-10",
+    "context": "Kara carried the book.",
+    "text": "\"Do not move the book,\" said Kara. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:ea19571a6f0e571029802cf22e387bfd21f76d7894027043cb2a57d98c9ee614",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-11",
+    "context": "Liam carried the book.",
+    "text": "Liam silently watched the book. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:a303f0ed3010b84ba8f329b5ecfd0a3e566e4ace24222942bb348b63691fa5e1",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-12",
+    "context": "Maya carried the book.",
+    "text": "Maya said, \"Please bring the book.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:522f201188b3242e785782d2f45fd1e745dd61adbeaf15f9a44873c7d7b197c6",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-13",
+    "context": "Noah carried the book.",
+    "text": "Noah carried the book without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:d0e465184c74b26661b704ed3a6f0a3bedaf0c54f18debda336bbdd57f71a661",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-14",
+    "context": "Olivia carried the book.",
+    "text": "\"Do not move the book,\" said Olivia. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:20b463c8bcb801b0a68078f126565f6116dd1412f8f4a60845f631efef7fb18e",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-15",
+    "context": "Priya carried the book.",
+    "text": "Priya silently watched the book. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:7f45f2051044fc4307a00391a1e6b35ce47c7253cea3930c1a1259eaa73b870c",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-16",
+    "context": "Quinn carried the book.",
+    "text": "Quinn said, \"Please bring the book.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:8360ba81744f3dbd22747531884a961ada714cdedd0533618e71d54448ac7f6f",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-17",
+    "context": "Rosa carried the book.",
+    "text": "Rosa carried the book without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:bb81a9f972e9dcc36b6761a4720e5bdab07718697a19c76c605ce6f774709239",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-18",
+    "context": "Sam carried the book.",
+    "text": "\"Do not move the book,\" said Sam. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:0db0e087dcffa35c942803d9e871bdfbb21e5e87a2c4bb8da407315023935a5e",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-19",
+    "context": "Tara carried the book.",
+    "text": "Tara silently watched the book. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:4ebcbbec4d428e875d8d9d6c1003c134a8b0831765855b06ee7e6ac61a50d700",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-20",
+    "context": "Uma carried the book.",
+    "text": "Uma said, \"Please bring the book.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:0981625604984974edccd426782470d8aec3ceca5c85ce0d3abc5e39ff016227",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-21",
+    "context": "Victor carried the book.",
+    "text": "Victor carried the book without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:2b32f916f75dfb4edc1982a56b73f67d4c24fae2573a68e506499968da0a7bea",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-22",
+    "context": "Wendy carried the book.",
+    "text": "\"Do not move the book,\" said Wendy. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:ad0744230330127d46466d1b63b1230497b4b29d43ce17c0c361ed50bf2002d4",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-23",
+    "context": "Xavier carried the book.",
+    "text": "Xavier silently watched the book. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:c3e02ae991ea3419ea45369ec6e890dc32bdb64b0f5974a8408066edf7b77fb8",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-24",
+    "context": "Yara carried the book.",
+    "text": "Yara said, \"Please bring the book.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:1f1dbdbe675e72a55a642001ae37106a65f6a2567428db79162fad9b67654f23",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-25",
+    "context": "Alice carried the parcel.",
+    "text": "Alice carried the parcel without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:7a164e758bababab911450c0ebf7452f150ebb04f83898126d97156fdef38644",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-26",
+    "context": "Bob carried the parcel.",
+    "text": "\"Do not move the parcel,\" said Bob. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:65c116ff38afbd4509a04414299102295f2c3a2a0fe1ab8b8d33e3870d17f5be",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-27",
+    "context": "Carol carried the parcel.",
+    "text": "Carol silently watched the parcel. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:cc0bee12e46dbd2e164b9c605a4f8eb88f734c6b6f8e605578a3cddb07924128",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-28",
+    "context": "David carried the parcel.",
+    "text": "David said, \"Please bring the parcel.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:bccbc933cbe274c36cb51e3b2b71e0f3c33bd778f8649c1eeb1148b49b22ae45",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-29",
+    "context": "Elena carried the parcel.",
+    "text": "Elena carried the parcel without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:a15796dba1d9ea0dff205109560ae533bd7282e96eaabe6d1da42bff727033b9",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-30",
+    "context": "Farah carried the parcel.",
+    "text": "\"Do not move the parcel,\" said Farah. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:9160d685d4f59f55b6e26405ad88d1952bc7e481ed3b1adfc5e8102c9070ffc4",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-31",
+    "context": "Grace carried the parcel.",
+    "text": "Grace silently watched the parcel. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:84796970c731da4b6d48301ac4be5f4145616b90bd7e0cd187384d33a27a322f",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-32",
+    "context": "Henry carried the parcel.",
+    "text": "Henry said, \"Please bring the parcel.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:1afc48f8955538d747b5bce6ad2063f59a7fc12daa8c0341e9b96605f77f777a",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-33",
+    "context": "Isabel carried the parcel.",
+    "text": "Isabel carried the parcel without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:58baf777cabd6356b541e6107c15d334110aad775692d8f95807c5ab1edfa6fa",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-34",
+    "context": "Jonah carried the parcel.",
+    "text": "\"Do not move the parcel,\" said Jonah. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:ed32bd88877eb7a710400c6f5a422131737b07e18ba3fedb348afb77ad30aec2",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-35",
+    "context": "Kara carried the parcel.",
+    "text": "Kara silently watched the parcel. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:f405ccbf1036e0719768f7a6dcbbddfc703eddd9fd3709ceb396cd7d98e186e7",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-36",
+    "context": "Liam carried the parcel.",
+    "text": "Liam said, \"Please bring the parcel.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:27c1da9c2bedefea0cede2d2fdec65e56265064e6183547502b9c39197229a88",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-37",
+    "context": "Maya carried the parcel.",
+    "text": "Maya carried the parcel without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:24f80ecd1a0556812e5abd393067c9d7c80ad512b23b9d183368d35bc83db360",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-38",
+    "context": "Noah carried the parcel.",
+    "text": "\"Do not move the parcel,\" said Noah. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:770d81e162c1cbdb2d73384aa11889a43f222a860a1a17831457c17d7ad053ae",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-39",
+    "context": "Olivia carried the parcel.",
+    "text": "Olivia silently watched the parcel. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:8341d69421d9c61e765fce0ca6a04ec84d6843659e08c85ea5a8fd2085e59c10",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-40",
+    "context": "Priya carried the parcel.",
+    "text": "Priya said, \"Please bring the parcel.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:c30b84a17fe039c138edf422aeebd20447e0349e7e33d73cb634a036ea6dc5b2",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-41",
+    "context": "Quinn carried the parcel.",
+    "text": "Quinn carried the parcel without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:7b861f2e49ca4e1efa476cbdc7704f8afffefa438c1997f3f3355ef8faba79b1",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-42",
+    "context": "Rosa carried the parcel.",
+    "text": "\"Do not move the parcel,\" said Rosa. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:bbb73bf816205b92457ad2a3bd9b5157d0eb0fbdef5246e77252c82d44bbcba3",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-43",
+    "context": "Sam carried the parcel.",
+    "text": "Sam silently watched the parcel. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:df64879dca54269bbfe43603f49871c3793ae67d13ab94a115fdcd7e2ea560b9",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-44",
+    "context": "Tara carried the parcel.",
+    "text": "Tara said, \"Please bring the parcel.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:39edf1b6aa2719d05f00d53b199c8d6300ca1190ed79686c3c2fb01cfcd0a8fd",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-45",
+    "context": "Uma carried the parcel.",
+    "text": "Uma carried the parcel without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:b2310c77ddf8d0a7aeaf72f20fe09c02ebb497b8a415d75d9ab1a91f7771e723",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-46",
+    "context": "Victor carried the parcel.",
+    "text": "\"Do not move the parcel,\" said Victor. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:5ce58440107760a1066224a592b987ca90e642d1bdd5af1a1afa9678fcc5a8fd",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-47",
+    "context": "Wendy carried the parcel.",
+    "text": "Wendy silently watched the parcel. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:b5581bc86a8f46730ba9aec33bc991a2023739a90ab8938d011b07f8149b9c21",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-48",
+    "context": "Xavier carried the parcel.",
+    "text": "Xavier said, \"Please bring the parcel.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:0d091fbd8ada999b8b1a88135c6790f30a83d35feba524f1576366d450f99017",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-49",
+    "context": "Yara carried the parcel.",
+    "text": "Yara carried the parcel without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:37b150dc072728407f156fbc15513143982539b57ca0b9626359211135bfe9b7",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-50",
+    "context": "Alice carried the lamp.",
+    "text": "\"Do not move the lamp,\" said Alice. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:c47e4ebb9a1fbe1231ca909165c1bcf9c91b7d120f3c7fd36da24a2c62b825ef",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-51",
+    "context": "Bob carried the lamp.",
+    "text": "Bob silently watched the lamp. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:8c29bc7623cb11c82dc82c0c91a2cda0b111fa5c034915b1176fd0670270dddb",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-52",
+    "context": "Carol carried the lamp.",
+    "text": "Carol said, \"Please bring the lamp.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:b7d5c78c7883c8ab8b57dc063d23acf8b7c6112b06ee19874edd2fe9b3d471e4",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-53",
+    "context": "David carried the lamp.",
+    "text": "David carried the lamp without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:b73fb8654406b4d2f760ac42421ce0d8b0cb72a424ab676759af303922b7696d",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-54",
+    "context": "Elena carried the lamp.",
+    "text": "\"Do not move the lamp,\" said Elena. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:774ec6b4382c8eb224d6fcde7d4eeeec04e8a30565ac2b66c64a83a9a9dd795a",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-55",
+    "context": "Farah carried the lamp.",
+    "text": "Farah silently watched the lamp. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:e10ec7d129cae73be06d6e3cd75eb95ee1fada5752b862a66ef3c4594b1f0641",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-56",
+    "context": "Grace carried the lamp.",
+    "text": "Grace said, \"Please bring the lamp.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:f4aee49849938f15568b797c8477cbafb6a0d41b0b41c18eb49d72b75a1e239c",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-57",
+    "context": "Henry carried the lamp.",
+    "text": "Henry carried the lamp without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:338f36624d2870365c82725a3544d6b4ca4c696749e735be7c5e69fe4ffac786",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-58",
+    "context": "Isabel carried the lamp.",
+    "text": "\"Do not move the lamp,\" said Isabel. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:bf30c459dc922ced23855949393b7a03179d4b1ae39bb52801d86c505f0a9cf7",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-59",
+    "context": "Jonah carried the lamp.",
+    "text": "Jonah silently watched the lamp. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:49931ddc1375ab64141b7ae9d4b4f34732bc5ce6da8ce9bf66fe81f0316c7780",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-60",
+    "context": "Kara carried the lamp.",
+    "text": "Kara said, \"Please bring the lamp.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:0b82a714ac0242874d71b9bb2842bb0018f4f66af997bfdd5d41966cbf7eafcd",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-61",
+    "context": "Liam carried the lamp.",
+    "text": "Liam carried the lamp without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:e16e2a4f76cad74e9427c1a084618681a7180d48a7cf9d37e19ba5570d5e20a1",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-62",
+    "context": "Maya carried the lamp.",
+    "text": "\"Do not move the lamp,\" said Maya. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:7507f84d4d1aeffa9d12f59a9a573fe65d9141cc26b508c2ee88c9b0284ee961",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-63",
+    "context": "Noah carried the lamp.",
+    "text": "Noah silently watched the lamp. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:b226bddec50aab176f3164e2e5d24305c4dcca0d1c8271f8d1c0d781c51f16c3",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-64",
+    "context": "Olivia carried the lamp.",
+    "text": "Olivia said, \"Please bring the lamp.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:be8c6e226f21640897a8a138d6bd046df59ffa8ee8179b90273e54beba64a25d",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-65",
+    "context": "Priya carried the lamp.",
+    "text": "Priya carried the lamp without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:cb54f49d73a03ea082c9c18ba7ccf8391ace4aa080d25a47eb9e759335f8206e",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-66",
+    "context": "Quinn carried the lamp.",
+    "text": "\"Do not move the lamp,\" said Quinn. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:7882708d1ac629945feb6290767ce7d3b1c789d65cf0d9d2bdfa3cf9f74a9f37",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-67",
+    "context": "Rosa carried the lamp.",
+    "text": "Rosa silently watched the lamp. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:644939550cf85d2622808c77e68f6b6c4a359593c33121c42c159f32b33e0029",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-68",
+    "context": "Sam carried the lamp.",
+    "text": "Sam said, \"Please bring the lamp.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:69df7c204b2d6af41eb4ff9331fa3561a7e1af45697f273b545308eb991430c1",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-69",
+    "context": "Tara carried the lamp.",
+    "text": "Tara carried the lamp without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:b99a09530b85e433ca2e9420adf987877e3c39976e56b09a60ac13b17b30e2d3",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-70",
+    "context": "Uma carried the lamp.",
+    "text": "\"Do not move the lamp,\" said Uma. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:e00e1b41332d134087f6ee503765e2b062bcdbbba06f992fa2a4a20c377ea7ca",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-71",
+    "context": "Victor carried the lamp.",
+    "text": "Victor silently watched the lamp. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:d4152c35929754ee188a84791788151d583c33d526e037ecfe77d8772ceb4039",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-72",
+    "context": "Wendy carried the lamp.",
+    "text": "Wendy said, \"Please bring the lamp.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:18b378552035fb1c6a99f7837e5fa0421e3f84c2e7074687b764a70e1cece56c",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-73",
+    "context": "Xavier carried the lamp.",
+    "text": "Xavier carried the lamp without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:51dbd0eaeee4b70b37d0d865d310f7d462cae961558e8f38dfbee61370fce45d",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-74",
+    "context": "Yara carried the lamp.",
+    "text": "\"Do not move the lamp,\" said Yara. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:aef033cd334d9bef047065c9cb6be3906f96fe9e596ed3c671d94e8f8ebec9cd",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-75",
+    "context": "Alice carried the chair.",
+    "text": "Alice silently watched the chair. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:1826fe664e016e14aecd5d3422ef06bbe80ec6cdf194ae4eb88b1615bf2f7c3e",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-76",
+    "context": "Bob carried the chair.",
+    "text": "Bob said, \"Please bring the chair.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:0bb0f5c22ed29f59381f57bf12df958ed37fc3206c7ca4814654a97266f574c8",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-77",
+    "context": "Carol carried the chair.",
+    "text": "Carol carried the chair without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:ff194330f7366cc57e53fdfce18bf3efd3f3139a468179333a46dcfe4db876aa",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-78",
+    "context": "David carried the chair.",
+    "text": "\"Do not move the chair,\" said David. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:57660a58792ba79ef512882c4cbb111442ce3700cbb554143ec5389413488e14",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-79",
+    "context": "Elena carried the chair.",
+    "text": "Elena silently watched the chair. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:e93764c5d7389f084e76375d4994665082faee20963a1467ef0ca6637a0c9920",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-80",
+    "context": "Farah carried the chair.",
+    "text": "Farah said, \"Please bring the chair.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:68a4a661d5be6954a5fea461d5ad37faf275319f46061824dc961a8d3dc13f85",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-81",
+    "context": "Grace carried the chair.",
+    "text": "Grace carried the chair without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:6afb134256f43042d1975674b716e2f1771723d4928a6d05db2d0f2ff9f34b26",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-82",
+    "context": "Henry carried the chair.",
+    "text": "\"Do not move the chair,\" said Henry. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:f28383762073c00f448fef4ee4aad86daa945b3bc9861cea2607aca9dc8501cf",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-83",
+    "context": "Isabel carried the chair.",
+    "text": "Isabel silently watched the chair. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:38df245853055edbe173c27cada08a862ad46331e46854b0a4f2cfdbb0c2d47e",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-84",
+    "context": "Jonah carried the chair.",
+    "text": "Jonah said, \"Please bring the chair.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:a8b97162bb645aaa502cf76e169a3ddbb7cc6b888c41f9b0e77d9659ffce9981",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-85",
+    "context": "Kara carried the chair.",
+    "text": "Kara carried the chair without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:fd996c2e20fc956487bf35345a0f182ba61c1510066e3ca954390c3563be21d0",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-86",
+    "context": "Liam carried the chair.",
+    "text": "\"Do not move the chair,\" said Liam. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:f8b506ee46a60b3f6505be86b4027edaee1d7dfa82786243d9f5364842da5efa",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-87",
+    "context": "Maya carried the chair.",
+    "text": "Maya silently watched the chair. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:37ac998efcd934e02513998c88763a25d1314c0ceb01229d028a2741844ee659",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-88",
+    "context": "Noah carried the chair.",
+    "text": "Noah said, \"Please bring the chair.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:84b76f91965ba99ea5eeae4b9a4ddfe8e8b5e1beb6ff0860d67a614592f4effe",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-89",
+    "context": "Olivia carried the chair.",
+    "text": "Olivia carried the chair without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:07b1114dcfd055119b0d96d206ab72400b67fa7bfba758900b00a960b2fbf842",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-90",
+    "context": "Priya carried the chair.",
+    "text": "\"Do not move the chair,\" said Priya. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:9fe7109be6b519843d0aadb675a955c35e1871b8a00a54c65809f3a01af7c730",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-91",
+    "context": "Quinn carried the chair.",
+    "text": "Quinn silently watched the chair. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:5fc8ca9cc548d8d15a15815e06a97f00d5f4c79ec0c572aeb3668b3b7c6ae1d5",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-92",
+    "context": "Rosa carried the chair.",
+    "text": "Rosa said, \"Please bring the chair.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:f861d7a1d9cffc2cde75e086da5e82e930442de61d61f562b726ab15b4041274",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-93",
+    "context": "Sam carried the chair.",
+    "text": "Sam carried the chair without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:0c53c11337e571e606109217182f3a6ae074e90c94e0288fe00b553695bea63e",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-94",
+    "context": "Tara carried the chair.",
+    "text": "\"Do not move the chair,\" said Tara. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:b41588f298b1e420223c747a8d352e69083605b8d8dfc15c9aa2cafabaeaeb13",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-95",
+    "context": "Uma carried the chair.",
+    "text": "Uma silently watched the chair. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:f828c8b735290fc769d718d052b844bc3cc9f5609a275e99ab8793893fdc1231",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-96",
+    "context": "Victor carried the chair.",
+    "text": "Victor said, \"Please bring the chair.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:8510d6287824240cf6c2407f91d2d646a0b240cede323ae5f77f30077a6f5eed",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-97",
+    "context": "Wendy carried the chair.",
+    "text": "Wendy carried the chair without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:7efefb5bf404155a7518fb444a305c60ca4590e1d77851ac41c10941dcb704c2",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-98",
+    "context": "Xavier carried the chair.",
+    "text": "\"Do not move the chair,\" said Xavier. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:78c3f9c25a5a3e55e57da613127d7eda40bafde8eeaa3036bed14081b055f2a2",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-99",
+    "context": "Yara carried the chair.",
+    "text": "Yara silently watched the chair. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:18c3193ee4a42f00d475fe22d3eeeab9c5925a6dd95ef65274a15e510af1eb00",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-100",
+    "context": "Alice carried the scarf.",
+    "text": "Alice said, \"Please bring the scarf.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:c2dd2044c9c15468d56604daf36b64040c198f8154010d4ff1f0289bdd6231b8",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-101",
+    "context": "Bob carried the scarf.",
+    "text": "Bob carried the scarf without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:3604a5d6ba0383bc915e02a5ca93a709e2c5d4bef1c87275439d68133ff8f42d",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-102",
+    "context": "Carol carried the scarf.",
+    "text": "\"Do not move the scarf,\" said Carol. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:da86a4f0bef8d8be34a35f8df9bc7581740e3edcb06be589b5886c51740b338d",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-103",
+    "context": "David carried the scarf.",
+    "text": "David silently watched the scarf. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:46f208f97035492b58c4ccf5bf48bb13480db1249dc312b0e4c56baeba5d8756",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-104",
+    "context": "Elena carried the scarf.",
+    "text": "Elena said, \"Please bring the scarf.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:118e75dd9b8470f6a7ef0c15d5611b060409145c793ed954fa8a8fc4fd36ba33",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-105",
+    "context": "Farah carried the scarf.",
+    "text": "Farah carried the scarf without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:ebc957cac3a8ff8404c82891912ca41fd21acd044047e0469aeb87ee6a8625d0",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-106",
+    "context": "Grace carried the scarf.",
+    "text": "\"Do not move the scarf,\" said Grace. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:061836e3de8c513b37c9202f8b1b2e69db0862656d9d84c9bf06ea2993730f6c",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-107",
+    "context": "Henry carried the scarf.",
+    "text": "Henry silently watched the scarf. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:c2f6bc8f89fa472de8de4c3d685beb138f3dd25faead98ff6fea592abdd636b8",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-108",
+    "context": "Isabel carried the scarf.",
+    "text": "Isabel said, \"Please bring the scarf.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:3feff71ae5dda33ba7960f24220ace87a2fa639fc6a905c68197857b4971f9f9",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-109",
+    "context": "Jonah carried the scarf.",
+    "text": "Jonah carried the scarf without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:0d8fd6043a4103493bd8d6b5f136cbc314994fa77c01902211c8a87c4002543e",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-110",
+    "context": "Kara carried the scarf.",
+    "text": "\"Do not move the scarf,\" said Kara. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:d98eec53f4920c33577af209eba9eafb8482b751a53512b5cf728477d9a4f7b4",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-111",
+    "context": "Liam carried the scarf.",
+    "text": "Liam silently watched the scarf. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:beae54958ad099da99a8e4df409052846033570144277fe8f8c6134554b888c5",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-112",
+    "context": "Maya carried the scarf.",
+    "text": "Maya said, \"Please bring the scarf.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:2ddcd0eaaee833ce182d52cd4754a973161b147e5eec5e756ef6d7b8576f2c0e",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-113",
+    "context": "Noah carried the scarf.",
+    "text": "Noah carried the scarf without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:840f23c562a06e677c3c0ee644b3f9af5f3ae7c96e261d239a46e440ec7a7d7c",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-114",
+    "context": "Olivia carried the scarf.",
+    "text": "\"Do not move the scarf,\" said Olivia. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:86365e4b40bc7052a95107a8aefc77eeafc364c590324b34a0ed0803ec434a0b",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-115",
+    "context": "Priya carried the scarf.",
+    "text": "Priya silently watched the scarf. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:e618adf0eb8419c69e909ba67ced73043306cc9afd09b184ed83a39a5b8d0cf7",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-116",
+    "context": "Quinn carried the scarf.",
+    "text": "Quinn said, \"Please bring the scarf.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:58bd769bb42e6235f5c7b339a1ce50934d5fa16efd41fb7272c6792d6ac893b8",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-117",
+    "context": "Rosa carried the scarf.",
+    "text": "Rosa carried the scarf without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:bed5db28ca30496a34691876461e69c3c0d3c51abb21dd36b3d05fb1c8f0e11d",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-118",
+    "context": "Sam carried the scarf.",
+    "text": "\"Do not move the scarf,\" said Sam. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:7492186022ede65de0376e58f34909b6ef6f6e9b510b17b402496462c50460fe",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-119",
+    "context": "Tara carried the scarf.",
+    "text": "Tara silently watched the scarf. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:3ba50e4b11dbb4168f4de6f8609aef27c17e60eeff49fed03f7bfe260db824d7",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-120",
+    "context": "Uma carried the scarf.",
+    "text": "Uma said, \"Please bring the scarf.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:efe36a119fc9915d2053c0f910a0aecb9f66f678df61455e6dde53a28baa20d7",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-121",
+    "context": "Victor carried the scarf.",
+    "text": "Victor carried the scarf without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:eeaa2bf64bb639b5e5c9ae4794e060b332547eecb0cda850d24ff0f72042054c",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-122",
+    "context": "Wendy carried the scarf.",
+    "text": "\"Do not move the scarf,\" said Wendy. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:d394aa97ab4bd0e71f27b83e66b6ce5716193f1aa85a97819e86d0928345e2e2",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-123",
+    "context": "Xavier carried the scarf.",
+    "text": "Xavier silently watched the scarf. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:d02b308f8b6c7f4c21f7d090eb0aaebf591240988c111f34a3938f05001a465b",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-124",
+    "context": "Yara carried the scarf.",
+    "text": "Yara said, \"Please bring the scarf.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:4d90da145dc5357a33306545019ce1a8b1f5965cf5e908d17f03f5eef09b9bd8",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-125",
+    "context": "Alice carried the basket.",
+    "text": "Alice carried the basket without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:ddc94bc36f25166f50a3b17f4222677074b85f72d3396ce6d9a00b1d7d905701",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-126",
+    "context": "Bob carried the basket.",
+    "text": "\"Do not move the basket,\" said Bob. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:f9d13a76daa8bd4b324dcc44aaf2568d2cd8298fc9137bdddde46015308eb1b9",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-127",
+    "context": "Carol carried the basket.",
+    "text": "Carol silently watched the basket. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:53b9fac7301a9254f862dd69bd62d11a2f26967b96f84a183fe11a1218c2f072",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-128",
+    "context": "David carried the basket.",
+    "text": "David said, \"Please bring the basket.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:a9949ed7b6383d083ea2fe6a7b180ce10f37a2618b391dd77dc1920e409f2fe5",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-129",
+    "context": "Elena carried the basket.",
+    "text": "Elena carried the basket without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:8e6a92ed6d5047869cc88b076c474c19e256ee57557bddd9019a4cf5fbb55a4f",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-130",
+    "context": "Farah carried the basket.",
+    "text": "\"Do not move the basket,\" said Farah. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:c2ad54daf6eacd097032e276c2c240cc1d801ce3a555df6f091434891ce4bc8c",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-131",
+    "context": "Grace carried the basket.",
+    "text": "Grace silently watched the basket. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:2b1b332b186416d573fe0f63a89c08365df0c3bf770ab2109fe1fd0bf622722c",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-132",
+    "context": "Henry carried the basket.",
+    "text": "Henry said, \"Please bring the basket.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:87066eeaca21d566d6f32c640e2d00e4e09f3ce1a2789235e4e36c72306074fc",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-133",
+    "context": "Isabel carried the basket.",
+    "text": "Isabel carried the basket without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:a83d62c32c69aaf980906da7906923a5e16213efc718f5cda8dbfdc538e05aa4",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-134",
+    "context": "Jonah carried the basket.",
+    "text": "\"Do not move the basket,\" said Jonah. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:50cae93982e3d5fca204129d64922a6b378eb887edba9046ea7715e773388539",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-135",
+    "context": "Kara carried the basket.",
+    "text": "Kara silently watched the basket. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:0b23ca22dfe26a121fa257e5d3df5d186daf06f30b974f006aea379c88e319a7",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-136",
+    "context": "Liam carried the basket.",
+    "text": "Liam said, \"Please bring the basket.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:aba38f0f16c44e7415bf553500c72fdc1ecf831e5bdc57f4a5f9a8369823c7d7",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-137",
+    "context": "Maya carried the basket.",
+    "text": "Maya carried the basket without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:930365e7c7504fa35f02265b1cf52f94bd406cfbf36e2ab497a52a10ae193a1b",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-138",
+    "context": "Noah carried the basket.",
+    "text": "\"Do not move the basket,\" said Noah. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:036891b4d1e2893ffb1ea4494d4c4717256e52124c093054ac449cbb4eb2ae8d",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-139",
+    "context": "Olivia carried the basket.",
+    "text": "Olivia silently watched the basket. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:282a68f5129d12de3d6e7bba0d13495b73ec9150bcc48264f8f1c9f1a3610645",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-140",
+    "context": "Priya carried the basket.",
+    "text": "Priya said, \"Please bring the basket.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:013fcbfff0a3cff93b87599aef7bc88fb5d18d47070acb626235a42542e37eb7",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-141",
+    "context": "Quinn carried the basket.",
+    "text": "Quinn carried the basket without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:81a85a79e7c371bbf3a48d77b562e081a4baaa1dfc4bd9074912b36b36355b79",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-142",
+    "context": "Rosa carried the basket.",
+    "text": "\"Do not move the basket,\" said Rosa. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:eeb9a801ec45030c1bf4193eb263cb707e8c55f0231344dacf7cc122c517eba1",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-143",
+    "context": "Sam carried the basket.",
+    "text": "Sam silently watched the basket. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:b73dff9cabab3f683fdaee30f9f330db1a057d6866a5798b861baf76ae5c49ec",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-144",
+    "context": "Tara carried the basket.",
+    "text": "Tara said, \"Please bring the basket.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:1ce5e3f67394d668d3eb8d51a043f5ad09717042beccd895301b4d234b8685e6",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-145",
+    "context": "Uma carried the basket.",
+    "text": "Uma carried the basket without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:c2557d2d8f801c874866f84eac157bcb867539ae256795c685a01c847e738f65",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-146",
+    "context": "Victor carried the basket.",
+    "text": "\"Do not move the basket,\" said Victor. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:90f8411b07165ea1771e4cfd27425b709f0fdd85156b1349f80aa7d093b56181",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-147",
+    "context": "Wendy carried the basket.",
+    "text": "Wendy silently watched the basket. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:03e43532469b838e1fa8ece047c6e570017644aea7fc289a79de7678faeb4631",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-148",
+    "context": "Xavier carried the basket.",
+    "text": "Xavier said, \"Please bring the basket.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:f36ed5e32380f8b87f8e8ca1251f3c51ec3717d392196723b02a02a06eb7de31",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-149",
+    "context": "Yara carried the basket.",
+    "text": "Yara carried the basket without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:d267cb1fd779de4f4353f7fda6c341a75dd61d4ea72219cd21f1afe4c2bf441c",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-150",
+    "context": "Alice carried the bottle.",
+    "text": "\"Do not move the bottle,\" said Alice. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:6eb479593abf30887a94ec0817ac9ed41dd3010c62c19f715285b6ef4df4acdc",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-151",
+    "context": "Bob carried the bottle.",
+    "text": "Bob silently watched the bottle. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:67faad126a24904642124fdfc530fd83e5e06cd71050f36e2c2af40153d7563e",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-152",
+    "context": "Carol carried the bottle.",
+    "text": "Carol said, \"Please bring the bottle.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:32d6f2185c994e4bb0e946d2b1c46bbbf4cff31e40f020c64dc5eb942f4ed0b2",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-153",
+    "context": "David carried the bottle.",
+    "text": "David carried the bottle without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:d1d5599985856a91405de463185697e837c0ec56a68e6533056046b56b0568ea",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-154",
+    "context": "Elena carried the bottle.",
+    "text": "\"Do not move the bottle,\" said Elena. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:71464d584936b09e22941b67d86bed8201e06cbc810a77220065f4b2e3130c7e",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-155",
+    "context": "Farah carried the bottle.",
+    "text": "Farah silently watched the bottle. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:e8196b6f50be2bdbc84a01675f05dc13c3c98641d1e3a8dcad3ff87c10c58a07",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-156",
+    "context": "Grace carried the bottle.",
+    "text": "Grace said, \"Please bring the bottle.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:ff6a02bcedc5792c5a3b295ffd7a8337b13c46081540eda3784f56213178deee",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-157",
+    "context": "Henry carried the bottle.",
+    "text": "Henry carried the bottle without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:c68d72944ae9e2f8ed33371e7f3fca0529c202d46f9e278ab0836268ef0737f1",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-158",
+    "context": "Isabel carried the bottle.",
+    "text": "\"Do not move the bottle,\" said Isabel. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:b44ed4de2dba2bde0556a1524c869b2e10bb86e8ae0fbc051f9eecbdcbc909eb",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-159",
+    "context": "Jonah carried the bottle.",
+    "text": "Jonah silently watched the bottle. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:998fecee75c2c9d507c6d5965685aeeda83ff4055b116f3fecae0b5cabaa3420",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-160",
+    "context": "Kara carried the bottle.",
+    "text": "Kara said, \"Please bring the bottle.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:b10d17f263cd841e7e918c7b489a7e7f7e2b234fa9eb04ddb25226715e8e2259",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-161",
+    "context": "Liam carried the bottle.",
+    "text": "Liam carried the bottle without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:2338799b0edb3b9cf1d3cfb5814968175a42b2c9b64a16f8a0261d5bd032a622",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-162",
+    "context": "Maya carried the bottle.",
+    "text": "\"Do not move the bottle,\" said Maya. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:d5b1ebd1d90bb81a82518861d2013838b359d307cacfc3908466328c97bea6a2",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-163",
+    "context": "Noah carried the bottle.",
+    "text": "Noah silently watched the bottle. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:74b9af3f1d407b090def7f834a017bb61b6e6a2cf112ba060aca313a65fff004",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-164",
+    "context": "Olivia carried the bottle.",
+    "text": "Olivia said, \"Please bring the bottle.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:d47a8720096e59186034e60e767452e50d9c9c0ad1f48024aeac5fc830460483",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-165",
+    "context": "Priya carried the bottle.",
+    "text": "Priya carried the bottle without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:873c6d636d5f25b3b75869dc7e6832e836fd36b6176315d8cadfc312b78ea602",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-166",
+    "context": "Quinn carried the bottle.",
+    "text": "\"Do not move the bottle,\" said Quinn. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:3325f3c5c722c9a017787715da9b525b5dce7d06895f5a5b4817e42f845d6cad",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-167",
+    "context": "Rosa carried the bottle.",
+    "text": "Rosa silently watched the bottle. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:540f3f970c8b5ec0d67c76d860c9a3fd2395a62bff39123ac80a0e81ec7c917d",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-168",
+    "context": "Sam carried the bottle.",
+    "text": "Sam said, \"Please bring the bottle.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:2c660552677ec857c3a02a5c38be68717ed751744254c7879f7206ac0fa10939",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-169",
+    "context": "Tara carried the bottle.",
+    "text": "Tara carried the bottle without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:b2ae823446ddacce663d30306ac2974f08e3805689f6b0564628d9909b83c221",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-170",
+    "context": "Uma carried the bottle.",
+    "text": "\"Do not move the bottle,\" said Uma. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:c45f02f567004d2b3b7a80c8b46fe8484a8223f72cdc423b2366dcd9d1f78b50",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-171",
+    "context": "Victor carried the bottle.",
+    "text": "Victor silently watched the bottle. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:10e48249c21fa3b0c7a8cd6cd28d3d929cbaa021e7983536a64bf02b79e1b6a8",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-172",
+    "context": "Wendy carried the bottle.",
+    "text": "Wendy said, \"Please bring the bottle.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:ff096a34b057ef662ad51ac2bd614b9cd072f6c5139a0705c59e7b3520912f2b",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-173",
+    "context": "Xavier carried the bottle.",
+    "text": "Xavier carried the bottle without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:51190d42d37f03dc6c59e70622c758ad4c6fa47cf07152aee7ba5f46d1ce12a5",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-174",
+    "context": "Yara carried the bottle.",
+    "text": "\"Do not move the bottle,\" said Yara. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:99a5a0b63a3160266e4fc9b20805871dfc0d7014a27f273904b8de60ab3189d4",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-175",
+    "context": "Alice carried the coat.",
+    "text": "Alice silently watched the coat. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:ddf37b6c3eef93712e8b03e31f8bdc5753cd7e1e5715e284cbfe3067d32abb8a",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-176",
+    "context": "Bob carried the coat.",
+    "text": "Bob said, \"Please bring the coat.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:07ebcb015cd9a5c23e6836d777eeb1e0875c259aafda0b3d35e74f98135a7618",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-177",
+    "context": "Carol carried the coat.",
+    "text": "Carol carried the coat without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:4e942a2c5cb52b3bd648f4ad3170b4d6ab4d2084accaf532b5dd2110c35df3ba",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-178",
+    "context": "David carried the coat.",
+    "text": "\"Do not move the coat,\" said David. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:3e1464e91e9d3b1af88ddff26d9f8a2b27aa2d462029e6b3c2ff82411aef43a5",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-179",
+    "context": "Elena carried the coat.",
+    "text": "Elena silently watched the coat. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:f37e33135a29d71a8f7c83586c4639d907d85eebf1e95980d7913ae18bae14c8",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-180",
+    "context": "Farah carried the coat.",
+    "text": "Farah said, \"Please bring the coat.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:1d7572e57aceaa4e8e5d55c496303eda624fd5029468efb5bd48c8051e13e494",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-181",
+    "context": "Grace carried the coat.",
+    "text": "Grace carried the coat without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:27038afd77fa20f5e2bf3e17111b25e3f68fda92010cbb0a33705912f3c1543f",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-182",
+    "context": "Henry carried the coat.",
+    "text": "\"Do not move the coat,\" said Henry. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:dc80dac217e235d7dcf10e838179bb25297e770b536855494014fc9423a4e32b",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-183",
+    "context": "Isabel carried the coat.",
+    "text": "Isabel silently watched the coat. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:3d81d70eece2377b5b9a3c51790c7149b433f944a8a76f6435a3e74b39624e31",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-184",
+    "context": "Jonah carried the coat.",
+    "text": "Jonah said, \"Please bring the coat.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:cd96a6abab3f21084b25dca690cd5dea09e8c1a0af65f5cac235ff3113f3cc06",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-185",
+    "context": "Kara carried the coat.",
+    "text": "Kara carried the coat without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:50103af2767d71d1d029fc17baead3126680f64452e05a24539d94b2747d2795",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-186",
+    "context": "Liam carried the coat.",
+    "text": "\"Do not move the coat,\" said Liam. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:7eeb02b0547ef488bd38189bd5a86bdf8772718836caa1bada9448f65f98ceca",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-187",
+    "context": "Maya carried the coat.",
+    "text": "Maya silently watched the coat. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:83088a126e841062dbe0e24f1ea79c3dc824287e7324eac0c2d1e0ab81f0bef6",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-188",
+    "context": "Noah carried the coat.",
+    "text": "Noah said, \"Please bring the coat.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:ee90e14c80eaa92898dd697cf6e5abb831930fbed74baaa214745b7856124d7a",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-189",
+    "context": "Olivia carried the coat.",
+    "text": "Olivia carried the coat without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:0653008f8206b70d42cffe20d57778d6edb01b388469ed0b772b24dd097b46cf",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-190",
+    "context": "Priya carried the coat.",
+    "text": "\"Do not move the coat,\" said Priya. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:41022090465563b6f3730a9a159bedd17d4d340946b4bed457ad5d0d6f4b8719",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-191",
+    "context": "Quinn carried the coat.",
+    "text": "Quinn silently watched the coat. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:b2edb1f1e9c6bc8641196b2217e82dbfc0114d47ac0203f0d0d040ae50de58a7",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-192",
+    "context": "Rosa carried the coat.",
+    "text": "Rosa said, \"Please bring the coat.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:4bbdb3491dfc577ec5c36f3ea0564f84dac56adff796c8fa37eb980ad3772d67",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-193",
+    "context": "Sam carried the coat.",
+    "text": "Sam carried the coat without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:669dd4b77620fb704c0d2de1f607fb51bc06bdb844f3d73e1496dc71e8fdbfd6",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-194",
+    "context": "Tara carried the coat.",
+    "text": "\"Do not move the coat,\" said Tara. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:ba891e73f61af095f281b12b9fbd68a44c93d6ad255567e69f99e64cbe6217c2",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-195",
+    "context": "Uma carried the coat.",
+    "text": "Uma silently watched the coat. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:19c8d56cfeb65e1150b713e6d43d09b77eed4ab9f22ad4529a8044e9be79bed1",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-196",
+    "context": "Victor carried the coat.",
+    "text": "Victor said, \"Please bring the coat.\" \"Certainly,\" came the reply.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:9f4f77ed7104236432d57da13cdc09d090a032e165497900bc3af58c0baffd93",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-197",
+    "context": "Wendy carried the coat.",
+    "text": "Wendy carried the coat without speaking.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:bbcf2cf7889674d325bcdb399ed4986efa2bfb01eb28963d0435dd12f0e6b90e",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ],
+    "crosscheck": "no"
+  },
+  {
+    "id": "constructed-Q5-198",
+    "context": "Xavier carried the coat.",
+    "text": "\"Do not move the coat,\" said Xavier. \"I will leave it here,\" replied a friend.",
+    "before": null,
+    "expected": "yes",
+    "source": "constructed-writing-v1:2746deb5c62e62b5bde03da675f426910c56a8427bd0c108ba75471d0c92b596",
+    "tags": [
+      "negation",
+      "family-2"
+    ],
+    "crosscheck": "yes"
+  },
+  {
+    "id": "constructed-Q5-199",
+    "context": "Yara carried the coat.",
+    "text": "Yara silently watched the coat. No conversation took place.",
+    "before": null,
+    "expected": "no",
+    "source": "constructed-writing-v1:5414801b3ef885309d7005a60f0dac3269295cb69ca2b75ec433ce5013384beb",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ],
+    "crosscheck": "no"
+  }
+]

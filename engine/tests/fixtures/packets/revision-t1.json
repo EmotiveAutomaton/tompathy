@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.7",
-  "id": "d2361dc2ed9cb2ee949a05c0542556154dd72bd2c1f9c8eb61d0d13112280d0b",
+  "id": "7ce9aac7575b2548fe7bfed4e0ba842f53a60e7d72ec778f3e945b1345ceb27c",
   "revision": 1,
   "artifact": {
     "id": "https://example.org/engine-fixture",
@@ -34,7 +34,8 @@
   },
   "provider": {
     "id": "tompathy-engine",
-    "method": "ToMpathy engine 0.1.0a1; commit 29728faeacb5408ce42a3d0b86deb9c1a4080831 + local engine changes; implementation d2759066839bf8293d8d8a84f0c99b778f27813969945639f9c25ec1825ac441; evidence tier T1; domain writing. Observed capture and ledger records only. Text alone does not update maker preferences. Available scientific module admissions: none. Fitted estimate contributions: none."
+    "method": "ToMpathy engine 0.1.0a1; commit 2a0c54233344ae3f64bed9806442289d7dab726a + local engine changes; implementation f8207f2b65e12885f1493555bab2792b1050495ea7231324f9d0760e94626fca; evidence tier T1; domain writing. Observed capture and ledger records only. Text alone does not update maker preferences. Actual contributing admission records are in provider.admissions.",
+    "admissions": []
   },
   "origin": "synthetic example",
   "scope": {

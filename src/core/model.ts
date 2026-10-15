@@ -244,7 +244,11 @@ export const PacketSchema = z
     id,
     revision: z.number().int().positive(),
     artifact: ArtifactSchema,
-    provider: z.object({ id, method: z.string().min(1).max(1000) }),
+    provider: z.object({
+      id,
+      method: z.string().min(1).max(1000),
+      admissions: z.array(z.string().min(1).max(500)).max(100).optional(),
+    }),
     origin: z.enum(["synthetic example", "imported", "live provider"]),
     scope: z.object({
       kind: z.enum(["artifact", "context"]),

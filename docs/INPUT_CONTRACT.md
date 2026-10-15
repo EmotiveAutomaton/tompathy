@@ -16,6 +16,11 @@ Provider selection defaults to None. Options accepts an HTTPS registry or a toke
 Version 1.7 retains all earlier fields. The engine brief originally assigned these
 additions to 1.5; that version and 1.6 already shipped other reader fields.
 
+- Optional `provider.admissions` lists at most 100 actual contributing module and
+  question-battery identifiers. The bounded `provider.method` explains the engine
+  version, implementation pin and evidence semantics. Admission availability is
+  reported by service health; an unused admission is not a packet contributor.
+
 - A value hypothesis may use `interpretation: "drive"` and an `icon` key:
   `seeking`, `rage`, `fear`, `lust`, `care`, `panic-grief`, `play`, `body`, or `value`.
   Existing `valueCategory` remains available.
@@ -39,6 +44,13 @@ An observed domain summary may supply an empty `items` array and explicitly stat
 that no admitted value estimates exist. Maker counts are source-scoped identities,
 not a claim that identities across datasets were reconciled.
 These fields require 1.7 and do not reinterpret earlier packets or demo values.
+
+The local analysis request may additionally carry `history: "wikipedia"`, only
+with artifact scope. This is an explicit network operation enabled separately by
+the companion's `--history-dir`. The returned artifact still matches the exact
+capture. Default analysis never fetches history. A one-point population curve
+represents the supplied prior width at zero records; the reader does not invent
+personal narrowing or a future trajectory.
 
 ## Fields
 

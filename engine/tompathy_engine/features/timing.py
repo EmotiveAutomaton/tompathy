@@ -9,7 +9,7 @@ import numpy as np
 def standardize(decisions):
     histories, output = defaultdict(list), {}
     for row in sorted(decisions, key=lambda d: (d.t_open, d.decision_id)):
-        key = (row.maker_id, row.action)
+        key = (row.maker_id, row.context.get("decision_type", "offered"))
         past = [
             d.cost.latency_s
             for d in histories[key]

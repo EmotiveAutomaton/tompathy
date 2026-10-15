@@ -20,6 +20,7 @@ class Admission(Model):
     real_data_passed: bool = False
     explanatory_only: bool = False
     calibration: str | None = None
+    model_pin: Hash | None = None
     notes: str
 
 

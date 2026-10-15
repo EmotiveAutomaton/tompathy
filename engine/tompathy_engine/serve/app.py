@@ -32,6 +32,7 @@ class AnalysisRequest(Model):
     artifact: Artifact
     scope: Literal["artifact", "context"]
     context: list[dict[str, Any]] = Field(default_factory=list, max_length=30)
+    history: Literal["wikipedia"] | None = None
 
 
 class Cancelled(Exception):
@@ -107,6 +108,11 @@ def create_app(
     builder=None,
     population_dir=None,
     model=None,
+    goals=None,
+    history_dir=None,
+    reader=None,
+    history_questions=(),
+    history_fetcher=None,
 ):
     if not re.fullmatch(r"[0-9a-f]{64}", token):
         raise ValueError("Companion requires a 256-bit token")
@@ -173,13 +179,37 @@ def create_app(
             "admittedModules": gates.enabled("writing"),
             "ledgerRecords": len(ledger.all()) if ledger else 0,
             "modelsAvailable": [model.population] if model else [],
-            "transcriberEnabled": False,
+            "transcriberEnabled": reader is not None,
+            "historyQuestions": list(history_questions),
+            "historyAvailable": ["wikipedia"] if history_dir else [],
         }
 
     def execute(body, job):
         job.progress("Validating captured evidence")
         if builder:
             packet = builder(body, job)
+        elif body.history:
+            if history_dir is None:
+                raise ValueError(
+                    "History requests are disabled; configure --history-dir explicitly"
+                )
+            if body.scope != "artifact":
+                raise ValueError("History requests use artifact scope")
+            from ..workflow import analyze_history
+
+            try:
+                packet, _ = analyze_history(
+                    body.artifact.model_dump(exclude_unset=True),
+                    directory=history_dir,
+                    questions=history_questions,
+                    admissions=gates,
+                    reader=reader,
+                    progress=job.progress,
+                    cancel=job.cancelled.is_set,
+                    **({"fetcher": history_fetcher} if history_fetcher else {}),
+                )
+            except InterruptedError:
+                raise Cancelled()
         else:
             packet = build_packet(
                 body.artifact.model_dump(exclude_unset=True),
@@ -189,6 +219,7 @@ def create_app(
                 admissions=gates,
                 request_id=body.requestId,
                 model=model,
+                goals=goals,
             )
         job.progress("Packet validated")
         return packet

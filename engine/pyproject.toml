@@ -19,6 +19,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = ["pytest>=8,<10", "ruff>=0.9,<1"]
 research = ["numpyro>=0.16", "jax[cpu]>=0.4", "spacy>=3.8", "sentence-transformers>=3"]
+bayes = ["numpyro>=0.16,<1", "jax[cpu]>=0.4,<1"]
 
 [project.scripts]
 tompathy-engine = "tompathy_engine.cli:main"

@@ -46,11 +46,14 @@ def handling_records(ledger, *, domain="writing"):
 
 
 def choices(ledger, *, domain="writing", task="options"):
+    stable = {m.maker_id for m in ledger.rows("Maker") if m.identity != "unknown"}
     if task == "handling":
         from datetime import datetime
 
         out = []
         for r in handling_records(ledger, domain=domain):
+            if r["writer"] not in stable:
+                continue
             x = features(r, [], False)
             # Four declared handling actions, with action-specific contextual utilities.
             matrix = np.zeros((4, 4 * len(x)))
@@ -74,7 +77,12 @@ def choices(ledger, *, domain="writing", task="options"):
     sessions = {s.session_id: s for s in ledger.rows("Session")}
     rows = []
     for r in ledger.rows("Decision"):
-        if artifacts[sessions[r.session_id].artifact_id].domain != domain or r.taken is None:
+        if (
+            artifacts[sessions[r.session_id].artifact_id].domain != domain
+            or r.taken is None
+            or r.action == "rate"
+            or r.maker_id not in stable
+        ):
             continue
         context = (
             ledger.get_text(r.context["document_ref"]) if r.context.get("document_ref") else ""

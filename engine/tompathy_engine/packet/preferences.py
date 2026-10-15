@@ -13,6 +13,13 @@ from ..features.deterministic import option_features
 from ..ledger.ids import digest
 
 LABELS = {
+    "entities": ("more named entities", "fewer named entities"),
+    "new_entities": ("more new named entities", "fewer new named entities"),
+    "embedding_last_sentence": (
+        "more similarity to the last sentence",
+        "less similarity to the last sentence",
+    ),
+    "embedding_document": ("more similarity to the document", "less similarity to the document"),
     "characters": ("longer text", "shorter text"),
     "tokens": ("more words", "fewer words"),
     "word_overlap": (
@@ -26,28 +33,43 @@ LABELS = {
 }
 
 
-def apply_preferences(packet, ledger, bundle, admissions, *, tier, domain):
+def apply_preferences(
+    packet,
+    ledger,
+    bundle,
+    admissions,
+    *,
+    tier,
+    domain,
+    names=None,
+    module="backbone-preferences",
+    verified=False,
+):
     # An absent admission is an honest empty display. A supplied admitted model
     # with invalid pins is an error, not a silently accepted or repaired model.
-    if bundle is None or tier == "T0" or "backbone-preferences" not in admissions.enabled(domain):
+    if bundle is None or tier == "T0" or module not in admissions.enabled(domain):
         return []
-    admission = admissions.require("backbone-preferences", domain)
-    bundle.verify(
-        ledger,
-        at=datetime.fromisoformat(packet["artifact"]["capturedAt"]),
-        implementation=admissions.implementation,
-    )
+    admission = admissions.require(module, domain)
+    if not verified:
+        bundle.verify(
+            ledger,
+            at=datetime.fromisoformat(packet["artifact"]["capturedAt"]),
+            implementation=admissions.implementation,
+        )
     if (
         bundle.domain != domain
-        or bundle.task != "options"
+        or bundle.task not in {"options", "corrections", "joint"}
         or domain not in {"writing", "preferences"}
     ):
         raise ValueError("Preference display needs an options model in the capture domain")
-    names = list(option_features("", "", 0))
+    names = names or list(option_features("", "", 0))
     if len(bundle.beta) != len(names):
         raise ValueError("Unsupported preference feature schema")
     decisions = {
         d.decision_id: d for d in ledger.rows("Decision") if d.decision_id in bundle.train_ids
+    }
+    corrections = {
+        c.correction_id: c for c in ledger.rows("Correction") if c.correction_id in bundle.train_ids
     }
     population = {
         "populationId": bundle.population,
@@ -60,9 +82,10 @@ def apply_preferences(packet, ledger, bundle, admissions, *, tier, domain):
         "These feature preferences are not calibrated values, drives, or authorship shares.",
     }
     emitted = False
+    stable = {m.maker_id for m in ledger.rows("Maker") if m.identity != "unknown"}
     for maker in packet["makers"]:
         ident = maker["id"]
-        if ident not in bundle.offsets:
+        if ident not in bundle.offsets or ident not in stable:
             continue
         evidence = []
         own = sorted(
@@ -83,8 +106,32 @@ def apply_preferences(packet, ledger, bundle, admissions, *, tier, domain):
                 }
             )
             evidence.append(eid)
+        for correction in sorted(
+            (c for c in corrections.values() if c.maker_id == ident),
+            key=lambda c: (c.t, c.correction_id),
+        )[-8:]:
+            eid = digest(["model-correction", correction.correction_id])
+            packet["evidence"].append(
+                {
+                    "id": eid,
+                    "source": "ledger:correction:" + correction.correction_id,
+                    "excerpt": "Before: "
+                    + ledger.get_text(correction.before_ref)[:1000]
+                    + "\nAfter: "
+                    + ledger.get_text(correction.after_ref)[:1000],
+                    "capturedAt": correction.t.isoformat().replace("+00:00", "Z"),
+                    "relationship": "Witnessed content correction used in the pinned comparison model",
+                }
+            )
+            evidence.append(eid)
         for index, name in enumerate(names):
-            if name not in LABELS:
+            labels = LABELS.get(name)
+            if name.startswith("Q") and ":" in name and not name.endswith(":unclear"):
+                labels = (
+                    "text labeled " + name.split(":", 1)[1],
+                    "alternatives to text labeled " + name.split(":", 1)[1],
+                )
+            if labels is None:
                 continue
             low, high = bundle.conditional_intervals[ident][index]
             if low <= 0 <= high:
@@ -103,8 +150,8 @@ def apply_preferences(packet, ledger, bundle, admissions, *, tier, domain):
                     "kind": "value",
                     "interpretation": "preference",
                     "icon": "value",
-                    "label": "Choice tendency: " + LABELS[name][0 if positive else 1],
-                    "description": f"Observed alternatives support a conditional tendency toward {LABELS[name][0 if positive else 1]} relative to this population. "
+                    "label": "Preference hypothesis: " + labels[0 if positive else 1],
+                    "description": f"Observed {bundle.task} comparisons support a conditional tendency toward {labels[0 if positive else 1]} relative to this population. "
                     f"Coefficient difference {offset:.5g}; conditional 95% interval [{low:.5g}, {high:.5g}]. Other measured features are held fixed. "
                     "This limited comparison does not identify a broader motive or value. Reference and observed widths use the same fitted pooling penalty.",
                     "makers": [ident],
@@ -129,7 +176,7 @@ def apply_preferences(packet, ledger, bundle, admissions, *, tier, domain):
                         "meaning": meaning,
                     },
                     "makerRecords": bundle.counts[ident],
-                    "shrinkage": bundle.information_shares[ident],
+                    "shrinkage": max(0.0, min(1.0, 1 - se * se * 2 * bundle.penalties[ident])),
                     "curve": [
                         {
                             "records": 0,

@@ -12,6 +12,7 @@ export interface AnalysisRequest {
   scope: Scope;
   context: ContextItem[];
   signal: AbortSignal;
+  history?: "wikipedia";
 }
 export interface InferenceProvider {
   id: string;
@@ -103,6 +104,8 @@ export function registryProvider(
   return {
     id: "registry",
     async analyze(request) {
+      if (request.history)
+        throw Error("History analysis requires the local companion.");
       if (request.scope !== "artifact")
         throw Error(
           "Registry readings cover the work only. Select artifact scope to use one.",
@@ -207,6 +210,7 @@ export function localProvider(
               request.scope === "context"
                 ? request.context.filter((c) => c.selected)
                 : [],
+            ...(request.history ? { history: request.history } : {}),
           }),
         });
         return matching(

@@ -10,6 +10,13 @@ This branch is **codex/0.3-engine**, based on the reviewed 0.2 frontend. npm use
 
 For engine readings, open **Options → Analysis source** and choose a public registry or your local companion. The default is None. **Analyze capture** requests an exact matching reading; an existing account stays in place until you accept its proposed revision. The Global tab displays supplied population comparisons and observed domain summaries. With final text alone and no admitted model, missing values and attention remain unknown.
 
+An explicitly enabled companion also offers **Analyze Wikipedia history**. The
+engine can carry a bounded history through literal transcription, pooled
+correction/choice fitting and an evidence-linked reading. Native panel converters,
+optional posterior fitting and shared research exports are documented in the
+[engine integration guide](docs/ENGINE_INTERFACE.md). Each inferred module stays
+behind its own research admission.
+
 ## Try 0.2
 
 1. Download [tompathy-0.2.0.zip](https://github.com/EmotiveAutomaton/tompathy/releases/download/v0.2.0/tompathy-0.2.0.zip) from the [release](https://github.com/EmotiveAutomaton/tompathy/releases).

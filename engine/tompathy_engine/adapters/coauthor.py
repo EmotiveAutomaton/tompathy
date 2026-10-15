@@ -28,7 +28,7 @@ def _time(ms):
 
 
 def census(events):
-    result = replay(events)
+    result = replay(events, retention=True)
     valid, excluded = [], []
     for episode in result["events"]:
         try:
@@ -148,6 +148,27 @@ def compile_session(events, *, source_id, writer, prompt, source_hash, ledger, p
         taken = None
         if episode["logged_index_agrees"]:
             taken = f"{ident}:{episode['selected_index']}"
+        outcome = {"reviewed": "unknown", "understood": "unknown", "endorsed": "unknown"}
+        if episode["verified_insertion"] and episode["matched_option_indices"]:
+            offered = next(
+                o["original"]
+                for o in episode["options"]
+                if o["index"] == episode["matched_option_indices"][0]
+            )
+            original_units = len(units(offered.replace("\r\n", "\n").replace("\r", "\n")))
+            if original_units:
+                retained = (
+                    sum(len(units(s["text"])) for s in episode["terminal_spans"]) / original_units
+                )
+                outcome.update(
+                    source_quality=2 * retained - 1,
+                    source_quality_available=times[min(stop, len(times) - 1)].isoformat(),
+                    source_quality_basis="Original inserted UTF-16 fraction retained at episode end; a retention proxy, not truth or endorsement",
+                    episode_retention_fraction=retained,
+                    session_retention_fraction=result["session_retained_units"].get(start, 0)
+                    / original_units,
+                    session_retention_available=times[-1].isoformat(),
+                )
         # Resolve only when the whole episode is available: edit versus accept
         # is a terminal label, not known at the instant of suggestion selection.
         rows.append(
@@ -169,7 +190,7 @@ def compile_session(events, *, source_id, writer, prompt, source_hash, ledger, p
                     "source_ordinal": start,
                     "matched_option_indices": episode["matched_option_indices"],
                 },
-                outcome={"reviewed": "unknown", "understood": "unknown", "endorsed": "unknown"},
+                outcome=outcome,
             )
         )
         if action == "edit":

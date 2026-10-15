@@ -28,7 +28,7 @@ def terminal_spans(document, owners, owner):
     return spans
 
 
-def replay(lines):
+def replay(lines, *, retention=False):
     document, provenance, decisions = [], [], []
     active = None
     pending = False
@@ -141,8 +141,15 @@ def replay(lines):
     reconstructed = initialized and n_deltas > 0 and not failures
     for row in decisions:
         row['usable'] = reconstructed and row['exclusion'] is None
-    return {'events': decisions, 'events_count': n_events, 'event_counts': dict(event_counts),
+    result = {'events': decisions, 'events_count': n_events, 'event_counts': dict(event_counts),
             'deltas': n_deltas, 'errors': dict(failures), 'semantic_errors': dict(semantics),
             'reconstructed': reconstructed,
             'final_document': text_of(document), 'final_utf16_length': len(document),
             'decision_counts': dict(Counter(r['decision'] for r in decisions))}
+    if retention:
+        # Optional ToMpathy outcome export. Default reference replay output is
+        # unchanged. These are surviving original UTF-16 units, not quality,
+        # review, semantic importance or endorsement judgments.
+        counts = Counter(owner for owner in provenance if owner is not None)
+        result['session_retained_units'] = dict(counts)
+    return result

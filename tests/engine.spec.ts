@@ -32,7 +32,10 @@ test("built extension opts into an authenticated Python companion", async () => 
   await cp("dist", path.join(root, "extension"), { recursive: true });
   const manifestPath = path.join(root, "extension/manifest.json");
   const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
-  manifest.host_permissions = ["http://127.0.0.1/*"];
+  manifest.host_permissions = [
+    "http://127.0.0.1/*",
+    "https://en.wikipedia.org/*",
+  ];
   await writeFile(manifestPath, JSON.stringify(manifest));
   const extension = path.join(root, "extension");
   let server: ChildProcess | undefined;
@@ -52,18 +55,30 @@ test("built extension opts into an authenticated Python companion", async () => 
     const token = "d".repeat(64);
     const tokenFile = path.join(root, "fixture-token");
     await writeFile(tokenFile, token);
+    const serviceScript = path.join(root, "service.py");
+    await writeFile(
+      serviceScript,
+      `
+import sys
+import uvicorn
+from tompathy_engine.serve.app import create_app, load_token
+def history(url, *, artifact_id, limit, cancel):
+    assert url == "https://en.wikipedia.org/wiki/ToMpathy_constructed_fixture"
+    return {"artifact_id": artifact_id, "source_uri": url, "license": "CC0-1.0",
+        "license_evidence": "Original constructed test text", "revisions": [
+        {"id": "one", "maker": "fixture", "t": "2026-01-01T00:00:00Z", "text": "A draft."},
+        {"id": "two", "parents": ["one"], "maker": "fixture", "t": "2026-01-02T00:00:00Z", "text": "A revised draft.", "summary": "Clarify"}]}
+app = create_app(token=load_token(sys.argv[1]), origins=[sys.argv[2]], history_dir=sys.argv[3], history_fetcher=history)
+uvicorn.run(app, host="127.0.0.1", port=18765, access_log=False)
+`,
+    );
     server = spawn(
       python,
       [
-        "-m",
-        "tompathy_engine.cli",
-        "serve",
-        "--port",
-        "18765",
-        "--token-file",
+        serviceScript,
         tokenFile,
-        "--extension-origin",
         `chrome-extension://${extensionId}`,
+        path.join(root, "history"),
       ],
       { windowsHide: true, stdio: ["ignore", "pipe", "pipe"] },
     );
@@ -175,6 +190,68 @@ test("built extension opts into an authenticated Python companion", async () => 
     expect(saved.packet!.hypotheses).toEqual([]);
     expect(JSON.stringify(saved)).not.toContain(token);
     await panel.screenshot({ path: "evidence/engine-t0-reading.png" });
+    const wikiURL =
+      "https://en.wikipedia.org/wiki/ToMpathy_constructed_fixture";
+    await context.route(wikiURL, (route) =>
+      route.fulfill({
+        contentType: "text/html",
+        body: "<!doctype html><title>Constructed history page</title><article><h1>Constructed history page</h1><p>A revised draft.</p></article>",
+      }),
+    );
+    await source.goto(wikiURL);
+    const wikiCapture = await worker.evaluate(async (url) => {
+      const tab = (await chrome.tabs.query({})).find((t) => t.url === url)!;
+      await chrome.scripting.executeScript({
+        target: { tabId: tab.id! },
+        files: ["content.js"],
+      });
+      return chrome.tabs.sendMessage(tab.id!, { type: "TOMPATHY_CAPTURE" });
+    }, wikiURL);
+    await worker.evaluate(async (artifact) => {
+      await chrome.storage.session.set({
+        reading: {
+          sessionVersion: "1.0",
+          artifact,
+          packet: null,
+          scope: "artifact",
+          context: [],
+        },
+      });
+    }, wikiCapture.artifact);
+    await panel.reload();
+    await source.bringToFront();
+    await worker.evaluate(async (url) => {
+      const tab = (await chrome.tabs.query({})).find((t) => t.url === url)!;
+      await chrome.runtime.sendMessage({
+        type: "TOMPATHY_INVOKED",
+        tabId: tab.id,
+      });
+    }, wikiURL);
+    await panel
+      .getByRole("button", { name: "Reader menu", exact: true })
+      .click();
+    const historyAction = panel.getByRole("button", {
+      name: "Analyze Wikipedia history",
+      exact: true,
+    });
+    await expect(historyAction).toBeEnabled();
+    const historyRequest = panel.waitForRequest(
+      (r) => r.url().endsWith("/v1/analyze") && r.method() === "POST",
+    );
+    await historyAction.click();
+    expect((await historyRequest).postDataJSON().history).toBe("wikipedia");
+    await expect(
+      panel.getByText("Analysis received.", { exact: false }),
+    ).toBeVisible();
+    const historyReading = SessionSchema.parse(
+      await worker.evaluate(
+        async () => (await chrome.storage.session.get("reading")).reading,
+      ),
+    );
+    expect(historyReading.packet!.artifact).toEqual(historyReading.artifact);
+    expect(historyReading.packet!.process.nodes.length).toBeGreaterThan(0);
+    await panel.setViewportSize({ width: 360, height: 1000 });
+    await panel.screenshot({ path: "evidence/engine-history-workflow.png" });
     expect(errors).toEqual([]);
     await writeFile(
       "evidence/engine-browser.json",
@@ -190,6 +267,7 @@ test("built extension opts into an authenticated Python companion", async () => 
             "T0 contains no invented hypotheses",
             "token excluded from reading",
             "zero panel errors",
+            "explicit history action through real Python service and constructed history source",
           ],
           surface:
             "Built extension document and webpage adapter; native toolbar placement checked separately",
@@ -293,7 +371,7 @@ test("engine readings render recorded history and population comparisons", async
             .find((h) => h.id === i.hypothesis)
             ?.makers.includes(firstMaker),
         );
-        if (comparisons.length)
+        if (comparisons.some((i) => i.curve.length > 1))
           await expect(
             panel
               .getByRole("img", {
@@ -301,6 +379,22 @@ test("engine readings render recorded history and population comparisons", async
               })
               .first(),
           ).toBeVisible();
+        if (comparisons.some((i) => i.curve.length === 1)) {
+          await expect(
+            panel
+              .getByRole("img", { name: "Supplied prior uncertainty width" })
+              .first(),
+          ).toBeVisible();
+          await expect(
+            panel
+              .getByText("Prior only: no personal records.", { exact: false })
+              .first(),
+          ).toBeVisible();
+          await panel
+            .getByRole("img", { name: "Supplied prior uncertainty width" })
+            .first()
+            .scrollIntoViewIfNeeded();
+        }
         await panel.screenshot({
           path: `evidence/engine-${path.basename(file, ".json")}-population.png`,
         });

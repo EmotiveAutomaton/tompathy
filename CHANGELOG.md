@@ -2,6 +2,14 @@
 
 ## 0.3.0-beta.1 — engine v1 development, unreleased
 
+- Connect immutable history snapshots, admitted literal labels, correction/choice
+  fits and reading generation; add the explicit Wikipedia history action.
+- Add native panel converters, pinned local feature exchanges, held-out module
+  evaluation, goal candidate production, calibration exports and CPU NUTS/SVI.
+- Wire separately gated goals, drive mappings, borrowed priors, repertoire,
+  candidate expertise, source-use and inspection evidence into packets. Priors
+  with zero personal records receive their own uncertainty display.
+
 - Add the Python CPU-first decision ledger, CoAuthor replay, bounded history and
   normalized source adapters, pooled fitting, chronological evaluation, research
   modules, literal transcriber and explicit admission gates.

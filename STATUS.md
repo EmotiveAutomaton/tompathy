@@ -1,6 +1,6 @@
 # ToMpathy status
 
-Updated 14 October 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
+Updated 15 October 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
 based on the merged, owner-approved **0.2.0** frontend milestone.
 
 ## Engine v1
@@ -18,11 +18,23 @@ The real extension-to-companion flow and ordinary Chrome native-panel/restart
 checks pass. See [Engine v1 verification](docs/ENGINE_V1.md) for measurements and
 the remaining milestone gates, and [the engine guide](engine/README.md) to run it.
 
+The continuation connects history ingestion, exact-input literal labels,
+correction/choice fitting and packet generation. Native panel converters,
+optional CPU posterior fitting, goal candidates, calibration and expanded
+evaluation exports share the canonical engine. Gated display paths include
+goals, revealed-theme drives/recipes, borrowed priors, repertoire, candidate
+expertise, source-use and inspection evidence. The extension has an explicit
+Wikipedia history action. [Integration details](docs/ENGINE_INTERFACE.md) explain
+how Sounding Line and Ghost Scale can pin and test this implementation.
+
 No production scientific admissions are shipped. Real readings show observed
 records and unknown estimates until the relevant evidence and admission exist.
 The full Wikipedia fetch → admitted fit → inferred packet acceptance check and
-real transcriber batteries remain pending. No registry hosting or release is
-included. CI is configured; a remote run has not been claimed.
+completion of the per-question real-model batteries remain separate gates.
+The first real 200-item Q5 battery failed at 75.5% accuracy and stays disabled;
+its exact constructed inputs and result are retained under `engine/validation`.
+No registry hosting or release is included. CI is configured; a remote run has
+not been claimed.
 
 ## Verified baseline
 

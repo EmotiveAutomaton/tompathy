@@ -1,0 +1,402 @@
+{
+  "schemaVersion": "1.7",
+  "id": "3c47f7f03acad49dd25275925e3a1e6a6304021c7c7f01e6a44b2b39eeb8ed55",
+  "revision": 1,
+  "artifact": {
+    "id": "https://example.org/borrowed",
+    "revision": "614fd7058ed0a79c1df7c8afe421c72bef6e957cad390db3e097d6cf69859ba7",
+    "title": "Borrowed prior example",
+    "source": "https://example.org/borrowed",
+    "capturedAt": "2026-02-01T00:00:00Z",
+    "regions": [
+      {
+        "id": "p1",
+        "anchor": {
+          "exact": "Danger in a text does not establish motive.",
+          "prefix": "",
+          "suffix": "",
+          "start": 0,
+          "index": 0
+        }
+      }
+    ],
+    "truncated": false
+  },
+  "provider": {
+    "id": "tompathy-engine",
+    "method": "ToMpathy engine 0.1.0a1; commit 2a0c54233344ae3f64bed9806442289d7dab726a + local engine changes; implementation f8207f2b65e12885f1493555bab2792b1050495ea7231324f9d0760e94626fca; evidence tier T0; domain writing. Text alone does not update maker preferences. Actual contributing admission records are in provider.admissions.",
+    "admissions": [
+      "constructed-Q10",
+      "constructed-drive-recipes",
+      "constructed-population-prior"
+    ]
+  },
+  "origin": "synthetic example",
+  "scope": {
+    "kind": "artifact",
+    "contextIds": []
+  },
+  "makers": [
+    {
+      "id": "35be8d1f51cae56fc2fc3f43ab548740ff5e52641bc9b1ce2cca50f4d0f7ca8c",
+      "label": "Unidentified creator",
+      "identity": "unknown",
+      "relationship": "Page attribution only; no verified identity or cross-source join"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "d1ad2f2511beb19c369d6240762cda6c11c833bc66cb8cd7f01174d328679293",
+      "kind": "value",
+      "label": "FEAR",
+      "description": "Population prior only. This capture does not establish a personal drive loading. The channel is an admitted mapping hypothesis, not a measurement of neural activity.",
+      "makers": [
+        "35be8d1f51cae56fc2fc3f43ab548740ff5e52641bc9b1ce2cca50f4d0f7ca8c"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Borrowed population midpoint; zero own-maker records"
+      },
+      "evidence": [
+        "7dea7f1c0ff8ff58032392ca9740b63951dc65f3057cc1b12a9ac2608b6a2ed8"
+      ],
+      "interpretation": "drive",
+      "icon": "fear"
+    },
+    {
+      "id": "b8bfd048492442567fd8f8ad9dc8620ea92db95b497ea163a8b8aa79a4b128c0",
+      "kind": "value",
+      "label": "CARE",
+      "description": "Population prior only. This capture does not establish a personal drive loading. The channel is an admitted mapping hypothesis, not a measurement of neural activity.",
+      "makers": [
+        "35be8d1f51cae56fc2fc3f43ab548740ff5e52641bc9b1ce2cca50f4d0f7ca8c"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Borrowed population midpoint; zero own-maker records"
+      },
+      "evidence": [
+        "7dea7f1c0ff8ff58032392ca9740b63951dc65f3057cc1b12a9ac2608b6a2ed8"
+      ],
+      "interpretation": "drive",
+      "icon": "care"
+    },
+    {
+      "id": "32758d116566dc04a1faac0bc88268aa13133d5e914d1382dc201b70b3c4daaf",
+      "kind": "value",
+      "label": "PLAY",
+      "description": "Population prior only. This capture does not establish a personal drive loading. The channel is an admitted mapping hypothesis, not a measurement of neural activity.",
+      "makers": [
+        "35be8d1f51cae56fc2fc3f43ab548740ff5e52641bc9b1ce2cca50f4d0f7ca8c"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Borrowed population midpoint; zero own-maker records"
+      },
+      "evidence": [
+        "7dea7f1c0ff8ff58032392ca9740b63951dc65f3057cc1b12a9ac2608b6a2ed8"
+      ],
+      "interpretation": "drive",
+      "icon": "play"
+    },
+    {
+      "id": "9a4ad91fe742fe73dd77d3107d932833aecb98240a39c4a2ec4e0e9da655738a",
+      "kind": "value",
+      "label": "RAGE",
+      "description": "Population prior only. This capture does not establish a personal drive loading. The channel is an admitted mapping hypothesis, not a measurement of neural activity.",
+      "makers": [
+        "35be8d1f51cae56fc2fc3f43ab548740ff5e52641bc9b1ce2cca50f4d0f7ca8c"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Borrowed population midpoint; zero own-maker records"
+      },
+      "evidence": [
+        "7dea7f1c0ff8ff58032392ca9740b63951dc65f3057cc1b12a9ac2608b6a2ed8"
+      ],
+      "interpretation": "drive",
+      "icon": "rage"
+    },
+    {
+      "id": "70f8a7a11f74a8bc18d8d968a624e50d45cb9e5855a493e49480dd481bcf2b07",
+      "kind": "value",
+      "label": "PANIC/GRIEF",
+      "description": "Population prior only. This capture does not establish a personal drive loading. The channel is an admitted mapping hypothesis, not a measurement of neural activity.",
+      "makers": [
+        "35be8d1f51cae56fc2fc3f43ab548740ff5e52641bc9b1ce2cca50f4d0f7ca8c"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Borrowed population midpoint; zero own-maker records"
+      },
+      "evidence": [
+        "7dea7f1c0ff8ff58032392ca9740b63951dc65f3057cc1b12a9ac2608b6a2ed8"
+      ],
+      "interpretation": "drive",
+      "icon": "panic-grief"
+    },
+    {
+      "id": "c3d359147cec059cebae5716e68753c8bbab8c28f407eb2f797cde0d811c8aee",
+      "kind": "value",
+      "label": "LUST",
+      "description": "Population prior only. This capture does not establish a personal drive loading. The channel is an admitted mapping hypothesis, not a measurement of neural activity.",
+      "makers": [
+        "35be8d1f51cae56fc2fc3f43ab548740ff5e52641bc9b1ce2cca50f4d0f7ca8c"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Borrowed population midpoint; zero own-maker records"
+      },
+      "evidence": [
+        "7dea7f1c0ff8ff58032392ca9740b63951dc65f3057cc1b12a9ac2608b6a2ed8"
+      ],
+      "interpretation": "drive",
+      "icon": "lust"
+    },
+    {
+      "id": "99b0dab3a81dfa38f18cf77e8e9cdb453e5d655562fec80baf8417d041328be8",
+      "kind": "value",
+      "label": "Bodily needs",
+      "description": "Population prior only. This capture does not establish a personal drive loading. The channel is an admitted mapping hypothesis, not a measurement of neural activity.",
+      "makers": [
+        "35be8d1f51cae56fc2fc3f43ab548740ff5e52641bc9b1ce2cca50f4d0f7ca8c"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Borrowed population midpoint; zero own-maker records"
+      },
+      "evidence": [
+        "7dea7f1c0ff8ff58032392ca9740b63951dc65f3057cc1b12a9ac2608b6a2ed8"
+      ],
+      "interpretation": "drive",
+      "icon": "body"
+    }
+  ],
+  "alternatives": [],
+  "process": {
+    "interpretation": "unspecified",
+    "nodes": [],
+    "edges": []
+  },
+  "estimates": [
+    {
+      "region": "p1",
+      "uncertainty": {
+        "level": "unknown",
+        "meaning": "T0 evidence; no admitted estimate of motive or contribution"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "f290dc1187870354b0daf4c025208cd3b1afc5cc9e84b290124dcbb88134ba42",
+      "source": "https://example.org/borrowed",
+      "excerpt": "Danger in a text does not establish motive.",
+      "capturedAt": "2026-02-01T00:00:00Z",
+      "relationship": "Observed final text; this alone does not establish a maker's choices or motives"
+    },
+    {
+      "id": "7dea7f1c0ff8ff58032392ca9740b63951dc65f3057cc1b12a9ac2608b6a2ed8",
+      "source": "ledger:population:09deb457d313c3befef989b5adba24e48b52a8d7598e2d753883dab5e6f5a7f3",
+      "excerpt": "96 earlier comparisons; fit cutoff 2026-01-02T00:00:00+00:00.",
+      "capturedAt": "2026-01-02T00:00:00Z",
+      "relationship": "Aggregate borrowed population evidence; no own-maker observation"
+    }
+  ],
+  "population": {
+    "populationId": "writing-v0",
+    "makersPooled": 2,
+    "description": "Borrowed writing population fit from 2 source-scoped makers. These priors use zero observations from this capture's maker. Intervals describe the fitted prior, not a personal finding.",
+    "items": [
+      {
+        "hypothesis": "d1ad2f2511beb19c369d6240762cda6c11c833bc66cb8cd7f01174d328679293",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Borrowed population midpoint; zero own-maker records"
+        },
+        "makerRecords": 0,
+        "shrinkage": 0.0,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          }
+        ]
+      },
+      {
+        "hypothesis": "b8bfd048492442567fd8f8ad9dc8620ea92db95b497ea163a8b8aa79a4b128c0",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Borrowed population midpoint; zero own-maker records"
+        },
+        "makerRecords": 0,
+        "shrinkage": 0.0,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          }
+        ]
+      },
+      {
+        "hypothesis": "32758d116566dc04a1faac0bc88268aa13133d5e914d1382dc201b70b3c4daaf",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Borrowed population midpoint; zero own-maker records"
+        },
+        "makerRecords": 0,
+        "shrinkage": 0.0,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          }
+        ]
+      },
+      {
+        "hypothesis": "9a4ad91fe742fe73dd77d3107d932833aecb98240a39c4a2ec4e0e9da655738a",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Borrowed population midpoint; zero own-maker records"
+        },
+        "makerRecords": 0,
+        "shrinkage": 0.0,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          }
+        ]
+      },
+      {
+        "hypothesis": "70f8a7a11f74a8bc18d8d968a624e50d45cb9e5855a493e49480dd481bcf2b07",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Borrowed population midpoint; zero own-maker records"
+        },
+        "makerRecords": 0,
+        "shrinkage": 0.0,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          }
+        ]
+      },
+      {
+        "hypothesis": "c3d359147cec059cebae5716e68753c8bbab8c28f407eb2f797cde0d811c8aee",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Borrowed population midpoint; zero own-maker records"
+        },
+        "makerRecords": 0,
+        "shrinkage": 0.0,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          }
+        ]
+      },
+      {
+        "hypothesis": "99b0dab3a81dfa38f18cf77e8e9cdb453e5d655562fec80baf8417d041328be8",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Borrowed population midpoint; zero own-maker records"
+        },
+        "makerRecords": 0,
+        "shrinkage": 0.0,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          }
+        ]
+      }
+    ]
+  }
+}

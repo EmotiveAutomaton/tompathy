@@ -1,0 +1,114 @@
+{
+  "schemaVersion": "1.7",
+  "id": "87eafba732ee4f1f6303c1e5f40d93aece5013ff197adfa41e5c7a93bd39e18c",
+  "revision": 1,
+  "artifact": {
+    "id": "https://example.org/borrowed",
+    "revision": "614fd7058ed0a79c1df7c8afe421c72bef6e957cad390db3e097d6cf69859ba7",
+    "title": "Borrowed prior example",
+    "source": "https://example.org/borrowed",
+    "capturedAt": "2026-02-01T00:00:00Z",
+    "regions": [
+      {
+        "id": "p1",
+        "anchor": {
+          "exact": "Danger in a text does not establish motive.",
+          "prefix": "",
+          "suffix": "",
+          "start": 0,
+          "index": 0
+        }
+      }
+    ],
+    "truncated": false
+  },
+  "provider": {
+    "id": "tompathy-engine",
+    "method": "ToMpathy engine 0.1.0a1; commit 2a0c54233344ae3f64bed9806442289d7dab726a + local engine changes; implementation f8207f2b65e12885f1493555bab2792b1050495ea7231324f9d0760e94626fca; evidence tier T0; domain writing. Text alone does not update maker preferences. Actual contributing admission records are in provider.admissions.",
+    "admissions": [
+      "constructed-test-only"
+    ]
+  },
+  "origin": "synthetic example",
+  "scope": {
+    "kind": "artifact",
+    "contextIds": []
+  },
+  "makers": [
+    {
+      "id": "35be8d1f51cae56fc2fc3f43ab548740ff5e52641bc9b1ce2cca50f4d0f7ca8c",
+      "label": "Unidentified creator",
+      "identity": "unknown",
+      "relationship": "Page attribution only; no verified identity or cross-source join"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "8bd45f43fb5931ffd46e5604f953c3b73143ecfcb326f81106556b5779a0a548",
+      "kind": "goal",
+      "label": "Explain the boundary",
+      "description": "Constructed explanatory goal hypothesis.",
+      "makers": [
+        "35be8d1f51cae56fc2fc3f43ab548740ff5e52641bc9b1ce2cca50f4d0f7ca8c"
+      ],
+      "regions": [
+        "p1"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.6,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Relative candidate-goal support; explanatory reconstruction, not verified history"
+      },
+      "evidence": [
+        "f290dc1187870354b0daf4c025208cd3b1afc5cc9e84b290124dcbb88134ba42"
+      ],
+      "interpretation": "governing-purpose"
+    }
+  ],
+  "alternatives": [],
+  "process": {
+    "interpretation": "unspecified",
+    "nodes": [],
+    "edges": []
+  },
+  "estimates": [
+    {
+      "region": "p1",
+      "uncertainty": {
+        "level": "unknown",
+        "meaning": "T0 evidence; no admitted estimate of motive or contribution"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "f290dc1187870354b0daf4c025208cd3b1afc5cc9e84b290124dcbb88134ba42",
+      "source": "https://example.org/borrowed",
+      "excerpt": "Danger in a text does not establish motive.",
+      "capturedAt": "2026-02-01T00:00:00Z",
+      "relationship": "Observed final text; this alone does not establish a maker's choices or motives"
+    }
+  ],
+  "goalHierarchy": {
+    "nodes": [
+      {
+        "id": "8bd45f43fb5931ffd46e5604f953c3b73143ecfcb326f81106556b5779a0a548",
+        "maker": "35be8d1f51cae56fc2fc3f43ab548740ff5e52641bc9b1ce2cca50f4d0f7ca8c",
+        "label": "Explain the boundary",
+        "description": "Constructed explanatory goal hypothesis.",
+        "level": "governing goal",
+        "regions": [
+          "p1"
+        ],
+        "evidence": [
+          "f290dc1187870354b0daf4c025208cd3b1afc5cc9e84b290124dcbb88134ba42"
+        ]
+      }
+    ]
+  }
+}

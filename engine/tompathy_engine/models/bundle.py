@@ -42,7 +42,7 @@ class Bundle(Model):
     format: Literal["tompathy-map-1"] = "tompathy-map-1"
     population: str
     domain: str
-    task: Literal["options", "handling"]
+    task: Literal["options", "handling", "corrections", "joint"]
     until: datetime
     beta: list[float] = Field(min_length=1)
     offsets: dict[str, list[float]]
@@ -50,6 +50,7 @@ class Bundle(Model):
     penalties: dict[str, float]
     information_shares: dict[str, float]
     conditional_intervals: dict[str, list[list[float]]]
+    conditional_covariances: dict[str, list[list[float]]] = Field(default_factory=dict)
     train_ids: list[str] = Field(min_length=1)
     input_hash: Hash
     implementation_hash: Hash
@@ -88,6 +89,17 @@ class Bundle(Model):
                 or not 0 <= self.information_shares[maker] <= 1
             ):
                 raise ValueError("Invalid model count, penalty or information share")
+        if self.conditional_covariances:
+            if set(self.conditional_covariances) != makers:
+                raise ValueError("Covariance maker keys disagree")
+            for value in self.conditional_covariances.values():
+                matrix = np.asarray(value)
+                if (
+                    matrix.shape != (d, d)
+                    or not np.allclose(matrix, matrix.T)
+                    or np.linalg.eigvalsh(matrix).min() <= 0
+                ):
+                    raise ValueError("Invalid conditional covariance")
         return self
 
     def verify(self, ledger, *, at, implementation=None):
@@ -114,6 +126,9 @@ class Bundle(Model):
             penalties=self.penalties,
             information_shares=self.information_shares,
             conditional_intervals={k: np.array(v) for k, v in self.conditional_intervals.items()},
+            conditional_covariances={
+                k: np.array(v) for k, v in self.conditional_covariances.items()
+            },
             train_ids=tuple(self.train_ids),
         )
 
@@ -134,6 +149,7 @@ def fit_bundle(ledger, *, population, until, task="options"):
         penalties=model.penalties,
         information_shares=model.information_shares,
         conditional_intervals={k: v.tolist() for k, v in model.conditional_intervals.items()},
+        conditional_covariances={k: v.tolist() for k, v in model.conditional_covariances.items()},
         train_ids=list(model.train_ids),
         input_hash=input_hash(rows, until),
         implementation_hash=implementation_hash(),
@@ -142,4 +158,13 @@ def fit_bundle(ledger, *, population, until, task="options"):
 
 
 def load_bundle(path):
-    return Bundle.model_validate_json(Path(path).read_text(encoding="utf8")) if path else None
+    if not path:
+        return None
+    import json
+
+    value = json.loads(Path(path).read_text(encoding="utf8"))
+    if value.get("format") == "tompathy-pipeline-1":
+        from .pipeline import Pipeline
+
+        return Pipeline.model_validate(value)
+    return Bundle.model_validate(value)

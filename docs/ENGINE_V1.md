@@ -32,9 +32,44 @@ No production inference admission is present. Empty estimates are deliberate.
   predictability rendering and supplied Global population comparisons.
 - Ghost reader-bundle bridge with pinned metadata and truth-sidecar isolation.
 
+The 15 October continuation connects these components into a shared fitting and
+reading pipeline. It adds immutable analysis runs, exact-input label/feature
+exchanges, native panel converters, optional CPU NUTS/SVI, separately pinned goal
+production, forecast calibration exports, and prototype/source-use/diagnosticity
+comparators. The local service and extension expose explicit history analysis.
+Gated packet paths now include correction/literal preferences, theme projections
+and recipes, borrowed T0 priors, repertoire, candidate expertise and inspection
+evidence. See [the integration contract](ENGINE_INTERFACE.md) for inputs and gates.
+
 See [the engine guide](../engine/README.md) for commands, formats and limitations.
 
 ## Measured checks
+
+Continuation checks on 15 October: the final full Python suite passed **152 tests**,
+including the completed history workflow and identity/forecast checks. Both CPU
+posterior paths executed. **32 core tests**, TypeScript/build, nine-packet
+authoritative schema validation, the explicit history action through a real
+Python service, and rendered reading/population fixtures passed. The latter
+browser check initially exposed a missing zero-record prior graphic; the fixed
+display passed its affected rerun. Current screenshots were inspected at 360 px
+for the history reading and 420 px for imported readings. These are extension
+document checks; the ordinary native-panel check below belongs to the foundation.
+
+The real Llama 3.1 8B **Q5 battery failed**: 200/200 valid outputs, but accuracy
+and cross-check agreement were **75.5%**. It remains disabled. Runtime was
+2,951.68 seconds on one CPU inference thread. The exact constructed inputs and
+failed receipt are [retained here](../engine/validation/README.md). No tuning was
+done against this battery. This result does not validate Q8/Q9, goal judgments or
+any downstream model. A cache-only replay reproduced all outcomes without calls.
+
+Native-format smoke checks read three original records each from the retained
+PRISM, MultiPref, Community Alignment and DICES sources. They produced 9, 12, 7
+and 3 normalized units respectively. Missing chronology excluded the first three
+groups; DICES retained three rating records. No timezone was guessed. These are
+format checks, not complete intake or scientific admissions.
+
+The following table retains the earlier foundation measurements; its large-data
+timings and native Chrome results were not silently relabeled as new benchmarks.
 
 Measurements were made locally with Python 3.13 and one CPU thread. CI targets
 Python 3.12; configuring that job is not evidence of a completed remote CI run.
@@ -69,20 +104,24 @@ research admissions. No registry was hosted and no release was published.
 | Brief milestone | Status |
 | --- | --- |
 | M0 ledger / replay / backbone | Numerical and performance acceptance checks pass. |
-| M1 packets / registry | Software paths and all four reading imports work. Borrowed drive/value priors and explanatory goal trees await admitted population/feature inputs; real readings currently show observed history and unknown estimates. |
-| M2 literal transcriber / modules | Components and constructed tests exist. Real 200-item-per-question batteries and Sounding Line admitted/inconclusive/killed records are still required. No production gate is invented from CI. |
-| M3 companion | Service, cancellation, privacy and frontend work. The complete Wikipedia fetch → fit → inferred packet acceptance check remains pending admitted correction labels/model. Observational timing alone does not satisfy it. |
+| M1 packets / registry | Observed, fitted, borrowed-prior and explanatory-goal paths are implemented. Real-source activation still requires the corresponding population/feature/module admissions. |
+| M2 literal transcriber / modules | Feature-to-fit-to-packet orchestration, evaluation exports and constructed tests are implemented. Per-question real-model results and external admitted/inconclusive/killed records remain separate gates. No production gate is invented from CI. |
+| M3 companion | Service, cancellation, privacy, explicit history analysis and frontend integration are implemented. Constructed tests exercise the full fit path; the real Wikipedia inferred-reading acceptance still requires admitted Q8/Q9 and downstream modules. Observational timing alone does not satisfy it. |
 
-The correction, diagnosticity, source-use and governing-goal components are
-research APIs. Their complete scientific feature-to-display pipelines are not
-enabled in the ordinary companion. A supplied admission does not cause a model
-download or run a new experiment. `backbone-preferences` is the implemented
-admitted fit-to-packet path; its relative feature tendencies are deliberately
-narrower than a drive/value interpretation.
+The companion can execute configured pipelines, but no production module
+admission is shipped. A supplied admission does not download a model or run a
+new research campaign. Declared feature and model pins are checked before use.
+Drive recipes require observed choices/corrections and Q10; topic tags on final
+text cannot become personal loadings. A borrowed T0 prior explicitly reports
+zero personal records and zero personal evidence share.
 
-Other explicit boundaries: history ledgers are bounded immutable snapshots;
-updates need a new ledger snapshot, panel inputs require a declared normalized
-field map, optional local embedding models are not downloaded or benchmarked,
-and the optional full NumPyro posterior path is not implemented. The CPU MAP
-path is the verified default. There is no hosted service, paid inference,
-per-author language-model tuning or adoption of a maker's values.
+Other explicit boundaries: history updates create new immutable snapshots;
+native panel chronology and scales require source witnesses; ratings are not
+treated as preferences over response text. Optional entity/embedding extractors
+require installed models and have not been benchmarked on real sources here.
+The CPU MAP path remains the companion default. NUTS/SVI export research
+posteriors with explicit scale conventions and diagnostic limitations; independent
+convergence/coverage testing is still required. No independently validated
+pursuit-vigor/SEEKING estimate or calibrated personal-value probability is claimed.
+There is no hosted service, paid inference, per-author language-model tuning or
+adoption of a maker's values.

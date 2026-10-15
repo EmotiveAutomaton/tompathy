@@ -24,8 +24,11 @@ def build_packet(
     request_id=None,
     origin="live provider",
     model=None,
+    goals=None,
 ):
     capture = validate_capture(capture)
+    if ledger is not None:
+        ledger = ledger.snapshot()
     admissions = admissions or Admissions()
     selected = [c for c in context if c.get("selected")] if scope == "context" else []
     context_ids = [c["id"] for c in selected]
@@ -157,13 +160,10 @@ def build_packet(
                     }
                     for e in edges
                 ]
-    enabled = admissions.enabled(domain)
     method = (
         f"ToMpathy engine {__version__}; commit {source_revision()}; implementation {admissions.implementation}; "
         f"evidence tier {tier}; domain {domain}. Observed capture and ledger records only. "
-        "Text alone does not update maker preferences. Available scientific module admissions: "
-        + (", ".join(f"{m}={admissions.records[m].admission_id}" for m in enabled) or "none")
-        + "."
+        "Text alone does not update maker preferences. Actual contributing admission records are in provider.admissions."
     )
     packet = {
         "schemaVersion": "1.7",
@@ -172,7 +172,7 @@ def build_packet(
         ),
         "revision": 1,
         "artifact": capture,
-        "provider": {"id": "tompathy-engine", "method": method},
+        "provider": {"id": "tompathy-engine", "method": method, "admissions": []},
         "origin": origin,
         "scope": {"kind": scope, "contextIds": context_ids},
         "makers": makers,
@@ -207,13 +207,37 @@ def build_packet(
             )
         if tier != "T0":
             append_events(packet, ledger)
-        contributed = apply_preferences(packet, ledger, model, admissions, tier=tier, domain=domain)
-        packet["provider"]["method"] += (
-            " Fitted estimate contributions: " + (", ".join(contributed) or "none") + "."
-        )
+        from ..models.pipeline import Pipeline
+        from .modules import apply_modules, apply_pipeline
+
+        if isinstance(model, Pipeline):
+            contributed = apply_pipeline(
+                packet, ledger, model, admissions, tier=tier, domain=domain
+            )
+        else:
+            contributed = apply_preferences(
+                packet, ledger, model, admissions, tier=tier, domain=domain
+            )
+            contributed += apply_modules(packet, ledger, admissions, tier=tier, domain=domain)
+        packet["provider"]["admissions"] += contributed
         if contributed:
             packet["provider"]["method"] = packet["provider"]["method"].replace(
                 "Observed capture and ledger records only. ", ""
             )
-            packet["id"] = digest([packet["id"], model.model_dump(mode="json"), contributed])
+            packet["id"] = digest(
+                [packet["id"], model.model_dump(mode="json") if model else None, contributed]
+            )
+    from .goals import apply_goals
+
+    goal_contributions = apply_goals(packet, ledger, goals, admissions, domain)
+    if goal_contributions:
+        packet["provider"]["admissions"] += goal_contributions
+        packet["provider"]["method"] = packet["provider"]["method"].replace(
+            "Observed capture and ledger records only. ", ""
+        )
+        packet["id"] = digest([packet["id"], goals.model_dump(mode="json"), goal_contributions])
+    packet["provider"]["admissions"] = sorted(set(packet["provider"]["admissions"]))
+    from .bounds import bound
+
+    bound(packet)
     return Packet.model_validate(packet).wire()

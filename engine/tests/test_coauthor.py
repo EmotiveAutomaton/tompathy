@@ -26,6 +26,10 @@ def test_compile_witnessed_episodes(case, tmp_path):
     decision = ledger.rows("Decision")[0]
     assert decision.action == case["target"]["handling"]
     assert decision.outcome["endorsed"] == "unknown"
+    if decision.action in {"accept", "edit"}:
+        assert 0 <= decision.outcome["episode_retention_fraction"] <= 1
+        assert 0 <= decision.outcome["session_retention_fraction"] <= 1
+        assert decision.outcome["source_quality_available"] == decision.t_resolve.isoformat()
     assert len(decision.options) == 2
     assert len(ledger.rows("Correction")) == (decision.action == "edit")
 

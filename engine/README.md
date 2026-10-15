@@ -69,8 +69,14 @@ origins, limits requests to 2 MB and runs one analysis worker. Health distinguis
 loaded models from admitted modules. Send `Accept: text/event-stream` to
 `POST /v1/analyze` for progress; cancel with `DELETE /v1/analyze/{requestId}`. The
 extension uses JSON responses and forwards cancellation. Population files can be
-served from `--population-dir`. Network history ingestion is an explicit CLI
-operation; capturing a page never automatically fetches its revision history.
+served from `--population-dir`. Enable the separate **Analyze Wikipedia history**
+action with `--history-dir .local/history`. Capturing a page never fetches history.
+The action fetches at most 20 revisions by default, retains an immutable source
+snapshot, and runs configured transcription and fitting before producing a packet.
+Add `--transcriber-config FILE --question-records DIR --cache FILE --questions Q10`
+to use an installed local reader. Q8 and Q9 classify corrections; Q10 is optional.
+Every requested question needs a matching passed battery. Cancellation is checked
+between bounded calls.
 
 ## Ledger, fit and reading
 
@@ -117,7 +123,7 @@ shares. Serve an existing fit with `serve --model FILE --ledger DIR --admissions
 | `git` | Normalized history from `read_repository` or an explicit export: `artifact_id`, `source_uri`, allowlisted `license`, `license_evidence`, ordered `revisions` with `id`, `parents`, `maker`, `t`, `text`, optional `summary`. Reads public-file history from a local checkout, with exact reconstruction and bounded first-parent traversal. |
 | `wiki` | Normalized history, or public Wikipedia article URL with `--artifact ID --limit 20`. Maximum 500 revisions, serial API requests. Boundary parents and missing summaries are explicit. IP identities are unstable; bot status can be unknown. Revert proxies use a censored 48-hour window. |
 | `lichess` | PGN with clocks and UTC source time. Reconstructs legal alternatives; missing chronology excludes a game. Post-move evaluations remain outcomes. |
-| `panel` | Normalized exchange with `dataset`, `source_uri`, `source_sha256`, `codebook`, `expected_rows`, `rows`. Rows supply source ID, maker, alternatives, taken option, open/resolve times and optional stated preferences. Ties, absent identities and missing times are exclusions. Six dataset names are supported; native field conversion remains an intake responsibility. |
+| `panel` | Normalized exchange with `dataset`, `source_uri`, `source_sha256`, `codebook`, `expected_rows`, `rows`. Rows supply source ID, maker, alternatives, taken option, open/resolve times and optional stated preferences. Ties, absent identities and missing times are exclusions. `native-panel` converts six supported released formats through pinned manifests; see the [integration guide](../docs/ENGINE_INTERFACE.md). |
 
 Equal display names never join people. Ledgers are immutable bounded imports.
 Identical reimports are safe; extending an existing artifact's revision list needs
@@ -127,12 +133,23 @@ has provenance, and text is stored in hash-addressed compressed blobs.
 
 ## Research components and admissions
 
-`models/` exposes pooled MAP choices, correction comparisons, cross-maker
-diagnosticity with shuffled controls, session source-use trajectories, fixed
-prototype mixtures, governing-goal coverage and calibration. `eval/` provides
-chronological scoring, controls and maker/prompt splits. These are callable
-research components. Software tests do not create scientific admission or activate
-their estimates in ordinary readings.
+The canonical pipeline binds literal labels and optional local entity/embedding
+features to exact inputs, classifies corrections, and fits options, corrections
+and a joint model. Process corrections do not train preferences. It supports
+diagnosticity with cross-maker fitting and a shuffled control. `eval` scores
+options/corrections with uniform, pooled, personal, correction, joint, prototype
+and diagnosticity variants using only earlier resolutions. `eval-source` compares
+source-use forecasts with fixed and recency baselines. Maker and prompt holdouts,
+per-target scores and input fingerprints are exported for external admission.
+
+Admitted packets can show correction/literal preferences, revealed-theme drive
+projections, sparse recipes, repeated actions/phrases/edit types, source-use
+trajectories, censored Wikipedia candidate expertise, exact edit focus and
+explicitly located inspection events. A separately pinned goal producer emits
+local candidates and a governing cover. T0 can borrow an explicitly admitted
+population prior with zero personal records. It cannot update personal loadings.
+SEEKING is reserved for separately validated pursuit vigor; it is never copied
+from a topic tag. All current packet estimates remain relative.
 
 An admission JSON supplies a module, status, exact implementation/schema pins,
 domain, both research witness references and gate results. Explanatory admissions
@@ -140,6 +157,7 @@ cannot claim probability. Probability additionally needs scoped calibration. No
 production admission is shipped. Packets identify the version, checkout commit
 when available, implementation hash, available admissions and actual contributors.
 Observed revisions, decisions and corrections are records, not inferred intent.
+Actual contributor IDs, including question batteries, are in `provider.admissions`.
 
 `transcribe/questions.yaml` contains Q1–Q10. Each question is a separate constrained
 call cached by model, template, settings and exact input. Run:
@@ -151,8 +169,10 @@ tompathy-engine transcribe-test --config config.json --items battery.json --ques
 Each question needs 200 distinct known-answer examples, source records,
 negation/paraphrase coverage, 95% valid outputs, 85% binary accuracy where
 applicable and its deterministic cross-check. A question's admission does not
-admit another question or a downstream module. Tests use a constructed backend;
-no real model battery has run for this branch.
+admit another question or a downstream module. `battery-build` prepares 200-item
+constructed writing batteries; these template families do not establish transfer
+to natural records. Q2 requires an installed spaCy model for its cross-check.
+See the verification document for completed real-model runs.
 
 Backends support Ollama, llama.cpp and OpenAI-compatible loopback servers. They
 do not download models or authorize paid endpoints. Ollama verifies the installed
@@ -165,11 +185,16 @@ a declared pin and bounded cache.
 ## Validation and remaining gates
 
 See [Engine v1 verification](../docs/ENGINE_V1.md) for results and pending scientific
-acceptance. Default readings show available observed history. Inferred goals,
-attention, drives and trust trajectories remain absent pending admissions and
-their admitted feature inputs. The optional research extra is not needed to run
-the companion. Full NumPyro fitting and native dataset-specific field converters
-are not implemented in this CPU MAP skeleton.
+acceptance. Default readings show available observed history. Inferred modules
+require their own admissions and feature inputs. `fit-posterior` adds an optional
+CPU NumPyro path with NUTS or SVI (`pip install -e "engine[bayes]"`). It exports
+a research posterior with diagnostics; it does not silently replace the
+companion's MAP fit. Predictability uses an explicit coefficient-norm convention
+in a training-standardized basis. A freely scaled utility and independent
+multiplier would be unidentifiable. Independent convergence, coverage and research
+admission remain necessary. `calibrate` fits forecast calibration on separate
+makers and tests it on a third, later maker set. Forecast calibration cannot
+calibrate claims about drives or stated values.
 
 ```sh
 python -m pytest engine/tests

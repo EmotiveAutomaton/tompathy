@@ -49,6 +49,31 @@ export function PopulationValues({
                 ? "Prior only: no personal records."
                 : "The remaining weight comes from the population prior."}
             </p>
+            {item.curve.length === 1 && (
+              <figure>
+                <svg
+                  viewBox="0 0 300 60"
+                  role="img"
+                  aria-label="Supplied prior uncertainty width"
+                >
+                  <path
+                    d="M30 10V40M270 10V40M30 25H270"
+                    fill="none"
+                    stroke="currentColor"
+                    opacity=".6"
+                  />
+                  <circle cx="150" cy="25" r="4" fill="currentColor" />
+                  <text x="150" y="58" textAnchor="middle" fontSize="11">
+                    0 personal records
+                  </text>
+                </svg>
+                <figcaption>
+                  Supplied prior interval width:{" "}
+                  {item.curve[0].intervalWidth.toPrecision(3)}. No personal
+                  narrowing is measured.
+                </figcaption>
+              </figure>
+            )}
             {item.curve.length > 1 && (
               <figure>
                 <svg

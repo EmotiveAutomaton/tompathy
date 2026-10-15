@@ -1,0 +1,4219 @@
+{
+  "schemaVersion": "1.7",
+  "id": "4de3b9279278c7b56d36872f1ae2b839d782fb068f7ef67fe2ba534bde129001",
+  "revision": 1,
+  "artifact": {
+    "id": "https://example.org/model-fixture",
+    "revision": "3bbc1f9b604e219880e540dd239711ab31c641134edbbae5f0b1fb5c4f9631e1",
+    "title": "Constructed fit",
+    "source": "https://example.org/model-fixture",
+    "capturedAt": "2026-02-01T00:00:00Z",
+    "regions": [
+      {
+        "id": "p1",
+        "anchor": {
+          "exact": "A constructed choice record.",
+          "prefix": "",
+          "suffix": "",
+          "start": 0,
+          "index": 0
+        }
+      }
+    ],
+    "truncated": false
+  },
+  "provider": {
+    "id": "tompathy-engine",
+    "method": "ToMpathy engine 0.1.0a1; commit 2a0c54233344ae3f64bed9806442289d7dab726a + local engine changes; implementation f8207f2b65e12885f1493555bab2792b1050495ea7231324f9d0760e94626fca; evidence tier T2; domain writing. Text alone does not update maker preferences. Actual contributing admission records are in provider.admissions.",
+    "admissions": [
+      "constructed-Q10",
+      "constructed-battery-Q8",
+      "constructed-battery-Q9",
+      "constructed-drive-recipes",
+      "constructed-habits",
+      "constructed-joint-preferences"
+    ]
+  },
+  "origin": "synthetic example",
+  "scope": {
+    "kind": "artifact",
+    "contextIds": []
+  },
+  "makers": [
+    {
+      "id": "short",
+      "label": "short",
+      "identity": "synthetic",
+      "relationship": "Source-scoped ledger identity; display names are not joined"
+    },
+    {
+      "id": "long",
+      "label": "long",
+      "identity": "synthetic",
+      "relationship": "Source-scoped ledger identity; display names are not joined"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "6f9bbea7863841ed0bead31d4451dd4e260bd2c40326a7b846239e2ccb3d40ab",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:00:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "a6cc11f18df1bbcdd526951e4fe9be42a1b2c75fbdddf18f61761ceacf1ce621"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "8140f625ed3c11a9c640fdf249ad450f315014ffe491a9aed339de5c5df6503d",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:00:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "52e534bd14a7eff6a28ceb3acb57e1cde0584c4ebd490caccaeb482d5156443d"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "58f1da6147220ff6f198779513d75955ce133fedee31619293a96ca800f314a3",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:00:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "ce05ccafc81b32f6670b10daa57bc09a1a1de93c50ffff5144927abb56a80e35"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "ac87271aef92c59436ab331a0173f3c5da67073fd3e894bd09aabe763839de70",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:00:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "1620a944b7c00b2ce71690439b23f8f7d12036a3046bf70024f60a962ace6f81"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "ae7c3c0bb9c0008d9ee48a642db140274b280a717da3ac82844d244e7c31bf45",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:01:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "425bdfc664b0bd0536d606b6f3233a26e0aae1a83f976b39be1b1ab5bdd9b1db"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "642a8ad77bc7e474c59db33b2edb590fd0ee786e9c18184076b160fb7a5dabfe",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:01:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "43b8cad38221596156638fa620a214c39f2f38a4f09e871c68ddbad0fe302b6f"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "5402c3c5934d43e8b819b86c00d777b60f07c8bf654c35efd8ba0bf51880506f",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:01:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "09f2ab0295b2ea9e4184169e2cfb6a887377e3300f1a63363cf07f698499e227"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "3d5b9b1541f95ef921719bb0beb002c29f6668a58f1b5a88c1c9044f612bc565",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:01:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "72b2d9745df7057115855661bc1ab1f13e4425b0962f36a7e0ee73dd149ae590"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "c87ab76d605304dc75cf8b68ab7f560d312d2e7ce4687bafceff4423a46a9d6b",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:02:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "86690bd999dd1bac680f58c0f925db9ce88e2a28d42e52c15473be9c7fd35b62"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "a22e49baa5465cca1a859ad72d419817e3ab7cf021a9ce0a24cfc287891535fe",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:02:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "a34dad60418e25afe734581d38b9847ffed2242298b8bdd11a95631327c44ea3"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "eb41d01b24f68a0bbb5998a6440e648bd57702c7f4381739f684e28b2b634b48",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:02:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "3e91c95b1136d78d173665cad20dfbef884d39c7d9e028cc18cd7b14bf0bfcde"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "d44acef51d9576f8dbe7060d8e82963badeecb501c565f79a886569e411e8fcb",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:02:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "7dcf4c9ceb2546eed08b9834c72e321cb0c28e538e0ff14959443c1ff4353b15"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "d54ae37cd6f44f125731c83bd1a182d4185525b1fd71d69cf9181561073ba18b",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:03:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "080f0f28e7527973f72aa9f5c071b471466177ae198e8cc7a19d809b739f1fad"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "c8b4d742204f194a372cc9cbfead125d8219dfcb372f27a20057b0e4aa3d28aa",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:03:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "4ab468110b87dd91d56b6bf3e91810a025b0ad86c448f301e9f50ff89ab26b70"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "2fff024955b55423c6239bcb4e717d675e076eaf34782636d43bc7e6278f6613",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:03:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "9b8f93ef78da72107cf1fc6d95cd86f9a9788fb6419a190f7bd988ec10f92e43"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "a542be45dd12d1ac26f1a4daf6b53738daa9b251f48be28300977efa5224fd22",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:03:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "0fe7323ea1f2e820600d54ad877ca8c0336864aa0b894d347b1b277952ea826a"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "c7eb4915c2aae648550ce958e903389d1bcab152ec1f2ff4cac7ef5aae6cd611",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:04:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "312d68a8109b745612790b920eae95f45b04256d4149b0fc8f7e8f44aa061e80"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "b4169fcc10e44d8e0776b406aae32324c545366e67fb352494fe246dd6aeb313",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:04:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "ae72aee5f76ed3d05f9f140bb3441f3e1392892bd49a95434655c164827c1a89"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "965e79113da6f199d6b671ccf147bb729e977c0a8507e07ef12891db48c697d7",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:04:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "a3a8286c8c9c3299a4b8b888b4aa6b5fc35866e98f90286bb5b8541d944b2244"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "a361be37e6344bdade3517cc5780d21f705d60868291e19f4b796cff5159b2df",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:04:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "052cc9cc573fef5d82d2023747fb5925cd0c803d05ee89fbfb99a3f77dd495ec"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "7d6b3d4c0b81de7af1e791409ed11c8aa0306c12ee42cc8a5142da8b145185b3",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:05:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "aacea21da4850c70d2b66298a6419c745439d7a0f2c6665a5b022d9d2570e7e1"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "635555c35781705ed9bcf4accfac612f0cc04301b4950de6a30f3e523e3b8466",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:05:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "639a0008dfdc722c82e9fb1578b9f76d25c300fb485a48e611320a588b3f2b1e"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "304108254ef1d6ad34cd2754b84dc84ace1ec25e9160b888fd60dc4f78aa9bbb",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:05:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "c0432d2d1657101df891fce70c50c0e4d484e56fce6ca84b88050d7099f27594"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "47f0d10760cea0924427728c7a81f1cb71429abb077a8204156cf245cf986cb1",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:05:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "b2c4a588af7a7e391e3ed5612db69b2e9c8fdc2ec7ee0d25eebbb54df253776f"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "7b84a2fb0440562be28e85d12bf1fa2d8087a4a510a6ab5d761d498307e2de33",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:06:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "571ff1175a0fc8ca5810f8ad6fb6b92bbf1f8eb8c84ab7aec1eeb7038a044a73"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "9f8a0cc42bbf17cba669f4f0e00fdea2bb14f49c35e65cd65ed50a2f470cca34",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:06:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "acdaec4df4cadef42289f72f55683cea005ed8c9dacbae3bf80673c39bef25b3"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "bf41777067b2ebf6923077a7c6508101ef2e3fc979a5c9e58970de9d2dfcae73",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:06:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "3effd9b7c154e50cef90db64706698fb46b3f8c0e834229cabf066c3693c1ff2"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "fde4a1a256c7a974d47be3a34719876944f1e386240f9aefad0ee5fb64158f75",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:06:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "5b17c3abc7cda499b5b754787ea9f088c855e2f35a78ce975cf77b72cb5226d7"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "a8cb5006ceb15fa9de0f4215d090b52959512768402b995cd327603664b20cd1",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:07:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "6229c5f04d660ad0aa03268930899a3e88c1cf2f600c704462719be991b3581c"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "a86c959d149b2959aea82fe929466b3491959f76b9b78ae205d811ccd642782f",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:07:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "20687672935c53461620705a771a30a13d7b1a93b8e22f6d70275a9e478c4762"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "eabb71b3c5a9077da9aa4464c9f172eda4e9ce2cf550313df32ead80f9fbb1fb",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:07:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "901d43a1eddd026616752427371b05f9cabc71d95e9e7a156d2ee17a6569d770"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "9d523a10c96ff8f44c6304dbd206fbf84bf66a6ee0bb7d7beb3118477b15c1d9",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:07:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "d73b4a99bb103e6ad47840be124e20eef9def7319d2b13b910f8a055b4f916b3"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "5faaede1670210e3d1401807271ef9412ff3ff2c9c30ea3ff956df2b54e2eace",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:08:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "6ebbcc400614319e8678055840b302962d5514bbdfe408f317c3e5037a99a894"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "92eb5daa50097d42305f638bc83842ae0c7e7f3899863ae84e012b3e2a5a66b1",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:08:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "dcbaa78353deb9f02bc9ac1f9ee41b0781158448a2c077575a3579ce4264a22e"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "777a3d817dc065c7c90251e51b39dd7128f10b4c02aa4c806c0b16aa55613791",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:08:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "aa94abfffde23b42fe1d83711d8b7064a421ef4ae09a9cab0272c6f9422cf0ab"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "c8c2405308ea2fdfb0529216599c0376abd8ef7a26e6a65fd81d79c816f44c77",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:08:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "f7efd6bf61447195fc103498b4c22e8c5520e2bc831ec82b013f0db2de3ed876"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "eacd8d5da63002fb7bb5db9e55a742d00c6cb0b2590638da3d83bd239e5a5e16",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:09:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "5b359845b29c896f800adfc83eeda5d2cba9339cc9213196662ed794fb3266ec"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "8f1270bd629f7024f85623a64f22aaab344bbb3eee58b9de56a704a7ba8fc810",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:09:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "1087cdf912f681d5cc89e650189af384bb69e6982621ba4282a0ebd7eb99535b"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "34f72c9b3d4a06245976ed508ad01d842024c0ae5b66b86883185d31087c4566",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:09:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "1c1b1fe8a488132fece28fd9974dca4a5b609c18759ab025b77bdd86e1939595"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "c78a2ceec1e42fb3589edb94e3ad0b02b28427d057d421d3aadf484ea5fdd5d4",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:09:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "761345ddaa206408298f72a390ca7d7976ef660579db16954c61aa491e7fcc74"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "7d57bea38ef3ca195b9386998ec968851b7f6f4df3f0da7682956e087998aeb7",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:10:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "0b26f04e068b664a7b1988620b7bcde6063d00994a7d956bf7f5b462a9d4b0c9"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "ba26d3efe1ef27722cf69d6c074ef5b2000c134b8df385f90352319dd052bc30",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:10:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "31f6264b5d2260209bf900f8e5ab0c5f34611c3132b24e0509c2bea14c27b0aa"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "b5385daa0b563b8dd0212a36074db7ae32a4ff4390e586887f16ac4806e63e6b",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:10:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "d61fa0e14be9d67783773de5e731f090df3544a5c1b49ec930c7961c7e638294"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "b74919946af140b02848446c06ac116e439f5b37d7315001f63909eb5a3e5d49",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:10:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "1344619f63ebb6f3e3314036e8f6af3441913c2da2d63ebd11b3358368f4285e"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "08cc36fad3c3d270aaa083a8e2572f75b57b142d8ad28a844e249e3b8295aa54",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:11:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "9df11ac743f93c6e236fd21ff519e0dc7b05dd713f873e7c787b4a0f763a5b68"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "0bd23e3e7f628f2d22332f1c7ab09280361a481d99a41c3f0a8788eeb9572c1b",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:11:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "690b0beeb4182f4dd28393291c1965e865029548124486e06166b94313a8b3c0"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "ec97e90a4492d3c85825a3b4622cf3b72695f03ed5fd0a879772df69e7031022",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:11:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "805b28f8bc809d362f5efd389757f347f249532ee756f2a11a96e4758354b82e"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "a99880120c6ea14725d6a09d3ee0dbc471dc62376823e0284d075cbb594f2604",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:11:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "49d0e44a2c111d14529fddd8f406686c9289cf0257275da8badbf0fd00b3c220"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "f7788b3448bee41004d3051332355fc21ff3958675ddf1cdea5331c81043c13d",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:12:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "bc934c978023dcb8e57a92045fd85e39f8adb3a013ca77dc78e0990f3db742b7"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "a349133317a5ed9e984c36f202896226e55f73edc6f33ef5e05342306a133dd2",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:12:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "b217129045d02422f408d4d97143e6cc1e2800d52499018065a3a2d17cf41df7"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "6a5b8a579151aeafb7cae60bee8a5acdad585d4f454d817d709b50c5950ed573",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:12:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "15018fdb22dcfe47f9c3c63aa23fa5b1b86578aa4cb385e0bcfdb8b056b15c39"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "b8966e8d60532f4607d7df26e9e10369edf65092e37d8a3e120b86864d7e0787",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:12:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "2b9c5f294fdd8412d927cb9d9139e005dd44b472a831c4ad0afefad8920ebc47"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "33bde4ceea0fdcacd373c74112f5bf84d4a20de783a79afb163cbbfc0df28864",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:13:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "af761472aa999b2c2e96ee50d6b03757d698c302347fb6294d51e9bee07767e0"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "25a0c1ebbf566ccc0143ce261aa38a3b136262ca6672895f14acc92a83980260",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:13:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "d8b52c03cd3c21a9b06110048cf804f8024ad31052f88ad0457f754ddee25f1d"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "8d35de63b56981fc497659c08d8dc02c47859543bd7592ae47608c517e1b2d7d",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:13:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "eb514aa0def1144868180b08e40677b12d092e686e5256e5c8fcf195a08580cf"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "a88a1e08eb48915a5a9bcbf09052644313a7e4db6d593c22de6b9e249cdc9d00",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:13:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "203c0b3f8de854b89aa8615618c3d9405ce7f998856f696c37250ea70b4a2ad1"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "4ac4e19368df8695a5398f91807143a57712edcca3f32b174d9992f34c6d9ead",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:14:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "8a38b2e1f22145f6f3169cc0bae38389a19f3c99f16537563a0f7263db5d647b"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "bb9094ff333eebfcc72832b8ca364a5f199dae573fbfdc477072be7d66bb7a27",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:14:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "b04b9c894b3eedcdd198ebb340e1ba476f9733ec3326997267fd92ed28be9549"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "7e653bc2d0bb1d05a89096775545fcc33393400f1131772b412fd95eb1bd0e39",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:14:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "6368bc60c89d0f81bc9fc69090ad015def53e4f5d8ae35d78ad438dd0fd65065"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "ba59017ecefd74fe480ca970d4e57e216d5c246bc20debee56b8fa07a44edb69",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:14:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "ea373f99c694f2ac8ebc92c0d612be319bf7754f9d47740306fd6d9970dcdc55"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "fc96d5b26e3e6e9dfe57f7e9a1cbb9811396e0ca434ff79a89c53759ef85d06e",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:15:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "47535e86775433d03fb202bdc07385a3fcdbc94b16d0d4bffabdae603a67d7ca"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "0aa1fbee22e42a094b0de73fc1b7f2a604ef8623509e3bc117ec44597d45d80f",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:15:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "2d9b895bee86393eb6c23541b77157e8c41bf17f9f7b5d3f3d250f67079a16cd"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "68a295970fb0b51ad416f830c5e29ed1db556cdda58ad8c769ae55e714a8c63c",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:15:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "e1daceb6e13cc749e3326c38b908cb34afd8741418dc2172d0f3f72028727675"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "db959265c0d9fa6a45b2e963339e576ba3f431d0c4edaa2b0cd1d3632aa3735b",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:15:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "1492f83e2aaac6c3a507fa4ab3e35fcfb693688dd68b99ef5f0df0bcad97269d"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "e4551992131d413ec1f2c037c02c7af0db09db0c541991275809c895f1198b6a",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:16:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "d3c31acd1f3c49d03b99c381e55dbef5d68160d2a0c0f9127f4189e2e91256f1"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "2d7e3959c5ab846e011dfd910cceb2eb22138930309b093b19eeb2f4bf8db372",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:16:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "ad03ef75ab5f63e109140ed44e164336ed3022613074a1ab41ffddab16aaacde"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "84cd90f237a066e34f37f3936681b83a673fb4dba0c2ba82595fb04e20d94107",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:16:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "2a494f40f165926fe5cc52cc53785dbff025d831d2781c3f9a3f7934713a9a70"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "2953de9be0d2fe6c4f648786c9949f25090c61a6a5349559455791def07de226",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:16:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "7a53bc84fd50918b9eaa561c4de6cd022633b44d98007932cff927ad37f9a801"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "609c8601d6ead642206af3a0f644edeecee324f485611a506600331d0010f332",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:17:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "d2eb993dbf69bc0c0946cf10f9dd1fda2e01e6ef1a4322bf2cc5cb7eb9409cee"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "3e035255c96abe043a9dcc87e7a081d6520aba9c3f4b855f320037f46c108dd6",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:17:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "147a56be79dd5ca2580a9e2c930ac13ad4f1a816562ab318f35770787f64727e"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "eec48341446e6f9c6dcc3546782253ef21790bd7398d59bd3c30a4c70d5dcca8",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:17:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "c31ff9e43eab7abfe28a9669730a513fa473de8fd577e52046eae63309a0625e"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "cbdccd6876be22ddb5197961010ba82cc77b325af23fc17cec5e3b8fa33ac54d",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:17:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "2a11d3eb0021796073564031c849484a2f75b5aa6d16d0e0d45be026329385be"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "47f6967fe6d3a7a6bccd14211bb9d9d1d880b4e2d3c4ed1567f663b6c65e7b8e",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:18:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "89b278bd77e0dddd61ee796afdc0bf5aaebf2b88b1d7af9e70a75de5381a9460"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "8296d7cbd6488319709ba6f3157c17ab54fd8857179dfece12fbb17a8fd2d973",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:18:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "a8711c64bfc064c91b5f9299194b1a67fc2925f8f092d7b002ef25fd98c55464"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "6b8bb32cec5f5d5cc3dc1bff29c200952c6dddfd41dd0ba5a343b8f134b51e42",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:18:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "a0367f49473a4734636944a5551a487759d044ce55cff04a6468c57a4f7b382a"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "e9b2ba7a0e28eef278e38efef3c87ccace4db9defde8ccc1f32aeac8808ffe0c",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:18:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "1609b12e8cc2ab79dde06c5ac282ca6f9a414457bedcefdb7c770b3aedb0f762"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "e5e23180f5cab6d9706d88ecf712215af778aeb0bb0bef75d5e1e24c61a48ec8",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:19:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "220fe9d78f0aedf5e19b0b9bacb9f623c462e922ea1ae255df1e4ac48171f86c"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "f5999df6c2c2c375beafd40e5fa506dd4e2cd68dea0517edf95f3cbe8b62af20",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:19:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "51ed6b749212ccc508da04bf7a28f7744789a234d2a7283d1fb4dff2d812fedb"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "3173e9661043bcb564efc567f15b9a2c4b19a25d5ff8df30665330f041eb0ab5",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:19:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "318a293f1e195dda13180b3885f8b5b3dfa9f8dd62900ac14dec77a2752c5567"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "22ca49edb05a56fc2eba537c8607c8527a03a61a24e762711304f6395dbf0cd0",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:19:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "36efdf9e2af8a03bab7a0c8f77f7c3b2f5225c09aa974ee0531abab742ede777"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "b21b26929ab0f7f3e646cbe8b9cd846d2c8fe96028328f38513ac09139816581",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:20:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "16e63d6be11621355b730580239461bc8f1afaf35e38c0086554ae09b129260a"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "c55aafe39ece578b84f09aa00d7b632b62a6dfc0196df3fb0e96a623374c5870",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:20:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "346af7bd6f117f156dd77bb1e950678deb254b002edf036366d3e254497681c5"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "cb7a8836abd577278512de5f6276b4e3f8cc4bc4e6c2b74c7ac35b6b73751c88",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:20:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "39a9e89093cc7d51e790f2777b10b7c7fc449d36c11e7f3c2aad89b0b4f74e0d"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "c794b06f355e3dea3b9e31690e8774d26db318e0d2de6dcba3a2ee69c7b530ae",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:20:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "94461903eadaecfaff3217e258abe4aaa79f5d7ff52bfc07c1e1a364127af74e"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "3882cb24f47b62a58134b754664a312eb15059bf7552ca14fd32a47829c11e1f",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:21:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "4c084f62c6b909d0eb76e09e5c6f7fe8ba35c1f2ddd76290ecaa173825c2bdfc"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "16db6944fec8e87038f10d13745333e8e26b0a5f59096f41827fee8bfb011923",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:21:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "a6b415ad6aea2979f08bb78ceeb04ed4096545b4a36900e125baf3858f527396"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "cd586bc3f4d3654f1ce1fd1ddc1fe25c9a0397ba2fcfbbd02ef448ab797b0a1f",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:21:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "2f5c293e6db74b69f24b43eddfb2666d1b0f974107be7cc81482ba9a1aa73e2d"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "6b3c120833dca27a4f296b8b77767296e4b061adfb91c99a9e832606bff8db52",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:21:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "20af5b5cf29456ec88e60bb48bd3b92e159f7c405730bc20a26cf760504a0f77"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "78d27df927febb996c6544527f9ae034aaf7328f53833c4a8339c9f1fe3be8f6",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:22:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "fc5d3c68bf0728f994e6891db6b75b83911ef8bfef9211e96fb3b121e0baa724"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "3e4bab5d5ef7a29f88aa3e84c2d77b5dda401a0288d61a189c86dba223b65e32",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:22:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "48f7f9aa78185598cb2bec0cba8a9677c54b8849e390da9a24c6d1800066616d"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "7e22babb8d843c567c89c4731bfd56c59e64711a6c527d2a91f1585688875378",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:22:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "4f4afc4270be376c1ae65fcbd8b11fb9ed3f15c72a64be835136599ba50ccfcd"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "937e5e9705dc108e02495e68a789d4532043bc21f1488802f49d4e3ac014fb89",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:22:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "b9c171f6bbafe7a75912d1abe12d2d059f54bdd05694ed3b1e2d95616b92a23e"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "59d7ddb11718aaf86e2c1b890eff6be339bbef3f8eabfd211f1054318c9ae656",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:23:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "66254a4e17116a8cafb79f8f369ab60f013c4b08d0826927676b61c40788e982"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "974e064d835e70887d260ba1755d84d90f6dc4f1b2ab26bc21a67af02f4ecea3",
+      "kind": "process",
+      "label": "Recorded decision",
+      "description": "Recorded choose among 2 offered alternatives at 2026-01-01T00:23:00+00:00. Acceptance does not establish endorsement, understanding or motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "dcd033e651236071f906fba148fa0d90b1357658c6bdf164eea34978e6b8d56c"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "4ede63ef671e43c7a662610556f461b7807f610ffb917a2706e963b923387d1c",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:23:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "f1e40ab73368cdb9f39e794ed231bfc216bb601ad01a8d1461ecaa440d94aba5"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "b6e410ab655f4bcbf41ac89aef0a131b7b51552847d5f1e444df9d4477b3f23d",
+      "kind": "process",
+      "label": "Recorded correction",
+      "description": "Recorded correction at 2026-01-01T00:23:01+00:00. Its reason remains unestablished.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "observed",
+      "evidence": [
+        "4624e3990c8784df24f723189889dfb326215801379fe4e55af131d269b79493"
+      ],
+      "interpretation": "historical-event"
+    },
+    {
+      "id": "206726f752c2774ddd2434c6243705fb815f283564bb7bd2aec34e44e3d9d43a",
+      "kind": "value",
+      "label": "Preference hypothesis: shorter text",
+      "description": "Observed joint comparisons support a conditional tendency toward shorter text relative to this population. Coefficient difference -0.025989; conditional 95% interval [-0.043769, -0.0082085]. Other measured features are held fixed. This limited comparison does not identify a broader motive or value. Reference and observed widths use the same fitted pooling penalty.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.0020859411441288053,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Probability-like relative position above the pooled coefficient; conditional Gaussian approximation, not calibrated against stated values."
+      },
+      "evidence": [
+        "028699ad4bbbed4370bdd7dbd86a03a950c8f1b0ce0ceeff3501350c03281d9c",
+        "cf80482758e019e4987745ffba0a381256fe609aa5e329e8b7dd3f55f4f1ee33",
+        "3fe1c4c1cb67d4c2cc1507cc9a1d866a2f73354ff65fbb1d6e592891a8a7e63d",
+        "714a261eb4fff459b47ff76cb64a585160b1acc69dd73efa686b5d5d925db550",
+        "0c34c386e2019eeae0b984d280ed604561b701e276dab85fd798d94fc242ee84",
+        "d5b03590a0804a89b68bd99e69a4b5a3a94657eedb59f686aff5c40cc87b03eb",
+        "9b561dce3a0d44b188b5c7e15bfd333318e2ad52ea04a346eb8129a81113c733",
+        "9242200be66a32b330dcd6b2fcace8ab786952598d44d8ccbf78d10604d52abc",
+        "19bb4613ca0d3b00d190fdee710bd35957242ea5cde5a69f2ee983a732c8a483",
+        "22d52351f38027ac4fe90f06e40291ca8924726bd30ba1405e2d81e0a5bf24e5",
+        "7831fe25bb00853acd1069f3e0c075f07839402a796f2090e9ea3b5416602920",
+        "62342afe52c426d901d0598d0d1f1fd4e86a54a0b4b5fe704e141b43f94d2ed1",
+        "b5c71f95a7b7a66827fb6745cd80c3a9c73910e6368f4240a37b8c9d4e5f8599",
+        "233f7d8598d1ac81a5ce1879c28b2029b22cbe281505f783c13b8cb504778e19",
+        "4fc721b30274f2c1d87ebfab680a781ddd58572c14a7461f66c288f0d0c98f0a",
+        "a5498889aecb0faeb8ddb1716755ddcba8c581d503cb9f8342ac45b404324b2d"
+      ],
+      "interpretation": "preference",
+      "icon": "value"
+    },
+    {
+      "id": "19f5a7fe47d3fed16e1e4f3d3ab36ed1163c20e33c1e7f33c2e58815d60bc188",
+      "kind": "value",
+      "label": "Preference hypothesis: longer text",
+      "description": "Observed joint comparisons support a conditional tendency toward longer text relative to this population. Coefficient difference 0.025989; conditional 95% interval [0.0082085, 0.043769]. Other measured features are held fixed. This limited comparison does not identify a broader motive or value. Reference and observed widths use the same fitted pooling penalty.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.9979140588558713,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Probability-like relative position above the pooled coefficient; conditional Gaussian approximation, not calibrated against stated values."
+      },
+      "evidence": [
+        "a1170029bc0ed744fe5d784f600f4b3083ac979ac7cde18011c76a143a128646",
+        "39493b6e6fce0ed4db936fb65e513296af04ba429d1c4c782ae31b4998847bb2",
+        "9ade0a3bbb97100fa28a841f53349f2b6e246689f3faec47eb993d7e03005c65",
+        "948f096bc1eaffa22941b11316ecb2757e9f50e6131639159c6a854c53dce2b6",
+        "c4d3e1599a873d137be4538b8933901ee77350bc26aa9f17e89408c736cc803a",
+        "8759509bcfe1189eac2bbb2473e1a3ce9e69290205ce369a5762a3a1a9a51438",
+        "3053a97a676c9c3877837960d92db4e384b2fbbfbaf9634f054899ae7cc47d67",
+        "182747c8e5ed1729a0af8fcd14bb04c25322e0bb9b54704923789f68b80c65a0",
+        "34e3b47bc8300077a0fa363943de5ad03e65f85c6a4b374e1b0cb1d40c4865a2",
+        "71b46d7740fd9a6486f2f5ea67d57b1569bdebf4cc69a05436084473ab84b30f",
+        "31cc337d2e8a2f7e9625330ff570d836eb89269fac848e3bc37964ab0481468e",
+        "11961cc55f47d3224639fb1fd6ef0efe93987de43115a1e286a62a4b0a8b4acc",
+        "046757a6fac516f57b837c0b961440c0472f797cfb1904ab1bc9af2680f10ab5",
+        "54270f6c589b277b7ab6ce224b635e542b1a53edffaf74520be3f3bdecd7c4b3",
+        "98b98ce85d8c332ccea83ac3a698d511da28c7185cb49c2d932cdf8d1bceaeac",
+        "b988d3911756cb340edc56caef1bda1067e6f1b1085adcdf0999f6ee8b7d0dfd"
+      ],
+      "interpretation": "preference",
+      "icon": "value"
+    },
+    {
+      "id": "89b1cb57a2d4a1953c8debf300c5a046a5cbd64470ee6c82e29be62a69efe7e0",
+      "kind": "value",
+      "label": "FEAR",
+      "description": "Conditional themed choices and content corrections support this drive-channel hypothesis. Conditional contrast 0.00414, 95% interval [-0.4326, 0.4409]. This is a revealed-theme mapping hypothesis; it does not measure neural activity or a private motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5074116655593184,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Relative conditional position above the population; uncalibrated drive mapping"
+      },
+      "evidence": [
+        "028699ad4bbbed4370bdd7dbd86a03a950c8f1b0ce0ceeff3501350c03281d9c",
+        "0c34c386e2019eeae0b984d280ed604561b701e276dab85fd798d94fc242ee84",
+        "19bb4613ca0d3b00d190fdee710bd35957242ea5cde5a69f2ee983a732c8a483",
+        "22d52351f38027ac4fe90f06e40291ca8924726bd30ba1405e2d81e0a5bf24e5",
+        "233f7d8598d1ac81a5ce1879c28b2029b22cbe281505f783c13b8cb504778e19",
+        "3fe1c4c1cb67d4c2cc1507cc9a1d866a2f73354ff65fbb1d6e592891a8a7e63d",
+        "4fc721b30274f2c1d87ebfab680a781ddd58572c14a7461f66c288f0d0c98f0a",
+        "62342afe52c426d901d0598d0d1f1fd4e86a54a0b4b5fe704e141b43f94d2ed1",
+        "714a261eb4fff459b47ff76cb64a585160b1acc69dd73efa686b5d5d925db550",
+        "7831fe25bb00853acd1069f3e0c075f07839402a796f2090e9ea3b5416602920",
+        "9242200be66a32b330dcd6b2fcace8ab786952598d44d8ccbf78d10604d52abc",
+        "9b561dce3a0d44b188b5c7e15bfd333318e2ad52ea04a346eb8129a81113c733",
+        "a5498889aecb0faeb8ddb1716755ddcba8c581d503cb9f8342ac45b404324b2d",
+        "b5c71f95a7b7a66827fb6745cd80c3a9c73910e6368f4240a37b8c9d4e5f8599",
+        "cf80482758e019e4987745ffba0a381256fe609aa5e329e8b7dd3f55f4f1ee33",
+        "d5b03590a0804a89b68bd99e69a4b5a3a94657eedb59f686aff5c40cc87b03eb"
+      ],
+      "interpretation": "drive",
+      "icon": "fear"
+    },
+    {
+      "id": "4a58c43ebcd1e23bfac579ad106e07a2281160f1d2b33af2aef298ad2de64a01",
+      "kind": "value",
+      "label": "CARE",
+      "description": "Conditional themed choices and content corrections support this drive-channel hypothesis. Conditional contrast -0.00414, 95% interval [-0.4409, 0.4326]. This is a revealed-theme mapping hypothesis; it does not measure neural activity or a private motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.4925883344406816,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Relative conditional position above the population; uncalibrated drive mapping"
+      },
+      "evidence": [
+        "028699ad4bbbed4370bdd7dbd86a03a950c8f1b0ce0ceeff3501350c03281d9c",
+        "0c34c386e2019eeae0b984d280ed604561b701e276dab85fd798d94fc242ee84",
+        "19bb4613ca0d3b00d190fdee710bd35957242ea5cde5a69f2ee983a732c8a483",
+        "22d52351f38027ac4fe90f06e40291ca8924726bd30ba1405e2d81e0a5bf24e5",
+        "233f7d8598d1ac81a5ce1879c28b2029b22cbe281505f783c13b8cb504778e19",
+        "3fe1c4c1cb67d4c2cc1507cc9a1d866a2f73354ff65fbb1d6e592891a8a7e63d",
+        "4fc721b30274f2c1d87ebfab680a781ddd58572c14a7461f66c288f0d0c98f0a",
+        "62342afe52c426d901d0598d0d1f1fd4e86a54a0b4b5fe704e141b43f94d2ed1",
+        "714a261eb4fff459b47ff76cb64a585160b1acc69dd73efa686b5d5d925db550",
+        "7831fe25bb00853acd1069f3e0c075f07839402a796f2090e9ea3b5416602920",
+        "9242200be66a32b330dcd6b2fcace8ab786952598d44d8ccbf78d10604d52abc",
+        "9b561dce3a0d44b188b5c7e15bfd333318e2ad52ea04a346eb8129a81113c733",
+        "a5498889aecb0faeb8ddb1716755ddcba8c581d503cb9f8342ac45b404324b2d",
+        "b5c71f95a7b7a66827fb6745cd80c3a9c73910e6368f4240a37b8c9d4e5f8599",
+        "cf80482758e019e4987745ffba0a381256fe609aa5e329e8b7dd3f55f4f1ee33",
+        "d5b03590a0804a89b68bd99e69a4b5a3a94657eedb59f686aff5c40cc87b03eb"
+      ],
+      "interpretation": "drive",
+      "icon": "care"
+    },
+    {
+      "id": "bc9c381a8bca0bce18446cc0dfccadd76fc5f72d943564567101b150fd4eed23",
+      "kind": "value",
+      "label": "PLAY",
+      "description": "Conditional themed choices and content corrections support this drive-channel hypothesis. Conditional contrast 0, 95% interval [-0.4383, 0.4383]. This is a revealed-theme mapping hypothesis; it does not measure neural activity or a private motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Relative conditional position above the population; uncalibrated drive mapping"
+      },
+      "evidence": [
+        "028699ad4bbbed4370bdd7dbd86a03a950c8f1b0ce0ceeff3501350c03281d9c",
+        "0c34c386e2019eeae0b984d280ed604561b701e276dab85fd798d94fc242ee84",
+        "19bb4613ca0d3b00d190fdee710bd35957242ea5cde5a69f2ee983a732c8a483",
+        "22d52351f38027ac4fe90f06e40291ca8924726bd30ba1405e2d81e0a5bf24e5",
+        "233f7d8598d1ac81a5ce1879c28b2029b22cbe281505f783c13b8cb504778e19",
+        "3fe1c4c1cb67d4c2cc1507cc9a1d866a2f73354ff65fbb1d6e592891a8a7e63d",
+        "4fc721b30274f2c1d87ebfab680a781ddd58572c14a7461f66c288f0d0c98f0a",
+        "62342afe52c426d901d0598d0d1f1fd4e86a54a0b4b5fe704e141b43f94d2ed1",
+        "714a261eb4fff459b47ff76cb64a585160b1acc69dd73efa686b5d5d925db550",
+        "7831fe25bb00853acd1069f3e0c075f07839402a796f2090e9ea3b5416602920",
+        "9242200be66a32b330dcd6b2fcace8ab786952598d44d8ccbf78d10604d52abc",
+        "9b561dce3a0d44b188b5c7e15bfd333318e2ad52ea04a346eb8129a81113c733",
+        "a5498889aecb0faeb8ddb1716755ddcba8c581d503cb9f8342ac45b404324b2d",
+        "b5c71f95a7b7a66827fb6745cd80c3a9c73910e6368f4240a37b8c9d4e5f8599",
+        "cf80482758e019e4987745ffba0a381256fe609aa5e329e8b7dd3f55f4f1ee33",
+        "d5b03590a0804a89b68bd99e69a4b5a3a94657eedb59f686aff5c40cc87b03eb"
+      ],
+      "interpretation": "drive",
+      "icon": "play"
+    },
+    {
+      "id": "0adcba05ba01943e17eab071e2ff153c72c66bdcaa99249e3142a45f9a4bca3c",
+      "kind": "value",
+      "label": "RAGE",
+      "description": "Conditional themed choices and content corrections support this drive-channel hypothesis. Conditional contrast 0, 95% interval [-0.4383, 0.4383]. This is a revealed-theme mapping hypothesis; it does not measure neural activity or a private motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Relative conditional position above the population; uncalibrated drive mapping"
+      },
+      "evidence": [
+        "028699ad4bbbed4370bdd7dbd86a03a950c8f1b0ce0ceeff3501350c03281d9c",
+        "0c34c386e2019eeae0b984d280ed604561b701e276dab85fd798d94fc242ee84",
+        "19bb4613ca0d3b00d190fdee710bd35957242ea5cde5a69f2ee983a732c8a483",
+        "22d52351f38027ac4fe90f06e40291ca8924726bd30ba1405e2d81e0a5bf24e5",
+        "233f7d8598d1ac81a5ce1879c28b2029b22cbe281505f783c13b8cb504778e19",
+        "3fe1c4c1cb67d4c2cc1507cc9a1d866a2f73354ff65fbb1d6e592891a8a7e63d",
+        "4fc721b30274f2c1d87ebfab680a781ddd58572c14a7461f66c288f0d0c98f0a",
+        "62342afe52c426d901d0598d0d1f1fd4e86a54a0b4b5fe704e141b43f94d2ed1",
+        "714a261eb4fff459b47ff76cb64a585160b1acc69dd73efa686b5d5d925db550",
+        "7831fe25bb00853acd1069f3e0c075f07839402a796f2090e9ea3b5416602920",
+        "9242200be66a32b330dcd6b2fcace8ab786952598d44d8ccbf78d10604d52abc",
+        "9b561dce3a0d44b188b5c7e15bfd333318e2ad52ea04a346eb8129a81113c733",
+        "a5498889aecb0faeb8ddb1716755ddcba8c581d503cb9f8342ac45b404324b2d",
+        "b5c71f95a7b7a66827fb6745cd80c3a9c73910e6368f4240a37b8c9d4e5f8599",
+        "cf80482758e019e4987745ffba0a381256fe609aa5e329e8b7dd3f55f4f1ee33",
+        "d5b03590a0804a89b68bd99e69a4b5a3a94657eedb59f686aff5c40cc87b03eb"
+      ],
+      "interpretation": "drive",
+      "icon": "rage"
+    },
+    {
+      "id": "8683d683bcbcdbb0bac733624b4bbbf8b71a1d29a134497718074523e4dc7b9c",
+      "kind": "value",
+      "label": "PANIC/GRIEF",
+      "description": "Conditional themed choices and content corrections support this drive-channel hypothesis. Conditional contrast 0, 95% interval [-0.4383, 0.4383]. This is a revealed-theme mapping hypothesis; it does not measure neural activity or a private motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Relative conditional position above the population; uncalibrated drive mapping"
+      },
+      "evidence": [
+        "028699ad4bbbed4370bdd7dbd86a03a950c8f1b0ce0ceeff3501350c03281d9c",
+        "0c34c386e2019eeae0b984d280ed604561b701e276dab85fd798d94fc242ee84",
+        "19bb4613ca0d3b00d190fdee710bd35957242ea5cde5a69f2ee983a732c8a483",
+        "22d52351f38027ac4fe90f06e40291ca8924726bd30ba1405e2d81e0a5bf24e5",
+        "233f7d8598d1ac81a5ce1879c28b2029b22cbe281505f783c13b8cb504778e19",
+        "3fe1c4c1cb67d4c2cc1507cc9a1d866a2f73354ff65fbb1d6e592891a8a7e63d",
+        "4fc721b30274f2c1d87ebfab680a781ddd58572c14a7461f66c288f0d0c98f0a",
+        "62342afe52c426d901d0598d0d1f1fd4e86a54a0b4b5fe704e141b43f94d2ed1",
+        "714a261eb4fff459b47ff76cb64a585160b1acc69dd73efa686b5d5d925db550",
+        "7831fe25bb00853acd1069f3e0c075f07839402a796f2090e9ea3b5416602920",
+        "9242200be66a32b330dcd6b2fcace8ab786952598d44d8ccbf78d10604d52abc",
+        "9b561dce3a0d44b188b5c7e15bfd333318e2ad52ea04a346eb8129a81113c733",
+        "a5498889aecb0faeb8ddb1716755ddcba8c581d503cb9f8342ac45b404324b2d",
+        "b5c71f95a7b7a66827fb6745cd80c3a9c73910e6368f4240a37b8c9d4e5f8599",
+        "cf80482758e019e4987745ffba0a381256fe609aa5e329e8b7dd3f55f4f1ee33",
+        "d5b03590a0804a89b68bd99e69a4b5a3a94657eedb59f686aff5c40cc87b03eb"
+      ],
+      "interpretation": "drive",
+      "icon": "panic-grief"
+    },
+    {
+      "id": "1c2e38a7190905bdc1c42cd256b7cc11e4d9c775e019287620a06c34db14b1ed",
+      "kind": "value",
+      "label": "LUST",
+      "description": "Conditional themed choices and content corrections support this drive-channel hypothesis. Conditional contrast 0, 95% interval [-0.4383, 0.4383]. This is a revealed-theme mapping hypothesis; it does not measure neural activity or a private motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Relative conditional position above the population; uncalibrated drive mapping"
+      },
+      "evidence": [
+        "028699ad4bbbed4370bdd7dbd86a03a950c8f1b0ce0ceeff3501350c03281d9c",
+        "0c34c386e2019eeae0b984d280ed604561b701e276dab85fd798d94fc242ee84",
+        "19bb4613ca0d3b00d190fdee710bd35957242ea5cde5a69f2ee983a732c8a483",
+        "22d52351f38027ac4fe90f06e40291ca8924726bd30ba1405e2d81e0a5bf24e5",
+        "233f7d8598d1ac81a5ce1879c28b2029b22cbe281505f783c13b8cb504778e19",
+        "3fe1c4c1cb67d4c2cc1507cc9a1d866a2f73354ff65fbb1d6e592891a8a7e63d",
+        "4fc721b30274f2c1d87ebfab680a781ddd58572c14a7461f66c288f0d0c98f0a",
+        "62342afe52c426d901d0598d0d1f1fd4e86a54a0b4b5fe704e141b43f94d2ed1",
+        "714a261eb4fff459b47ff76cb64a585160b1acc69dd73efa686b5d5d925db550",
+        "7831fe25bb00853acd1069f3e0c075f07839402a796f2090e9ea3b5416602920",
+        "9242200be66a32b330dcd6b2fcace8ab786952598d44d8ccbf78d10604d52abc",
+        "9b561dce3a0d44b188b5c7e15bfd333318e2ad52ea04a346eb8129a81113c733",
+        "a5498889aecb0faeb8ddb1716755ddcba8c581d503cb9f8342ac45b404324b2d",
+        "b5c71f95a7b7a66827fb6745cd80c3a9c73910e6368f4240a37b8c9d4e5f8599",
+        "cf80482758e019e4987745ffba0a381256fe609aa5e329e8b7dd3f55f4f1ee33",
+        "d5b03590a0804a89b68bd99e69a4b5a3a94657eedb59f686aff5c40cc87b03eb"
+      ],
+      "interpretation": "drive",
+      "icon": "lust"
+    },
+    {
+      "id": "25ec36e4a429327ec68927d3df24503bd2da536022d3d317f91153b283fa83e2",
+      "kind": "value",
+      "label": "Bodily needs",
+      "description": "Conditional themed choices and content corrections support this drive-channel hypothesis. Conditional contrast 0, 95% interval [-0.4383, 0.4383]. This is a revealed-theme mapping hypothesis; it does not measure neural activity or a private motive.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Relative conditional position above the population; uncalibrated drive mapping"
+      },
+      "evidence": [
+        "028699ad4bbbed4370bdd7dbd86a03a950c8f1b0ce0ceeff3501350c03281d9c",
+        "0c34c386e2019eeae0b984d280ed604561b701e276dab85fd798d94fc242ee84",
+        "19bb4613ca0d3b00d190fdee710bd35957242ea5cde5a69f2ee983a732c8a483",
+        "22d52351f38027ac4fe90f06e40291ca8924726bd30ba1405e2d81e0a5bf24e5",
+        "233f7d8598d1ac81a5ce1879c28b2029b22cbe281505f783c13b8cb504778e19",
+        "3fe1c4c1cb67d4c2cc1507cc9a1d866a2f73354ff65fbb1d6e592891a8a7e63d",
+        "4fc721b30274f2c1d87ebfab680a781ddd58572c14a7461f66c288f0d0c98f0a",
+        "62342afe52c426d901d0598d0d1f1fd4e86a54a0b4b5fe704e141b43f94d2ed1",
+        "714a261eb4fff459b47ff76cb64a585160b1acc69dd73efa686b5d5d925db550",
+        "7831fe25bb00853acd1069f3e0c075f07839402a796f2090e9ea3b5416602920",
+        "9242200be66a32b330dcd6b2fcace8ab786952598d44d8ccbf78d10604d52abc",
+        "9b561dce3a0d44b188b5c7e15bfd333318e2ad52ea04a346eb8129a81113c733",
+        "a5498889aecb0faeb8ddb1716755ddcba8c581d503cb9f8342ac45b404324b2d",
+        "b5c71f95a7b7a66827fb6745cd80c3a9c73910e6368f4240a37b8c9d4e5f8599",
+        "cf80482758e019e4987745ffba0a381256fe609aa5e329e8b7dd3f55f4f1ee33",
+        "d5b03590a0804a89b68bd99e69a4b5a3a94657eedb59f686aff5c40cc87b03eb"
+      ],
+      "interpretation": "drive",
+      "icon": "body"
+    },
+    {
+      "id": "0e1e6f19172bf62f7bcf9340039ab4a7a200dd5fb5465ba6e6834a2c8963324c",
+      "kind": "value",
+      "label": "FEAR",
+      "description": "Conditional themed choices and content corrections support this drive-channel hypothesis. Conditional contrast -0.00414, 95% interval [-0.4409, 0.4326]. This is a revealed-theme mapping hypothesis; it does not measure neural activity or a private motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.4925883344406813,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Relative conditional position above the population; uncalibrated drive mapping"
+      },
+      "evidence": [
+        "046757a6fac516f57b837c0b961440c0472f797cfb1904ab1bc9af2680f10ab5",
+        "11961cc55f47d3224639fb1fd6ef0efe93987de43115a1e286a62a4b0a8b4acc",
+        "182747c8e5ed1729a0af8fcd14bb04c25322e0bb9b54704923789f68b80c65a0",
+        "3053a97a676c9c3877837960d92db4e384b2fbbfbaf9634f054899ae7cc47d67",
+        "31cc337d2e8a2f7e9625330ff570d836eb89269fac848e3bc37964ab0481468e",
+        "34e3b47bc8300077a0fa363943de5ad03e65f85c6a4b374e1b0cb1d40c4865a2",
+        "39493b6e6fce0ed4db936fb65e513296af04ba429d1c4c782ae31b4998847bb2",
+        "54270f6c589b277b7ab6ce224b635e542b1a53edffaf74520be3f3bdecd7c4b3",
+        "71b46d7740fd9a6486f2f5ea67d57b1569bdebf4cc69a05436084473ab84b30f",
+        "8759509bcfe1189eac2bbb2473e1a3ce9e69290205ce369a5762a3a1a9a51438",
+        "948f096bc1eaffa22941b11316ecb2757e9f50e6131639159c6a854c53dce2b6",
+        "98b98ce85d8c332ccea83ac3a698d511da28c7185cb49c2d932cdf8d1bceaeac",
+        "9ade0a3bbb97100fa28a841f53349f2b6e246689f3faec47eb993d7e03005c65",
+        "a1170029bc0ed744fe5d784f600f4b3083ac979ac7cde18011c76a143a128646",
+        "b988d3911756cb340edc56caef1bda1067e6f1b1085adcdf0999f6ee8b7d0dfd",
+        "c4d3e1599a873d137be4538b8933901ee77350bc26aa9f17e89408c736cc803a"
+      ],
+      "interpretation": "drive",
+      "icon": "fear"
+    },
+    {
+      "id": "d5a6d8e008ed618418aa5b4a5805cde5929fc9c21f697332e2503e9434aa9949",
+      "kind": "value",
+      "label": "CARE",
+      "description": "Conditional themed choices and content corrections support this drive-channel hypothesis. Conditional contrast 0.00414, 95% interval [-0.4326, 0.4409]. This is a revealed-theme mapping hypothesis; it does not measure neural activity or a private motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5074116655593186,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Relative conditional position above the population; uncalibrated drive mapping"
+      },
+      "evidence": [
+        "046757a6fac516f57b837c0b961440c0472f797cfb1904ab1bc9af2680f10ab5",
+        "11961cc55f47d3224639fb1fd6ef0efe93987de43115a1e286a62a4b0a8b4acc",
+        "182747c8e5ed1729a0af8fcd14bb04c25322e0bb9b54704923789f68b80c65a0",
+        "3053a97a676c9c3877837960d92db4e384b2fbbfbaf9634f054899ae7cc47d67",
+        "31cc337d2e8a2f7e9625330ff570d836eb89269fac848e3bc37964ab0481468e",
+        "34e3b47bc8300077a0fa363943de5ad03e65f85c6a4b374e1b0cb1d40c4865a2",
+        "39493b6e6fce0ed4db936fb65e513296af04ba429d1c4c782ae31b4998847bb2",
+        "54270f6c589b277b7ab6ce224b635e542b1a53edffaf74520be3f3bdecd7c4b3",
+        "71b46d7740fd9a6486f2f5ea67d57b1569bdebf4cc69a05436084473ab84b30f",
+        "8759509bcfe1189eac2bbb2473e1a3ce9e69290205ce369a5762a3a1a9a51438",
+        "948f096bc1eaffa22941b11316ecb2757e9f50e6131639159c6a854c53dce2b6",
+        "98b98ce85d8c332ccea83ac3a698d511da28c7185cb49c2d932cdf8d1bceaeac",
+        "9ade0a3bbb97100fa28a841f53349f2b6e246689f3faec47eb993d7e03005c65",
+        "a1170029bc0ed744fe5d784f600f4b3083ac979ac7cde18011c76a143a128646",
+        "b988d3911756cb340edc56caef1bda1067e6f1b1085adcdf0999f6ee8b7d0dfd",
+        "c4d3e1599a873d137be4538b8933901ee77350bc26aa9f17e89408c736cc803a"
+      ],
+      "interpretation": "drive",
+      "icon": "care"
+    },
+    {
+      "id": "0cf82f3187f38160a386a20069768e90405ed9946818304f26fcc6e57db6e50f",
+      "kind": "value",
+      "label": "PLAY",
+      "description": "Conditional themed choices and content corrections support this drive-channel hypothesis. Conditional contrast 0, 95% interval [-0.4383, 0.4383]. This is a revealed-theme mapping hypothesis; it does not measure neural activity or a private motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Relative conditional position above the population; uncalibrated drive mapping"
+      },
+      "evidence": [
+        "046757a6fac516f57b837c0b961440c0472f797cfb1904ab1bc9af2680f10ab5",
+        "11961cc55f47d3224639fb1fd6ef0efe93987de43115a1e286a62a4b0a8b4acc",
+        "182747c8e5ed1729a0af8fcd14bb04c25322e0bb9b54704923789f68b80c65a0",
+        "3053a97a676c9c3877837960d92db4e384b2fbbfbaf9634f054899ae7cc47d67",
+        "31cc337d2e8a2f7e9625330ff570d836eb89269fac848e3bc37964ab0481468e",
+        "34e3b47bc8300077a0fa363943de5ad03e65f85c6a4b374e1b0cb1d40c4865a2",
+        "39493b6e6fce0ed4db936fb65e513296af04ba429d1c4c782ae31b4998847bb2",
+        "54270f6c589b277b7ab6ce224b635e542b1a53edffaf74520be3f3bdecd7c4b3",
+        "71b46d7740fd9a6486f2f5ea67d57b1569bdebf4cc69a05436084473ab84b30f",
+        "8759509bcfe1189eac2bbb2473e1a3ce9e69290205ce369a5762a3a1a9a51438",
+        "948f096bc1eaffa22941b11316ecb2757e9f50e6131639159c6a854c53dce2b6",
+        "98b98ce85d8c332ccea83ac3a698d511da28c7185cb49c2d932cdf8d1bceaeac",
+        "9ade0a3bbb97100fa28a841f53349f2b6e246689f3faec47eb993d7e03005c65",
+        "a1170029bc0ed744fe5d784f600f4b3083ac979ac7cde18011c76a143a128646",
+        "b988d3911756cb340edc56caef1bda1067e6f1b1085adcdf0999f6ee8b7d0dfd",
+        "c4d3e1599a873d137be4538b8933901ee77350bc26aa9f17e89408c736cc803a"
+      ],
+      "interpretation": "drive",
+      "icon": "play"
+    },
+    {
+      "id": "056693be29a788766627b150bf2a3ba66b82f55d94a292450551972379599e0d",
+      "kind": "value",
+      "label": "RAGE",
+      "description": "Conditional themed choices and content corrections support this drive-channel hypothesis. Conditional contrast 0, 95% interval [-0.4383, 0.4383]. This is a revealed-theme mapping hypothesis; it does not measure neural activity or a private motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Relative conditional position above the population; uncalibrated drive mapping"
+      },
+      "evidence": [
+        "046757a6fac516f57b837c0b961440c0472f797cfb1904ab1bc9af2680f10ab5",
+        "11961cc55f47d3224639fb1fd6ef0efe93987de43115a1e286a62a4b0a8b4acc",
+        "182747c8e5ed1729a0af8fcd14bb04c25322e0bb9b54704923789f68b80c65a0",
+        "3053a97a676c9c3877837960d92db4e384b2fbbfbaf9634f054899ae7cc47d67",
+        "31cc337d2e8a2f7e9625330ff570d836eb89269fac848e3bc37964ab0481468e",
+        "34e3b47bc8300077a0fa363943de5ad03e65f85c6a4b374e1b0cb1d40c4865a2",
+        "39493b6e6fce0ed4db936fb65e513296af04ba429d1c4c782ae31b4998847bb2",
+        "54270f6c589b277b7ab6ce224b635e542b1a53edffaf74520be3f3bdecd7c4b3",
+        "71b46d7740fd9a6486f2f5ea67d57b1569bdebf4cc69a05436084473ab84b30f",
+        "8759509bcfe1189eac2bbb2473e1a3ce9e69290205ce369a5762a3a1a9a51438",
+        "948f096bc1eaffa22941b11316ecb2757e9f50e6131639159c6a854c53dce2b6",
+        "98b98ce85d8c332ccea83ac3a698d511da28c7185cb49c2d932cdf8d1bceaeac",
+        "9ade0a3bbb97100fa28a841f53349f2b6e246689f3faec47eb993d7e03005c65",
+        "a1170029bc0ed744fe5d784f600f4b3083ac979ac7cde18011c76a143a128646",
+        "b988d3911756cb340edc56caef1bda1067e6f1b1085adcdf0999f6ee8b7d0dfd",
+        "c4d3e1599a873d137be4538b8933901ee77350bc26aa9f17e89408c736cc803a"
+      ],
+      "interpretation": "drive",
+      "icon": "rage"
+    },
+    {
+      "id": "69fbaf22fe6431d6a506cb191473ef51e144967a1fa4e2541d0eea10e729f134",
+      "kind": "value",
+      "label": "PANIC/GRIEF",
+      "description": "Conditional themed choices and content corrections support this drive-channel hypothesis. Conditional contrast 0, 95% interval [-0.4383, 0.4383]. This is a revealed-theme mapping hypothesis; it does not measure neural activity or a private motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Relative conditional position above the population; uncalibrated drive mapping"
+      },
+      "evidence": [
+        "046757a6fac516f57b837c0b961440c0472f797cfb1904ab1bc9af2680f10ab5",
+        "11961cc55f47d3224639fb1fd6ef0efe93987de43115a1e286a62a4b0a8b4acc",
+        "182747c8e5ed1729a0af8fcd14bb04c25322e0bb9b54704923789f68b80c65a0",
+        "3053a97a676c9c3877837960d92db4e384b2fbbfbaf9634f054899ae7cc47d67",
+        "31cc337d2e8a2f7e9625330ff570d836eb89269fac848e3bc37964ab0481468e",
+        "34e3b47bc8300077a0fa363943de5ad03e65f85c6a4b374e1b0cb1d40c4865a2",
+        "39493b6e6fce0ed4db936fb65e513296af04ba429d1c4c782ae31b4998847bb2",
+        "54270f6c589b277b7ab6ce224b635e542b1a53edffaf74520be3f3bdecd7c4b3",
+        "71b46d7740fd9a6486f2f5ea67d57b1569bdebf4cc69a05436084473ab84b30f",
+        "8759509bcfe1189eac2bbb2473e1a3ce9e69290205ce369a5762a3a1a9a51438",
+        "948f096bc1eaffa22941b11316ecb2757e9f50e6131639159c6a854c53dce2b6",
+        "98b98ce85d8c332ccea83ac3a698d511da28c7185cb49c2d932cdf8d1bceaeac",
+        "9ade0a3bbb97100fa28a841f53349f2b6e246689f3faec47eb993d7e03005c65",
+        "a1170029bc0ed744fe5d784f600f4b3083ac979ac7cde18011c76a143a128646",
+        "b988d3911756cb340edc56caef1bda1067e6f1b1085adcdf0999f6ee8b7d0dfd",
+        "c4d3e1599a873d137be4538b8933901ee77350bc26aa9f17e89408c736cc803a"
+      ],
+      "interpretation": "drive",
+      "icon": "panic-grief"
+    },
+    {
+      "id": "3db986019c52ce22527836491d5a8caf0e7344b4fa905881733fabc1df17842f",
+      "kind": "value",
+      "label": "LUST",
+      "description": "Conditional themed choices and content corrections support this drive-channel hypothesis. Conditional contrast 0, 95% interval [-0.4383, 0.4383]. This is a revealed-theme mapping hypothesis; it does not measure neural activity or a private motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Relative conditional position above the population; uncalibrated drive mapping"
+      },
+      "evidence": [
+        "046757a6fac516f57b837c0b961440c0472f797cfb1904ab1bc9af2680f10ab5",
+        "11961cc55f47d3224639fb1fd6ef0efe93987de43115a1e286a62a4b0a8b4acc",
+        "182747c8e5ed1729a0af8fcd14bb04c25322e0bb9b54704923789f68b80c65a0",
+        "3053a97a676c9c3877837960d92db4e384b2fbbfbaf9634f054899ae7cc47d67",
+        "31cc337d2e8a2f7e9625330ff570d836eb89269fac848e3bc37964ab0481468e",
+        "34e3b47bc8300077a0fa363943de5ad03e65f85c6a4b374e1b0cb1d40c4865a2",
+        "39493b6e6fce0ed4db936fb65e513296af04ba429d1c4c782ae31b4998847bb2",
+        "54270f6c589b277b7ab6ce224b635e542b1a53edffaf74520be3f3bdecd7c4b3",
+        "71b46d7740fd9a6486f2f5ea67d57b1569bdebf4cc69a05436084473ab84b30f",
+        "8759509bcfe1189eac2bbb2473e1a3ce9e69290205ce369a5762a3a1a9a51438",
+        "948f096bc1eaffa22941b11316ecb2757e9f50e6131639159c6a854c53dce2b6",
+        "98b98ce85d8c332ccea83ac3a698d511da28c7185cb49c2d932cdf8d1bceaeac",
+        "9ade0a3bbb97100fa28a841f53349f2b6e246689f3faec47eb993d7e03005c65",
+        "a1170029bc0ed744fe5d784f600f4b3083ac979ac7cde18011c76a143a128646",
+        "b988d3911756cb340edc56caef1bda1067e6f1b1085adcdf0999f6ee8b7d0dfd",
+        "c4d3e1599a873d137be4538b8933901ee77350bc26aa9f17e89408c736cc803a"
+      ],
+      "interpretation": "drive",
+      "icon": "lust"
+    },
+    {
+      "id": "ceeadc1853e3cd4f59ca9ac060dfff3b3392f0cd0016cba8bab55c0c092c5c23",
+      "kind": "value",
+      "label": "Bodily needs",
+      "description": "Conditional themed choices and content corrections support this drive-channel hypothesis. Conditional contrast 0, 95% interval [-0.4383, 0.4383]. This is a revealed-theme mapping hypothesis; it does not measure neural activity or a private motive.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Relative conditional position above the population; uncalibrated drive mapping"
+      },
+      "evidence": [
+        "046757a6fac516f57b837c0b961440c0472f797cfb1904ab1bc9af2680f10ab5",
+        "11961cc55f47d3224639fb1fd6ef0efe93987de43115a1e286a62a4b0a8b4acc",
+        "182747c8e5ed1729a0af8fcd14bb04c25322e0bb9b54704923789f68b80c65a0",
+        "3053a97a676c9c3877837960d92db4e384b2fbbfbaf9634f054899ae7cc47d67",
+        "31cc337d2e8a2f7e9625330ff570d836eb89269fac848e3bc37964ab0481468e",
+        "34e3b47bc8300077a0fa363943de5ad03e65f85c6a4b374e1b0cb1d40c4865a2",
+        "39493b6e6fce0ed4db936fb65e513296af04ba429d1c4c782ae31b4998847bb2",
+        "54270f6c589b277b7ab6ce224b635e542b1a53edffaf74520be3f3bdecd7c4b3",
+        "71b46d7740fd9a6486f2f5ea67d57b1569bdebf4cc69a05436084473ab84b30f",
+        "8759509bcfe1189eac2bbb2473e1a3ce9e69290205ce369a5762a3a1a9a51438",
+        "948f096bc1eaffa22941b11316ecb2757e9f50e6131639159c6a854c53dce2b6",
+        "98b98ce85d8c332ccea83ac3a698d511da28c7185cb49c2d932cdf8d1bceaeac",
+        "9ade0a3bbb97100fa28a841f53349f2b6e246689f3faec47eb993d7e03005c65",
+        "a1170029bc0ed744fe5d784f600f4b3083ac979ac7cde18011c76a143a128646",
+        "b988d3911756cb340edc56caef1bda1067e6f1b1085adcdf0999f6ee8b7d0dfd",
+        "c4d3e1599a873d137be4538b8933901ee77350bc26aa9f17e89408c736cc803a"
+      ],
+      "interpretation": "drive",
+      "icon": "body"
+    },
+    {
+      "id": "b74bee79f4cb53c7522e928982e6f0cf771ec3b17078711f491ec2541ed28d5e",
+      "kind": "process",
+      "label": "Recurring wording",
+      "description": "Recorded 24 times among 24 observed edit events in this artifact. Repetition alone does not establish intention or expertise.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 1.0,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Observed frequency in this bounded record; relative repertoire hypothesis"
+      },
+      "evidence": [
+        "2a494f40f165926fe5cc52cc53785dbff025d831d2781c3f9a3f7934713a9a70",
+        "c31ff9e43eab7abfe28a9669730a513fa473de8fd577e52046eae63309a0625e",
+        "a0367f49473a4734636944a5551a487759d044ce55cff04a6468c57a4f7b382a",
+        "318a293f1e195dda13180b3885f8b5b3dfa9f8dd62900ac14dec77a2752c5567",
+        "39a9e89093cc7d51e790f2777b10b7c7fc449d36c11e7f3c2aad89b0b4f74e0d",
+        "2f5c293e6db74b69f24b43eddfb2666d1b0f974107be7cc81482ba9a1aa73e2d",
+        "4f4afc4270be376c1ae65fcbd8b11fb9ed3f15c72a64be835136599ba50ccfcd",
+        "f1e40ab73368cdb9f39e794ed231bfc216bb601ad01a8d1461ecaa440d94aba5"
+      ],
+      "interpretation": "repertoire"
+    },
+    {
+      "id": "4cf442e1e8d60ce2cc7be563e6a7af41d91979bd5b9dc097916413afeae8c6d6",
+      "kind": "process",
+      "label": "Recurring choose",
+      "description": "Recorded 24 times among 24 observed handling events in this artifact. Repetition alone does not establish intention or expertise.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 1.0,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Observed frequency in this bounded record; relative repertoire hypothesis"
+      },
+      "evidence": [
+        "d3c31acd1f3c49d03b99c381e55dbef5d68160d2a0c0f9127f4189e2e91256f1",
+        "d2eb993dbf69bc0c0946cf10f9dd1fda2e01e6ef1a4322bf2cc5cb7eb9409cee",
+        "89b278bd77e0dddd61ee796afdc0bf5aaebf2b88b1d7af9e70a75de5381a9460",
+        "220fe9d78f0aedf5e19b0b9bacb9f623c462e922ea1ae255df1e4ac48171f86c",
+        "16e63d6be11621355b730580239461bc8f1afaf35e38c0086554ae09b129260a",
+        "4c084f62c6b909d0eb76e09e5c6f7fe8ba35c1f2ddd76290ecaa173825c2bdfc",
+        "fc5d3c68bf0728f994e6891db6b75b83911ef8bfef9211e96fb3b121e0baa724",
+        "66254a4e17116a8cafb79f8f369ab60f013c4b08d0826927676b61c40788e982"
+      ],
+      "interpretation": "repertoire"
+    },
+    {
+      "id": "0cfe4ef3c8843a94ee0b1253069ce3a820f1b59d62a2a789b64d7eccee44e9a5",
+      "kind": "process",
+      "label": "Recurring 00:00 UTC",
+      "description": "Recorded 24 times among 24 observed source clock events in this artifact. Repetition alone does not establish intention or expertise.",
+      "makers": [
+        "long"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 1.0,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Observed frequency in this bounded record; relative repertoire hypothesis"
+      },
+      "evidence": [
+        "d3c31acd1f3c49d03b99c381e55dbef5d68160d2a0c0f9127f4189e2e91256f1",
+        "d2eb993dbf69bc0c0946cf10f9dd1fda2e01e6ef1a4322bf2cc5cb7eb9409cee",
+        "89b278bd77e0dddd61ee796afdc0bf5aaebf2b88b1d7af9e70a75de5381a9460",
+        "220fe9d78f0aedf5e19b0b9bacb9f623c462e922ea1ae255df1e4ac48171f86c",
+        "16e63d6be11621355b730580239461bc8f1afaf35e38c0086554ae09b129260a",
+        "4c084f62c6b909d0eb76e09e5c6f7fe8ba35c1f2ddd76290ecaa173825c2bdfc",
+        "fc5d3c68bf0728f994e6891db6b75b83911ef8bfef9211e96fb3b121e0baa724",
+        "66254a4e17116a8cafb79f8f369ab60f013c4b08d0826927676b61c40788e982"
+      ],
+      "interpretation": "repertoire"
+    },
+    {
+      "id": "edf8e09aa60a1473423374b8e6d72a320703c435e0e0e0cdb676a0c238465aa3",
+      "kind": "process",
+      "label": "Recurring wording",
+      "description": "Recorded 24 times among 24 observed edit events in this artifact. Repetition alone does not establish intention or expertise.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 1.0,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Observed frequency in this bounded record; relative repertoire hypothesis"
+      },
+      "evidence": [
+        "7a53bc84fd50918b9eaa561c4de6cd022633b44d98007932cff927ad37f9a801",
+        "2a11d3eb0021796073564031c849484a2f75b5aa6d16d0e0d45be026329385be",
+        "1609b12e8cc2ab79dde06c5ac282ca6f9a414457bedcefdb7c770b3aedb0f762",
+        "36efdf9e2af8a03bab7a0c8f77f7c3b2f5225c09aa974ee0531abab742ede777",
+        "94461903eadaecfaff3217e258abe4aaa79f5d7ff52bfc07c1e1a364127af74e",
+        "20af5b5cf29456ec88e60bb48bd3b92e159f7c405730bc20a26cf760504a0f77",
+        "b9c171f6bbafe7a75912d1abe12d2d059f54bdd05694ed3b1e2d95616b92a23e",
+        "4624e3990c8784df24f723189889dfb326215801379fe4e55af131d269b79493"
+      ],
+      "interpretation": "repertoire"
+    },
+    {
+      "id": "165ee9336181a162b4bc1f6f2ee2fe63a3c96ed989724da0d32b2990ba895ba0",
+      "kind": "process",
+      "label": "Recurring choose",
+      "description": "Recorded 24 times among 24 observed handling events in this artifact. Repetition alone does not establish intention or expertise.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 1.0,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Observed frequency in this bounded record; relative repertoire hypothesis"
+      },
+      "evidence": [
+        "ad03ef75ab5f63e109140ed44e164336ed3022613074a1ab41ffddab16aaacde",
+        "147a56be79dd5ca2580a9e2c930ac13ad4f1a816562ab318f35770787f64727e",
+        "a8711c64bfc064c91b5f9299194b1a67fc2925f8f092d7b002ef25fd98c55464",
+        "51ed6b749212ccc508da04bf7a28f7744789a234d2a7283d1fb4dff2d812fedb",
+        "346af7bd6f117f156dd77bb1e950678deb254b002edf036366d3e254497681c5",
+        "a6b415ad6aea2979f08bb78ceeb04ed4096545b4a36900e125baf3858f527396",
+        "48f7f9aa78185598cb2bec0cba8a9677c54b8849e390da9a24c6d1800066616d",
+        "dcd033e651236071f906fba148fa0d90b1357658c6bdf164eea34978e6b8d56c"
+      ],
+      "interpretation": "repertoire"
+    },
+    {
+      "id": "4b72140030e3a5c8bfb2bf89983d8516ee3f64f36afdb8b54794bbb8b8e4d21d",
+      "kind": "process",
+      "label": "Recurring 00:00 UTC",
+      "description": "Recorded 24 times among 24 observed source clock events in this artifact. Repetition alone does not establish intention or expertise.",
+      "makers": [
+        "short"
+      ],
+      "regions": [],
+      "status": "hypothesis",
+      "support": {
+        "value": 1.0,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "Observed frequency in this bounded record; relative repertoire hypothesis"
+      },
+      "evidence": [
+        "ad03ef75ab5f63e109140ed44e164336ed3022613074a1ab41ffddab16aaacde",
+        "147a56be79dd5ca2580a9e2c930ac13ad4f1a816562ab318f35770787f64727e",
+        "a8711c64bfc064c91b5f9299194b1a67fc2925f8f092d7b002ef25fd98c55464",
+        "51ed6b749212ccc508da04bf7a28f7744789a234d2a7283d1fb4dff2d812fedb",
+        "346af7bd6f117f156dd77bb1e950678deb254b002edf036366d3e254497681c5",
+        "a6b415ad6aea2979f08bb78ceeb04ed4096545b4a36900e125baf3858f527396",
+        "48f7f9aa78185598cb2bec0cba8a9677c54b8849e390da9a24c6d1800066616d",
+        "dcd033e651236071f906fba148fa0d90b1357658c6bdf164eea34978e6b8d56c"
+      ],
+      "interpretation": "repertoire"
+    }
+  ],
+  "alternatives": [],
+  "process": {
+    "interpretation": "historical-production",
+    "nodes": [
+      "6f9bbea7863841ed0bead31d4451dd4e260bd2c40326a7b846239e2ccb3d40ab",
+      "8140f625ed3c11a9c640fdf249ad450f315014ffe491a9aed339de5c5df6503d",
+      "58f1da6147220ff6f198779513d75955ce133fedee31619293a96ca800f314a3",
+      "ac87271aef92c59436ab331a0173f3c5da67073fd3e894bd09aabe763839de70",
+      "ae7c3c0bb9c0008d9ee48a642db140274b280a717da3ac82844d244e7c31bf45",
+      "642a8ad77bc7e474c59db33b2edb590fd0ee786e9c18184076b160fb7a5dabfe",
+      "5402c3c5934d43e8b819b86c00d777b60f07c8bf654c35efd8ba0bf51880506f",
+      "3d5b9b1541f95ef921719bb0beb002c29f6668a58f1b5a88c1c9044f612bc565",
+      "c87ab76d605304dc75cf8b68ab7f560d312d2e7ce4687bafceff4423a46a9d6b",
+      "a22e49baa5465cca1a859ad72d419817e3ab7cf021a9ce0a24cfc287891535fe",
+      "eb41d01b24f68a0bbb5998a6440e648bd57702c7f4381739f684e28b2b634b48",
+      "d44acef51d9576f8dbe7060d8e82963badeecb501c565f79a886569e411e8fcb",
+      "d54ae37cd6f44f125731c83bd1a182d4185525b1fd71d69cf9181561073ba18b",
+      "c8b4d742204f194a372cc9cbfead125d8219dfcb372f27a20057b0e4aa3d28aa",
+      "2fff024955b55423c6239bcb4e717d675e076eaf34782636d43bc7e6278f6613",
+      "a542be45dd12d1ac26f1a4daf6b53738daa9b251f48be28300977efa5224fd22",
+      "c7eb4915c2aae648550ce958e903389d1bcab152ec1f2ff4cac7ef5aae6cd611",
+      "b4169fcc10e44d8e0776b406aae32324c545366e67fb352494fe246dd6aeb313",
+      "965e79113da6f199d6b671ccf147bb729e977c0a8507e07ef12891db48c697d7",
+      "a361be37e6344bdade3517cc5780d21f705d60868291e19f4b796cff5159b2df",
+      "7d6b3d4c0b81de7af1e791409ed11c8aa0306c12ee42cc8a5142da8b145185b3",
+      "635555c35781705ed9bcf4accfac612f0cc04301b4950de6a30f3e523e3b8466",
+      "304108254ef1d6ad34cd2754b84dc84ace1ec25e9160b888fd60dc4f78aa9bbb",
+      "47f0d10760cea0924427728c7a81f1cb71429abb077a8204156cf245cf986cb1",
+      "7b84a2fb0440562be28e85d12bf1fa2d8087a4a510a6ab5d761d498307e2de33",
+      "9f8a0cc42bbf17cba669f4f0e00fdea2bb14f49c35e65cd65ed50a2f470cca34",
+      "bf41777067b2ebf6923077a7c6508101ef2e3fc979a5c9e58970de9d2dfcae73",
+      "fde4a1a256c7a974d47be3a34719876944f1e386240f9aefad0ee5fb64158f75",
+      "a8cb5006ceb15fa9de0f4215d090b52959512768402b995cd327603664b20cd1",
+      "a86c959d149b2959aea82fe929466b3491959f76b9b78ae205d811ccd642782f",
+      "eabb71b3c5a9077da9aa4464c9f172eda4e9ce2cf550313df32ead80f9fbb1fb",
+      "9d523a10c96ff8f44c6304dbd206fbf84bf66a6ee0bb7d7beb3118477b15c1d9",
+      "5faaede1670210e3d1401807271ef9412ff3ff2c9c30ea3ff956df2b54e2eace",
+      "92eb5daa50097d42305f638bc83842ae0c7e7f3899863ae84e012b3e2a5a66b1",
+      "777a3d817dc065c7c90251e51b39dd7128f10b4c02aa4c806c0b16aa55613791",
+      "c8c2405308ea2fdfb0529216599c0376abd8ef7a26e6a65fd81d79c816f44c77",
+      "eacd8d5da63002fb7bb5db9e55a742d00c6cb0b2590638da3d83bd239e5a5e16",
+      "8f1270bd629f7024f85623a64f22aaab344bbb3eee58b9de56a704a7ba8fc810",
+      "34f72c9b3d4a06245976ed508ad01d842024c0ae5b66b86883185d31087c4566",
+      "c78a2ceec1e42fb3589edb94e3ad0b02b28427d057d421d3aadf484ea5fdd5d4",
+      "7d57bea38ef3ca195b9386998ec968851b7f6f4df3f0da7682956e087998aeb7",
+      "ba26d3efe1ef27722cf69d6c074ef5b2000c134b8df385f90352319dd052bc30",
+      "b5385daa0b563b8dd0212a36074db7ae32a4ff4390e586887f16ac4806e63e6b",
+      "b74919946af140b02848446c06ac116e439f5b37d7315001f63909eb5a3e5d49",
+      "08cc36fad3c3d270aaa083a8e2572f75b57b142d8ad28a844e249e3b8295aa54",
+      "0bd23e3e7f628f2d22332f1c7ab09280361a481d99a41c3f0a8788eeb9572c1b",
+      "ec97e90a4492d3c85825a3b4622cf3b72695f03ed5fd0a879772df69e7031022",
+      "a99880120c6ea14725d6a09d3ee0dbc471dc62376823e0284d075cbb594f2604",
+      "f7788b3448bee41004d3051332355fc21ff3958675ddf1cdea5331c81043c13d",
+      "a349133317a5ed9e984c36f202896226e55f73edc6f33ef5e05342306a133dd2",
+      "6a5b8a579151aeafb7cae60bee8a5acdad585d4f454d817d709b50c5950ed573",
+      "b8966e8d60532f4607d7df26e9e10369edf65092e37d8a3e120b86864d7e0787",
+      "33bde4ceea0fdcacd373c74112f5bf84d4a20de783a79afb163cbbfc0df28864",
+      "25a0c1ebbf566ccc0143ce261aa38a3b136262ca6672895f14acc92a83980260",
+      "8d35de63b56981fc497659c08d8dc02c47859543bd7592ae47608c517e1b2d7d",
+      "a88a1e08eb48915a5a9bcbf09052644313a7e4db6d593c22de6b9e249cdc9d00",
+      "4ac4e19368df8695a5398f91807143a57712edcca3f32b174d9992f34c6d9ead",
+      "bb9094ff333eebfcc72832b8ca364a5f199dae573fbfdc477072be7d66bb7a27",
+      "7e653bc2d0bb1d05a89096775545fcc33393400f1131772b412fd95eb1bd0e39",
+      "ba59017ecefd74fe480ca970d4e57e216d5c246bc20debee56b8fa07a44edb69",
+      "fc96d5b26e3e6e9dfe57f7e9a1cbb9811396e0ca434ff79a89c53759ef85d06e",
+      "0aa1fbee22e42a094b0de73fc1b7f2a604ef8623509e3bc117ec44597d45d80f",
+      "68a295970fb0b51ad416f830c5e29ed1db556cdda58ad8c769ae55e714a8c63c",
+      "db959265c0d9fa6a45b2e963339e576ba3f431d0c4edaa2b0cd1d3632aa3735b",
+      "e4551992131d413ec1f2c037c02c7af0db09db0c541991275809c895f1198b6a",
+      "2d7e3959c5ab846e011dfd910cceb2eb22138930309b093b19eeb2f4bf8db372",
+      "84cd90f237a066e34f37f3936681b83a673fb4dba0c2ba82595fb04e20d94107",
+      "2953de9be0d2fe6c4f648786c9949f25090c61a6a5349559455791def07de226",
+      "609c8601d6ead642206af3a0f644edeecee324f485611a506600331d0010f332",
+      "3e035255c96abe043a9dcc87e7a081d6520aba9c3f4b855f320037f46c108dd6",
+      "eec48341446e6f9c6dcc3546782253ef21790bd7398d59bd3c30a4c70d5dcca8",
+      "cbdccd6876be22ddb5197961010ba82cc77b325af23fc17cec5e3b8fa33ac54d",
+      "47f6967fe6d3a7a6bccd14211bb9d9d1d880b4e2d3c4ed1567f663b6c65e7b8e",
+      "8296d7cbd6488319709ba6f3157c17ab54fd8857179dfece12fbb17a8fd2d973",
+      "6b8bb32cec5f5d5cc3dc1bff29c200952c6dddfd41dd0ba5a343b8f134b51e42",
+      "e9b2ba7a0e28eef278e38efef3c87ccace4db9defde8ccc1f32aeac8808ffe0c",
+      "e5e23180f5cab6d9706d88ecf712215af778aeb0bb0bef75d5e1e24c61a48ec8",
+      "f5999df6c2c2c375beafd40e5fa506dd4e2cd68dea0517edf95f3cbe8b62af20",
+      "3173e9661043bcb564efc567f15b9a2c4b19a25d5ff8df30665330f041eb0ab5",
+      "22ca49edb05a56fc2eba537c8607c8527a03a61a24e762711304f6395dbf0cd0",
+      "b21b26929ab0f7f3e646cbe8b9cd846d2c8fe96028328f38513ac09139816581",
+      "c55aafe39ece578b84f09aa00d7b632b62a6dfc0196df3fb0e96a623374c5870",
+      "cb7a8836abd577278512de5f6276b4e3f8cc4bc4e6c2b74c7ac35b6b73751c88",
+      "c794b06f355e3dea3b9e31690e8774d26db318e0d2de6dcba3a2ee69c7b530ae",
+      "3882cb24f47b62a58134b754664a312eb15059bf7552ca14fd32a47829c11e1f",
+      "16db6944fec8e87038f10d13745333e8e26b0a5f59096f41827fee8bfb011923",
+      "cd586bc3f4d3654f1ce1fd1ddc1fe25c9a0397ba2fcfbbd02ef448ab797b0a1f",
+      "6b3c120833dca27a4f296b8b77767296e4b061adfb91c99a9e832606bff8db52",
+      "78d27df927febb996c6544527f9ae034aaf7328f53833c4a8339c9f1fe3be8f6",
+      "3e4bab5d5ef7a29f88aa3e84c2d77b5dda401a0288d61a189c86dba223b65e32",
+      "7e22babb8d843c567c89c4731bfd56c59e64711a6c527d2a91f1585688875378",
+      "937e5e9705dc108e02495e68a789d4532043bc21f1488802f49d4e3ac014fb89",
+      "59d7ddb11718aaf86e2c1b890eff6be339bbef3f8eabfd211f1054318c9ae656",
+      "974e064d835e70887d260ba1755d84d90f6dc4f1b2ab26bc21a67af02f4ecea3",
+      "4ede63ef671e43c7a662610556f461b7807f610ffb917a2706e963b923387d1c",
+      "b6e410ab655f4bcbf41ac89aef0a131b7b51552847d5f1e444df9d4477b3f23d",
+      "b74bee79f4cb53c7522e928982e6f0cf771ec3b17078711f491ec2541ed28d5e",
+      "4cf442e1e8d60ce2cc7be563e6a7af41d91979bd5b9dc097916413afeae8c6d6",
+      "0cfe4ef3c8843a94ee0b1253069ce3a820f1b59d62a2a789b64d7eccee44e9a5",
+      "edf8e09aa60a1473423374b8e6d72a320703c435e0e0e0cdb676a0c238465aa3",
+      "165ee9336181a162b4bc1f6f2ee2fe63a3c96ed989724da0d32b2990ba895ba0",
+      "4b72140030e3a5c8bfb2bf89983d8516ee3f64f36afdb8b54794bbb8b8e4d21d"
+    ],
+    "edges": [
+      {
+        "from": "6f9bbea7863841ed0bead31d4451dd4e260bd2c40326a7b846239e2ccb3d40ab",
+        "to": "58f1da6147220ff6f198779513d75955ce133fedee31619293a96ca800f314a3",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "ce05ccafc81b32f6670b10daa57bc09a1a1de93c50ffff5144927abb56a80e35"
+        ]
+      },
+      {
+        "from": "8140f625ed3c11a9c640fdf249ad450f315014ffe491a9aed339de5c5df6503d",
+        "to": "ac87271aef92c59436ab331a0173f3c5da67073fd3e894bd09aabe763839de70",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "1620a944b7c00b2ce71690439b23f8f7d12036a3046bf70024f60a962ace6f81"
+        ]
+      },
+      {
+        "from": "ae7c3c0bb9c0008d9ee48a642db140274b280a717da3ac82844d244e7c31bf45",
+        "to": "5402c3c5934d43e8b819b86c00d777b60f07c8bf654c35efd8ba0bf51880506f",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "09f2ab0295b2ea9e4184169e2cfb6a887377e3300f1a63363cf07f698499e227"
+        ]
+      },
+      {
+        "from": "642a8ad77bc7e474c59db33b2edb590fd0ee786e9c18184076b160fb7a5dabfe",
+        "to": "3d5b9b1541f95ef921719bb0beb002c29f6668a58f1b5a88c1c9044f612bc565",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "72b2d9745df7057115855661bc1ab1f13e4425b0962f36a7e0ee73dd149ae590"
+        ]
+      },
+      {
+        "from": "c87ab76d605304dc75cf8b68ab7f560d312d2e7ce4687bafceff4423a46a9d6b",
+        "to": "eb41d01b24f68a0bbb5998a6440e648bd57702c7f4381739f684e28b2b634b48",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "3e91c95b1136d78d173665cad20dfbef884d39c7d9e028cc18cd7b14bf0bfcde"
+        ]
+      },
+      {
+        "from": "a22e49baa5465cca1a859ad72d419817e3ab7cf021a9ce0a24cfc287891535fe",
+        "to": "d44acef51d9576f8dbe7060d8e82963badeecb501c565f79a886569e411e8fcb",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "7dcf4c9ceb2546eed08b9834c72e321cb0c28e538e0ff14959443c1ff4353b15"
+        ]
+      },
+      {
+        "from": "d54ae37cd6f44f125731c83bd1a182d4185525b1fd71d69cf9181561073ba18b",
+        "to": "2fff024955b55423c6239bcb4e717d675e076eaf34782636d43bc7e6278f6613",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "9b8f93ef78da72107cf1fc6d95cd86f9a9788fb6419a190f7bd988ec10f92e43"
+        ]
+      },
+      {
+        "from": "c8b4d742204f194a372cc9cbfead125d8219dfcb372f27a20057b0e4aa3d28aa",
+        "to": "a542be45dd12d1ac26f1a4daf6b53738daa9b251f48be28300977efa5224fd22",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "0fe7323ea1f2e820600d54ad877ca8c0336864aa0b894d347b1b277952ea826a"
+        ]
+      },
+      {
+        "from": "c7eb4915c2aae648550ce958e903389d1bcab152ec1f2ff4cac7ef5aae6cd611",
+        "to": "965e79113da6f199d6b671ccf147bb729e977c0a8507e07ef12891db48c697d7",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "a3a8286c8c9c3299a4b8b888b4aa6b5fc35866e98f90286bb5b8541d944b2244"
+        ]
+      },
+      {
+        "from": "b4169fcc10e44d8e0776b406aae32324c545366e67fb352494fe246dd6aeb313",
+        "to": "a361be37e6344bdade3517cc5780d21f705d60868291e19f4b796cff5159b2df",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "052cc9cc573fef5d82d2023747fb5925cd0c803d05ee89fbfb99a3f77dd495ec"
+        ]
+      },
+      {
+        "from": "7d6b3d4c0b81de7af1e791409ed11c8aa0306c12ee42cc8a5142da8b145185b3",
+        "to": "304108254ef1d6ad34cd2754b84dc84ace1ec25e9160b888fd60dc4f78aa9bbb",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "c0432d2d1657101df891fce70c50c0e4d484e56fce6ca84b88050d7099f27594"
+        ]
+      },
+      {
+        "from": "635555c35781705ed9bcf4accfac612f0cc04301b4950de6a30f3e523e3b8466",
+        "to": "47f0d10760cea0924427728c7a81f1cb71429abb077a8204156cf245cf986cb1",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "b2c4a588af7a7e391e3ed5612db69b2e9c8fdc2ec7ee0d25eebbb54df253776f"
+        ]
+      },
+      {
+        "from": "7b84a2fb0440562be28e85d12bf1fa2d8087a4a510a6ab5d761d498307e2de33",
+        "to": "bf41777067b2ebf6923077a7c6508101ef2e3fc979a5c9e58970de9d2dfcae73",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "3effd9b7c154e50cef90db64706698fb46b3f8c0e834229cabf066c3693c1ff2"
+        ]
+      },
+      {
+        "from": "9f8a0cc42bbf17cba669f4f0e00fdea2bb14f49c35e65cd65ed50a2f470cca34",
+        "to": "fde4a1a256c7a974d47be3a34719876944f1e386240f9aefad0ee5fb64158f75",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "5b17c3abc7cda499b5b754787ea9f088c855e2f35a78ce975cf77b72cb5226d7"
+        ]
+      },
+      {
+        "from": "a8cb5006ceb15fa9de0f4215d090b52959512768402b995cd327603664b20cd1",
+        "to": "eabb71b3c5a9077da9aa4464c9f172eda4e9ce2cf550313df32ead80f9fbb1fb",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "901d43a1eddd026616752427371b05f9cabc71d95e9e7a156d2ee17a6569d770"
+        ]
+      },
+      {
+        "from": "a86c959d149b2959aea82fe929466b3491959f76b9b78ae205d811ccd642782f",
+        "to": "9d523a10c96ff8f44c6304dbd206fbf84bf66a6ee0bb7d7beb3118477b15c1d9",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "d73b4a99bb103e6ad47840be124e20eef9def7319d2b13b910f8a055b4f916b3"
+        ]
+      },
+      {
+        "from": "5faaede1670210e3d1401807271ef9412ff3ff2c9c30ea3ff956df2b54e2eace",
+        "to": "777a3d817dc065c7c90251e51b39dd7128f10b4c02aa4c806c0b16aa55613791",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "aa94abfffde23b42fe1d83711d8b7064a421ef4ae09a9cab0272c6f9422cf0ab"
+        ]
+      },
+      {
+        "from": "92eb5daa50097d42305f638bc83842ae0c7e7f3899863ae84e012b3e2a5a66b1",
+        "to": "c8c2405308ea2fdfb0529216599c0376abd8ef7a26e6a65fd81d79c816f44c77",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "f7efd6bf61447195fc103498b4c22e8c5520e2bc831ec82b013f0db2de3ed876"
+        ]
+      },
+      {
+        "from": "eacd8d5da63002fb7bb5db9e55a742d00c6cb0b2590638da3d83bd239e5a5e16",
+        "to": "34f72c9b3d4a06245976ed508ad01d842024c0ae5b66b86883185d31087c4566",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "1c1b1fe8a488132fece28fd9974dca4a5b609c18759ab025b77bdd86e1939595"
+        ]
+      },
+      {
+        "from": "8f1270bd629f7024f85623a64f22aaab344bbb3eee58b9de56a704a7ba8fc810",
+        "to": "c78a2ceec1e42fb3589edb94e3ad0b02b28427d057d421d3aadf484ea5fdd5d4",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "761345ddaa206408298f72a390ca7d7976ef660579db16954c61aa491e7fcc74"
+        ]
+      },
+      {
+        "from": "7d57bea38ef3ca195b9386998ec968851b7f6f4df3f0da7682956e087998aeb7",
+        "to": "b5385daa0b563b8dd0212a36074db7ae32a4ff4390e586887f16ac4806e63e6b",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "d61fa0e14be9d67783773de5e731f090df3544a5c1b49ec930c7961c7e638294"
+        ]
+      },
+      {
+        "from": "ba26d3efe1ef27722cf69d6c074ef5b2000c134b8df385f90352319dd052bc30",
+        "to": "b74919946af140b02848446c06ac116e439f5b37d7315001f63909eb5a3e5d49",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "1344619f63ebb6f3e3314036e8f6af3441913c2da2d63ebd11b3358368f4285e"
+        ]
+      },
+      {
+        "from": "08cc36fad3c3d270aaa083a8e2572f75b57b142d8ad28a844e249e3b8295aa54",
+        "to": "ec97e90a4492d3c85825a3b4622cf3b72695f03ed5fd0a879772df69e7031022",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "805b28f8bc809d362f5efd389757f347f249532ee756f2a11a96e4758354b82e"
+        ]
+      },
+      {
+        "from": "0bd23e3e7f628f2d22332f1c7ab09280361a481d99a41c3f0a8788eeb9572c1b",
+        "to": "a99880120c6ea14725d6a09d3ee0dbc471dc62376823e0284d075cbb594f2604",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "49d0e44a2c111d14529fddd8f406686c9289cf0257275da8badbf0fd00b3c220"
+        ]
+      },
+      {
+        "from": "f7788b3448bee41004d3051332355fc21ff3958675ddf1cdea5331c81043c13d",
+        "to": "6a5b8a579151aeafb7cae60bee8a5acdad585d4f454d817d709b50c5950ed573",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "15018fdb22dcfe47f9c3c63aa23fa5b1b86578aa4cb385e0bcfdb8b056b15c39"
+        ]
+      },
+      {
+        "from": "a349133317a5ed9e984c36f202896226e55f73edc6f33ef5e05342306a133dd2",
+        "to": "b8966e8d60532f4607d7df26e9e10369edf65092e37d8a3e120b86864d7e0787",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "2b9c5f294fdd8412d927cb9d9139e005dd44b472a831c4ad0afefad8920ebc47"
+        ]
+      },
+      {
+        "from": "33bde4ceea0fdcacd373c74112f5bf84d4a20de783a79afb163cbbfc0df28864",
+        "to": "8d35de63b56981fc497659c08d8dc02c47859543bd7592ae47608c517e1b2d7d",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "eb514aa0def1144868180b08e40677b12d092e686e5256e5c8fcf195a08580cf"
+        ]
+      },
+      {
+        "from": "25a0c1ebbf566ccc0143ce261aa38a3b136262ca6672895f14acc92a83980260",
+        "to": "a88a1e08eb48915a5a9bcbf09052644313a7e4db6d593c22de6b9e249cdc9d00",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "203c0b3f8de854b89aa8615618c3d9405ce7f998856f696c37250ea70b4a2ad1"
+        ]
+      },
+      {
+        "from": "4ac4e19368df8695a5398f91807143a57712edcca3f32b174d9992f34c6d9ead",
+        "to": "7e653bc2d0bb1d05a89096775545fcc33393400f1131772b412fd95eb1bd0e39",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "6368bc60c89d0f81bc9fc69090ad015def53e4f5d8ae35d78ad438dd0fd65065"
+        ]
+      },
+      {
+        "from": "bb9094ff333eebfcc72832b8ca364a5f199dae573fbfdc477072be7d66bb7a27",
+        "to": "ba59017ecefd74fe480ca970d4e57e216d5c246bc20debee56b8fa07a44edb69",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "ea373f99c694f2ac8ebc92c0d612be319bf7754f9d47740306fd6d9970dcdc55"
+        ]
+      },
+      {
+        "from": "fc96d5b26e3e6e9dfe57f7e9a1cbb9811396e0ca434ff79a89c53759ef85d06e",
+        "to": "68a295970fb0b51ad416f830c5e29ed1db556cdda58ad8c769ae55e714a8c63c",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "e1daceb6e13cc749e3326c38b908cb34afd8741418dc2172d0f3f72028727675"
+        ]
+      },
+      {
+        "from": "0aa1fbee22e42a094b0de73fc1b7f2a604ef8623509e3bc117ec44597d45d80f",
+        "to": "db959265c0d9fa6a45b2e963339e576ba3f431d0c4edaa2b0cd1d3632aa3735b",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "1492f83e2aaac6c3a507fa4ab3e35fcfb693688dd68b99ef5f0df0bcad97269d"
+        ]
+      },
+      {
+        "from": "e4551992131d413ec1f2c037c02c7af0db09db0c541991275809c895f1198b6a",
+        "to": "84cd90f237a066e34f37f3936681b83a673fb4dba0c2ba82595fb04e20d94107",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "2a494f40f165926fe5cc52cc53785dbff025d831d2781c3f9a3f7934713a9a70"
+        ]
+      },
+      {
+        "from": "2d7e3959c5ab846e011dfd910cceb2eb22138930309b093b19eeb2f4bf8db372",
+        "to": "2953de9be0d2fe6c4f648786c9949f25090c61a6a5349559455791def07de226",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "7a53bc84fd50918b9eaa561c4de6cd022633b44d98007932cff927ad37f9a801"
+        ]
+      },
+      {
+        "from": "609c8601d6ead642206af3a0f644edeecee324f485611a506600331d0010f332",
+        "to": "eec48341446e6f9c6dcc3546782253ef21790bd7398d59bd3c30a4c70d5dcca8",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "c31ff9e43eab7abfe28a9669730a513fa473de8fd577e52046eae63309a0625e"
+        ]
+      },
+      {
+        "from": "3e035255c96abe043a9dcc87e7a081d6520aba9c3f4b855f320037f46c108dd6",
+        "to": "cbdccd6876be22ddb5197961010ba82cc77b325af23fc17cec5e3b8fa33ac54d",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "2a11d3eb0021796073564031c849484a2f75b5aa6d16d0e0d45be026329385be"
+        ]
+      },
+      {
+        "from": "47f6967fe6d3a7a6bccd14211bb9d9d1d880b4e2d3c4ed1567f663b6c65e7b8e",
+        "to": "6b8bb32cec5f5d5cc3dc1bff29c200952c6dddfd41dd0ba5a343b8f134b51e42",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "a0367f49473a4734636944a5551a487759d044ce55cff04a6468c57a4f7b382a"
+        ]
+      },
+      {
+        "from": "8296d7cbd6488319709ba6f3157c17ab54fd8857179dfece12fbb17a8fd2d973",
+        "to": "e9b2ba7a0e28eef278e38efef3c87ccace4db9defde8ccc1f32aeac8808ffe0c",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "1609b12e8cc2ab79dde06c5ac282ca6f9a414457bedcefdb7c770b3aedb0f762"
+        ]
+      },
+      {
+        "from": "e5e23180f5cab6d9706d88ecf712215af778aeb0bb0bef75d5e1e24c61a48ec8",
+        "to": "3173e9661043bcb564efc567f15b9a2c4b19a25d5ff8df30665330f041eb0ab5",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "318a293f1e195dda13180b3885f8b5b3dfa9f8dd62900ac14dec77a2752c5567"
+        ]
+      },
+      {
+        "from": "f5999df6c2c2c375beafd40e5fa506dd4e2cd68dea0517edf95f3cbe8b62af20",
+        "to": "22ca49edb05a56fc2eba537c8607c8527a03a61a24e762711304f6395dbf0cd0",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "36efdf9e2af8a03bab7a0c8f77f7c3b2f5225c09aa974ee0531abab742ede777"
+        ]
+      },
+      {
+        "from": "b21b26929ab0f7f3e646cbe8b9cd846d2c8fe96028328f38513ac09139816581",
+        "to": "cb7a8836abd577278512de5f6276b4e3f8cc4bc4e6c2b74c7ac35b6b73751c88",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "39a9e89093cc7d51e790f2777b10b7c7fc449d36c11e7f3c2aad89b0b4f74e0d"
+        ]
+      },
+      {
+        "from": "c55aafe39ece578b84f09aa00d7b632b62a6dfc0196df3fb0e96a623374c5870",
+        "to": "c794b06f355e3dea3b9e31690e8774d26db318e0d2de6dcba3a2ee69c7b530ae",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "94461903eadaecfaff3217e258abe4aaa79f5d7ff52bfc07c1e1a364127af74e"
+        ]
+      },
+      {
+        "from": "3882cb24f47b62a58134b754664a312eb15059bf7552ca14fd32a47829c11e1f",
+        "to": "cd586bc3f4d3654f1ce1fd1ddc1fe25c9a0397ba2fcfbbd02ef448ab797b0a1f",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "2f5c293e6db74b69f24b43eddfb2666d1b0f974107be7cc81482ba9a1aa73e2d"
+        ]
+      },
+      {
+        "from": "16db6944fec8e87038f10d13745333e8e26b0a5f59096f41827fee8bfb011923",
+        "to": "6b3c120833dca27a4f296b8b77767296e4b061adfb91c99a9e832606bff8db52",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "20af5b5cf29456ec88e60bb48bd3b92e159f7c405730bc20a26cf760504a0f77"
+        ]
+      },
+      {
+        "from": "78d27df927febb996c6544527f9ae034aaf7328f53833c4a8339c9f1fe3be8f6",
+        "to": "7e22babb8d843c567c89c4731bfd56c59e64711a6c527d2a91f1585688875378",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "4f4afc4270be376c1ae65fcbd8b11fb9ed3f15c72a64be835136599ba50ccfcd"
+        ]
+      },
+      {
+        "from": "3e4bab5d5ef7a29f88aa3e84c2d77b5dda401a0288d61a189c86dba223b65e32",
+        "to": "937e5e9705dc108e02495e68a789d4532043bc21f1488802f49d4e3ac014fb89",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "b9c171f6bbafe7a75912d1abe12d2d059f54bdd05694ed3b1e2d95616b92a23e"
+        ]
+      },
+      {
+        "from": "59d7ddb11718aaf86e2c1b890eff6be339bbef3f8eabfd211f1054318c9ae656",
+        "to": "4ede63ef671e43c7a662610556f461b7807f610ffb917a2706e963b923387d1c",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "f1e40ab73368cdb9f39e794ed231bfc216bb601ad01a8d1461ecaa440d94aba5"
+        ]
+      },
+      {
+        "from": "974e064d835e70887d260ba1755d84d90f6dc4f1b2ab26bc21a67af02f4ecea3",
+        "to": "b6e410ab655f4bcbf41ac89aef0a131b7b51552847d5f1e444df9d4477b3f23d",
+        "relationship": "Correction linked by the source record",
+        "kind": "revises",
+        "status": "observed",
+        "evidence": [
+          "4624e3990c8784df24f723189889dfb326215801379fe4e55af131d269b79493"
+        ]
+      }
+    ]
+  },
+  "estimates": [
+    {
+      "region": "p1",
+      "uncertainty": {
+        "level": "unknown",
+        "meaning": "T2 evidence; no admitted estimate of motive or contribution"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "c586bfff1b9103acb509f020ba467b4780ed12c2a4a42e46e2afc755891d14a6",
+      "source": "https://example.org/model-fixture",
+      "excerpt": "A constructed choice record.",
+      "capturedAt": "2026-02-01T00:00:00Z",
+      "relationship": "Observed final text; this alone does not establish a maker's choices or motives"
+    },
+    {
+      "id": "a6cc11f18df1bbcdd526951e4fe9be42a1b2c75fbdddf18f61761ceacf1ce621",
+      "source": "ledger:decision:long-0",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:00:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:00:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "52e534bd14a7eff6a28ceb3acb57e1cde0584c4ebd490caccaeb482d5156443d",
+      "source": "ledger:decision:short-0",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:00:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:00:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "ce05ccafc81b32f6670b10daa57bc09a1a1de93c50ffff5144927abb56a80e35",
+      "source": "ledger:correction:c-long-0",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:00:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "1620a944b7c00b2ce71690439b23f8f7d12036a3046bf70024f60a962ace6f81",
+      "source": "ledger:correction:c-short-0",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:00:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "425bdfc664b0bd0536d606b6f3233a26e0aae1a83f976b39be1b1ab5bdd9b1db",
+      "source": "ledger:decision:long-1",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:01:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:01:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "43b8cad38221596156638fa620a214c39f2f38a4f09e871c68ddbad0fe302b6f",
+      "source": "ledger:decision:short-1",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:01:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:01:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "09f2ab0295b2ea9e4184169e2cfb6a887377e3300f1a63363cf07f698499e227",
+      "source": "ledger:correction:c-long-1",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:01:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "72b2d9745df7057115855661bc1ab1f13e4425b0962f36a7e0ee73dd149ae590",
+      "source": "ledger:correction:c-short-1",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:01:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "86690bd999dd1bac680f58c0f925db9ce88e2a28d42e52c15473be9c7fd35b62",
+      "source": "ledger:decision:long-2",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:02:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:02:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "a34dad60418e25afe734581d38b9847ffed2242298b8bdd11a95631327c44ea3",
+      "source": "ledger:decision:short-2",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:02:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:02:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "3e91c95b1136d78d173665cad20dfbef884d39c7d9e028cc18cd7b14bf0bfcde",
+      "source": "ledger:correction:c-long-2",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:02:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "7dcf4c9ceb2546eed08b9834c72e321cb0c28e538e0ff14959443c1ff4353b15",
+      "source": "ledger:correction:c-short-2",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:02:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "080f0f28e7527973f72aa9f5c071b471466177ae198e8cc7a19d809b739f1fad",
+      "source": "ledger:decision:long-3",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:03:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:03:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "4ab468110b87dd91d56b6bf3e91810a025b0ad86c448f301e9f50ff89ab26b70",
+      "source": "ledger:decision:short-3",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:03:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:03:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "9b8f93ef78da72107cf1fc6d95cd86f9a9788fb6419a190f7bd988ec10f92e43",
+      "source": "ledger:correction:c-long-3",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:03:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "0fe7323ea1f2e820600d54ad877ca8c0336864aa0b894d347b1b277952ea826a",
+      "source": "ledger:correction:c-short-3",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:03:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "312d68a8109b745612790b920eae95f45b04256d4149b0fc8f7e8f44aa061e80",
+      "source": "ledger:decision:long-4",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:04:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:04:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "ae72aee5f76ed3d05f9f140bb3441f3e1392892bd49a95434655c164827c1a89",
+      "source": "ledger:decision:short-4",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:04:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:04:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "a3a8286c8c9c3299a4b8b888b4aa6b5fc35866e98f90286bb5b8541d944b2244",
+      "source": "ledger:correction:c-long-4",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:04:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "052cc9cc573fef5d82d2023747fb5925cd0c803d05ee89fbfb99a3f77dd495ec",
+      "source": "ledger:correction:c-short-4",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:04:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "aacea21da4850c70d2b66298a6419c745439d7a0f2c6665a5b022d9d2570e7e1",
+      "source": "ledger:decision:long-5",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:05:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:05:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "639a0008dfdc722c82e9fb1578b9f76d25c300fb485a48e611320a588b3f2b1e",
+      "source": "ledger:decision:short-5",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:05:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:05:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "c0432d2d1657101df891fce70c50c0e4d484e56fce6ca84b88050d7099f27594",
+      "source": "ledger:correction:c-long-5",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:05:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "b2c4a588af7a7e391e3ed5612db69b2e9c8fdc2ec7ee0d25eebbb54df253776f",
+      "source": "ledger:correction:c-short-5",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:05:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "571ff1175a0fc8ca5810f8ad6fb6b92bbf1f8eb8c84ab7aec1eeb7038a044a73",
+      "source": "ledger:decision:long-6",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:06:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:06:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "acdaec4df4cadef42289f72f55683cea005ed8c9dacbae3bf80673c39bef25b3",
+      "source": "ledger:decision:short-6",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:06:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:06:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "3effd9b7c154e50cef90db64706698fb46b3f8c0e834229cabf066c3693c1ff2",
+      "source": "ledger:correction:c-long-6",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:06:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "5b17c3abc7cda499b5b754787ea9f088c855e2f35a78ce975cf77b72cb5226d7",
+      "source": "ledger:correction:c-short-6",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:06:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "6229c5f04d660ad0aa03268930899a3e88c1cf2f600c704462719be991b3581c",
+      "source": "ledger:decision:long-7",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:07:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:07:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "20687672935c53461620705a771a30a13d7b1a93b8e22f6d70275a9e478c4762",
+      "source": "ledger:decision:short-7",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:07:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:07:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "901d43a1eddd026616752427371b05f9cabc71d95e9e7a156d2ee17a6569d770",
+      "source": "ledger:correction:c-long-7",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:07:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "d73b4a99bb103e6ad47840be124e20eef9def7319d2b13b910f8a055b4f916b3",
+      "source": "ledger:correction:c-short-7",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:07:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "6ebbcc400614319e8678055840b302962d5514bbdfe408f317c3e5037a99a894",
+      "source": "ledger:decision:long-8",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:08:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:08:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "dcbaa78353deb9f02bc9ac1f9ee41b0781158448a2c077575a3579ce4264a22e",
+      "source": "ledger:decision:short-8",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:08:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:08:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "aa94abfffde23b42fe1d83711d8b7064a421ef4ae09a9cab0272c6f9422cf0ab",
+      "source": "ledger:correction:c-long-8",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:08:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "f7efd6bf61447195fc103498b4c22e8c5520e2bc831ec82b013f0db2de3ed876",
+      "source": "ledger:correction:c-short-8",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:08:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "5b359845b29c896f800adfc83eeda5d2cba9339cc9213196662ed794fb3266ec",
+      "source": "ledger:decision:long-9",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:09:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:09:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "1087cdf912f681d5cc89e650189af384bb69e6982621ba4282a0ebd7eb99535b",
+      "source": "ledger:decision:short-9",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:09:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:09:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "1c1b1fe8a488132fece28fd9974dca4a5b609c18759ab025b77bdd86e1939595",
+      "source": "ledger:correction:c-long-9",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:09:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "761345ddaa206408298f72a390ca7d7976ef660579db16954c61aa491e7fcc74",
+      "source": "ledger:correction:c-short-9",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:09:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "0b26f04e068b664a7b1988620b7bcde6063d00994a7d956bf7f5b462a9d4b0c9",
+      "source": "ledger:decision:long-10",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:10:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:10:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "31f6264b5d2260209bf900f8e5ab0c5f34611c3132b24e0509c2bea14c27b0aa",
+      "source": "ledger:decision:short-10",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:10:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:10:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "d61fa0e14be9d67783773de5e731f090df3544a5c1b49ec930c7961c7e638294",
+      "source": "ledger:correction:c-long-10",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:10:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "1344619f63ebb6f3e3314036e8f6af3441913c2da2d63ebd11b3358368f4285e",
+      "source": "ledger:correction:c-short-10",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:10:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "9df11ac743f93c6e236fd21ff519e0dc7b05dd713f873e7c787b4a0f763a5b68",
+      "source": "ledger:decision:long-11",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:11:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:11:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "690b0beeb4182f4dd28393291c1965e865029548124486e06166b94313a8b3c0",
+      "source": "ledger:decision:short-11",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:11:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:11:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "805b28f8bc809d362f5efd389757f347f249532ee756f2a11a96e4758354b82e",
+      "source": "ledger:correction:c-long-11",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:11:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "49d0e44a2c111d14529fddd8f406686c9289cf0257275da8badbf0fd00b3c220",
+      "source": "ledger:correction:c-short-11",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:11:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "bc934c978023dcb8e57a92045fd85e39f8adb3a013ca77dc78e0990f3db742b7",
+      "source": "ledger:decision:long-12",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:12:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:12:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "b217129045d02422f408d4d97143e6cc1e2800d52499018065a3a2d17cf41df7",
+      "source": "ledger:decision:short-12",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:12:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:12:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "15018fdb22dcfe47f9c3c63aa23fa5b1b86578aa4cb385e0bcfdb8b056b15c39",
+      "source": "ledger:correction:c-long-12",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:12:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "2b9c5f294fdd8412d927cb9d9139e005dd44b472a831c4ad0afefad8920ebc47",
+      "source": "ledger:correction:c-short-12",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:12:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "af761472aa999b2c2e96ee50d6b03757d698c302347fb6294d51e9bee07767e0",
+      "source": "ledger:decision:long-13",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:13:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:13:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "d8b52c03cd3c21a9b06110048cf804f8024ad31052f88ad0457f754ddee25f1d",
+      "source": "ledger:decision:short-13",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:13:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:13:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "eb514aa0def1144868180b08e40677b12d092e686e5256e5c8fcf195a08580cf",
+      "source": "ledger:correction:c-long-13",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:13:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "203c0b3f8de854b89aa8615618c3d9405ce7f998856f696c37250ea70b4a2ad1",
+      "source": "ledger:correction:c-short-13",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:13:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "8a38b2e1f22145f6f3169cc0bae38389a19f3c99f16537563a0f7263db5d647b",
+      "source": "ledger:decision:long-14",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:14:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:14:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "b04b9c894b3eedcdd198ebb340e1ba476f9733ec3326997267fd92ed28be9549",
+      "source": "ledger:decision:short-14",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:14:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:14:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "6368bc60c89d0f81bc9fc69090ad015def53e4f5d8ae35d78ad438dd0fd65065",
+      "source": "ledger:correction:c-long-14",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:14:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "ea373f99c694f2ac8ebc92c0d612be319bf7754f9d47740306fd6d9970dcdc55",
+      "source": "ledger:correction:c-short-14",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:14:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "47535e86775433d03fb202bdc07385a3fcdbc94b16d0d4bffabdae603a67d7ca",
+      "source": "ledger:decision:long-15",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:15:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:15:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "2d9b895bee86393eb6c23541b77157e8c41bf17f9f7b5d3f3d250f67079a16cd",
+      "source": "ledger:decision:short-15",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:15:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:15:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "e1daceb6e13cc749e3326c38b908cb34afd8741418dc2172d0f3f72028727675",
+      "source": "ledger:correction:c-long-15",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:15:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "1492f83e2aaac6c3a507fa4ab3e35fcfb693688dd68b99ef5f0df0bcad97269d",
+      "source": "ledger:correction:c-short-15",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:15:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "d3c31acd1f3c49d03b99c381e55dbef5d68160d2a0c0f9127f4189e2e91256f1",
+      "source": "ledger:decision:long-16",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:16:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:16:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "ad03ef75ab5f63e109140ed44e164336ed3022613074a1ab41ffddab16aaacde",
+      "source": "ledger:decision:short-16",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:16:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:16:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "2a494f40f165926fe5cc52cc53785dbff025d831d2781c3f9a3f7934713a9a70",
+      "source": "ledger:correction:c-long-16",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:16:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "7a53bc84fd50918b9eaa561c4de6cd022633b44d98007932cff927ad37f9a801",
+      "source": "ledger:correction:c-short-16",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:16:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "d2eb993dbf69bc0c0946cf10f9dd1fda2e01e6ef1a4322bf2cc5cb7eb9409cee",
+      "source": "ledger:decision:long-17",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:17:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:17:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "147a56be79dd5ca2580a9e2c930ac13ad4f1a816562ab318f35770787f64727e",
+      "source": "ledger:decision:short-17",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:17:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:17:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "c31ff9e43eab7abfe28a9669730a513fa473de8fd577e52046eae63309a0625e",
+      "source": "ledger:correction:c-long-17",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:17:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "2a11d3eb0021796073564031c849484a2f75b5aa6d16d0e0d45be026329385be",
+      "source": "ledger:correction:c-short-17",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:17:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "89b278bd77e0dddd61ee796afdc0bf5aaebf2b88b1d7af9e70a75de5381a9460",
+      "source": "ledger:decision:long-18",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:18:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:18:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "a8711c64bfc064c91b5f9299194b1a67fc2925f8f092d7b002ef25fd98c55464",
+      "source": "ledger:decision:short-18",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:18:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:18:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "a0367f49473a4734636944a5551a487759d044ce55cff04a6468c57a4f7b382a",
+      "source": "ledger:correction:c-long-18",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:18:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "1609b12e8cc2ab79dde06c5ac282ca6f9a414457bedcefdb7c770b3aedb0f762",
+      "source": "ledger:correction:c-short-18",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:18:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "220fe9d78f0aedf5e19b0b9bacb9f623c462e922ea1ae255df1e4ac48171f86c",
+      "source": "ledger:decision:long-19",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:19:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:19:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "51ed6b749212ccc508da04bf7a28f7744789a234d2a7283d1fb4dff2d812fedb",
+      "source": "ledger:decision:short-19",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:19:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:19:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "318a293f1e195dda13180b3885f8b5b3dfa9f8dd62900ac14dec77a2752c5567",
+      "source": "ledger:correction:c-long-19",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:19:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "36efdf9e2af8a03bab7a0c8f77f7c3b2f5225c09aa974ee0531abab742ede777",
+      "source": "ledger:correction:c-short-19",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:19:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "16e63d6be11621355b730580239461bc8f1afaf35e38c0086554ae09b129260a",
+      "source": "ledger:decision:long-20",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:20:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:20:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "346af7bd6f117f156dd77bb1e950678deb254b002edf036366d3e254497681c5",
+      "source": "ledger:decision:short-20",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:20:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:20:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "39a9e89093cc7d51e790f2777b10b7c7fc449d36c11e7f3c2aad89b0b4f74e0d",
+      "source": "ledger:correction:c-long-20",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:20:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "94461903eadaecfaff3217e258abe4aaa79f5d7ff52bfc07c1e1a364127af74e",
+      "source": "ledger:correction:c-short-20",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:20:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "4c084f62c6b909d0eb76e09e5c6f7fe8ba35c1f2ddd76290ecaa173825c2bdfc",
+      "source": "ledger:decision:long-21",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:21:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:21:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "a6b415ad6aea2979f08bb78ceeb04ed4096545b4a36900e125baf3858f527396",
+      "source": "ledger:decision:short-21",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:21:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:21:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "2f5c293e6db74b69f24b43eddfb2666d1b0f974107be7cc81482ba9a1aa73e2d",
+      "source": "ledger:correction:c-long-21",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:21:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "20af5b5cf29456ec88e60bb48bd3b92e159f7c405730bc20a26cf760504a0f77",
+      "source": "ledger:correction:c-short-21",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:21:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "fc5d3c68bf0728f994e6891db6b75b83911ef8bfef9211e96fb3b121e0baa724",
+      "source": "ledger:decision:long-22",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:22:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:22:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "48f7f9aa78185598cb2bec0cba8a9677c54b8849e390da9a24c6d1800066616d",
+      "source": "ledger:decision:short-22",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:22:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:22:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "4f4afc4270be376c1ae65fcbd8b11fb9ed3f15c72a64be835136599ba50ccfcd",
+      "source": "ledger:correction:c-long-22",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:22:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "b9c171f6bbafe7a75912d1abe12d2d059f54bdd05694ed3b1e2d95616b92a23e",
+      "source": "ledger:correction:c-short-22",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:22:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "66254a4e17116a8cafb79f8f369ab60f013c4b08d0826927676b61c40788e982",
+      "source": "ledger:decision:long-23",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:23:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:23:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "dcd033e651236071f906fba148fa0d90b1357658c6bdf164eea34978e6b8d56c",
+      "source": "ledger:decision:short-23",
+      "excerpt": "Recorded choose among 2 offered alternatives at 2026-01-01T00:23:00+00:00. Acceptance does not establish endorsement, understanding or motive. Selected text: Short.",
+      "capturedAt": "2026-01-01T00:23:00Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "f1e40ab73368cdb9f39e794ed231bfc216bb601ad01a8d1461ecaa440d94aba5",
+      "source": "ledger:correction:c-long-23",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:23:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "4624e3990c8784df24f723189889dfb326215801379fe4e55af131d269b79493",
+      "source": "ledger:correction:c-short-23",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:23:01Z",
+      "relationship": "Observed source-scoped event; motives are not inferred"
+    },
+    {
+      "id": "028699ad4bbbed4370bdd7dbd86a03a950c8f1b0ce0ceeff3501350c03281d9c",
+      "source": "ledger:decision:short-16",
+      "excerpt": "Observed choose; selected option a among 2 offered alternatives.",
+      "capturedAt": "2026-01-01T00:16:00Z",
+      "relationship": "Witnessed choice used in the pinned model; acceptance does not establish endorsement"
+    },
+    {
+      "id": "cf80482758e019e4987745ffba0a381256fe609aa5e329e8b7dd3f55f4f1ee33",
+      "source": "ledger:decision:short-17",
+      "excerpt": "Observed choose; selected option a among 2 offered alternatives.",
+      "capturedAt": "2026-01-01T00:17:00Z",
+      "relationship": "Witnessed choice used in the pinned model; acceptance does not establish endorsement"
+    },
+    {
+      "id": "3fe1c4c1cb67d4c2cc1507cc9a1d866a2f73354ff65fbb1d6e592891a8a7e63d",
+      "source": "ledger:decision:short-18",
+      "excerpt": "Observed choose; selected option a among 2 offered alternatives.",
+      "capturedAt": "2026-01-01T00:18:00Z",
+      "relationship": "Witnessed choice used in the pinned model; acceptance does not establish endorsement"
+    },
+    {
+      "id": "714a261eb4fff459b47ff76cb64a585160b1acc69dd73efa686b5d5d925db550",
+      "source": "ledger:decision:short-19",
+      "excerpt": "Observed choose; selected option a among 2 offered alternatives.",
+      "capturedAt": "2026-01-01T00:19:00Z",
+      "relationship": "Witnessed choice used in the pinned model; acceptance does not establish endorsement"
+    },
+    {
+      "id": "0c34c386e2019eeae0b984d280ed604561b701e276dab85fd798d94fc242ee84",
+      "source": "ledger:decision:short-20",
+      "excerpt": "Observed choose; selected option b among 2 offered alternatives.",
+      "capturedAt": "2026-01-01T00:20:00Z",
+      "relationship": "Witnessed choice used in the pinned model; acceptance does not establish endorsement"
+    },
+    {
+      "id": "d5b03590a0804a89b68bd99e69a4b5a3a94657eedb59f686aff5c40cc87b03eb",
+      "source": "ledger:decision:short-21",
+      "excerpt": "Observed choose; selected option a among 2 offered alternatives.",
+      "capturedAt": "2026-01-01T00:21:00Z",
+      "relationship": "Witnessed choice used in the pinned model; acceptance does not establish endorsement"
+    },
+    {
+      "id": "9b561dce3a0d44b188b5c7e15bfd333318e2ad52ea04a346eb8129a81113c733",
+      "source": "ledger:decision:short-22",
+      "excerpt": "Observed choose; selected option a among 2 offered alternatives.",
+      "capturedAt": "2026-01-01T00:22:00Z",
+      "relationship": "Witnessed choice used in the pinned model; acceptance does not establish endorsement"
+    },
+    {
+      "id": "9242200be66a32b330dcd6b2fcace8ab786952598d44d8ccbf78d10604d52abc",
+      "source": "ledger:decision:short-23",
+      "excerpt": "Observed choose; selected option a among 2 offered alternatives.",
+      "capturedAt": "2026-01-01T00:23:00Z",
+      "relationship": "Witnessed choice used in the pinned model; acceptance does not establish endorsement"
+    },
+    {
+      "id": "19bb4613ca0d3b00d190fdee710bd35957242ea5cde5a69f2ee983a732c8a483",
+      "source": "ledger:correction:c-short-16",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:16:01Z",
+      "relationship": "Witnessed content correction used in the pinned comparison model"
+    },
+    {
+      "id": "22d52351f38027ac4fe90f06e40291ca8924726bd30ba1405e2d81e0a5bf24e5",
+      "source": "ledger:correction:c-short-17",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:17:01Z",
+      "relationship": "Witnessed content correction used in the pinned comparison model"
+    },
+    {
+      "id": "7831fe25bb00853acd1069f3e0c075f07839402a796f2090e9ea3b5416602920",
+      "source": "ledger:correction:c-short-18",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:18:01Z",
+      "relationship": "Witnessed content correction used in the pinned comparison model"
+    },
+    {
+      "id": "62342afe52c426d901d0598d0d1f1fd4e86a54a0b4b5fe704e141b43f94d2ed1",
+      "source": "ledger:correction:c-short-19",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:19:01Z",
+      "relationship": "Witnessed content correction used in the pinned comparison model"
+    },
+    {
+      "id": "b5c71f95a7b7a66827fb6745cd80c3a9c73910e6368f4240a37b8c9d4e5f8599",
+      "source": "ledger:correction:c-short-20",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:20:01Z",
+      "relationship": "Witnessed content correction used in the pinned comparison model"
+    },
+    {
+      "id": "233f7d8598d1ac81a5ce1879c28b2029b22cbe281505f783c13b8cb504778e19",
+      "source": "ledger:correction:c-short-21",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:21:01Z",
+      "relationship": "Witnessed content correction used in the pinned comparison model"
+    },
+    {
+      "id": "4fc721b30274f2c1d87ebfab680a781ddd58572c14a7461f66c288f0d0c98f0a",
+      "source": "ledger:correction:c-short-22",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:22:01Z",
+      "relationship": "Witnessed content correction used in the pinned comparison model"
+    },
+    {
+      "id": "a5498889aecb0faeb8ddb1716755ddcba8c581d503cb9f8342ac45b404324b2d",
+      "source": "ledger:correction:c-short-23",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:23:01Z",
+      "relationship": "Witnessed content correction used in the pinned comparison model"
+    },
+    {
+      "id": "a1170029bc0ed744fe5d784f600f4b3083ac979ac7cde18011c76a143a128646",
+      "source": "ledger:decision:long-16",
+      "excerpt": "Observed choose; selected option b among 2 offered alternatives.",
+      "capturedAt": "2026-01-01T00:16:00Z",
+      "relationship": "Witnessed choice used in the pinned model; acceptance does not establish endorsement"
+    },
+    {
+      "id": "39493b6e6fce0ed4db936fb65e513296af04ba429d1c4c782ae31b4998847bb2",
+      "source": "ledger:decision:long-17",
+      "excerpt": "Observed choose; selected option b among 2 offered alternatives.",
+      "capturedAt": "2026-01-01T00:17:00Z",
+      "relationship": "Witnessed choice used in the pinned model; acceptance does not establish endorsement"
+    },
+    {
+      "id": "9ade0a3bbb97100fa28a841f53349f2b6e246689f3faec47eb993d7e03005c65",
+      "source": "ledger:decision:long-18",
+      "excerpt": "Observed choose; selected option b among 2 offered alternatives.",
+      "capturedAt": "2026-01-01T00:18:00Z",
+      "relationship": "Witnessed choice used in the pinned model; acceptance does not establish endorsement"
+    },
+    {
+      "id": "948f096bc1eaffa22941b11316ecb2757e9f50e6131639159c6a854c53dce2b6",
+      "source": "ledger:decision:long-19",
+      "excerpt": "Observed choose; selected option b among 2 offered alternatives.",
+      "capturedAt": "2026-01-01T00:19:00Z",
+      "relationship": "Witnessed choice used in the pinned model; acceptance does not establish endorsement"
+    },
+    {
+      "id": "c4d3e1599a873d137be4538b8933901ee77350bc26aa9f17e89408c736cc803a",
+      "source": "ledger:decision:long-20",
+      "excerpt": "Observed choose; selected option a among 2 offered alternatives.",
+      "capturedAt": "2026-01-01T00:20:00Z",
+      "relationship": "Witnessed choice used in the pinned model; acceptance does not establish endorsement"
+    },
+    {
+      "id": "8759509bcfe1189eac2bbb2473e1a3ce9e69290205ce369a5762a3a1a9a51438",
+      "source": "ledger:decision:long-21",
+      "excerpt": "Observed choose; selected option b among 2 offered alternatives.",
+      "capturedAt": "2026-01-01T00:21:00Z",
+      "relationship": "Witnessed choice used in the pinned model; acceptance does not establish endorsement"
+    },
+    {
+      "id": "3053a97a676c9c3877837960d92db4e384b2fbbfbaf9634f054899ae7cc47d67",
+      "source": "ledger:decision:long-22",
+      "excerpt": "Observed choose; selected option b among 2 offered alternatives.",
+      "capturedAt": "2026-01-01T00:22:00Z",
+      "relationship": "Witnessed choice used in the pinned model; acceptance does not establish endorsement"
+    },
+    {
+      "id": "182747c8e5ed1729a0af8fcd14bb04c25322e0bb9b54704923789f68b80c65a0",
+      "source": "ledger:decision:long-23",
+      "excerpt": "Observed choose; selected option b among 2 offered alternatives.",
+      "capturedAt": "2026-01-01T00:23:00Z",
+      "relationship": "Witnessed choice used in the pinned model; acceptance does not establish endorsement"
+    },
+    {
+      "id": "34e3b47bc8300077a0fa363943de5ad03e65f85c6a4b374e1b0cb1d40c4865a2",
+      "source": "ledger:correction:c-long-16",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:16:01Z",
+      "relationship": "Witnessed content correction used in the pinned comparison model"
+    },
+    {
+      "id": "71b46d7740fd9a6486f2f5ea67d57b1569bdebf4cc69a05436084473ab84b30f",
+      "source": "ledger:correction:c-long-17",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:17:01Z",
+      "relationship": "Witnessed content correction used in the pinned comparison model"
+    },
+    {
+      "id": "31cc337d2e8a2f7e9625330ff570d836eb89269fac848e3bc37964ab0481468e",
+      "source": "ledger:correction:c-long-18",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:18:01Z",
+      "relationship": "Witnessed content correction used in the pinned comparison model"
+    },
+    {
+      "id": "11961cc55f47d3224639fb1fd6ef0efe93987de43115a1e286a62a4b0a8b4acc",
+      "source": "ledger:correction:c-long-19",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:19:01Z",
+      "relationship": "Witnessed content correction used in the pinned comparison model"
+    },
+    {
+      "id": "046757a6fac516f57b837c0b961440c0472f797cfb1904ab1bc9af2680f10ab5",
+      "source": "ledger:correction:c-long-20",
+      "excerpt": "Before: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.\nAfter: Short.",
+      "capturedAt": "2026-01-01T00:20:01Z",
+      "relationship": "Witnessed content correction used in the pinned comparison model"
+    },
+    {
+      "id": "54270f6c589b277b7ab6ce224b635e542b1a53edffaf74520be3f3bdecd7c4b3",
+      "source": "ledger:correction:c-long-21",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:21:01Z",
+      "relationship": "Witnessed content correction used in the pinned comparison model"
+    },
+    {
+      "id": "98b98ce85d8c332ccea83ac3a698d511da28c7185cb49c2d932cdf8d1bceaeac",
+      "source": "ledger:correction:c-long-22",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:22:01Z",
+      "relationship": "Witnessed content correction used in the pinned comparison model"
+    },
+    {
+      "id": "b988d3911756cb340edc56caef1bda1067e6f1b1085adcdf0999f6ee8b7d0dfd",
+      "source": "ledger:correction:c-long-23",
+      "excerpt": "Before: Short.\nAfter: Longerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr.",
+      "capturedAt": "2026-01-01T00:23:01Z",
+      "relationship": "Witnessed content correction used in the pinned comparison model"
+    }
+  ],
+  "population": {
+    "populationId": "writing-v0",
+    "makersPooled": 2,
+    "description": "Pooled observed choices in the writing domain. Positions compare each maker with the pooled coefficient (0.5). Intervals and information shares are conditional Laplace approximations with the population coefficient fixed. These feature preferences are not calibrated values, drives, or authorship shares.",
+    "items": [
+      {
+        "hypothesis": "206726f752c2774ddd2434c6243705fb815f283564bb7bd2aec34e44e3d9d43a",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Probability-like relative position above the pooled coefficient; conditional Gaussian approximation, not calibrated against stated values."
+        },
+        "makerRecords": 48,
+        "shrinkage": 0.9983541384044237,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          },
+          {
+            "records": 48,
+            "intervalWidth": 0.03556048904491112
+          }
+        ]
+      },
+      {
+        "hypothesis": "19f5a7fe47d3fed16e1e4f3d3ab36ed1163c20e33c1e7f33c2e58815d60bc188",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Probability-like relative position above the pooled coefficient; conditional Gaussian approximation, not calibrated against stated values."
+        },
+        "makerRecords": 48,
+        "shrinkage": 0.9983541384044237,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          },
+          {
+            "records": 48,
+            "intervalWidth": 0.03556048904491111
+          }
+        ]
+      },
+      {
+        "hypothesis": "89b1cb57a2d4a1953c8debf300c5a046a5cbd64470ee6c82e29be62a69efe7e0",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Pooled reference on the same relative scale"
+        },
+        "makerRecords": 48,
+        "shrinkage": 0.007051900279751999,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          },
+          {
+            "records": 48,
+            "intervalWidth": 0.8734425476109238
+          }
+        ]
+      },
+      {
+        "hypothesis": "4a58c43ebcd1e23bfac579ad106e07a2281160f1d2b33af2aef298ad2de64a01",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Pooled reference on the same relative scale"
+        },
+        "makerRecords": 48,
+        "shrinkage": 0.007051900279751777,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          },
+          {
+            "records": 48,
+            "intervalWidth": 0.8734425476109239
+          }
+        ]
+      },
+      {
+        "hypothesis": "bc9c381a8bca0bce18446cc0dfccadd76fc5f72d943564567101b150fd4eed23",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Pooled reference on the same relative scale"
+        },
+        "makerRecords": 48,
+        "shrinkage": 0.0,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          },
+          {
+            "records": 48,
+            "intervalWidth": 0.8765386471799175
+          }
+        ]
+      },
+      {
+        "hypothesis": "0adcba05ba01943e17eab071e2ff153c72c66bdcaa99249e3142a45f9a4bca3c",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Pooled reference on the same relative scale"
+        },
+        "makerRecords": 48,
+        "shrinkage": 0.0,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          },
+          {
+            "records": 48,
+            "intervalWidth": 0.8765386471799175
+          }
+        ]
+      },
+      {
+        "hypothesis": "8683d683bcbcdbb0bac733624b4bbbf8b71a1d29a134497718074523e4dc7b9c",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Pooled reference on the same relative scale"
+        },
+        "makerRecords": 48,
+        "shrinkage": 0.0,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          },
+          {
+            "records": 48,
+            "intervalWidth": 0.8765386471799175
+          }
+        ]
+      },
+      {
+        "hypothesis": "1c2e38a7190905bdc1c42cd256b7cc11e4d9c775e019287620a06c34db14b1ed",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Pooled reference on the same relative scale"
+        },
+        "makerRecords": 48,
+        "shrinkage": 0.0,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          },
+          {
+            "records": 48,
+            "intervalWidth": 0.8765386471799175
+          }
+        ]
+      },
+      {
+        "hypothesis": "25ec36e4a429327ec68927d3df24503bd2da536022d3d317f91153b283fa83e2",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Pooled reference on the same relative scale"
+        },
+        "makerRecords": 48,
+        "shrinkage": 0.0,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          },
+          {
+            "records": 48,
+            "intervalWidth": 0.8765386471799175
+          }
+        ]
+      },
+      {
+        "hypothesis": "0e1e6f19172bf62f7bcf9340039ab4a7a200dd5fb5465ba6e6834a2c8963324c",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Pooled reference on the same relative scale"
+        },
+        "makerRecords": 48,
+        "shrinkage": 0.00705190027975211,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          },
+          {
+            "records": 48,
+            "intervalWidth": 0.8734425476109238
+          }
+        ]
+      },
+      {
+        "hypothesis": "d5a6d8e008ed618418aa5b4a5805cde5929fc9c21f697332e2503e9434aa9949",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Pooled reference on the same relative scale"
+        },
+        "makerRecords": 48,
+        "shrinkage": 0.00705190027975211,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          },
+          {
+            "records": 48,
+            "intervalWidth": 0.8734425476109238
+          }
+        ]
+      },
+      {
+        "hypothesis": "0cf82f3187f38160a386a20069768e90405ed9946818304f26fcc6e57db6e50f",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Pooled reference on the same relative scale"
+        },
+        "makerRecords": 48,
+        "shrinkage": 0.0,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          },
+          {
+            "records": 48,
+            "intervalWidth": 0.8765386471799175
+          }
+        ]
+      },
+      {
+        "hypothesis": "056693be29a788766627b150bf2a3ba66b82f55d94a292450551972379599e0d",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Pooled reference on the same relative scale"
+        },
+        "makerRecords": 48,
+        "shrinkage": 0.0,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          },
+          {
+            "records": 48,
+            "intervalWidth": 0.8765386471799175
+          }
+        ]
+      },
+      {
+        "hypothesis": "69fbaf22fe6431d6a506cb191473ef51e144967a1fa4e2541d0eea10e729f134",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Pooled reference on the same relative scale"
+        },
+        "makerRecords": 48,
+        "shrinkage": 0.0,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          },
+          {
+            "records": 48,
+            "intervalWidth": 0.8765386471799175
+          }
+        ]
+      },
+      {
+        "hypothesis": "3db986019c52ce22527836491d5a8caf0e7344b4fa905881733fabc1df17842f",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Pooled reference on the same relative scale"
+        },
+        "makerRecords": 48,
+        "shrinkage": 0.0,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          },
+          {
+            "records": 48,
+            "intervalWidth": 0.8765386471799175
+          }
+        ]
+      },
+      {
+        "hypothesis": "ceeadc1853e3cd4f59ca9ac060dfff3b3392f0cd0016cba8bab55c0c092c5c23",
+        "populationSupport": {
+          "value": 0.5,
+          "scale": [
+            0.0,
+            1.0
+          ],
+          "semantics": "relative",
+          "meaning": "Pooled reference on the same relative scale"
+        },
+        "makerRecords": 48,
+        "shrinkage": 0.0,
+        "curve": [
+          {
+            "records": 0,
+            "intervalWidth": 0.8765386471799175
+          },
+          {
+            "records": 48,
+            "intervalWidth": 0.8765386471799175
+          }
+        ]
+      }
+    ]
+  }
+}

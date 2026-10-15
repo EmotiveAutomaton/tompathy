@@ -76,6 +76,7 @@ class Backbone:
     penalties: dict[str, float] = field(default_factory=dict)
     information_shares: dict[str, float] = field(default_factory=dict)
     conditional_intervals: dict[str, np.ndarray] = field(default_factory=dict)
+    conditional_covariances: dict[str, np.ndarray] = field(default_factory=dict)
     train_ids: tuple[str, ...] = ()
 
     @classmethod
@@ -123,6 +124,7 @@ class Backbone:
                 centered = row.features - mean
                 information += row.weight * (centered.T * p) @ centered
             covariance = np.linalg.inv(information + 2 * penalty * np.eye(d))
+            model.conditional_covariances[maker] = covariance
             model.information_shares[maker] = float(np.trace(information @ covariance) / d)
             radius = 1.96 * np.sqrt(np.diag(covariance))
             model.conditional_intervals[maker] = np.column_stack(

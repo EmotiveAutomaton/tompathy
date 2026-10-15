@@ -107,7 +107,7 @@ def test_fit_roundtrip_admission_and_packet(tmp_path):
         0 < item["shrinkage"] < 1 and item["makerRecords"] == 24
         for item in packet["population"]["items"]
     )
-    assert "constructed-test-only" in packet["provider"]["method"]
+    assert "constructed-test-only" in packet["provider"]["admissions"]
 
 
 def test_model_rejects_future_changed_ledger_and_wrong_pin(tmp_path):

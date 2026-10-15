@@ -25,7 +25,7 @@ def test_t0_no_invented_values_attention_or_history():
     assert packet["process"]["nodes"] == []
     assert "currentAttention" not in packet
     assert "population" not in packet
-    assert "none" in packet["provider"]["method"]
+    assert packet["provider"]["admissions"] == []
     assert Packet.model_validate(packet).wire() == packet
 
 

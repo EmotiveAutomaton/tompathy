@@ -334,7 +334,7 @@ export function App({ preview = false }: { preview?: boolean }) {
     analyzer.current?.abort();
     setAnalyzing(false);
   }, [analysisKey]);
-  async function analyze() {
+  async function analyze(history?: "wikipedia") {
     if (!artifact || stale || provider.kind === "none") return;
     analyzer.current?.abort();
     const job = new AbortController();
@@ -350,6 +350,7 @@ export function App({ preview = false }: { preview?: boolean }) {
         scope,
         context,
         signal: job.signal,
+        ...(history ? { history } : {}),
       });
       if (job.signal.aborted || analysisCurrent.current !== key) return;
       if (current.current.session.packet) {
@@ -1824,6 +1825,25 @@ export function App({ preview = false }: { preview?: boolean }) {
                   >
                     {analyzing ? "Analyzing capture…" : "Analyze capture"}
                   </button>
+                  {provider.kind === "local" &&
+                    artifact &&
+                    /^https:\/\/[a-z0-9-]+\.wikipedia\.org\/wiki\/[^?#]+$/i.test(
+                      artifact.source,
+                    ) && (
+                      <button
+                        className="secondary-button"
+                        disabled={
+                          busy || stale || analyzing || scope !== "artifact"
+                        }
+                        title="Fetch public Wikipedia revisions and analyze their recorded changes. Uses the work-only scope."
+                        onClick={() => {
+                          setModal(null);
+                          void analyze("wikipedia");
+                        }}
+                      >
+                        Analyze Wikipedia history
+                      </button>
+                    )}
                   {analyzing && (
                     <button
                       className="text-button"

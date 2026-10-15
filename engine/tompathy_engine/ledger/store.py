@@ -186,6 +186,26 @@ class Ledger:
     def all(self):
         return [row for kind in RECORDS for row in self.rows(kind)]
 
+    def snapshot(self):
+        """Pin the visible atomic batches for one analysis, avoiding repeated scans."""
+        # Select paths once: concurrent appends cannot produce a mixed view.
+        batches = sorted(
+            p for p in self.batches.iterdir() if p.is_dir() and not p.name.startswith(".")
+        )
+        tables = {}
+        for kind in RECORDS:
+            paths = [
+                str(p / f"{kind}.parquet") for p in batches if (p / f"{kind}.parquet").is_file()
+            ]
+            values = []
+            if paths:
+                with duckdb.connect(":memory:", config={"threads": 1}) as connection:
+                    values = connection.execute(
+                        "SELECT payload FROM read_parquet(?)", [paths]
+                    ).fetchall()
+            tables[kind] = [RECORDS[kind].model_validate_json(v) for (v,) in values]
+        return LedgerView(self, tables)
+
     @contextmanager
     def _writer(self):
         path = self.root / ".writer.lock"
@@ -261,3 +281,19 @@ class Ledger:
             return None
         proofs = {(p.record_type, p.record_id): p for p in provenance}
         return self.append(selected.values(), [proofs[k] for k in selected])
+
+
+class LedgerView:
+    """Read-only record snapshot backed by immutable, hash-checked text blobs."""
+
+    def __init__(self, ledger, tables):
+        self.root, self.tables, self.get_text = ledger.root, tables, ledger.get_text
+
+    def rows(self, kind):
+        return list(self.tables[kind])
+
+    def all(self):
+        return [r for kind in RECORDS for r in self.tables[kind]]
+
+    def snapshot(self):
+        return self

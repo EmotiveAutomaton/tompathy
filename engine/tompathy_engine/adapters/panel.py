@@ -45,7 +45,7 @@ def ingest(payload, ledger):
         if key in keys:
             raise ValueError("Duplicate panel source row")
         keys.add(key)
-        if item.get("maker") is None:
+        if item.get("maker") is None or not str(item["maker"]).strip():
             excluded["missing_identity"] += 1
             continue
         maker = maker_id(dataset, str(item["maker"]))
@@ -128,9 +128,14 @@ def ingest(payload, ledger):
                     t_resolve=end,
                     options=options,
                     taken=str(item["taken"]),
-                    action="choose",
+                    action=item.get("action", "choose"),
                     cost=Cost(latency_s=item.get("latency_s")),
-                    context={"prompt": item.get("prompt", ""), "codebook": payload["codebook"]},
+                    context={
+                        "prompt": item.get("prompt", ""),
+                        "codebook": payload["codebook"],
+                        "document_ref": ledger.put_text(item.get("prompt", "")),
+                        "prompt_id": str(item.get("prompt_id", digest(item.get("prompt", "")))),
+                    },
                 ),
             ]
         )

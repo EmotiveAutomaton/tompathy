@@ -5,6 +5,29 @@ from scipy.optimize import minimize
 from scipy.special import logsumexp, softmax
 
 
+def discover(offsets, *, count=4):
+    """Deterministic prototypes from earlier training makers only."""
+    x = np.array([offsets[k] for k in sorted(offsets)])
+    if not 1 <= count <= 32 or x.ndim != 2 or not len(x) or not np.isfinite(x).all():
+        raise ValueError("Prototype discovery requires finite training offsets")
+    centers = [x[0]]
+    for _ in range(min(count, len(x)) - 1):
+        distance = np.min(((x[:, None] - np.array(centers)) ** 2).sum(2), axis=1)
+        if distance.max() == 0:
+            break
+        centers.append(x[int(distance.argmax())])
+    centers = np.array(centers)
+    for _ in range(100):
+        groups = ((x[:, None] - centers) ** 2).sum(2).argmin(1)
+        updated = np.array(
+            [x[groups == i].mean(0) if np.any(groups == i) else c for i, c in enumerate(centers)]
+        )
+        if np.allclose(updated, centers):
+            return updated
+        centers = updated
+    raise ValueError("Prototype discovery did not converge")
+
+
 def fit_mix(cases, *, maker, prototypes, population, until, residual_penalty=10.0):
     prototypes, population = (
         np.asarray(prototypes, dtype=float),
