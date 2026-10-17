@@ -27,6 +27,7 @@ def themed(tmp_path):
         **labels.question_records["Q8"],
         "question_id": "Q10",
         "admission_id": "constructed-Q10",
+        "per_tag": {"danger": 1.0, "care": 1.0},
     }
     for key, data in inputs(ledger, domain="writing", until=until).items():
         answer = ["danger"] if len(data["text"]) > 10 else ["care"]
@@ -54,8 +55,9 @@ def test_theme_drives_and_zero_record_prior_remain_separate(tmp_path):
         admissions=gates("joint-preferences", "drive-recipes"),
     )
     drives = [h for h in packet["hypotheses"] if h.get("interpretation") == "drive"]
-    assert drives and all(h["support"]["semantics"] == "relative" for h in drives)
-    assert not any(h["icon"] == "seeking" for h in drives)
+    # After log-count scaling these collinear length/theme effects have intervals
+    # crossing zero. The fixture must not force a personal claim from that fit.
+    assert not drives and not any(h["kind"] == "value" for h in packet["hypotheses"])
     fresh = make_capture(
         ["Danger alone is not motive."], "https://example.org/fresh", "Fresh", capture["capturedAt"]
     )
@@ -64,10 +66,8 @@ def test_theme_drives_and_zero_record_prior_remain_separate(tmp_path):
     borrowed = build_packet(
         fresh, ledger=ledger, model=pipeline, admissions=gates("population-prior", "drive-recipes")
     )
-    assert len(borrowed["hypotheses"]) == 7
-    assert all(
-        i["makerRecords"] == 0 and i["shrinkage"] == 0 for i in borrowed["population"]["items"]
-    )
+    assert not borrowed["hypotheses"] and not borrowed["population"]["items"]
+    assert "Personal drive position is unknown" in borrowed["population"]["description"]
     assert "currentAttention" not in borrowed and not borrowed["process"]["nodes"]
     for name, p in (("drives", packet), ("borrowed", borrowed)):
         (tmp_path / (name + ".json")).write_text(json.dumps(p))

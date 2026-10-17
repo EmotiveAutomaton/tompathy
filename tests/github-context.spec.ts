@@ -50,6 +50,8 @@ test("changing creators preserves the enabled context preference and collects th
 test("saved context option starts bounded GitHub history, shows a bar and retains source dates", async ({
   page,
 }) => {
+  // This flow includes a cold dev-server load, reopening, and three screenshots.
+  test.setTimeout(60000);
   const packet = await createExample();
   packet.artifact.authors = [{ label: "Mara Vale", basis: "byline" }];
   await page.addInitScript((packet) => {
@@ -71,10 +73,15 @@ test("saved context option starts bounded GitHub history, shows a bar and retain
       );
   }, packet);
   const calls: string[] = [];
+  let releaseCommit!: () => void;
+  const commitReady = new Promise<void>((resolve) => {
+    releaseCommit = resolve;
+  });
   await page.route("https://api.github.com/**", async (route) => {
     const url = new URL(route.request().url());
     calls.push(url.pathname);
     await new Promise((resolve) => setTimeout(resolve, 350));
+    if (/\/commits\/[a-f0-9]+$/.test(url.pathname)) await commitReady;
     const sha = "a".repeat(40);
     const body = url.pathname.endsWith("/docs")
       ? {
@@ -117,7 +124,7 @@ test("saved context option starts bounded GitHub history, shows a bar and retain
     });
   });
   await page.setViewportSize({ width: 360, height: 800 });
-  await page.goto("/?panel&demo=fieldnotes");
+  await page.goto("/?panel&demo=fieldnotes", { waitUntil: "domcontentloaded" });
   await expect(page.getByRole("progressbar")).toBeVisible();
   await expect(page.locator(".context-progress")).toContainText(
     "Fetching GitHub",
@@ -125,7 +132,11 @@ test("saved context option starts bounded GitHub history, shows a bar and retain
   await expect
     .poll(() => page.locator(".context-progress-fill").getAttribute("width"))
     .not.toBe("0");
-  await page.screenshot({ path: "evidence/github-progress.png" });
+  try {
+    await page.screenshot({ path: "evidence/github-progress.png" });
+  } finally {
+    releaseCommit();
+  }
   await expect(page.locator(".context-progress.done")).toBeVisible();
   expect(calls).toHaveLength(4);
   await page.getByRole("button", { name: "Reader menu", exact: true }).click();
@@ -135,7 +146,7 @@ test("saved context option starts bounded GitHub history, shows a bar and retain
   await expect(dialog).toContainText("Clarify invitation");
   await expect(dialog).toContainText("Source updated");
   await page.screenshot({ path: "evidence/github-timeline.png" });
-  await page.reload();
+  await page.reload({ waitUntil: "domcontentloaded" });
   await expect(page.locator(".context-progress.done")).toBeVisible();
   expect(calls).toHaveLength(4); // Fresh source history survives reopening via the saved session.
   await page.goto("/icon-prompts.html");

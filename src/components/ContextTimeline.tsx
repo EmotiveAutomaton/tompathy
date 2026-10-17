@@ -41,7 +41,7 @@ export function ContextTimeline({
     <li key={`${f.itemId}:${i}`}>
       <div className="timeline-date">
         <span>{f.date ?? "Undated"}</span>
-        <small>{dateKindLabel[f.dateKind]}</small>
+        {f.date && <small>{dateKindLabel[f.dateKind]}</small>}
       </div>
       <div>
         <strong>{f.label}</strong>
@@ -132,8 +132,9 @@ export function ContextTimeline({
         <details className="context-use">
           <summary>Sources for the next analysis</summary>
           <p>
-            Only checked sources enter an exported analysis request. Changing
-            the selection requires a matching analysis revision.
+            Only checked sources enter the next analysis request or exported
+            request. Changing the selection requires a matching analysis
+            revision.
           </p>
           {timeline.sources.map((s) => (
             <label key={s.id}>

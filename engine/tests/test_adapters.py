@@ -67,6 +67,7 @@ def test_wiki_boundaries_identity_summary_and_censoring(tmp_path):
         {
             "id": "three",
             "maker": "c",
+            "parents": ["two"],
             "t": "2026-01-02T01:00:00Z",
             "text": data["revisions"][0]["text"],
         }

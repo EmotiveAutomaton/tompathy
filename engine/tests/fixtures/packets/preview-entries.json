@@ -1,0 +1,478 @@
+{
+  "schemaVersion": "1.9",
+  "id": "c63a0baf7cf8a4502d0e918ba2ad7f013fcafa6c19dd7e374f7be0f5ea411a47",
+  "revision": 1,
+  "artifact": {
+    "id": "https://example.org/fixture",
+    "revision": "196e41174517e7c3b8c1bb708d9c223ec646bbac92e4548969a9f68149a1b94c",
+    "title": "Software fixture",
+    "source": "https://example.org/fixture",
+    "capturedAt": "2026-10-17T00:00:00Z",
+    "regions": [
+      {
+        "id": "p1",
+        "anchor": {
+          "exact": "A garden grows.",
+          "prefix": "",
+          "suffix": "\n\nA train arrives.\n\nA ship leaves.",
+          "start": 0,
+          "index": 0
+        }
+      },
+      {
+        "id": "p2",
+        "anchor": {
+          "exact": "A train arrives.",
+          "prefix": "A garden grows.\n\n",
+          "suffix": "\n\nA ship leaves.",
+          "start": 17,
+          "index": 1
+        }
+      },
+      {
+        "id": "p3",
+        "anchor": {
+          "exact": "A ship leaves.",
+          "prefix": "A garden grows.\n\nA train arrives.\n\n",
+          "suffix": "",
+          "start": 35,
+          "index": 2
+        }
+      }
+    ],
+    "truncated": false
+  },
+  "provider": {
+    "id": "tompathy-engine",
+    "method": "Research preview; surface descriptions and local reader judgments. ToMpathy engine 0.1.0a1; commit 82789fdb50d9366ab9352129b01ee37622554dfa + local engine changes; implementation 18be4f3f500de36bd9dfebe64dddd09790fc882ed1f06738e2686db21536b5c5; evidence tier T0; domain writing. Observed capture and ledger records only. Text alone does not update maker preferences. Actual contributing admission records are in provider.admissions.",
+    "admissions": [],
+    "mode": "preview",
+    "previewNotice": "Research preview: these are the engine's guesses. Each one says what it's based on and whether it has been tested."
+  },
+  "preview": {
+    "modules": [
+      {
+        "id": "habits",
+        "title": "Text habits",
+        "status": "complete",
+        "detail": "This page's repeated phrasing, rhythm and punctuation.",
+        "elapsedMs": 2.05
+      },
+      {
+        "id": "deviation",
+        "title": "Deviation map",
+        "status": "unavailable",
+        "detail": "Install and pin Qwen2.5-0.5B locally to enable the deviation map. Analysis never downloads a model."
+      },
+      {
+        "id": "agreement",
+        "title": "Two readers",
+        "status": "unavailable",
+        "detail": "Install and pin SmolLM2-360M alongside Qwen to compare readers."
+      },
+      {
+        "id": "payoff",
+        "title": "Payoff map",
+        "status": "unavailable",
+        "detail": "The pinned local population reader must be installed before payoff can be scored."
+      },
+      {
+        "id": "techniques",
+        "title": "Technique notes",
+        "status": "unavailable",
+        "detail": "No local technique reader is configured. Exact fixed-reader badges require their matching receipts."
+      },
+      {
+        "id": "goals",
+        "title": "Goal tree",
+        "status": "complete",
+        "detail": "3 of 3 adjacent paragraph groups judged, plus governing cover when its input fits. Inputs over 24,000 serialized characters were omitted. At most 21 calls. Root cues limited to title, first 29 headings/meta-description entries.",
+        "elapsedMs": 55.48,
+        "completed": 4,
+        "total": 4,
+        "unit": "groups"
+      },
+      {
+        "id": "values",
+        "title": "Core values",
+        "status": "unavailable",
+        "detail": "Choices, content corrections, stated goals and revision history would move these estimates. No numerical drive prior is supplied; text topics are never converted to drives."
+      }
+    ],
+    "readers": [],
+    "completedAt": "2026-10-17T21:03:14.882850Z",
+    "resumable": false,
+    "layoutGroups": [
+      [
+        "p1"
+      ],
+      [
+        "p2"
+      ],
+      [
+        "p3"
+      ]
+    ],
+    "timings": {},
+    "rootCueReliability": 0.6,
+    "rootCueStatus": "assumed",
+    "goalLenses": [
+      [
+        "dfdaded34ac0d1896abaf70e9b4470f704a593b999bf6a5b0f0dffa6115d91ae",
+        "8b3bc60f7288e8657da03d97c4c1e98e72bfb916463896aa99401913a1651517"
+      ],
+      [
+        "6375fde3a22b2e934e95f2ed73932f538da034e2cdcd442c31b27c87489e2e59",
+        "3dcb2e37894f7325c4de61df515a86b0162432b60c87a68fb25d5e1de5b04f66"
+      ]
+    ],
+    "budgetDrops": []
+  },
+  "globalFindings": [
+    {
+      "source": "Sounding Line V2",
+      "claim": "A model that starts from everyone and adjusts a little for each writer forecast these writers better than population rates. Saved, exposed forecasts; 16,855 decisions from 61 writers. Writer-resampled 95% interval, conditional on saved fits; no new admission.",
+      "number": 0.023962,
+      "interval": [
+        0.017497,
+        0.030691
+      ],
+      "unit": "half-Brier improvement",
+      "evidenceStatus": "descriptive",
+      "link": "https://github.com/EmotiveAutomaton/sounding-line/blob/main/results/phase_2_4_stage_15/DRIVE/V2.md"
+    },
+    {
+      "source": "Sounding Line V1",
+      "claim": "In planted tests, these instruments found a writer's constant lean, not yet their taste or habits. Synthetic outcomes on fixed human-record covariates; this is not a limit on all possible readers.",
+      "number": null,
+      "interval": null,
+      "unit": null,
+      "evidenceStatus": "constructed-tested",
+      "link": "https://github.com/EmotiveAutomaton/sounding-line/blob/main/results/phase_2_4_stage_15/DRIVE/V1_PHASE0.md"
+    },
+    {
+      "source": "Ghost R4",
+      "claim": "In constructed worlds, the largest observed root-cue gain had no leaf evidence and planted cue reliability 0.99. Nominated setting, not confirmation or a real-page reliability estimate.",
+      "number": 0.6431190348758995,
+      "interval": [
+        0.6246675513184207,
+        0.6615705184333783
+      ],
+      "unit": "nats",
+      "evidenceStatus": "constructed-tested",
+      "link": "https://github.com/EmotiveAutomaton/ghost-scale-sim/blob/main/results/v23/packet-20261017/R4-MACHINE_CARD.json"
+    },
+    {
+      "source": "Ghost N5",
+      "claim": "In constructed worlds, correcting a reader's projection with population rates yielded this largest observed gain. Nominated setting; not a natural-data admission.",
+      "number": 0.9492858677208594,
+      "interval": [
+        0.9029064198370778,
+        0.9956653156046411
+      ],
+      "unit": "nats",
+      "evidenceStatus": "constructed-tested",
+      "link": "https://github.com/EmotiveAutomaton/ghost-scale-sim/blob/main/results/v23/packet-20261017/N5-MACHINE_CARD.json"
+    },
+    {
+      "source": "Ghost N7",
+      "claim": "In constructed worlds, a shared-shift correction to stated versus revealed preferences yielded this largest observed gain. Nominated setting; not confirmation or a personal-value measurement.",
+      "number": 0.2501206917914891,
+      "interval": [
+        0.2118192090342693,
+        0.2884221745487089
+      ],
+      "unit": "nats",
+      "evidenceStatus": "constructed-tested",
+      "link": "https://github.com/EmotiveAutomaton/ghost-scale-sim/blob/main/results/v23/packet-20261017/N7-MACHINE_CARD.json"
+    }
+  ],
+  "origin": "live provider",
+  "scope": {
+    "kind": "artifact",
+    "contextIds": []
+  },
+  "makers": [
+    {
+      "id": "d9243bf260b969ee5f50e152c910fcf3d499f9c7ec774f8debd1203c6ee9c34b",
+      "label": "Author (unresolved)",
+      "identity": "unknown",
+      "relationship": "No generative provenance was found in this capture. Page bylines do not establish a creation process.",
+      "kind": "unknown",
+      "evidence": []
+    }
+  ],
+  "hypotheses": [
+    {
+      "evidenceStatus": "unvalidated",
+      "basis": "text-surface",
+      "entry": "page",
+      "id": "a61d1629adc0930fd4156ff23a3a8339f83cf73a77177689bedbcc9a3b82443e",
+      "kind": "process",
+      "label": "Sentence rhythm",
+      "description": "3 sentences outside recognizable quotations; mean 3.0 words, standard deviation 0.0. 0 quoted words held apart. Sentence and quotation boundaries are heuristic.",
+      "makers": [
+        "d9243bf260b969ee5f50e152c910fcf3d499f9c7ec774f8debd1203c6ee9c34b"
+      ],
+      "regions": [
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "status": "hypothesis",
+      "evidence": [
+        "d0e8d9d9e42f48c58bbe8e25eabc9a7551955fd062e7351527c67b3b397feb80",
+        "b7da078feb8da888dd97e70dc5ed07a4e8a44c02aac53335c9d56d9cdf4ecf21",
+        "95e3259265c410c0d33509e0773e793beaba7cf8ed17d94d8b49c8eb43b62c97"
+      ],
+      "interpretation": "repertoire"
+    },
+    {
+      "evidenceStatus": "unvalidated",
+      "basis": "model-judgment",
+      "entry": "page",
+      "id": "8b3bc60f7288e8657da03d97c4c1e98e72bfb916463896aa99401913a1651517",
+      "kind": "goal",
+      "label": "Constructed candidate",
+      "description": "Software fixture, not inference.",
+      "makers": [
+        "d9243bf260b969ee5f50e152c910fcf3d499f9c7ec774f8debd1203c6ee9c34b"
+      ],
+      "regions": [
+        "p1"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "The model's own rating; uncalibrated, not independent support."
+      },
+      "evidence": [
+        "d0e8d9d9e42f48c58bbe8e25eabc9a7551955fd062e7351527c67b3b397feb80"
+      ],
+      "interpretation": "local-goal"
+    },
+    {
+      "evidenceStatus": "unvalidated",
+      "basis": "model-judgment",
+      "entry": "page",
+      "id": "6375fde3a22b2e934e95f2ed73932f538da034e2cdcd442c31b27c87489e2e59",
+      "kind": "goal",
+      "label": "Constructed candidate",
+      "description": "Software fixture, not inference.",
+      "makers": [
+        "d9243bf260b969ee5f50e152c910fcf3d499f9c7ec774f8debd1203c6ee9c34b"
+      ],
+      "regions": [
+        "p2"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "The model's own rating; uncalibrated, not independent support."
+      },
+      "evidence": [
+        "b7da078feb8da888dd97e70dc5ed07a4e8a44c02aac53335c9d56d9cdf4ecf21"
+      ],
+      "interpretation": "local-goal"
+    },
+    {
+      "evidenceStatus": "unvalidated",
+      "basis": "model-judgment",
+      "entry": "page",
+      "id": "3dcb2e37894f7325c4de61df515a86b0162432b60c87a68fb25d5e1de5b04f66",
+      "kind": "goal",
+      "label": "Constructed candidate",
+      "description": "Software fixture, not inference.",
+      "makers": [
+        "d9243bf260b969ee5f50e152c910fcf3d499f9c7ec774f8debd1203c6ee9c34b"
+      ],
+      "regions": [
+        "p3"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "The model's own rating; uncalibrated, not independent support."
+      },
+      "evidence": [
+        "95e3259265c410c0d33509e0773e793beaba7cf8ed17d94d8b49c8eb43b62c97"
+      ],
+      "interpretation": "local-goal"
+    },
+    {
+      "evidenceStatus": "unvalidated",
+      "basis": "model-judgment",
+      "entry": "page",
+      "id": "dfdaded34ac0d1896abaf70e9b4470f704a593b999bf6a5b0f0dffa6115d91ae",
+      "kind": "goal",
+      "label": "Constructed candidate",
+      "description": "Software fixture, not inference. Governing judgment uses the local candidate summaries. Root cues cited: none.",
+      "makers": [
+        "d9243bf260b969ee5f50e152c910fcf3d499f9c7ec774f8debd1203c6ee9c34b"
+      ],
+      "regions": [
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.5,
+        "scale": [
+          0.0,
+          1.0
+        ],
+        "semantics": "relative",
+        "meaning": "The model's own rating; uncalibrated, not independent support."
+      },
+      "evidence": [
+        "d0e8d9d9e42f48c58bbe8e25eabc9a7551955fd062e7351527c67b3b397feb80",
+        "b7da078feb8da888dd97e70dc5ed07a4e8a44c02aac53335c9d56d9cdf4ecf21",
+        "95e3259265c410c0d33509e0773e793beaba7cf8ed17d94d8b49c8eb43b62c97"
+      ],
+      "interpretation": "governing-purpose"
+    }
+  ],
+  "alternatives": [],
+  "process": {
+    "interpretation": "unspecified",
+    "nodes": [
+      "a61d1629adc0930fd4156ff23a3a8339f83cf73a77177689bedbcc9a3b82443e"
+    ],
+    "edges": []
+  },
+  "estimates": [
+    {
+      "region": "p1",
+      "uncertainty": {
+        "level": "unknown",
+        "meaning": "T0 evidence; no admitted estimate of motive or contribution"
+      }
+    },
+    {
+      "region": "p2",
+      "uncertainty": {
+        "level": "unknown",
+        "meaning": "T0 evidence; no admitted estimate of motive or contribution"
+      }
+    },
+    {
+      "region": "p3",
+      "uncertainty": {
+        "level": "unknown",
+        "meaning": "T0 evidence; no admitted estimate of motive or contribution"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "d0e8d9d9e42f48c58bbe8e25eabc9a7551955fd062e7351527c67b3b397feb80",
+      "source": "https://example.org/fixture",
+      "excerpt": "A garden grows.",
+      "capturedAt": "2026-10-17T00:00:00Z",
+      "relationship": "Observed final text; this alone does not establish a maker's choices or motives"
+    },
+    {
+      "id": "b7da078feb8da888dd97e70dc5ed07a4e8a44c02aac53335c9d56d9cdf4ecf21",
+      "source": "https://example.org/fixture",
+      "excerpt": "A train arrives.",
+      "capturedAt": "2026-10-17T00:00:00Z",
+      "relationship": "Observed final text; this alone does not establish a maker's choices or motives"
+    },
+    {
+      "id": "95e3259265c410c0d33509e0773e793beaba7cf8ed17d94d8b49c8eb43b62c97",
+      "source": "https://example.org/fixture",
+      "excerpt": "A ship leaves.",
+      "capturedAt": "2026-10-17T00:00:00Z",
+      "relationship": "Observed final text; this alone does not establish a maker's choices or motives"
+    }
+  ],
+  "goalHierarchy": {
+    "nodes": [
+      {
+        "evidenceStatus": "unvalidated",
+        "basis": "model-judgment",
+        "entry": "page",
+        "id": "8b3bc60f7288e8657da03d97c4c1e98e72bfb916463896aa99401913a1651517",
+        "parentId": "dfdaded34ac0d1896abaf70e9b4470f704a593b999bf6a5b0f0dffa6115d91ae",
+        "maker": "d9243bf260b969ee5f50e152c910fcf3d499f9c7ec774f8debd1203c6ee9c34b",
+        "label": "Constructed candidate",
+        "description": "Software fixture, not inference.",
+        "level": "paragraph",
+        "regions": [
+          "p1"
+        ],
+        "evidence": [
+          "d0e8d9d9e42f48c58bbe8e25eabc9a7551955fd062e7351527c67b3b397feb80"
+        ]
+      },
+      {
+        "evidenceStatus": "unvalidated",
+        "basis": "model-judgment",
+        "entry": "page",
+        "id": "6375fde3a22b2e934e95f2ed73932f538da034e2cdcd442c31b27c87489e2e59",
+        "maker": "d9243bf260b969ee5f50e152c910fcf3d499f9c7ec774f8debd1203c6ee9c34b",
+        "label": "Constructed candidate",
+        "description": "Software fixture, not inference.",
+        "level": "paragraph",
+        "regions": [
+          "p2"
+        ],
+        "evidence": [
+          "b7da078feb8da888dd97e70dc5ed07a4e8a44c02aac53335c9d56d9cdf4ecf21"
+        ]
+      },
+      {
+        "evidenceStatus": "unvalidated",
+        "basis": "model-judgment",
+        "entry": "page",
+        "id": "3dcb2e37894f7325c4de61df515a86b0162432b60c87a68fb25d5e1de5b04f66",
+        "maker": "d9243bf260b969ee5f50e152c910fcf3d499f9c7ec774f8debd1203c6ee9c34b",
+        "label": "Constructed candidate",
+        "description": "Software fixture, not inference.",
+        "level": "paragraph",
+        "regions": [
+          "p3"
+        ],
+        "evidence": [
+          "95e3259265c410c0d33509e0773e793beaba7cf8ed17d94d8b49c8eb43b62c97"
+        ]
+      },
+      {
+        "evidenceStatus": "unvalidated",
+        "basis": "model-judgment",
+        "entry": "page",
+        "id": "dfdaded34ac0d1896abaf70e9b4470f704a593b999bf6a5b0f0dffa6115d91ae",
+        "maker": "d9243bf260b969ee5f50e152c910fcf3d499f9c7ec774f8debd1203c6ee9c34b",
+        "label": "Constructed candidate",
+        "description": "Software fixture, not inference. Governing judgment uses the local candidate summaries. Root cues cited: none.",
+        "level": "document",
+        "regions": [
+          "p1",
+          "p2",
+          "p3"
+        ],
+        "evidence": [
+          "d0e8d9d9e42f48c58bbe8e25eabc9a7551955fd062e7351527c67b3b397feb80",
+          "b7da078feb8da888dd97e70dc5ed07a4e8a44c02aac53335c9d56d9cdf4ecf21",
+          "95e3259265c410c0d33509e0773e793beaba7cf8ed17d94d8b49c8eb43b62c97"
+        ]
+      }
+    ]
+  }
+}

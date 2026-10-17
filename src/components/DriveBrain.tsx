@@ -14,16 +14,22 @@ const regions: Record<string, [number, number, string]> = {
   vta: [89, 76, "Ventral tegmental area"],
   pag: [95, 68, "Periaqueductal gray"],
 };
-export function DriveBrain({ h }: { h: Hypothesis }) {
+export function DriveBrain({
+  h,
+  title,
+}: {
+  h: Pick<Hypothesis, "label" | "valueCategory">;
+  title?: string;
+}) {
   const system = driveFor(h),
     id = useId().replace(/:/g, "");
   if (!system) return null;
   const nodes = system.regions.map((key) => regions[key]);
   const description = `${h.label}: schematic network, viewed through a left-facing head. Highlighted regions: ${nodes.map((n) => n[2]).join(", ")}. Approximate locations, not a map of this creator's brain.`;
   return (
-    <figure className="drive-brain" title={description}>
+    <figure className="drive-brain" title={title ?? description}>
       <svg viewBox="0 0 150 130" role="img" aria-labelledby={id}>
-        <title id={id}>{description}</title>
+        <title id={id}>{title ?? description}</title>
         <g className="brain-anatomy">
           <path
             className="brain-head"

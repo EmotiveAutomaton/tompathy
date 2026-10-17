@@ -1,8 +1,19 @@
 import { demoGlobalValues, demoWorkValues } from "./core/example-values";
+import { markedAINodes } from "./core/ai-attribution";
 import { ProviderOptions, readProvider } from "./components/ProviderOptions";
 import { PopulationValues } from "./components/PopulationValues";
+import { PopulationResearch } from "./components/PopulationResearch";
+import { MakerDetails } from "./components/MakerDetails";
+import { exportSafe } from "./core/export-privacy";
 import { RecordedProcess } from "./components/RecordedProcess";
-import { makeProvider, type ProviderSettings } from "./core/provider";
+import { EvidenceEntries, PreviewBanner, PreviewModules, EvidenceBadge } from "./components/PreviewStatus";
+import { ReadingProgress } from "./components/ReadingProgress";
+import { keepsPreviewProgress } from "./core/preview";
+import {
+  CompanionUnavailable,
+  makeProvider,
+  type ProviderSettings,
+} from "./core/provider";
 import { findSentence } from "./find-sentence";
 import { selectionTransition } from "./selection-transition";
 import { ReadingText, textOffset } from "./components/ReadingText";
@@ -17,12 +28,10 @@ import {
   bylineContext,
   collectCreatorContext,
   clearContextCache,
+  prepareContextSources,
   type ContextReport,
 } from "./core/creator-context";
-import {
-  ContextProgress,
-  type ContextWork,
-} from "./components/ContextProgress";
+import { type ContextWork } from "./components/ContextProgress";
 import { attentionAt, attentionForNode } from "./core/attention";
 import { ValueTabs, type ValuesTab } from "./components/ValueTabs";
 import { SelectionLock } from "./components/SelectionLock";
@@ -30,7 +39,10 @@ import { blockedFocusTracker } from "./core/lock";
 import { GoalCloud } from "./components/GoalCloud";
 import { ProcessHierarchy } from "./components/ProcessHierarchy";
 import { ValueList, ValueDetails } from "./components/ValueList";
-import { SectionTitle, explanations } from "./components/HoverCard";
+import { explanations } from "./components/HoverCard";
+import { SectionTitle } from "./components/SectionTitle";
+import { EssayDialog } from "./components/Essay";
+import type { EssayPage } from "./content/essays";
 import { sentences, regionSentences } from "./core/sentences";
 import type { GoalNode } from "./core/hierarchy";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
@@ -76,8 +88,7 @@ import {
   exampleText,
   exampleEmphasis,
 } from "./core/example";
-import { collectSources, publicURL, contextSourceURL } from "./core/collector";
-import { githubRepository } from "./core/public-source";
+import { collectSources, publicURL } from "./core/collector";
 import {
   acceptRevision,
   analysisHandoff,
@@ -88,9 +99,12 @@ import { contextIdentity, mergeContext } from "./core/context";
 import {
   capturePage,
   PageCaptureUnavailable,
+  readFollowPages,
+  saveFollowPages,
   captureSelection,
   isExtension,
   pageCommand,
+  openPageEssay,
   markPage,
   readSession,
   writeSession,
@@ -194,14 +208,37 @@ const empty: Session = {
 export function App({ preview = false }: { preview?: boolean }) {
   const [provider, setProvider] = useState<ProviderSettings>({ kind: "none" });
   const [analyzing, setAnalyzing] = useState(false);
+  const [analysisPhase, setAnalysisPhase] = useState("");
+  const [followPages, setFollowPages] = useState(false);
+  const [captureState, setCaptureState] =
+    useState<PageCaptureUnavailable | null>(null);
+  const [analysisFailure, setAnalysisFailure] = useState<
+    "connection" | "reading" | null
+  >(null);
+  const automaticAttempt = useRef("");
   const analyzer = useRef<AbortController | null>(null);
   useEffect(() => {
     let live = true;
     void readProvider().then((p) => {
       if (live) setProvider(p);
     });
+    const changed = (
+      changes: Record<string, chrome.storage.StorageChange>,
+      area: string,
+    ) => {
+      if (area === "local" && changes["tompathy-provider"])
+        void readProvider().then((p) => {
+          if (live) setProvider(p);
+        });
+      if (area === "local" && changes["tompathy-follow-pages"])
+        void readFollowPages().then((enabled) => {
+          if (live) setFollowPages(enabled);
+        });
+    };
+    if (isExtension) chrome.storage.onChanged.addListener(changed);
     return () => {
       live = false;
+      if (isExtension) chrome.storage.onChanged.removeListener(changed);
       analyzer.current?.abort();
     };
   }, []);
@@ -259,27 +296,24 @@ export function App({ preview = false }: { preview?: boolean }) {
     [contextSource, setContextSource] = useState("Pasted excerpt"),
     [collecting, setCollecting] = useState(false),
     [collectionStatus, setCollectionStatus] = useState<string[]>([]);
+  const [researchPreview, setResearchPreview] = useState(() => localStorage.getItem("tompathy-research-preview") !== "false");
   const serial = useRef(0),
     collector = useRef<AbortController | null>(null),
     port = useRef<chrome.runtime.Port | null>(null),
-    current = useRef({ session, tabId, pinned }),
+    current = useRef({ session, tabId, pinned, followPages, researchPreview }),
     blockedFocus = useRef(blockedFocusTracker());
-  const helpSection = useRef<keyof typeof explanations | null>(null);
-  const openSectionHelp = (kind: keyof typeof explanations) => {
-    helpSection.current = kind;
-    setModal("help");
+  const [essayKind, setEssayPage] = useState<EssayPage | null>(null);
+  const [partialReading, setPartialReading] = useState<Packet | null>(null);
+  const [workPacket, setWorkPacket] = useState<Packet | null>(null);
+  const essayOpening = useRef(false);
+  const openSectionHelp = async (kind: EssayPage) => {
+    if (essayOpening.current) return;
+    essayOpening.current = true;
+    try {
+      if (!(await openPageEssay(tabId, session.artifact, kind, theme))) setEssayPage(kind);
+    } finally { essayOpening.current = false; }
   };
-  useEffect(() => {
-    if (modal !== "help" || !helpSection.current) return;
-    const heading = document.getElementById(`help-${helpSection.current}`);
-    if (heading) {
-      const header = heading.closest("dialog")?.querySelector("header");
-      heading.style.scrollMarginTop = `${(header?.offsetHeight ?? 64) + 12}px`;
-      heading.scrollIntoView({ block: "start" });
-    }
-    helpSection.current = null;
-  }, [modal]);
-  current.current = { session, tabId, pinned };
+  current.current = { session, tabId, pinned, followPages, researchPreview };
   const sentenceTransition = useRef(selectionTransition());
   useEffect(() => {
     const node = document.querySelector<HTMLElement>(
@@ -318,7 +352,19 @@ export function App({ preview = false }: { preview?: boolean }) {
       return () => clearTimeout(timer);
     }
   }, [contextWork]);
-  const { artifact, packet, scope, context } = session;
+  const { artifact, packet: savedPacket, scope, context } = session;
+  const packet = partialReading ?? savedPacket;
+  const [historyLimit, setHistoryLimit] = useState(20);
+  const [githubToken, setGithubToken] = useState("");
+  const wikipediaHistory =
+    provider.kind === "local" &&
+    artifact &&
+    scope === "artifact" &&
+    /^https:\/\/[a-z0-9-]+\.wikipedia\.org\/wiki\/[^?#]+$/i.test(
+      artifact.source,
+    );
+  const githubHistory = provider.kind === "local" && scope === "artifact" &&
+    /^https:\/\/github\.com\/[^/]+\/[^/]+\/blob\/[^/]+\/.+$/i.test(artifact?.source ?? "");
   // Invalidate in-flight requests when their evidence changes, including a
   // same-ID context edit. A late response must never replace a newer reading.
   const analysisKey = JSON.stringify([
@@ -327,22 +373,32 @@ export function App({ preview = false }: { preview?: boolean }) {
     context.filter((c) => c.selected),
     provider,
     stale,
+    researchPreview,
   ]);
   const analysisCurrent = useRef(analysisKey);
   analysisCurrent.current = analysisKey;
   useEffect(() => {
     analyzer.current?.abort();
     setAnalyzing(false);
+    setPartialReading(null);
+    setWorkPacket(null);
   }, [analysisKey]);
-  async function analyze(history?: "wikipedia") {
+  async function analyze(history?: "wikipedia" | "github", automatic = false, preferCache = false, resume = false) {
     if (!artifact || stale || provider.kind === "none") return;
     analyzer.current?.abort();
     const job = new AbortController();
     analyzer.current = job;
     const key = analysisKey;
     setAnalyzing(true);
+    setAnalysisPhase("Connecting to the analysis source…");
     setError("");
+    setAnalysisFailure(null);
     setNotice("");
+    setPartialReading(null);
+    setWorkPacket(null);
+    let latestPartial: Packet | null = null;
+    let retained: Packet | null = resume ? savedPacket : null;
+    let finished = false;
     try {
       const result = await makeProvider(provider)!.analyze({
         requestId: crypto.randomUUID(),
@@ -350,31 +406,98 @@ export function App({ preview = false }: { preview?: boolean }) {
         scope,
         context,
         signal: job.signal,
-        ...(history ? { history } : {}),
+        mode: researchPreview ? "preview" : "admitted",
+        preferCache,
+        priorityRegion: resume ? savedPacket?.preview?.priorityRegion ?? region : region,
+        onPartial: (result) => {
+          if (!job.signal.aborted && analysisCurrent.current === key) {
+            latestPartial = result;
+            setWorkPacket(result);
+            // Keep the existing shape while exact-cache replay catches up.
+            if ((!savedPacket || resume) && (!retained || keepsPreviewProgress(result, retained))) {
+              retained = result;
+              setPartialReading(result);
+            }
+          }
+        },
+        ...(history ? { history, historyLimit, ...(history === "github" && githubToken ? { githubToken } : {}) } : {}),
+        onProgress: (phase) => {
+          if (!job.signal.aborted && analysisCurrent.current === key)
+            setAnalysisPhase(phase);
+        },
       });
       if (job.signal.aborted || analysisCurrent.current !== key) return;
-      if (current.current.session.packet) {
+      const accepted = resume && retained && !keepsPreviewProgress(result, retained) ?
+        { ...retained, preview: { ...retained.preview!, resumable: true } } : result;
+      finished = true;
+      setWorkPacket(accepted);
+      if (current.current.session.packet && !resume) {
         setPending(result);
         setModal("revision");
       } else {
-        setSession((s) => ({ ...s, packet: result }));
-        setMaker(result.makers[0].id);
+        setSession((s) => ({ ...s, packet: accepted }));
+        if (!resume) setMaker(result.provider.mode === "preview" ? "all" : result.makers[0].id);
       }
-      setNotice(
-        "Analysis received. Estimates depend on the source's available evidence and admissions.",
-      );
+      if (!automatic)
+        setNotice(
+          "Analysis received. Estimates depend on the source's available evidence and admissions.",
+        );
     } catch (e) {
-      if (!job.signal.aborted && analysisCurrent.current === key)
+      if (!job.signal.aborted && analysisCurrent.current === key) {
         setError((e as Error).message);
+        setAnalysisFailure(
+          e instanceof CompanionUnavailable ? "connection" : "reading",
+        );
+      }
     } finally {
-      if (analyzer.current === job) setAnalyzing(false);
+      if (analyzer.current === job) {
+        if (!finished && (retained || latestPartial) && analysisCurrent.current === key && (!savedPacket || resume)) {
+          const best = (retained ?? latestPartial) as Packet;
+          const paused = { ...best, preview: { ...best.preview!, resumable: true } };
+          setSession(s => ({ ...s, packet: paused }));
+          setWorkPacket(paused);
+        }
+        setAnalyzing(false); setPartialReading(null);
+      }
     }
   }
   const mismatch =
     packet && artifact ? matchPacket(packet, artifact, scope, context) : null;
   const ready = !!packet && !mismatch && !stale;
+  const automaticKey = JSON.stringify([
+    artifact?.id,
+    artifact?.revision,
+    scope,
+    context.filter((c) => c.selected),
+    provider,
+    researchPreview,
+  ]);
   useEffect(() => {
-    if (ready && !localStorage.getItem("tompathy-guide-offered-040")) {
+    if (
+      !followPages ||
+      !hydrated ||
+      busy ||
+      stale ||
+      packet ||
+      !artifact ||
+      tabId === null ||
+      provider.kind === "none" ||
+      automaticAttempt.current === automaticKey
+    )
+      return;
+    // Coalesce activation/load events; never retry a failed or cancelled page in a loop.
+    const timer = setTimeout(() => {
+      automaticAttempt.current = automaticKey;
+      void analyze(wikipediaHistory ? "wikipedia" : undefined, true);
+    }, 250);
+    return () => clearTimeout(timer);
+  }, [followPages, hydrated, busy, stale, packet, automaticKey, tabId]);
+  useEffect(() => {
+    if (
+      ready &&
+      packet?.goalHierarchy?.nodes.length &&
+      !localStorage.getItem("tompathy-guide-offered-040")
+    ) {
       localStorage.setItem("tompathy-guide-offered-040", "yes");
       setTour(-1);
     }
@@ -386,19 +509,25 @@ export function App({ preview = false }: { preview?: boolean }) {
     if (pinned && tour === -1 && !document.querySelector(".reader:hover"))
       setTour(null);
   }, [pinned, tour]);
+  const [markAI, setMarkAI] = useState(false);
+  useEffect(() => setMarkAI(false), [packet?.artifact.revision, maker]);
+  const allMakers = packet?.provider.mode === "preview" && (maker === "all" || !packet.makers.some(m => m.id === maker));
   const activeMaker =
     packet?.makers.find((m) => m.id === maker) ?? packet?.makers[0];
   const hierarchyNodes = useMemo(
     () =>
       ready
         ? (packet?.goalHierarchy?.nodes ?? []).filter(
-            (n) => n.maker === activeMaker?.id,
+            (n) => allMakers || n.maker === activeMaker?.id,
           )
         : [],
-    [ready, packet, activeMaker?.id],
+    [ready, packet, activeMaker?.id, allMakers],
   );
-  const creatorName =
-    (ready && activeMaker?.identity !== "unknown"
+  const aiNodes = useMemo(() => markedAINodes(ready ? packet : null, allMakers ? undefined : activeMaker?.id), [ready, packet, allMakers, activeMaker?.id]);
+  const creatorName = allMakers ? "All makers" :
+    (ready &&
+    (activeMaker?.identity !== "unknown" ||
+      packet?.process.interpretation === "historical-production")
       ? activeMaker?.label
       : null) ||
     session.authorLabel ||
@@ -407,7 +536,7 @@ export function App({ preview = false }: { preview?: boolean }) {
       ? "Multiple creators listed"
       : "Creator not identified");
   const hypotheses = ready
-    ? packet!.hypotheses.filter((h) => h.makers.includes(activeMaker!.id))
+    ? packet!.hypotheses.filter((h) => allMakers || h.makers.includes(activeMaker!.id))
     : [];
   const attentionTarget = pinned
     ? lockedNode
@@ -421,17 +550,18 @@ export function App({ preview = false }: { preview?: boolean }) {
   const attentionNode = pinned ? lockedNode : relatedNode;
   const goals =
     ready && attentionNode
-      ? attentionForNode(packet!, activeMaker!.id, attentionNode)
+      ? attentionForNode(packet!, attentionNode.maker, attentionNode)
       : ready && attentionTarget
-        ? attentionAt(
+        ? (allMakers ? packet!.makers : [activeMaker!]).flatMap(selectedMaker => attentionAt(
             packet,
-            activeMaker!.id,
+            selectedMaker.id,
             attentionTarget.region,
             attentionTarget.start,
-          )
-        : [];
+          ))
+        : packet?.provider.mode === "preview" ? hypotheses.filter(h => h.kind === "attention").slice(0, 15) : [];
   const values = hypotheses.filter(
-    (h) => h.kind === "value" && h.status !== "unknown",
+    (h) => h.kind === "value" && (h.status !== "unknown" ||
+      (packet?.provider.id === "tompathy-example" && h.valueCategory === "drive")),
   );
   const estimate = ready
     ? packet?.estimates.find((e) => e.region === region)
@@ -460,9 +590,13 @@ export function App({ preview = false }: { preview?: boolean }) {
   }
   async function capture() {
     cancelWork();
+    setTour(null);
+    automaticAttempt.current = "";
     const request = serial.current;
     setBusy(true);
     setError("");
+    setCaptureState(null);
+    setAnalysisFailure(null);
     setNotice("");
     setStale(false);
     setDetail(null);
@@ -480,6 +614,9 @@ export function App({ preview = false }: { preview?: boolean }) {
       setLockedNode(null);
       setRelatedNode(null);
       const previous = current.current.session;
+      const sameCapture =
+        previous.artifact?.id === result.artifact.id &&
+        previous.artifact.revision === result.artifact.revision;
       let resultPacket: Packet | null =
         previous.packet &&
         matchPacket(
@@ -490,10 +627,19 @@ export function App({ preview = false }: { preview?: boolean }) {
         ) === null
           ? previous.packet
           : null;
-      // The live DOM is the source of truth. The commissioned website gets a
-      // fresh demo packet for exactly the text currently visible in this capture.
+      if (
+        (current.current.followPages || current.current.researchPreview) &&
+        resultPacket &&
+        ["tompathy-art-demo", "tompathy-website-demo"].includes(
+          resultPacket.provider.id,
+        )
+      )
+        resultPacket = null;
+      // Legacy commissioned examples are never a substitute for a preview run.
       if (
         isWebsiteDemo(result.artifact.source) &&
+        !current.current.researchPreview &&
+        !current.current.followPages &&
         !result.restored &&
         (!resultPacket ||
           ["tompathy-art-demo", "tompathy-website-demo"].includes(
@@ -527,9 +673,11 @@ export function App({ preview = false }: { preview?: boolean }) {
           contextSources: result.contextSources,
           repositoryLinks: result.repositoryLinks,
           packet: resultPacket,
-          scope: resultPacket?.scope.kind ?? "artifact",
+          scope:
+            resultPacket?.scope.kind ??
+            (sameCapture ? previous.scope : "artifact"),
           context:
-            resultPacket?.scope.kind === "context"
+            sameCapture || resultPacket?.scope.kind === "context"
               ? previous.context
               : resultPacket?.provider.id === "tompathy-art-demo"
                 ? [{ ...artContext, selected: false }]
@@ -547,15 +695,20 @@ export function App({ preview = false }: { preview?: boolean }) {
       if (request !== serial.current) return;
       setTabId(null);
       setSession(empty);
-      if (e instanceof PageCaptureUnavailable) setNotice(e.message);
-      else setError((e as Error).message);
+      setCaptureState(
+        e instanceof PageCaptureUnavailable
+          ? e
+          : new PageCaptureUnavailable((e as Error).message),
+      );
     } finally {
       if (request === serial.current) setBusy(false);
     }
   }
-  async function example() {
+  async function example(safe = false) {
     cancelWork();
     setError("");
+    setCaptureState(null);
+    setAnalysisFailure(null);
     setModal(null);
     setStale(false);
     setPinned(false);
@@ -563,7 +716,7 @@ export function App({ preview = false }: { preview?: boolean }) {
     setRelatedNode(null);
     setRegion("p2");
     const fieldnotes =
-      new URLSearchParams(location.search).get("demo") === "fieldnotes";
+      safe || new URLSearchParams(location.search).get("demo") === "fieldnotes";
     const create = fieldnotes ? createExample : createArtExample;
     const context = fieldnotes ? exampleContext : artContext;
     const file = fieldnotes ? "example.html" : "art.html";
@@ -634,7 +787,9 @@ export function App({ preview = false }: { preview?: boolean }) {
         } else setSession(saved.data);
       }
       const t = await readTheme();
+      const following = await readFollowPages();
       if (alive) {
+        setFollowPages(following);
         setTheme(t);
         setHydrated(true);
       }
@@ -659,7 +814,7 @@ export function App({ preview = false }: { preview?: boolean }) {
     if (!hydrated) return;
     if (isExtension) void capture();
     else if (!current.current.session.artifact) void example();
-  }, [hydrated]);
+  }, [hydrated, followPages]);
   useEffect(() => {
     if (!isExtension) return;
     const connect = () => {
@@ -716,7 +871,10 @@ export function App({ preview = false }: { preview?: boolean }) {
         cancelWork();
         setStale(true);
         setDetail(null);
-        if (c.session.artifact && isWebsiteDemo(c.session.artifact.source))
+        if (
+          c.session.artifact &&
+          (c.followPages || isWebsiteDemo(c.session.artifact.source))
+        )
           void capture();
       }
     };
@@ -741,13 +899,16 @@ export function App({ preview = false }: { preview?: boolean }) {
       setTabId(null);
       void capture();
     };
-    const updated = (id: number, change: { status?: string }) => {
+    const updated = (id: number, change: { status?: string; url?: string }) => {
       if (change.status === "loading" && id === current.current.tabId) {
         cancelWork();
         setStale(true);
         setDetail(null);
       }
-      if (change.status === "complete")
+      if (
+        change.status === "complete" ||
+        (change.url && change.status !== "loading")
+      )
         void chrome.tabs
           .query({ active: true, currentWindow: true })
           .then(([tab]) => {
@@ -1043,27 +1204,34 @@ export function App({ preview = false }: { preview?: boolean }) {
     const job = new AbortController();
     collector.current = job;
     try {
-      const urls = sources.map((s) => contextSourceURL(s.url, github));
+      const plan = prepareContextSources(
+        sources,
+        session.repositoryLinks ?? [],
+        creatorName,
+        github,
+      );
       const origins = [
         ...new Set([
-          ...urls.map(
-            (u) =>
-              (github && githubRepository(u.href)
-                ? "https://api.github.com"
-                : u.origin) + "/*",
-          ),
+          ...plan.origins.map((origin) => origin + "/*"),
           ...(github &&
           (session.repositoryLinks?.length || (discover && sources.length))
             ? ["https://api.github.com/*"]
             : []),
         ]),
       ];
-      const allowed =
-        !isExtension ||
-        !origins.length ||
-        (await (automatic
-          ? chrome.permissions.contains({ origins })
-          : chrome.permissions.request({ origins })));
+      if (isExtension && origins.length && !automatic)
+        await chrome.permissions.request({ origins });
+      const allowedOrigins = isExtension
+        ? (
+            await Promise.all(
+              origins.map(async (origin) =>
+                (await chrome.permissions.contains({ origins: [origin] }))
+                  ? origin.slice(0, -2)
+                  : null,
+              ),
+            )
+          ).filter((origin): origin is string => origin !== null)
+        : undefined;
       if (request !== serial.current || job.signal.aborted) return;
       setContextWork({
         phase: "working",
@@ -1075,12 +1243,6 @@ export function App({ preview = false }: { preview?: boolean }) {
       if (request !== serial.current || job.signal.aborted) return;
       if (byline)
         setSession((s) => ({ ...s, context: mergeContext(s.context, byline) }));
-      if (!allowed)
-        throw Error(
-          automatic
-            ? "Open Options and refresh context to allow access to these sources."
-            : "Context source access was declined.",
-        );
       const report = await collectCreatorContext({
         sources,
         repositoryLinks: session.repositoryLinks,
@@ -1090,6 +1252,7 @@ export function App({ preview = false }: { preview?: boolean }) {
         useGitHub: github,
         followLinks: discover,
         signal: job.signal,
+        allowedOrigins,
         onResult: (item) => {
           if (request === serial.current && !job.signal.aborted)
             setSession((s) => ({
@@ -1106,18 +1269,22 @@ export function App({ preview = false }: { preview?: boolean }) {
       setContextReport(report);
       setContextWork({
         phase:
-          report.failures.length || (!byline && !report.collected)
+          report.failures.length ||
+          report.skipped.some((s) => s.reason.startsWith("Source access")) ||
+          (!byline && !report.collected)
             ? "error"
             : "done",
         completed: report.attempted,
         total: report.attempted || 1,
-        label: report.failures.length
-          ? "Some context sources were unavailable. Open the timeline for coverage."
-          : !sources.length && !(github && session.repositoryLinks?.length)
-            ? byline
-              ? "Page byline recorded; no explicit creator links found."
-              : "No creator byline or explicit public profile links found."
-            : "Creator context and timeline collected. A new analysis is needed before estimates change.",
+        label: report.skipped.some((s) => s.reason.startsWith("Source access"))
+          ? "Some source access is missing. Refresh context to allow it; available sources were kept."
+          : report.failures.length
+            ? "Some context sources were unavailable. Open the timeline for coverage."
+            : !sources.length && !(github && session.repositoryLinks?.length)
+              ? byline
+                ? "Page byline recorded; no explicit creator links found."
+                : "No creator byline or explicit public profile links found."
+              : "Creator context and timeline collected. A new analysis is needed before estimates change.",
       });
     } catch (e) {
       if (request === serial.current && !job.signal.aborted)
@@ -1132,11 +1299,11 @@ export function App({ preview = false }: { preview?: boolean }) {
   const automaticContextKey = useRef("");
   useEffect(() => {
     if (!hydrated || !artifact || !contextEnabled) return;
-    const key = `${artifact.id}:${artifact.revision}:${creatorName}:${useGitHub}:${followLinks}`;
+    const key = `${serial.current}:${artifact.id}:${artifact.revision}:${creatorName}:${useGitHub}:${followLinks}`;
     if (automaticContextKey.current === key) return;
     automaticContextKey.current = key;
     void toggleContext(true, followLinks, false, true);
-  }, [hydrated, artifact?.id, artifact?.revision, creatorName]);
+  }, [hydrated, artifact, creatorName]);
   function exportReading() {
     try {
       const url = URL.createObjectURL(
@@ -1154,6 +1321,9 @@ export function App({ preview = false }: { preview?: boolean }) {
     } catch (e) {
       setError((e as Error).message);
     }
+  }
+  function exportJSON(name: string, value: unknown) {
+    try { download(name, exportSafe(value)); } catch (e) { setError((e as Error).message); }
   }
   async function importReading(file?: File) {
     if (!file) return;
@@ -1256,6 +1426,7 @@ export function App({ preview = false }: { preview?: boolean }) {
   }
   return (
     <div className={preview ? "workspace" : "extension-root"}>
+      {essayKind && <EssayDialog kind={essayKind} onClose={() => setEssayPage(null)} />}
       {preview && artifact && artifact.source !== "tompathy:example" ? (
         <ReadingPreview
           packet={ready ? packet : null}
@@ -1330,7 +1501,7 @@ export function App({ preview = false }: { preview?: boolean }) {
             </button>
           </div>
         )}
-        <div className={`reader-content ${ready ? "is-ready" : ""}`}>
+        <div className={`reader-content ${ready ? "is-ready" : ""} ${ready && packet?.provider.mode === "preview" ? "research-preview" : ""}`}>
           <section
             className="region goals-region"
             aria-labelledby="goals-title"
@@ -1342,6 +1513,7 @@ export function App({ preview = false }: { preview?: boolean }) {
               >
                 Current attention
               </SectionTitle>
+              {ready && packet && <EvidenceEntries packet={packet} kinds={["attention", "goal"]} />}
               <label className="creator-control">
                 <img className="creator-brain" src="./icon128.png" alt="" />
                 <span className="sr-only">Creator selection</span>
@@ -1350,7 +1522,7 @@ export function App({ preview = false }: { preview?: boolean }) {
                     title={creatorName}
                     value={
                       ready
-                        ? activeMaker?.id
+                        ? allMakers ? "all" : activeMaker?.id
                         : (session.authorLabel ?? creatorName)
                     }
                     onChange={(e) => {
@@ -1367,11 +1539,11 @@ export function App({ preview = false }: { preview?: boolean }) {
                     }}
                   >
                     {ready ? (
-                      packet!.makers.map((m) => (
+                      <>{packet!.provider.mode === "preview" && <option value="all">All makers</option>}{packet!.makers.map((m) => (
                         <option key={m.id} value={m.id}>
                           {m.label}
                         </option>
-                      ))
+                      ))}</>
                     ) : artifact?.authors?.length ? (
                       artifact.authors.map((a) => (
                         <option key={a.label}>{a.label}</option>
@@ -1396,7 +1568,7 @@ export function App({ preview = false }: { preview?: boolean }) {
                 </span>
               </label>
             </div>
-            {error && (
+            {error && !analysisFailure && (
               <div className="message error" role="alert">
                 <span>{error}</span>
                 <IconButton label="Dismiss error" onClick={() => setError("")}>
@@ -1413,6 +1585,20 @@ export function App({ preview = false }: { preview?: boolean }) {
                 >
                   <X size={15} />
                 </IconButton>
+              </div>
+            )}
+            {analyzing && (
+              <div className="message" role="status" aria-live="polite">
+                <span>{analysisPhase}</span>
+                <button
+                  className="text-button"
+                  onClick={() => {
+                    analyzer.current?.abort();
+                    setAnalyzing(false);
+                  }}
+                >
+                  Cancel analysis
+                </button>
               </div>
             )}
             {(stale || mismatch) && (
@@ -1440,28 +1626,89 @@ export function App({ preview = false }: { preview?: boolean }) {
                 </div>
               </div>
             )}
-            {!ready && !busy && !stale && !mismatch && (
+            {!ready && !busy && !stale && !mismatch && !analyzing && (
               <section className="welcome">
                 <div className="welcome-orbit">
                   <Search size={24} />
                 </div>
                 <h2>
-                  {artifact
-                    ? "Ready for an account"
-                    : "Start with a piece of writing"}
+                  {analysisFailure
+                    ? analysisFailure === "connection"
+                      ? "The engine is offline"
+                      : "This reading could not finish"
+                    : captureState?.kind === "access"
+                      ? "We couldn’t read this page"
+                      : captureState?.kind === "loading"
+                        ? "Waiting for this page"
+                        : artifact
+                          ? "Ready for an account"
+                          : "Start with a piece of writing"}
                 </h2>
                 <p>
-                  {artifact
-                    ? "Maker estimates are awaiting an analysis source. Import a result for this capture, or explore the example."
-                    : "Explore possible goals, the process behind them, and the values that may connect them."}
+                  {analysisFailure
+                    ? error
+                    : captureState
+                      ? captureState.message
+                      : artifact
+                        ? provider.kind !== "none"
+                          ? "The page is captured. Request a reading from your configured engine to inspect its available evidence."
+                          : "Maker estimates are awaiting an analysis source. Import a result for this capture, or explore the example."
+                        : "Explore possible goals, the process behind them, and the values that may connect them."}
                 </p>
-                <button
-                  className="primary-button"
-                  onClick={() => void example()}
-                >
-                  <Sparkles size={16} /> Explore an example{" "}
-                  <ArrowRight size={16} />
-                </button>
+                {captureState?.kind === "access" && !followPages && (
+                  <button
+                    className="primary-button"
+                    onClick={async () => {
+                      try {
+                        await saveFollowPages(true);
+                      } catch (e) {
+                        setError((e as Error).message);
+                      }
+                    }}
+                  >
+                    Enable Follow pages
+                  </button>
+                )}
+                {artifact && provider.kind !== "none" && !modal ? (
+                  <button
+                    className="primary-button"
+                    disabled={analyzing}
+                    onClick={() =>
+                      void analyze(wikipediaHistory ? "wikipedia" : undefined)
+                    }
+                  >
+                    {analysisFailure
+                      ? "Retry reading"
+                      : wikipediaHistory
+                        ? "Analyze Wikipedia history"
+                        : "Analyze capture"}{" "}
+                    <ArrowRight size={16} />
+                  </button>
+                ) : (
+                  <button
+                    className="primary-button"
+                    onClick={() => void example(true)}
+                  >
+                    <Sparkles size={16} />{" "}
+                    {captureState?.kind === "access"
+                      ? "Try the safe example"
+                      : "Explore an example"}{" "}
+                    <ArrowRight size={16} />
+                  </button>
+                )}
+                {analysisFailure && (
+                  <button
+                    className="secondary-button"
+                    onClick={() => {
+                      if (isExtension)
+                        void chrome.tabs.create({
+                          url: chrome.runtime.getURL("practice.html"),
+                        });
+                    }}
+                  >
+                    Open engine setup
+                  </button>
+                )}
                 <button
                   className="secondary-button"
                   onClick={() => setModal(artifact ? "import" : "source")}
@@ -1471,17 +1718,54 @@ export function App({ preview = false }: { preview?: boolean }) {
                 </button>
               </section>
             )}
-            {ready && (
-              <GoalCloud
-                key={packet!.id}
-                goals={goals}
-                active={
-                  !!attentionTarget ||
-                  !!attentionNode ||
-                  !packet?.currentAttention?.length
-                }
-                onInspect={inspect}
-              />
+            {ready &&
+            packet?.provider.mode === "preview" && <><PreviewBanner packet={packet} /><PreviewModules packet={packet} ids={["deviation", "agreement", "payoff", "history"]} onRegion={id => {
+              move(id, true);
+              setFoundInPage(true);
+              void pageCommand(tabId, artifact, "TOMPATHY_FOCUS", { region: id, offset: 0, center: true });
+            }} /></>}
+            {ready && packet && <MakerDetails key={`makers-${packet.id}`} packet={packet} maker={allMakers ? undefined : activeMaker?.id} />}
+            {ready &&
+            packet?.provider.id === "tompathy-engine" &&
+            !goals.length ? (
+              <section
+                className="engine-reading"
+                aria-label="Live engine reading"
+              >
+                <strong>
+                  {packet.provider.mode === "preview" ? "Research preview from the engine" : packet.process.nodes.length
+                    ? "Observed history from the engine"
+                    : "Capture checked by the engine"}
+                </strong>
+                <p>
+                  {artifact?.regions.length} captured passages ·{" "}
+                  {packet.process.nodes.length} recorded events ·{" "}
+                  {packet.makers.length} source contributor
+                  {packet.makers.length === 1 ? "" : "s"}.
+                </p>
+                <p>
+                  {packet.process.nodes.length
+                    ? "Choose a contributor above and open an event below to inspect its evidence."
+                    : "Final text alone does not establish how it was made."}
+                </p>
+                <p className="muted">
+                  {packet.provider.mode === "preview" ? "Open the module status above for available results and missing inputs." : "Attention, goals and personal values appear only when their evidence and validation are available."}
+                </p>
+              </section>
+            ) : (
+              ready && (
+                <GoalCloud
+                  key={`cloud-${packet!.id}`}
+                  goals={goals}
+                  active={
+                    !!attentionTarget ||
+                    !!attentionNode ||
+                    packet?.provider.mode === "preview" ||
+                    !packet?.currentAttention?.length
+                  }
+                  onInspect={inspect}
+                />
+              )
             )}
           </section>
           <section
@@ -1493,24 +1777,37 @@ export function App({ preview = false }: { preview?: boolean }) {
                 kind="process"
                 onOpen={() => openSectionHelp("process")}
               >
-                Expertise and habit (previous attention)
+                Expertise (Previous attention)
               </SectionTitle>
+              {ready && packet && <EvidenceEntries packet={packet} kinds={["process", "goal"]} />}
             </div>
+            {aiNodes.size > 0 && <label className="mark-ai" title="Opacity is confidence; thickness is more AI involvement. Uses the same confidence and involvement categories as the text. Thin inner lines keep adjacent segments distinct. The safe example is fictional; other readings require documented attribution or a supplied calibrated estimate above 50%.">
+              <input type="checkbox" checked={markAI} onChange={e => setMarkAI(e.target.checked)} />
+              <span className="mark-ai-box" aria-hidden="true">{markAI && <X size={17} strokeWidth={1.75} />}</span>
+              Mark likely AI
+            </label>}
+            {ready && packet && <><PreviewBanner packet={packet} /><PreviewModules packet={packet} ids={["habits", "techniques", "goals"]} /></>}
+            {ready && packet?.provider.mode === "preview" && <p className="preview-vocabulary" title="Goals are often several at once. This is one lens.">A functional reading: what the page seems built to do, read by assuming its maker would use it as we would. <span title="Declared prior, not measured on real pages; separate from the model’s own rating.">Root cue reliability: {packet.preview?.rootCueReliability ?? .6} (assumed).</span></p>}
+            {ready && packet?.provider.mode === "preview" && hierarchyNodes.length > 0 && <details className="preview-modules"><summary>Writer signatures and technique notes</summary><RecordedProcess packet={packet} maker={allMakers ? undefined : activeMaker?.id} inspect={inspect} /></details>}
             {ready &&
             packet &&
             !hierarchyNodes.length &&
-            packet.process.nodes.length > 0 ? (
+            packet.process.nodes.length > 0 && !packet.preview?.layoutGroups ? (
               <RecordedProcess
                 packet={packet}
-                maker={activeMaker?.id}
+                maker={allMakers ? undefined : activeMaker?.id}
                 inspect={inspect}
               />
             ) : (
+              <div className={packet?.preview?.goalLenses ? "goal-lenses" : "goal-single"}>
+              {(packet?.preview?.goalLenses ?? [null]).map((lens, lensIndex) => (
               <ProcessHierarchy
+                markedAI={markAI ? aiNodes : undefined}
                 lockReminder={lockReminder}
                 onBlockedFocus={blocked}
-                key={`${packet?.id}:${packet?.revision}:${activeMaker?.id}`}
-                nodes={hierarchyNodes}
+                key={lens ? `lens-${lensIndex}` : packet?.provider.mode === "preview" ? `${artifact?.revision}:${activeMaker?.id}` : `${packet?.id}:${packet?.revision}:${activeMaker?.id}`}
+                nodes={lens ? hierarchyNodes.filter(n => lens.includes(n.id)) : hierarchyNodes}
+                previewGroups={!lens && packet?.preview?.modules.some(m => m.id === "goals" && m.status !== "unavailable") ? packet.preview.layoutGroups ?? undefined : undefined}
                 orderUncertainGroups={
                   ready ? packet?.goalHierarchy?.orderUncertainGroups : []
                 }
@@ -1549,6 +1846,7 @@ export function App({ preview = false }: { preview?: boolean }) {
                 onFind={findLocked}
                 found={foundInPage}
               />
+              ))}</div>
             )}
           </section>
           <section
@@ -1562,7 +1860,10 @@ export function App({ preview = false }: { preview?: boolean }) {
               >
                 Core values
               </SectionTitle>
+              {ready && packet && <EvidenceEntries packet={packet} kinds={["value"]} />}
             </div>
+            {ready && packet && <><PreviewBanner packet={packet} /><PreviewModules packet={packet} ids={["values"]} /></>}
+            {ready && packet?.provider.mode === "preview" && <p className="preview-vocabulary">Drives are pre-made solutions, the seven systems Panksepp mapped. Needs are set points, including bodily needs; they are not an eighth drive. Constructed values are learned ends.</p>}
             <div
               id="values-view"
               role="tabpanel"
@@ -1574,10 +1875,15 @@ export function App({ preview = false }: { preview?: boolean }) {
                     : "Global population values"
               }
             >
-              {ready && valuesTab === "global" && packet?.population ? (
+              {ready && valuesTab === "global" && packet?.provider.mode === "preview" ? <PopulationResearch findings={packet.globalFindings} /> : ready && valuesTab === "global" && packet?.population ? (
                 <PopulationValues packet={packet} maker={activeMaker?.id} />
               ) : (
                 <ValueList
+                  emptyMessage={
+                    valuesTab === "work" && values.length
+                      ? "No page-specific values. See Creator for supplied estimates."
+                      : "No values supplied"
+                  }
                   values={
                     valuesTab === "work"
                       ? demoWorkValues(ready ? packet : null, values)
@@ -1602,10 +1908,13 @@ export function App({ preview = false }: { preview?: boolean }) {
             </div>
             <div className="values-bottom">
               <ValueTabs tab={valuesTab} onTab={setValuesTab} />
-              <ContextProgress work={contextWork} />
-              <IconButton label="Reader menu" onClick={() => setModal("menu")}>
-                <MoreHorizontal size={18} />
-              </IconButton>
+              <div className="reading-tools">
+                <ReadingProgress key={analysisKey} packet={workPacket ?? packet} active={analyzing} phase={analysisPhase} context={contextWork} capturing={busy}
+                  onContinue={() => void analyze(savedPacket?.preview?.historySource ?? undefined, false, false, true)} />
+                <IconButton label="Reader menu" onClick={() => setModal("menu")}>
+                  <MoreHorizontal size={18} />
+                </IconButton>
+              </div>
             </div>
           </section>
           <span className="sr-only" role="status">
@@ -1628,7 +1937,8 @@ export function App({ preview = false }: { preview?: boolean }) {
               });
             }}
           >
-            {detail.kind === "value" && detail.preferenceTrace ? (
+            {detail.kind === "value" &&
+            (detail.preferenceTrace || detail.preferenceEstimate) ? (
               <ValueDetails h={detail} packet={packet} />
             ) : (
               <section
@@ -1637,6 +1947,7 @@ export function App({ preview = false }: { preview?: boolean }) {
               >
                 <span className="eyebrow">
                   {detail.status} · {detail.kind}
+                  <EvidenceBadge item={detail} />
                 </span>
                 <p>{detail.description}</p>
                 <p className="muted">{interpretationLabel(detail)}</p>
@@ -1644,7 +1955,7 @@ export function App({ preview = false }: { preview?: boolean }) {
                   <p className="support-line">
                     {detail.support.semantics === "probability"
                       ? `${(detail.support.value * 100).toFixed(0)}% probability`
-                      : `Support ${detail.support.value} on ${detail.support.scale.join("–")}`}
+                      : `${detail.support.meaning.startsWith("Direction confidence:") ? "Direction confidence" : detail.basis === "model-judgment" ? "Model’s own rating" : "Support"} ${detail.support.value} on ${detail.support.scale.join("–")}`}
                     . {detail.support.meaning}{" "}
                     {detail.support.calibration ?? "Calibration not supplied."}
                   </p>
@@ -1654,6 +1965,7 @@ export function App({ preview = false }: { preview?: boolean }) {
                 <p className="muted">
                   Creator: {activeMaker?.label} · {activeMaker?.relationship}
                 </p>
+                {packet?.provider.mode === "preview" && <p className="muted">What would move this estimate: offer an option that was absent. Would they take it? A later choice alone cannot tell us whether they considered it before.</p>}
                 {packet!.alternatives
                   .filter((a) => a.members.includes(detail.id))
                   .map((a) => (
@@ -1806,6 +2118,17 @@ export function App({ preview = false }: { preview?: boolean }) {
           )}
           {modal === "menu" && (
             <div className="options-content">
+              <section className="options-section">
+                <label><input type="checkbox" checked={researchPreview} onChange={e => {
+                  const enabled = e.target.checked;
+                  analyzer.current?.abort();
+                  localStorage.setItem("tompathy-research-preview", String(enabled));
+                  setResearchPreview(enabled);
+                  setPartialReading(null);
+                  setSession(s => ({ ...s, packet: null }));
+                }} /> Research preview</label>
+                <p className="muted">Runs available local modules with their evidence and test labels. Turning this off requests only the admitted path.</p>
+              </section>
               <ProviderOptions
                 settings={provider}
                 onSave={(next) => {
@@ -1813,6 +2136,37 @@ export function App({ preview = false }: { preview?: boolean }) {
                   setProvider(next);
                 }}
               />
+              {isExtension && (
+                <section className="options-section">
+                  <h3>Follow pages</h3>
+                  <label className="future-option">
+                    <input
+                      type="checkbox"
+                      checked={followPages}
+                      onChange={async (e) => {
+                        const enabled = e.target.checked;
+                        if (!enabled) setFollowPages(false);
+                        try {
+                          await saveFollowPages(enabled);
+                          setFollowPages(enabled);
+                        } catch (e) {
+                          void readFollowPages().then(setFollowPages);
+                          setError((e as Error).message);
+                        }
+                      }}
+                    />
+                    Automatically read new pages
+                  </label>
+                  <p className="muted">
+                    While this panel is open, capture the active webpage and
+                    request a reading from the saved analysis source. A local
+                    engine receives the captured text; Wikipedia readings also
+                    fetch public revision history. Turn this off to request
+                    readings manually. Chrome may ask for access across
+                    websites.
+                  </p>
+                </section>
+              )}
               {provider.kind !== "none" && (
                 <div className="analysis-actions">
                   <button
@@ -1844,6 +2198,10 @@ export function App({ preview = false }: { preview?: boolean }) {
                         Analyze Wikipedia history
                       </button>
                     )}
+                  {githubHistory && <button className="secondary-button" disabled={busy || stale || analyzing} onClick={() => { setModal(null); void analyze("github"); }}>Analyze GitHub file history</button>}
+                  {researchPreview && provider.kind === "local" && <button className="secondary-button" disabled={!artifact || busy || stale || analyzing} onClick={() => { setModal(null); void analyze(wikipediaHistory ? "wikipedia" : githubHistory ? "github" : undefined, false, true); }}>Load cached real preview</button>}
+                  {(wikipediaHistory || githubHistory) && <label>History records <input type="number" min={1} max={githubHistory ? 100 : 500} value={historyLimit} onChange={e => setHistoryLimit(Math.max(1, Math.min(githubHistory ? 100 : 500, Math.trunc(Number(e.target.value)) || 20)))} /></label>}
+                  {githubHistory && <label>Optional GitHub token <input type="password" autoComplete="off" value={githubToken} onChange={e => setGithubToken(e.target.value.slice(0, 500))} /><small>Kept in this panel's memory only; sent to the local companion for explicit public GitHub history requests.</small></label>}
                   {analyzing && (
                     <button
                       className="text-button"
@@ -1986,6 +2344,9 @@ export function App({ preview = false }: { preview?: boolean }) {
                 <button onClick={() => setModal("help")}>
                   <CircleHelp size={15} /> <span>How ToMpathy works</span>
                 </button>
+                <button onClick={() => { setModal(null); void openSectionHelp("bibliography"); }}>
+                  <BookOpen size={15} /> <span>Bibliography</span>
+                </button>
                 <div>
                   <label
                     className="options-import"
@@ -2095,7 +2456,7 @@ export function App({ preview = false }: { preview?: boolean }) {
               <h3 id="help-goals">Current attention</h3>
               <p>{explanations.goals}</p>
               <h3 id="help-process">
-                Expertise and habit (previous attention)
+                Expertise (Previous attention)
               </h3>
               <p>{explanations.process}</p>
               <h3 id="help-values">Core values</h3>
@@ -2225,14 +2586,14 @@ export function App({ preview = false }: { preview?: boolean }) {
                   </div>
                   <button
                     className="secondary-button"
-                    onClick={() => download("tompathy-capture.json", artifact)}
+                    onClick={() => exportJSON("tompathy-capture.json", artifact)}
                   >
                     <Download size={15} /> Export capture for a provider
                   </button>
                   <button
                     className="secondary-button"
                     onClick={() =>
-                      download(
+                      exportJSON(
                         "tompathy-analysis-request.json",
                         analysisHandoff(session),
                       )
@@ -2342,7 +2703,7 @@ export function App({ preview = false }: { preview?: boolean }) {
               <button
                 className="text-button"
                 onClick={async () =>
-                  download(
+                  exportJSON(
                     "tompathy-example-packet.json",
                     await createExample(artifact?.source ?? "tompathy:example"),
                   )
@@ -2634,7 +2995,7 @@ export function App({ preview = false }: { preview?: boolean }) {
                   <button
                     className="secondary-button"
                     onClick={() =>
-                      download(
+                      exportJSON(
                         `tompathy-revision-${entry.packet.revision}.json`,
                         entry.packet,
                       )
@@ -2687,7 +3048,7 @@ export function App({ preview = false }: { preview?: boolean }) {
               <div className="button-row">
                 <button
                   className="secondary-button"
-                  onClick={() => download("tompathy-session.json", session)}
+                  onClick={() => exportJSON("tompathy-session.json", session)}
                 >
                   <Download size={15} /> Save session
                 </button>

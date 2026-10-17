@@ -1,0 +1,5712 @@
+{
+  "checkedAt": "2026-10-17T21:38:38.481977+00:00",
+  "rows": [
+    {
+      "text": "Haskins, A. (2026). Art as an algorithmic virus: Unifying the generative crash and AI value convergence via cognitive affordances (preprint). Zenodo. doi:10.5281/zenodo.19407789",
+      "href": "https://doi.org/10.5281/zenodo.19407789",
+      "number": 1,
+      "metadataStatus": 404,
+      "result": "DOI metadata unresolved",
+      "supplementalMetadata": {
+        "doi": "10.5281/zenodo.19407789",
+        "prefix": "10.5281",
+        "suffix": "zenodo.19407789",
+        "identifiers": [],
+        "alternateIdentifiers": [],
+        "creators": [
+          {
+            "name": "Haskins, Abraham",
+            "nameType": "Personal",
+            "givenName": "Abraham",
+            "familyName": "Haskins",
+            "affiliation": [
+              "The Boeing Company"
+            ],
+            "nameIdentifiers": [
+              {
+                "nameIdentifier": "0009-0007-3698-7299",
+                "nameIdentifierScheme": "ORCID"
+              }
+            ]
+          }
+        ],
+        "titles": [
+          {
+            "title": "Art as an Algorithmic Virus: Unifying the Generative Crash and AI Value Convergence via Cognitive Affordances"
+          }
+        ],
+        "publisher": "Zenodo",
+        "container": {},
+        "publicationYear": 2036,
+        "subjects": [
+          {
+            "subject": "AI Alignment"
+          },
+          {
+            "subject": "Active Inference"
+          },
+          {
+            "subject": "Inverse Reinforcement Learning"
+          },
+          {
+            "subject": "Generative AI"
+          },
+          {
+            "subject": "Cognitive Affordances"
+          },
+          {
+            "subject": "Human-Computer Interaction"
+          },
+          {
+            "subject": "Free Energy Principle"
+          }
+        ],
+        "contributors": [],
+        "dates": [
+          {
+            "date": "2036-04-23",
+            "dateType": "Issued"
+          }
+        ],
+        "language": "en",
+        "types": {
+          "ris": "GEN",
+          "bibtex": "misc",
+          "citeproc": "article",
+          "schemaOrg": "CreativeWork",
+          "resourceType": "",
+          "resourceTypeGeneral": "Preprint"
+        },
+        "relatedIdentifiers": [
+          {
+            "relationType": "HasVersion",
+            "relatedIdentifier": "10.5281/zenodo.19407790",
+            "relatedIdentifierType": "DOI"
+          },
+          {
+            "relationType": "HasVersion",
+            "relatedIdentifier": "10.5281/zenodo.19515875",
+            "relatedIdentifierType": "DOI"
+          },
+          {
+            "relationType": "HasVersion",
+            "relatedIdentifier": "10.5281/zenodo.19420563",
+            "relatedIdentifierType": "DOI"
+          },
+          {
+            "relationType": "HasVersion",
+            "relatedIdentifier": "10.5281/zenodo.19542109",
+            "relatedIdentifierType": "DOI"
+          },
+          {
+            "relationType": "HasVersion",
+            "relatedIdentifier": "10.5281/zenodo.19453160",
+            "relatedIdentifierType": "DOI"
+          },
+          {
+            "relationType": "HasVersion",
+            "relatedIdentifier": "10.5281/zenodo.19418827",
+            "relatedIdentifierType": "DOI"
+          }
+        ],
+        "relatedItems": [],
+        "sizes": [],
+        "formats": [],
+        "version": null,
+        "rightsList": [
+          {
+            "rights": "Creative Commons Attribution 4.0 International",
+            "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
+            "schemeUri": "https://spdx.org/licenses/",
+            "rightsIdentifier": "cc-by-4.0",
+            "rightsIdentifierScheme": "SPDX"
+          }
+        ],
+        "descriptions": [
+          {
+            "description": "Generative AI inherently triggers a computational failure mode in human observers (a \"generative crash\") due to a lack of latent intentionality required for Inverse Reinforcement Learning (IRL) convergence. Artistic appreciation operates as the biological execution of this IRL process. To address the generative crash and broader AI alignment failures, I introduce the Ghost Scale (an HCI cognitive affordance for identifying intentionality) and propose Cooperative Inverse Reinforcement Learning (CIRL) to mimic biological value transmission. The Intent Extraction Limit is formalized to define the prior relationship. Applying this model addresses two major issues: generative AI's friction with the art community (via the Ghost Scale, a cognitive affordance and UX framework for signaling intentionality) and AI alignment [via a proposed shift from Reinforcement Learning from Human Feedback (RLHF) toward top-down value capture through Cooperative Inverse Reinforcement Learning (CIRL) informed by world models]. Six empirical hypotheses are proposed to test the framework.",
+            "descriptionType": "Abstract"
+          }
+        ],
+        "geoLocations": [],
+        "fundingReferences": [],
+        "xml": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHJlc291cmNlIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zPSJodHRwOi8vZGF0YWNpdGUub3JnL3NjaGVtYS9rZXJuZWwtNCIgeHNpOnNjaGVtYUxvY2F0aW9uPSJodHRwOi8vZGF0YWNpdGUub3JnL3NjaGVtYS9rZXJuZWwtNCBodHRwOi8vc2NoZW1hLmRhdGFjaXRlLm9yZy9tZXRhL2tlcm5lbC00L21ldGFkYXRhLnhzZCI+CiAgPGlkZW50aWZpZXIgaWRlbnRpZmllclR5cGU9IkRPSSI+MTAuNTI4MS9aRU5PRE8uMTk0MDc3ODk8L2lkZW50aWZpZXI+CiAgPGNyZWF0b3JzPgogICAgPGNyZWF0b3I+CiAgICAgIDxjcmVhdG9yTmFtZSBuYW1lVHlwZT0iUGVyc29uYWwiPkhhc2tpbnMsIEFicmFoYW08L2NyZWF0b3JOYW1lPgogICAgICA8Z2l2ZW5OYW1lPkFicmFoYW08L2dpdmVuTmFtZT4KICAgICAgPGZhbWlseU5hbWU+SGFza2luczwvZmFtaWx5TmFtZT4KICAgICAgPG5hbWVJZGVudGlmaWVyIG5hbWVJZGVudGlmaWVyU2NoZW1lPSJPUkNJRCIgc2NoZW1lVVJJPSIiPjAwMDktMDAwNy0zNjk4LTcyOTk8L25hbWVJZGVudGlmaWVyPgogICAgICA8YWZmaWxpYXRpb24+VGhlIEJvZWluZyBDb21wYW55PC9hZmZpbGlhdGlvbj4KICAgIDwvY3JlYXRvcj4KICA8L2NyZWF0b3JzPgogIDx0aXRsZXM+CiAgICA8dGl0bGU+QXJ0IGFzIGFuIEFsZ29yaXRobWljIFZpcnVzOiBVbmlmeWluZyB0aGUgR2VuZXJhdGl2ZSBDcmFzaCBhbmQgQUkgVmFsdWUgQ29udmVyZ2VuY2UgdmlhIENvZ25pdGl2ZSBBZmZvcmRhbmNlczwvdGl0bGU+CiAgPC90aXRsZXM+CiAgPHB1Ymxpc2hlcj5aZW5vZG88L3B1Ymxpc2hlcj4KICA8cHVibGljYXRpb25ZZWFyPjIwMzY8L3B1YmxpY2F0aW9uWWVhcj4KICA8cmVzb3VyY2VUeXBlIHJlc291cmNlVHlwZUdlbmVyYWw9IlByZXByaW50Ii8+CiAgPHN1YmplY3RzPgogICAgPHN1YmplY3Q+QUkgQWxpZ25tZW50PC9zdWJqZWN0PgogICAgPHN1YmplY3Q+QWN0aXZlIEluZmVyZW5jZTwvc3ViamVjdD4KICAgIDxzdWJqZWN0PkludmVyc2UgUmVpbmZvcmNlbWVudCBMZWFybmluZzwvc3ViamVjdD4KICAgIDxzdWJqZWN0PkdlbmVyYXRpdmUgQUk8L3N1YmplY3Q+CiAgICA8c3ViamVjdD5Db2duaXRpdmUgQWZmb3JkYW5jZXM8L3N1YmplY3Q+CiAgICA8c3ViamVjdD5IdW1hbi1Db21wdXRlciBJbnRlcmFjdGlvbjwvc3ViamVjdD4KICAgIDxzdWJqZWN0PkZyZWUgRW5lcmd5IFByaW5jaXBsZTwvc3ViamVjdD4KICA8L3N1YmplY3RzPgogIDxkYXRlcz4KICAgIDxkYXRlIGRhdGVUeXBlPSJJc3N1ZWQiPjIwMzYtMDQtMjM8L2RhdGU+CiAgPC9kYXRlcz4KICA8bGFuZ3VhZ2U+ZW48L2xhbmd1YWdlPgogIDxyZWxhdGVkSWRlbnRpZmllcnM+CiAgICA8cmVsYXRlZElkZW50aWZpZXIgcmVsYXRlZElkZW50aWZpZXJUeXBlPSJET0kiIHJlbGF0aW9uVHlwZT0iSGFzVmVyc2lvbiI+MTAuNTI4MS96ZW5vZG8uMTk0MDc3OTA8L3JlbGF0ZWRJZGVudGlmaWVyPgogICAgPHJlbGF0ZWRJZGVudGlmaWVyIHJlbGF0ZWRJZGVudGlmaWVyVHlwZT0iRE9JIiByZWxhdGlvblR5cGU9Ikhhc1ZlcnNpb24iPjEwLjUyODEvemVub2RvLjE5NTE1ODc1PC9yZWxhdGVkSWRlbnRpZmllcj4KICAgIDxyZWxhdGVkSWRlbnRpZmllciByZWxhdGVkSWRlbnRpZmllclR5cGU9IkRPSSIgcmVsYXRpb25UeXBlPSJIYXNWZXJzaW9uIj4xMC41MjgxL3plbm9kby4xOTQyMDU2MzwvcmVsYXRlZElkZW50aWZpZXI+CiAgICA8cmVsYXRlZElkZW50aWZpZXIgcmVsYXRlZElkZW50aWZpZXJUeXBlPSJET0kiIHJlbGF0aW9uVHlwZT0iSGFzVmVyc2lvbiI+MTAuNTI4MS96ZW5vZG8uMTk1NDIxMDk8L3JlbGF0ZWRJZGVudGlmaWVyPgogICAgPHJlbGF0ZWRJZGVudGlmaWVyIHJlbGF0ZWRJZGVudGlmaWVyVHlwZT0iRE9JIiByZWxhdGlvblR5cGU9Ikhhc1ZlcnNpb24iPjEwLjUyODEvemVub2RvLjE5NDUzMTYwPC9yZWxhdGVkSWRlbnRpZmllcj4KICAgIDxyZWxhdGVkSWRlbnRpZmllciByZWxhdGVkSWRlbnRpZmllclR5cGU9IkRPSSIgcmVsYXRpb25UeXBlPSJIYXNWZXJzaW9uIj4xMC41MjgxL3plbm9kby4xOTQxODgyNzwvcmVsYXRlZElkZW50aWZpZXI+CiAgPC9yZWxhdGVkSWRlbnRpZmllcnM+CiAgPHNpemVzLz4KICA8Zm9ybWF0cy8+CiAgPHZlcnNpb24vPgogIDxyaWdodHNMaXN0PgogICAgPHJpZ2h0cyByaWdodHNVUkk9Imh0dHBzOi8vY3JlYXRpdmVjb21tb25zLm9yZy9saWNlbnNlcy9ieS80LjAvbGVnYWxjb2RlIiByaWdodHNJZGVudGlmaWVyPSJjYy1ieS00LjAiIHJpZ2h0c0lkZW50aWZpZXJTY2hlbWU9IlNQRFgiIHNjaGVtZVVSST0iaHR0cHM6Ly9zcGR4Lm9yZy9saWNlbnNlcy8iPkNyZWF0aXZlIENvbW1vbnMgQXR0cmlidXRpb24gNC4wIEludGVybmF0aW9uYWw8L3JpZ2h0cz4KICA8L3JpZ2h0c0xpc3Q+CiAgPGRlc2NyaXB0aW9ucz4KICAgIDxkZXNjcmlwdGlvbiBkZXNjcmlwdGlvblR5cGU9IkFic3RyYWN0Ij5HZW5lcmF0aXZlIEFJIGluaGVyZW50bHkgdHJpZ2dlcnMgYSBjb21wdXRhdGlvbmFsIGZhaWx1cmUgbW9kZSBpbiBodW1hbiBvYnNlcnZlcnMgKGEgImdlbmVyYXRpdmUgY3Jhc2giKSBkdWUgdG8gYSBsYWNrIG9mIGxhdGVudCBpbnRlbnRpb25hbGl0eSByZXF1aXJlZCBmb3IgSW52ZXJzZSBSZWluZm9yY2VtZW50IExlYXJuaW5nIChJUkwpIGNvbnZlcmdlbmNlLiBBcnRpc3RpYyBhcHByZWNpYXRpb24gb3BlcmF0ZXMgYXMgdGhlIGJpb2xvZ2ljYWwgZXhlY3V0aW9uIG9mIHRoaXMgSVJMIHByb2Nlc3MuIFRvIGFkZHJlc3MgdGhlIGdlbmVyYXRpdmUgY3Jhc2ggYW5kIGJyb2FkZXIgQUkgYWxpZ25tZW50IGZhaWx1cmVzLCBJIGludHJvZHVjZSB0aGUgR2hvc3QgU2NhbGUgKGFuIEhDSSBjb2duaXRpdmUgYWZmb3JkYW5jZSBmb3IgaWRlbnRpZnlpbmcgaW50ZW50aW9uYWxpdHkpIGFuZCBwcm9wb3NlIENvb3BlcmF0aXZlIEludmVyc2UgUmVpbmZvcmNlbWVudCBMZWFybmluZyAoQ0lSTCkgdG8gbWltaWMgYmlvbG9naWNhbCB2YWx1ZSB0cmFuc21pc3Npb24uIFRoZSBJbnRlbnQgRXh0cmFjdGlvbiBMaW1pdCBpcyBmb3JtYWxpemVkIHRvIGRlZmluZSB0aGUgcHJpb3IgcmVsYXRpb25zaGlwLiBBcHBseWluZyB0aGlzIG1vZGVsIGFkZHJlc3NlcyB0d28gbWFqb3IgaXNzdWVzOiBnZW5lcmF0aXZlIEFJJ3MgZnJpY3Rpb24gd2l0aCB0aGUgYXJ0IGNvbW11bml0eSAodmlhIHRoZSBHaG9zdCBTY2FsZSwgYSBjb2duaXRpdmUgYWZmb3JkYW5jZSBhbmQgVVggZnJhbWV3b3JrIGZvciBzaWduYWxpbmcgaW50ZW50aW9uYWxpdHkpIGFuZCBBSSBhbGlnbm1lbnQgW3ZpYSBhIHByb3Bvc2VkIHNoaWZ0IGZyb20gUmVpbmZvcmNlbWVudCBMZWFybmluZyBmcm9tIEh1bWFuIEZlZWRiYWNrIChSTEhGKSB0b3dhcmQgdG9wLWRvd24gdmFsdWUgY2FwdHVyZSB0aHJvdWdoIENvb3BlcmF0aXZlIEludmVyc2UgUmVpbmZvcmNlbWVudCBMZWFybmluZyAoQ0lSTCkgaW5mb3JtZWQgYnkgd29ybGQgbW9kZWxzXS4gU2l4IGVtcGlyaWNhbCBoeXBvdGhlc2VzIGFyZSBwcm9wb3NlZCB0byB0ZXN0IHRoZSBmcmFtZXdvcmsuPC9kZXNjcmlwdGlvbj4KICA8L2Rlc2NyaXB0aW9ucz4KPC9yZXNvdXJjZT4K",
+        "url": "https://zenodo.org/doi/10.5281/zenodo.19407789",
+        "contentUrl": null,
+        "metadataVersion": 8,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "source": "api",
+        "isActive": true,
+        "state": "findable",
+        "reason": null,
+        "viewCount": 0,
+        "viewsOverTime": [],
+        "downloadCount": 0,
+        "downloadsOverTime": [],
+        "referenceCount": 0,
+        "citationCount": 0,
+        "citationsOverTime": [],
+        "partCount": 0,
+        "partOfCount": 0,
+        "versionCount": 7,
+        "versionOfCount": 1,
+        "created": "2026-04-03T18:52:38.000Z",
+        "registered": "2026-04-03T18:52:38.000Z",
+        "published": "2036",
+        "updated": "2026-09-15T04:02:57.000Z"
+      },
+      "supplementalMetadataSource": "https://api.datacite.org/dois/10.5281/zenodo.19407789",
+      "followUp": {
+        "result": "DOI registration verified through DataCite",
+        "source": "https://api.datacite.org/dois/10.5281/zenodo.19407789"
+      }
+    },
+    {
+      "text": "Lopez-Brau, M., Kwon, J., & Jara-Ettinger, J. (2020). Mental state inference from indirect evidence through Bayesian event reconstruction. Proceedings of the 42nd Annual Conference of the Cognitive Science Society, 467-473. cognitivesciencesociety.org/cogsci20/papers/0085/index.html",
+      "href": "https://cognitivesciencesociety.org/cogsci20/papers/0085/index.html",
+      "number": 2,
+      "httpStatus": 200,
+      "destination": "https://cognitivesciencesociety.org/cogsci20/papers/0085/index.html",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Baker, C. L., Saxe, R., & Tenenbaum, J. B. (2009). Action understanding as inverse planning. Cognition, 113(3), 329-349. dspace.mit.edu/handle/1721.1/60852",
+      "href": "https://dspace.mit.edu/handle/1721.1/60852",
+      "number": 3,
+      "httpStatus": 200,
+      "destination": "https://dspace.mit.edu/entities/publication/2e23673d-f720-4720-98bc-6db894ba27e1",
+      "pageTitle": "Action understanding as inverse planning",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Rendell, L., et al. (2010). Why copy others? Insights from the social learning strategies tournament. Science, 328(5975), 208-213. doi:10.1126/science.1184719",
+      "href": "https://doi.org/10.1126/science.1184719",
+      "number": 4,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Why Copy Others? Insights from the Social Learning Strategies Tournament"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "L.",
+          "family": "Rendell",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "Centre for Social Learning and Cognitive Evolution, School of Biology, University of St. Andrews, Queen's Terrace, St. Andrews, Fife KY16 9TS, UK."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "R.",
+          "family": "Boyd",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Anthropology, University of California, Los Angeles, CA 90095, USA."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "D.",
+          "family": "Cownden",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Mathematics and Statistics, Queen's University, Jeffery Hall, University Avenue, Kingston, Ontario K7L 3N6, Canada."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "M.",
+          "family": "Enquist",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Zoology, Stockholm University, 11691 Stockholm, Sweden."
+            },
+            {
+              "name": "Centre for the Study of Cultural Evolution, Stockholm University, 11691 Stockholm, Sweden."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "K.",
+          "family": "Eriksson",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Centre for the Study of Cultural Evolution, Stockholm University, 11691 Stockholm, Sweden."
+            },
+            {
+              "name": "School of Education, Culture, and Communication, Mälardalen University, 72123 Västerås, Sweden."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "M. W.",
+          "family": "Feldman",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Biological Sciences, Stanford University, Stanford, CA 94305, USA."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "L.",
+          "family": "Fogarty",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Centre for Social Learning and Cognitive Evolution, School of Biology, University of St. Andrews, Queen's Terrace, St. Andrews, Fife KY16 9TS, UK."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "S.",
+          "family": "Ghirlanda",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Centre for the Study of Cultural Evolution, Stockholm University, 11691 Stockholm, Sweden."
+            },
+            {
+              "name": "Department of Psychology, University of Bologna, 40127 Bologna, Italy."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "T.",
+          "family": "Lillicrap",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Centre for Neuroscience Studies, Queen's University, 18 Stuart Street, Kingston, Ontario K7L 3N6, Canada."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "K. N.",
+          "family": "Laland",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Centre for Social Learning and Cognitive Evolution, School of Biology, University of St. Andrews, Queen's Terrace, St. Andrews, Fife KY16 9TS, UK."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Science"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2010,
+            4,
+            9
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1126/science.1184719",
+      "destination": "https://www.science.org/doi/10.1126/science.1184719",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Bandura, A. (2001). Social cognitive theory of mass communication. Media Psychology, 3(3), 265-299. doi:10.1207/S1532785XMEP0303_03",
+      "href": "https://doi.org/10.1207/S1532785XMEP0303_03",
+      "number": 5,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Social Cognitive Theory of Mass Communication"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Albert",
+          "family": "Bandura",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Media Psychology"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2001,
+            8
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1207/s1532785xmep0303_03",
+      "destination": "http://www.tandfonline.com/doi/abs/10.1207/S1532785XMEP0303_03",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Sperber, D., et al. (2010). Epistemic vigilance. Mind & Language, 25(4), 359-393. doi:10.1111/j.1468-0017.2010.01394.x",
+      "href": "https://doi.org/10.1111/j.1468-0017.2010.01394.x",
+      "number": 6,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Epistemic Vigilance"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "DAN",
+          "family": "SPERBER",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "FABRICE",
+          "family": "CLÉMENT",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "CHRISTOPHE",
+          "family": "HEINTZ",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "OLIVIER",
+          "family": "MASCARO",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "HUGO",
+          "family": "MERCIER",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "GLORIA",
+          "family": "ORIGGI",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "DEIRDRE",
+          "family": "WILSON",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Mind &amp; Language"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2010,
+            8,
+            20
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1111/j.1468-0017.2010.01394.x",
+      "destination": "https://onlinelibrary.wiley.com/doi/10.1111/j.1468-0017.2010.01394.x",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Ng, A. Y., & Russell, S. J. (2000). Algorithms for inverse reinforcement learning. Proceedings of the 17th International Conference on Machine Learning, 663-670. ai.stanford.edu/~ang/papers/icml00-irl.pdf",
+      "href": "https://ai.stanford.edu/~ang/papers/icml00-irl.pdf",
+      "number": 7,
+      "httpStatus": 200,
+      "destination": "https://ai.stanford.edu/~ang/papers/icml00-irl.pdf",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Budzyń, K., et al. (2025). Endoscopist deskilling risk after exposure to artificial intelligence in colonoscopy: A multicentre, observational study. The Lancet Gastroenterology & Hepatology, 10(10), 896-903. wrap.warwick.ac.uk/id/eprint/191005",
+      "href": "https://wrap.warwick.ac.uk/id/eprint/191005",
+      "number": 8,
+      "result": "request unresolved",
+      "error": "ConnectTimeout",
+      "supplementalMetadata": {
+        "indexed": {
+          "date-parts": [
+            [
+              2026,
+              10,
+              17
+            ]
+          ],
+          "date-time": "2026-10-17T06:04:11Z",
+          "timestamp": 1792217051357,
+          "version": "4.4.0"
+        },
+        "reference-count": 24,
+        "publisher": "Elsevier BV",
+        "issue": "10",
+        "license": [
+          {
+            "start": {
+              "date-parts": [
+                [
+                  2025,
+                  10,
+                  1
+                ]
+              ],
+              "date-time": "2025-10-01T00:00:00Z",
+              "timestamp": 1759276800000
+            },
+            "content-version": "tdm",
+            "delay-in-days": 0,
+            "URL": "https://www.elsevier.com/tdm/userlicense/1.0/"
+          },
+          {
+            "start": {
+              "date-parts": [
+                [
+                  2025,
+                  10,
+                  1
+                ]
+              ],
+              "date-time": "2025-10-01T00:00:00Z",
+              "timestamp": 1759276800000
+            },
+            "content-version": "tdm",
+            "delay-in-days": 0,
+            "URL": "https://www.elsevier.com/legal/tdmrep-license"
+          },
+          {
+            "start": {
+              "date-parts": [
+                [
+                  2025,
+                  10,
+                  1
+                ]
+              ],
+              "date-time": "2025-10-01T00:00:00Z",
+              "timestamp": 1759276800000
+            },
+            "content-version": "stm-asf",
+            "delay-in-days": 0,
+            "URL": "https://doi.org/10.15223/policy-017"
+          },
+          {
+            "start": {
+              "date-parts": [
+                [
+                  2025,
+                  10,
+                  1
+                ]
+              ],
+              "date-time": "2025-10-01T00:00:00Z",
+              "timestamp": 1759276800000
+            },
+            "content-version": "stm-asf",
+            "delay-in-days": 0,
+            "URL": "https://doi.org/10.15223/policy-037"
+          },
+          {
+            "start": {
+              "date-parts": [
+                [
+                  2025,
+                  10,
+                  1
+                ]
+              ],
+              "date-time": "2025-10-01T00:00:00Z",
+              "timestamp": 1759276800000
+            },
+            "content-version": "stm-asf",
+            "delay-in-days": 0,
+            "URL": "https://doi.org/10.15223/policy-012"
+          },
+          {
+            "start": {
+              "date-parts": [
+                [
+                  2025,
+                  10,
+                  1
+                ]
+              ],
+              "date-time": "2025-10-01T00:00:00Z",
+              "timestamp": 1759276800000
+            },
+            "content-version": "stm-asf",
+            "delay-in-days": 0,
+            "URL": "https://doi.org/10.15223/policy-029"
+          },
+          {
+            "start": {
+              "date-parts": [
+                [
+                  2025,
+                  10,
+                  1
+                ]
+              ],
+              "date-time": "2025-10-01T00:00:00Z",
+              "timestamp": 1759276800000
+            },
+            "content-version": "stm-asf",
+            "delay-in-days": 0,
+            "URL": "https://doi.org/10.15223/policy-004"
+          }
+        ],
+        "funder": [
+          {
+            "DOI": "10.13039/100018693",
+            "name": "Horizon Europe",
+            "doi-asserted-by": "publisher",
+            "award": [
+              "101057099"
+            ],
+            "award-info": [
+              {
+                "award-number": [
+                  "101057099"
+                ]
+              }
+            ],
+            "id": [
+              {
+                "id": "10.13039/100018693",
+                "id-type": "DOI",
+                "asserted-by": "publisher"
+              }
+            ]
+          },
+          {
+            "DOI": "10.13039/501100000780",
+            "name": "European Commission",
+            "doi-asserted-by": "publisher",
+            "id": [
+              {
+                "id": "10.13039/501100000780",
+                "id-type": "DOI",
+                "asserted-by": "publisher"
+              }
+            ]
+          },
+          {
+            "DOI": "10.13039/501100005010",
+            "name": "Associazione Italiana per la Ricerca sul Cancro",
+            "doi-asserted-by": "publisher",
+            "award": [
+              "27843"
+            ],
+            "award-info": [
+              {
+                "award-number": [
+                  "27843"
+                ]
+              }
+            ],
+            "id": [
+              {
+                "id": "10.13039/501100005010",
+                "id-type": "DOI",
+                "asserted-by": "publisher"
+              }
+            ]
+          },
+          {
+            "DOI": "10.13039/501100001691",
+            "name": "Japan Society for the Promotion of Science",
+            "doi-asserted-by": "publisher",
+            "award": [
+              "22H03357"
+            ],
+            "award-info": [
+              {
+                "award-number": [
+                  "22H03357"
+                ]
+              }
+            ],
+            "id": [
+              {
+                "id": "10.13039/501100001691",
+                "id-type": "DOI",
+                "asserted-by": "publisher"
+              }
+            ]
+          }
+        ],
+        "content-domain": {
+          "domain": [
+            "thelancet.com",
+            "elsevier.com",
+            "sciencedirect.com"
+          ],
+          "crossmark-restriction": true
+        },
+        "short-container-title": [
+          "The Lancet Gastroenterology &amp; Hepatology"
+        ],
+        "published-print": {
+          "date-parts": [
+            [
+              2025,
+              10
+            ]
+          ]
+        },
+        "DOI": "10.1016/s2468-1253(25)00133-5",
+        "type": "journal-article",
+        "created": {
+          "date-parts": [
+            [
+              2025,
+              8,
+              12
+            ]
+          ],
+          "date-time": "2025-08-12T22:40:48Z",
+          "timestamp": 1755038448000
+        },
+        "page": "896-903",
+        "update-policy": "https://doi.org/10.1016/elsevier_cm_policy",
+        "source": "Crossref",
+        "is-referenced-by-count": 320,
+        "title": [
+          "Endoscopist deskilling risk after exposure to artificial intelligence in colonoscopy: a multicentre, observational study"
+        ],
+        "prefix": "10.1016",
+        "volume": "10",
+        "author": [
+          {
+            "given": "Krzysztof",
+            "family": "Budzyń",
+            "sequence": "first",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Marcin",
+            "family": "Romańczyk",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Diana",
+            "family": "Kitala",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Paweł",
+            "family": "Kołodziej",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Marek",
+            "family": "Bugajski",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Hans O",
+            "family": "Adami",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Johannes",
+            "family": "Blom",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Marek",
+            "family": "Buszkiewicz",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Natalie",
+            "family": "Halvorsen",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Cesare",
+            "family": "Hassan",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Tomasz",
+            "family": "Romańczyk",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Øyvind",
+            "family": "Holme",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Krzysztof",
+            "family": "Jarus",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Shona",
+            "family": "Fielding",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Melina",
+            "family": "Kunar",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Maria",
+            "family": "Pellise",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Nastazja",
+            "family": "Pilonis",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Michał Filip",
+            "family": "Kamiński",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Mette",
+            "family": "Kalager",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Michael",
+            "family": "Bretthauer",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          },
+          {
+            "given": "Yuichi",
+            "family": "Mori",
+            "sequence": "additional",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "member": "78",
+        "reference": [
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib1",
+            "doi-asserted-by": "crossref",
+            "first-page": "338",
+            "DOI": "10.1136/gutjnl-2022-327736",
+            "article-title": "Global burden of colorectal cancer in 2020 and 2040: incidence and mortality estimates from GLOBOCAN",
+            "volume": "72",
+            "author": "Morgan",
+            "year": "2023",
+            "journal-title": "Gut"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib2",
+            "doi-asserted-by": "crossref",
+            "first-page": "1547",
+            "DOI": "10.1056/NEJMoa2208375",
+            "article-title": "Effect of colonoscopy screening on risks of colorectal cancer and related death",
+            "volume": "387",
+            "author": "Bretthauer",
+            "year": "2022",
+            "journal-title": "N Engl J Med"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib3",
+            "doi-asserted-by": "crossref",
+            "first-page": "400",
+            "DOI": "10.1001/jama.2024.22975",
+            "article-title": "Adenoma detection rates by physicians and subsequent colorectal cancer risk",
+            "volume": "333",
+            "author": "Pilonis",
+            "year": "2025",
+            "journal-title": "JAMA"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib4",
+            "doi-asserted-by": "crossref",
+            "first-page": "894",
+            "DOI": "10.1001/jamainternmed.2016.0960",
+            "article-title": "Population-based colonoscopy screening for colorectal cancer: a randomized clinical trial",
+            "volume": "176",
+            "author": "Bretthauer",
+            "year": "2016",
+            "journal-title": "JAMA Intern Med"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib5",
+            "doi-asserted-by": "crossref",
+            "first-page": "919",
+            "DOI": "10.7326/M23-2865",
+            "article-title": "Computer-aided diagnosis for leaving colorectal polyps in situ: a systematic review and meta-analysis",
+            "volume": "177",
+            "author": "Hassan",
+            "year": "2024",
+            "journal-title": "Ann Intern Med"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib6",
+            "doi-asserted-by": "crossref",
+            "first-page": "e436",
+            "DOI": "10.1016/S2589-7500(22)00042-5",
+            "article-title": "Cost-effectiveness of artificial intelligence for screening colonoscopy: a modelling study",
+            "volume": "4",
+            "author": "Areia",
+            "year": "2022",
+            "journal-title": "Lancet Digit Health"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib7",
+            "doi-asserted-by": "crossref",
+            "first-page": "46",
+            "DOI": "10.1186/s41235-024-00572-8",
+            "article-title": "Does using artificial intelligence assistance accelerate skill decay and hinder skill development without performers' awareness?",
+            "volume": "9",
+            "author": "Macnamara",
+            "year": "2024",
+            "journal-title": "Cogn Res Princ Implic"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib8",
+            "doi-asserted-by": "crossref",
+            "first-page": "2898",
+            "DOI": "10.1002/ijc.27561",
+            "article-title": "Randomised health services studies",
+            "volume": "131",
+            "author": "Hakama",
+            "year": "2012",
+            "journal-title": "Int J Cancer"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib9",
+            "doi-asserted-by": "crossref",
+            "first-page": "620",
+            "DOI": "10.1016/j.gie.2008.05.057",
+            "article-title": "The Boston bowel preparation scale: a valid and reliable instrument for colonoscopy-oriented research",
+            "volume": "69",
+            "author": "Lai",
+            "year": "2009",
+            "journal-title": "Gastrointest Endosc"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib10",
+            "doi-asserted-by": "crossref",
+            "first-page": "1795",
+            "DOI": "10.1056/NEJMoa0907667",
+            "article-title": "Quality indicators for colonoscopy and the risk of interval cancer",
+            "volume": "362",
+            "author": "Kaminski",
+            "year": "2010",
+            "journal-title": "N Engl J Med"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib11",
+            "doi-asserted-by": "crossref",
+            "first-page": "1298",
+            "DOI": "10.1056/NEJMoa1309086",
+            "article-title": "Adenoma detection rate and risk of colorectal cancer and death",
+            "volume": "370",
+            "author": "Corley",
+            "year": "2014",
+            "journal-title": "N Engl J Med"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib12",
+            "series-title": "Models for discrete longitudinal data",
+            "author": "Molenberghs",
+            "year": "2005"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib13",
+            "series-title": "melogit—mMultilevel mixed-effects logistic regression",
+            "year": "2023"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib14",
+            "doi-asserted-by": "crossref",
+            "first-page": "1280",
+            "DOI": "10.1053/j.gastro.2023.06.033",
+            "article-title": "AGA clinical practice update on risk stratification for colorectal cancer screening and post-polypectomy surveillance: expert review",
+            "volume": "165",
+            "author": "Issaka",
+            "year": "2023",
+            "journal-title": "Gastroenterology"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib15",
+            "doi-asserted-by": "crossref",
+            "first-page": "200",
+            "DOI": "10.1016/j.cgh.2022.03.023",
+            "article-title": "Comparison of quality measures for detection of neoplasia at screening colonoscopy",
+            "volume": "21",
+            "author": "Wieszczy",
+            "year": "2023",
+            "journal-title": "Clin Gastroenterol Hepatol"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib16",
+            "doi-asserted-by": "crossref",
+            "first-page": "311",
+            "DOI": "10.1057/s41599-023-01787-8",
+            "article-title": "Impact of artificial intelligence on human loss in decision making, laziness and safety in education",
+            "volume": "10",
+            "author": "Ahmad",
+            "year": "2023",
+            "journal-title": "Humanit Soc Sci Commun"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib17",
+            "doi-asserted-by": "crossref",
+            "first-page": "1155",
+            "DOI": "10.1055/a-1031-7657",
+            "article-title": "Advanced imaging for detection and differentiation of colorectal neoplasia: European Society of Gastrointestinal Endoscopy (ESGE) Guideline—Update 2019",
+            "volume": "51",
+            "author": "Bisschops",
+            "year": "2019",
+            "journal-title": "Endoscopy"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib18",
+            "doi-asserted-by": "crossref",
+            "first-page": "1009",
+            "DOI": "10.1055/a-1770-7353",
+            "article-title": "The influence of computer-aided polyp detection systems on reaction time for polyp detection and eye gaze",
+            "volume": "54",
+            "author": "Troya",
+            "year": "2022",
+            "journal-title": "Endoscopy"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib19",
+            "article-title": "Is there a safety-net effect with computer-aided detection?",
+            "volume": "7",
+            "author": "Du-Crow",
+            "year": "2020",
+            "journal-title": "J Med Imaging (Bellingham)"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib20",
+            "doi-asserted-by": "crossref",
+            "first-page": "1209",
+            "DOI": "10.7326/M22-3678",
+            "article-title": "Real-time computer-aided detection of colorectal neoplasia during colonoscopy: a systematic review and meta-analysis",
+            "volume": "176",
+            "author": "Hassan",
+            "year": "2023",
+            "journal-title": "Ann Intern Med"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib21",
+            "doi-asserted-by": "crossref",
+            "first-page": "774",
+            "DOI": "10.1053/j.gastro.2021.04.078",
+            "article-title": "Hopes and hypes for artificial intelligence in colorectal cancer screening",
+            "volume": "161",
+            "author": "Mori",
+            "year": "2021",
+            "journal-title": "Gastroenterology"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib22",
+            "doi-asserted-by": "crossref",
+            "first-page": "528",
+            "DOI": "10.1016/j.gie.2022.09.029",
+            "article-title": "Usefulness of a novel computer-aided detection system for colorectal neoplasia: a randomized controlled trial",
+            "volume": "97",
+            "author": "Gimeno-García",
+            "year": "2023",
+            "journal-title": "Gastrointest Endosc"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib23",
+            "doi-asserted-by": "crossref",
+            "first-page": "630",
+            "DOI": "10.1016/j.cgh.2023.10.019",
+            "article-title": "Effect of real-time computer-aided polyp detection system (ENDO-AID) on adenoma detection in endoscopists-in-training: a randomized trial",
+            "volume": "22",
+            "author": "Lau",
+            "year": "2024",
+            "journal-title": "Clin Gastroenterol Hepatol"
+          },
+          {
+            "key": "10.1016/S2468-1253(25)00133-5_bib25",
+            "doi-asserted-by": "crossref",
+            "first-page": "747",
+            "DOI": "10.1016/S2468-1253(22)00090-5",
+            "article-title": "Serrated polyp detection and risk of interval post-colonoscopy colorectal cancer: a population-based study",
+            "volume": "7",
+            "author": "van Toledo",
+            "year": "2022",
+            "journal-title": "Lancet Gastroenterol Hepatol"
+          }
+        ],
+        "updated-by": [
+          {
+            "DOI": "10.1016/s2468-1253(25)00294-8",
+            "type": "erratum",
+            "label": "Erratum",
+            "source": "publisher",
+            "updated": {
+              "date-parts": [
+                [
+                  2025,
+                  11,
+                  1
+                ]
+              ],
+              "date-time": "2025-11-01T00:00:00Z",
+              "timestamp": 1761955200000
+            }
+          }
+        ],
+        "container-title": [
+          "The Lancet Gastroenterology &amp; Hepatology"
+        ],
+        "original-title": [],
+        "language": "en",
+        "link": [
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S2468125325001335?httpAccept=text/xml",
+            "content-type": "text/xml",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          },
+          {
+            "URL": "https://api.elsevier.com/content/article/PII:S2468125325001335?httpAccept=text/plain",
+            "content-type": "text/plain",
+            "content-version": "vor",
+            "intended-application": "text-mining"
+          }
+        ],
+        "deposited": {
+          "date-parts": [
+            [
+              2026,
+              5,
+              16
+            ]
+          ],
+          "date-time": "2026-05-16T00:56:55Z",
+          "timestamp": 1778893015000
+        },
+        "score": 1,
+        "resource": {
+          "primary": {
+            "URL": "https://linkinghub.elsevier.com/retrieve/pii/S2468125325001335"
+          }
+        },
+        "subtitle": [],
+        "short-title": [],
+        "issued": {
+          "date-parts": [
+            [
+              2025,
+              10
+            ]
+          ]
+        },
+        "references-count": 24,
+        "journal-issue": {
+          "issue": "10",
+          "published-print": {
+            "date-parts": [
+              [
+                2025,
+                10
+              ]
+            ]
+          }
+        },
+        "alternative-id": [
+          "S2468125325001335"
+        ],
+        "URL": "https://doi.org/10.1016/s2468-1253(25)00133-5",
+        "relation": {},
+        "ISSN": [
+          "2468-1253"
+        ],
+        "issn-type": [
+          {
+            "value": "2468-1253",
+            "type": "print"
+          }
+        ],
+        "subject": [],
+        "published": {
+          "date-parts": [
+            [
+              2025,
+              10
+            ]
+          ]
+        },
+        "assertion": [
+          {
+            "value": "Elsevier",
+            "name": "publisher",
+            "label": "This article is maintained by"
+          },
+          {
+            "value": "Endoscopist deskilling risk after exposure to artificial intelligence in colonoscopy: a multicentre, observational study",
+            "name": "articletitle",
+            "label": "Article Title"
+          },
+          {
+            "value": "The Lancet Gastroenterology & Hepatology",
+            "name": "journaltitle",
+            "label": "Journal Title"
+          },
+          {
+            "value": "https://doi.org/10.1016/S2468-1253(25)00133-5",
+            "name": "articlelink",
+            "label": "CrossRef DOI link to publisher maintained version"
+          },
+          {
+            "value": "https://doi.org/10.1016/S2468-1253(25)00164-5",
+            "name": "associatedlink",
+            "label": "CrossRef DOI link to the associated document"
+          },
+          {
+            "value": "article",
+            "name": "content_type",
+            "label": "Content Type"
+          },
+          {
+            "value": "© 2025 Elsevier Ltd. All rights are reserved, including those for text and data mining, AI training, and similar technologies.",
+            "name": "copyright",
+            "label": "Copyright"
+          }
+        ]
+      },
+      "supplementalMetadataSource": "https://api.crossref.org/works/10.1016/S2468-1253(25)00133-5",
+      "followUp": {
+        "result": "Source page and abstract verified through web retrieval; matching DOI metadata separately verified",
+        "source": "https://wrap.warwick.ac.uk/id/eprint/191005/"
+      }
+    },
+    {
+      "text": "Center for AI Safety (2023, May 30). Statement on AI extinction risk. aistatement.com",
+      "href": "https://aistatement.com",
+      "number": 9,
+      "httpStatus": 200,
+      "destination": "https://aistatement.com/work/statement-on-ai-extinction-risk",
+      "pageTitle": "Statement on AI Extinction Risk | CAIS",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Yudkowsky, E., & Soares, N. (2025). If anyone builds it, everyone dies: Why superhuman AI would kill us all. Little, Brown. ifanyonebuildsit.com",
+      "href": "https://ifanyonebuildsit.com",
+      "number": 10,
+      "httpStatus": 429,
+      "destination": "https://ifanyonebuildsit.com",
+      "pageTitle": "Vercel Security Checkpoint",
+      "result": "destination unresolved (may be access restriction)"
+    },
+    {
+      "text": "CNN Business (2025, August 13). The ‘godfather of AI’ reveals the only way humanity can survive superintelligent AI. cnn.com/2025/08/13/tech/ai-geoffrey-hinton",
+      "href": "https://cnn.com/2025/08/13/tech/ai-geoffrey-hinton",
+      "number": 11,
+      "httpStatus": 200,
+      "destination": "https://www.cnn.com/2025/08/13/tech/ai-geoffrey-hinton",
+      "pageTitle": "The ‘godfather of AI’ reveals the only way humanity can survive superintelligent AI | CNN Business",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Albarracin, M., et al. (2026). Empathy modeling in active inference agents for perspective-taking and alignment. arXiv:2602.20936",
+      "href": "https://arxiv.org/abs/2602.20936",
+      "number": 12,
+      "httpStatus": 200,
+      "destination": "https://arxiv.org/abs/2602.20936",
+      "pageTitle": "[2602.20936] Empathy Modeling in Active Inference Agents for Perspective-Taking and Alignment",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Preston, S. D. (2013). The origins of altruism in offspring care. Psychological Bulletin, 139(6), 1305-1341. doi:10.1037/a0031755",
+      "href": "https://doi.org/10.1037/a0031755",
+      "number": 13,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "The origins of altruism in offspring care."
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Stephanie D.",
+          "family": "Preston",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Psychological Bulletin"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2013,
+            11
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1037/a0031755",
+      "destination": "https://doi.apa.org/doi/10.1037/a0031755",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Hamid, S. (2025, December 30). EFF’s investigations expose Flock Safety’s surveillance abuses: 2025 in review. Electronic Frontier Foundation. eff.org/deeplinks/2025/12/effs-investigations-expose-flock-safetys-surveillance-abuses-2025-review",
+      "href": "https://eff.org/deeplinks/2025/12/effs-investigations-expose-flock-safetys-surveillance-abuses-2025-review",
+      "number": 14,
+      "httpStatus": 200,
+      "destination": "https://www.eff.org/deeplinks/2025/12/effs-investigations-expose-flock-safetys-surveillance-abuses-2025-review",
+      "pageTitle": "EFF's Investigations Expose Flock Safety's Surveillance Abuses: 2025 in Review | Electronic Frontier Foundation",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Tolman, E. C. (1948). Cognitive maps in rats and men. Psychological Review, 55(4), 189-208. doi:10.1037/h0061626",
+      "href": "https://doi.org/10.1037/h0061626",
+      "number": 15,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Cognitive maps in rats and men."
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Edward C.",
+          "family": "Tolman",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Psychological Review"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            1948
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1037/h0061626",
+      "destination": "https://doi.apa.org/doi/10.1037/h0061626",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Wood, W., & Rünger, D. (2016). Psychology of habit. Annual Review of Psychology, 67, 289-314. doi:10.1146/annurev-psych-122414-033417",
+      "href": "https://doi.org/10.1146/annurev-psych-122414-033417",
+      "number": 16,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Psychology of Habit"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Wendy",
+          "family": "Wood",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "Department of Psychology, University of Southern California, Los Angeles, California 90089-1061; email: wendy.wood@usc.edu, dennis.ruenger@gmail.com"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Dennis",
+          "family": "Rünger",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Psychology, University of Southern California, Los Angeles, California 90089-1061; email: wendy.wood@usc.edu, dennis.ruenger@gmail.com"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Annual Review of Psychology"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2016,
+            1,
+            4
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1146/annurev-psych-122414-033417",
+      "destination": "https://www.annualreviews.org/content/journals/10.1146/annurev-psych-122414-033417",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Hebb, D. O. (1949). The organization of behavior: A neuropsychological theory. Wiley. archive.org/details/organizationofbe00hebbrich",
+      "href": "https://archive.org/details/organizationofbe00hebbrich",
+      "number": 17,
+      "httpStatus": 200,
+      "destination": "https://archive.org/details/organizationofbe00hebbrich",
+      "pageTitle": "The organization of behavior; a neuropsychological theory : Hebb, D. O. (Donald Olding) : Free Download, Borrow, and Streaming : Internet Archive",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Shatz, C. J. (1992). The developing brain. Scientific American, 267(3), 60-67. The source of the “fire together, wire together” wording; Hebb never used it. doi:10.1038/scientificamerican0992-60",
+      "href": "https://doi.org/10.1038/scientificamerican0992-60",
+      "number": 18,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "The Developing Brain"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Carla J.",
+          "family": "Shatz",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Scientific American"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            1992,
+            9
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1038/scientificamerican0992-60",
+      "destination": "https://www.scientificamerican.com/article/the-developing-brain",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Logan, G. D. (1988). Toward an instance theory of automatization. Psychological Review, 95(4), 492-527. doi:10.1037/0033-295X.95.4.492",
+      "href": "https://doi.org/10.1037/0033-295X.95.4.492",
+      "number": 19,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Toward an instance theory of automatization."
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Gordon D.",
+          "family": "Logan",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Psychological Review"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            1988,
+            10
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1037/0033-295x.95.4.492",
+      "destination": "https://doi.apa.org/doi/10.1037/0033-295X.95.4.492",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Rasmussen, J. (1985). The role of hierarchical knowledge representation in decisionmaking and system management. IEEE Transactions on Systems, Man, and Cybernetics, SMC-15(2), 234-243. doi:10.1109/TSMC.1985.6313353",
+      "href": "https://doi.org/10.1109/TSMC.1985.6313353",
+      "number": 20,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "The role of hierarchical knowledge representation in decisionmaking and system management"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Jens",
+          "family": "Rasmussen",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "IEEE Transactions on Systems, Man, and Cybernetics"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            1985,
+            3
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1109/tsmc.1985.6313353",
+      "destination": "http://ieeexplore.ieee.org/document/6313353/",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Kautz, H. A., & Allen, J. F. (1986). Generalized plan recognition. Proceedings of the Fifth National Conference on Artificial Intelligence (AAAI-86), 32-37. aaai.org/papers/00032-AAAI86-006-generalized-plan-recognition",
+      "href": "https://aaai.org/papers/00032-AAAI86-006-generalized-plan-recognition",
+      "number": 21,
+      "httpStatus": 403,
+      "destination": "https://aaai.org/papers/00032-AAAI86-006-generalized-plan-recognition",
+      "pageTitle": "Just a moment...",
+      "result": "destination unresolved (may be access restriction)"
+    },
+    {
+      "text": "Clark, A. (2013). Whatever next? Predictive brains, situated agents, and the future of cognitive science. Behavioral and Brain Sciences, 36(3), 181-204. doi:10.1017/S0140525X12000477",
+      "href": "https://doi.org/10.1017/S0140525X12000477",
+      "number": 22,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Whatever next? Predictive brains, situated agents, and the future of cognitive science"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Andy",
+          "family": "Clark",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Behavioral and Brain Sciences"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2013,
+            5,
+            10
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1017/s0140525x12000477",
+      "destination": "https://www.cambridge.org/core/product/identifier/S0140525X12000477/type/journal_article",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Gergely, G., Bekkering, H., & Király, I. (2002). Rational imitation in preverbal infants. Nature, 415(6873), 755. doi:10.1038/415755a",
+      "href": "https://doi.org/10.1038/415755a",
+      "number": 23,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Rational imitation in preverbal infants"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "György",
+          "family": "Gergely",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Harold",
+          "family": "Bekkering",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Ildikó",
+          "family": "Király",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Nature"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2002,
+            2,
+            14
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1038/415755a",
+      "destination": "https://www.nature.com/articles/415755a",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Kirsh, D., & Maglio, P. (1994). On distinguishing epistemic from pragmatic action. Cognitive Science, 18(4), 513-549. doi:10.1207/s15516709cog1804_1",
+      "href": "https://doi.org/10.1207/s15516709cog1804_1",
+      "number": 24,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "On Distinguishing Epistemic from Pragmatic Action"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "David",
+          "family": "Kirsh",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Paul",
+          "family": "Maglio",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Cognitive Science"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            1994,
+            10
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1207/s15516709cog1804_1",
+      "destination": "https://onlinelibrary.wiley.com/doi/10.1207/s15516709cog1804_1",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Friston, K., et al. (2015). Active inference and epistemic value. Cognitive Neuroscience, 6(4), 187-214. doi:10.1080/17588928.2015.1020053",
+      "href": "https://doi.org/10.1080/17588928.2015.1020053",
+      "number": 25,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Active inference and epistemic value"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Karl",
+          "family": "Friston",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Francesco",
+          "family": "Rigoli",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Dimitri",
+          "family": "Ognibene",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Christoph",
+          "family": "Mathys",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Thomas",
+          "family": "Fitzgerald",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Giovanni",
+          "family": "Pezzulo",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Cognitive Neuroscience"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2015,
+            3,
+            13
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1080/17588928.2015.1020053",
+      "destination": "http://www.tandfonline.com/doi/full/10.1080/17588928.2015.1020053",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Liu, R., Geng, J., Peterson, J. C., Sucholutsky, I., & Griffiths, T. L. (2025). Large language models assume people are more rational than we really are. ICLR 2025. arXiv:2406.17055",
+      "href": "https://arxiv.org/abs/2406.17055",
+      "number": 26,
+      "httpStatus": 200,
+      "destination": "https://arxiv.org/abs/2406.17055",
+      "pageTitle": "[2406.17055] Large Language Models Assume People are More Rational than We Really are",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Chen, Z., Zhu, D., & Zheng, L. N. (2026). When synthetic users fail: A cross-domain benchmark of LLM-simulated human survey responses. arXiv:2607.26348",
+      "href": "https://arxiv.org/abs/2607.26348",
+      "number": 27,
+      "httpStatus": 200,
+      "destination": "https://arxiv.org/abs/2607.26348",
+      "pageTitle": "[2607.26348] When Synthetic Users Fail: A Cross-Domain Benchmark of LLM-Simulated Human Survey Responses",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Tooby, J., & Cosmides, L. (2008). The evolutionary psychology of the emotions and their relationship to internal regulatory variables. In M. Lewis, J. M. Haviland-Jones, & L. F. Barrett (Eds.), Handbook of emotions (3rd ed., pp. 114-137). Guilford. cep.ucsb.edu/wp-content/uploads/2023/05/emotionIRVLewisCh8.pdf",
+      "href": "https://cep.ucsb.edu/wp-content/uploads/2023/05/emotionIRVLewisCh8.pdf",
+      "number": 28,
+      "httpStatus": 403,
+      "destination": "https://cep.ucsb.edu/wp-content/uploads/2023/05/emotionIRVLewisCh8.pdf",
+      "pageTitle": "403 - Forbidden",
+      "result": "destination unresolved (may be access restriction)"
+    },
+    {
+      "text": "Panksepp, J. (2011). Cross-species affective neuroscience decoding of the primal affective experiences of humans and related animals. PLoS ONE, 6(9), e21236. doi:10.1371/journal.pone.0021236",
+      "href": "https://doi.org/10.1371/journal.pone.0021236",
+      "number": 29,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Cross-Species Affective Neuroscience Decoding of the Primal Affective Experiences of Humans and Related Animals"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Jaak",
+          "family": "Panksepp",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "PLoS ONE"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2011,
+            9,
+            7
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1371/journal.pone.0021236",
+      "destination": "https://dx.plos.org/10.1371/journal.pone.0021236",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Tamir, D. I., & Mitchell, J. P. (2010). Neural correlates of anchoring-and-adjustment during mentalizing. PNAS, 107(24), 10827-10832. doi:10.1073/pnas.1003242107",
+      "href": "https://doi.org/10.1073/pnas.1003242107",
+      "number": 30,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Neural correlates of anchoring-and-adjustment during mentalizing"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Diana I.",
+          "family": "Tamir",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "Department of Psychology, Harvard University, Cambridge, MA 02138"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Jason P.",
+          "family": "Mitchell",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Psychology, Harvard University, Cambridge, MA 02138"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Proceedings of the National Academy of Sciences"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2010,
+            6
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1073/pnas.1003242107",
+      "destination": "https://pnas.org/doi/full/10.1073/pnas.1003242107",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Bilalić, M., McLeod, P., & Gobet, F. (2008). Why good thoughts block better ones: The mechanism of the pernicious Einstellung (set) effect. Cognition, 108(3), 652-661. doi:10.1016/j.cognition.2008.05.005",
+      "href": "https://doi.org/10.1016/j.cognition.2008.05.005",
+      "number": 31,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Why good thoughts block better ones: The mechanism of the pernicious Einstellung (set) effect"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Merim",
+          "family": "Bilalić",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Peter",
+          "family": "McLeod",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Fernand",
+          "family": "Gobet",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Cognition"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2008,
+            9
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1016/j.cognition.2008.05.005",
+      "destination": "https://linkinghub.elsevier.com/retrieve/pii/S0010027708001133",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Panksepp, J. (2007). Neurologizing the psychology of affects: How appraisal-based constructivism and basic emotion theory can coexist. Perspectives on Psychological Science, 2(3), 281-296. doi:10.1111/j.1745-6916.2007.00045.x",
+      "href": "https://doi.org/10.1111/j.1745-6916.2007.00045.x",
+      "number": 32,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Neurologizing the Psychology of Affects: How Appraisal-Based Constructivism and Basic Emotion Theory Can Coexist"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Jaak",
+          "family": "Panksepp",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "Department of Veterinary Comparative Anatomy, Physiology, & Pharmacology, Washington State University"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Perspectives on Psychological Science"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2007,
+            9
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1111/j.1745-6916.2007.00045.x",
+      "destination": "https://journals.sagepub.com/doi/10.1111/j.1745-6916.2007.00045.x",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Shamay-Tsoory, S. G., Aharon-Peretz, J., & Perry, D. (2009). Two systems for empathy: A double dissociation between emotional and cognitive empathy in inferior frontal gyrus versus ventromedial prefrontal lesions. Brain, 132(3), 617-627. doi:10.1093/brain/awn279",
+      "href": "https://doi.org/10.1093/brain/awn279",
+      "number": 33,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Two systems for empathy: a double dissociation between emotional and cognitive empathy in inferior frontal gyrus versus ventromedial prefrontal lesions"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Simone G.",
+          "family": "Shamay-Tsoory",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Judith",
+          "family": "Aharon-Peretz",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Daniella",
+          "family": "Perry",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Brain"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2009,
+            3
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1093/brain/awn279",
+      "destination": "https://academic.oup.com/brain/article-lookup/doi/10.1093/brain/awn279",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Hickok, G. (2014). The myth of mirror neurons: The real neuroscience of communication and cognition. W. W. Norton. wwnorton.com/books/9780393089615",
+      "href": "https://wwnorton.com/books/9780393089615",
+      "number": 34,
+      "httpStatus": 200,
+      "destination": "https://wwnorton.com/books/9780393089615",
+      "pageTitle": "The Myth of Mirror Neurons | Gregory Hickok | W. W. Norton & Company",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Rizzolatti, G., & Craighero, L. (2004). The mirror-neuron system. Annual Review of Neuroscience, 27, 169-192. doi:10.1146/annurev.neuro.27.070203.144230",
+      "href": "https://doi.org/10.1146/annurev.neuro.27.070203.144230",
+      "number": 35,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "THE MIRROR-NEURON SYSTEM"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Giacomo",
+          "family": "Rizzolatti",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "Dipartimento di Neuroscienze, Sezione di Fisiologia, via Volturno, 3, Università di Parma, 43100, Parma, Italy;"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Laila",
+          "family": "Craighero",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Dipartimento SBTA, Sezione di Fisiologia Umana, via Fossato di Mortara, 17/19, Università di Ferrara, 44100 Ferrara, Italy;"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Annual Review of Neuroscience"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2004,
+            7,
+            21
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1146/annurev.neuro.27.070203.144230",
+      "destination": "https://www.annualreviews.org/doi/10.1146/annurev.neuro.27.070203.144230",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Cook, R., Bird, G., Catmur, C., Press, C., & Heyes, C. (2014). Mirror neurons: From origin to function. Behavioral and Brain Sciences, 37(2), 177-192. doi:10.1017/S0140525X13000903",
+      "href": "https://doi.org/10.1017/S0140525X13000903",
+      "number": 36,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Mirror neurons: From origin to function"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Richard",
+          "family": "Cook",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Geoffrey",
+          "family": "Bird",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Caroline",
+          "family": "Catmur",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Clare",
+          "family": "Press",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Cecilia",
+          "family": "Heyes",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Behavioral and Brain Sciences"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2014,
+            4
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1017/s0140525x13000903",
+      "destination": "https://www.cambridge.org/core/product/identifier/S0140525X13000903/type/journal_article",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Coles, N. A., et al. (2022). A multi-lab test of the facial feedback hypothesis by the Many Smiles Collaboration. Nature Human Behaviour, 6(12), 1731-1742. doi:10.1038/s41562-022-01458-9",
+      "href": "https://doi.org/10.1038/s41562-022-01458-9",
+      "number": 37,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "A multi-lab test of the facial feedback hypothesis by the Many Smiles Collaboration"
+      ],
+      "registeredAuthors": [
+        {
+          "ORCID": "https://orcid.org/0000-0001-8583-5610",
+          "authenticated-orcid": false,
+          "given": "Nicholas A.",
+          "family": "Coles",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-9874-7967",
+          "authenticated-orcid": false,
+          "given": "David S.",
+          "family": "March",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0003-4680-1287",
+          "authenticated-orcid": false,
+          "given": "Fernando",
+          "family": "Marmolejo-Ramos",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Jeff T.",
+          "family": "Larsen",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-2531-6250",
+          "authenticated-orcid": false,
+          "given": "Nwadiogo C.",
+          "family": "Arinze",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0003-3714-6946",
+          "authenticated-orcid": false,
+          "given": "Izuchukwu L. G.",
+          "family": "Ndukaihe",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-2310-0018",
+          "authenticated-orcid": false,
+          "given": "Megan L.",
+          "family": "Willis",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-4702-3678",
+          "authenticated-orcid": false,
+          "given": "Francesco",
+          "family": "Foroni",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-5734-7457",
+          "authenticated-orcid": false,
+          "given": "Niv",
+          "family": "Reggev",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0003-4475-0332",
+          "authenticated-orcid": false,
+          "given": "Aviv",
+          "family": "Mokady",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-7763-3565",
+          "authenticated-orcid": false,
+          "given": "Patrick S.",
+          "family": "Forscher",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0001-9119-2674",
+          "authenticated-orcid": false,
+          "given": "John F.",
+          "family": "Hunter",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0001-5300-5655",
+          "authenticated-orcid": false,
+          "given": "Gwenaël",
+          "family": "Kaminski",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0001-7150-4060",
+          "authenticated-orcid": false,
+          "given": "Elif",
+          "family": "Yüvrük",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Aycan",
+          "family": "Kapucu",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0001-5244-0356",
+          "authenticated-orcid": false,
+          "given": "Tamás",
+          "family": "Nagy",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Nandor",
+          "family": "Hajdu",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0003-0275-3578",
+          "authenticated-orcid": false,
+          "given": "Julian",
+          "family": "Tejada",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-4972-4320",
+          "authenticated-orcid": false,
+          "given": "Raquel M. K.",
+          "family": "Freitag",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0003-1527-6088",
+          "authenticated-orcid": false,
+          "given": "Danilo",
+          "family": "Zambrano",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0003-1942-1828",
+          "authenticated-orcid": false,
+          "given": "Bidisha",
+          "family": "Som",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0001-9364-4988",
+          "authenticated-orcid": false,
+          "given": "Balazs",
+          "family": "Aczel",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0003-4016-3966",
+          "authenticated-orcid": false,
+          "given": "Krystian",
+          "family": "Barzykowski",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-7399-8735",
+          "authenticated-orcid": false,
+          "given": "Sylwia",
+          "family": "Adamus",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-6181-0731",
+          "authenticated-orcid": false,
+          "given": "Katarzyna",
+          "family": "Filip",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0003-1431-568X",
+          "authenticated-orcid": false,
+          "given": "Yuki",
+          "family": "Yamada",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-1688-2875",
+          "authenticated-orcid": false,
+          "given": "Ayumi",
+          "family": "Ikeda",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0003-2436-7694",
+          "authenticated-orcid": false,
+          "given": "Daniel L.",
+          "family": "Eaves",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0001-5403-444X",
+          "authenticated-orcid": false,
+          "given": "Carmel A.",
+          "family": "Levitan",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Sydney",
+          "family": "Leiweke",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-8960-0277",
+          "authenticated-orcid": false,
+          "given": "Michal",
+          "family": "Parzuchowski",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-0154-0530",
+          "authenticated-orcid": false,
+          "given": "Natalie",
+          "family": "Butcher",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-3271-6447",
+          "authenticated-orcid": false,
+          "given": "Gerit",
+          "family": "Pfuhl",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-7200-6976",
+          "authenticated-orcid": false,
+          "given": "Dana M.",
+          "family": "Basnight-Brown",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-7482-9503",
+          "authenticated-orcid": false,
+          "given": "José A.",
+          "family": "Hinojosa",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-5665-8587",
+          "authenticated-orcid": false,
+          "given": "Pedro R.",
+          "family": "Montoro",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-9202-4354",
+          "authenticated-orcid": false,
+          "given": "Lady G.",
+          "family": "Javela D",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Kevin",
+          "family": "Vezirian",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-0990-2276",
+          "authenticated-orcid": false,
+          "given": "Hans",
+          "family": "IJzerman",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0001-7507-1856",
+          "authenticated-orcid": false,
+          "given": "Natalia",
+          "family": "Trujillo",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Sarah D.",
+          "family": "Pressman",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0003-4151-8255",
+          "authenticated-orcid": false,
+          "given": "Pascal M.",
+          "family": "Gygax",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-4273-9394",
+          "authenticated-orcid": false,
+          "given": "Asil A.",
+          "family": "Özdoğru",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-1709-1506",
+          "authenticated-orcid": false,
+          "given": "Susana",
+          "family": "Ruiz-Fernandez",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-8973-4232",
+          "authenticated-orcid": false,
+          "given": "Phoebe C.",
+          "family": "Ellsworth",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Lowell",
+          "family": "Gaertner",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Fritz",
+          "family": "Strack",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0001-9538-0955",
+          "authenticated-orcid": false,
+          "given": "Marco",
+          "family": "Marozzi",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0001-6708-1253",
+          "authenticated-orcid": false,
+          "given": "Marco Tullio",
+          "family": "Liuzza",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Nature Human Behaviour"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2022,
+            10,
+            20
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1038/s41562-022-01458-9",
+      "destination": "https://www.nature.com/articles/s41562-022-01458-9",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Ekman, P., Levenson, R. W., & Friesen, W. V. (1983). Autonomic nervous system activity distinguishes among emotions. Science, 221(4616), 1208-1210. doi:10.1126/science.6612338",
+      "href": "https://doi.org/10.1126/science.6612338",
+      "number": 38,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Autonomic Nervous System Activity Distinguishes Among Emotions"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Paul",
+          "family": "Ekman",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "Department of Psychiatry, University of California School of Medicine, San Francisco 94143"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Robert W",
+          "family": "Levenson",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Psychiatry, University of California School of Medicine, San Francisco 94143"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Wallace V.",
+          "family": "Friesen",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Psychiatry, University of California School of Medicine, San Francisco 94143"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Science"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            1983,
+            9,
+            16
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1126/science.6612338",
+      "destination": "https://www.science.org/doi/10.1126/science.6612338",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Christiano, P., et al. (2017). Deep reinforcement learning from human preferences. arXiv:1706.03741",
+      "href": "https://arxiv.org/abs/1706.03741",
+      "number": 39,
+      "httpStatus": 200,
+      "destination": "https://arxiv.org/abs/1706.03741",
+      "pageTitle": "[1706.03741] Deep reinforcement learning from human preferences",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Ouyang, L., et al. (2022). Training language models to follow instructions with human feedback. arXiv:2203.02155",
+      "href": "https://arxiv.org/abs/2203.02155",
+      "number": 40,
+      "httpStatus": 200,
+      "destination": "https://arxiv.org/abs/2203.02155",
+      "pageTitle": "[2203.02155] Training language models to follow instructions with human feedback",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Wen, J., et al. (2025). Language models learn to mislead humans via RLHF. ICLR 2025. arXiv:2409.12822",
+      "href": "https://arxiv.org/abs/2409.12822",
+      "number": 41,
+      "httpStatus": 200,
+      "destination": "https://arxiv.org/abs/2409.12822",
+      "pageTitle": "[2409.12822] Language Models Learn to Mislead Humans via RLHF",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Kantamneni, S., & Tegmark, M. (2025). Language models use trigonometry to do addition. arXiv. arXiv:2502.00873",
+      "href": "https://arxiv.org/abs/2502.00873",
+      "number": 42,
+      "httpStatus": 200,
+      "destination": "https://arxiv.org/abs/2502.00873",
+      "pageTitle": "[2502.00873] Language Models Use Trigonometry to Do Addition",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Jakesch, M., Hancock, J. T., & Naaman, M. (2023). Human heuristics for AI-generated language are flawed. PNAS, 120(11), e2208839120. doi:10.1073/pnas.2208839120",
+      "href": "https://doi.org/10.1073/pnas.2208839120",
+      "number": 43,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Human heuristics for AI-generated language are flawed"
+      ],
+      "registeredAuthors": [
+        {
+          "ORCID": "https://orcid.org/0000-0002-2642-3322",
+          "authenticated-orcid": false,
+          "given": "Maurice",
+          "family": "Jakesch",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "Department of Information Science, Cornell University, Ithaca, NY 14850"
+            },
+            {
+              "name": "Jacobs Institute, Cornell Tech, New York, NY 10044"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0001-5367-2677",
+          "authenticated-orcid": false,
+          "given": "Jeffrey T.",
+          "family": "Hancock",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Communication, Stanford University, Stanford, CA 94305"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-6436-3877",
+          "authenticated-orcid": false,
+          "given": "Mor",
+          "family": "Naaman",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Information Science, Cornell University, Ithaca, NY 14850"
+            },
+            {
+              "name": "Jacobs Institute, Cornell Tech, New York, NY 10044"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Proceedings of the National Academy of Sciences"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2023,
+            3,
+            7
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1073/pnas.2208839120",
+      "destination": "https://pnas.org/doi/10.1073/pnas.2208839120",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Vicente, L., & Matute, H. (2023). Humans inherit artificial intelligence biases. Scientific Reports, 13, 15737. doi:10.1038/s41598-023-42384-8",
+      "href": "https://doi.org/10.1038/s41598-023-42384-8",
+      "number": 44,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Humans inherit artificial intelligence biases"
+      ],
+      "registeredAuthors": [
+        {
+          "ORCID": "https://orcid.org/0000-0003-2769-5028",
+          "authenticated-orcid": false,
+          "given": "Lucía",
+          "family": "Vicente",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0001-7221-1366",
+          "authenticated-orcid": false,
+          "given": "Helena",
+          "family": "Matute",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Scientific Reports"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2023,
+            10,
+            3
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1038/s41598-023-42384-8",
+      "destination": "https://www.nature.com/articles/s41598-023-42384-8",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Shumailov, I., et al. (2024). AI models collapse when trained on recursively generated data. Nature, 631(8022), 755-759. doi:10.1038/s41586-024-07566-y",
+      "href": "https://doi.org/10.1038/s41586-024-07566-y",
+      "number": 45,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "AI models collapse when trained on recursively generated data"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Ilia",
+          "family": "Shumailov",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Zakhar",
+          "family": "Shumaylov",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-3727-7463",
+          "authenticated-orcid": false,
+          "given": "Yiren",
+          "family": "Zhao",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Nicolas",
+          "family": "Papernot",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0001-8697-5682",
+          "authenticated-orcid": false,
+          "given": "Ross",
+          "family": "Anderson",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-2733-2078",
+          "authenticated-orcid": false,
+          "given": "Yarin",
+          "family": "Gal",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Nature"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2024,
+            7,
+            24
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1038/s41586-024-07566-y",
+      "destination": "https://www.nature.com/articles/s41586-024-07566-y",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Jones, C. R., & Bergen, B. K. (2025). Large language models pass the Turing test. arXiv:2503.23674",
+      "href": "https://arxiv.org/abs/2503.23674",
+      "number": 46,
+      "httpStatus": 200,
+      "destination": "https://arxiv.org/abs/2503.23674",
+      "pageTitle": "[2503.23674] Large Language Models Pass the Turing Test",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Casal, J. E., & Kessler, M. (2023). Can linguists distinguish between ChatGPT/AI and human writing? A study of research ethics and academic publishing. Research Methods in Applied Linguistics, 2(3), 100068. doi:10.1016/j.rmal.2023.100068",
+      "href": "https://doi.org/10.1016/j.rmal.2023.100068",
+      "number": 47,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Can linguists distinguish between ChatGPT/AI and human writing?: A study of research ethics and academic publishing"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "J. Elliott",
+          "family": "Casal",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Matt",
+          "family": "Kessler",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Research Methods in Applied Linguistics"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2023,
+            12
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1016/j.rmal.2023.100068",
+      "destination": "https://linkinghub.elsevier.com/retrieve/pii/S2772766123000289",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Russell, J., Karpinska, M., & Iyyer, M. (2025). People who frequently use ChatGPT for writing tasks are accurate and robust detectors of AI-generated text. Proceedings of ACL 2025. aclanthology.org/2025.acl-long.267",
+      "href": "https://aclanthology.org/2025.acl-long.267",
+      "number": 48,
+      "httpStatus": 200,
+      "destination": "https://aclanthology.org/2025.acl-long.267/",
+      "pageTitle": "People who frequently use ChatGPT for writing tasks are accurate and robust detectors of AI-generated text - ACL Anthology",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Hubinger, E., van Merwijk, C., Mikulik, V., Skalse, J., & Garrabrant, S. (2019). Risks from learned optimization in advanced machine learning systems. arXiv:1906.01820",
+      "href": "https://arxiv.org/abs/1906.01820",
+      "number": 49,
+      "httpStatus": 200,
+      "destination": "https://arxiv.org/abs/1906.01820",
+      "pageTitle": "[1906.01820] Risks from Learned Optimization in Advanced Machine Learning Systems",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Sharma, M., et al. (2023). Towards understanding sycophancy in language models. arXiv:2310.13548",
+      "href": "https://arxiv.org/abs/2310.13548",
+      "number": 50,
+      "httpStatus": 200,
+      "destination": "https://arxiv.org/abs/2310.13548",
+      "pageTitle": "[2310.13548] Towards Understanding Sycophancy in Language Models",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Lowe, D. G. (2004). Distinctive image features from scale-invariant keypoints. International Journal of Computer Vision, 60(2), 91-110. doi:10.1023/B:VISI.0000029664.99615.94",
+      "href": "https://doi.org/10.1023/B:VISI.0000029664.99615.94",
+      "number": 51,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Distinctive Image Features from Scale-Invariant Keypoints"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "David G.",
+          "family": "Lowe",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "International Journal of Computer Vision"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2004,
+            11
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1023/b:visi.0000029664.99615.94",
+      "destination": "https://link.springer.com/10.1023/B:VISI.0000029664.99615.94",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Sutton, R. (2019, March 13). The bitter lesson. incompleteideas.net. incompleteideas.net/IncIdeas/BitterLesson.html",
+      "href": "https://incompleteideas.net/IncIdeas/BitterLesson.html",
+      "number": 52,
+      "result": "request unresolved",
+      "error": "ConnectError",
+      "followUp": {
+        "result": "Alternate www/HTTP route also failed with 502; original link retained"
+      }
+    },
+    {
+      "text": "Roelfsema, P. R., & van Ooyen, A. (2005). Attention-gated reinforcement learning of internal representations for classification. Neural Computation, 17(10), 2176-2214. doi:10.1162/0899766054615699",
+      "href": "https://doi.org/10.1162/0899766054615699",
+      "number": 53,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Attention-Gated Reinforcement Learning of Internal Representations for Classification"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Pieter R.",
+          "family": "Roelfsema",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "Netherlands Ophthalmic Research Institute, 1105 BA Amsterdam, Netherlands, and Center for Neurogenomics and Cognitive Research, Department of Experimental Neurophysiology, Vrije Universiteit, 1081 HV Amsterdam, Netherlands,"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Arjen van",
+          "family": "Ooyen",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Netherlands Institute for Brain Research, 1105 AZ Amsterdam, Netherlands, and Center for Neurogenomics and Cognitive Research, Department of Experimental Neurophysiology, Vrije Universiteit, 1081 HV Amsterdam, Netherlands,"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Neural Computation"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2005,
+            10,
+            1
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1162/0899766054615699",
+      "destination": "https://direct.mit.edu/neco/article/17/10/2176-2214/6963",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Hutcherson, C. A., & Gross, J. J. (2011). The moral emotions: A social-functionalist account of anger, disgust, and contempt. Journal of Personality and Social Psychology, 100(4), 719-737. doi:10.1037/a0022408",
+      "href": "https://doi.org/10.1037/a0022408",
+      "number": 54,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "The moral emotions: A social–functionalist account of anger, disgust, and contempt."
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Cendri A.",
+          "family": "Hutcherson",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "James J.",
+          "family": "Gross",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Journal of Personality and Social Psychology"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2011
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1037/a0022408",
+      "destination": "http://doi.apa.org/getdoi.cfm?doi=10.1037/a0022408",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Harris, L. T., & Fiske, S. T. (2006). Dehumanizing the lowest of the low: Neuroimaging responses to extreme out-groups. Psychological Science, 17(10), 847-853. doi:10.1111/j.1467-9280.2006.01793.x",
+      "href": "https://doi.org/10.1111/j.1467-9280.2006.01793.x",
+      "number": 55,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Dehumanizing the Lowest of the Low"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Lasana T.",
+          "family": "Harris",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "Department of Psychology; Center for the Study of Brain, Mind, and Behavior; Princeton University"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Susan T.",
+          "family": "Fiske",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Psychology; Center for the Study of Brain, Mind, and Behavior; Princeton University"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Psychological Science"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2006,
+            10
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1111/j.1467-9280.2006.01793.x",
+      "destination": "https://journals.sagepub.com/doi/10.1111/j.1467-9280.2006.01793.x",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Kruglanski, A. W., & Webster, D. M. (1996). Motivated closing of the mind: “Seizing” and “freezing.” Psychological Review, 103(2), 263-283. doi:10.1037/0033-295X.103.2.263",
+      "href": "https://doi.org/10.1037/0033-295X.103.2.263",
+      "number": 56,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Motivated closing of the mind: \"Seizing\" and \"freezing.\""
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Arie W.",
+          "family": "Kruglanski",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Donna M.",
+          "family": "Webster",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Psychological Review"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            1996,
+            4
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1037/0033-295x.103.2.263",
+      "destination": "https://doi.apa.org/doi/10.1037/0033-295X.103.2.263",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Roets, A., & Van Hiel, A. (2011). Allport’s prejudiced personality today: Need for closure as the motivated cognitive basis of prejudice. Current Directions in Psychological Science, 20(6), 349-354. doi:10.1177/0963721411424894",
+      "href": "https://doi.org/10.1177/0963721411424894",
+      "number": 57,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Allport’s Prejudiced Personality Today"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Arne",
+          "family": "Roets",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "Ghent University"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Alain",
+          "family": "Van Hiel",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Ghent University"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Current Directions in Psychological Science"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2011,
+            12
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1177/0963721411424894",
+      "destination": "https://journals.sagepub.com/doi/10.1177/0963721411424894",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Porter, T., & Schumann, K. (2018). Intellectual humility and openness to the opposing view. Self and Identity, 17(2), 139-162. doi:10.1080/15298868.2017.1361861",
+      "href": "https://doi.org/10.1080/15298868.2017.1361861",
+      "number": 58,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Intellectual humility and openness to the opposing view"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Tenelle",
+          "family": "Porter",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "Department of Human Ecology, University of California, Davis, CA, USA"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Karina",
+          "family": "Schumann",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Psychology, University of Pittsburgh, Pittsburgh, PA, USA"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Self and Identity"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2017,
+            8,
+            9
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1080/15298868.2017.1361861",
+      "destination": "https://www.tandfonline.com/doi/full/10.1080/15298868.2017.1361861",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Pettigrew, T. F., & Tropp, L. R. (2008). How does intergroup contact reduce prejudice? Meta-analytic tests of three mediators. European Journal of Social Psychology, 38(6), 922-934. doi:10.1002/ejsp.504",
+      "href": "https://doi.org/10.1002/ejsp.504",
+      "number": 59,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "How does intergroup contact reduce prejudice? Meta‐analytic tests of three mediators"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Thomas F.",
+          "family": "Pettigrew",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Linda R.",
+          "family": "Tropp",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "European Journal of Social Psychology"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2008,
+            3,
+            5
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1002/ejsp.504",
+      "destination": "https://onlinelibrary.wiley.com/doi/10.1002/ejsp.504",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Keltner, D., & Ekman, P. (2015, July 3). The science of “Inside Out.” The New York Times. nytimes.com/2015/07/05/opinion/sunday/the-science-of-inside-out.html",
+      "href": "https://nytimes.com/2015/07/05/opinion/sunday/the-science-of-inside-out.html",
+      "number": 60,
+      "httpStatus": 403,
+      "destination": "https://www.nytimes.com/2015/07/05/opinion/sunday/the-science-of-inside-out.html",
+      "pageTitle": "nytimes.com",
+      "result": "destination unresolved (may be access restriction)"
+    },
+    {
+      "text": "Barrett, L. F., with Barrett, D. J. (2015, July 5). Brain scientist: How Pixar’s ‘Inside Out’ gets one thing deeply wrong. WBUR. wbur.org/news/2015/07/05/brain-scientist-how-pixars-inside-out-gets-one-thing-deeply-wrong",
+      "href": "https://wbur.org/news/2015/07/05/brain-scientist-how-pixars-inside-out-gets-one-thing-deeply-wrong",
+      "number": 61,
+      "httpStatus": 200,
+      "destination": "https://www.wbur.org/news/2015/07/05/brain-scientist-how-pixars-inside-out-gets-one-thing-deeply-wrong",
+      "pageTitle": "Brain Scientist: How Pixar's 'Inside Out' Gets One Thing Deeply Wrong | WBUR News",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Farrell, S. P. (2024, October 31). UC Berkeley professor breaks down the science of ‘Inside Out 2’. UC Berkeley. vcresearch.berkeley.edu/news/uc-berkeley-professor-breaks-down-science-inside-out-2",
+      "href": "https://vcresearch.berkeley.edu/news/uc-berkeley-professor-breaks-down-science-inside-out-2",
+      "number": 62,
+      "httpStatus": 403,
+      "destination": "https://vcresearch.berkeley.edu/news/uc-berkeley-professor-breaks-down-science-inside-out-2",
+      "pageTitle": "403 - Forbidden",
+      "result": "destination unresolved (may be access restriction)",
+      "followUp": {
+        "result": "Source page verified through web retrieval",
+        "source": "https://vcresearch.berkeley.edu/news/uc-berkeley-professor-breaks-down-science-inside-out-2"
+      }
+    },
+    {
+      "text": "Barrett, L. F. (2017). The theory of constructed emotion: An active inference account of interoception and categorization. Social Cognitive and Affective Neuroscience, 12(1), 1-23. doi:10.1093/scan/nsw154",
+      "href": "https://doi.org/10.1093/scan/nsw154",
+      "number": 63,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "The theory of constructed emotion: an active inference account of interoception and categorization"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Lisa Feldman",
+          "family": "Barrett",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Social Cognitive and Affective Neuroscience"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2016,
+            10,
+            19
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1093/scan/nsw154",
+      "destination": "https://academic.oup.com/scan/article-lookup/doi/10.1093/scan/nsw154",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Montag, C., & Panksepp, J. (2017). Primary emotional systems and personality: An evolutionary perspective. Frontiers in Psychology, 8, 464. doi:10.3389/fpsyg.2017.00464",
+      "href": "https://doi.org/10.3389/fpsyg.2017.00464",
+      "number": 64,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Primary Emotional Systems and Personality: An Evolutionary Perspective"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Christian",
+          "family": "Montag",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Jaak",
+          "family": "Panksepp",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Frontiers in Psychology"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2017,
+            4,
+            11
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.3389/fpsyg.2017.00464",
+      "destination": "http://journal.frontiersin.org/article/10.3389/fpsyg.2017.00464/full",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Tolchinsky, A., Ellis, G. F. R., Levin, M., Kaňková, Š., & Burgdorf, J. (2024). Disgust as a primary emotional system and its clinical relevance. Frontiers in Psychology, 15, 1454774. doi:10.3389/fpsyg.2024.1454774",
+      "href": "https://doi.org/10.3389/fpsyg.2024.1454774",
+      "number": 65,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Disgust as a primary emotional system and its clinical relevance"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Alexey",
+          "family": "Tolchinsky",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "George F. R.",
+          "family": "Ellis",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Michael",
+          "family": "Levin",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Šárka",
+          "family": "Kaňková",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Jeffrey S.",
+          "family": "Burgdorf",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Frontiers in Psychology"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2024,
+            8,
+            28
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.3389/fpsyg.2024.1454774",
+      "destination": "https://www.frontiersin.org/articles/10.3389/fpsyg.2024.1454774/full",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "van der Westhuizen, D., & Solms, M. (2015). Basic emotional foundations of social dominance in relation to Panksepp’s affective taxonomy. Neuropsychoanalysis, 17(1), 19-37. doi:10.1080/15294145.2015.1021371",
+      "href": "https://doi.org/10.1080/15294145.2015.1021371",
+      "number": 66,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Basic emotional foundations of social dominance in relation to Panksepp's affective taxonomy"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Donné",
+          "family": "van der Westhuizen",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Mark",
+          "family": "Solms",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Neuropsychoanalysis"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2015,
+            1,
+            2
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1080/15294145.2015.1021371",
+      "destination": "http://www.tandfonline.com/doi/full/10.1080/15294145.2015.1021371",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Jackson, J. C., et al. (2019). Emotion semantics show both cultural variation and universal structure. Science, 366(6472), 1517-1522. doi:10.1126/science.aaw8160",
+      "href": "https://doi.org/10.1126/science.aaw8160",
+      "number": 67,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Emotion semantics show both cultural variation and universal structure"
+      ],
+      "registeredAuthors": [
+        {
+          "ORCID": "https://orcid.org/0000-0002-2947-9815",
+          "authenticated-orcid": true,
+          "given": "Joshua Conrad",
+          "family": "Jackson",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "Department of Psychology and Neuroscience, University of North Carolina at Chapel Hill, Chapel Hill, NC, USA."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-7737-273X",
+          "authenticated-orcid": true,
+          "given": "Joseph",
+          "family": "Watts",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Linguistic and Cultural Evolution, Max Planck Institute for the Science of Human History, Jena, Germany."
+            },
+            {
+              "name": "Religion Programme, University of Otago, Dunedin, New Zealand."
+            },
+            {
+              "name": "Center for Research on Evolution, Belief, and Behaviour, University of Otago, Dunedin, New Zealand."
+            },
+            {
+              "name": "Social and Evolutionary Neuroscience Research Group, Department of Experimental Psychology, University of Oxford, Oxford, UK."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-4943-741X",
+          "authenticated-orcid": true,
+          "given": "Teague R.",
+          "family": "Henry",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Psychology and Neuroscience, University of North Carolina at Chapel Hill, Chapel Hill, NC, USA."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0003-2133-8919",
+          "authenticated-orcid": true,
+          "given": "Johann-Mattis",
+          "family": "List",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Linguistic and Cultural Evolution, Max Planck Institute for the Science of Human History, Jena, Germany."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0003-1081-086X",
+          "authenticated-orcid": true,
+          "given": "Robert",
+          "family": "Forkel",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Linguistic and Cultural Evolution, Max Planck Institute for the Science of Human History, Jena, Germany."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Peter J.",
+          "family": "Mucha",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Carolina Center for Interdisciplinary Applied Mathematics, Department of Mathematics, University of North Carolina at Chapel Hill, Chapel Hill, NC, USA."
+            },
+            {
+              "name": "Department of Applied Physical Sciences, University of North Carolina at Chapel Hill, Chapel Hill, NC, USA."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0001-7832-6156",
+          "authenticated-orcid": true,
+          "given": "Simon J.",
+          "family": "Greenhill",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Linguistic and Cultural Evolution, Max Planck Institute for the Science of Human History, Jena, Germany."
+            },
+            {
+              "name": "ARC Centre of Excellence for the Dynamics of Language, ANU College of Asia and the Pacific, Australian National University, Canberra, Australia."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-9858-0191",
+          "authenticated-orcid": true,
+          "given": "Russell D.",
+          "family": "Gray",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Linguistic and Cultural Evolution, Max Planck Institute for the Science of Human History, Jena, Germany."
+            },
+            {
+              "name": "School of Psychology, University of Auckland, Auckland, New Zealand."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-5368-9302",
+          "authenticated-orcid": true,
+          "given": "Kristen A.",
+          "family": "Lindquist",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Psychology and Neuroscience, University of North Carolina at Chapel Hill, Chapel Hill, NC, USA."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Science"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2019,
+            12,
+            20
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1126/science.aaw8160",
+      "destination": "https://www.science.org/doi/10.1126/science.aaw8160",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Nisbett, R. E., & Cohen, D. (1996). Culture of honor: The psychology of violence in the South. Westview Press (Routledge reissue, 2018). doi:10.4324/9780429501142",
+      "href": "https://doi.org/10.4324/9780429501142",
+      "number": 68,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Culture of Honor"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Richard E.",
+          "family": "Nisbett",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Dov",
+          "family": "Cohen",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2018,
+            5,
+            4
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.4324/9780429501142",
+      "destination": "https://www.taylorfrancis.com/books/9780429969690",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Anderton, E. (2024). Pixar’s Inside Out 2 almost included a complicated German emotion: Here’s why it got cut. /Film. slashfilm.com/1563120/why-pixar-inside-out-2-cut-german-emotion-character-schadenfreude",
+      "href": "https://slashfilm.com/1563120/why-pixar-inside-out-2-cut-german-emotion-character-schadenfreude",
+      "number": 69,
+      "httpStatus": 200,
+      "destination": "https://www.slashfilm.com/1563120/why-pixar-inside-out-2-cut-german-emotion-character-schadenfreude/",
+      "pageTitle": "Pixar's Inside Out 2 Almost Included A Complicated German Emotion – Here's Why It Got Cut",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Linnet, J. T. (2011). Money can’t buy me hygge: Danish middle-class consumption, egalitarianism, and the sanctity of inner space. Social Analysis, 55(2), 21-44. doi:10.3167/sa.2011.550202",
+      "href": "https://doi.org/10.3167/sa.2011.550202",
+      "number": 70,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Money Can't Buy Me Hygge: Danish Middle-Class Consumption, Egalitarianism, and the Sanctity of Inner Space"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Jeppe Trolle",
+          "family": "Linnet",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Social Analysis"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2011,
+            1,
+            1
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.3167/sa.2011.550202",
+      "destination": "http://berghahnjournals.com/view/journals/social-analysis/55/2/sa550202.xml",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Phillips, J., Morris, A., & Cushman, F. (2019). How we know what not to think. Trends in Cognitive Sciences, 23(12), 1026-1040. doi:10.1016/j.tics.2019.09.007",
+      "href": "https://doi.org/10.1016/j.tics.2019.09.007",
+      "number": 71,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "How We Know What Not To Think"
+      ],
+      "registeredAuthors": [
+        {
+          "ORCID": "https://orcid.org/0000-0002-9536-1794",
+          "authenticated-orcid": false,
+          "given": "Jonathan",
+          "family": "Phillips",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Adam",
+          "family": "Morris",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Fiery",
+          "family": "Cushman",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Trends in Cognitive Sciences"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2019,
+            12
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1016/j.tics.2019.09.007",
+      "destination": "https://linkinghub.elsevier.com/retrieve/pii/S1364661319302311",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Fredrickson, B. L. (2001). The role of positive emotions in positive psychology: The broaden-and-build theory of positive emotions. American Psychologist, 56(3), 218-226. doi:10.1037/0003-066X.56.3.218",
+      "href": "https://doi.org/10.1037/0003-066X.56.3.218",
+      "number": 72,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "The role of positive emotions in positive psychology: The broaden-and-build theory of positive emotions."
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Barbara L.",
+          "family": "Fredrickson",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "American Psychologist"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2001,
+            3
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1037/0003-066x.56.3.218",
+      "destination": "https://doi.apa.org/doi/10.1037/0003-066X.56.3.218",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Alcaro, A., & Panksepp, J. (2011). The SEEKING mind: Primal neuro-affective substrates for appetitive incentive states and their pathological dynamics in addictions and depression. Neuroscience & Biobehavioral Reviews, 35(9), 1805-1820. doi:10.1016/j.neubiorev.2011.03.002",
+      "href": "https://doi.org/10.1016/j.neubiorev.2011.03.002",
+      "number": 73,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "The SEEKING mind: Primal neuro-affective substrates for appetitive incentive states and their pathological dynamics in addictions and depression"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Antonio",
+          "family": "Alcaro",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Jaak",
+          "family": "Panksepp",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Neuroscience &amp; Biobehavioral Reviews"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2011,
+            10
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1016/j.neubiorev.2011.03.002",
+      "destination": "https://linkinghub.elsevier.com/retrieve/pii/S0149763411000455",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Tooby, J., & Cosmides, L. (1992). The psychological foundations of culture. In J. H. Barkow, L. Cosmides, & J. Tooby (Eds.), The adapted mind (pp. 19-136). Oxford University Press. cep.ucsb.edu/wp-content/uploads/2023/05/pfc92.pdf",
+      "href": "https://cep.ucsb.edu/wp-content/uploads/2023/05/pfc92.pdf",
+      "number": 74,
+      "httpStatus": 403,
+      "destination": "https://cep.ucsb.edu/wp-content/uploads/2023/05/pfc92.pdf",
+      "pageTitle": "403 - Forbidden",
+      "result": "destination unresolved (may be access restriction)"
+    },
+    {
+      "text": "Blackmore, S. (1999). The meme machine. Oxford University Press. global.oup.com/academic/product/the-meme-machine-9780192862129",
+      "href": "https://global.oup.com/academic/product/the-meme-machine-9780192862129",
+      "number": 75,
+      "httpStatus": 202,
+      "destination": "https://global.oup.com/academic/product/the-meme-machine-9780192862129",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Yudkowsky, E. (2007, November 11). Adaptation-executers, not fitness-maximizers. LessWrong. lesswrong.com/posts/XPErvb8m9FapXCjhA/adaptation-executers-not-fitness-maximizers",
+      "href": "https://lesswrong.com/posts/XPErvb8m9FapXCjhA/adaptation-executers-not-fitness-maximizers",
+      "number": 76,
+      "httpStatus": 200,
+      "destination": "https://www.lesswrong.com/posts/XPErvb8m9FapXCjhA/adaptation-executers-not-fitness-maximizers",
+      "pageTitle": "Adaptation-Executers, not Fitness-Maximizers — LessWrong",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Gao, G., Taymanov, A., Salinas, E., Mineiro, P., & Misra, D. (2024). Aligning LLM agents by learning latent preference from user edits. arXiv:2404.15269",
+      "href": "https://arxiv.org/abs/2404.15269",
+      "number": 77,
+      "httpStatus": 200,
+      "destination": "https://arxiv.org/abs/2404.15269",
+      "pageTitle": "[2404.15269] Aligning LLM Agents by Learning Latent Preference from User Edits",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Masatlioglu, Y., Nakajima, D., & Ozbay, E. Y. (2012). Revealed attention. American Economic Review, 102(5), 2183-2205. doi:10.1257/aer.102.5.2183",
+      "href": "https://doi.org/10.1257/aer.102.5.2183",
+      "number": 78,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Revealed Attention"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Yusufcan",
+          "family": "Masatlioglu",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "University of Michigan, Department of Economics, 611 Tappan Street, Ann Arbor, MI 48109."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Daisuke",
+          "family": "Nakajima",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "University of Michigan, Department of Economics, 611 Tappan Street, Ann Arbor, MI 48109."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Erkut Y",
+          "family": "Ozbay",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "University of Maryland, Department of Economics, 3105 Tydings Hall, College Park, MD 20742."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "American Economic Review"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2012,
+            8,
+            1
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1257/aer.102.5.2183",
+      "destination": "https://pubs.aeaweb.org/doi/10.1257/aer.102.5.2183",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Anderson, B. A., Laurent, P. A., & Yantis, S. (2011). Value-driven attentional capture. PNAS, 108(25), 10367-10371. doi:10.1073/pnas.1104047108",
+      "href": "https://doi.org/10.1073/pnas.1104047108",
+      "number": 79,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Value-driven attentional capture"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Brian A.",
+          "family": "Anderson",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "Department of Psychological and Brain Sciences, Johns Hopkins University, Baltimore, MD 21218"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Patryk A.",
+          "family": "Laurent",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Psychological and Brain Sciences, Johns Hopkins University, Baltimore, MD 21218"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Steven",
+          "family": "Yantis",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Department of Psychological and Brain Sciences, Johns Hopkins University, Baltimore, MD 21218"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Proceedings of the National Academy of Sciences"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2011,
+            6,
+            6
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1073/pnas.1104047108",
+      "destination": "https://pnas.org/doi/full/10.1073/pnas.1104047108",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Schmidhuber, J. (2009). Driven by compression progress: A simple principle explains essential aspects of subjective beauty, novelty, surprise, interestingness, attention, curiosity, creativity, art, science, music, jokes. In Anticipatory Behavior in Adaptive Learning Systems (LNCS 5499, pp. 48-76). Springer. arXiv:0812.4360",
+      "href": "https://arxiv.org/abs/0812.4360",
+      "number": 80,
+      "httpStatus": 200,
+      "destination": "https://arxiv.org/abs/0812.4360",
+      "pageTitle": "[0812.4360] Driven by Compression Progress: A Simple Principle Explains Essential Aspects of Subjective Beauty, Novelty, Surprise, Interestingness, Attention, Curiosity, Creativity, Art, Science, Music, Jokes",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Poli, F., Serino, G., Mars, R. B., & Hunnius, S. (2020). Infants tailor their attention to maximize learning. Science Advances, 6(39), eabb5053. doi:10.1126/sciadv.abb5053",
+      "href": "https://doi.org/10.1126/sciadv.abb5053",
+      "number": 81,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Infants tailor their attention to maximize learning"
+      ],
+      "registeredAuthors": [
+        {
+          "ORCID": "https://orcid.org/0000-0001-9841-0056",
+          "authenticated-orcid": true,
+          "given": "F.",
+          "family": "Poli",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "Donders Institute for Brain, Cognition and Behaviour, Radboud University, Nijmegen, Netherlands."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0002-9934-0878",
+          "authenticated-orcid": true,
+          "given": "G.",
+          "family": "Serino",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Donders Institute for Brain, Cognition and Behaviour, Radboud University, Nijmegen, Netherlands."
+            },
+            {
+              "name": "Centre for Brain and Cognitive Development, Birkbeck, University of London, London, UK."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0001-6302-8631",
+          "authenticated-orcid": true,
+          "given": "R. B.",
+          "family": "Mars",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Donders Institute for Brain, Cognition and Behaviour, Radboud University, Nijmegen, Netherlands."
+            },
+            {
+              "name": "Wellcome Centre for Integrative Neuroimaging, Centre for Functional MRI of the Brain (FMRIB), Nuffield Department of Clinical Neurosciences, John Radcliffe Hospital, University of Oxford, Oxford, UK."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "ORCID": "https://orcid.org/0000-0001-5510-4032",
+          "authenticated-orcid": true,
+          "given": "S.",
+          "family": "Hunnius",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Donders Institute for Brain, Cognition and Behaviour, Radboud University, Nijmegen, Netherlands."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Science Advances"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2020,
+            9,
+            25
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1126/sciadv.abb5053",
+      "destination": "https://www.science.org/doi/10.1126/sciadv.abb5053",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Awh, E., Belopolsky, A. V., & Theeuwes, J. (2012). Top-down versus bottom-up attentional control: A failed theoretical dichotomy. Trends in Cognitive Sciences, 16(8), 437-443. doi:10.1016/j.tics.2012.06.010",
+      "href": "https://doi.org/10.1016/j.tics.2012.06.010",
+      "number": 82,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Top-down versus bottom-up attentional control: a failed theoretical dichotomy"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Edward",
+          "family": "Awh",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Artem V.",
+          "family": "Belopolsky",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Jan",
+          "family": "Theeuwes",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Trends in Cognitive Sciences"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2012,
+            8
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1016/j.tics.2012.06.010",
+      "destination": "https://linkinghub.elsevier.com/retrieve/pii/S1364661312001489",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Caplin, A., & Dean, M. (2015). Revealed preference, rational inattention, and costly information acquisition. American Economic Review, 105(7), 2183-2203. doi:10.1257/aer.20140117",
+      "href": "https://doi.org/10.1257/aer.20140117",
+      "number": 83,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Revealed Preference, Rational Inattention, and Costly Information Acquisition"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Andrew",
+          "family": "Caplin",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "Center for Experimental Social Science and Department of Economics, New York University, 19 West Fourth Street, New York, NY (e-mail: )"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Mark",
+          "family": "Dean",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Dean: Department of Economics, Brown University, 64 Waterman Street, Providence, RI (e-mail: )"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "American Economic Review"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2015,
+            7,
+            1
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1257/aer.20140117",
+      "destination": "https://pubs.aeaweb.org/doi/10.1257/aer.20140117",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Jara-Ettinger, J., Gweon, H., Schulz, L. E., & Tenenbaum, J. B. (2016). The naïve utility calculus: Computational principles underlying commonsense psychology. Trends in Cognitive Sciences, 20(8), 589-604. doi:10.1016/j.tics.2016.05.011",
+      "href": "https://doi.org/10.1016/j.tics.2016.05.011",
+      "number": 84,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "The Naïve Utility Calculus: Computational Principles Underlying Commonsense Psychology"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Julian",
+          "family": "Jara-Ettinger",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Hyowon",
+          "family": "Gweon",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Laura E.",
+          "family": "Schulz",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Joshua B.",
+          "family": "Tenenbaum",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Trends in Cognitive Sciences"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2016,
+            8
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1016/j.tics.2016.05.011",
+      "destination": "https://linkinghub.elsevier.com/retrieve/pii/S1364661316300535",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Frederick, S., Loewenstein, G., & O’Donoghue, T. (2002). Time discounting and time preference: A critical review. Journal of Economic Literature, 40(2), 351-401. doi:10.1257/002205102320161311",
+      "href": "https://doi.org/10.1257/002205102320161311",
+      "number": 85,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Time Discounting and Time Preference: A Critical Review"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Shane",
+          "family": "Frederick",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "George",
+          "family": "Loewenstein",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Ted",
+          "family": "O’donoghue",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Journal of Economic Literature"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2002,
+            6
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1257/jel.40.2.351",
+      "destination": "http://pubs.aeaweb.org/doi/abs/10.1257/002205102320161311",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Ericsson, K. A., Krampe, R. T., & Tesch-Römer, C. (1993). The role of deliberate practice in the acquisition of expert performance. Psychological Review, 100(3), 363-406. doi:10.1037/0033-295X.100.3.363",
+      "href": "https://doi.org/10.1037/0033-295X.100.3.363",
+      "number": 86,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "The role of deliberate practice in the acquisition of expert performance."
+      ],
+      "registeredAuthors": [
+        {
+          "given": "K. Anders",
+          "family": "Ericsson",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Ralf T.",
+          "family": "Krampe",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Clemens",
+          "family": "Tesch-Römer",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Psychological Review"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            1993,
+            7
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1037/0033-295x.100.3.363",
+      "destination": "https://doi.apa.org/doi/10.1037/0033-295X.100.3.363",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Keramati, M., & Gutkin, B. (2014). Homeostatic reinforcement learning for integrating reward collection and physiological stability. eLife, 3, e04811. doi:10.7554/eLife.04811",
+      "href": "https://doi.org/10.7554/eLife.04811",
+      "number": 87,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Homeostatic reinforcement learning for integrating reward collection and physiological stability"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Mehdi",
+          "family": "Keramati",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "Group for Neural Theory, INSERM U960, Departément des Etudes Cognitives, Ecole Normale Supérieure, PSL Research University, Paris, France"
+            },
+            {
+              "name": "Gatsby Computational Neuroscience Unit, University College London, London, United Kingdom"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Boris",
+          "family": "Gutkin",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Group for Neural Theory, INSERM U960, Departément des Etudes Cognitives, Ecole Normale Supérieure, PSL Research University, Paris, France"
+            },
+            {
+              "name": "Center for Cognition and Decision Making, National Research University Higher School of Economics, Moscow, Russia"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "eLife"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2014,
+            12,
+            2
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.7554/elife.04811",
+      "destination": "https://elifesciences.org/articles/04811",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Solms, M. (2019). The hard problem of consciousness and the free energy principle. Frontiers in Psychology, 9, 2714. doi:10.3389/fpsyg.2018.02714",
+      "href": "https://doi.org/10.3389/fpsyg.2018.02714",
+      "number": 88,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "The Hard Problem of Consciousness and the Free Energy Principle"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Mark",
+          "family": "Solms",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Frontiers in Psychology"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2019,
+            1,
+            30
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.3389/fpsyg.2018.02714",
+      "destination": "https://www.frontiersin.org/article/10.3389/fpsyg.2018.02714/full",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Baas, M., De Dreu, C. K. W., & Nijstad, B. A. (2011). Creative production by angry people peaks early on, decreases over time, and is relatively unstructured. Journal of Experimental Social Psychology, 47(6), 1107-1115. doi:10.1016/j.jesp.2011.05.009",
+      "href": "https://doi.org/10.1016/j.jesp.2011.05.009",
+      "number": 89,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Creative production by angry people peaks early on, decreases over time, and is relatively unstructured"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Matthijs",
+          "family": "Baas",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Carsten K.W.",
+          "family": "De Dreu",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Bernard A.",
+          "family": "Nijstad",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Journal of Experimental Social Psychology"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2011,
+            11
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1016/j.jesp.2011.05.009",
+      "destination": "https://linkinghub.elsevier.com/retrieve/pii/S002210311100148X",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Schwabe, L., & Wolf, O. T. (2009). Stress prompts habit behavior in humans. Journal of Neuroscience, 29(22), 7191-7198. doi:10.1523/JNEUROSCI.0979-09.2009",
+      "href": "https://doi.org/10.1523/JNEUROSCI.0979-09.2009",
+      "number": 90,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Stress Prompts Habit Behavior in Humans"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Lars",
+          "family": "Schwabe",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Oliver T.",
+          "family": "Wolf",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "The Journal of Neuroscience"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2009,
+            6,
+            3
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1523/jneurosci.0979-09.2009",
+      "destination": "https://www.jneurosci.org/lookup/doi/10.1523/JNEUROSCI.0979-09.2009",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Douceur, J. R. (2002). The Sybil attack. In Peer-to-Peer Systems (IPTPS 2002), LNCS 2429, 251-260. Springer. doi:10.1007/3-540-45748-8_24",
+      "href": "https://doi.org/10.1007/3-540-45748-8_24",
+      "number": 91,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "The Sybil Attack"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "John R.",
+          "family": "Douceur",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "Lecture Notes in Computer Science",
+        "Peer-to-Peer Systems"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2002
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.1007/3-540-45748-8_24",
+      "destination": "http://link.springer.com/10.1007/3-540-45748-8_24",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Armstrong, S., & Mindermann, S. (2018). Occam’s razor is insufficient to infer the preferences of irrational agents. NeurIPS 2018. arXiv:1712.05812",
+      "href": "https://arxiv.org/abs/1712.05812",
+      "number": 92,
+      "httpStatus": 200,
+      "destination": "https://arxiv.org/abs/1712.05812",
+      "pageTitle": "[1712.05812] Occam's razor is insufficient to infer the preferences of irrational agents",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Cao, H., Cohen, S. N., & Szpruch, L. (2021). Identifiability in inverse reinforcement learning. NeurIPS 2021. arXiv:2106.03498",
+      "href": "https://arxiv.org/abs/2106.03498",
+      "number": 93,
+      "httpStatus": 200,
+      "destination": "https://arxiv.org/abs/2106.03498",
+      "pageTitle": "[2106.03498] Identifiability in inverse reinforcement learning",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Parr, T., Pezzulo, G., & Friston, K. J. (2022). Active inference: The free energy principle in mind, brain, and behavior. MIT Press (open access). doi:10.7551/mitpress/12441.001.0001",
+      "href": "https://doi.org/10.7551/mitpress/12441.001.0001",
+      "number": 94,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Active Inference"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Thomas",
+          "family": "Parr",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Giovanni",
+          "family": "Pezzulo",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Karl J.",
+          "family": "Friston",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [],
+      "registeredDate": {
+        "date-parts": [
+          [
+            2022,
+            3,
+            29
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.7551/mitpress/12441.001.0001",
+      "destination": "https://direct.mit.edu/books/book/5299/Active-InferenceThe-Free-Energy-Principle-in-Mind",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "Hadfield-Menell, D., Dragan, A., Abbeel, P., & Russell, S. (2016). Cooperative inverse reinforcement learning. NeurIPS 2016. arXiv:1606.03137",
+      "href": "https://arxiv.org/abs/1606.03137",
+      "number": 95,
+      "httpStatus": 200,
+      "destination": "https://arxiv.org/abs/1606.03137",
+      "pageTitle": "[1606.03137] Cooperative Inverse Reinforcement Learning",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Frankfurt, H. G. (1971). Freedom of the will and the concept of a person. The Journal of Philosophy, 68(1), 5-20. doi:10.2307/2024717",
+      "href": "https://doi.org/10.2307/2024717",
+      "number": 96,
+      "metadataStatus": 200,
+      "registeredTitle": [
+        "Freedom of the Will and the Concept of a Person"
+      ],
+      "registeredAuthors": [
+        {
+          "given": "Harry G.",
+          "family": "Frankfurt",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "registeredPublication": [
+        "The Journal of Philosophy"
+      ],
+      "registeredDate": {
+        "date-parts": [
+          [
+            1971,
+            1,
+            14
+          ]
+        ]
+      },
+      "registeredURL": "https://doi.org/10.2307/2024717",
+      "destination": "http://www.pdcnet.org/oom/service?url_ver=Z39.88-2004&rft_val_fmt=&rft.imuse_id=jphil_1971_0068_0001_0005_0020&svc_id=info:www.pdcnet.org/collection",
+      "result": "DOI registration verified; destination/claim not automatically validated"
+    },
+    {
+      "text": "ToMpathy. Open-source repository, GitHub (EmotiveAutomaton). github.com/EmotiveAutomaton/tompathy",
+      "href": "https://github.com/EmotiveAutomaton/tompathy",
+      "number": 97,
+      "httpStatus": 200,
+      "destination": "https://github.com/EmotiveAutomaton/tompathy",
+      "pageTitle": "GitHub - EmotiveAutomaton/tompathy: A Chrome side-panel reader for exploring author attention, process, and core values. Frontend beta; externally supplied analysis. · GitHub",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Sounding Line. Open-source research repository, GitHub (EmotiveAutomaton). github.com/EmotiveAutomaton/sounding-line",
+      "href": "https://github.com/EmotiveAutomaton/sounding-line",
+      "number": 98,
+      "httpStatus": 200,
+      "destination": "https://github.com/EmotiveAutomaton/sounding-line",
+      "pageTitle": "GitHub - EmotiveAutomaton/sounding-line: An instrument for reading intent out of real artifacts. Not an AI detector — an intent detector. · GitHub",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Ghost Scale Sim. Open-source simulation repository, GitHub (EmotiveAutomaton). github.com/EmotiveAutomaton/ghost-scale-sim",
+      "href": "https://github.com/EmotiveAutomaton/ghost-scale-sim",
+      "number": 99,
+      "httpStatus": 200,
+      "destination": "https://github.com/EmotiveAutomaton/ghost-scale-sim",
+      "pageTitle": "GitHub - EmotiveAutomaton/ghost-scale-sim: A simulation of how people read intent into things other people make, what breaks when nothing made it, and what a provenance label does about it. · GitHub",
+      "result": "reachable; claim not automatically validated"
+    },
+    {
+      "text": "Sounding Line theory documentation (the hypothesis store). GitHub (EmotiveAutomaton). github.com/EmotiveAutomaton/sounding-line/tree/main/docs/theory",
+      "href": "https://github.com/EmotiveAutomaton/sounding-line/tree/main/docs/theory",
+      "number": 100,
+      "httpStatus": 200,
+      "destination": "https://github.com/EmotiveAutomaton/sounding-line/tree/main/docs/theory",
+      "pageTitle": "sounding-line/docs/theory at main · EmotiveAutomaton/sounding-line · GitHub",
+      "result": "reachable; claim not automatically validated"
+    }
+  ]
+}

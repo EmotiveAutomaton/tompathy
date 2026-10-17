@@ -7,7 +7,35 @@ import {
 export const isExtension =
   typeof chrome !== "undefined" && !!chrome.runtime?.id;
 /** Expected browser access states are guidance, not failed analysis. */
-export class PageCaptureUnavailable extends Error {}
+export class PageCaptureUnavailable extends Error {
+  constructor(
+    message: string,
+    readonly kind: "empty" | "access" | "loading" = "access",
+  ) {
+    super(message);
+  }
+}
+export const followPageOrigins = ["https://*/*", "http://*/*"];
+export async function readFollowPages(): Promise<boolean> {
+  return (
+    isExtension &&
+    (await chrome.storage.local.get("tompathy-follow-pages"))[
+      "tompathy-follow-pages"
+    ] === true
+  );
+}
+export async function saveFollowPages(enabled: boolean) {
+  if (!isExtension) return;
+  // Chrome requires a gesture for this persistent, optional site grant.
+  if (
+    enabled &&
+    !(await chrome.permissions.request({ origins: followPageOrigins }))
+  )
+    throw Error(
+      "Page access was declined. You can still paste text or open the example.",
+    );
+  await chrome.storage.local.set({ "tompathy-follow-pages": enabled });
+}
 export async function capturePage(): Promise<{
   artifact: Artifact;
   tabId: number;
@@ -20,7 +48,18 @@ export async function capturePage(): Promise<{
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   if (!tab?.id)
     throw new PageCaptureUnavailable(
-      "No active page. Open a text page, then click ToMpathy in the toolbar.",
+      "Open a page with text, or paste a piece of writing.",
+      "empty",
+    );
+  if (tab.url === "about:blank" || tab.url === "chrome://newtab/")
+    throw new PageCaptureUnavailable(
+      "Open a page with text, or paste a piece of writing.",
+      "empty",
+    );
+  if (tab.status === "loading")
+    throw new PageCaptureUnavailable(
+      "Waiting for the page to finish loading…",
+      "loading",
     );
   try {
     let result;
@@ -51,9 +90,18 @@ export async function capturePage(): Promise<{
     };
   } catch (e) {
     const message = e instanceof Error ? e.message : String(e);
+    // Handle known blank URLs when Chrome includes them. Without tabs access,
+    // Chrome can hide both the URL and error details; keep that access failure
+    // distinct from an inspected webpage that genuinely contains no text.
+    if (/about:blank|chrome:\/\/newtab\//i.test(message))
+      throw new PageCaptureUnavailable(
+        "Open a page with text, or paste a piece of writing.",
+        "empty",
+      );
     if (/No readable/i.test(message))
       throw new PageCaptureUnavailable(
-        "No readable text is available here yet. Open a page with text, then click ToMpathy in the toolbar.",
+        "There is no readable text on this page. Try another page or paste a piece of writing.",
+        "empty",
       );
     if (
       /Cannot access|Missing host permission|not allowed to access|extensions gallery cannot be scripted|cannot be scripted/i.test(
@@ -61,7 +109,7 @@ export async function capturePage(): Promise<{
       )
     )
       throw new PageCaptureUnavailable(
-        "This page has not granted reading access, or is protected by Chrome. On a webpage, click ToMpathy’s toolbar icon to connect.",
+        "Sorry, this page could not be read. Enable Follow pages to allow reading across websites. Chrome’s internal pages and protected sites cannot be read, even with access enabled.",
       );
     throw Error(`The page could not be read. ${message}`);
   }
@@ -123,6 +171,22 @@ export async function pageCommand(
       await chrome.runtime.sendMessage(message);
     }
   } catch {}
+}
+export async function openPageEssay(
+  tabId: number | null,
+  artifact: Artifact | null,
+  kind: "goals" | "process" | "values" | "bibliography",
+  theme: string,
+): Promise<boolean> {
+  if (!isExtension || tabId === null || !artifact) return false;
+  const message = { type: "TOMPATHY_OPEN_ESSAY", targetTabId: tabId,
+    documentId: artifact.id, revision: artifact.revision, kind, theme };
+  try {
+    let result;
+    try { result = await chrome.tabs.sendMessage(tabId, message); }
+    catch { result = await chrome.runtime.sendMessage(message); }
+    return result?.ok === true;
+  } catch { return false; }
 }
 export async function markPage(
   tabId: number | null,

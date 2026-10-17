@@ -7,6 +7,7 @@ import {
 } from "d3-force";
 import type { Hypothesis } from "../core/model";
 import { HoverCard } from "./HoverCard";
+import { EvidenceBadge } from "./PreviewStatus";
 
 export const weight = (h: Hypothesis) =>
   h.support
@@ -26,7 +27,7 @@ export const supportText = (h: Hypothesis) =>
       ? `${Math.round(weight(h) * 100)}% weighted prominence across the selected sentences`
       : h.support.semantics === "probability"
         ? `${Math.round(h.support.value * 100)}% declared probability`
-        : `${h.support.value} on a ${h.support.scale.join("–")} relative support scale`;
+        : `${h.support.value} on a ${h.support.scale.join("–")} ${h.support.meaning.startsWith("Direction confidence") ? "direction confidence" : h.basis === "model-judgment" ? "model’s own rating" : "relative support"} scale`;
 type Word = SimulationNodeDatum & {
   id: string;
   width: number;
@@ -181,9 +182,9 @@ export function GoalCloud({
       );
       canvas.font = `${boldness} ${font}px "ToMpathy Confidence", Georgia`;
       const width =
-          Math.max(...lines.map((line) => canvas.measureText(line).width)) +
-          padding,
-        height = font * 1.25 * lines.length + padding;
+          Math.max(Math.max(...lines.map((line) => canvas.measureText(line).width)) + padding,
+            h.evidenceStatus ? h.evidenceStatus === "constructed-tested" ? 54 : 46 : 0),
+        height = font * 1.25 * lines.length + padding + (h.evidenceStatus ? 15 : 0);
       const previous = memory.current.get(h.id);
       const hash = Array.from(h.id).reduce(
         (sum, char) => (sum * 31 + char.charCodeAt(0)) >>> 0,
@@ -387,6 +388,7 @@ export function GoalCloud({
               content={
                 <>
                   <strong>{h.label}</strong>
+                  <EvidenceBadge item={h} />
                   <p className="hypothesis-summary">{h.description}</p>
                   <p className="muted support-summary">
                     {supportText(h)}.{" "}
@@ -396,6 +398,7 @@ export function GoalCloud({
               }
             >
               <button aria-label={h.label} onClick={() => onInspect(h)}>
+                <EvidenceBadge item={h} />
                 {(dense ? [h.label] : (n?.lines ?? [h.label])).map(
                   (line, i) => (
                     <span className="cloud-line" key={i}>

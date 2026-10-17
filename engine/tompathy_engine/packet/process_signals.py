@@ -108,7 +108,7 @@ def apply_signals(packet, ledger, admissions, *, domain, tier, pipeline):
             return [admissions.require(m, domain).admission_id for m in sorted(used)]
         outcomes = revert_outcomes(
             [
-                {"id": r.revision_id, "t": r.t.isoformat(), "text": ledger.get_text(r.content_ref)}
+                {"id": r.revision_id, "parents": r.parent_revision_ids, "t": r.t.isoformat(), "text": ledger.get_text(r.content_ref)}
                 for r in revisions
             ]
         )
@@ -148,6 +148,8 @@ def apply_signals(packet, ledger, admissions, *, domain, tier, pipeline):
                     "kind": "process",
                     "interpretation": "repertoire",
                     "label": "Candidate expertise: " + label,
+                    "evidenceStatus": "unvalidated",
+                    "basis": "history",
                     "description": "This recurring edit type has a higher observed survival fraction than this maker's other observed edit types. The association does not establish intended expertise or causal improvement.",
                     "makers": [maker],
                     "regions": [],

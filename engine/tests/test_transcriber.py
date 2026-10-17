@@ -44,7 +44,7 @@ def test_two_hundred_item_battery_is_per_question_and_model_pin(tmp_path):
         {
             "id": str(i),
             "source": "constructed-dialogue-fixture",
-            "tags": ["negation", "paraphrase"],
+            "tags": ["negation", "paraphrase", f"family-{i % 4}"],
             "text": f'"Item {i} is not missing," she said.' if i % 2 else f"Item {i} exists.",
             "expected": "yes" if i % 2 else "no",
             "crosscheck": "yes" if i % 2 else "no",

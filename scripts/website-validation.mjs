@@ -22,6 +22,9 @@ try {
   const guide = context
     .pages()
     .find((p) => p.url() === current.receipt.reviewUrl);
+  // This retained check exercises the legacy commissioned frontend explicitly.
+  // The default research preview is verified separately with actual engine runs.
+  await guide.evaluate(() => localStorage.setItem("tompathy-research-preview", "false"));
   await expect(
     guide.getByRole("link", { name: /Open the live essay/ }),
   ).toHaveAttribute("href", "https://abrahamhaskins.org/art/");

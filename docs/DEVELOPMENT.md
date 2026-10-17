@@ -8,6 +8,23 @@ default remains None. See [the engine guide](../engine/README.md) and
 
 ## Everyday review
 
+For the real engine on smaller live articles, use **Practice ToMpathy.cmd** or
+`npm run practice`. [Live practice](LIVE_PRACTICE.md) covers connection, source
+selection, observed evidence and the separate inference gates. The ordinary
+review flow below continues to open the commissioned frontend demos.
+Follow pages is a saved opt-in in the reader menu or practice page. While enabled,
+active webpages use the configured engine automatically, including the commissioned
+website. The bundled safe example remains available for fictional interaction
+practice. Run `npm run test:follow` and `npm run test:practice-lifecycle` serially
+to check native navigation and the companion's independent lifetime.
+
+The [October 16 review guide](REVIEW_READINESS_2026-10-16.md) records the targeted
+stability checks and real/constructed data boundaries. `npm run test:context-stability`
+uses one disposable native panel, constructed page/byline fixtures and live public
+GitHub file history. It checks automatic permitted retrieval, partial permissions,
+same-revision retention and navigation isolation; its browser closes in `finally`.
+`tests/stability.spec.ts` covers unusual graph structures and interactive estimates.
+
 Run `npm run review` or double-click **Review ToMpathy.cmd**. The launcher builds `dist`, verifies installation in a separate ordinary-Chrome profile, and opens the Review desk:
 
 1. Choose **Open the live essay** or **Open the live homepage**.
@@ -116,7 +133,7 @@ The dot comparison is resolved: small dots now indicate cells with room for a ma
 6. Tab to the graph background: **+ / −** zoom, **arrow keys** pan, and **Home / 0** fit. Node focus and Enter/Space still select. Reel wheel gestures continue to choose goals; they do not zoom the graph.
 7. Pause over a sentence. Compare the large letter sample to the text: ink identifies involvement, stroke grade identifies classification confidence. Up to three supplied evidence excerpts explain the judgment. The demo's draft and context records are fictional; no inference runs on real pages.
 
-[D3 zoom](https://d3js.org/d3-zoom) was selected because it handles SVG mouse/touch gestures, click-distance discrimination and programmatic fit without replacing the existing hierarchy renderer. The field allows generous pan margins and at least 32× zoom; the maximum grows when thin cells require more magnification. Minimum zoom is the centered whole graph, and the fit control returns there in a short eased transition. Text appearance depends on cell dimensions in screen pixels, not the zoom multiplier alone. Layout remains cached across pointer updates, and zoom has no idle animation loop. Each supplied node has one visual cell. A spanning forest determines placement, while connectors reveal additional parent relationships on inspection and reels retain all supplied alternatives. The shared back and sentence dots follow analytic elliptical arcs. Graphs with more than 600 nodes use a scrollable list fallback; this is a deliberate bound, not literal unlimited graph capacity.
+[D3 zoom](https://d3js.org/d3-zoom) was selected because it handles SVG mouse/touch gestures, click-distance discrimination and programmatic fit without replacing the existing hierarchy renderer. The field allows generous pan margins and at least 32× zoom; the maximum grows when thin cells require more magnification. Minimum zoom is the centered whole graph, and the fit control returns there in a short eased transition. Text appearance depends on cell dimensions in screen pixels, not the zoom multiplier alone. Layout remains cached across pointer updates, and zoom has no idle animation loop. Each supplied node has one visual cell. A spanning forest determines placement, while connectors reveal additional parent relationships on inspection and reels retain all supplied alternatives. The shared back and sentence dots follow analytic elliptical arcs. Graphs with more than 1,800 nodes use a scrollable list fallback; this is a deliberate bound, not literal unlimited graph capacity.
 
 Targeted checks: `npx playwright test tests/navigation.spec.ts tests/reading.spec.ts`. `npm run test:review` also exercises navigation and sentence finding in an actual native Chrome panel and saves `evidence/navigation-native-*.png`.
 

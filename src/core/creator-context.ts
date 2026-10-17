@@ -20,6 +20,75 @@ export function clearContextCache() {
   cache.clear();
 }
 
+/** Plan each source independently: a malformed link must not discard good ones. */
+export function prepareContextSources(
+  sources: { url: string; author: string }[],
+  repositoryLinks: string[],
+  creator: string,
+  useGitHub: boolean,
+) {
+  const skipped: ContextReport["skipped"] = [];
+  const accepted: typeof sources = [];
+  const repositories: string[] = [];
+  const seen = new Set<string>();
+  for (const source of sources) {
+    if (
+      source.author.trim().toLocaleLowerCase() !==
+      creator.trim().toLocaleLowerCase()
+    )
+      continue;
+    try {
+      const url = contextSourceURL(source.url, useGitHub).href;
+      if (seen.has(url)) continue;
+      seen.add(url);
+      if (accepted.length >= 3) {
+        skipped.push({
+          source: source.url,
+          reason: "Three explicit-source limit",
+        });
+        continue;
+      }
+      accepted.push({ ...source, url: publicURL(source.url).href });
+    } catch {
+      skipped.push({
+        source: source.url,
+        reason: "Not a supported public source URL",
+      });
+    }
+  }
+  if (useGitHub)
+    for (const source of repositoryLinks) {
+      try {
+        const url = publicURL(source).href;
+        if (!githubRepository(url)) throw Error("Not a repository");
+        if (repositories.includes(url)) continue;
+        if (repositories.length) {
+          skipped.push({ source, reason: "One-repository collection limit" });
+          continue;
+        }
+        repositories.push(url);
+      } catch {
+        skipped.push({
+          source,
+          reason: "Not an explicit public GitHub repository or file",
+        });
+      }
+    }
+  const origins = [
+    ...new Set(
+      [
+        ...accepted.map((s) => contextSourceURL(s.url, useGitHub).href),
+        ...repositories,
+      ].map((url) =>
+        useGitHub && githubRepository(url)
+          ? "https://api.github.com"
+          : new URL(url).origin,
+      ),
+    ),
+  ];
+  return { sources: accepted, repositoryLinks: repositories, skipped, origins };
+}
+
 export async function bylineContext(
   artifact: Artifact,
   creator: string,
@@ -66,6 +135,7 @@ export async function collectCreatorContext(options: {
   onProgress: (completed: number, total: number, label: string) => void;
   fetcher?: typeof fetch;
   now?: () => number;
+  allowedOrigins?: string[];
 }) {
   const {
     creator,
@@ -77,9 +147,13 @@ export async function collectCreatorContext(options: {
     fetcher = fetch,
     now = Date.now,
   } = options;
-  const selectedSources = options.sources
-    .filter((s) => s.author.toLocaleLowerCase() === creator.toLocaleLowerCase())
-    .slice(0, 3);
+  const plan = prepareContextSources(
+    options.sources,
+    options.repositoryLinks ?? [],
+    creator,
+    useGitHub,
+  );
+  const selectedSources = plan.sources;
   const seeds = [
     ...new Set(
       selectedSources.map((s) => contextSourceURL(s.url, useGitHub).href),
@@ -94,9 +168,7 @@ export async function collectCreatorContext(options: {
         (s) => contextSourceURL(s.url, useGitHub).href === url,
       )?.url ?? url,
   }));
-  const repository = useGitHub
-    ? (options.repositoryLinks ?? []).find((url) => githubRepository(url))
-    : undefined;
+  const repository = useGitHub ? plan.repositoryLinks[0] : undefined;
   if (repository && !seeds.includes(repository))
     queue.push({
       url: repository,
@@ -108,14 +180,14 @@ export async function collectCreatorContext(options: {
     useGitHub && githubRepository(url)
       ? "https://api.github.com"
       : new URL(url).origin;
-  const seen = new Set(seeds),
+  const seen = new Set(queue.map((job) => job.url)),
     budget = followLinks ? 6 : queue.length;
   const report: ContextReport = {
     attempted: 0,
     collected: 0,
     cached: 0,
     failures: [],
-    skipped: [],
+    skipped: [...plan.skipped],
   };
   const combined = AbortSignal.any([
     signal,
@@ -133,6 +205,17 @@ export async function collectCreatorContext(options: {
   for (let i = 0; i < queue.length && i < budget; i++) {
     check();
     const job = queue[i];
+    if (
+      options.allowedOrigins &&
+      !options.allowedOrigins.includes(allowedOrigin(job.url))
+    ) {
+      report.skipped.push({
+        source: job.url,
+        reason:
+          "Source access has not been granted; refresh context to allow it",
+      });
+      continue;
+    }
     if (useGitHub && githubRepository(job.url)) {
       if (repositoryRead) {
         report.skipped.push({
@@ -152,7 +235,8 @@ export async function collectCreatorContext(options: {
     );
     report.attempted++;
     try {
-      const hit = cache.get(job.url);
+      const cacheKey = `${useGitHub ? "github" : "web"}:${job.url}`;
+      const hit = cache.get(cacheKey);
       const saved =
         useGitHub &&
         githubRepository(job.url) &&
@@ -188,8 +272,8 @@ export async function collectCreatorContext(options: {
                 fetcher,
               );
         check();
-        cache.delete(job.url);
-        cache.set(job.url, {
+        cache.delete(cacheKey);
+        cache.set(cacheKey, {
           expires: now() + CACHE_TTL,
           value: structuredClone(result),
         });
@@ -209,7 +293,16 @@ export async function collectCreatorContext(options: {
       // One discovery hop from an explicit source; never recursively crawl.
       if (followLinks && job.basis === "explicit-author-link")
         for (const href of result.links) {
-          const url = contextSourceURL(href, useGitHub).href;
+          let url: string;
+          try {
+            url = contextSourceURL(href, useGitHub).href;
+          } catch {
+            report.skipped.push({
+              source: href,
+              reason: "Not a supported public source URL",
+            });
+            continue;
+          }
           if (seen.has(url)) continue;
           seen.add(url);
           const reason = !origins.has(allowedOrigin(url))

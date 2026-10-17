@@ -1,5 +1,30 @@
 # Engine v1 integration
 
+The October 16 driver adds a separate local preview path. `POST /v1/analyze`
+accepts `mode: "preview" | "admitted"` (service default: admitted; frontend
+default: preview), `history: "wikipedia" | "github"`, `historyLimit` (20 default;
+500 Wikipedia / 100 GitHub maximum), an optional memory-only `githubToken`, and
+`preferCache` for an exact-input real-run backup. SSE streams `progress`,
+validated `partial` packets, then the final `packet`; cancellation still uses
+the request ID. The admitted builder and its scientific gates are unchanged.
+
+Packet 1.8 adds optional `evidenceStatus` / `basis`, provider mode/notice, and
+preview module status, reader pins, comparison and timing metadata. Packet 1.9
+adds evidence-first maker kinds, revision references, decision counts and a
+local-only username field. Preview validation requires labels and relative
+support. No statistical source inference is enabled. Numerical population
+quantiles must be supplied, sorted and in scale; the frontend never invents
+them. [Implementation status](DRIVER_IMPLEMENTATION.md) separates working paths,
+software tests and still-unmet performance/acceptance targets.
+
+Captured regions may carry `codeSpans` as bounded UTF-16 offsets. Surface readers
+convert them to source-character spans and hold inline/preformatted code out of
+word statistics. Git history may carry `parent_text_witness` with an actual parent
+revision ID and its file text; it supports boundary diffs without inventing a
+parent ledger revision or timestamp.
+
+Cross-project research handoff: [Sounding Line Stage 15 dependencies](SOUNDING_LINE_STAGE15_DEPENDENCIES_2026-10-15.md). Interface use, source mapping and remaining research admissions are distinguished.
+
 ToMpathy owns the implementation. Sounding Line owns real-data tests and
 admitted/inconclusive/killed decisions. Ghost Scale owns constructed-world truth
 and recovery/coverage tests. Consumers pin an engine archive or checkout and the
@@ -16,6 +41,13 @@ The ledger schema remains unchanged by this continuation. A new implementation
 hash requires explicit refitting and matching research admissions. Existing
 research pinned to the earlier foundation can finish on that exact version.
 Ghost truth sidecars never enter the reader ledger or product packet.
+
+Packet **1.8** adds `preferenceEstimate` to admitted value hypotheses: quantity,
+finite estimate, optional reference, explicit interval or `null`, method and basis.
+The existing conditional preference/drive intervals now travel as structured data.
+Packets without current estimates remain 1.7. See [the result contract](INPUT_CONTRACT.md).
+This display change requires a new implementation pin but changes neither ledger
+schema nor scientific gates; do not migrate an active study merely for the UI.
 
 ## Labels, fits and packets
 
@@ -78,6 +110,41 @@ A manifest may supply `chronology` keyed by normalized observation ID, with
 times to make a dataset eligible. Ratings are retained in the ledger but excluded
 from the offered-text preference likelihood; their substantive target requires
 a separately justified rating model.
+
+### Native export audit contract (local continuation, 15 October)
+
+The additive `tompathy-native-panel-2` exchange keeps the original dataset labels
+and IDs in each row's `native_source.ids`, with its zero-based original record
+index, canonical record hash, annotation group/turn/target, and raw observations.
+The original file's byte hash remains `source_sha256`; the canonical row hash is
+not a claim of byte-identical source serialization. Existing normalized observation
+IDs and maker namespaces remain unchanged. Released evaluator labels are not a
+count of independently identified people and never join across datasets.
+
+Exports retain the codebook, license evidence, manifest hash and explicit mapping
+settings, including timezone/scale evidence. An external chronology window must
+have a nonempty witness, ordered timezone-aware endpoints, a known observation ID,
+and agree with any already known native endpoint. Its original witness is retained.
+Missing durations, ambiguous daylight-saving times and nonexistent local times
+remain unknown. Negative or nonfinite durations and contradictory windows refuse.
+MovieLens's single `tstamp` is preserved as source metadata; it does not supply an
+opening or resolution window. A separately witnessed rating remains `rate`, never
+a text preference choice. See the [release codebook](https://files.grouplens.org/datasets/movielens/ml_belief_2024_data_release_2_README.txt).
+
+The conversion receipt pins the source bytes, manifest, exchange, implementation
+and ledger schema. With `--ledger`, `ledger.row_audit` maps **every** normalized
+observation to its decision/stated-preference IDs or primary exclusion reason.
+Raw annotation votes, reasons and confidence are post-choice observations in
+`Decision.outcome.native_observation`, not pre-choice feature inputs. Excluded
+records remain inspectable in the exchange and audit; retained survey preferences
+are mapped even when decision chronology is absent. These files can contain
+private source material; keep them with the private dataset, not public results.
+
+The ledger schema is unchanged, but enriched records are different immutable
+content. Re-ingest into a **new ledger directory**, and explicitly repin/refit any
+new study. Do not append this export over an older ledger or migrate an in-flight
+capsule. The [dependency return](SOUNDING_LINE_STAGE15_RETURN_2026-10-15.md) records
+the tested implementation and the remaining commit/admission boundary.
 
 Primary format references: [MultiPref](https://huggingface.co/datasets/allenai/multipref),
 [PRISM](https://huggingface.co/datasets/HannahRoseKirk/prism-alignment),

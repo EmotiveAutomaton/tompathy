@@ -142,13 +142,13 @@ export function demoGlobalValues(
     packet.provider.id !== "tompathy-example"
   )
     return [];
-  const shared = values.slice(0, 4).map((h, i) => ({
+  const shared = values.filter(h => h.valueCategory === "drive" || ["care", "curiosity", "accessibility", "restraint"].includes(h.id)).map((h, i) => ({
     ...h,
     id: `global-${h.id}`,
     evidence: [],
     decisionNodes: [],
     description: `A synthetic Global illustration of ${h.label.toLowerCase()}; not a finding about people in general.`,
-    support: { ...h.support!, value: [0.86, 0.92, 0.83, 0.89][i] },
+    support: h.support ? { ...h.support, value: [0.86, 0.92, 0.83, 0.89][i % 4] } : null,
     preferenceTrace: demoPreference(h.id, true),
   }));
   return [
@@ -157,6 +157,7 @@ export function demoGlobalValues(
       (id, i): Hypothesis => ({
         id: `global-${id}`,
         kind: "value",
+        valueCategory: "constructed",
         label: [
           "Personal agency",
           "Fair contribution",

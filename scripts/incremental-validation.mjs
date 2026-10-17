@@ -1,0 +1,73 @@
+import { expect } from "@playwright/test";
+import { mkdir, mkdtemp, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { startPractice } from "./practice-session.mjs";
+import { openReview } from "./chrome-review.mjs";
+
+await mkdir("evidence", { recursive: true });
+const profile = await mkdtemp(path.resolve(".local/incremental-native-"));
+const receipt = { checkedAt: new Date().toISOString(), surface: "Native Chrome side panel, service-worker relay, real CPU readers", checks: [], errors: [] };
+let session, panel;
+const connections = [];
+try {
+  session = await startPractice({ profile, judgments: false, previewCache: path.join(profile, "preview-cache") });
+  connections.push(session.review.browser);
+  Object.assign(receipt, { browser: session.review.receipt.chromeVersion, build: session.review.receipt.build });
+  const context = session.review.browser.contexts()[0];
+  context.setDefaultTimeout(15000);
+  const settings = await context.newPage();
+  await settings.goto("chrome://extensions/");
+  await settings.evaluate(async id => {
+    await chrome.developerPrivate.addHostPermission(id, "http://127.0.0.1/*");
+    await chrome.developerPrivate.addHostPermission(id, "https://example.org/*");
+  }, session.review.receipt.extensionId);
+  await settings.close();
+  receipt.permissionSetup = "Loopback and example.org only in a disposable profile; first-use permission bubbles remain a manual check.";
+  await context.route("https://example.org/incremental-native", route => route.fulfill({ contentType: "text/html", body: '<!doctype html><title>Constructed transport test</title><meta name="description" content="Software verification fixture, not research evidence."><article><h1>Constructed transport test</h1><p>The clock in the station had stopped. The traveler checked it twice, then waited beside the empty platform.</p><p>A distant bell sounded over the roofs. The train arrived quietly, carrying a single blue suitcase and a tired conductor.</p></article>' }));
+  await session.page.locator("#connect").click();
+  await expect(session.page.locator("#connection")).toContainText("Connected to engine");
+  await session.page.evaluate(async () => { await chrome.storage.local.set({ "tompathy-follow-pages": true }); });
+  const source = await context.newPage();
+  await source.goto("https://example.org/incremental-native");
+  await source.bringToFront();
+  const targets = await session.review.cdp.send("Target.getTargets", { filter: [{ type: "tab" }] });
+  await session.review.cdp.send("Extensions.triggerAction", { id: session.review.receipt.extensionId, targetId: targets.targetInfos.find(t => t.url === source.url()).targetId });
+  const attached = await openReview({ profile, showGuide: false });
+  connections.push(attached.browser);
+  panel = attached.browser.contexts()[0].pages().find(p => p.url().includes("/panel.html"));
+  if (!panel) throw Error("Native side panel did not open");
+  panel.on("pageerror", e => receipt.errors.push(e.message));
+  const reading = () => panel.evaluate(async () => (await chrome.storage.session.get("reading")).reading);
+  await expect(panel.getByRole('progressbar', { name: 'Payoff', exact: true })).toBeVisible({ timeout: 15000 });
+  await panel.locator('.reading-progress').scrollIntoViewIfNeeded();
+  receipt.progressObserved = true;
+  await panel.screenshot({ path: 'evidence/incremental-native-working.png' });
+  await panel.locator('.reading-tools').screenshot({ path: 'evidence/incremental-native-indicators.png' });
+  const started = performance.now();
+  await expect.poll(async () => (await reading())?.packet?.provider.mode, { timeout: 180000 }).toBe("preview");
+  const packet = (await reading()).packet;
+  receipt.secondsAfterProgressScreenshot = (performance.now() - started) / 1000;
+  receipt.modules = packet.preview.modules;
+  receipt.timings = packet.preview.timings;
+  expect(packet.preview.modules.find(m => m.id === 'deviation').status).toBe('complete');
+  expect(packet.preview.modules.find(m => m.id === 'agreement').status).toBe('complete');
+  expect(packet.preview.modules.find(m => m.id === 'payoff').status).toBe('complete');
+  expect(packet.preview.modules.find(m => m.id === 'goals').status).toBe('unavailable');
+  expect(packet.hypotheses.some(h => h.kind === 'attention')).toBe(true);
+  await expect(panel.locator('.reading-progress-item')).toHaveCount(0, { timeout: 5000 });
+  await panel.screenshot({ path: 'evidence/incremental-native-complete.png' });
+  receipt.checks.push('Native Chrome, automatic page capture, compact streaming, real CPU attention/agreement/payoff, completion fade');
+  expect(receipt.errors).toEqual([]);
+  receipt.passed = true;
+} catch (error) {
+  receipt.passed = false;
+  receipt.failure = error.message;
+  await panel?.screenshot({ path: 'evidence/incremental-native-failure.png' }).catch(() => {});
+  throw error;
+} finally {
+  await writeFile('evidence/incremental-native.json', JSON.stringify(receipt, null, 2));
+  console.log(JSON.stringify(receipt, null, 2));
+  await session?.stop();
+  await session?.review.cdp.send('Browser.close').catch(() => {});
+  for (const browser of connections) await browser.close().catch(() => {});
+}

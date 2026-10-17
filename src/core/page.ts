@@ -8,6 +8,7 @@ export function readingRoot(doc: Document): {
 } {
   const candidates: [string, NonNullable<Artifact["capture"]>["method"]][] = [
     ["article", "article"],
+    ["#mw-content-text .mw-parser-output", "content-container"],
     [
       "[itemprop='articleBody'],.entry-content,.post-content,.entryBody,.markdown-body",
       "content-container",

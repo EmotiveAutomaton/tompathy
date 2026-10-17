@@ -5,7 +5,22 @@ import pytest
 
 from tompathy_engine.adapters.capture import make_capture
 from tompathy_engine.packet.build import build_packet
-from tompathy_engine.packet.contract import Packet
+from tompathy_engine.packet.contract import Packet, PreferenceEstimate
+
+
+def test_preference_estimate_intervals_and_unknowns():
+    fields = {
+        "quantity": "Conditional contrast",
+        "value": -0.8,
+        "reference": 0,
+        "interval": {"lower": -1.2, "upper": -0.4, "level": 0.95, "method": "Constructed interval"},
+        "basis": "Constructed verification only",
+    }
+    assert PreferenceEstimate.model_validate(fields).value == -0.8
+    assert PreferenceEstimate.model_validate({**fields, "interval": None}).interval is None
+    for value in (float("inf"), float("nan"), -2):
+        with pytest.raises(ValueError):
+            PreferenceEstimate.model_validate({**fields, "value": value})
 
 
 def capture():
@@ -82,3 +97,21 @@ def test_emit_packet_for_authoritative_node_parity(tmp_path):
     path = tmp_path / "packet.json"
     path.write_text(json.dumps(packet), encoding="utf8")
     assert Packet.model_validate_json(path.read_text()).wire() == packet
+
+
+def test_ai_attribution_requires_evidence_and_bounded_calibrated_probability():
+    from pathlib import Path
+    packet = json.loads((Path(__file__).parent / "fixtures/packets/preview-entries.json").read_text())
+    node = packet["goalHierarchy"]["nodes"][0]
+    evidence = [packet["evidence"][0]["id"]]
+    node["aiAttribution"] = {"basis": "documented", "evidence": evidence}
+    Packet.model_validate(packet)
+    for attribution in (
+        {"basis": "documented", "evidence": []},
+        {"basis": "documented", "evidence": ["missing"]},
+        {"basis": "calibrated", "evidence": evidence, "probability": 1.1, "calibration": "fixture"},
+        {"basis": "calibrated", "evidence": evidence, "probability": .6},
+    ):
+        node["aiAttribution"] = attribution
+        with pytest.raises(ValueError):
+            Packet.model_validate(packet)

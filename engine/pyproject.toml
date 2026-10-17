@@ -17,6 +17,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+preview = ["torch==2.9.1", "transformers==4.57.6", "safetensors==0.7.0", "huggingface-hub==0.36.0"]
 dev = ["pytest>=8,<10", "ruff>=0.9,<1"]
 research = ["numpyro>=0.16", "jax[cpu]>=0.4", "spacy>=3.8", "sentence-transformers>=3"]
 bayes = ["numpyro>=0.16,<1", "jax[cpu]>=0.4,<1"]
@@ -28,7 +29,7 @@ tompathy-engine = "tompathy_engine.cli:main"
 include = ["tompathy_engine*"]
 
 [tool.setuptools.package-data]
-tompathy_engine = ["transcribe/questions.yaml"]
+tompathy_engine = ["transcribe/questions.yaml", "preview/receipts/*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

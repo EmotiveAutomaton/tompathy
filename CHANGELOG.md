@@ -2,6 +2,56 @@
 
 ## 0.3.0-beta.1 — engine v1 development, unreleased
 
+- Draw AI outlines above the graph with thin shared seams and intact outer
+  borders. Match text confidence to opacity and involvement to thickness; make
+  the selected control fully opaque with a larger centered X. Keep attribution
+  admission separate from those display weights.
+- Preserve the finalized illustrated essays and curator originals, and generate
+  a standalone website handoff from tracked content, assets and citation metadata.
+
+- Add default-on research preview with evidence badges, progressive results and
+  real-run caches. Connect two pinned local surface readers, exact fixed-reader
+  technique notes, bounded goal judgments and payoff probes. Preserve the
+  admitted path and report incomplete modules when CPU budgets are exhausted.
+- Add explicit GitHub file history with witnessed parent text, unsigned tool
+  declarations, pseudonymous makers and local username reveal. Show supplied
+  Phase 0 historical comparisons and drive vocabulary without inventing priors.
+  Keep personal preview exports and registry publication blocked.
+
+- Add circled section-help controls, author-written opening previews and illustrated
+  essay dialogs over the connected page. Preserve the submitted prose, move image
+  directions into provisional captions, and link superscript citations directly
+  to the supplied sources. Rename the middle label to Expertise and previous attention.
+
+- Keep usable context when individual links are malformed or lack permission;
+  preserve context across exact recaptures and refresh it for a new creator.
+  Separate GitHub and webpage cache entries. Verify public file revisions in
+  the native panel and show partial collection coverage.
+- Harden hierarchy ranking and geometry for deep, wide and shared-parent graphs;
+  avoid unused SVG construction in the dense list fallback and reuse graph indexes
+  during hover. Preserve the existing visual design.
+- Add pointer/keyboard trajectory inspection with supplied point values and error
+  bars. Prevent interpolation overshoot. Packet 1.8 exposes existing gated fitted
+  coefficients and conditional intervals in hover and click cards, with methods,
+  reference values and observed evidence. Unknown uncertainty draws no sleeve.
+  These software changes do not admit scientific models or invent life histories.
+
+- Preserve native panel source IDs, annotation units, license/codebook evidence
+  and chronology witnesses in exports and per-observation audits. Refuse unknown
+  or contradictory chronology mappings; keep missing/ambiguous times unknown.
+  Stop treating MovieLens's single timestamp as a witnessed decision window.
+  Ledger schema and existing source ID construction remain unchanged.
+
+- Add optional Follow pages: capture and analyze new active webpages while the
+  panel is open, with cancellation on navigation. Separate unreadable-page,
+  empty-page and offline-engine states; offer a bundled safe example and center
+  empty values. Keep the practice companion alive independently of its launcher
+  window and restore a previously selected connection after restart.
+
+- Add a live-practice launcher and guided connection for smaller Wikipedia
+  articles, visible engine progress/cancellation and a saved-connection check.
+  Improve article-only capture, observed-reading summaries and contributor labels.
+
 - Connect immutable history snapshots, admitted literal labels, correction/choice
   fits and reading generation; add the explicit Wikipedia history action.
 - Add native panel converters, pinned local feature exchanges, held-out module

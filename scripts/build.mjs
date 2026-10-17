@@ -29,11 +29,17 @@ await build({
   outfile: "dist/panel.js",
   format: "esm",
   minify: true,
-  loader: { ".woff": "file" },
+  loader: { ".woff": "file", ".txt": "text", ".jpg": "file", ".jpeg": "file", ".webp": "file", ".png": "file", ".avif": "file" },
   assetNames: "[name]",
   sourcemap: true,
   target: "chrome116",
   define: { "process.env.NODE_ENV": '"production"' },
+});
+await build({
+  entryPoints: ["src/essay.tsx"], bundle: true, outfile: "dist/essay.js",
+  format: "esm", minify: true, sourcemap: true, target: "chrome116",
+  loader: { ".txt": "text", ".jpg": "file", ".jpeg": "file", ".webp": "file", ".png": "file", ".avif": "file" },
+  assetNames: "[name]", define: { "process.env.NODE_ENV": '"production"' },
 });
 await build({
   entryPoints: ["src/background.ts", "src/content.ts"],
@@ -49,6 +55,8 @@ for (const file of [
   "review.html",
   "review.css",
   "review.js",
+  "practice.html",
+  "practice.js",
   "icon-prompts.css",
   "logo-study-1.png",
   "logo-study-2-refined.png",
@@ -74,6 +82,7 @@ await writeFile(
 const html =
   '<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ToMpathy - What&#39;s on the creator&#39;s mind?</title><link rel="stylesheet" href="panel.css"></head><body><div id="root"></div><script type="module" src="panel.js"></script></body></html>';
 await writeFile("dist/panel.html", html);
+await writeFile("dist/essay.html", html.replaceAll("panel.css", "essay.css").replaceAll("panel.js", "essay.js").replace("ToMpathy - What&#39;s on the creator&#39;s mind?", "ToMpathy — Essays"));
 await writeFile("dist/snapshot.html", html);
 await writeFile(
   "dist/art.html",

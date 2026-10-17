@@ -68,7 +68,7 @@ def test_attention_uses_exact_location_and_does_not_invent_t0(tmp_path):
         viewed, ledger=ledger, model=model, admissions=gates("attention", "habits")
     )
     assert packet["currentAttention"]
-    assert all(h["label"] == "Edit focus" for h in packet["hypotheses"] if h["kind"] == "attention")
+    assert all(h["label"] == "Where edits concentrated" for h in packet["hypotheses"] if h["kind"] == "attention")
     assert "currentAttention" not in build_packet(viewed, admissions=gates("attention"))
 
 
@@ -181,6 +181,9 @@ def test_history_runs_bound_transcription_fit_and_packet_without_overwriting(tmp
                     "items": 200,
                     "valid_rate": 1.0,
                     "accuracy": 1.0,
+                    "per_label": {"\"yes\"": 1.0, "\"no\"": 1.0},
+                    "per_family": {"family-0": 1.0, "family-1": 1.0},
+                    "best_constant": 0.5,
                     "battery_hash": digest(q),
                     "admission_id": "constructed-history-" + q,
                 }

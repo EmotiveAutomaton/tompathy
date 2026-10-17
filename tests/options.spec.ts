@@ -55,7 +55,8 @@ test("Options, persistent idle reels, connected alternatives and overlay dismiss
   await expect(
     page.getByRole("dialog").getByLabel("Creator selection"),
   ).toHaveCount(0);
-  await expect(page.getByRole("checkbox")).toHaveCount(5);
+  await expect(page.getByRole("checkbox")).toHaveCount(6);
+  await expect(page.getByRole("checkbox", { name: "Research preview", exact: true })).toBeChecked();
   await expect(
     page.getByRole("checkbox", { name: /Word-level analysis/ }),
   ).toBeDisabled();

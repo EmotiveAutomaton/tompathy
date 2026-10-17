@@ -453,3 +453,35 @@ INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
 DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
+
+Section essay illustrations
+
+The generated teardrop/post-it drawings and October 17 replacement illustrations
+were supplied by Abraham Haskins. They are reproduced without pixel edits.
+Generated-image attribution is recorded in provenance.json and shown by grey
+borders. The owner specifically identified AI Slop, The Hatred of Inefficiency,
+and And We Need Everyone's Help as generated, and Bot Farms as not generated.
+
+The October 17 supplied set also includes Star Trek and Inside Out images,
+Schadenfreude concept art, fear-expression photographs, Cambridge Analytica and
+Flock imagery. Existing third-party rights remain with their respective owners;
+the software's MIT license does not relicense these images. Exact source filenames
+and copied-byte hashes are recorded in provenance.json. Older assets retained in
+the source folder are not bundled unless imported by the current essay.
+
+essay-baseball.jpeg, essay-bridge.jpeg and essay-humility.jpeg are reproduced
+from Abraham Haskins's Art: A Unifying Model, at his request. Their original
+image URLs and exact file hashes are recorded in provenance.json. Existing
+third-party rights are retained; inclusion does not relicense them under MIT.
+https://abrahamhaskins.org/art/
+
+essay-schadenfreude.webp is a supplied Pixar concept illustration. Pixar/Disney
+retain their rights. The manuscript cites the accompanying discussion at:
+https://www.slashfilm.com/1563120/why-pixar-inside-out-2-cut-german-emotion-character-schadenfreude/
+
+essay-fear.jpg is an Inside Out still from Pixar's official film page.
+Copyright Disney/Pixar. All rights reserved.
+https://www.pixar.com/inside-out
+
+These illustrations accompany the author's discussion of their subjects. The
+repository's software license does not claim ownership of third-party imagery.

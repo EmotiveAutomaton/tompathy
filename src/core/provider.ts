@@ -6,13 +6,22 @@ import {
   type Packet,
   type Scope,
 } from "./model";
+import { z } from "zod";
+import { companionFetch } from "./companion-transport";
 export interface AnalysisRequest {
   requestId: string;
   artifact: Artifact;
   scope: Scope;
   context: ContextItem[];
   signal: AbortSignal;
-  history?: "wikipedia";
+  history?: "wikipedia" | "github";
+  historyLimit?: number;
+  githubToken?: string;
+  preferCache?: boolean;
+  priorityRegion?: string;
+  onProgress?: (phase: string) => void;
+  mode?: "admitted" | "preview";
+  onPartial?: (packet: Packet) => void;
 }
 export interface InferenceProvider {
   id: string;
@@ -22,6 +31,130 @@ export type ProviderSettings =
   | { kind: "none" }
   | { kind: "registry"; url: string }
   | { kind: "local"; url: string; token: string };
+
+export class CompanionUnavailable extends Error {
+  constructor() {
+    super(
+      "The local engine is not reachable. Start Practice ToMpathy.cmd, then connect the engine on its practice page. Your captured text is still here; use Retry reading after reconnecting.",
+    );
+  }
+}
+
+const HealthSchema = z.object({
+  engineVersion: z.string().max(100),
+  implementationHash: z.string().regex(/^[0-9a-f]{64}$/),
+  admittedModules: z.array(z.string().max(100)).max(100),
+  historyAvailable: z.array(z.string().max(100)).max(10),
+  transcriberEnabled: z.boolean(),
+});
+export async function checkCompanion(
+  settings: Extract<ProviderSettings, { kind: "local" }>,
+  fetcher: typeof fetch = companionFetch,
+) {
+  const origin = providerOrigin(settings);
+  const signal = AbortSignal.timeout(5000);
+  const response = await fetcher(`${origin}/v1/health`, {
+    headers: { Authorization: `Bearer ${settings.token}` },
+    signal,
+    credentials: "omit",
+    redirect: "error",
+  });
+  return HealthSchema.parse(
+    JSON.parse(await boundedText(response, signal, 20000)),
+  );
+}
+
+async function streamedPacket(
+  response: Response,
+  request: AnalysisRequest,
+): Promise<Packet> {
+  if (
+    !response.ok ||
+    !response.headers.get("content-type")?.includes("text/event-stream")
+  )
+    return parsePacket(await boundedText(response, request.signal));
+  const reader = response.body?.getReader();
+  if (!reader) throw Error("The companion returned an empty stream.");
+  const decoder = new TextDecoder("utf-8", { fatal: true });
+  let tail = "",
+    total = 0, eventSize = 0;
+  let parts: string[] = [];
+  let previousPartial: Packet | null = null;
+  const separator = /\r?\n\r?\n/g;
+  try {
+    for (;;) {
+      const { done, value } = await reader.read();
+      request.signal.throwIfAborted();
+      if (done)
+        throw Error(
+          "The companion disconnected before completing the reading.",
+        );
+      total += value.byteLength;
+      if (total > 64_000_000)
+        throw Error("Analysis response exceeds its size limit.");
+      const fragment = tail + decoder.decode(value, { stream: true });
+      let cursor = 0;
+      let boundary: RegExpExecArray | null;
+      separator.lastIndex = 0;
+      while ((boundary = separator.exec(fragment))) {
+        parts.push(fragment.slice(cursor, boundary.index));
+        const block = parts.join("");
+        if (block.length > 2_500_000) throw Error("Analysis event exceeds its size limit.");
+        parts = [];
+        eventSize = 0;
+        cursor = boundary.index + boundary[0].length;
+        const lines = block.split(/\r?\n/);
+        const event = lines
+          .find((line) => line.startsWith("event:"))
+          ?.slice(6)
+          .trim();
+        const data = lines
+          .filter((line) => line.startsWith("data:"))
+          .map((line) => line.slice(5).trimStart())
+          .join("\n");
+        if (event === "packet") return parsePacket(data);
+        if (event === "partial" || event === "partial-update") {
+          if (event === "partial-update" && !previousPartial) throw Error("Progress update arrived before its reading.");
+          const update = JSON.parse(data);
+          if (!update || Array.isArray(update) || typeof update !== "object") throw Error("Invalid progress update.");
+          const candidate = event === "partial-update" ? { ...previousPartial, ...update } : update;
+          if (event === "partial-update") for (const [key, value] of Object.entries(update)) if (value === null) delete candidate[key];
+          const packet = matching(parsePacket(JSON.stringify(candidate)), request);
+          if (request.mode !== "preview" || packet.provider.mode !== "preview") throw Error("Unexpected preview result.");
+          previousPartial = packet;
+          request.onPartial?.(packet);
+        }
+        if (event === "progress") {
+          const value: unknown = JSON.parse(data);
+          const phase = z
+            .object({ phase: z.string().min(1).max(300) })
+            .parse(value).phase;
+          request.onProgress?.(phase);
+        }
+        if (event === "error")
+          throw Error(
+            request.preferCache
+              ? "The cached reading could not be loaded. Analyze this capture or its source history first, then try again."
+              : "The engine could not complete this reading. Check the practice launcher for details.",
+          );
+        if (event === "cancelled") throw Error("Analysis cancelled.");
+      }
+      // Retain only the possible cross-chunk delimiter. Join the full payload
+      // once, when its event ends; tiny chunks must not cause quadratic scans.
+      const end = Math.max(cursor, fragment.length - 3);
+      if (end > cursor) {
+        const remainder = fragment.slice(cursor, end);
+        eventSize += remainder.length;
+        if (eventSize > 2_500_000) throw Error("Analysis event exceeds its size limit.");
+        parts.push(remainder);
+      }
+      tail = fragment.slice(end);
+      if (eventSize + tail.length > 2_500_000) throw Error("Analysis event exceeds its size limit.");
+    }
+  } finally {
+    await reader.cancel();
+  }
+}
 
 export function providerOrigin(settings: ProviderSettings): string | null {
   if (settings.kind === "none") return null;
@@ -171,7 +304,7 @@ export function registryProvider(
 export function localProvider(
   url: string,
   token: string,
-  fetcher: typeof fetch = fetch,
+  fetcher: typeof fetch = companionFetch,
 ): InferenceProvider {
   const origin = providerOrigin({ kind: "local", url, token })!;
   const headers = {
@@ -198,25 +331,38 @@ export function localProvider(
       try {
         const response = await fetcher(`${origin}/v1/analyze`, {
           method: "POST",
-          headers,
+          headers: {
+            ...headers,
+            ...(request.onProgress || request.onPartial ? { Accept: "text/event-stream" } : {}),
+          },
           signal: request.signal,
           credentials: "omit",
           redirect: "error",
           body: JSON.stringify({
             requestId: request.requestId,
+            mode: request.mode ?? "admitted",
+            preferCache: request.preferCache ?? false,
+            compactProgress: true,
+            ...(request.priorityRegion ? { priorityRegion: request.priorityRegion } : {}),
             artifact: request.artifact,
             scope: request.scope,
             context:
               request.scope === "context"
                 ? request.context.filter((c) => c.selected)
                 : [],
-            ...(request.history ? { history: request.history } : {}),
+            ...(request.history ? { history: request.history, historyLimit: request.historyLimit ?? 20,
+              ...(request.history === "github" && request.githubToken ? { githubToken: request.githubToken } : {}) } : {}),
           }),
         });
-        return matching(
-          parsePacket(await boundedText(response, request.signal)),
-          request,
-        );
+        return matching(await streamedPacket(response, request), request);
+      } catch (error) {
+        if (request.signal.aborted) throw error;
+        if (
+          error instanceof TypeError &&
+          /fetch|network|load/i.test(error.message)
+        )
+          throw new CompanionUnavailable();
+        throw error;
       } finally {
         request.signal.removeEventListener("abort", cancel);
       }
@@ -234,5 +380,6 @@ export function makeProvider(
       : null;
 }
 
-// Selection is explicitly opt-in through Options. Merely capturing a page sends nothing.
+// No provider is bundled or enabled by default. Follow pages separately opts
+// into automatic requests using the saved provider while the panel is open.
 export const configuredProvider: InferenceProvider | null = null;

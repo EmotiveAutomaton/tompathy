@@ -1,6 +1,8 @@
 """Versioned integration contract; no dataset or admission is manufactured."""
 
 from . import __version__
+from .adapters.native_panel import EXCHANGE_FORMAT
+from .adapters.panel import DATASETS
 from .admission import Admission, implementation_hash
 from .features.augment import Features
 from .features.records import Labels
@@ -26,6 +28,15 @@ def contract():
         "goal_candidates_schema": GoalInputs.model_json_schema(),
         "admission_schema": Admission.model_json_schema(),
         "literal_questions": CATALOGUE,
+        "native_panel": {
+            "format": EXCHANGE_FORMAT,
+            "datasets": sorted(DATASETS),
+            "compatibility": "Additive exchange metadata; unchanged ledger schema and observation IDs",
+            "source_coordinates": "native_source: original IDs, record index/hash, observation unit and raw observation",
+            "chronology": "Timezone-aware source windows only; explicit independent witnesses retained; unknowns excluded",
+            "audit": "native-panel receipt contains source/exchange/implementation/schema hashes; ledger receipt maps every observation to records or an exclusion",
+            "migration": "Use a fresh ledger for changed records; do not mutate pinned research capsules",
+        },
         "module_gates": {
             "corrections": ["Q8", "Q9"],
             "joint-preferences": ["Q8", "Q9"],

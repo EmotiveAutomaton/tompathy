@@ -20,4 +20,5 @@ parts.push(
   "\nRoboto Serif · Latin subsets: variable GRAD for reading; variable wght (100–900) for confidence labels.\nhttps://github.com/google/fonts/tree/main/ofl/robotoserif\n",
   (await readFile("src/assets/RobotoSerif-OFL.txt", "utf8")).replace(/[ \t]+$/gm, ""),
 );
+parts.push(await readFile("src/assets/essays/NOTICES.txt", "utf8"));
 await writeFile("THIRD_PARTY_NOTICES.txt", parts.join("\n"));

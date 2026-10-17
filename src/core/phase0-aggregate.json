@@ -1,0 +1,205 @@
+{
+  "source": "Sounding Line results/phase_2_4_stage_15/PHASE0_SUMMARY.json",
+  "sourceSha256": "167c5a1da36cb657ac114e8d52d3d9141cd9be188613ee3d365a9136c7677235",
+  "overall": {
+    "decisions": 16855,
+    "gain_over_personal": {
+      "crossed_interval": [
+        3.2802250157356576E-05,
+        0.014954613714838475
+      ],
+      "crossed_nonempty_draws": 10000,
+      "interval": [
+        0.0016086831215126128,
+        0.01296541196725241
+      ],
+      "mean": 0.00726184648749965,
+      "prompts": 20,
+      "targets": 16855,
+      "writers": 61
+    },
+    "gain_over_population": {
+      "crossed_interval": [
+        0.012386362339715927,
+        0.03221320489691718
+      ],
+      "crossed_nonempty_draws": 10000,
+      "interval": [
+        0.01353481774799177,
+        0.029170734395975534
+      ],
+      "mean": 0.021080958756096068,
+      "prompts": 20,
+      "targets": 16855,
+      "writers": 61
+    },
+    "log_loss_gain_over_personal": {
+      "crossed_interval": [
+        0.005311194617019401,
+        0.05461925181603533
+      ],
+      "crossed_nonempty_draws": 10000,
+      "interval": [
+        0.011010635093706445,
+        0.047996294732423554
+      ],
+      "mean": 0.02877255396632205,
+      "prompts": 20,
+      "targets": 16855,
+      "writers": 61
+    },
+    "log_loss_gain_over_population": {
+      "crossed_interval": [
+        0.041540834843882095,
+        0.10060717849269296
+      ],
+      "crossed_nonempty_draws": 10000,
+      "interval": [
+        0.0451559831768153,
+        0.08984484373228346
+      ],
+      "mean": 0.0668697444675753,
+      "prompts": 20,
+      "targets": 16855,
+      "writers": 61
+    },
+    "writers": 61
+  },
+  "noHistory": {
+    "decisions": 563,
+    "gain_over_personal": {
+      "crossed_interval": [
+        0.0026357334618264234,
+        0.036238169303779794
+      ],
+      "crossed_nonempty_draws": 10000,
+      "interval": [
+        0.007288503415034288,
+        0.03021265268814497
+      ],
+      "mean": 0.018290131676211425,
+      "prompts": 19,
+      "targets": 563,
+      "writers": 61
+    },
+    "gain_over_population": {
+      "crossed_interval": [
+        0.0026357334618264225,
+        0.036238169303779794
+      ],
+      "crossed_nonempty_draws": 10000,
+      "interval": [
+        0.0072885034150342864,
+        0.03021265268814497
+      ],
+      "mean": 0.01829013167621142,
+      "prompts": 19,
+      "targets": 563,
+      "writers": 61
+    },
+    "log_loss_gain_over_personal": {
+      "crossed_interval": [
+        0.00894428392728817,
+        0.10676992897300262
+      ],
+      "crossed_nonempty_draws": 10000,
+      "interval": [
+        0.02301303182017191,
+        0.08889560434480975
+      ],
+      "mean": 0.05488052684209732,
+      "prompts": 19,
+      "targets": 563,
+      "writers": 61
+    },
+    "log_loss_gain_over_population": {
+      "crossed_interval": [
+        0.008944283927288127,
+        0.10676992897300258
+      ],
+      "crossed_nonempty_draws": 10000,
+      "interval": [
+        0.023013031820171875,
+        0.08889560434480973
+      ],
+      "mean": 0.0548805268420973,
+      "prompts": 19,
+      "targets": 563,
+      "writers": 61
+    },
+    "writers": 61
+  },
+  "atLeast300": {
+    "decisions": 8607,
+    "gain_over_personal": {
+      "crossed_interval": [
+        -0.0013351996239385447,
+        0.009806465084052038
+      ],
+      "crossed_nonempty_draws": 10000,
+      "interval": [
+        0.0010537183181657621,
+        0.008062900990842921
+      ],
+      "mean": 0.00454934020876907,
+      "prompts": 20,
+      "targets": 8607,
+      "writers": 14
+    },
+    "gain_over_population": {
+      "crossed_interval": [
+        0.010673690624058492,
+        0.04267310425002267
+      ],
+      "crossed_nonempty_draws": 10000,
+      "interval": [
+        0.012431263592764915,
+        0.03861392860564578
+      ],
+      "mean": 0.024274979030477845,
+      "prompts": 20,
+      "targets": 8607,
+      "writers": 14
+    },
+    "log_loss_gain_over_personal": {
+      "crossed_interval": [
+        -0.00707474829836314,
+        0.026698005053918197
+      ],
+      "crossed_nonempty_draws": 10000,
+      "interval": [
+        3.826377566336398E-05,
+        0.022169478569993285
+      ],
+      "mean": 0.010970582637096504,
+      "prompts": 20,
+      "targets": 8607,
+      "writers": 14
+    },
+    "log_loss_gain_over_population": {
+      "crossed_interval": [
+        0.03987521557134963,
+        0.1324265104942164
+      ],
+      "crossed_nonempty_draws": 10000,
+      "interval": [
+        0.045073702686628886,
+        0.1215635028365342
+      ],
+      "mean": 0.08088624306136101,
+      "prompts": 20,
+      "targets": 8607,
+      "writers": 14
+    },
+    "writers": 14
+  },
+  "limits": [
+    "Historical public exposure; descriptive only.",
+    "Models refit at session start using strictly earlier completed sessions; no concurrent unfinished session labels.",
+    "Previous resolved handling is observed within-session; parameters remain fixed for the session.",
+    "Past-only penalty selection uses the existing grid; cold histories use fixed penalty 1.",
+    "Raw chronology exclusions are retained and reported; census counts are not assumed.",
+    "Prompt novelty is reported both relative to own history and all training sessions.",
+    "Bootstrap conditions on saved forecasts; shared evolving fits are not independent confirmations."
+  ]
+}

@@ -1,0 +1,225 @@
+import compressed from "../assets/essays/essay-artiscompressedintent.png";
+import dataEmotion from "../assets/essays/essay-dataemotionchip.jpg";
+import dataEmpathy from "../assets/essays/essay-dataempathy.jpg";
+import slop from "../assets/essays/essay-aislop.jpg";
+import bots from "../assets/essays/essay-botfarms.jpg";
+import cambridge from "../assets/essays/essay-cambridgeanalytica.jpg";
+import flock from "../assets/essays/essay-flock.avif";
+import pyramid from "../assets/essays/essay-theinferenceofempathy.jpg";
+import initial from "../assets/essays/essay-initialinference.jpg";
+import expertise from "../assets/essays/essay-expertise.jpg";
+import top from "../assets/essays/essay-thevaluabletop.jpg";
+import training from "../assets/essays/essay-thisiswhataigetsintrainings.jpg";
+import cheaters from "../assets/essays/essay-pixarcheaters.jpg";
+import humanCheat from "../assets/essays/essay-thehumancheat.jpg";
+import fear1 from "../assets/essays/essay-eckmanfear1.png";
+import fear2 from "../assets/essays/essay-eckmanfear2.jpg";
+import fear3 from "../assets/essays/essay-eckmanfear3.avif";
+import fear4 from "../assets/essays/essay-eckmanfear4.jpg";
+import context from "../assets/essays/essay-contexthelpsalot.jpg";
+import rlhf from "../assets/essays/essay-rlhfmakesitlookgood.jpg";
+import erosion from "../assets/essays/essay-expertiseerosion.jpg";
+import inefficiency from "../assets/essays/essay-thehatredofinefficiency.jpg";
+import humility from "../assets/essays/essay-humility.jpeg";
+import insideOut from "../assets/essays/essay-insideout2.jpg";
+import schadenfreude from "../assets/essays/essay-pixar_schadenfreude.webp";
+import starTrek from "../assets/essays/essay-reallifestartrek.png";
+import help from "../assets/essays/essay-andweneedeveryone'shelp.jpg";
+import type { EssayKind } from "./essay-kind";
+
+export type Illustration = {
+  src: string;
+  name: string;
+  generated: boolean;
+  borderless?: boolean;
+  uncropped?: boolean;
+};
+export type EssayFigure = {
+  anchor: string;
+  placement?: "before" | "after";
+  images?: Illustration[];
+  diagram?: "channels" | "preference";
+  portrait?: boolean;
+  large?: boolean;
+  caption?: string;
+};
+const illustration = (
+  src: string,
+  name: string,
+  generated = true,
+): Illustration => ({ src, name, generated });
+
+// Stable prose anchors survive paragraph insertions. Captions are the owner's
+// verbatim walkthrough text; brackets only add the requested source citation.
+export const essayFigures: Record<EssayKind, EssayFigure[]> = {
+  goals: [
+    {
+      anchor: "Off we go:",
+      large: true,
+      images: [{ ...illustration(compressed, "Art is compressed intent"), uncropped: true }],
+      caption:
+        "It's genuinely hard to quantify how much time and effort in my free time I have put towards this overall project for the last few years.",
+    },
+    {
+      anchor: "supercharge it with AI",
+      images: [
+        illustration(dataEmotion, "Data emotion chip", false),
+        illustration(dataEmpathy, "Data empathy", false),
+      ],
+      caption:
+        "I'm not trying to give AI human emotion! Instead, I want to give our empathy hacks to AI so it can extract our wants and needs.",
+    },
+    {
+      anchor: "All that bad shit is already happening",
+      images: [
+        illustration(slop, "AI slop"),
+        illustration(bots, "Bot farms", false),
+        illustration(cambridge, "Cambridge analytica", false),
+        illustration(flock, "Flock", false),
+      ],
+      caption:
+        "We expected AI to drive bad actors to abuse the rapidly consolidating power. What I didn't expect was the increasingly confusing environment to cause many to regress to simpler social structures, like rigid hierarchy and fascism.",
+    },
+  ],
+  process: [
+    {
+      anchor: "We want to reverse-engineer something cool",
+      placement: "before",
+      images: [illustration(pyramid, "The inference of empathy")],
+      caption:
+        "I've got a lot of metaphors for this inference of empathy. I like to think of this one like the teardrop on the cheek of an engineer that finally sees the perfect bridge, and fully understands it.",
+    },
+    {
+      anchor: "We want to reverse-engineer something cool",
+      images: [illustration(initial, "Initial inference")],
+      caption:
+        "You do this with everything, even these words. Do you think you know why I wrote all of them? Put a post it at the top. Do you think you know how? Put a few at the bottom in order.",
+    },
+    {
+      anchor: "Expertise lets you instantly",
+      placement: "before",
+      images: [illustration(expertise, "Expertise")],
+      caption:
+        "We all have our own internal autocomplete that we craft with repetition, called expertise. This sometimes-overzealous autocomplete constantly runs in reverse to decode the works of others.",
+    },
+    {
+      anchor: "every subsequent inference",
+      images: [
+        illustration(top, "The valuable top"),
+        illustration(training, "This is what AI gets in trainings"),
+      ],
+      caption:
+        "The block at the top is the most valuable to figure out, because it helps you figure out every other piece: *why* was this made? This can and does have multiple answers with multiple overlaying teardrops, especially if multiple writers are involved.",
+    },
+    {
+      anchor: "because we cheat.",
+      images: [
+        {
+          ...illustration(cheaters, "Pixar cheaters", false),
+        },
+      ],
+      caption:
+        "We're going to cheat mainly by stapling these folks to that wall. We'll start with the one on the left. Fun for all ages!",
+    },
+    {
+      anchor: "there are many ways to use them",
+      images: [illustration(humanCheat, "The human cheat")],
+      caption:
+        "I hope you appreciate my restraint in not generating little angry red pixar dudes instead.",
+    },
+    {
+      anchor: "in the simulations you run",
+      portrait: true,
+      images: [
+        illustration(fear1, "Eckman fear 1", false),
+        illustration(fear4, "Eckman fear 4", false),
+        illustration(fear3, "Eckman fear 3", false),
+        illustration(fear2, "Eckman fear 2", false),
+      ],
+      caption:
+        "Examples of full fear faces: Eyebrows up and laterally slid together. Eyelids up. Lower eyelids tense. Jaw dropped slightly. Lips horizontally stretched and backwards. Neck tense.",
+    },
+    {
+      anchor: "Cognitive empathy is a different clever mental trick",
+      images: [illustration(context, "Context helps a lot")],
+      caption:
+        "A little goes a long way here. Even a simple date on a painting will get you quite far.",
+    },
+    {
+      anchor: "AI mucks this whole entire process up",
+      images: [
+        illustration(rlhf, "RLHF makes it look good"),
+        illustration(erosion, "Expertise erosion"),
+      ],
+      caption:
+        "Don't panic please, there's some evidence that we're replacing it with AI skill. But doctors did lose 20% of their unassisted accuracy in 3 months with even marked AI assistance [41] (skill decay should account for less than 1.5% over that timeline).",
+    },
+  ],
+  values: [
+    {
+      anchor: "also known as contempt",
+      images: [illustration(inefficiency, "The hatred of inefficiency")],
+      caption:
+        "At the end of the day, what really ties us together across our social divides is... disgust with perceived inefficiency?",
+    },
+    {
+      anchor: "Epistemic disgust outright blocks uptake",
+      images: [illustration(humility, "Humility", false)],
+      caption:
+        'The humility is context-dependent, and so you\'d specifically need "cultural humility" to counter racism. Some otherwise humble monks can actually be surprisingly racist, for example.',
+    },
+    {
+      anchor: "I really hope you’ve seen Pixar’s Inside Out here",
+      images: [
+        { ...illustration(insideOut, "Inside out 2", false), uncropped: true },
+      ],
+      caption:
+        "If you haven't, you should - it's surprisingly tight on the science.",
+    },
+    {
+      anchor: "confirming possible other channels",
+      diagram: "channels",
+      caption:
+        "I just feel like there should be more? Doesn't hurt my theory, but still.",
+    },
+    {
+      anchor: "schadenfreude",
+      images: [{ ...illustration(schadenfreude, "Pixar schadenfreude", false), uncropped: true }],
+      caption:
+        "Here's some concept art for Schadenfreude, the one they dropped. I just really wanna know what his lines were.",
+    },
+    {
+      anchor: "their preferred set points",
+      diagram: "preference",
+      caption:
+        "It's fascinating how much vectors are relevant to the math of the brain. I would suggest that most of the process of vectorization happens as we dream, and that's what that process feels like. I wonder what other mathematical processes feel like?",
+    },
+    {
+      anchor: "Because if we don’t, everyone dies. Sorrynotsorry.",
+      images: [illustration(starTrek, "Real life star trek", false)],
+      caption:
+        "Though I guess not everyone wants a spaceship, certainly everyone wants the choice.",
+    },
+    {
+      anchor: "It’s all hands on deck now",
+      large: true,
+      images: [
+        {
+          ...illustration(help, "And we need everyone's help"),
+          uncropped: true,
+        },
+      ],
+    },
+  ],
+};
+
+export const figuresFor = (
+  kind: EssayKind,
+  text: string,
+  placement: "before" | "after",
+) =>
+  essayFigures[kind].filter(
+    (figure) =>
+      text.includes(figure.anchor) &&
+      (figure.placement ?? "after") === placement,
+  );

@@ -83,7 +83,7 @@ export async function createExample(
               "Illustrative relative support, not a probability or calibrated estimate.",
           },
     evidence: ev,
-    ...(kind === "value" ? { preferenceTrace: demoPreference(id) } : {}),
+    ...(kind === "value" ? { ...(demoPreference(id) ? { preferenceTrace: demoPreference(id) } : {}), valueCategory: "constructed" } : {}),
     ...(id === "attention"
       ? {
           spans: ["p2", "p4"].map((region) => ({
@@ -351,6 +351,11 @@ export async function createExample(
         revised ? 0.64 : 0.78,
         ["e2", "e4", ...(revised ? ["notebook"] : [])],
       ),
+      ...["SEEKING", "RAGE", "FEAR", "LUST", "CARE", "Belonging", "PLAY"].map((label, i) => ({
+        ...h(`drive-${i}`, "value", label,
+          "Fictional drive channel for exploring the interface; this is not a measured estimate of a person.", [], null, [], "unknown"),
+        valueCategory: "drive",
+      })),
       h(
         "curiosity",
         "value",

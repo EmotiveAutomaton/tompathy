@@ -116,9 +116,12 @@ test("capped cloud clears the creator cutout; work cards and keyboard tabs fit n
   ).not.toBe("rgb(0, 0, 0)");
   await expect(card.locator(".value-confidence-number")).toHaveText("0.91 on 0–1");
   await expect(card.locator(".preference-chart")).toContainText(
-    "Time across the creator’s life",
+    "Earlier life → Present",
   );
-  await expect(card).not.toContainText("Draft");
+  // The axis reflects the supplied lifetime range; observed event phases remain
+  // in the separate evidence list introduced by trajectory inspection.
+  await expect(card.locator(".preference-chart")).not.toContainText("Draft");
+  await expect(card.locator(".preference-observations")).toContainText("Draft");
   const chart = (await card.locator(".preference-chart").boundingBox())!,
     cardBox = (await card.boundingBox())!;
   expect(chart.width / cardBox.width).toBeGreaterThan(0.85);

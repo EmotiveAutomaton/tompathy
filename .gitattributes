@@ -1,0 +1,5 @@
+# Preserve the exact bytes of the owner's archived manuscripts and curator files.
+src/content/archive/** -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+docs/archive/essay-curation/2026-10-17/** -text whitespace=cr-at-eol
+# The working manuscript also retains the owner's authored whitespace.
+src/content/essays-source.txt whitespace=-blank-at-eol,-blank-at-eof

@@ -55,6 +55,7 @@ class Bundle(Model):
     input_hash: Hash
     implementation_hash: Hash
     ledger_schema_hash: Hash
+    fit_receipts: dict[str, dict] = Field(default_factory=dict)
 
     @model_validator(mode="after")
     def dimensions(self):
@@ -130,6 +131,7 @@ class Bundle(Model):
                 k: np.array(v) for k, v in self.conditional_covariances.items()
             },
             train_ids=tuple(self.train_ids),
+            fit_receipts=self.fit_receipts,
         )
 
 
@@ -154,6 +156,7 @@ def fit_bundle(ledger, *, population, until, task="options"):
         input_hash=input_hash(rows, until),
         implementation_hash=implementation_hash(),
         ledger_schema_hash=schema_hash(),
+        fit_receipts=model.fit_receipts,
     )
 
 

@@ -13,6 +13,9 @@ engine/.venv/
 .pytest_cache/
 engine/.pytest_cache/
 engine/.ruff_cache/
+.ruff_cache/
+# Reproducible website delivery copies; canonical sources and audit stay tracked.
+docs/website-essay-handoff/
 engine/data/
 engine/build/
 engine/dist/

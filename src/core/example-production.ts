@@ -1,5 +1,19 @@
 import type { Artifact, ContextItem, GhostReading } from "./model";
 import { sentences } from "./sentences";
+
+// Explicit AI-involvement examples. Confidence and involvement styling come
+// from the very same fictional sentence records used by ReadingText.
+export const exampleAIMarks = {
+  "sentence-8-1": {
+    description: "Fictional copy-edit assistance, with the controller detail restored by the author.",
+  },
+  "sentence-6-2": {
+    description: "The fictional author selected and revised an assistant's phrasing.",
+  },
+  "sentence-6-3": {
+    description: "A fictional generated insertion with no recorded author review.",
+  },
+};
 const notebook = [
   [
     "2026-09-04",

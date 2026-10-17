@@ -27,21 +27,30 @@ export function goalGraph(nodes: GoalNode[]) {
     children: [],
   }));
   const byId = new Map(all.map((n) => [n.id, n]));
+  if (byId.size !== all.length) throw Error("Duplicate goal hierarchy IDs");
   for (const n of all)
     for (const id of parentIds(n.data)) {
       const p = byId.get(id);
-      if (p) {
+      if (!p) throw Error("Missing goal hierarchy parent");
+      if (!n.parents.includes(p)) {
         n.parents.push(p);
         p.children.push(n);
       }
     }
-  const rank = (n: GraphNode): number =>
-    n.rank >= 0
-      ? n.rank
-      : (n.rank = n.children.length
-          ? 1 + Math.max(...n.children.map(rank))
-          : 0);
-  all.forEach(rank);
+  // Rank bottom-up without recursion; malformed direct callers fail explicitly.
+  const remaining = new Map(all.map((n) => [n.id, n.children.length]));
+  const pending = all.filter((n) => !n.children.length);
+  for (const n of pending) n.rank = 0;
+  for (let i = 0; i < pending.length; i++) {
+    const n = pending[i];
+    for (const parent of n.parents) {
+      parent.rank = Math.max(parent.rank, n.rank + 1);
+      remaining.set(parent.id, remaining.get(parent.id)! - 1);
+      if (remaining.get(parent.id) === 0) pending.push(parent);
+    }
+  }
+  if (pending.length !== all.length)
+    throw Error("Goal hierarchy must be acyclic");
   const roots = all
     .filter((n) => !n.parents.length)
     .sort((a, b) => b.rank - a.rank);
@@ -69,8 +78,12 @@ export function goalGraph(nodes: GoalNode[]) {
     descendants: (n: GraphNode | undefined) => walk(n, "children"),
   };
 }
-export function goalAt(nodes: GoalNode[], region: string, offset: number) {
-  const graph = goalGraph(nodes);
+export function goalAt(
+  nodes: GoalNode[],
+  region: string,
+  offset: number,
+  graph = goalGraph(nodes),
+) {
   return graph.all
     .filter(
       (n) =>
@@ -111,6 +124,8 @@ export function hierarchyLayout(
   width = 320,
   tierShares?: number[],
 ) {
+  height = Number.isFinite(height) && height > 0 ? height : 300;
+  width = Number.isFinite(width) && width > 0 ? width : 320;
   const columns = graph.depth + 1;
   const owner = new Map(
     graph.all.flatMap((n) =>
@@ -150,9 +165,16 @@ export function hierarchyLayout(
     tierShares.every((n) => Number.isFinite(n) && n > 0)
       ? tierShares
       : defaults;
-  const sum = shares.reduce((a, b) => a + b, 0);
+  // Normalize before summing so extreme imported widths cannot overflow or
+  // collapse a tier to zero. User-resized widths keep their proportions.
+  const largestShare = Math.max(...shares);
+  const normalized = shares.map((share) =>
+    Math.max(1e-5, share / largestShare),
+  );
+  const sum = normalized.reduce((a, b) => a + b, 0);
   const edges = [0];
-  for (const share of shares) edges.push(edges.at(-1)! + (width * share) / sum);
+  for (const share of normalized)
+    edges.push(edges.at(-1)! + (width * share) / sum);
   const firstWidth = edges[1];
   const cw = firstWidth;
   const weights = new Map<string, number>();
@@ -376,9 +398,14 @@ export function hierarchyLayout(
       );
       // Manhattan distance is the actual length of the vertical/horizontal
       // route. Facing edges win ties; parent order cannot force a detour.
-      const nearest = pairs.reduce((best, pair) =>
-        pair.distance < best.distance - 1e-7 ? pair : best,
-      );
+      const nearest = pairs.length
+        ? pairs.reduce((best, pair) =>
+            pair.distance < best.distance - 1e-7 ? pair : best,
+          )
+        : {
+            from: { x: child.dotX, y: child.dotY },
+            to: { x: target.dotX, y: target.dotY },
+          };
       const { from, to } = nearest;
       return [
         {
@@ -425,18 +452,20 @@ export function hierarchyLayout(
   return {
     width,
     height,
-    outline: lobes.map((l) => {
-      const top = height * l.from,
-        bottom = height * l.to;
-      const backX = (y: number) =>
-        cw *
-        0.9 *
-        (1 - Math.sqrt(Math.max(0, 1 - ((y / height) * 2 - 1) ** 2)));
-      return (
-        pathFor(l, fork, l.end, 0, 1).replace(/ Z$/, "") +
-        ` L${backX(bottom)},${bottom} A${cw * 0.9},${height / 2} 0 0 1 ${backX(top)},${top} Z`
-      );
-    }),
+    outline: dense
+      ? []
+      : lobes.map((l) => {
+          const top = height * l.from,
+            bottom = height * l.to;
+          const backX = (y: number) =>
+            cw *
+            0.9 *
+            (1 - Math.sqrt(Math.max(0, 1 - ((y / height) * 2 - 1) ** 2)));
+          return (
+            pathFor(l, fork, l.end, 0, 1).replace(/ Z$/, "") +
+            ` L${backX(bottom)},${bottom} A${cw * 0.9},${height / 2} 0 0 1 ${backX(top)},${top} Z`
+          );
+        }),
     tiles,
     columns,
     edges,
@@ -450,6 +479,23 @@ export function hierarchyLayout(
 }
 
 export type HierarchyLayout = ReturnType<typeof hierarchyLayout>;
+
+/** Reserve geometry from captured source groups, never invent goal nodes or
+ * semantic parent links. Missing judgments remain empty space in the outline. */
+export function previewHierarchyLayout(graph: GoalGraph, groups: string[][], height: number, width: number, shares?: number[]) {
+  const root = "layout-only:document";
+  const structural = goalGraph([
+    { id: root, maker: "layout", label: "", description: "", regions: [], evidence: [] },
+    ...groups.map((regions, i) => ({ id: `layout-only:${i}`, maker: "layout", label: "", description: "", regions, evidence: [], parentId: root })),
+  ]);
+  const reserved = hierarchyLayout(structural, height, width, shares);
+  const tiles = reserved.tiles.flatMap(tile => {
+    const node = graph.all.find(n => tile.node.id === root ? n.data.level === "document" :
+      n.data.level !== "document" && n.data.regions.length === tile.node.data.regions.length && n.data.regions.every((r, i) => r === tile.node.data.regions[i]));
+    return node ? [{ ...tile, node, key: `preview/${node.id}`, parentKey: node.parents[0] ? `preview/${node.parents[0].id}` : undefined }] : [];
+  });
+  return { ...reserved, tiles, links: [] };
+}
 export function instanceNeighborhood(layout: HierarchyLayout, key?: string) {
   const tile = layout.tiles.find((t) => t.key === key);
   const ancestors = new Set<string>(),

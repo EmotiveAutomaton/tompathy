@@ -130,7 +130,7 @@ uvicorn.run(app, host="127.0.0.1", port=18765, access_log=False)
     const errors: string[] = [];
     const requests: string[] = [];
     panel.on("pageerror", (error) => errors.push(error.message));
-    panel.on("request", (request) => {
+    context.on("request", (request) => {
       if (request.url().includes(":18765/v1/analyze"))
         requests.push(request.method());
     });
@@ -156,6 +156,9 @@ uvicorn.run(app, host="127.0.0.1", port=18765, access_log=False)
     await expect(
       panel.getByRole("combobox", { name: "Provider", exact: true }),
     ).toHaveValue("none");
+    // This scenario protects the admitted path; preview has its own native check.
+    await expect(panel.getByRole("checkbox", { name: "Research preview", exact: true })).toBeChecked();
+    await panel.getByRole("checkbox", { name: "Research preview", exact: true }).uncheck();
     await panel
       .getByRole("combobox", { name: "Provider", exact: true })
       .selectOption("local");
@@ -235,7 +238,7 @@ uvicorn.run(app, host="127.0.0.1", port=18765, access_log=False)
       exact: true,
     });
     await expect(historyAction).toBeEnabled();
-    const historyRequest = panel.waitForRequest(
+    const historyRequest = context.waitForEvent("request",
       (r) => r.url().endsWith("/v1/analyze") && r.method() === "POST",
     );
     await historyAction.click();

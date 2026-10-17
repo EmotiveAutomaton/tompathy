@@ -6,6 +6,7 @@ per-label depths are reported separately from any claim about people.
 """
 
 from collections import Counter
+from copy import deepcopy
 from datetime import datetime
 
 from ..ledger.ids import digest, maker_id
@@ -40,13 +41,26 @@ def ingest(payload, ledger):
     if len(payload["rows"]) != payload["expected_rows"]:
         raise ValueError("Panel row count differs from dataset card/manifest")
     rows, makers, depths, excluded, keys = [], {}, Counter(), Counter(), set()
+    audit = []
     for item in payload["rows"]:
         key = str(item["id"])
         if key in keys:
             raise ValueError("Duplicate panel source row")
         keys.add(key)
+        source = deepcopy(item.get("native_source", {}))
+        trace = {
+            "observation_id": key,
+            "source_maker_label": item.get("maker"),
+            "native_source": source,
+            "chronology_witness": deepcopy(item.get("chronology_witness")),
+            "decision_id": None,
+            "stated_preference_ids": [],
+            "exclusion": None,
+        }
+        audit.append(trace)
         if item.get("maker") is None or not str(item["maker"]).strip():
             excluded["missing_identity"] += 1
+            trace["exclusion"] = "missing_identity"
             continue
         maker = maker_id(dataset, str(item["maker"]))
         makers[maker] = Maker(
@@ -57,6 +71,7 @@ def ingest(payload, ledger):
             identity_basis=[payload["codebook"]],
         )
         for index, preference in enumerate(item.get("stated_preferences", [])):
+            trace["stated_preference_ids"].append(digest([dataset, key, "stated", index]))
             rows.append(
                 StatedPreference(
                     pref_id=digest([dataset, key, "stated", index]),
@@ -70,9 +85,11 @@ def ingest(payload, ledger):
             )
         if not item.get("t_open") or not item.get("t_resolve"):
             excluded["missing_chronology"] += 1
+            trace["exclusion"] = "missing_chronology"
             continue
         if item.get("tie") or item.get("taken") is None:
             excluded["unresolved_or_tie"] += 1
+            trace["exclusion"] = "unresolved_or_tie"
             continue
         start = datetime.fromisoformat(item["t_open"])
         end = datetime.fromisoformat(item["t_resolve"])
@@ -135,11 +152,27 @@ def ingest(payload, ledger):
                         "codebook": payload["codebook"],
                         "document_ref": ledger.put_text(item.get("prompt", "")),
                         "prompt_id": str(item.get("prompt_id", digest(item.get("prompt", "")))),
+                        "source_observation_id": key,
+                        "source_maker_label": item["maker"],
+                        "native_source": {k: v for k, v in source.items() if k != "observed"},
+                        "source_metadata": {
+                            "source_sha256": payload["source_sha256"],
+                            "manifest_hash": payload.get("manifest_hash"),
+                            "license_evidence": deepcopy(payload.get("license_evidence")),
+                            "mapping": deepcopy(payload.get("mapping", {})),
+                        },
+                    },
+                    # Raw votes/reasons/confidence are post-choice observations,
+                    # never pre-choice features or silently inferred intentions.
+                    outcome={
+                        "native_observation": source.get("observed", {}),
+                        "chronology_witness": deepcopy(item.get("chronology_witness")),
                     },
                 ),
             ]
         )
         depths[maker] += 1
+        trace["decision_id"] = digest([dataset, key])
     rows.extend(makers.values())
     ledger.append_new(rows, provenance_for(rows, "panel:" + dataset, payload["source_sha256"]))
     return {
@@ -149,4 +182,5 @@ def ingest(payload, ledger):
         "depth_histogram": dict(Counter(depths.get(m, 0) for m in makers)),
         "excluded": dict(excluded),
         "codebook": payload["codebook"],
+        "row_audit": audit,
     }

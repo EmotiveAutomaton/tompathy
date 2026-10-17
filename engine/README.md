@@ -12,6 +12,72 @@ calibration evidence. Research admission is separate from software verification.
 
 ## Development
 
+The October 16 driver adds a separate **research preview** path, enabled by
+default after a companion is connected. It has no production admission. See
+[implementation and measured limits](../docs/DRIVER_IMPLEMENTATION.md). Preview
+packets use 1.8 labels and 1.9 maker evidence; preview off retains the admitted
+builder. Local score caches and real-run backups stay under `.local`.
+
+Install preview dependencies and weights explicitly (analysis never downloads):
+
+```sh
+engine/.venv/Scripts/python -m pip install -e "engine[preview]"
+engine/.venv/Scripts/python -m tompathy_engine.preview.readers qwen --directory .local/preview-readers --revision 060db6499f32faf8b98477b0a26969ef7d8b9987
+engine/.venv/Scripts/python -m tompathy_engine.preview.readers smol --directory .local/preview-readers --revision f8027fd0eaeea54caa13c31d31b9fdc459c38b49
+```
+
+Practice loads installed readers on one CPU thread. It starts its own loopback
+Ollama service if the exact Qwen 3.5 9B manifest and Ollama 0.40.3 are installed.
+It never borrows another Ollama service. `TOMPATHY_OLLAMA` and
+`TOMPATHY_OLLAMA_MODELS` select the executable and existing model directory.
+Missing pins produce unavailable states. The practice host closes this service
+and its model children with review Chrome.
+
+Manual startup accepts `--preview-readers .local/preview-readers
+--preview-cache .local/preview-score-cache`. `--preview-judgment-url` must point
+to an exclusively assigned loopback service. CUDA scoring requires the explicit
+`--preview-device cuda` flag and CUDA-enabled PyTorch; it refuses silent fallback.
+CPU is tested/default; GPU performance is unmeasured here. The fixed 9B
+transcriber retains its tested CPU settings on either scoring device.
+
+### Optional Clef-flash and reader settings
+
+`serve --preview-threads 1 --preview-precision int8` is the CPU default.
+`float32` supplies an unquantized comparison; `int8-channel` is experimental.
+Precision and thread settings are part of cache identity. A small local check
+found substantial score/rank differences after quantization; faster does not
+mean equivalent or admitted. Use one thread while shared research jobs run.
+
+`--preview-clef-config .local/clef.json` selects an independently provisioned
+loopback Clef-flash SystemOne service for **technique decisions only**. The JSON
+contains `url`, `model`, `revision` and `sha256`: a
+`http://127.0.0.1:<port>` origin, model `Cloudflare/clef-flash` (or `clef-flash`),
+the operator's pinned model/runtime revision, and its real 64-character manifest
+hash. Do not use placeholder pins. The service must implement the official
+`POST /v1/systemone` contract with `state`, typed `questions`, and per-question
+choice/probability distributions. No service is launched, downloaded or stopped
+by this adapter. Responses must match the requested questions and options.
+The owned local runtime additionally supplies a 256-bit `token` and `identity`.
+Every response must attest that runtime identity. Its exact-call cache excludes
+the ephemeral port and token, so restarting preserves matching results.
+
+If `--preview-judgment-url` is also supplied, fixed Qwen still handles goals and
+corrections. Clef results remain unvalidated regardless of their option scores.
+The ordinary practice launcher continues to use fixed Qwen. **Practice ToMpathy
+with Clef.cmd** starts the isolated CPU Clef service for techniques while keeping
+fixed Qwen for goals/corrections. This is an opt-in comparison: measured CPU
+decisions took 43–48 seconds for five questions on short constructed examples.
+Clef is not a fast initial-render solution on this one-thread configuration.
+See [local runtime and measurement details](../docs/CLEF_LOCAL.md).
+See the [official model/API contract](https://huggingface.co/Cloudflare/clef-flash)
+and the [local implementation record](../docs/DRIVER_IMPLEMENTATION.md).
+
+Ordinary preview retains its 165-second page budget. Explicit offline cache
+assembly can use `--preview-preparation-budget 600` (bounded at 600 seconds);
+module limits and scientific gates remain unchanged. The native cache preparation
+script selects this allowance only in its disposable preparation session. Page
+requests cannot raise it, and prepared caches load with normal live settings.
+
 ```sh
 python -m venv engine/.venv
 engine/.venv/Scripts/python -m pip install -e "engine[dev]"
@@ -29,8 +95,9 @@ the software license.
    time-safe evaluation. Preserve the original 16,959-decision source census
    separately from later chronology exclusions.
 2. Capture/revision adapters, contract packets, local registry generation and
-   opt-in frontend providers. New fields use packet **1.7** because the reviewed
-   frontend already uses 1.5 and 1.6.
+   opt-in frontend providers. Population fields use packet **1.7** because the
+   reviewed frontend already uses 1.5 and 1.6. Structured current estimates use
+   **1.8**; earlier fields and the ledger schema are unchanged.
 3. Literal transcriber, corrections, diagnosticity and calibration with explicit
    module admission records; constructed Ghost conformance checks.
 4. Authenticated loopback companion, cancellation, population display and browser

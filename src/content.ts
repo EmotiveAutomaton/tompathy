@@ -25,6 +25,7 @@ import {
 } from "./core/page";
 import { contributionExplanation } from "./core/reading";
 import { isWebsiteDemo } from "./core/site-demo-scope";
+import { pageEssay } from "./core/page-essay";
 declare global {
   interface Window {
     __tompathyCleanup?: () => void;
@@ -50,6 +51,7 @@ export function installPageAdapter() {
   const abort = new AbortController(),
     sheet = new CSSStyleSheet();
   const transition = selectionTransition();
+  const essay = pageEssay();
   window.addEventListener("scroll", () => transition.clear(), {
     capture: true,
     passive: true,
@@ -155,7 +157,10 @@ export function installPageAdapter() {
   };
   const excluded =
     (isWebsiteDemo(location.href) ? "" : "nav,header,footer,aside,") +
-    '[role="tooltip"],.citation-tooltip-portal,[popover],button,input,textarea,select,script,style,.katex,[contenteditable]:not([contenteditable="false"]),[hidden],[aria-hidden="true"],[data-tompathy-ui],.entryFooter,.entry-footer,.post-footer,.related,.related-posts,.recent-articles,.subscription,.newsletter,.comments,#comments';
+    (location.hostname.endsWith(".wikipedia.org")
+      ? ".reflist,.mw-references-wrap,.navbox,.metadata,.mw-editsection,.catlinks,"
+      : "") +
+    '[role="tooltip"],.citation-tooltip-portal,[popover],button,input,textarea,select,script,style,.katex,.art-latex-loading,[contenteditable]:not([contenteditable="false"]),[hidden],[aria-hidden="true"],[data-tompathy-ui],.entryFooter,.entry-footer,.post-footer,.related,.related-posts,.recent-articles,.subscription,.newsletter,.comments,#comments';
   const readable = (el: HTMLElement) => {
     const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
     let text = "",
@@ -444,6 +449,8 @@ export function installPageAdapter() {
       restored?.artifact ?? (await makeArtifact(texts, source, document.title));
     if (!restored) {
       artifact.authors = pageCreators(document);
+      const description = document.querySelector<HTMLMetaElement>('meta[name="description"],meta[property="og:description"]')?.content.trim();
+      if (description) artifact.metaDescription = description.slice(0, 2000);
       artifact.capture = captureInfo;
       artifact.truncated = candidates.length > 1500 || length > 300000;
       let section = "";
@@ -489,11 +496,17 @@ export function installPageAdapter() {
     if (!restored)
       for (const [id, el] of byId) {
         const points = textPoints(el, excluded),
-          emphasis: { start: number; end: number }[] = [];
+          emphasis: { start: number; end: number }[] = [],
+          codeSpans: { start: number; end: number }[] = [];
         let lastParent: HTMLElement | null = null,
           bold = false;
         points.forEach((p, i) => {
           const parent = p.node.parentElement!;
+          if (parent.closest("code,pre")) {
+            const previous = codeSpans.at(-1);
+            if (previous?.end === i) previous.end = i + 1;
+            else codeSpans.push({ start: i, end: i + 1 });
+          }
           if (parent !== lastParent) {
             bold = Number(getComputedStyle(parent).fontWeight) >= 600;
             lastParent = parent;
@@ -506,6 +519,8 @@ export function installPageAdapter() {
         });
         if (emphasis.length)
           artifact!.regions.find((r) => r.id === id)!.emphasis = emphasis;
+        if (codeSpans.length)
+          artifact!.regions.find((r) => r.id === id)!.codeSpans = codeSpans;
       }
     for (const [i, el] of elements.entries()) {
       if (el.matches("footer"))
@@ -674,6 +689,10 @@ export function installPageAdapter() {
       stale
     )
       return;
+    if (m.type === "TOMPATHY_OPEN_ESSAY") {
+      void essay.open(m.kind, m.theme).then(ok => respond({ ok }));
+      return true;
+    }
     if (m.type === "TOMPATHY_MARK") {
       observer.disconnect();
       clear();
@@ -781,6 +800,7 @@ export function installPageAdapter() {
   };
   chrome.runtime.onMessage.addListener(listener);
   window.__tompathyCleanup = () => {
+    essay.close();
     cancelFind();
     abort.abort();
     observer.disconnect();

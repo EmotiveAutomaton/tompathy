@@ -53,7 +53,12 @@ export function contextSourceURL(input: string, useGitHub: boolean): URL {
 export function githubRepository(input: string) {
   const url = publicURL(input);
   if (url.hostname !== "github.com") return null;
-  const parts = url.pathname.split("/").filter(Boolean).map(decodeURIComponent);
+  let parts: string[];
+  try {
+    parts = url.pathname.split("/").filter(Boolean).map(decodeURIComponent);
+  } catch {
+    return null;
+  }
   const [owner, repository, kind, ...tail] = parts;
   if (
     !/^[A-Za-z0-9-]{1,39}$/.test(owner ?? "") ||

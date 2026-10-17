@@ -64,10 +64,13 @@ class Transcriber:
         )
 
     def ask(self, question_id, *, context="", text="", before=None, admission_test=False):
+        from .admission import metrics_pass
+
         question = CATALOGUE["questions"][question_id]
         record = self.admissions.get(question_id)
         if not admission_test and (
             not record or not record.get("passed") or record.get("transcriber_pin") != self.pin
+            or record.get("status") != "admitted" or not metrics_pass(record, question_id)
         ):
             raise ValueError(
                 f"Transcriber question {question_id} is disabled without matching admission"

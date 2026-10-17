@@ -12,7 +12,9 @@ const meanings: Record<string, string> = {
   drive: "Drive hypothesis",
 };
 export const interpretationLabel = (h: Hypothesis) =>
-  meanings[h.interpretation ?? ""] ?? "Interpretation not specified";
+  h.interpretation === "historical-event" && h.status === "observed"
+    ? "Recorded production event"
+    : (meanings[h.interpretation ?? ""] ?? "Interpretation not specified");
 
 export function contributionExplanation(
   packet: Pick<Packet, "estimates" | "documentContribution">,

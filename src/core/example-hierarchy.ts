@@ -164,6 +164,7 @@ export function exampleHierarchy(
         ...base,
         evidence,
         id: `sentence-${i + 1}-${j + 1}`,
+        ...(i === 5 && j === 2 ? { aiAttribution: { basis: "documented" as const, evidence: ["production-ghost"] } } : {}),
         parentId: i === 5 && j === 2 ? "assembly" : paragraphId,
         label: labels[i][j],
         description:

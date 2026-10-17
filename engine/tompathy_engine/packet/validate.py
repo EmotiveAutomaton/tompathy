@@ -27,11 +27,38 @@ def validate_relations(packet):
     h = table(packet.hypotheses)
     makers = table(packet.makers)
     regions = table(packet.artifact.regions)
+    for region in packet.artifact.regions:
+        require(all(span.end <= utf16_length(region.anchor.exact) for span in region.codeSpans or []), "Code span outside captured region")
     evidence = table(packet.evidence)
     alternatives = table(packet.alternatives)
     hierarchy = table(packet.goalHierarchy.nodes if packet.goalHierarchy else [])
+    if packet.preview and packet.preview.goalLenses is not None:
+        lenses = packet.preview.goalLenses
+        flattened = [ident for lens in lenses for ident in lens]
+        require(len(lenses) == 2 and all(lenses), "Goal lenses require two nonempty views")
+        require(len(flattened) == len(set(flattened)) and set(flattened) <= set(hierarchy), "Goal lenses must reference distinct available nodes")
+        require(all(hierarchy[ident].parentId is None or hierarchy[ident].parentId in lens for lens in lenses for ident in lens), "Goal lens cannot separate a child from its parent")
+    if packet.provider.mode == "preview":
+        require(bool(packet.provider.previewNotice), "Preview requires its notice")
+        require(packet.preview is not None, "Preview requires module status")
+        labeled = [*packet.hypotheses, *hierarchy.values()]
+        labeled.extend(item for frame in packet.currentAttention or [] for item in frame.items)
+        require(all(row.evidenceStatus and row.basis for row in labeled), "Preview items require evidenceStatus and basis")
+        scores = [row.support for row in packet.hypotheses]
+        scores.extend(item.support for frame in packet.currentAttention or [] for item in frame.items)
+        scores.extend(m.predictability for m in packet.makers)
+        if packet.population:
+            scores.extend(item.populationSupport for item in packet.population.items)
+        require(all(score is None or score.semantics == "relative" for score in scores), "Preview support must be relative")
+    else:
+        require(packet.preview is None, "Preview output requires preview mode")
     for row in evidence.values():
         timestamp(row.capturedAt)
+    for maker in makers.values():
+        if maker.evidence is not None:
+            require(packet.schemaVersion == "1.9", "Maker evidence requires contract 1.9")
+            require(not any(e.tier == "statistical" for e in maker.evidence), "Statistical source signals are disabled")
+            require(maker.kind == "unknown" or any(e.tier in {"signed", "declared", "flagged"} for e in maker.evidence), "Maker entries require signed, declared or flagged evidence")
     require(
         packet.scope.kind != "artifact" or not packet.scope.contextIds,
         "Artifact scope cannot use context",
@@ -66,6 +93,11 @@ def validate_relations(packet):
             "Interpretation does not match hypothesis kind",
         )
         support(row.support, row.id)
+        require(
+            row.preferenceEstimate is None
+            or (packet.schemaVersion in {"1.8", "1.9"} and row.kind == "value"),
+            "Structured preference estimates require a value hypothesis in contract 1.8",
+        )
         for s in row.spans or []:
             span(s)
             require(s.region in row.regions, "Hypothesis span outside associated regions")
@@ -106,6 +138,8 @@ def validate_relations(packet):
         refs([row.maker], makers)
         refs(row.regions, regions)
         refs(row.evidence, evidence)
+        if row.aiAttribution:
+            refs(row.aiAttribution.evidence, evidence)
         require(not (row.parentIds and row.parentId), "Ambiguous hierarchy parents")
         parents = row.parentIds or ([row.parentId] if row.parentId else [])
         require(len(parents) == len(set(parents)), "Duplicate hierarchy parents")
@@ -199,6 +233,9 @@ def validate_relations(packet):
         require(len({i.hypothesis for i in items}) == len(items), "Duplicate population item")
         for item in items:
             row = h.get(item.hypothesis)
+            if item.quantiles is not None:
+                require(all(item.populationSupport.scale[0] <= q <= item.populationSupport.scale[1] for q in item.quantiles), "Population quantile outside scale")
+                require(all(a <= b for a, b in zip(item.quantiles, item.quantiles[1:])), "Population quantiles must be sorted")
             require(
                 row and row.kind == "value" and len(row.makers) == 1,
                 "Invalid population hypothesis",

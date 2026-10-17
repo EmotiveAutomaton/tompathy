@@ -12,12 +12,16 @@ import {
   goalAt,
   goalGraph,
   hierarchyLayout,
+  previewHierarchyLayout,
   instanceNeighborhood,
   instanceReelCandidates,
   type GoalNode,
   type GraphNode,
 } from "../core/hierarchy";
 import { SelectionLock } from "./SelectionLock";
+import { EvidenceBadge } from "./PreviewStatus";
+import type { AIMark } from "../core/ai-attribution";
+import { AIOutlines } from "./AIOutlines";
 const REEL_HEIGHT = 42;
 // Measure the same system font used by the cells, so short labels can appear early.
 const labelMeasure = document.createElement("canvas").getContext("2d")!;
@@ -231,6 +235,7 @@ function Reel({
                 onClick={() => onSelect(n.data)}
               >
                 {n.data.label}
+                <EvidenceBadge item={n.data} />
               </button>
             ))}
             {ended && <span className="reel-ending">Earlier end</span>}
@@ -243,7 +248,7 @@ function Reel({
             >
               {column.map((n) => (
                 <div key={n.id} className="spool-item" aria-hidden="true">
-                  <span>{n.data.label}</span>
+                  <span>{n.data.label}<EvidenceBadge item={n.data} /></span>
                 </div>
               ))}
               <div className="spool-item spool-ending" aria-hidden="true" />
@@ -270,6 +275,8 @@ export function ProcessHierarchy({
   onSelect,
   lockReminder = 0,
   onBlockedFocus = () => {},
+  previewGroups,
+  markedAI,
 }: {
   nodes: GoalNode[];
   orderUncertainGroups?: { id: string; nodes: string[]; explanation: string }[];
@@ -286,8 +293,17 @@ export function ProcessHierarchy({
   onSelect: (node: GoalNode) => void;
   lockReminder?: number;
   onBlockedFocus?: (key: string) => void;
+  previewGroups?: string[][];
+  markedAI?: Map<string, AIMark>;
 }) {
-  const graph = useMemo(() => goalGraph(nodes), [nodes]);
+  const graph = useMemo(() => {
+    const result = goalGraph(nodes);
+    if (previewGroups) {
+      for (const node of result.all) node.rank = node.data.level === "document" ? 1 : 0;
+      result.depth = 1;
+    }
+    return result;
+  }, [nodes, previewGroups]);
   const [entryId, setEntryId] = useState<string>();
   const tabEntry = graph.byId.has(entryId ?? "")
     ? entryId
@@ -358,7 +374,7 @@ export function ProcessHierarchy({
     if (host.current) observer.observe(host.current);
     return () => observer.disconnect();
   }, [nodes.length]);
-  const sourceId = goalAt(nodes, region, offset)?.id;
+  const sourceId = goalAt(nodes, region, offset, graph)?.id;
   const selected = graph.byId.get(
     (pinned ? (lockedNodeId ?? sourceId) : (softNodeId ?? sourceId)) ?? "",
   );
@@ -376,8 +392,8 @@ export function ProcessHierarchy({
     units: number;
   } | null>(null);
   const layout = useMemo(
-    () => hierarchyLayout(graph, height, 320, tierShares),
-    [graph, height, tierShares],
+    () => previewGroups ? previewHierarchyLayout(graph, previewGroups, height, 320, tierShares) : hierarchyLayout(graph, height, 320, tierShares),
+    [graph, height, tierShares, previewGroups],
   );
   const resizeTier = (index: number, x: number, edges = layout.edges) => {
     const next = [...edges];
@@ -464,7 +480,7 @@ export function ProcessHierarchy({
     !layout.dense,
     Math.max(32, labelZoom * 1.5),
   );
-  const reveal = Math.max(
+  const reveal = graph.all.length === 1 ? 1 : Math.max(
     0,
     Math.min(1, (navigation.transform.k / labelZoom - 1) / 0.045),
   );
@@ -592,14 +608,14 @@ export function ProcessHierarchy({
       className={`goal-process ${expanded && canExpand ? "reels-open" : ""}`}
       data-testid="process"
     >
-      {!nodes.length ? (
+      {!nodes.length && !previewGroups ? (
         <span className="quiet-empty">No goal hierarchy supplied</span>
       ) : (
         <>
           <div
             ref={host}
             className={`pyramid ${showList ? "pyramid-list" : ""}`}
-            aria-label="Goal hierarchy, local choices on the left, possible broader ends on the right"
+            aria-label={previewGroups?.length ? "Goal hierarchy. The outline reserves space for captured passages; empty space is still awaiting judgments." : "Goal hierarchy, local choices on the left, possible broader ends on the right"}
             onMouseLeave={() => highlight(null)}
             onBlur={(e) => {
               if (!e.currentTarget.contains(e.relatedTarget)) highlight(null);
@@ -623,6 +639,7 @@ export function ProcessHierarchy({
                       onKeyDown={(e) => moveCell(e, n)}
                     >
                       {n.data.label}
+                      <EvidenceBadge item={n.data} />
                     </button>
                   ))}
                 </div>
@@ -695,6 +712,7 @@ export function ProcessHierarchy({
                         ) * stretch;
                       const waveX = t.dotX + (box.x - t.dotX) * stretch,
                         waveY = t.dotY + (box.y - t.dotY) * stretch;
+                      const aiMark = markedAI?.get(t.node.id);
                       return (
                         <g
                           key={t.key}
@@ -708,8 +726,8 @@ export function ProcessHierarchy({
                           data-root={t.rootId}
                           data-exposure={t.exposure}
                           data-rank={t.node.rank}
-                          className={classes(t.node, t.key)}
-                          aria-label={`${t.node.data.level ?? "Hierarchy"} goal: ${t.node.data.label}`}
+                          className={`${classes(t.node, t.key)} ${markedAI?.has(t.node.id) ? "ai-marked" : ""}`}
+                          aria-label={`${t.node.data.level ?? "Hierarchy"} goal: ${t.node.data.label}${aiMark ? ` · ${aiMark.description}` : ""}`}
                           aria-pressed={
                             pinned &&
                             selected?.id === t.node.id &&
@@ -732,6 +750,7 @@ export function ProcessHierarchy({
                             }
                           }}
                         >
+                          <title>{t.node.data.label}{aiMark ? ` · ${aiMark.description}` : ""}{t.node.data.evidenceStatus ? ` · ${t.node.data.evidenceStatus} · ${t.node.data.basis}` : ""}</title>
                           <path
                             d={t.path}
                             className="brick-face"
@@ -783,7 +802,7 @@ export function ProcessHierarchy({
                                       Math.min(240, availableWidth),
                                     ) *
                                       15 +
-                                      6,
+                                      (t.node.data.evidenceStatus ? 21 : 6),
                                     availableHeight,
                                   ) / 2
                                 }
@@ -794,13 +813,14 @@ export function ProcessHierarchy({
                                     Math.min(240, availableWidth),
                                   ) *
                                     15 +
-                                    6,
+                                    (t.node.data.evidenceStatus ? 21 : 6),
                                   availableHeight,
                                 )}
                                 style={{ opacity: reveal }}
                               >
                                 <div className="hierarchy-label">
                                   {t.node.data.label}
+                                  <EvidenceBadge item={t.node.data} />
                                 </div>
                               </foreignObject>
                             </g>
@@ -956,6 +976,7 @@ export function ProcessHierarchy({
                       </g>
                     );
                   })}
+                  <AIOutlines tiles={layout.tiles} marks={markedAI} width={layout.width} height={layout.height} />
                 </g>
               </svg>
             )}

@@ -39,7 +39,20 @@ def apply_hunks(before, hunks):
     return "".join(parts) + before[end:]
 
 
-def ingest_history(payload, ledger, *, adapter):
+def witnessed_parent(item, texts):
+    parents = [str(parent) for parent in item.get("parents", [])]
+    if len(parents) != 1:
+        return None
+    witness = item.get("parent_text_witness")
+    if witness is not None:
+        if witness.get("revision") != parents[0] or not isinstance(witness.get("text"), str):
+            raise ValueError("Parent text witness does not match the recorded parent")
+        if parents[0] in texts and texts[parents[0]] != witness["text"]:
+            raise ValueError("Parent text witnesses conflict")
+    return texts.get(parents[0], witness["text"] if witness else None)
+
+
+def ingest_history(payload, ledger, *, adapter, cancel=lambda: False):
     if payload["license"] not in LICENSES or not payload.get("license_evidence"):
         raise ValueError("History needs an allowlisted license and its evidence")
     snapshots = payload["revisions"]
@@ -49,6 +62,8 @@ def ingest_history(payload, ledger, *, adapter):
     source = payload["source_uri"]
     rows, makers, revisions, texts = [], {}, {}, {}
     for item in snapshots:
+        if cancel():
+            raise InterruptedError("History compilation cancelled")
         key = str(item["id"])
         if key in revisions or not isinstance(item["text"], str):
             raise ValueError("Duplicate revision or nontext content")
@@ -97,9 +112,9 @@ def ingest_history(payload, ledger, *, adapter):
             stated_goal_ids=goal_ids,
         )
         for parent in parents[:1] if len(parents) == 1 else []:
-            if parent not in texts or ident is None:
+            before = witnessed_parent(item, texts)
+            if before is None or ident is None:
                 continue
-            before = texts[parent]
             after = item["text"]
             hunks = diff_hunks(before, after)
             if apply_hunks(before, hunks) != after:
@@ -139,6 +154,8 @@ def ingest_history(payload, ledger, *, adapter):
             tier="T1",
         )
     )
+    if cancel():
+        raise InterruptedError("History compilation cancelled")
     ledger.append_new(rows, provenance_for(rows, adapter, digest(payload)))
     coverage = {
         m: {

@@ -17,9 +17,8 @@ MAPPING = {
     "care": ("CARE", {"Q10:care": 1.0}),
     "play": ("PLAY", {"Q10:play or humor": 1.0}),
     "rage": ("RAGE", {"Q10:conflict": 1.0}),
-    "panic-grief": ("PANIC/GRIEF", {"Q10:loss or separation": 1.0}),
+    "panic-grief": ("Belonging", {"Q10:loss or separation": 1.0}),
     "lust": ("LUST", {"Q10:desire": 1.0}),
-    "body": ("Bodily needs", {"Q10:food or body": 1.0}),
 }
 
 
@@ -78,6 +77,7 @@ def apply_drives(packet, pipeline, fit, admissions, *, tier, domain):
                     "id": hid,
                     "kind": "value",
                     "interpretation": kind,
+                    "valueCategory": "drive" if kind == "drive" else "constructed",
                     "icon": key if kind == "drive" else "value",
                     "label": label,
                     "description": description + f" Conditional contrast {mean:.4g}, 95% interval "
@@ -87,9 +87,21 @@ def apply_drives(packet, pipeline, fit, admissions, *, tier, domain):
                     "regions": [],
                     "status": "hypothesis",
                     "evidence": evidence[-16:],
+                    "preferenceEstimate": {
+                        "quantity": "Revealed-theme contrast from population",
+                        "value": mean,
+                        "reference": 0.0,
+                        "interval": {
+                            "lower": mean - 1.96 * se,
+                            "upper": mean + 1.96 * se,
+                            "level": 0.95,
+                            "method": "Conditional Gaussian projection using the full fitted covariance",
+                        },
+                        "basis": "Scoped revealed-theme mapping from observed choices and corrections. This does not measure neural activity, a private motive or a lifetime set point.",
+                    },
                     "support": support(
                         ndtr(mean / se),
-                        "Relative conditional position above the population; uncalibrated drive mapping",
+                        "Direction confidence: conditional Gaussian sign probability above the population; uncalibrated drive mapping",
                     ),
                 }
             )
@@ -120,6 +132,7 @@ def apply_drives(packet, pipeline, fit, admissions, *, tier, domain):
                 }
             )
             emitted = True
+            packet["schemaVersion"] = "1.8"
             return mean - 1.96 * se
 
         for key, (label, weights) in MAPPING.items():

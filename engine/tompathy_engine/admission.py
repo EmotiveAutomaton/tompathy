@@ -86,3 +86,12 @@ class Admissions:
             except ValueError:
                 continue
         return sorted(out)
+
+    def refused(self, domain):
+        reasons = {}
+        for module in sorted(self.records):
+            try:
+                self.require(module, domain)
+            except ValueError as exc:
+                reasons[module] = str(exc)
+        return reasons

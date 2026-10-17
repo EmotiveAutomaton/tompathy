@@ -63,7 +63,7 @@ def analyze_history(
     folder = Path(directory) / digest(capture["id"]) / digest(payload)
     ledger = Ledger(folder / "ledger")
     phase("Compiling witnessed revisions and corrections")
-    receipt = ingest_history(payload, ledger, adapter=adapter)
+    receipt = ingest_history(payload, ledger, adapter=adapter, cancel=cancel)
     immutable_write(folder / "source.json", payload)
     cutoff = datetime.fromisoformat(capture["capturedAt"])
     run = (

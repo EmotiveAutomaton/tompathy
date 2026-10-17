@@ -4,10 +4,11 @@ This exchange contains observations, never maker judgments. Research may inspect
 failed batteries, but only matching passed questions become model features.
 """
 
+from contextlib import nullcontext
 from datetime import datetime
 from typing import Literal
 
-from pydantic import model_validator
+from pydantic import Field, model_validator
 
 from ..ledger.ids import digest
 from ..ledger.schema import Hash, Model, schema_hash
@@ -82,6 +83,7 @@ class Labels(Model):
     ledger_schema_hash: Hash
     question_records: dict[str, dict]
     labels: dict[str, Label]
+    exclusions: dict[str, str] = Field(default_factory=dict)
 
     def verify(self, ledger):
         if self.ledger_schema_hash != schema_hash():
@@ -107,14 +109,9 @@ class Labels(Model):
             or not r.get("admission_id")
         ):
             raise ValueError(f"Literal question {question} lacks a matching battery")
-        from ..transcribe.admission import BINARY, CROSSCHECK
+        from ..transcribe.admission import metrics_pass
 
-        if (
-            question in BINARY
-            and r.get("accuracy", 0) < 0.85
-            or question in CROSSCHECK
-            and (r.get("crosscheck_agreement") or 0) < 0.8
-        ):
+        if not metrics_pass(r, question):
             raise ValueError(f"Literal question {question} failed its battery")
         return r["admission_id"]
 
@@ -124,13 +121,21 @@ class Labels(Model):
 
 
 def transcribe(ledger, reader, *, domain, until, questions, maximum=500, progress=None):
+    backend = getattr(reader, "backend", None)
+    with backend.session() if hasattr(backend, "session") else nullcontext():
+        return _transcribe(ledger, reader, domain=domain, until=until, questions=questions, maximum=maximum, progress=progress)
+
+
+def _transcribe(ledger, reader, *, domain, until, questions, maximum=500, progress=None):
     """Bounded serial work; cache resumes completed calls, no silent truncation."""
     available = inputs(ledger, domain=domain, until=until)
+    exclusions = {key: "Literal text window exceeds 12,000 characters; item excluded without truncation"
+                  for key, data in available.items() if len(data["text"]) > 12000 or len(data["before"] or "") > 12000}
     jobs = [
         (key, data, q)
         for key, data in sorted(available.items())
         for q in questions
-        if (data["before"] is not None) == (q in {"Q8", "Q9"})
+        if key not in exclusions and (data["before"] is not None) == (q in {"Q8", "Q9"})
     ]
     if len(jobs) > maximum or maximum < 1:
         raise ValueError(f"Transcription needs {len(jobs)} calls; explicit maximum is {maximum}")
@@ -146,6 +151,7 @@ def transcribe(ledger, reader, *, domain, until, questions, maximum=500, progres
         transcriber_pin=reader.pin,
         ledger_schema_hash=schema_hash(),
         labels=labels,
+        exclusions=exclusions,
         question_records={q: reader.admissions[q] for q in questions},
     )
     return result.verify(ledger)

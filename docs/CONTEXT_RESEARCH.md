@@ -1,6 +1,30 @@
 # Context without paid services
 
-Research checked 12 October 2026 UTC; implementation updated 11 October 2026 Pacific. The collector and timeline below are included in 0.2. Broader-search and model sections remain proposals, not inference-quality results. No paid service, model download, training run or scientific experiment was started.
+Research checked 12 October 2026 UTC; stability continuation 15 October 2026. The collector and timeline are implemented. Broader-search and model sections remain proposals, not inference-quality results. No paid service, model download, training run or scientific experiment was started.
+
+## Automatic use and recovery in 0.3
+
+Enable **Light context** once to collect the byline and permitted explicit links
+as each capture/creator changes. This setting is separate from **Follow pages**,
+which captures and analyzes the active webpage while the panel is open. New
+sources remain unselected until chosen in **View context and timeline**.
+Selected context is carried through the engine request and evidence boundary;
+retrieval by itself does not fit preferences or change accepted estimates.
+
+Source planning isolates malformed links and partial host permissions. Available
+sources still run; coverage names skipped sources and offers Refresh sources for
+missing access. Recapturing the same revision preserves collected context.
+Changing the page drops the previous page's context, and late results are
+cancelled. GitHub and HTML caches have separate modes.
+
+GitHub reads are public, unauthenticated and limited to explicitly linked profiles
+or one repository/file lookup. The file route resolves slash-containing refs and
+retrieves at most three revisions within eight API requests. This is context,
+not a recovered writing session or automatic attribution of the article to every
+committer. The pinned API version remains supported per
+[GitHub's version documentation](https://docs.github.com/en/rest/about-the-rest-api/api-versions?apiVersion=2026-03-10).
+The [review readiness record](REVIEW_READINESS_2026-10-16.md) distinguishes live
+checks from repeatable constructed checks and lists remaining gaps.
 
 ## Recommendation
 
@@ -60,7 +84,7 @@ My recommendation is **retrieve first, optionally summarize locally, avoid per-c
 
 ## Chrome extension constraints
 
-The side panel can display progress, request narrow optional host access and retrieve allowed public sources. It cannot read arbitrary sites just because the extension is installed. A new active tab may still need toolbar invocation; restricted Chrome pages cannot be captured.
+The side panel displays progress, requests optional host access and retrieves allowed public sources. Follow pages requests broad page access once, so ordinary new tabs need no repeated toolbar gesture while the panel stays open. Without that opt-in, activeTab may require toolbar invocation. Restricted Chrome pages cannot be captured. Light context checks source access separately and preserves partial results.
 
 A service worker can be suspended after inactivity, so a longer context job needs persisted stages, cancellation and resumable results. Do not rely on a permanently running background loop. See [extension worker lifecycle](https://developer.chrome.com/docs/extensions/develop/concepts/service-workers/lifecycle).
 
@@ -68,7 +92,7 @@ If we later choose a Python crawler or local model server, it is a separately in
 
 ## What remains
 
-1. Connect selected context to Sounding Line's existing request/revision boundary when a callable provider is available.
+1. Selected context now enters the local companion's exact request/revision boundary. Direct submission to Sounding Line and empirical context-benefit evaluation remain separate work.
 2. Review real-world source coverage. The collector currently declines redirects, cannot render JavaScript-only profiles, and does not infer identity from a same-name search. An explicit link can lead to a shared site; its statements still need attribution review.
 3. Compare no context, light context and timeline context on an agreed test set before broadening retrieval. That scientific evaluation is separate from frontend verification.
 4. Add optional local summarization only if the extractive brief is too verbose; add broader metasearch only if known-source coverage is insufficient. No universally available free search index is configured.

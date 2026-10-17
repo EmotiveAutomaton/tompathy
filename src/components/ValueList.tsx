@@ -1,7 +1,9 @@
 import type { Hypothesis, Packet } from "../core/model";
 import { useLayoutEffect, useRef } from "react";
 import { PreferenceChart, PreferenceObservations } from "./PreferenceChart";
+import { PreferenceEstimate, estimateNumber } from "./PreferenceEstimate";
 import { HoverCard } from "./HoverCard";
+import { EvidenceBadge } from "./PreviewStatus";
 import { confidenceWeight, weight } from "./GoalCloud";
 import { DriveBrain } from "./DriveBrain";
 import { driveFor } from "../core/drive-systems";
@@ -89,10 +91,12 @@ export function ValueDetails({
   const score = h.support
     ? probability
       ? `${Math.round(h.support.value * 100)}% probability`
-      : `${h.support.value.toFixed(2)} on ${h.support.scale.join("–")}`
+      : `${h.preferenceEstimate ? estimateNumber(h.support.value) : h.support.value.toFixed(2)} on ${h.support.scale.join("–")}`
     : "Unspecified";
   const scale = probability
     ? "Less  ·  probability  ·  More"
+    : h.support?.meaning.startsWith("Direction confidence:")
+    ? "Less  ·  direction confidence  ·  More"
     : "Less  ·  support  ·  More";
   return (
     <>
@@ -100,6 +104,7 @@ export function ValueDetails({
         <strong className="value-card-title">
           <ValueIcon h={h} />
           <span>{h.label}</span>
+          <EvidenceBadge item={h} />
         </strong>
         <div className="value-confidence-axis" aria-label={score}>
           <strong
@@ -139,7 +144,10 @@ export function ValueDetails({
         </p>
         {drive && <DriveBrain h={h} />}
       </div>
-      {h.preferenceTrace ? (
+      <p className="muted">What would move this estimate: choices among different options, content corrections, stated goals and revision history. {h.valueCategory === "constructed" && "Would it persist if the need it grew from were met another way?"}</p>
+      {h.preferenceEstimate ? (
+        <PreferenceEstimate estimate={h.preferenceEstimate} />
+      ) : h.preferenceTrace ? (
         <>
           <PreferenceChart trace={h.preferenceTrace} />
           <PreferenceObservations trace={h.preferenceTrace} />
@@ -158,6 +166,18 @@ export function ValueDetails({
           })}
         </>
       )}
+      {h.preferenceEstimate && !!h.evidence.length && (
+        <details className="source-note">
+          <summary>Observed evidence</summary>
+          {h.support && <p>{h.support.meaning}</p>}
+          {h.evidence.map((id) => {
+            const evidence = packet?.evidence.find((e) => e.id === id);
+            return (
+              evidence && <blockquote key={id}>{evidence.excerpt}</blockquote>
+            );
+          })}
+        </details>
+      )}
     </>
   );
 }
@@ -166,10 +186,12 @@ export function ValueList({
   values,
   packet,
   inspect,
+  emptyMessage = "No values supplied",
 }: {
   values: Hypothesis[];
   packet: Packet | null;
   inspect: (h: Hypothesis) => void;
+  emptyMessage?: string;
 }) {
   const grid = useRef<HTMLDivElement>(null);
   const identity = values
@@ -248,12 +270,11 @@ export function ValueList({
             >
               <ValueIcon h={h} />
               <span>{h.label}</span>
+              <EvidenceBadge item={h} />
             </button>
           </HoverCard>
         ))}
-      {!values.length && (
-        <span className="quiet-empty">No values supplied</span>
-      )}
+      {!values.length && <span className="quiet-empty">{emptyMessage}</span>}
     </div>
   );
 }

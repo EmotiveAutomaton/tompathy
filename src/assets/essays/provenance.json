@@ -1,0 +1,264 @@
+[
+  {
+    "file": "essay-ai-dense.jpg",
+    "sha256": "98d0cd1d0088b609aed18a5a93c9f55daf33aa7c634ae906ecb9a16b8d254e76",
+    "source": "watermarked_img_14858592478878403897.jpg",
+    "generated": true
+  },
+  {
+    "file": "essay-ai.jpg",
+    "sha256": "c5b1fdee25e4d7d3c3753d3419095bdb5d0faa54b68aefa6afb6e75e9ce45a75",
+    "source": "watermarked_img_8713463105261734538.jpg",
+    "generated": true
+  },
+  {
+    "file": "essay-baseball.jpeg",
+    "sha256": "f77d49815ddd812853b8a32746bd2b2bb00e87654345181f9bee7239f8849d37",
+    "source": "https://abrahamhaskins.org/art/images/slot13.jpeg",
+    "generated": false
+  },
+  {
+    "file": "essay-bridge.jpeg",
+    "sha256": "8bd3e6787c004ae9106f8bda0f7741dbdc43a884fda86277794c237e99279ef2",
+    "source": "https://abrahamhaskins.org/art/images/bridgestability.jpeg",
+    "generated": false
+  },
+  {
+    "file": "essay-context.jpg",
+    "sha256": "9b964d47da5e3486b261149757665518e136bdb841b582d83df252447ad54662",
+    "source": "watermarked_img_17008026881684505796.jpg",
+    "generated": true
+  },
+  {
+    "file": "essay-emotion.jpg",
+    "sha256": "9d36869cfbb102441dc4bd75461e995183121db86eb7aeab30684b7750591c6c",
+    "source": "watermarked_img_14853228333562145622.jpg",
+    "generated": true
+  },
+  {
+    "file": "essay-expertise.jpg",
+    "sha256": "b7b8b1e25a58ad2a7a8c4add5202cb81bc985739344cbb3560aa956ab3d0117e",
+    "source": "Expertise.jpg",
+    "generated": true,
+    "archive": "docs/archive/essay-curation/2026-10-17/Expertise.jpg"
+  },
+  {
+    "file": "essay-fear.jpg",
+    "sha256": "ecf3edd8717f4a638a42124aa4a36d80aecc37e2845fb20f0a501ea33ee6ee03",
+    "source": "https://images.squarespace-cdn.com/content/v1/60241cb68df65b530cd84d95/1720460759776-H8GDR0OCMC7Y8VNE6XJ2/io_fear11.jpg",
+    "generated": false
+  },
+  {
+    "file": "essay-goal.jpg",
+    "sha256": "c981f22b09e7e3c6cc885fe8d5aa3fc7b9c5c31e84324201d1e205beec7be7ce",
+    "source": "watermarked_img_272775939149655399.jpg",
+    "generated": true
+  },
+  {
+    "file": "essay-humility.jpeg",
+    "sha256": "f0de1e2667e1664dd8bbcbf411115511f495db0b442ee64a853bf42292d37fb2",
+    "source": "https://abrahamhaskins.org/art/images/zenbuddhists.jpeg",
+    "generated": false
+  },
+  {
+    "file": "essay-noise.jpg",
+    "sha256": "8a6c8b70a0289966e553249f2db61d91d11976ddc6e2bcf5d14eab32c1e700a0",
+    "source": "watermarked_img_3261974849193252330.jpg",
+    "generated": true
+  },
+  {
+    "file": "essay-pyramid.jpg",
+    "sha256": "715f9a3056dbc46fd1056fe6b950904f73bd21c8be524d5fb6d1c5ddecc80253",
+    "source": "watermarked_img_8086045577229968550.jpg",
+    "generated": true
+  },
+  {
+    "file": "essay-schadenfreude.webp",
+    "sha256": "a4799f8d7ec6bffccf66e3cee2a1fcb1d523c7d369e205e449b340116aa03efd",
+    "source": "Schadenfreude_inside_out.webp",
+    "generated": false
+  },
+  {
+    "file": "essay-steps.jpg",
+    "sha256": "c4c1ec796c955e759562abc0a02d980dc04c6fdf436bb300957102a601bb754b",
+    "source": "watermarked_img_6507285123264628295.jpg",
+    "generated": true
+  },
+  {
+    "file": "essay-aislop.jpg",
+    "sha256": "0cc0540691996f185da9728ada53354366c1fdf31c4b850734d46f00aff3bd43",
+    "source": "AISlop.jpg",
+    "generated": true,
+    "archive": "docs/archive/essay-curation/2026-10-17/AISlop.jpg"
+  },
+  {
+    "file": "essay-andweneedeveryone'shelp.jpg",
+    "sha256": "ec2b5494ce6fd015e02b7b75d0fbe83c8b0dd20034763174d547c5c0f7642e9d",
+    "source": "AndWeNeedEveryone'sHelp.jpg",
+    "generated": true,
+    "previousSha256": "194607a626ec25edc30e9d902472d3c7a46148285232c15666dc6ec406579c17",
+    "updated": "2026-10-17; owner replacement, AI attribution confirmed",
+    "archive": "docs/archive/essay-curation/2026-10-17/AndWeNeedEveryone'sHelp.jpg"
+  },
+  {
+    "file": "essay-artiscompressedintent.png",
+    "sha256": "f8ebabdb011d6e7ec07da32498e2348ef0811ce78d173755b320d4e5650d8dd5",
+    "source": "ArtIsCompressedIntent.png",
+    "generated": true,
+    "archive": "docs/archive/essay-curation/2026-10-17/ArtIsCompressedIntent.png"
+  },
+  {
+    "file": "essay-botfarms.jpg",
+    "sha256": "6b9b24dbec9ff16bb4430ea81fd165414ee085140990ec602674c8476fc55db1",
+    "source": "BotFarms.jpg",
+    "generated": false,
+    "archive": "docs/archive/essay-curation/2026-10-17/BotFarms.jpg"
+  },
+  {
+    "file": "essay-cambridgeanalytica.jpg",
+    "sha256": "8cfe716d214791b306d1bf452bf76fc2fba515744cc7ac38f0c8b3601a2f2847",
+    "source": "CambridgeAnalytica.jpg",
+    "generated": false,
+    "archive": "docs/archive/essay-curation/2026-10-17/CambridgeAnalytica.jpg"
+  },
+  {
+    "file": "essay-contexthelpsalot.jpg",
+    "sha256": "9b964d47da5e3486b261149757665518e136bdb841b582d83df252447ad54662",
+    "source": "ContextHelpsALot.jpg",
+    "generated": true,
+    "archive": "docs/archive/essay-curation/2026-10-17/ContextHelpsALot.jpg"
+  },
+  {
+    "file": "essay-dataemotionchip.jpg",
+    "sha256": "0603a028c2576f72be251a9b6830cd605f4c6aec01067c0df79d02d4ebb22c12",
+    "source": "DataEmotionChip.jpg",
+    "generated": false,
+    "archive": "docs/archive/essay-curation/2026-10-17/DataEmotionChip.jpg"
+  },
+  {
+    "file": "essay-dataempathy.jpg",
+    "sha256": "abc608d88be61a9ecc95dc8c885914fa3d238a0dbf3b0b31be15f7ae14368fc6",
+    "source": "DataEmpathy.jpg",
+    "generated": false,
+    "archive": "docs/archive/essay-curation/2026-10-17/DataEmpathy.jpg"
+  },
+  {
+    "file": "essay-eckmanfear1.png",
+    "sha256": "bc082f7db7c29982079a819e2d40dc9fbc128e9e562a17225493ae5dc5369dd9",
+    "source": "EckmanFear1.png",
+    "generated": false,
+    "archive": "docs/archive/essay-curation/2026-10-17/EckmanFear1.png"
+  },
+  {
+    "file": "essay-eckmanfear2.jpg",
+    "sha256": "6d5124fd320f4e14df743314c64a8693d77a879ebbd5da6cbfbc13f1510d178b",
+    "source": "EckmanFear2.jpg",
+    "generated": false,
+    "archive": "docs/archive/essay-curation/2026-10-17/EckmanFear2.jpg"
+  },
+  {
+    "file": "essay-eckmanfear3.avif",
+    "sha256": "38493095709bcab91f35dd8b3dc7b5bc92dcc4df16c2b36b52a94eeaa446ddd5",
+    "source": "EckmanFear3.avif",
+    "generated": false,
+    "archive": "docs/archive/essay-curation/2026-10-17/EckmanFear3.avif"
+  },
+  {
+    "file": "essay-eckmanfear4.jpg",
+    "sha256": "e4500210f8ae6eefeacc1abde67e72cc7093f811ffbcc815ab3fac09f0d2d0e7",
+    "source": "EckmanFear4.jpg",
+    "generated": false,
+    "archive": "docs/archive/essay-curation/2026-10-17/EckmanFear4.jpg"
+  },
+  {
+    "file": "essay-expertiseerosion.jpg",
+    "sha256": "8a6c8b70a0289966e553249f2db61d91d11976ddc6e2bcf5d14eab32c1e700a0",
+    "source": "ExpertiseErosion.jpg",
+    "generated": true,
+    "archive": "docs/archive/essay-curation/2026-10-17/ExpertiseErosion.jpg"
+  },
+  {
+    "file": "essay-flock.avif",
+    "sha256": "a00b203ea9c50bb8185227bdb6e44ee03fab637daf011dec26257604208aaa88",
+    "source": "Flock.avif",
+    "generated": false,
+    "archive": "docs/archive/essay-curation/2026-10-17/Flock.avif"
+  },
+  {
+    "file": "essay-initialinference.jpg",
+    "sha256": "c4c1ec796c955e759562abc0a02d980dc04c6fdf436bb300957102a601bb754b",
+    "source": "InitialInference.jpg",
+    "generated": true,
+    "archive": "docs/archive/essay-curation/2026-10-17/InitialInference.jpg"
+  },
+  {
+    "file": "essay-insideout2.jpg",
+    "sha256": "ef851fdc1934a8223218daba3f156f4c961ee68bff6686592c7b44f411f6ad6a",
+    "source": "InsideOut2.jpg",
+    "generated": false,
+    "archive": "docs/archive/essay-curation/2026-10-17/InsideOut2.jpg"
+  },
+  {
+    "file": "essay-pixarcheaters.jpg",
+    "sha256": "b9d15f62605a000226c1d6974878513e8310a1569e5bdb5840c8fde31e34a887",
+    "source": "PixarCheaters.jpg",
+    "generated": false,
+    "archive": "docs/archive/essay-curation/2026-10-17/PixarCheaters.jpg"
+  },
+  {
+    "file": "essay-pixar_schadenfreude.webp",
+    "sha256": "a4799f8d7ec6bffccf66e3cee2a1fcb1d523c7d369e205e449b340116aa03efd",
+    "source": "Pixar_Schadenfreude.webp",
+    "generated": false,
+    "archive": "docs/archive/essay-curation/2026-10-17/Pixar_Schadenfreude.webp"
+  },
+  {
+    "file": "essay-reallifestartrek.png",
+    "sha256": "9a3a52a35481c89bddea2234308127d402f4e2d0c01c1f843c8566a7c7dc08a5",
+    "source": "RealLifeStarTrek.png",
+    "generated": false,
+    "archive": "docs/archive/essay-curation/2026-10-17/RealLifeStarTrek.png"
+  },
+  {
+    "file": "essay-rlhfmakesitlookgood.jpg",
+    "sha256": "98d0cd1d0088b609aed18a5a93c9f55daf33aa7c634ae906ecb9a16b8d254e76",
+    "source": "RLHFMakesItLookGood.jpg",
+    "generated": true,
+    "archive": "docs/archive/essay-curation/2026-10-17/RLHFMakesItLookGood.jpg"
+  },
+  {
+    "file": "essay-thehatredofinefficiency.jpg",
+    "sha256": "d65d12baaf1a3386dab080cbdc8552e0a01a3a62270153d9ca95e06e490c416d",
+    "source": "TheHatredOfInefficiency.jpg",
+    "generated": true,
+    "archive": "docs/archive/essay-curation/2026-10-17/TheHatredOfInefficiency.jpg"
+  },
+  {
+    "file": "essay-thehumancheat.jpg",
+    "sha256": "9d36869cfbb102441dc4bd75461e995183121db86eb7aeab30684b7750591c6c",
+    "source": "TheHumanCheat.jpg",
+    "generated": true,
+    "archive": "docs/archive/essay-curation/2026-10-17/TheHumanCheat.jpg"
+  },
+  {
+    "file": "essay-theinferenceofempathy.jpg",
+    "sha256": "d8c4d86acb500a5361c99af5533eb81f4213f812a7943c8289c28a5fc999cf13",
+    "source": "TheInferenceofEmpathy.jpg",
+    "generated": true,
+    "archive": "docs/archive/essay-curation/2026-10-17/TheInferenceofEmpathy.jpg"
+  },
+  {
+    "file": "essay-thevaluabletop.jpg",
+    "sha256": "b612d743ddd268e4aff8887bc3e4960245ab3cbd72d4e74c5170826373d1d4fe",
+    "source": "TheValuableTop.jpg",
+    "generated": true,
+    "archive": "docs/archive/essay-curation/2026-10-17/TheValuableTop.jpg"
+  },
+  {
+    "file": "essay-thisiswhataigetsintrainings.jpg",
+    "sha256": "c981f22b09e7e3c6cc885fe8d5aa3fc7b9c5c31e84324201d1e205beec7be7ce",
+    "source": "ThisIsWhatAIGetsInTrainings.jpg",
+    "generated": true,
+    "archive": "docs/archive/essay-curation/2026-10-17/ThisIsWhatAIGetsInTrainings.jpg"
+  }
+]

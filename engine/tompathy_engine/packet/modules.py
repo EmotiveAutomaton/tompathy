@@ -170,9 +170,12 @@ def apply_modules(packet, ledger, admissions, *, domain, tier, pipeline=None):
         regions = packet["artifact"]["regions"]
         for c in corrections:
             text = ledger.get_text(c.after_ref).strip()
+            if ".wikipedia.org/wiki/" in packet["artifact"]["source"]:
+                from ..adapters.wiki import visible_text
+                text = visible_text(text)
             # A fragment must have one exact surviving location. Deleted or
             # ambiguous historical fragments remain unlocated witnesses.
-            matched = [r for r in regions if len(text) >= 3 and text in r["anchor"]["exact"]]
+            matched = [r for r in regions if len(text) >= 3 and text in " ".join(r["anchor"]["exact"].split())]
             if len(matched) == 1:
                 focused[(c.maker_id, matched[0]["id"])].append(c)
         frames = []
@@ -191,7 +194,7 @@ def apply_modules(packet, ledger, admissions, *, domain, tier, pipeline=None):
                     "id": hid,
                     "kind": "attention",
                     "interpretation": "current-attention",
-                    "label": "Edit focus",
+                    "label": "Where edits concentrated",
                     "description": f"{len(rows)} recorded corrections touch this surviving region. "
                     "This locates edits; it does not establish the maker's present mental state.",
                     "makers": [maker],

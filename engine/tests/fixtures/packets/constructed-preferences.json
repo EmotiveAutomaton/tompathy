@@ -1,6 +1,6 @@
 {
-  "schemaVersion": "1.7",
-  "id": "77d9694e40eeb434eb40ffab4bafe97eaf742e347e9ed4df27b7b72119cd66f0",
+  "schemaVersion": "1.8",
+  "id": "73b6f61e6754b9bfe8ab1df13f3162d72165d763f72f55a3c6a19c47b44ab395",
   "revision": 1,
   "artifact": {
     "id": "https://example.org/model-fixture",
@@ -24,7 +24,7 @@
   },
   "provider": {
     "id": "tompathy-engine",
-    "method": "ToMpathy engine 0.1.0a1; commit 2a0c54233344ae3f64bed9806442289d7dab726a + local engine changes; implementation f8207f2b65e12885f1493555bab2792b1050495ea7231324f9d0760e94626fca; evidence tier T2; domain writing. Text alone does not update maker preferences. Actual contributing admission records are in provider.admissions.",
+    "method": "ToMpathy engine 0.1.0a1; commit 82789fdb50d9366ab9352129b01ee37622554dfa + local engine changes; implementation eb44a6a428f6b3cb5598857adea0bdec7efe818ab1aa9cb20fbc69bd2dce7df0; evidence tier T2; domain writing. Text alone does not update maker preferences. Actual contributing admission records are in provider.admissions.",
     "admissions": [
       "constructed-test-only"
     ]
@@ -798,6 +798,18 @@
         "9b561dce3a0d44b188b5c7e15bfd333318e2ad52ea04a346eb8129a81113c733",
         "9242200be66a32b330dcd6b2fcace8ab786952598d44d8ccbf78d10604d52abc"
       ],
+      "preferenceEstimate": {
+        "quantity": "Coefficient difference from population",
+        "value": -0.025810933558509535,
+        "reference": 0.0,
+        "interval": {
+          "lower": -0.04476671743496634,
+          "upper": -0.006855149682052728,
+          "level": 0.95,
+          "method": "Conditional Gaussian approximation; other measured features held fixed"
+        },
+        "basis": "Observed comparisons in the pinned fit. This is a conditional feature contrast, not a measured preferred life state or calibrated personal value."
+      },
       "interpretation": "preference",
       "icon": "value"
     },
@@ -830,6 +842,18 @@
         "3053a97a676c9c3877837960d92db4e384b2fbbfbaf9634f054899ae7cc47d67",
         "182747c8e5ed1729a0af8fcd14bb04c25322e0bb9b54704923789f68b80c65a0"
       ],
+      "preferenceEstimate": {
+        "quantity": "Coefficient difference from population",
+        "value": 0.025810933558509535,
+        "reference": 0.0,
+        "interval": {
+          "lower": 0.006855149682052728,
+          "upper": 0.04476671743496634,
+          "level": 0.95,
+          "method": "Conditional Gaussian approximation; other measured features held fixed"
+        },
+        "basis": "Observed comparisons in the pinned fit. This is a conditional feature contrast, not a measured preferred life state or calibrated personal value."
+      },
       "interpretation": "preference",
       "icon": "value"
     }

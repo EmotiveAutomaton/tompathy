@@ -143,7 +143,7 @@ def apply_preferences(
             positive = offset > 0
             value = float(ndtr(offset / se))
             hid = digest(["preference", bundle.input_hash, ident, name])
-            meaning = "Probability-like relative position above the pooled coefficient; conditional Gaussian approximation, not calibrated against stated values."
+            meaning = "Direction confidence: conditional Gaussian sign probability above the pooled coefficient; not calibrated against stated values."
             packet["hypotheses"].append(
                 {
                     "id": hid,
@@ -164,6 +164,18 @@ def apply_preferences(
                         "meaning": meaning,
                     },
                     "evidence": evidence,
+                    "preferenceEstimate": {
+                        "quantity": "Coefficient difference from population",
+                        "value": float(offset),
+                        "reference": 0.0,
+                        "interval": {
+                            "lower": float(low),
+                            "upper": float(high),
+                            "level": 0.95,
+                            "method": "Conditional Gaussian approximation; other measured features held fixed",
+                        },
+                        "basis": "Observed comparisons in the pinned fit. This is a conditional feature contrast, not a measured preferred life state or calibrated personal value.",
+                    },
                 }
             )
             population["items"].append(
@@ -188,6 +200,7 @@ def apply_preferences(
             )
             emitted = True
     if emitted:
+        packet["schemaVersion"] = "1.8"
         packet["population"] = population
         return [admission.admission_id]
     return []

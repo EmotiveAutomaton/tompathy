@@ -170,6 +170,7 @@ def pack(model, rows, population, task):
         conditional_intervals={k: v.tolist() for k, v in model.conditional_intervals.items()},
         conditional_covariances={k: v.tolist() for k, v in model.conditional_covariances.items()},
         train_ids=list(model.train_ids),
+        fit_receipts=model.fit_receipts,
         input_hash=input_hash(rows, model.until),
         implementation_hash=implementation_hash(),
         ledger_schema_hash=schema_hash(),

@@ -6,6 +6,8 @@ import {
   type Artifact,
 } from "./model";
 
+import { exportSafe } from "./export-privacy";
+
 const escapeHTML = (s: string) =>
   s.replace(
     /[&<>"']/g,
@@ -35,6 +37,7 @@ function formattedRegion(r: Artifact["regions"][number]) {
 }
 /** A readable, inert page copy and its exact analysis travel in one file. */
 export function readingFile(session: Session): string {
+  session = exportSafe(session);
   if (!session.artifact) throw Error("Open a page before exporting a reading.");
   const a = session.artifact;
   // A context change can leave the last account awaiting replacement. Preserve

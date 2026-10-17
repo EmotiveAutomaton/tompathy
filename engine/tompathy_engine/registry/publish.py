@@ -14,6 +14,12 @@ def publish(packets, destination, *, private=False):
     prepared = []
     for raw in packets:
         packet = Packet.model_validate(raw).wire()
+        if packet["provider"].get("mode") == "preview":
+            raise ValueError("Research preview readings stay local and cannot enter a registry")
+        if any(m.get("localLabel") or m.get("kind") in {"person", "bot"} for m in packet["makers"]):
+            raise ValueError("Per-person readings stay local and cannot enter a registry")
+        if any(h["kind"] == "value" and any(m["identity"] != "synthetic" and m["id"] in h["makers"] for m in packet["makers"]) for h in packet["hypotheses"]):
+            raise ValueError("Per-person value readings stay local and cannot enter a registry")
         artifact = packet["artifact"]
         if not re.fullmatch(r"[0-9a-f]{64}", artifact["revision"]):
             raise ValueError("Registry needs a content SHA-256 revision")

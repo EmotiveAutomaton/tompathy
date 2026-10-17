@@ -1,8 +1,12 @@
+import { readFileSync } from "node:fs";
 import { test } from "node:test";
+import { keepsPreviewProgress } from "../src/core/preview";
 import {
   localProvider,
   registryProvider,
   providerOrigin,
+  checkCompanion,
+  CompanionUnavailable,
 } from "../src/core/provider";
 import assert from "node:assert/strict";
 import {
@@ -12,6 +16,8 @@ import {
 } from "../src/core/example";
 import {
   makeArtifact,
+  PreferenceTraceSchema,
+  PreferenceEstimateSchema,
   matchPacket,
   parsePacket,
   SessionSchema,
@@ -30,6 +36,7 @@ import {
   goalTree,
   goalGraph,
   hierarchyLayout,
+  previewHierarchyLayout,
   reelCandidates,
   instanceNeighborhood,
   instanceReelCandidates,
@@ -42,6 +49,246 @@ import {
   githubRepository,
 } from "../src/core/github-context";
 import { ContextSchema } from "../src/core/model";
+import { prepareContextSources } from "../src/core/creator-context";
+import { exportSafe } from "../src/core/export-privacy";
+
+test("preview exports refuse personal readings, including history, and remove local usernames", () => {
+  const person = { provider: { mode: "preview" }, makers: [{ kind: "person", localLabel: "Editor Name", label: "Editor 1" }] };
+  assert.throws(() => exportSafe({ history: [person] }), /stay local/);
+  assert.deepEqual(exportSafe({ makers: [{ localLabel: "Editor Name", label: "Editor 1" }], detail: "Editor Name changed this." }), { makers: [{ label: "Editor 1" }], detail: "Editor 1 changed this." });
+  assert.throws(() => exportSafe({ makers: person.makers, anchor: { exact: "Editor Name" } }), /anchors/);
+});
+
+test("unusual DAG shapes retain every node and finite geometry; dense graphs avoid unused SVG work", () => {
+  let seed = 145;
+  const random = () =>
+    (seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0) / 4294967296;
+  const node = (i: number): import("../src/core/hierarchy").GoalNode => ({
+    id: `n${i}`,
+    maker: "m",
+    label: `Node ${i}`,
+    description: "Constructed graph",
+    regions: ["r"],
+    evidence: [],
+  });
+  const shapes = [
+    Array.from({ length: 64 }, (_, i) => ({
+      ...node(i),
+      ...(i < 63 ? { parentIds: [`n${i + 1}`] } : {}),
+    })),
+  ];
+  for (let sample = 0; sample < 40; sample++) {
+    const nodes = Array.from(
+      { length: 1 + Math.floor(random() * 100) },
+      (_, i) => node(i),
+    );
+    nodes.forEach((n, i) => {
+      const parents = nodes
+        .slice(i + 1)
+        .filter(() => random() < 0.06)
+        .slice(0, 4)
+        .map((p) => p.id);
+      if (parents.length) n.parentIds = parents;
+    });
+    shapes.push(nodes);
+  }
+  for (const nodes of shapes) {
+    const graph = goalGraph(nodes);
+    for (const height of [160, 500]) {
+      const layout = hierarchyLayout(graph, height);
+      assert.equal(layout.tiles.length, nodes.length);
+      assert.equal(
+        new Set(layout.tiles.map((t) => t.node.id)).size,
+        nodes.length,
+      );
+      for (const t of layout.tiles) {
+        assert.ok(
+          [t.x, t.y, t.height, t.width, t.dotX, t.dotY, t.dotHeight].every(
+            Number.isFinite,
+          ),
+        );
+        assert.doesNotMatch(t.path, /NaN|Infinity/);
+        assert.ok(
+          layout
+            .slices(t.dotX)
+            .some(([a, b]) => t.dotY >= a - 1e-7 && t.dotY <= b + 1e-7),
+        );
+      }
+    }
+  }
+  const dense = hierarchyLayout(
+    goalGraph(Array.from({ length: 3000 }, (_, i) => node(i))),
+  );
+  assert.equal(dense.dense, true);
+  assert.equal(dense.outline.length, 0);
+  assert.equal(dense.tiles.length, 0);
+  const small = goalGraph([{ ...node(0), parentIds: ["n1"] }, node(1)]);
+  assert.ok(
+    hierarchyLayout(small, 0, 0, [1e308, 1e308]).edges.every(Number.isFinite),
+  );
+  assert.throws(
+    () => goalGraph([{ ...node(0), parentIds: ["n0"] }]),
+    /acyclic/,
+  );
+  assert.throws(() => goalGraph([node(0), node(0)]), /Duplicate/);
+  assert.throws(
+    () => goalGraph([{ ...node(0), parentIds: ["absent"] }]),
+    /Missing/,
+  );
+});
+
+test("structured estimates preserve actual units and unknown uncertainty; trajectories require ordered points", async () => {
+  const estimate = {
+    quantity: "Conditional coefficient",
+    value: -0.8,
+    reference: 0,
+    interval: {
+      lower: -1.2,
+      upper: -0.4,
+      level: 0.95,
+      method: "Constructed conditional interval",
+    },
+    basis: "Constructed verification only",
+  };
+  assert.deepEqual(PreferenceEstimateSchema.parse(estimate), estimate);
+  assert.equal(
+    PreferenceEstimateSchema.parse({ ...estimate, interval: null }).interval,
+    null,
+  );
+  for (const value of [NaN, Infinity, -Infinity])
+    assert.equal(
+      PreferenceEstimateSchema.safeParse({ ...estimate, value }).success,
+      false,
+    );
+  assert.equal(
+    PreferenceEstimateSchema.safeParse({
+      ...estimate,
+      interval: { ...estimate.interval, upper: -1 },
+    }).success,
+    false,
+  );
+  const packet = await createExample();
+  const value = packet.hypotheses.find((h) => h.kind === "value")!;
+  const trace = structuredClone(value.preferenceTrace!);
+  assert.equal(
+    PreferenceTraceSchema.safeParse({
+      ...trace,
+      points: [...trace.points].reverse(),
+    }).success,
+    false,
+  );
+  assert.equal(
+    PreferenceTraceSchema.safeParse({
+      ...trace,
+      points: [trace.points[0], trace.points[0]],
+    }).success,
+    false,
+  );
+  assert.equal(
+    PreferenceTraceSchema.parse({ ...trace, observations: [] }).observations
+      .length,
+    0,
+  );
+  delete value.preferenceTrace;
+  value.preferenceEstimate = estimate;
+  assert.throws(() => parsePacket(JSON.stringify(packet)), /1.8/);
+  packet.schemaVersion = "1.8";
+  assert.deepEqual(
+    parsePacket(JSON.stringify(packet)).hypotheses.find(
+      (h) => h.id === value.id,
+    )!.preferenceEstimate,
+    estimate,
+  );
+});
+
+test("context planning isolates bad links, partial permissions and cache modes", async () => {
+  clearContextCache();
+  assert.equal(
+    githubRepository("https://github.com/alice/repo/blob/main/%ZZ"),
+    null,
+  );
+  const unusualSource = prepareContextSources(
+    [
+      { author: "Alice", url: "https://github.com/alice/repo/blob/main/%ZZ" },
+      { author: "Alice", url: "https://example.org/about" },
+    ],
+    [],
+    "Alice",
+    true,
+  );
+  assert.ok(unusualSource.origins.includes("https://example.org"));
+  const sources = [
+    { author: "Alice", url: "not a URL" },
+    { author: "Alice", url: "https://github.com/alice" },
+    { author: "Alice", url: "https://ungranted.example.org/about" },
+  ];
+  const plan = prepareContextSources(
+    sources,
+    [
+      "https://github.com/alice/repo/blob/main/%ZZ",
+      "https://github.com/alice/repo",
+    ],
+    "Alice",
+    true,
+  );
+  assert.equal(plan.skipped.length, 2);
+  assert.deepEqual(plan.origins, [
+    "https://api.github.com",
+    "https://ungranted.example.org",
+  ]);
+  const seen: string[] = [];
+  const base = {
+    sources,
+    creator: "Alice",
+    useGitHub: true,
+    followLinks: false,
+    signal: new AbortController().signal,
+    onResult: () => {},
+    onProgress: () => {},
+    allowedOrigins: ["https://api.github.com"],
+    fetcher: async (url: RequestInfo | URL) => {
+      seen.push(String(url));
+      return new Response(
+        JSON.stringify({ login: "alice", bio: "Constructed public profile" }),
+        { headers: { "content-type": "application/json" } },
+      );
+    },
+  };
+  const result = await collectCreatorContext(base);
+  assert.equal(result.collected, 1);
+  assert.equal(result.skipped.length, 2);
+  assert.deepEqual(seen, ["https://api.github.com/users/alice"]);
+  assert.ok(result.skipped.some((s) => s.reason.startsWith("Source access")));
+  const repo = "https://github.com/alice/repo";
+  await collectCreatorContext({
+    ...base,
+    sources: [{ author: "Alice", url: repo }],
+    useGitHub: false,
+    allowedOrigins: ["https://github.com"],
+    fetcher: async () =>
+      new Response("Constructed repository page", {
+        headers: { "content-type": "text/plain" },
+      }),
+  });
+  let apiCalls = 0;
+  const github = await collectCreatorContext({
+    ...base,
+    sources: [{ author: "Alice", url: repo }],
+    fetcher: async (url) => {
+      apiCalls++;
+      return new Response(
+        JSON.stringify(
+          String(url).includes("/commits?")
+            ? []
+            : { private: false, default_branch: "main" },
+        ),
+        { headers: { "content-type": "application/json" } },
+      );
+    },
+  });
+  assert.equal(github.cached, 0);
+  assert.equal(apiCalls, 2);
+});
 
 test("provider validation and registry fetch bind to the exact capture", async () => {
   assert.equal(providerOrigin({ kind: "none" }), null);
@@ -111,6 +358,36 @@ test("provider validation and registry fetch bind to the exact capture", async (
   );
 });
 
+test("unreachable companion has recovery guidance without disguising server errors", async () => {
+  const p = await createExample();
+  const request = {
+    requestId: "offline",
+    artifact: p.artifact,
+    scope: "artifact" as const,
+    context: [],
+    signal: new AbortController().signal,
+  };
+  const offline = localProvider(
+    "http://127.0.0.1:8765",
+    "b".repeat(64),
+    (async () => {
+      throw new TypeError("Failed to fetch");
+    }) as typeof fetch,
+  );
+  await assert.rejects(
+    offline.analyze(request),
+    (e: unknown) =>
+      e instanceof CompanionUnavailable &&
+      /Practice ToMpathy.cmd/.test(e.message),
+  );
+  const unauthorized = localProvider(
+    "http://127.0.0.1:8765",
+    "b".repeat(64),
+    (async () => new Response("", { status: 401 })) as typeof fetch,
+  );
+  await assert.rejects(unauthorized.analyze(request), /token was not accepted/);
+});
+
 test("local analysis sends only selected context and cancels server work", async () => {
   const p = await createExample();
   const job = new AbortController();
@@ -142,6 +419,88 @@ test("local analysis sends only selected context and cancels server work", async
   assert.equal(
     (calls[0].init?.headers as Record<string, string>).Authorization,
     `Bearer ${"b".repeat(64)}`,
+  );
+});
+
+test("local engine streams bounded progress and refuses incomplete or mismatched readings", async () => {
+  const packet = await createExample();
+  const phases: string[] = [];
+  const request = {
+    requestId: "stream",
+    artifact: packet.artifact,
+    scope: "artifact" as const,
+    context: [],
+    signal: new AbortController().signal,
+    onProgress: (p: string) => phases.push(p),
+  };
+  const stream = (text: string) => {
+    const bytes = new TextEncoder().encode(text);
+    return new Response(
+      new ReadableStream({
+        start(controller) {
+          for (let i = 0; i < bytes.length; i += 73)
+            controller.enqueue(bytes.slice(i, i + 73));
+          controller.close();
+        },
+      }),
+      { headers: { "content-type": "text/event-stream" } },
+    );
+  };
+  const run = (text: string) =>
+    localProvider("http://127.0.0.1:8765", "b".repeat(64), (async (
+      _url,
+      init,
+    ) => {
+      assert.equal(
+        (init?.headers as Record<string, string>).Accept,
+        "text/event-stream",
+      );
+      return stream(text);
+    }) as typeof fetch).analyze(request);
+  const progress =
+    'event: progress\r\ndata: {"phase":"Compiling revisions 🌞"}\r\n\r\n';
+  assert.equal(
+    (await run(progress + `event: packet\ndata: ${JSON.stringify(packet)}\n\n`))
+      .id,
+    packet.id,
+  );
+  assert.deepEqual(phases, ["Compiling revisions 🌞"]);
+  await assert.rejects(run(progress), /disconnected/);
+  await assert.rejects(run("event: error\ndata: {}\n\n"), /could not complete/);
+  await assert.rejects(run("x".repeat(2_500_001)), /size limit/);
+  const changed = structuredClone(packet);
+  changed.artifact.regions[0].anchor.exact += "tampered";
+  await assert.rejects(
+    run(`event: packet\ndata: ${JSON.stringify(changed)}\n\n`),
+  );
+});
+
+test("companion connection check authenticates without sending a capture", async () => {
+  const settings = {
+    kind: "local" as const,
+    url: "http://127.0.0.1:8765",
+    token: "c".repeat(64),
+  };
+  const health = await checkCompanion(settings, (async (url, init) => {
+    assert.equal(url, settings.url + "/v1/health");
+    assert.equal(init?.body, undefined);
+    assert.equal(
+      (init?.headers as Record<string, string>).Authorization,
+      `Bearer ${settings.token}`,
+    );
+    return Response.json({
+      engineVersion: "test",
+      implementationHash: "a".repeat(64),
+      admittedModules: [],
+      historyAvailable: ["wikipedia"],
+      transcriberEnabled: false,
+    });
+  }) as typeof fetch);
+  assert.deepEqual(health.admittedModules, []);
+  await assert.rejects(
+    checkCompanion(settings, (async () =>
+      Response.json({}, { status: 401 })) as typeof fetch),
+    /token/,
   );
 });
 
@@ -1307,15 +1666,17 @@ test("preference traces and directional evidence round-trip without inventing le
   const { demoGlobalValues } = await import("../src/core/example-values");
   const { readingHelp } = await import("../src/core/ghost");
   const values = p.hypotheses.filter((h) => h.kind === "value");
-  assert.equal(values.length, 9);
-  assert.ok(values.every((h) => h.support!.value < 0.25));
+  assert.equal(values.length, 16);
+  assert.equal(values.filter(h => h.valueCategory === "drive" && h.support === null).length, 7);
+  assert.ok(values.filter(h => h.valueCategory === "constructed").every((h) => h.support!.value < 0.25));
   const globals = demoGlobalValues(p, values);
-  assert.equal(globals.length, 8);
+  assert.equal(globals.length, 15);
   assert.equal(
     globals.filter((g) => values.some((v) => v.label === g.label)).length,
-    4,
+    11,
   );
-  assert.ok(globals.every((h) => h.support!.value > 0.8));
+  assert.equal(globals.filter(h => h.valueCategory === "drive" && h.support === null).length, 7);
+  assert.ok(globals.filter(h => h.support).every((h) => h.support!.value > 0.8));
   assert.deepEqual(
     demoGlobalValues({ ...p, origin: "live provider" }, values),
     [],
@@ -1346,4 +1707,102 @@ test("preference traces and directional evidence round-trip without inventing le
   legacy.ghostReadings!.forEach((g) => delete g.evidenceDirections);
   legacy.hypotheses.forEach((h) => delete h.preferenceTrace);
   assert.ok(parsePacket(JSON.stringify(legacy)));
+});
+
+
+test("preview geometry reserves source groups without inventing inferred nodes", () => {
+  for (const count of [1, 2, 20]) {
+    const groups = Array.from({ length: count }, (_, i) => [`p${i}`]);
+    const nodes = groups.map((regions, i) => ({ id: `g${i}`, maker: "fixture", regions, evidence: [], label: "Fixture", description: "Software fixture", level: "paragraph" as const }));
+    const empty = previewHierarchyLayout(goalGraph([]), groups, 250, 320);
+    const first = previewHierarchyLayout(goalGraph(nodes.slice(0, 1)), groups, 250, 320);
+    const full = previewHierarchyLayout(goalGraph([...nodes, { id: "cover", maker: "fixture", regions: groups.flat(), evidence: [], label: "Cover fixture", description: "Software fixture", level: "document" }]), groups, 250, 320);
+    assert.equal(empty.tiles.length, 0);
+    assert.equal(first.tiles.length, 1);
+    assert.equal(full.tiles.length, count + 1);
+    assert.deepEqual(empty.outline, full.outline);
+    assert.deepEqual(first.outline, full.outline);
+    assert.equal(first.tiles[0].dotY, full.tiles.find(t => t.node.id === "g0")!.dotY);
+    assert.equal(full.tiles.some(t => t.node.id.startsWith("layout-only:")), false);
+    assert.equal(full.links.length, 0);
+  }
+});
+
+test("preview continuation retains completed evidence until replay catches up", async () => {
+  const previous = await createExample();
+  previous.preview = { readers: [], coverage: ["p1"], modules: [{ id: "goals", title: "Goals", status: "complete", detail: "Fixture", completed: 3, total: 3 }] };
+  const replay = structuredClone(previous);
+  replay.preview!.modules[0].status = "running";
+  assert.equal(keepsPreviewProgress(replay, previous), false);
+  replay.preview!.modules[0].status = "complete";
+  replay.preview!.coverage = [];
+  assert.equal(keepsPreviewProgress(replay, previous), false);
+  replay.preview!.coverage = ["p1", "p2"];
+  assert.equal(keepsPreviewProgress(replay, previous), true);
+});
+
+test("compact preview streams merge and validate every patch", async () => {
+  const packet = await createExample();
+  packet.provider.mode = "preview";
+  packet.provider.previewNotice = "Constructed software fixture; not a real reading.";
+  for (const item of [...packet.hypotheses, ...(packet.goalHierarchy?.nodes ?? []), ...(packet.currentAttention ?? []).flatMap(f => f.items)]) {
+    item.evidenceStatus = "unvalidated";
+    item.basis = "model-judgment";
+  }
+  packet.preview = { readers: [], modules: [] };
+  const seen: typeof packet[] = [];
+  const request = { requestId: "compact", artifact: packet.artifact, scope: "artifact" as const, context: [], mode: "preview" as const, signal: new AbortController().signal, onPartial: (p: typeof packet) => seen.push(p) };
+  const event = (name: string, data: unknown) => `event: ${name}\ndata: ${JSON.stringify(data)}\n\n`;
+  const run = (events: string) => localProvider("http://127.0.0.1:8765", "b".repeat(64), (async () => new Response(events, { headers: { "content-type": "text/event-stream" } })) as typeof fetch).analyze(request);
+  const updated = { ...packet.preview, resumable: true, coverage: [packet.artifact.regions[0].id] };
+  await run(event("partial", packet) + event("partial-update", { preview: updated }) + event("packet", { ...packet, preview: updated }));
+  assert.equal(seen.length, 2);
+  assert.equal(seen[1].preview!.resumable, true);
+  await assert.rejects(run(event("partial-update", { preview: updated })), /initial|first|before/i);
+  await assert.rejects(run(event("partial", packet) + event("partial-update", { artifact: { ...packet.artifact, revision: "wrong" } })), /./);
+});
+
+
+test("preview parsing preserves engine fields and refuses nested unknowns", () => {
+  const raw = JSON.parse(readFileSync("engine/tests/fixtures/packets/preview-entries.json", "utf8"));
+  assert.deepEqual(parsePacket(JSON.stringify(raw)), raw);
+  for (const mutate of [
+    (p: any) => { p.preview.newEngineField = true; },
+    (p: any) => { p.hypotheses[0].unrecognized = "must not disappear"; },
+    (p: any) => { p.artifact.regions[0].anchor.unrecognized = 1; },
+    (p: any) => { p.globalFindings[0].unrecognized = 1; },
+  ]) {
+    const changed = structuredClone(raw);
+    mutate(changed);
+    assert.throws(() => parsePacket(JSON.stringify(changed)), /Unknown preview field/);
+  }
+});
+import { markedAINodes, aiOutlineOpacity, aiOutlineWidth } from "../src/core/ai-attribution";
+test("AI outlines require distinct attribution, calibration and a strict majority", async () => {
+  const packet = await createExample();
+  const nodes = packet.goalHierarchy!.nodes;
+  const illustrative = markedAINodes(packet);
+  assert.equal(illustrative.size, 3);
+  for (const [id, mark] of illustrative) {
+    const node = nodes.find(n => n.id === id)!;
+    const reading = packet.ghostReadings!.find(r => r.span.region === node.span!.region && r.span.start === node.span!.start)!;
+    assert.equal(mark.confidence, reading.confidence);
+    assert.equal(mark.involvement, reading.kind);
+  }
+  assert.ok(aiOutlineWidth("edited") < aiOutlineWidth("curated"));
+  assert.ok(aiOutlineWidth("curated") < aiOutlineWidth("ghost"));
+  assert.ok(aiOutlineOpacity(.6) < aiOutlineOpacity(.8));
+  assert.ok(aiOutlineOpacity(.8) < aiOutlineOpacity(1));
+  // The authored display levels must never leak onto ordinary reading packets.
+  packet.provider.id = "test-other-provider";
+  assert.deepEqual([...markedAINodes(packet).keys()], ["sentence-6-3"]);
+  const node = nodes.find(n => n.id === "sentence-6-3")!;
+  node.aiAttribution = { basis: "calibrated", probability: .5, calibration: "known-answer calibration fixture", evidence: ["production-ghost"] };
+  assert.equal(markedAINodes(packet).size, 0);
+  node.aiAttribution.probability = .501;
+  assert.equal(markedAINodes(packet).size, 1);
+  assert.equal(markedAINodes(packet, "different-maker").size, 0);
+  const invalid = structuredClone(packet);
+  invalid.goalHierarchy!.nodes.find(n => n.id === node.id)!.aiAttribution!.evidence = ["missing"];
+  assert.throws(() => parsePacket(JSON.stringify(invalid)));
 });

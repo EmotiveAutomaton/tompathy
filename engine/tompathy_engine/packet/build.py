@@ -76,7 +76,8 @@ def build_packet(
                 makers = [
                     {
                         "id": m,
-                        "label": source_makers[m].display_label[:250],
+                        "label": f"Editor {list(artifact.maker_ids).index(m) + 1}" if source_makers[m].source_dataset == "wikipedia" else source_makers[m].display_label[:250],
+                        **({"localLabel": source_makers[m].display_label[:250], "kind": "person"} if source_makers[m].source_dataset == "wikipedia" else {}),
                         "identity": "synthetic"
                         if source_makers[m].identity == "synthetic"
                         else "supplied"
@@ -166,7 +167,7 @@ def build_packet(
         "Text alone does not update maker preferences. Actual contributing admission records are in provider.admissions."
     )
     packet = {
-        "schemaVersion": "1.7",
+        "schemaVersion": "1.9" if any(m.get("localLabel") for m in makers) else "1.7",
         "id": digest(
             [capture["id"], capture["revision"], request_id, context_ids, admissions.implementation]
         ),
@@ -240,4 +241,7 @@ def build_packet(
     from .bounds import bound
 
     bound(packet)
-    return Packet.model_validate(packet).wire()
+    if any(m.get("localLabel") for m in packet["makers"]):
+        packet["schemaVersion"] = "1.9"
+    from ..preview.makers import hide_usernames
+    return hide_usernames(Packet.model_validate(packet).wire())

@@ -1,9 +1,15 @@
 import { regionSentences } from "./sentences";
 import { z } from "zod";
 import { calendarDate } from "./dates";
+import { previewLabels, PreviewSchema } from "./preview";
 
 const id = z.string().min(1).max(200);
 const timestamp = z.iso.datetime();
+const aiAttribution = z.discriminatedUnion("basis", [
+  z.strictObject({ basis: z.literal("documented"), evidence: z.array(id).min(1).max(30) }),
+  z.strictObject({ basis: z.literal("calibrated"), evidence: z.array(id).min(1).max(30),
+    probability: z.number().min(0).max(1), calibration: z.string().min(1).max(2000) }),
+]);
 export const GhostReadingSchema = z.object({
   maker: id,
   span: z.object({
@@ -57,6 +63,7 @@ export const ArtifactSchema = z.object({
                 .optional(),
             })
             .optional(),
+          codeSpans: z.array(z.object({ start: z.number().int().nonnegative(), end: z.number().int().positive() })).max(2000).optional(),
           emphasis: z
             .array(
               z.object({
@@ -69,7 +76,7 @@ export const ArtifactSchema = z.object({
         })
         .refine(
           (r) =>
-            (r.emphasis ?? []).every(
+            [...(r.emphasis ?? []), ...(r.codeSpans ?? [])].every(
               (e) => e.start < e.end && e.end <= r.anchor.exact.length,
             ),
           "Invalid emphasis span",
@@ -78,6 +85,7 @@ export const ArtifactSchema = z.object({
     .min(1)
     .max(1500),
   truncated: z.boolean().default(false),
+  metaDescription: z.string().max(2000).optional(),
   authors: z
     .array(
       z.object({
@@ -148,36 +156,75 @@ const SupportSchema = z.object({
   candidateSet: id.optional(),
 });
 // Normalized display coordinates, not calibrated utilities or discount rates.
-export const PreferenceTraceSchema = z.object({
-  domain: z.string().min(1).max(160),
-  start: z.string().min(1).max(40),
-  end: z.string().min(1).max(40),
-  points: z
-    .array(
-      z.object({
-        x: z.number().min(0).max(1),
-        y: z.number().min(0).max(1),
-        uncertainty: z.number().min(0).max(0.4),
-      }),
+export const PreferenceTraceSchema = z
+  .object({
+    domain: z.string().min(1).max(160),
+    start: z.string().min(1).max(40),
+    end: z.string().min(1).max(40),
+    points: z
+      .array(
+        z.object({
+          x: z.number().min(0).max(1),
+          y: z.number().min(0).max(1),
+          uncertainty: z.number().min(0).max(0.4),
+        }),
+      )
+      .min(2)
+      .max(30),
+    observations: z
+      .array(
+        z.object({
+          date: z.string().min(1).max(40),
+          label: z.string().min(1).max(200),
+          explanation: z.string().min(1).max(700),
+          from: z.tuple([z.number().min(0).max(1), z.number().min(0).max(1)]),
+          to: z.tuple([z.number().min(0).max(1), z.number().min(0).max(1)]),
+          cost: z.number().min(0).max(1),
+          horizon: z.string().min(1).max(80),
+        }),
+      )
+      .min(0)
+      .max(6),
+  })
+  .superRefine((trace, ctx) => {
+    if (
+      trace.points.some((point, i) => i > 0 && point.x <= trace.points[i - 1].x)
     )
-    .min(2)
-    .max(30),
-  observations: z
-    .array(
-      z.object({
-        date: z.string().min(1).max(40),
-        label: z.string().min(1).max(200),
-        explanation: z.string().min(1).max(700),
-        from: z.tuple([z.number().min(0).max(1), z.number().min(0).max(1)]),
-        to: z.tuple([z.number().min(0).max(1), z.number().min(0).max(1)]),
-        cost: z.number().min(0).max(1),
-        horizon: z.string().min(1).max(80),
-      }),
+      ctx.addIssue({
+        code: "custom",
+        message: "Preference trace points must have strictly increasing times.",
+      });
+  });
+export const PreferenceEstimateSchema = z
+  .object({
+    quantity: z.string().min(1).max(200),
+    value: z.number(),
+    reference: z.number().optional(),
+    interval: z
+      .object({
+        lower: z.number(),
+        upper: z.number(),
+        level: z.number().gt(0).lt(1),
+        method: z.string().min(1).max(500),
+      })
+      .nullable(),
+    basis: z.string().min(1).max(1000),
+  })
+  .superRefine((estimate, ctx) => {
+    if (
+      estimate.interval &&
+      !(
+        estimate.interval.lower <= estimate.value &&
+        estimate.value <= estimate.interval.upper
+      )
     )
-    .min(1)
-    .max(6),
-});
+      ctx.addIssue({
+        code: "custom",
+        message: "Preference interval must contain its estimate.",
+      });
+  });
 export const HypothesisSchema = z.object({
+  ...previewLabels,
   id,
   kind: z.enum(["goal", "process", "value", "attention"]),
   label: z.string().min(1).max(250),
@@ -200,6 +247,7 @@ export const HypothesisSchema = z.object({
   evidence: z.array(id),
   decisionNodes: z.array(id).optional(),
   preferenceTrace: PreferenceTraceSchema.optional(),
+  preferenceEstimate: PreferenceEstimateSchema.optional(),
   valueCategory: z.enum(["drive", "constructed"]).optional(),
   icon: z
     .enum([
@@ -228,7 +276,7 @@ export const HypothesisSchema = z.object({
     ])
     .optional(),
 });
-export const PacketSchema = z
+const BasePacketSchema = z
   .object({
     schemaVersion: z.enum([
       "1.0",
@@ -239,6 +287,8 @@ export const PacketSchema = z
       "1.5",
       "1.6",
       "1.7",
+      "1.8",
+      "1.9",
     ]),
     ghostReadings: z.array(GhostReadingSchema).max(6000).optional(),
     id,
@@ -248,7 +298,11 @@ export const PacketSchema = z
       id,
       method: z.string().min(1).max(1000),
       admissions: z.array(z.string().min(1).max(500)).max(100).optional(),
+      mode: z.enum(["admitted", "preview"]).optional(),
+      previewNotice: z.string().min(1).max(500).optional(),
     }),
+    preview: PreviewSchema.optional(),
+    globalFindings: z.array(z.object({ source: z.string().max(500), claim: z.string().max(2000), number: z.number().finite().nullish(), interval: z.tuple([z.number().finite(), z.number().finite()]).nullish(), unit: z.string().max(100).nullish(), evidenceStatus: z.enum(["descriptive", "constructed-tested"]), link: z.url().startsWith("https://").max(4000) })).max(30).nullish(),
     origin: z.enum(["synthetic example", "imported", "live provider"]),
     scope: z.object({
       kind: z.enum(["artifact", "context"]),
@@ -262,6 +316,13 @@ export const PacketSchema = z
           identity: z.enum(["unknown", "supplied", "synthetic"]),
           relationship: z.string().max(1000),
           predictability: SupportSchema.optional(),
+          kind: z.enum(["person", "model", "tool", "bot", "unknown"]).optional(),
+          evidence: z.array(z.object({ tier: z.enum(["signed", "declared", "flagged", "trace", "statistical"]), source: z.string().max(1000), detail: z.string().max(2000), evidenceStatus: z.enum(["admitted", "constructed-tested", "unvalidated"]) })).max(100).optional(),
+          decisions: z.object({ drafted: z.number().int().nonnegative().optional(), selected: z.number().int().nonnegative().optional(), edited: z.number().int().nonnegative().optional(), reverted: z.number().int().nonnegative().optional(), housekeeping: z.number().int().nonnegative().optional(), commits: z.number().int().nonnegative().optional() }).optional(),
+          revisions: z.array(z.string()).max(500).optional(),
+          localLabel: z.string().max(250).optional(),
+          bytesChanged: z.number().int().nonnegative().optional(),
+          role: z.enum(["fully human", "human-written, then machine-polished", "machine-written, then machine-humanized", "human-initiated, then machine-continued", "deeply mixed", "machine-written, then human-edited"]).optional(),
         }),
       )
       .min(1),
@@ -278,6 +339,7 @@ export const PacketSchema = z
               populationSupport: SupportSchema,
               makerRecords: z.number().int().nonnegative(),
               shrinkage: z.number().min(0).max(1),
+              quantiles: z.array(z.number()).length(20).optional(),
               curve: z
                 .array(
                   z.object({
@@ -302,7 +364,7 @@ export const PacketSchema = z
           }),
           items: z
             .array(
-              z.object({ hypothesis: id, support: SupportSchema.nullish() }),
+              z.object({ ...previewLabels, hypothesis: id, support: SupportSchema.nullish() }),
             )
             .max(40),
         }),
@@ -362,9 +424,11 @@ export const PacketSchema = z
             z.object({
               id,
               parentId: id.optional(),
+              ...previewLabels,
               parentIds: z.array(id).min(1).max(16).optional(),
               maker: id,
               label: z.string().min(1).max(250),
+              aiAttribution: aiAttribution.optional(),
               description: z.string().max(4000),
               level: z.string().min(1).max(100).optional(),
               regions: z.array(id).min(1),
@@ -437,6 +501,13 @@ export const PacketSchema = z
   .superRefine((p, ctx) => {
     const error = (message: string) =>
       ctx.addIssue({ code: "custom", message });
+    if (p.provider.mode === "preview") {
+      if (!p.provider.previewNotice || !p.preview) error("Preview requires a notice and module status.");
+      const items = [...p.hypotheses, ...(p.goalHierarchy?.nodes ?? []), ...(p.currentAttention ?? []).flatMap(f => f.items)];
+      if (items.some(item => !item.evidenceStatus || !item.basis)) error("Preview items require evidenceStatus and basis.");
+      const scores = [...p.hypotheses.map(h => h.support), ...(p.currentAttention ?? []).flatMap(f => f.items.map(i => i.support)), ...p.makers.map(m => m.predictability), ...(p.population?.items ?? []).map(i => i.populationSupport)];
+      if (scores.some(s => s && s.semantics !== "relative")) error("Preview support must be relative.");
+    } else if (p.preview) error("Preview output requires preview mode.");
     const unique = (items: { id: string }[], name: string) => {
       if (new Set(items.map((x) => x.id)).size !== items.length)
         error(`Duplicate ${name} IDs.`);
@@ -454,8 +525,13 @@ export const PacketSchema = z
     const hierarchy = p.goalHierarchy?.nodes ?? [];
     unique(hierarchy, "goal hierarchy");
     const hierarchyById = new Map(hierarchy.map((n) => [n.id, n]));
+    if (p.preview?.goalLenses) {
+      const lenses = p.preview.goalLenses, ids = lenses.flat();
+      if (lenses.length !== 2 || lenses.some(lens => !lens.length) || new Set(ids).size !== ids.length || ids.some(id => !hierarchyById.has(id))) error("Goal lenses require two nonempty views with distinct available nodes.");
+      if (lenses.some(lens => lens.some(id => { const parent = hierarchyById.get(id)?.parentId; return parent && !lens.includes(parent); }))) error("Goal lens cannot separate a child from its parent.");
+    }
     if (
-      p.schemaVersion !== "1.7" &&
+      !["1.7", "1.8", "1.9"].includes(p.schemaVersion) &&
       (p.population ||
         p.makers.some((m) => m.predictability) ||
         p.hypotheses.some((h) => h.icon || h.interpretation === "drive"))
@@ -464,6 +540,11 @@ export const PacketSchema = z
         "Population, predictability and drive fields require contract 1.7.",
       );
     for (const maker of p.makers) {
+      if (maker.evidence) {
+        if (p.schemaVersion !== "1.9") error("Maker evidence requires contract 1.9.");
+        if (maker.evidence.some(e => e.tier === "statistical")) error("Statistical source signals are disabled.");
+        if (maker.kind !== "unknown" && !maker.evidence.some(e => ["signed", "declared", "flagged"].includes(e.tier))) error("Maker entries require signed, declared or flagged evidence.");
+      }
       const s = maker.predictability;
       if (
         s &&
@@ -484,6 +565,7 @@ export const PacketSchema = z
     )
       error("Duplicate population hypothesis.");
     for (const item of populationItems) {
+      if (item.quantiles?.some((q, i, all) => q < item.populationSupport.scale[0] || q > item.populationSupport.scale[1] || i > 0 && q < all[i - 1])) error("Population quantiles must be sorted and inside their scale.");
       const h = hs.get(item.hypothesis),
         s = item.populationSupport;
       if (!h || h.kind !== "value" || h.makers.length !== 1)
@@ -542,7 +624,10 @@ export const PacketSchema = z
       )
         error("Exhaustive population probability sets must sum to one.");
     }
-    if (p.ghostReadings?.length && !["1.6", "1.7"].includes(p.schemaVersion))
+    if (
+      p.ghostReadings?.length &&
+      !["1.6", "1.7", "1.8", "1.9"].includes(p.schemaVersion)
+    )
       error("Sentence Ghost Scale readings require contract 1.6.");
     const ghostFrames = [...(p.ghostReadings ?? [])].sort(
       (a, b) =>
@@ -593,7 +678,10 @@ export const PacketSchema = z
     }
     const uncertain = p.goalHierarchy?.orderUncertainGroups ?? [];
     unique(uncertain, "order uncertainty group");
-    if (uncertain.length && !["1.5", "1.6", "1.7"].includes(p.schemaVersion))
+    if (
+      uncertain.length &&
+      !["1.5", "1.6", "1.7", "1.8", "1.9"].includes(p.schemaVersion)
+    )
       error("Order uncertainty groups require contract 1.5.");
     for (const group of uncertain) {
       const members = group.nodes.map((id) => hierarchyById.get(id));
@@ -611,8 +699,10 @@ export const PacketSchema = z
         error(`Invalid sibling order uncertainty group ${group.id}.`);
     }
     for (const n of hierarchy) {
+      if (n.aiAttribution?.evidence.some(e => !es.has(e)))
+        error(`Unresolved AI attribution evidence in ${n.id}.`);
       if (
-        !["1.3", "1.4", "1.5", "1.6", "1.7"].includes(p.schemaVersion) &&
+        !["1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9"].includes(p.schemaVersion) &&
         !["document", "section", "paragraph", "sentence"].includes(
           n.level ?? "",
         )
@@ -628,7 +718,7 @@ export const PacketSchema = z
         error(`Unresolved hierarchy references in ${n.id}.`);
       if (
         n.parentIds &&
-        (!["1.4", "1.5", "1.6", "1.7"].includes(p.schemaVersion) ||
+        (!["1.4", "1.5", "1.6", "1.7", "1.8", "1.9"].includes(p.schemaVersion) ||
           n.parentId ||
           new Set(n.parentIds).size !== n.parentIds.length)
       )
@@ -656,7 +746,7 @@ export const PacketSchema = z
     }
     const depths = new Map<string, number>(),
       visitingHierarchy = new Set<string>();
-    const maxDepth = ["1.3", "1.4", "1.5", "1.6", "1.7"].includes(
+    const maxDepth = ["1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9"].includes(
       p.schemaVersion,
     )
       ? 64
@@ -688,14 +778,14 @@ export const PacketSchema = z
       return depth;
     };
     hierarchy.forEach((n) => visitHierarchy(n.id));
-    if (!["1.4", "1.5", "1.6", "1.7"].includes(p.schemaVersion))
+    if (!["1.4", "1.5", "1.6", "1.7", "1.8", "1.9"].includes(p.schemaVersion))
       for (const m of p.makers) {
         const nodes = hierarchy.filter((n) => n.maker === m.id);
         if (nodes.length && nodes.filter((n) => !n.parentId).length !== 1)
           error("Each legacy maker hierarchy needs exactly one root.");
       }
     if (
-      !["1.4", "1.5", "1.6", "1.7"].includes(p.schemaVersion) &&
+      !["1.4", "1.5", "1.6", "1.7", "1.8", "1.9"].includes(p.schemaVersion) &&
       (p.currentAttention || p.hypotheses.some((h) => h.kind === "attention"))
     )
       error("Independent current attention requires contract 1.4.");
@@ -821,6 +911,17 @@ export const PacketSchema = z
         !allowedInterpretations[h.kind].includes(h.interpretation)
       )
         error(`Interpretation does not match hypothesis kind in ${h.id}.`);
+      if (
+        h.preferenceEstimate &&
+        (!["1.8", "1.9"].includes(p.schemaVersion) || h.kind !== "value")
+      )
+        error(
+          "Structured preference estimates require a value hypothesis in contract 1.8.",
+        );
+      if (h.preferenceEstimate && h.preferenceTrace)
+        error(
+          "Supply a current estimate or a trajectory, not two competing chart meanings.",
+        );
       if (h.support) {
         const s = h.support;
         if (
@@ -918,6 +1019,30 @@ export const PacketSchema = z
     if (p.process.nodes.some(cycles))
       error("Historical precedence cannot contain a cycle.");
   });
+// Compare the raw tree with the parsed tree: Zod strips unknown nested keys by
+// default. Preview packets must reject these at every depth, including storage
+// reads, rather than silently losing newly emitted engine fields.
+function strippedPaths(raw: unknown, parsed: unknown, path: (string | number)[] = []): (string | number)[][] {
+  if (!raw || typeof raw !== "object") return [];
+  if (Array.isArray(raw)) return raw.flatMap((v, i) => strippedPaths(v, (parsed as unknown[] | undefined)?.[i], [...path, i]));
+  const target = parsed && typeof parsed === "object" ? parsed as Record<string, unknown> : {};
+  return Object.entries(raw).flatMap(([key, value]) => key in target ? strippedPaths(value, target[key], [...path, key]) : [[...path, key]]);
+}
+export const PacketSchema = z.unknown().transform((raw, ctx) => {
+  const result = BasePacketSchema.safeParse(raw);
+  if (!result.success) {
+    for (const issue of result.error.issues) ctx.addIssue({ code: "custom", path: issue.path, message: issue.message });
+    return z.NEVER;
+  }
+  if (result.data.provider.mode === "preview") {
+    for (const path of strippedPaths(raw, result.data)) ctx.addIssue({ code: "custom", path, message: "Unknown preview field; engine/frontend schemas disagree" });
+    const entries = { "text-surface": "page", "model-judgment": "page", choices: "person", population: "person", corrections: "process", history: "process" };
+    for (const item of [...result.data.hypotheses, ...(result.data.goalHierarchy?.nodes ?? []), ...(result.data.currentAttention ?? []).flatMap(f => f.items)]) {
+      if (item.entry && (!item.basis || item.entry !== entries[item.basis])) ctx.addIssue({ code: "custom", message: "Entry does not match its evidence basis" });
+    }
+  }
+  return result.data;
+});
 export type Artifact = z.infer<typeof ArtifactSchema>;
 export type Packet = z.infer<typeof PacketSchema>;
 export type Hypothesis = z.infer<typeof HypothesisSchema>;

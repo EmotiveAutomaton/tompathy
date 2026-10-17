@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ToMpathy · Live engine practice</title>
+    <link rel="stylesheet" href="review.css" />
+  </head>
+  <body>
+    <main class="desk">
+      <header>
+        <a class="brand" href="review.html"
+          ><img src="icon32.png" width="24" height="24" alt="" />ToMpathy</a
+        ><span class="build">Live engine practice</span>
+      </header>
+      <div class="intro">
+        <p class="eyebrow">A REAL PAGE, A LOCAL ENGINE</p>
+        <h1>Follow the changes.</h1>
+        <p>
+          Try a smaller article with public revision history. The engine
+          reconstructs recorded edits and returns a reading bound to the page
+          you captured.
+        </p>
+        <button class="destination" id="connect" disabled>
+          <strong>Connect local engine</strong
+          ><span
+            >Captured text goes to this computer when you request analysis, or
+            automatically while Follow pages is on.</span
+          >
+        </button>
+        <p id="connection" role="status">
+          Start Practice ToMpathy.cmd to make a local engine available.
+        </p>
+        <button class="destination" id="follow">
+          <strong>Enable Follow pages</strong
+          ><span
+            >Read and analyze the active webpage automatically while the panel
+            is open. Chrome will ask for access across websites.</span
+          >
+        </button>
+        <p id="following" role="status"></p>
+      </div>
+      <nav class="destinations" aria-label="Live practice articles">
+        <a
+          class="destination"
+          href="https://en.wikipedia.org/wiki/Sneckdown"
+          target="_blank"
+          rel="noopener"
+          ><span class="number">01</span><strong>Sneckdown ↗</strong
+          ><span
+            >A short starting page about the traces traffic leaves in
+            snow.</span
+          ></a
+        >
+        <a
+          class="destination"
+          href="https://en.wikipedia.org/wiki/Desire_path"
+          target="_blank"
+          rel="noopener"
+          ><span class="number">02</span><strong>Desire path ↗</strong
+          ><span
+            >A somewhat longer page about informal paths and how they
+            develop.</span
+          ></a
+        >
+      </nav>
+      <h2>Try the reading</h2>
+      <ol>
+        <li>Connect the engine above, then open an article.</li>
+        <li>
+          Click the ToMpathy toolbar icon, or press
+          <strong>Alt+Shift+Y</strong>.
+        </li>
+        <li>
+          Enable <strong>Follow pages</strong> above. New pages are captured and
+          analyzed automatically while the panel is open; Wikipedia readings
+          fetch up to 20 public revisions. Without Follow pages, choose Analyze
+          manually.
+        </li>
+        <li>
+          Choose a contributor above the reading. Open a recorded event to
+          inspect its before/after evidence. Source passages are linked only
+          when their text matches.
+        </li>
+        <li>
+          Later readings can be accepted as revisions. Real preview runs are
+          cached locally; use <strong>Load cached real preview</strong> in the
+          reader menu for a backup. Per-person previews cannot be exported.
+        </li>
+      </ol>
+      <h2>What you can see now</h2>
+      <p>
+        Research preview uses the installed local readers for text departures,
+        habits, technique notes and goal guesses. Each result says what it is
+        based on and whether it has been tested. Open a panel’s module status
+        for timing limits or missing inputs. Recorded revisions are source
+        evidence; personal values remain unknown without the required evidence.
+        Preview can be turned off in Options to use the admitted path.
+      </p>
+      <footer>
+        The engine stays available until review Chrome closes; you can close the
+        launcher. Start Practice ToMpathy.cmd again to resume. History snapshots
+        stay in this checkout’s ignored local folder. The articles remain live
+        Wikipedia pages.
+      </footer>
+    </main>
+    <script type="module" src="practice.js"></script>
+  </body>
+</html>

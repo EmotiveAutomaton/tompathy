@@ -44,6 +44,9 @@ def corrected(tmp_path):
             "items": 200,
             "valid_rate": 1.0,
             "accuracy": 1.0,
+            "per_label": {"\"yes\"": 1.0, "\"no\"": 1.0},
+            "per_family": {"family-0": 1.0, "family-1": 1.0},
+            "best_constant": 0.5,
             "battery_hash": digest(q),
             "admission_id": "constructed-battery-" + q,
         }

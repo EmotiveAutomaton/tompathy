@@ -320,10 +320,10 @@ test("narrow dark panel, reduced motion and keyboard dialog focus", async ({
     el.scrollTop = el.scrollHeight;
   });
   await expect(
-    page.getByRole("heading", { name: "About Current attention", exact: true }),
+    page.getByRole("heading", { name: "Current attention", exact: true }),
   ).toBeInViewport();
   await expect(
-    page.getByRole("heading", { name: "About Core values", exact: true }),
+    page.getByRole("heading", { name: "Core values", exact: true }),
   ).toBeInViewport();
   await page.getByTestId("process").evaluate((el) => {
     el.scrollTop = 0;

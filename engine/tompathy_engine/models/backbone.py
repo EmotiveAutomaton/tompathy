@@ -41,10 +41,42 @@ class Choice:
             raise ValueError("Diagnosticity weight outside [0,1]")
 
 
-def _fit(rows, center, penalty, initial=None):
+def _newton_finish(objective, hessian, x, max_steps=20, target=1e-10):
+    f, g = objective(x)
+    steps = 0
+    while steps < max_steps and np.isfinite(f) and np.isfinite(g).all() and np.max(np.abs(g)) > target:
+        step = np.linalg.solve(hessian(x), -g)
+        t, noise = 1.0, 1e-12 * max(1.0, abs(f))
+        while t >= 2.0 ** -30:
+            candidate = x + t * step
+            fn, gn = objective(candidate)
+            if np.isfinite(fn) and np.isfinite(gn).all() and (
+                fn <= f + 1e-4 * t * (g @ step)
+                or (fn <= f + noise and np.max(np.abs(gn)) < np.max(np.abs(g)))
+            ):
+                x, f, g = candidate, fn, gn
+                steps += 1
+                break
+            t /= 2
+        else:
+            break
+    return x, steps
+
+
+def _fit(rows, center, penalty, initial=None, *, maxiter=500):
+    center = np.asarray(center, dtype=float)
+    if center.ndim != 1 or not center.size or not np.isfinite(center).all():
+        raise ValueError("MAP center must be a finite vector")
+    if not np.isfinite(penalty) or penalty <= 0:
+        raise ValueError("MAP certification requires a positive finite penalty")
+    if any(r.features.shape[1] != len(center) for r in rows):
+        raise ValueError("MAP feature dimension mismatch")
     denominator = sum(r.weight for r in rows)
     if denominator <= 0:
-        return np.zeros_like(center)
+        return np.zeros_like(center), {"optimizer_message": "no weighted rows", "iterations": 0,
+                                      "newton_steps": 0, "certified_gap": 0.0,
+                                      "gap_tolerance": 1e-9, "objective": 0.0,
+                                      "gradient_max": 0.0, "accepted_by": "strong-convexity-certificate"}
 
     def objective(offset):
         loss, grad = penalty * (offset @ offset), 2 * penalty * offset
@@ -55,16 +87,37 @@ def _fit(rows, center, penalty, initial=None):
             grad += row.weight * (p @ row.features - row.features[row.taken])
         return float(loss), grad
 
+    def hessian(offset):
+        matrix = 2 * penalty * np.eye(len(center))
+        for row in rows:
+            p = softmax(row.features @ (center + offset))
+            centered = row.features - p @ row.features
+            matrix += row.weight * (centered.T * p) @ centered
+        return matrix
+
+    start = np.zeros_like(center) if initial is None else np.asarray(initial, dtype=float)
+    if start.shape != center.shape or not np.isfinite(start).all():
+        raise ValueError("MAP initial point must match its finite center")
     result = minimize(
         objective,
-        np.zeros_like(center) if initial is None else initial,
+        start,
         method="L-BFGS-B",
         jac=True,
-        options={"maxiter": 500},
+        options={"maxiter": maxiter},
     )
-    if not result.success or not np.isfinite(result.x).all():
+    if not np.isfinite(result.x).all():
         raise ValueError(f"MAP fit failed: {result.message}")
-    return result.x
+    x, steps = _newton_finish(objective, hessian, result.x)
+    f, g = objective(x)
+    bound, tolerance = float(g @ g) / (4 * penalty), 1e-9 * max(1.0, abs(f))
+    # A successful optimizer flag alone is not a convergence certificate.
+    if not (np.isfinite(x).all() and np.isfinite(f) and np.isfinite(g).all()
+            and np.isfinite(bound) and bound <= tolerance):
+        raise ValueError(f"MAP fit failed: {result.message}; certified gap {bound:.3e}")
+    return x, {"optimizer_message": str(result.message), "optimizer_success": bool(result.success),
+               "iterations": int(result.nit), "newton_steps": steps, "certified_gap": bound,
+               "gap_tolerance": tolerance, "objective": f, "gradient_max": float(np.max(np.abs(g))),
+               "accepted_by": "strong-convexity-certificate"}
 
 
 @dataclass
@@ -78,6 +131,7 @@ class Backbone:
     conditional_intervals: dict[str, np.ndarray] = field(default_factory=dict)
     conditional_covariances: dict[str, np.ndarray] = field(default_factory=dict)
     train_ids: tuple[str, ...] = ()
+    fit_receipts: dict[str, dict] = field(default_factory=dict)
 
     @classmethod
     def fit(cls, cases, *, until: datetime, dimensions: int | None = None):
@@ -90,9 +144,9 @@ class Backbone:
         d = rows[0].features.shape[1] if rows else dimensions
         if not d or any(r.features.shape[1] != d for r in rows):
             raise ValueError("Feature dimension mismatch or absent empty-model dimension")
-        model = cls(
-            beta=_fit(rows, np.zeros(d), 0.005), until=until, train_ids=tuple(r.id for r in rows)
-        )
+        beta, receipt = _fit(rows, np.zeros(d), 0.005)
+        model = cls(beta=beta, until=until, train_ids=tuple(r.id for r in rows),
+                    fit_receipts={"population": receipt})
         for maker in sorted({r.maker for r in rows}):
             own = [r for r in rows if r.maker == maker]
             penalty = 1.0
@@ -103,10 +157,12 @@ class Backbone:
                 historical = [r for r in rows if r.resolved < cutoff]
                 ownpast = [r for r in historical if r.maker == maker]
                 if ownpast:
-                    prior = _fit(historical, np.zeros(d), 0.005)
+                    prior, receipt = _fit(historical, np.zeros(d), 0.005)
+                    model.fit_receipts[f"{maker}:historical-population"] = receipt
                     candidates = []
                     for value in (0.01, 0.1, 1.0, 10.0):
-                        offset = _fit(ownpast, prior, value)
+                        offset, receipt = _fit(ownpast, prior, value)
+                        model.fit_receipts[f"{maker}:trial:{value}"] = receipt
                         losses = [
                             logsumexp(r.features @ (prior + offset))
                             - r.features[r.taken] @ (prior + offset)
@@ -114,7 +170,8 @@ class Backbone:
                         ]
                         candidates.append((float(np.mean(losses)), value))
                     penalty = min(candidates)[1]
-            model.offsets[maker] = _fit(own, model.beta, penalty)
+            model.offsets[maker], receipt = _fit(own, model.beta, penalty)
+            model.fit_receipts[f"{maker}:offset"] = receipt
             model.counts[maker] = len(own)
             model.penalties[maker] = penalty
             information = np.zeros((d, d))

@@ -1,11 +1,12 @@
 import asyncio
 import hmac
 import json
+import logging
 import re
 import secrets
 import time
 from concurrent.futures import ThreadPoolExecutor
-from contextlib import asynccontextmanager
+from contextlib import ExitStack, asynccontextmanager
 from dataclasses import dataclass, field
 from pathlib import Path
 from threading import Event, Lock
@@ -32,7 +33,13 @@ class AnalysisRequest(Model):
     artifact: Artifact
     scope: Literal["artifact", "context"]
     context: list[dict[str, Any]] = Field(default_factory=list, max_length=30)
-    history: Literal["wikipedia"] | None = None
+    history: Literal["wikipedia", "github"] | None = None
+    historyLimit: int = Field(default=20, ge=1, le=500)
+    githubToken: str | None = Field(default=None, min_length=1, max_length=500, repr=False)
+    mode: Literal["admitted", "preview"] = "admitted"
+    preferCache: bool = False
+    priorityRegion: str | None = Field(default=None, max_length=200)
+    compactProgress: bool = False
 
 
 class Cancelled(Exception):
@@ -45,12 +52,24 @@ class Job:
     events: list[dict] = field(default_factory=list)
     lock: Lock = field(default_factory=Lock)
     started: float = field(default_factory=time.monotonic)
+    partial_packet: dict | None = None
+    partial_revision: int = 0
 
     def progress(self, phase):
         if self.cancelled.is_set():
             raise Cancelled()
         with self.lock:
             self.events.append({"phase": phase})
+
+    def check(self):
+        if self.cancelled.is_set():
+            raise Cancelled()
+
+    def publish(self, packet):
+        self.check()
+        with self.lock:
+            self.partial_packet = packet
+            self.partial_revision += 1
 
 
 def load_token(path: Path):
@@ -113,7 +132,15 @@ def create_app(
     reader=None,
     history_questions=(),
     history_fetcher=None,
+    preview_readers=(),
+    preview_goals=None,
+    preview_techniques=None,
+    preview_correction_reader=None,
+    preview_cache=None,
+    preview_budget=165,
 ):
+    if type(preview_budget) is not int or not 165 <= preview_budget <= 600:
+        raise ValueError("Preview preparation budget must be 165–600 seconds")
     if not re.fullmatch(r"[0-9a-f]{64}", token):
         raise ValueError("Companion requires a 256-bit token")
     if any(not re.fullmatch(r"chrome-extension://[a-p]{32}", origin) for origin in origins):
@@ -125,12 +152,16 @@ def create_app(
     @asynccontextmanager
     async def lifespan(app):
         app.state.pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="tompathy")
-        try:
-            yield
-        finally:
-            for job in jobs.values():
-                job.cancelled.set()
-            app.state.pool.shutdown(wait=True, cancel_futures=True)
+        with ExitStack() as stack:
+            try:
+                backend = getattr(reader, "backend", None)
+                if hasattr(backend, "session"):
+                    stack.enter_context(backend.session())
+                yield
+            finally:
+                for job in jobs.values():
+                    job.cancelled.set()
+                app.state.pool.shutdown(wait=True, cancel_futures=True)
 
     app = FastAPI(
         title="ToMpathy local companion",
@@ -177,15 +208,41 @@ def create_app(
             "engineVersion": __version__,
             "implementationHash": gates.implementation,
             "admittedModules": gates.enabled("writing"),
+            "refusedModules": gates.refused("writing"),
             "ledgerRecords": len(ledger.all()) if ledger else 0,
             "modelsAvailable": [model.population] if model else [],
             "transcriberEnabled": reader is not None,
             "historyQuestions": list(history_questions),
-            "historyAvailable": ["wikipedia"] if history_dir else [],
+            "historyAvailable": ["wikipedia", "github"] if history_dir else [],
+            "previewAvailable": True,
+            "previewReaders": [r.identity for r in preview_readers],
         }
 
     def execute(body, job):
         job.progress("Validating captured evidence")
+        backup_key = None
+        if body.mode == "preview":
+            from ..ledger.ids import digest
+            from ..packet.contract import Packet
+            from ..preview.cache import read as cache_read
+
+            requested = body.model_dump(exclude_unset=False)
+            for field in ("requestId", "githubToken", "preferCache", "priorityRegion", "compactProgress"):
+                requested.pop(field, None)
+            requested["artifact"].pop("capturedAt", None)
+            backup_key = digest(["preview-request-v1", gates.implementation, requested,
+                                 [r.identity for r in preview_readers], bool(preview_goals),
+                                 bool(preview_techniques), getattr(preview_correction_reader, "pin", None),
+                                 getattr(preview_goals, "identity", None), getattr(preview_techniques, "identity", None)])
+            if body.preferCache:
+                cached = cache_read(preview_cache, "requests", backup_key)
+                if not cached:
+                    raise ValueError("No matching cached real preview is available. Run Analyze capture or the source history action first.")
+                packet = Packet.model_validate(cached["data"]).wire()
+                packet["preview"]["cachedAt"] = cached["at"]
+                job.progress("Loaded a cached real reading from " + cached["at"])
+                return packet
+        history_payload, history_error, history_cached_at = None, None, None
         if builder:
             packet = builder(body, job)
         elif body.history:
@@ -198,18 +255,51 @@ def create_app(
             from ..workflow import analyze_history
 
             try:
-                packet, _ = analyze_history(
+                from ..adapters.github import fetch_history as fetch_github
+                from ..adapters.wiki import fetch_history as fetch_wiki
+                from ..ledger.ids import digest
+                from ..preview.cache import read as cache_read
+                from ..preview.cache import write as cache_write
+                history_key = digest(["github-parent-witness-v2" if body.history == "github" else "wikipedia-v1", body.artifact.id, body.artifact.source, body.historyLimit])
+                cached = cache_read(preview_cache, "history", history_key, max_age=21600)
+                if cached:
+                    github_payload = cached["data"]
+                    history_cached_at = cached["at"]
+                    job.progress("Using cached public history fetched " + history_cached_at)
+                else:
+                    fetcher = fetch_github if body.history == "github" else history_fetcher or fetch_wiki
+                    github_payload = fetcher(body.artifact.source, artifact_id=body.artifact.id, limit=body.historyLimit,
+                        cancel=lambda: job.cancelled.is_set() or time.monotonic() - job.started > 30,
+                        **({"token": body.githubToken} if body.history == "github" else {}))
+                    cache_write(preview_cache, "history", history_key, github_payload)
+                packet, history_receipt = analyze_history(
                     body.artifact.model_dump(exclude_unset=True),
                     directory=history_dir,
                     questions=history_questions,
                     admissions=gates,
                     reader=reader,
+                    limit=body.historyLimit,
+                    payload=github_payload,
+                    adapter="git" if body.history == "github" else "wikipedia",
                     progress=job.progress,
-                    cancel=job.cancelled.is_set,
+                    cancel=lambda: job.cancelled.is_set() or body.mode == "preview" and time.monotonic() - job.started > 30,
                     **({"fetcher": history_fetcher} if history_fetcher else {}),
                 )
+                if body.mode == "preview":
+                    history_payload = json.loads((Path(history_receipt["snapshot"]) / "source.json").read_text(encoding="utf8"))
             except InterruptedError:
-                raise Cancelled()
+                job.check()
+                if body.mode != "preview":
+                    raise Cancelled()
+                history_error = "Public history exceeded its 30-second budget. The captured page can still be read; try fewer records or a cached run."
+            except Exception:
+                job.check()
+                if body.mode != "preview":
+                    raise
+                history_error = "Public history could not be reconstructed. The captured page is still being read. Check the source license, quota and connection before retrying history."
+                logging.getLogger("tompathy_engine").exception("Public history unavailable; retaining captured-page preview")
+            if history_error:
+                packet = build_packet(body.artifact.model_dump(exclude_unset=True), admissions=gates, request_id=body.requestId)
         else:
             packet = build_packet(
                 body.artifact.model_dump(exclude_unset=True),
@@ -221,6 +311,61 @@ def create_app(
                 model=model,
                 goals=goals,
             )
+        if body.mode == "preview":
+            from copy import deepcopy
+
+            from ..ledger.ids import digest
+            from ..packet.contract import Packet
+            from ..preview.build import build_preview
+            from ..preview.cache import keeps_progress
+            from ..preview.cache import read as cache_read
+            from ..preview.cache import write as cache_write
+            inputs = deepcopy(packet)
+            inputs.pop("id", None)
+            inputs["artifact"].pop("capturedAt", None)
+            captured_ids = {digest([body.artifact.revision, r.id]) for r in body.artifact.regions}
+            for item in inputs["evidence"]:
+                if item["id"] in captured_ids:
+                    item.pop("capturedAt", None)
+            cache_key = digest([gates.implementation, inputs, history_payload, [r.identity for r in preview_readers],
+                                bool(preview_goals), bool(preview_techniques), getattr(preview_correction_reader, "pin", None),
+                                getattr(preview_goals, "identity", None), getattr(preview_techniques, "identity", None)])
+            cached = cache_read(preview_cache, "packets", cache_key) if not history_error else None
+            if cached:
+                packet = Packet.model_validate(cached["data"]).wire()
+                packet["preview"]["cachedAt"] = cached["at"]
+                job.progress("Loaded a cached real reading from " + cached["at"])
+                return packet
+            checkpoint = cache_read(preview_cache, "requests", backup_key) if not history_error else None
+            best = checkpoint["data"] if checkpoint else None
+            priority = checkpoint["data"].get("preview", {}).get("priorityRegion") if checkpoint else body.priorityRegion
+            saved_at = 0.0
+            def publish_partial(value):
+                nonlocal saved_at, best
+                job.publish(value)
+                if not history_error and time.monotonic() - saved_at >= 2 and (best is None or keeps_progress(value, best)):
+                    saved_at = time.monotonic()
+                    backup = deepcopy(value)
+                    backup["preview"]["resumable"] = True
+                    cache_write(preview_cache, "requests", backup_key, backup)
+                    best = backup
+            packet = build_preview(packet, readers=preview_readers, goal_runner=preview_goals,
+                                   technique_runner=preview_techniques, progress=job.progress,
+                                   history=history_payload, correction_reader=preview_correction_reader,
+                                   history_adapter="git" if body.history == "github" else "wikipedia",
+                                   partial=publish_partial, check=job.check, deadline=job.started + preview_budget, history_error=history_error,
+                                   priority_region=priority)
+            if history_cached_at:
+                packet["preview"]["modules"].append({"id": "history", "title": "Source history", "status": "complete", "detail": "Cached public history fetched " + history_cached_at})
+            if best is not None and not keeps_progress(packet, best):
+                packet = deepcopy(best)
+                packet["preview"]["resumable"] = True
+                job.progress("Retained the previous reading; exact cached work will be reused on continuation")
+            if not history_error and all(m["status"] in {"complete", "unavailable"} for m in packet["preview"]["modules"]):
+                cache_write(preview_cache, "packets", cache_key, packet)
+            if not history_error:
+                cache_write(preview_cache, "backups", cache_key, packet)
+                cache_write(preview_cache, "requests", backup_key, packet)
         job.progress("Packet validated")
         return packet
 
@@ -244,6 +389,8 @@ def create_app(
 
             async def stream():
                 cursor = 0
+                partial_revision = 0
+                previous_partial = None
                 try:
                     while not future.done():
                         if await request.is_disconnected():
@@ -252,14 +399,27 @@ def create_app(
                         with job.lock:
                             updates = job.events[cursor:]
                             cursor = len(job.events)
+                            partial_packet = job.partial_packet if job.partial_revision != partial_revision else None
+                            partial_revision = job.partial_revision
                         for update in updates:
                             yield "event: progress\ndata: " + json.dumps(update) + "\n\n"
+                        if partial_packet:
+                            event, data = "partial", partial_packet
+                            if body.compactProgress and previous_partial:
+                                # Replace whole top-level fields, never apply arbitrary paths.
+                                # Immutable captured text/evidence is sent only once.
+                                event = "partial-update"
+                                data = {key: value for key, value in partial_packet.items() if value != previous_partial.get(key)}
+                                data.update({key: None for key in previous_partial if key not in partial_packet})
+                            yield "event: " + event + "\ndata: " + json.dumps(data, ensure_ascii=True) + "\n\n"
+                            previous_partial = partial_packet
                         await asyncio.sleep(0.05)
                     result = await future
                     yield "event: packet\ndata: " + json.dumps(result, ensure_ascii=True) + "\n\n"
                 except Cancelled:
                     yield "event: cancelled\ndata: {}\n\n"
-                except Exception:  # noqa: BLE001 -- streamed failures must not echo captured text
+                except Exception:  # Streamed failures must not echo captured text.
+                    logging.getLogger("tompathy_engine").exception("History/reading analysis failed")
                     yield 'event: error\ndata: {"message":"Analysis failed; inspect local service log"}\n\n'
                 finally:
                     if not future.done():

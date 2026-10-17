@@ -1,4 +1,4 @@
-# ToMpathy result contract · 1.0–1.7
+# ToMpathy result contract · 1.0–1.8
 
 `src/core/model.ts` is the authoritative runtime validator. `examples/lantern-result.json` is a complete valid packet; `lantern-revision.json` demonstrates a context-conditioned revision. `lantern-source.txt` is the corresponding synthetic text. Fixtures use `tompathy:example` as their portable origin. In the installed extension, use **Development tools → Import result → Download example format** on the bundled source to obtain a packet bound to that installation's source URL.
 
@@ -9,7 +9,31 @@
 3. Supply makers, hypotheses, evidence and the declared scope. Use empty hypothesis/estimate arrays and unknown states when no useful inference is available.
 4. Return a packet through import, a configured static registry, or the local companion's `POST /v1/analyze` endpoint.
 
-Provider selection defaults to None. Options accepts an HTTPS registry or a token-authenticated loopback companion. **Analyze capture** is an explicit action in Options. Hover and capture never invoke inference. Responses pass `PacketSchema` and exact artifact/scope matching; changes to evidence abort pending work. Replacing an existing packet uses the retained-revision review flow. The commissioned demo on `abrahamhaskins.org` remains an imported-origin, locally authored packet bound to the live capture. Changed visible text on that demo site automatically recaptures; other sites retain the stale-source gate. See [Privacy](../PRIVACY.md) for each provider's requests and storage.
+Provider selection defaults to None. Options accepts an HTTPS registry or a token-authenticated loopback companion. **Analyze capture** is an explicit action in Options. **Follow pages** is a separate saved opt-in: while the panel is open it captures and requests readings on new active pages and visible text changes. Hovering alone never requests inference. Responses pass `PacketSchema` and exact artifact/scope matching; changes to evidence abort pending work. Replacing an existing packet uses the retained-revision review flow. The commissioned demo on `abrahamhaskins.org` remains locally authored when Follow pages is off; Follow pages uses the configured engine. See [Privacy](../PRIVACY.md) for requests and storage.
+
+## Additions in 1.8: structured current estimates
+
+A value hypothesis can supply `preferenceEstimate` with `quantity`, finite
+`value`, optional finite `reference`, `basis`, and `interval`. The interval is
+either explicit `null` (unknown) or `{lower, upper, level, method}`. Bounds must
+contain the estimate; `level` is strictly between 0 and 1. The named method and
+quantity describe the units and assumptions. A coefficient difference is not a
+measured psychological set point or a probability of having a value.
+
+The reader draws the supplied point, interval sleeve and end caps, numeric bounds,
+reference and method. Unknown uncertainty produces no sleeve. The engine emits
+1.8 only when supplying this field, through existing admission-gated preference
+and drive-recipe paths. Their conditional intervals already existed numerically;
+this change makes them machine-readable. It does not add a scientific admission.
+Earlier readers that do not understand 1.8 should reject it rather than discard
+the estimate. Packets without this field continue to use 1.7.
+
+Supply either a current estimate or `preferenceTrace`, not both. Legacy traces
+remain normalized display coordinates, with strictly increasing point times,
+and zero to six observations. Their symmetric `uncertainty` is a supplied sleeve
+half-width, not an implicitly calibrated confidence interval. Keyboard and pointer
+inspection display the actual supplied samples and clipped 0–1 bounds. Labels
+use the supplied start/end range; interpolation cannot overshoot adjacent samples.
 
 ## Additions in 1.7: engine population comparisons
 
@@ -56,7 +80,7 @@ personal narrowing or a future trajectory.
 
 | Field                             | Meaning                                                                                                                                                                       |
 | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `schemaVersion`                   | `"1.0"` (legacy, including Sounding Line Stage 13), `"1.1"`, `"1.2"`, `"1.3"`, `"1.4"`, `"1.5"`, `"1.6"`, or `"1.7"`                                                                   |
+| `schemaVersion`                   | `"1.0"` (legacy, including Sounding Line Stage 13), `"1.1"`, `"1.2"`, `"1.3"`, `"1.4"`, `"1.5"`, `"1.6"`, `"1.7"`, or `"1.8"`                                                                   |
 | `id`, `revision`                  | Analysis identity and positive integer revision                                                                                                                               |
 | `artifact`                        | ID, source, title, capture timestamp, content revision, truncation flag and regions                                                                                           |
 | `provider`                        | Stable provider ID and method description                                                                                                                                     |

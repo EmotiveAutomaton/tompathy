@@ -101,6 +101,13 @@ def test_fit_roundtrip_admission_and_packet(tmp_path):
     packet = build_packet(capture, ledger=ledger, model=restored, admissions=gates)
     values = [h for h in packet["hypotheses"] if h["kind"] == "value"]
     assert values and all(h["support"]["semantics"] == "relative" and h["evidence"] for h in values)
+    assert packet["schemaVersion"] == "1.8"
+    for h in values:
+        estimate = h["preferenceEstimate"]
+        assert estimate["interval"]["lower"] <= estimate["value"] <= estimate["interval"]["upper"]
+        assert estimate["interval"]["level"] == 0.95
+        assert estimate["reference"] == 0
+        assert "preferenceTrace" not in h
     assert all(h["interpretation"] == "preference" for h in values)
     assert packet["population"]["makersPooled"] == 2
     assert all(

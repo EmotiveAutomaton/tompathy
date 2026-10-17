@@ -21,8 +21,8 @@ def overlap(text, context, extractor=_words):
 
 def option_features(text, context, position):
     return {
-        "characters": float(len(text)),
-        "tokens": float(len(text.split())),
+        "characters": float(np.log1p(len(text))),
+        "tokens": float(np.log1p(len(text.split()))),
         "position": float(position),
         "word_overlap": overlap(text, context),
         "trigram_overlap": overlap(text, context, _ngrams),

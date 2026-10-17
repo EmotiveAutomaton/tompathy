@@ -1,0 +1,443 @@
+.section-heading h2.essay-section-title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 3px 2px 10px;
+}
+.section-question {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  border-radius: 50%;
+  color: var(--muted);
+  flex: 0 0 auto;
+}
+.section-question:hover,
+.section-question:focus-visible {
+  color: var(--green);
+  background: var(--soft);
+}
+.essay-preview {
+  position: fixed;
+  z-index: 120;
+  overflow: auto;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 12px 40px #152c2630;
+  font:
+    12px/1.5 "Segoe UI",
+    sans-serif;
+}
+.essay-preview p {
+  margin: 0;
+}
+.essay-preview a,
+.essay-prose a {
+  color: var(--green);
+  text-underline-offset: 3px;
+}
+.essay-dialog {
+  max-width: none;
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 24px 90px #10261f40;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.essay-dialog::backdrop {
+  background: #10221c80;
+  backdrop-filter: blur(2px);
+}
+.essay-surface {
+  background: var(--surface);
+  color: var(--ink);
+}
+.essay-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  padding: 17px 28px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+.essay-header h1 {
+  margin: 0;
+  font:
+    600 15px/1.4 "Segoe UI",
+    sans-serif;
+  letter-spacing: 0.01em;
+}
+.essay-close {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 50%;
+  background: var(--soft);
+  color: var(--ink);
+  cursor: pointer;
+}
+.essay-prose {
+  max-width: none;
+  margin: 0 auto;
+  padding: 36px 48px 64px;
+  font:
+    18px/1.8 Georgia,
+    "Times New Roman",
+    serif;
+  overflow-wrap: break-word;
+}
+.essay-prose > p {
+  margin: 0 0 1.35em;
+}
+.essay-citation {
+  display: inline;
+  font:
+    600 0.44em/0 "Segoe UI",
+    sans-serif;
+  vertical-align: super;
+  white-space: nowrap;
+  opacity: 0.6;
+  color: var(--muted);
+}
+.essay-citation a {
+  color: inherit;
+  padding: 0;
+  text-decoration: none;
+}
+.essay-citation a:hover,
+.essay-citation a:focus-visible {
+  text-decoration: underline;
+}
+.essay-figure {
+  margin: 34px 0 40px;
+  --essay-image-width: 320px;
+  --essay-caption-width: 480px;
+}
+.essay-figure-group {
+  --essay-image-width: 656px;
+  --essay-caption-width: 656px;
+}
+.essay-figure-four {
+  --essay-image-width: 328px;
+  --essay-caption-width: 492px;
+}
+.essay-figure-large {
+  --essay-image-width: 640px;
+  --essay-caption-width: 960px;
+}
+.essay-image-button,
+.essay-diagram-button {
+  display: block;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  width: 100%;
+  min-width: 0;
+  color: inherit;
+  cursor: zoom-in;
+}
+.essay-diagram-button {
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+}
+.essay-images {
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+  width: min(100%, var(--essay-image-width));
+  margin-inline: auto;
+  align-items: stretch;
+}
+.essay-image-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.essay-images img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  margin: auto;
+  border-radius: 3px;
+  background: #fff;
+  border: 4px solid #111;
+}
+.essay-images .essay-generated-image {
+  border-color: #999;
+}
+.essay-images .essay-borderless-image {
+  border: 0;
+  background: transparent;
+}
+.essay-images .essay-uncropped-image {
+  aspect-ratio: auto;
+  height: auto;
+  object-fit: contain;
+}
+.essay-figure-four .essay-images {
+  gap: 8px;
+}
+.essay-portraits img {
+  aspect-ratio: 4 / 5;
+}
+.essay-figure figcaption {
+  margin: 12px auto 0;
+  max-width: min(100%, var(--essay-caption-width));
+  color: var(--muted);
+  font:
+    13px/1.6 "Segoe UI",
+    sans-serif;
+  text-align: center;
+  text-wrap: balance;
+}
+.essay-figure figcaption p {
+  margin: 6px 0;
+}
+.essay-navigation {
+  opacity: 0.6;
+  font:
+    13px/1.6 "Segoe UI",
+    sans-serif;
+}
+.essay-next {
+  text-align: right;
+}
+.essay-lightbox {
+  position: fixed;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  max-width: none;
+  max-height: none;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+  cursor: zoom-out;
+}
+.essay-lightbox[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.essay-lightbox::backdrop {
+  background: #000;
+}
+.essay-lightbox > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.essay-lightbox > .essay-channels,
+.essay-lightbox > .essay-preference {
+  width: min(90vw, 1000px);
+  max-height: 90vh;
+  background: #fff;
+  padding: 24px;
+  border: 0;
+  --green: #42685b;
+  --muted: #5f7068;
+  --soft: #eff3ed;
+  --ink: #273e39;
+  --bg: #fff;
+  --line: #dce3dd;
+  color: #273e39;
+}
+.essay-lightbox .essay-channel svg {
+  max-height: 25vh;
+}
+.essay-lightbox .essay-channel {
+  font-size: clamp(10px, 2vw, 20px);
+}
+.essay-placement-note {
+  font-style: italic;
+}
+.essay-image-note {
+  padding: 12px 16px;
+  border-left: 2px solid var(--line);
+}
+.essay-image-note figcaption {
+  margin: 0;
+  text-align: left;
+}
+.essay-figure {
+  scroll-margin-top: 90px;
+}
+.essay-bibliography {
+  padding-left: 2em;
+  font:
+    15px/1.75 "Segoe UI",
+    sans-serif;
+}
+.essay-bibliography li {
+  margin-bottom: 1.2em;
+  padding-left: 0.5em;
+  overflow-wrap: anywhere;
+}
+.essay-channels {
+  width: min(100%, 656px);
+  border: 4px solid #999;
+  padding: 16px 8px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px 0;
+}
+.essay-channel {
+  width: 25%;
+  text-align: center;
+  font:
+    600 11px/1.4 "Segoe UI",
+    sans-serif;
+}
+.essay-channel:nth-child(-n + 3) {
+  width: 30%;
+}
+.essay-channel .drive-brain {
+  margin: 0;
+  color: var(--green);
+}
+.essay-channel svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 110px;
+}
+.essay-channel .brain-anatomy {
+  opacity: 0.36;
+}
+.essay-channel .brain-head {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1;
+}
+.essay-channel .brain-cortex {
+  fill: var(--soft);
+  stroke: var(--green);
+  stroke-width: 0.8;
+}
+.essay-channel .brain-folds {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 0.7;
+  opacity: 0.48;
+}
+.essay-channel .brain-stem,
+.essay-channel .brain-cerebellum {
+  fill: var(--soft);
+  stroke: var(--green);
+  stroke-width: 0.7;
+}
+.essay-channel .brain-network path {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.essay-channel .brain-network circle {
+  fill: var(--green);
+}
+.essay-channel .brain-network .brain-halo {
+  opacity: 0.2;
+}
+.essay-preference {
+  width: min(100%, 320px);
+  margin: auto;
+  padding: 12px;
+  border: 4px solid #999;
+}
+.essay-preference .preference-chart {
+  display: block;
+  width: 100%;
+  color: var(--green);
+}
+.essay-preference .preference-readout,
+.essay-preference .preference-hit {
+  display: none;
+}
+.essay-preference .preference-chart text {
+  font: 10px system-ui;
+  fill: var(--ink);
+}
+.essay-preference .preference-axes {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1;
+}
+.essay-preference .preference-line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+.essay-preference .preference-vector path {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+}
+.essay-preference .preference-vector circle {
+  fill: var(--bg);
+  stroke: currentColor;
+  stroke-width: 1.3;
+}
+.essay-preference .preference-inspection path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+}
+.essay-preference .preference-inspection circle {
+  fill: currentColor;
+}
+@media (max-width: 400px) {
+  .essay-images {
+    gap: 8px;
+  }
+  .essay-channel {
+    font-size: 8px;
+  }
+}
+.essay-standalone {
+  background: var(--surface);
+}
+.essay-standalone .essay-surface {
+  min-height: 100dvh;
+}
+@media (max-width: 550px) {
+  .essay-prose {
+    padding: 24px 22px 44px;
+    font-size: 17px;
+    line-height: 1.75;
+  }
+  .essay-header {
+    padding: 12px 18px;
+  }
+  .essay-header h1 {
+    font-size: 14px;
+  }
+  .essay-figure {
+    margin: 26px 0 32px;
+  }
+}

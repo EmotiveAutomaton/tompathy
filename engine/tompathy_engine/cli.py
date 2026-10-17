@@ -145,6 +145,15 @@ def main(argv=None):
     p.add_argument("--ledger")
     p.add_argument("--admissions")
     p.add_argument("--population-dir")
+    p.add_argument("--preview-readers", help="Directory containing explicitly installed, pinned qwen/ and optional smol/ readers")
+    p.add_argument("--preview-device", choices=("cpu", "cuda"), default="cpu", help="Explicit scoring device; never silently falls back")
+    p.add_argument("--preview-threads", type=int, default=1, help="Explicit CPU reader thread budget (1–16)")
+    p.add_argument("--preview-precision", choices=("int8", "int8-channel", "float32"), default="int8")
+    p.add_argument("--preview-clef-config", help="Optional pinned local Clef-flash SystemOne config; unvalidated joint technique decisions")
+    p.add_argument("--preview-cache", help="Local exact-input surface score cache")
+    p.add_argument("--preview-preparation-budget", type=int, default=165, help="Explicit offline cache assembly budget, 165–600 seconds; ordinary live default 165")
+    p.add_argument("--preview-judgment-url", help="Dedicated ToMpathy CPU Ollama origin, exact original fixed Qwen reader; never use a shared research service")
+    p.add_argument("--preview-question-admissions", type=Path, help="Fresh engine question receipts; old Sounding Line receipts are not imported")
     p.add_argument("--model")
     p.add_argument("--goals")
     p.add_argument("--history-dir", help="Enable explicit Wikipedia history requests")
@@ -340,6 +349,38 @@ def main(argv=None):
 
             if not 1024 <= args.port <= 65535:
                 raise ValueError("Choose a port between 1024 and 65535")
+            preview_readers = []
+            preview_goals, preview_techniques, preview_correction_reader = None, None, None
+            if args.preview_judgment_url:
+                from .preview.fixed_backend import FixedQwen
+                from .preview.judgments import fixed_reader, techniques
+                from .preview.judgments import goals as preview_goal_runner
+                from .transcribe.cache import Cache
+                if not args.preview_cache:
+                    raise ValueError("Preview judgments require an explicit local cache")
+                backend = FixedQwen(args.preview_judgment_url)
+                cache = Cache(Path(args.preview_cache) / "judgments.sqlite")
+                preview_goals = preview_goal_runner(backend, cache)
+                question_records = [read(p) for p in sorted(args.preview_question_admissions.glob("*.json"))] if args.preview_question_admissions else []
+                preview_correction_reader = fixed_reader(backend, cache, question_records)
+                preview_techniques = techniques(preview_correction_reader)
+            if args.preview_clef_config:
+                from .preview.clef import Clef
+                from .preview.clef import techniques as clef_techniques
+                from .transcribe.cache import Cache
+                if not args.preview_cache:
+                    raise ValueError("Clef requires an explicit local preview cache")
+                preview_techniques = clef_techniques(Clef(read(args.preview_clef_config)), Cache(Path(args.preview_cache) / "clef.sqlite"))
+            if args.preview_readers:
+                from .preview.readers import LocalReader
+                for name in ("qwen", "smol"):
+                    if name == "smol" and not preview_readers:
+                        break
+                    root = Path(args.preview_readers) / name
+                    if name == "smol" and not (root / "manifest.json").exists():
+                        root = Path(args.preview_readers) / "smol-small"
+                    if (root / "manifest.json").exists():
+                        preview_readers.append(LocalReader(root, args.preview_cache, device=args.preview_device, threads=args.preview_threads, precision=args.preview_precision))
             app = create_app(
                 token=load_token(args.token_file),
                 origins=args.extension_origin,
@@ -351,6 +392,12 @@ def main(argv=None):
                 history_dir=args.history_dir,
                 history_questions=[q for q in args.questions.split(",") if q],
                 reader=local_reader(args.transcriber_config, args.question_records, args.cache),
+                preview_readers=preview_readers,
+                preview_goals=preview_goals,
+                preview_techniques=preview_techniques,
+                preview_correction_reader=preview_correction_reader,
+                preview_cache=args.preview_cache,
+                preview_budget=args.preview_preparation_budget,
             )
             uvicorn.run(app, host="127.0.0.1", port=args.port, access_log=False)
             return

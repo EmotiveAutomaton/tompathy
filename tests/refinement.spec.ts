@@ -13,7 +13,7 @@ test("every expanded option inspects one leaf, in either direction, without chan
   await page.goto("/?panel&demo=fieldnotes");
   // Simulate a platform font that makes the corner label wider.
   await page.addStyleTag({
-    content: ".process-region .heading-help { font-family: monospace; }",
+    content: ".process-region .essay-section-title { font-family: monospace; }",
   });
   await page
     .locator('[data-root="purpose"][data-node="paragraph-3"] circle')
@@ -70,7 +70,7 @@ test("corner heading leaves top dots reachable with wider platform fonts and zoo
 }) => {
   await page.goto("/?panel&demo=fieldnotes");
   await page.addStyleTag({
-    content: ".process-region .heading-help { font-family: monospace; }",
+    content: ".process-region .essay-section-title { font-family: monospace; }",
   });
   for (const [width, zoom] of [
     [360, 1],

@@ -33,6 +33,9 @@ export function PopulationValues({
         return (
           <article key={h.id}>
             <strong>{h.label}</strong>
+            {item.quantiles && <figure><svg viewBox="0 0 300 55" role="img" aria-label="Twenty supplied population quantiles">
+              {item.quantiles.map((q, i) => <circle key={i} cx={15 + 270 * (q - item.populationSupport.scale[0]) / (item.populationSupport.scale[1] - item.populationSupport.scale[0])} cy={10 + (i % 4) * 11} r="3" fill="currentColor"><title>{q.toPrecision(4)}</title></circle>)}
+            </svg><figcaption>20 supplied population quantiles; no personal evidence is added.</figcaption></figure>}
             <dl>
               <dt>Population support</dt>
               <dd>{item.populationSupport.value.toFixed(3)}</dd>

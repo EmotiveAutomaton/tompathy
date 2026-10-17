@@ -108,6 +108,17 @@ p {
 .destination:disabled {
   opacity: 0.48;
 }
+#connect,
+#follow {
+  display: block;
+  width: 100%;
+}
+#connect strong,
+#follow strong,
+#connect > span,
+#follow > span {
+  display: block;
+}
 .destination:not(:disabled):hover {
   background: #edf2e9;
   transform: translateX(3px);

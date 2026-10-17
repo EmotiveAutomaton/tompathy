@@ -46,8 +46,8 @@ test("review heading and help geometry at narrow and short sizes", async ({
       .getByRole("button", { name: "About Core values", exact: true })
       .click();
     const dialog = page.getByRole("dialog");
-    await expect(dialog.locator("#help-values")).toBeInViewport();
-    const target = await dialog.locator("#help-values").boundingBox();
+    await expect(dialog.locator("[data-essay-paragraph]").first()).toBeInViewport();
+    const target = await dialog.locator("[data-essay-paragraph]").first().boundingBox();
     const dialogHeader = await dialog.locator("header").boundingBox();
     expect(target!.y).toBeGreaterThanOrEqual(
       dialogHeader!.y + dialogHeader!.height,
@@ -66,7 +66,7 @@ test("review heading and help geometry at narrow and short sizes", async ({
       exact: true,
     });
     await title.click();
-    await title.press("Escape");
+    await page.keyboard.press("Escape");
     await page.waitForTimeout(550);
     await expect(dialog).toHaveCount(0);
   }
@@ -83,7 +83,7 @@ test("uniform headings, supplied icon, confidence weights and a reachable half r
   for (const width of [400, 360, 320]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/?panel&demo=fieldnotes");
-    const headings = page.locator(".heading-help");
+    const headings = page.locator(".essay-section-title");
     await expect(headings).toHaveCount(3);
     const sizes = await headings.evaluateAll((els) =>
       els.map((el) => getComputedStyle(el).fontSize),

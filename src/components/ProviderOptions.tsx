@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { isExtension } from "../browser";
-import { providerOrigin, type ProviderSettings } from "../core/provider";
+import {
+  checkCompanion,
+  providerOrigin,
+  type ProviderSettings,
+} from "../core/provider";
 
 const key = "tompathy-provider";
 export async function readProvider(): Promise<ProviderSettings> {
@@ -30,6 +34,7 @@ export function ProviderOptions({
     settings.kind === "local" ? settings.token : "",
   );
   const [message, setMessage] = useState("");
+  const [checking, setChecking] = useState(false);
   async function save() {
     try {
       const next: ProviderSettings =
@@ -113,6 +118,29 @@ export function ProviderOptions({
       <button className="secondary-button" onClick={() => void save()}>
         Save analysis source
       </button>
+      {settings.kind === "local" && (
+        <button
+          className="secondary-button"
+          disabled={checking}
+          onClick={async () => {
+            setChecking(true);
+            try {
+              const health = await checkCompanion(settings);
+              setMessage(
+                `Connected to engine ${health.engineVersion}. ${health.historyAvailable.includes("wikipedia") ? "Wikipedia history is available." : "History analysis is not enabled."} ${health.admittedModules.length ? `${health.admittedModules.length} admitted modules.` : "Observed evidence only; inference modules await validation."}`,
+              );
+            } catch {
+              setMessage(
+                "Connection failed. Start Practice ToMpathy.cmd, connect there, then reopen this panel. Check the saved URL and token if using a separate companion.",
+              );
+            } finally {
+              setChecking(false);
+            }
+          }}
+        >
+          {checking ? "Checking connection…" : "Check saved connection"}
+        </button>
+      )}
       {message && <p role="status">{message}</p>}
     </section>
   );

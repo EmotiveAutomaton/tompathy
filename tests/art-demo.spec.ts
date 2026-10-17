@@ -99,7 +99,7 @@ test("essay is the default; one graph Tab entry, arrow navigation, real variable
   );
   const entry = page.locator('.pyramid-node[tabindex="0"]');
   await expect(entry).toHaveCount(1);
-  await page.locator(".process-region .heading-help").focus();
+  await page.locator(".process-region .section-question").focus();
   await page.keyboard.press("Tab");
   await expect(entry).toBeFocused();
   await page.keyboard.press("ArrowDown");
