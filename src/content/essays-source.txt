@@ -1,6 +1,6 @@
 -Current Attention:
 Hello everyone! Thanks for your “current attention”. Quick note: a human wrote every goddamn word of these 3 tooltips, though I generated the grey-bordered pictures. This is meant to be a short 3-essay explanation of what’s happening on the science side. Longer version here [abrahamhaskins.org/art]. Off we go:
-Art is physical evidence of compressed decision-making [2]. ANY evidence: a painting, spoken words, or a footprint [3]. We reverse-engineer the decision-making of others both in-person and at a distance through the inference of *appreciation*, which is part of empathy [4]. We do this to assess and then copy the previous decisions of others [5].
+Art is physical evidence of compressed decision-making. ANY evidence: a painting, spoken words, or a footprint [3]. We reverse-engineer the decision-making of others both in-person and at a distance through the inference of *appreciation*, which is part of empathy [4]. We do this to assess and then copy the previous decisions of others [5].
 But it’s not automatic, this copying. In fact, it’s explicitly driven by the conscious process of attention [6]. You can read Mein Kampf and not instantly become Hitler, if you're careful enough. To decide whether it’s safe to copy, we have to understand the creator enough to know whether to trust them and incorporate their process [7]. We have to extract the creator’s core values [8].
 This project is intended to take this process of empathic understanding and supercharge it with AI.
 I comprehend the moral hazard of what I have made here. At least I think I do. Extrapolated out, this understanding becomes glasses that can read minds, horrific government overreach, and potentially an even more dangerous hazard than the current one (fun fact: unlabeled AI-generated content is a cognitohazard and will erode away your expertise over time [11], see the next tooltip).
@@ -39,28 +39,24 @@ And what’s weird is that this final layer is so powerfully distorting that we 
 Alright, moment of truth time, because alignment researchers have been telling me to get to the point for ages. How do we tell what people actually want in the first place? Where does the mythical “latent preference data” [31] come from? (And not to brag, but it comes bundled with an anti-capture mechanism):
 The attention stream has the data [32]. Aesthetic or naturally rewarding stimuli *can* pull attention [33] (whatever data is most rapidly compressing in your field of view will pull your eye, actually [34][35]), but that is not the only driver [36]. The movement of attention shows what the creator wanted, and you can identify attention by extracting deviations from the expected process [38].
 Each act of attention is identified by a decision, and the power of “want” in that decision is determined by the inferred cost-given-context [39] with a discount rate (from economics) [40] attached. This gives us a vector, which becomes one of our dots below. And, incidentally, because we do get a little bit of weak dating information (extreme expertise is associated with older decisions [41]), we can begin to assemble a picture of a person’s wants: their preferred set points [42][43].
-Each of these preferences (“set-points”) can have an accompanying preferred solution, but the preference is not the solution. That being said, we will be naming the drives in accordance with their preferred solution, as every drive block comes with a preferred problem. So if access to an expected reward is thwarted, RAGE can fire [15], which can trigger the solution of creativity [44] through adrenaline: your awareness of the possibilities expands (more weight on that expert transition map [45]), and like the engineer in the example you reach for the tools available to you, such as her pipe bombs. But the engineer’s preference isn’t for pipe bombs, or even for RAGE - it is for the expected reward not to have been thwarted. So now we know how to extract the preference signal.
+Each of these preferences (“set-points”) can have an accompanying preferred solution, but the preference is not the solution. That being said, we will be naming the drives in accordance with their preferred solution, as every drive block comes with a preferred problem. So if access to an expected reward is thwarted, RAGE can fire [15], which can trigger the solution of creativity [44] through adrenaline: your awareness of the possibilities expands (more weight on that expert transition map), and like the engineer in the example you reach for the tools available to you, such as her pipe bombs. But the engineer’s preference isn’t for pipe bombs, or even for RAGE - it is for the expected reward not to have been thwarted. So now we know how to extract the preference signal.
 Heads up, this signal is WEAK AS FUCK… and that’s a good thing. Because we all know that even the tiniest divergence between what we want and what the AI wants is, for a nearly omniscient AI, an instant extinction threat to our species [46]. This means that the only way to boost that signal to a usable level is to use all of it. All of our data. And it’s not just data density that matters, it’s human-decision density. So, erm, that’s my anti-capture mechanism. A super weak signal (…that isn’t weak to bot-farms [47]).
 But that means it can’t just optimize for one person. It would never be sure enough [48][49], and everyone (including that person) dies because it misunderstands a request and takes an action that instantly murders all humans before we can react. Frankly, I’m even nervous about the power as it is - using all of our data is still going to be inaccurate enough to make me very uncomfortable. So yeah. We have to make a utopian future for all of us - a personal, fusion-powered spaceship for every African child. Elon can have one too. Because if we don’t, everyone dies. Sorrynotsorry.
 And how do we get there from here? Off the cuff, I think we have the target for a loss function for aligned behavior now. We just need to ensure that we pair it with an appropriately scaled active inference framework [50] to drive behavior: an optimally aligned AI needs to take clever actions to elicit the most information about human preferences [51], while balanced against the actions most likely to fulfil them (active inference has the math on this [52], we have to work out the scalar).
 I have a ton more to say about this. Like how this solution also doesn’t lock us into our set points, because higher-order neocortical goals and values are how we grow anyway. Or how through the interaction between possibility distortion (the engineer example) and attention I believe I’ve cracked the puzzle of finding “wanting to want” [54]. Or how I expect the application of “degree of alignment” to become yet another exponential vector for AI improvement.
 But I’ve pushed the limits of what’s possible for an… erm… “tooltip.”
-Oh, you came here to ask about the math or science of the backend? Just toss an agent at my open repos: ToMpathy [55], SoundingLine [56], and GhostScaleSim [57]. I’d pay particular attention to the theory documentation in SoundingLine [58]. I’m gonna treat this more like a Wright brothers thing. Y’all can work out the details as they apply to your specific fields.
+Oh, you came here to ask about the math or science of the backend? Just toss an agent at my open repos: ToMpathy [55], SoundingLine [56], and GhostScaleSim [57]. I’d pay particular attention to the theory documentation in SoundingLine. I’m gonna treat this more like a Wright brothers thing. Y’all can work out the details as they apply to your specific fields.
 It’s all hands on deck now, and we all have two goals: either help solve the alignment problem, or help as many people survive to see its resolution as we can. We’re nearing the finish line, but we do have the tools we hoped we would. It’ll be hard work, the next steps, but:
 
 ________________________________________
 References
 Current Attention
-1.	Haskins, A. (2026). Art: A unifying model. abrahamhaskins.org. abrahamhaskins.org/art
-2.	Haskins, A. (2026). Art as an algorithmic virus: Unifying the generative crash and AI value convergence via cognitive affordances (preprint). Zenodo. doi:10.5281/zenodo.19407789
 3.	Lopez-Brau, M., Kwon, J., & Jara-Ettinger, J. (2020). Mental state inference from indirect evidence through Bayesian event reconstruction. Proceedings of the 42nd Annual Conference of the Cognitive Science Society, 467-473. cognitivesciencesociety.org/cogsci20/papers/0085/index.html
 4.	Baker, C. L., Saxe, R., & Tenenbaum, J. B. (2009). Action understanding as inverse planning. Cognition, 113(3), 329-349. dspace.mit.edu/handle/1721.1/60852
 5.	Rendell, L., et al. (2010). Why copy others? Insights from the social learning strategies tournament. Science, 328(5975), 208-213. doi:10.1126/science.1184719
 6.	Bandura, A. (2001). Social cognitive theory of mass communication. Media Psychology, 3(3), 265-299. doi:10.1207/S1532785XMEP0303_03
 7.	Sperber, D., et al. (2010). Epistemic vigilance. Mind & Language, 25(4), 359-393. doi:10.1111/j.1468-0017.2010.01394.x
 8.	Ng, A. Y., & Russell, S. J. (2000). Algorithms for inverse reinforcement learning. Proceedings of the 17th International Conference on Machine Learning, 663-670. ai.stanford.edu/~ang/papers/icml00-irl.pdf
-9.	ToMpathy. Open-source repository, GitHub (EmotiveAutomaton). github.com/EmotiveAutomaton/tompathy
-10.	Ghost Scale Sim: The walkthrough. GitHub (EmotiveAutomaton). github.com/EmotiveAutomaton/ghost-scale-sim/blob/main/WALKTHROUGH.md
 11.	Budzyń, K., et al. (2025). Endoscopist deskilling risk after exposure to artificial intelligence in colonoscopy: A multicentre, observational study. The Lancet Gastroenterology & Hepatology, 10(10), 896-903. wrap.warwick.ac.uk/id/eprint/191005
 12.	Center for AI Safety (2023, May 30). Statement on AI extinction risk. aistatement.com
 13.	Yudkowsky, E., & Soares, N. (2025). If anyone builds it, everyone dies: Why superhuman AI would kill us all. Little, Brown. ifanyonebuildsit.com
@@ -68,16 +64,14 @@ Current Attention
 15.	Albarracin, M., et al. (2026). Empathy modeling in active inference agents for perspective-taking and alignment. arXiv:2602.20936
 16.	Preston, S. D. (2013). The origins of altruism in offspring care. Psychological Bulletin, 139(6), 1305-1341. doi:10.1037/a0031755
 17.	Hamid, S. (2025, December 30). EFF’s investigations expose Flock Safety’s surveillance abuses: 2025 in review. Electronic Frontier Foundation. eff.org/deeplinks/2025/12/effs-investigations-expose-flock-safetys-surveillance-abuses-2025-review
-18.	The triple inference: What a reader infers about a maker, and what makes it recoverable. Sounding Line theory docs. github.com/EmotiveAutomaton/sounding-line/blob/main/docs/theory/THE_TRIPLE_INFERENCE.md
 Expertise (Previous Attention)
-1.	Three cognitive layers: The latent architecture, and what a model reconstructs of it. Sounding Line theory docs. github.com/EmotiveAutomaton/sounding-line/blob/main/docs/theory/THREE_COGNITIVE_LAYERS.md
 2.	Tolman, E. C. (1948). Cognitive maps in rats and men. Psychological Review, 55(4), 189-208. doi:10.1037/h0061626
 3.	Wood, W., & Rünger, D. (2016). Psychology of habit. Annual Review of Psychology, 67, 289-314. doi:10.1146/annurev-psych-122414-033417
 4.	Hebb, D. O. (1949). The organization of behavior: A neuropsychological theory. Wiley. archive.org/details/organizationofbe00hebbrich
 5.	Shatz, C. J. (1992). The developing brain. Scientific American, 267(3), 60-67. The source of the “fire together, wire together” wording; Hebb never used it. doi:10.1038/scientificamerican0992-60
 6.	Logan, G. D. (1988). Toward an instance theory of automatization. Psychological Review, 95(4), 492-527. doi:10.1037/0033-295X.95.4.492
 7.	Rasmussen, J. (1985). The role of hierarchical knowledge representation in decisionmaking and system management. IEEE Transactions on Systems, Man, and Cybernetics, SMC-15(2), 234-243. doi:10.1109/TSMC.1985.6313353
-8.	Kautz, H. A., & Allen, J. F. (1986). Generalized plan recognition. Proceedings of the Fifth National Conference on Artificial Intelligence (AAAI-86), 32-37. aaai.org/papers/00032-AAAI86-006-generalized-plan-recognition
+8.	Kautz, H. A., & Allen, J. F. (1986). Generalized plan recognition. Proceedings of the Fifth National Conference on Artificial Intelligence (AAAI-86), 32-37. cdn.aaai.org/AAAI/1986/AAAI86-006.pdf
 9.	Clark, A. (2013). Whatever next? Predictive brains, situated agents, and the future of cognitive science. Behavioral and Brain Sciences, 36(3), 181-204. doi:10.1017/S0140525X12000477
 10.	Gergely, G., Bekkering, H., & Király, I. (2002). Rational imitation in preverbal infants. Nature, 415(6873), 755. doi:10.1038/415755a
 11.	Kirsh, D., & Maglio, P. (1994). On distinguishing epistemic from pragmatic action. Cognitive Science, 18(4), 513-549. doi:10.1207/s15516709cog1804_1
@@ -95,7 +89,6 @@ Expertise (Previous Attention)
 23.	Cook, R., Bird, G., Catmur, C., Press, C., & Heyes, C. (2014). Mirror neurons: From origin to function. Behavioral and Brain Sciences, 37(2), 177-192. doi:10.1017/S0140525X13000903
 24.	Coles, N. A., et al. (2022). A multi-lab test of the facial feedback hypothesis by the Many Smiles Collaboration. Nature Human Behaviour, 6(12), 1731-1742. doi:10.1038/s41562-022-01458-9
 25.	Ekman, P., Levenson, R. W., & Friesen, W. V. (1983). Autonomic nervous system activity distinguishes among emotions. Science, 221(4616), 1208-1210. doi:10.1126/science.6612338
-26.	Ghost Scale Sim: The walkthrough. GitHub (EmotiveAutomaton). github.com/EmotiveAutomaton/ghost-scale-sim/blob/main/WALKTHROUGH.md
 27.	Jakesch, M., Hancock, J. T., & Naaman, M. (2023). Human heuristics for AI-generated language are flawed. PNAS, 120(11), e2208839120. doi:10.1073/pnas.2208839120
 28.	Vicente, L., & Matute, H. (2023). Humans inherit artificial intelligence biases. Scientific Reports, 13, 15737. doi:10.1038/s41598-023-42384-8
 29.	Shumailov, I., et al. (2024). AI models collapse when trained on recursively generated data. Nature, 631(8022), 755-759. doi:10.1038/s41586-024-07566-y
@@ -112,7 +105,6 @@ Expertise (Previous Attention)
 40.	Kantamneni, S., & Tegmark, M. (2025). Language models use trigonometry to do addition. arXiv. arXiv:2502.00873
 41.	Budzyń, K., et al. (2025). Endoscopist deskilling risk after exposure to artificial intelligence in colonoscopy: A multicentre, observational study. The Lancet Gastroenterology & Hepatology, 10(10), 896-903. wrap.warwick.ac.uk/id/eprint/191005
 Core Values
-1.	Reader heuristics: How a bounded reader approximates the triple inference. Sounding Line theory docs. github.com/EmotiveAutomaton/sounding-line/blob/main/docs/theory/READER_HEURISTICS.md
 2.	Roelfsema, P. R., & van Ooyen, A. (2005). Attention-gated reinforcement learning of internal representations for classification. Neural Computation, 17(10), 2176-2214. doi:10.1162/0899766054615699
 3.	Hutcherson, C. A., & Gross, J. J. (2011). The moral emotions: A social-functionalist account of anger, disgust, and contempt. Journal of Personality and Social Psychology, 100(4), 719-737. doi:10.1037/a0022408
 4.	Wilson, T. D., & Brekke, N. (1994). Mental contamination and mental correction: Unwanted influences on judgments and evaluations. Psychological Bulletin, 116(1), 117-142. doi:10.1037/0033-2909.116.1.117
@@ -134,7 +126,6 @@ Core Values
 20.	Nisbett, R. E., & Cohen, D. (1996). Culture of honor: The psychology of violence in the South. Westview Press (Routledge reissue, 2018). doi:10.4324/9780429501142
 21.	Anderton, E. (2024). Pixar’s Inside Out 2 almost included a complicated German emotion: Here’s why it got cut. /Film. slashfilm.com/1563120/why-pixar-inside-out-2-cut-german-emotion-character-schadenfreude
 22.	Linnet, J. T. (2011). Money can’t buy me hygge: Danish middle-class consumption, egalitarianism, and the sanctity of inner space. Social Analysis, 55(2), 21-44. doi:10.3167/sa.2011.550202
-23.	The triple inference: What a reader infers about a maker, and what makes it recoverable. Sounding Line theory docs. github.com/EmotiveAutomaton/sounding-line/blob/main/docs/theory/THE_TRIPLE_INFERENCE.md
 24.	Phillips, J., Morris, A., & Cushman, F. (2019). How we know what not to think. Trends in Cognitive Sciences, 23(12), 1026-1040. doi:10.1016/j.tics.2019.09.007
 25.	Fredrickson, B. L. (2001). The role of positive emotions in positive psychology: The broaden-and-build theory of positive emotions. American Psychologist, 56(3), 218-226. doi:10.1037/0003-066X.56.3.218
 26.	Alcaro, A., & Panksepp, J. (2011). The SEEKING mind: Primal neuro-affective substrates for appetitive incentive states and their pathological dynamics in addictions and depression. Neuroscience & Biobehavioral Reviews, 35(9), 1805-1820. doi:10.1016/j.neubiorev.2011.03.002
@@ -148,7 +139,6 @@ Core Values
 34.	Schmidhuber, J. (2009). Driven by compression progress: A simple principle explains essential aspects of subjective beauty, novelty, surprise, interestingness, attention, curiosity, creativity, art, science, music, jokes. In Anticipatory Behavior in Adaptive Learning Systems (LNCS 5499, pp. 48-76). Springer. arXiv:0812.4360
 35.	Poli, F., Serino, G., Mars, R. B., & Hunnius, S. (2020). Infants tailor their attention to maximize learning. Science Advances, 6(39), eabb5053. doi:10.1126/sciadv.abb5053
 36.	Awh, E., Belopolsky, A. V., & Theeuwes, J. (2012). Top-down versus bottom-up attentional control: A failed theoretical dichotomy. Trends in Cognitive Sciences, 16(8), 437-443. doi:10.1016/j.tics.2012.06.010
-37.	Decision traces: What survives in the artifact, and how it is measured. Sounding Line theory docs. github.com/EmotiveAutomaton/sounding-line/blob/main/docs/theory/DECISION_TRACES.md
 38.	Caplin, A., & Dean, M. (2015). Revealed preference, rational inattention, and costly information acquisition. American Economic Review, 105(7), 2183-2203. doi:10.1257/aer.20140117
 39.	Jara-Ettinger, J., Gweon, H., Schulz, L. E., & Tenenbaum, J. B. (2016). The naïve utility calculus: Computational principles underlying commonsense psychology. Trends in Cognitive Sciences, 20(8), 589-604. doi:10.1016/j.tics.2016.05.011
 40.	Frederick, S., Loewenstein, G., & O’Donoghue, T. (2002). Time discounting and time preference: A critical review. Journal of Economic Literature, 40(2), 351-401. doi:10.1257/002205102320161311
@@ -156,7 +146,6 @@ Core Values
 42.	Keramati, M., & Gutkin, B. (2014). Homeostatic reinforcement learning for integrating reward collection and physiological stability. eLife, 3, e04811. doi:10.7554/eLife.04811
 43.	Solms, M. (2019). The hard problem of consciousness and the free energy principle. Frontiers in Psychology, 9, 2714. doi:10.3389/fpsyg.2018.02714
 44.	Baas, M., De Dreu, C. K. W., & Nijstad, B. A. (2011). Creative production by angry people peaks early on, decreases over time, and is relatively unstructured. Journal of Experimental Social Psychology, 47(6), 1107-1115. doi:10.1016/j.jesp.2011.05.009
-45.	Schwabe, L., & Wolf, O. T. (2009). Stress prompts habit behavior in humans. Journal of Neuroscience, 29(22), 7191-7198. doi:10.1523/JNEUROSCI.0979-09.2009
 46.	Yudkowsky, E., & Soares, N. (2025). If anyone builds it, everyone dies: Why superhuman AI would kill us all. Little, Brown. ifanyonebuildsit.com
 47.	Douceur, J. R. (2002). The Sybil attack. In Peer-to-Peer Systems (IPTPS 2002), LNCS 2429, 251-260. Springer. doi:10.1007/3-540-45748-8_24
 48.	Armstrong, S., & Mindermann, S. (2018). Occam’s razor is insufficient to infer the preferences of irrational agents. NeurIPS 2018. arXiv:1712.05812
@@ -164,10 +153,8 @@ Core Values
 50.	Parr, T., Pezzulo, G., & Friston, K. J. (2022). Active inference: The free energy principle in mind, brain, and behavior. MIT Press (open access). doi:10.7551/mitpress/12441.001.0001
 51.	Hadfield-Menell, D., Dragan, A., Abbeel, P., & Russell, S. (2016). Cooperative inverse reinforcement learning. NeurIPS 2016. arXiv:1606.03137
 52.	Friston, K., et al. (2015). Active inference and epistemic value. Cognitive Neuroscience, 6(4), 187-214. doi:10.1080/17588928.2015.1020053
-53.	Alignment: The terminal value is the balanced sum of seeking and acting. Sounding Line theory docs. github.com/EmotiveAutomaton/sounding-line/blob/main/docs/theory/ALIGNMENT.md
 54.	Frankfurt, H. G. (1971). Freedom of the will and the concept of a person. The Journal of Philosophy, 68(1), 5-20. doi:10.2307/2024717
 55.	ToMpathy. Open-source repository, GitHub (EmotiveAutomaton). github.com/EmotiveAutomaton/tompathy
 56.	Sounding Line. Open-source research repository, GitHub (EmotiveAutomaton). github.com/EmotiveAutomaton/sounding-line
 57.	Ghost Scale Sim. Open-source simulation repository, GitHub (EmotiveAutomaton). github.com/EmotiveAutomaton/ghost-scale-sim
-58.	Sounding Line theory documentation (the hypothesis store). GitHub (EmotiveAutomaton). github.com/EmotiveAutomaton/sounding-line/tree/main/docs/theory
 

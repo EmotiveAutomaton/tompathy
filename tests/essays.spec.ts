@@ -26,7 +26,7 @@ const visibleProse = (s: string) =>
   normalize(
     s
       .replace(/\s*\[\d+\]/g, "")
-      .replace(/\[abrahamhaskins.org\/art\]/g, "abrahamhaskins.org/art")
+      .replace(/ \[abrahamhaskins.org\/art\]/g, "")
       .replace(/\*/g, ""),
   );
 
@@ -89,7 +89,14 @@ test("delayed hints, authored prose, shared references and bibliography", async 
     const repositories = links.filter((ref) =>
       ref.href.includes("github.com/EmotiveAutomaton/"),
     );
-    expect(repositories).toHaveLength(i === 2 ? 4 : 0);
+    expect(repositories).toHaveLength(i === 2 ? 3 : 0);
+    expect(links.some(ref => ref.href.includes("zenodo.19407789"))).toBe(false);
+    if (i === 0) {
+      const here = dialog.getByRole("link", {name: "here", exact: true});
+      await expect(here).toHaveAttribute("href", "https://abrahamhaskins.org/art/");
+      await expect(dialog.getByText("abrahamhaskins.org/art", {exact:true})).toHaveCount(0);
+      await expect(dialog.locator("[data-essay-paragraph]").nth(1)).toHaveText(/^Art is physical evidence of compressed decision-making\. ANY evidence/);
+    }
     if (i === 1) {
       await expect(dialog.locator("em")).toHaveText(["why", "because", "appear"]);
       expect(

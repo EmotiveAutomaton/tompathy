@@ -1,22 +1,49 @@
 """Complete exact current-capture calls, then populate the normal companion cache."""
 import argparse
-from datetime import UTC, datetime
-from hashlib import sha256
 import json
 import shutil
+from datetime import UTC, datetime
+from hashlib import sha256
 from pathlib import Path
 from time import monotonic
 
 from fastapi.testclient import TestClient
 from tompathy_engine.adapters.capture import validate_capture
-from tompathy_engine.packet.build import build_packet
 from tompathy_engine.packet.contract import Packet
-from tompathy_engine.preview.build import build_preview
 from tompathy_engine.preview.fixed_backend import FixedQwen
-from tompathy_engine.preview.judgments import goals, fixed_reader, techniques
+from tompathy_engine.preview.judgments import fixed_reader, goals, techniques
 from tompathy_engine.preview.readers import LocalReader
 from tompathy_engine.serve.app import create_app
 from tompathy_engine.transcribe.cache import Cache
+
+
+def finish_cached_preview(client, body, headers, check, progress):
+    """Continue bounded live passes until every available module is finished.
+
+    Exact calls/windows are reused by the companion. A successful HTTP response
+    can still contain paused work and must not end offline preparation.
+    """
+    attempt = 0
+    while True:
+        check()
+        attempt += 1
+        response = client.post("/v1/analyze", headers=headers,
+                               json=body | {"requestId": f"art-prepare-{attempt}"})
+        response.raise_for_status()
+        saved = response.json()
+        Packet.model_validate(saved)
+        progress(saved, attempt)
+        modules = saved["preview"]["modules"]
+        failed = [m["id"] for m in modules if m["status"] == "failed"]
+        if failed:
+            raise RuntimeError(f"Art modules failed; saved partial cache retained: {failed}")
+        if all(m["status"] in {"complete", "unavailable"} for m in modules):
+            replay = client.post("/v1/analyze", headers=headers,
+                                json=body | {"requestId": "art-replay", "preferCache": True})
+            replay.raise_for_status()
+            if not replay.json()["preview"].get("cachedAt") or replay.json()["preview"]["modules"] != modules:
+                raise RuntimeError("Prepared packet did not replay from the normal cache")
+            return saved, attempt
 
 
 def main():
@@ -50,33 +77,27 @@ def main():
     def check():
         if (args.run / "STOP").exists() or monotonic() - started > 24 * 3600:
             raise RuntimeError("Art preparation stopped at its saved-call boundary")
-    def save(packet):
+    def save(packet, attempt):
         value = {"at": datetime.now(UTC).isoformat(), "revision": capture["revision"],
-                 "modules": packet["preview"]["modules"], "elapsed": monotonic()-started}
+                 "modules": packet["preview"]["modules"], "elapsed": monotonic()-started,
+                 "attempt": attempt, "phase": "preparing"}
         temp = args.run / "art-progress.tmp"
         temp.write_text(json.dumps(value, indent=2), encoding="utf8")
         temp.replace(args.run / "art-progress.json")
     try:
-        packet = build_preview(build_packet(capture), readers=readers, goal_runner=goal_runner,
-            technique_runner=technique_runner, correction_reader=reader, check=check, partial=save,
-            deadline=monotonic() + 24 * 3600)
-        Packet.model_validate(packet)
-        (args.run / "art-packet.json").write_text(json.dumps(packet), encoding="utf8")
-        # Populate the same keyed cache used by Load cached real preview.
+        # Populate and continue the exact cache used by Load cached real preview.
+        # Do not change live stage budgets, model settings or admission gates.
         token = "1" * 64
         app = create_app(token=token, origins=[], preview_readers=readers, preview_goals=goal_runner,
             preview_techniques=technique_runner, preview_correction_reader=reader,
             preview_cache=cache_root, preview_budget=600)
         with TestClient(app, base_url="http://127.0.0.1") as client:
             body = {"requestId": "art-refresh", "artifact": capture, "scope": "artifact", "mode": "preview"}
-            response = client.post("/v1/analyze", headers={"Authorization": f"Bearer {token}"}, json=body)
-            response.raise_for_status()
-            saved = response.json()
-            replay = client.post("/v1/analyze", headers={"Authorization": f"Bearer {token}"}, json=body | {"requestId": "art-replay", "preferCache": True})
-            replay.raise_for_status()
-            assert replay.json()["preview"]["cachedAt"]
+            saved, attempts = finish_cached_preview(client, body, {"Authorization": f"Bearer {token}"}, check, save)
+        (args.run / "art-packet.json").write_text(json.dumps(saved), encoding="utf8")
         report = {"at": datetime.now(UTC).isoformat(), "revision": capture["revision"],
                   "elapsed": monotonic()-started, "modules": saved["preview"]["modules"],
+                  "attempts": attempts, "availableModulesComplete": True,
                   "cacheReplayVerified": True, "scientificAdmission": False}
         (args.run / "art-refresh.json").write_text(json.dumps(report, indent=2), encoding="utf8")
         print(json.dumps(report), flush=True)

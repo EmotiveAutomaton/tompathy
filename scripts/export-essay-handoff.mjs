@@ -18,7 +18,7 @@ const html = s => s.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(
 const cite = (kind, text) => text.replace(/\[(\d+)\]/g, (_, key) => {
   const ref = essays[kind].references[key];
   return `<sup><a href="${html(ref.href)}" title="${html(ref.text)}">${ref.number}</a></sup>`;
-}).replace("[abrahamhaskins.org/art]", "[abrahamhaskins.org/art](https://abrahamhaskins.org/art/)");
+}).replace("here [abrahamhaskins.org/art]", "[here](https://abrahamhaskins.org/art/)");
 const ordered = {}, manifest = [];
 for (const [kind, essay] of Object.entries(essays)) {
   ordered[kind] = [];
@@ -39,8 +39,9 @@ for (const file of sourceFiles) {
   await copyFile(file, target);
 }
 await writeFile(`${root}/content.json`, JSON.stringify({ essays, bibliography, figures: essayFigures, ordered, images: manifest }, null, 2) + "\n");
-await copyFile("docs/CITATION_AUDIT_2026-10-17.md", `${root}/CITATION_AUDIT.md`);
-await copyFile("docs/citation-url-audit-2026-10-17.json", `${root}/citation-url-audit.json`);
+await writeFile(`${root}/CITATION_AUDIT.md`, (await readFile("docs/REFERENCE_AUDIT_FINAL_2026-10-17.md", "utf8")).replaceAll("(citation-final-url-audit-2026-10-17.json)", "(citation-url-audit.json)"));
+await copyFile("docs/citation-final-url-audit-2026-10-17.json", `${root}/citation-url-audit.json`);
+await writeFile(`${root}/WEBSITE_CHANGES.md`, (await readFile("docs/WEBSITE_FINAL_CHANGES_2026-10-17.md", "utf8")).replaceAll("(WEBSITE_ESSAY_HANDOFF_GUIDE.md)", "(README.md)").replaceAll("(REFERENCE_AUDIT_FINAL_2026-10-17.md)", "(CITATION_AUDIT.md)"));
 const guide = await readFile("docs/WEBSITE_ESSAY_HANDOFF_GUIDE.md", "utf8");
 let markdown = `${guide}\n\n## Exact reading sequence\n\nThe following is the authored content. Paragraph and figure comments are placement metadata, not reader-facing copy. Citations use the same shared display numbers as ToMpathy.\n`;
 for (const [kind, blocks] of Object.entries(ordered)) {
@@ -61,7 +62,7 @@ await writeFile(`${root}/README.md`, markdown);
 const entry = `import React, {useState} from 'react'; import {createRoot} from 'react-dom/client'; import {EssayDialog} from './src/components/Essay'; import {SectionTitle} from './src/components/SectionTitle'; function Preview(){const [kind,setKind]=useState(null);return <main className="handoff-home"><h1>ToMpathy essay reference</h1><p>Use the question marks to open the three essays.</p>{['goals','process','values'].map((k,i)=><div className="section-heading" key={k}><SectionTitle kind={k} onOpen={()=>setKind(k)}>{['Current attention','Expertise (Previous attention)','Core values'][i]}</SectionTitle></div>)}<button onClick={()=>setKind('bibliography')}>Bibliography</button>{kind&&<EssayDialog kind={kind} onClose={()=>setKind(null)} onNavigate={setKind}/>}</main>}createRoot(document.getElementById('root')).render(<Preview/>);`;
 await build({ stdin: { contents: entry, resolveDir: process.cwd(), loader: "tsx" }, bundle: true, format: "iife", platform: "browser", outfile: `${root}/preview.js`, minify: true, loader: { ".txt": "text" }, plugins: [assetPlugin], define: { "process.env.NODE_ENV": '"production"' } });
 await writeFile(`${root}/preview.html`, `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ToMpathy essay reference</title><link rel="stylesheet" href="preview.css"><style>:root{--surface:#fffefa;--ink:#273e39;--muted:#5f7068;--green:#42685b;--soft:#eff3ed;--bg:#fffefa;--line:#dce3dd;color:var(--ink);background:var(--bg)}*{box-sizing:border-box}body{margin:0;font:16px/1.6 "Segoe UI",sans-serif}.handoff-home{padding:48px;max-width:900px}button{font:inherit;cursor:pointer;color:var(--green)}.section-heading{margin:24px 0}.section-heading h2{font-size:18px}.section-question{border:0;background:transparent}.preference-chart{width:100%;height:auto}</style><div id="root"></div><script src="preview.js"></script></html>`);
-const files = ["README.md", "content.json", "preview.html", "preview.js", "preview.css", "CITATION_AUDIT.md", "citation-url-audit.json", ...sourceFiles.map(f => `source/${f}`), ...manifest.map(i => i.file)];
+const files = ["README.md", "content.json", "preview.html", "preview.js", "preview.css", "CITATION_AUDIT.md", "citation-url-audit.json", "WEBSITE_CHANGES.md", ...sourceFiles.map(f => `source/${f}`), ...manifest.map(i => i.file)];
 await writeFile(`${root}/manifest.json`, JSON.stringify({ date: "2026-10-17", sourceSha256: hash(await readFile("src/content/essays-source.txt")), files: Object.fromEntries(await Promise.all(files.map(async f => [f, hash(await readFile(`${root}/${f}`))]))) }, null, 2) + "\n");
 await writeFile(`${root}.zip`, zipSync(Object.fromEntries(await Promise.all([...files, "manifest.json"].map(async f => [`website-essay-handoff/${f}`, await readFile(`${root}/${f}`)]))), {level: 6}));
 console.log(JSON.stringify({ root, paragraphs: Object.values(essays).reduce((n,e)=>n+e.paragraphs.length,0), images: manifest.length, references: bibliography.length }));

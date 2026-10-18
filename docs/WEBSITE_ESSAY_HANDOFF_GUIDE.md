@@ -15,6 +15,12 @@ is no need to infer placement from Markdown. `assets/` contains all 27 raster
 images at their original bytes. `source/` preserves the implementation and
 diagram source. `manifest.json` binds every delivered file to its SHA-256.
 
+`WEBSITE_CHANGES.md` lists the final October 17 delta. `CITATION_AUDIT.md` and
+`citation-url-audit.json` contain the final 97-reference review and access receipt.
+The opening website link belongs on “here”; only the three closing repository
+citations remain as self-references. Removed citations must not be restored from
+an earlier copy of this handoff.
+
 Open `preview.html` in a browser for the working reference: all three essays,
 both diagrams, separate bibliography, keyboard behavior and image lightboxes.
 It is a standalone local reference, needs no model service, and makes no remote

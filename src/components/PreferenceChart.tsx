@@ -15,7 +15,7 @@ function curve(points: [number, number][]) {
     `M${points[0].join(",")}`,
   );
 }
-export function PreferenceChart({ trace }: { trace: Trace }) {
+export function PreferenceChart({ trace, illustration = false }: { trace: Trace; illustration?: boolean }) {
   const [inspected, setInspected] = useState<number | null>(null);
   const index = Math.min(
     trace.points.length - 1,
@@ -24,7 +24,7 @@ export function PreferenceChart({ trace }: { trace: Trace }) {
   const point = trace.points[index];
   const low = Math.max(0, point.y - point.uncertainty),
     high = Math.min(1, point.y + point.uncertainty);
-  const readout = `Point ${index + 1} of ${trace.points.length}: preferred state ${point.y.toFixed(2)}, supplied range ${low.toFixed(2)}–${high.toFixed(2)} on a normalized 0–1 scale`;
+  const readout = `${illustration ? "Illustrative " : ""}Point ${index + 1} of ${trace.points.length}: preferred state ${point.y.toFixed(2)}, ${illustration ? "illustrative" : "supplied"} range ${low.toFixed(2)}–${high.toFixed(2)} on a normalized 0–1 scale`;
   const id = useId().replace(/:/g, ""),
     marker = `${id}-arrow`,
     fill = `${id}-tube`;
@@ -43,7 +43,7 @@ export function PreferenceChart({ trace }: { trace: Trace }) {
         className="preference-chart"
         viewBox="0 0 302 158"
         role="img"
-        aria-label={`${trace.domain}: possible preferred trajectory from ${trace.start} to ${trace.end}, with an uncertainty band and ${trace.observations.length} observations`}
+        aria-label={illustration ? `Illustrative setpoint, uncertainty sleeve and ${trace.observations.length} example vectors; not a measured drive estimate` : `${trace.domain}: possible preferred trajectory from ${trace.start} to ${trace.end}, with an uncertainty band and ${trace.observations.length} observations`}
         onPointerMove={(e) => {
           const box = e.currentTarget.getBoundingClientRect();
           const coordinate =
@@ -122,7 +122,7 @@ export function PreferenceChart({ trace }: { trace: Trace }) {
           height="116"
           tabIndex={0}
           role="slider"
-          aria-label="Inspect supplied trajectory points"
+          aria-label={illustration ? "Inspect illustrative trajectory points" : "Inspect supplied trajectory points"}
           aria-valuemin={1}
           aria-valuemax={trace.points.length}
           aria-valuenow={index + 1}
@@ -148,12 +148,11 @@ export function PreferenceChart({ trace }: { trace: Trace }) {
           }}
         />
         <text x="151" y="152" textAnchor="middle">
-          {trace.start} → {trace.end}
+          {illustration ? "Earlier → later" : `${trace.start} → ${trace.end}`}
         </text>
       </svg>
       <p className="preference-readout">
-        {readout}. The sleeve is the supplied uncertainty, not a calibrated
-        probability interval.
+        {readout}. {illustration ? "The sleeve and vectors demonstrate the display; they are not observations." : "The sleeve is the supplied uncertainty, not a calibrated probability interval."}
       </p>
     </div>
   );

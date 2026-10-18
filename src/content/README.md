@@ -18,9 +18,11 @@ There is no newly generated explanatory prose or caption text.
 numbers run across all three essays, including captions, in first-citation order;
 repeated destinations reuse one number. Options → Bibliography opens the full
 cited list in that order. Unused original reference entries remain in the
-manuscript for editing but are not displayed. Citations to the owner's repositories
-have been removed from explanatory prose; the four explicit closing invitations
-remain. These are direct source links, not a comprehensive source-validity audit.
+manuscript for editing but are not displayed. Self-citations have been removed
+except the three closing repository pointers. The opening “here” is the website
+link. The [final audit](../../docs/REFERENCE_AUDIT_FINAL_2026-10-17.md) reviews all
+97 citation identities and records source-scope limits; it does not claim that
+all full texts or every adjacent assertion have been validated.
 
 The newly requested arithmetic source is Kantamneni and Tegmark (2025),
 [Language Models Use Trigonometry to Do Addition](https://arxiv.org/abs/2502.00873).

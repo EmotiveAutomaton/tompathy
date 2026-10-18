@@ -37,7 +37,10 @@ and [local performance record](docs/PERFORMANCE.md). The illustrated help essays
 now support full-screen images and sequential navigation; the owner's prose and
 original image files remain preserved. The [website essay handoff guide](docs/WEBSITE_ESSAY_HANDOFF_GUIDE.md)
 includes exact text, assets, a working preview and reconstruction instructions;
-the [citation audit](docs/CITATION_AUDIT_2026-10-17.md) records remaining limits.
+the [final citation audit](docs/REFERENCE_AUDIT_FINAL_2026-10-17.md) records remaining limits.
+The [website change sheet](docs/WEBSITE_FINAL_CHANGES_2026-10-17.md) lists the final
+link and reference corrections. All seven drive cards share the preference
+diagram format; absent measurements remain explicitly illustrative and unspecified.
 
 ## Try 0.2
 

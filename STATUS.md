@@ -1,7 +1,29 @@
 # ToMpathy status
 
-Updated 17 October 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
+Updated 18 October 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
 based on the merged, owner-approved **0.2.0** frontend milestone.
+
+The final drive/reference pass is implemented in build **460b1c227d1f**. All seven
+drive cards now reuse the preference diagram with its sleeve and three numbered
+vectors. Missing measurements are labelled illustrations, with confidence still
+unspecified; supplied traces and estimates keep their existing paths. The opening
+website link is on “here.” The unsupported opening citation, extra closing theory
+citation and mismatched stress citation are removed. Exactly three closing repo
+pointers remain; the bibliography now has 97 destinations. The official AAAI PDF
+replaces the Kautz/Allen landing page.
+
+Build and six focused browser cases passed, followed by native Chrome 155 checks
+of all seven cards and keyboard behavior. The native screenshot was inspected.
+Initial native connection and pointer-targeting attempts failed; the final owned
+profile passed and closed. The [final audit](docs/REFERENCE_AUDIT_FINAL_2026-10-17.md)
+distinguishes DOI/identity checks, abstract review, access gaps and stronger claims
+that remain unestablished. The [website delta](docs/WEBSITE_FINAL_CHANGES_2026-10-17.md)
+is included in the regenerated handoff. No website deployment was performed.
+The two affected browser cases passed again after the final handoff changes.
+The final preservation check confirmed unchanged authored prose/captions apart
+from citation markup, all 27 asset hashes, 97 matching audit/reference entries
+and working local links inside the archive. Disposable verification profiles
+and the owned test server were closed and removed.
 
 The final owner walkthrough is implemented: dictated prose/caption edits,
 natural aspect ratios for the opening diagram and Schadenfreude, fear order
@@ -36,8 +58,8 @@ hash manifest. Run `node scripts/export-essay-handoff.mjs` to generate its
 directory and ZIP from tracked inputs; generated duplicates stay out of Git.
 All 27 curator files were
 moved and hash-verified in `docs/archive/essay-curation/2026-10-17/`; active images
-remain in `src/assets/essays/`. The [citation audit](docs/CITATION_AUDIT_2026-10-17.md)
-records six unresolved access checks and four claim-scope cautions.
+remain in `src/assets/essays/`. The earlier [citation audit](docs/CITATION_AUDIT_2026-10-17.md)
+is retained as history; the final audit above supersedes it.
 
 The preceding build **eaa4b54e4cbb** passed native Chrome 155 essay and safe-example
 integration. Five focused browser cases passed across checks and affected reruns;
@@ -46,12 +68,22 @@ targeted repairs. Nineteen affected engine gate/contract checks passed. A pytest
 temporary-directory permission error was resolved using a repository-local
 temporary directory. Owned disposable browser/server processes were closed.
 
-Fresh batteries are **running**, followed by the full art-cache refresh, in one
-counted Sounding Line CPU slot. The capture has 15,602 words / 328 passages. Work
-is serial, CPU-only and below normal priority, with resource floors and native
-ownership. Q8 finished all 200 constructed cases; the remaining batteries and
-art-cache refresh are unfinished. No natural-data admission is claimed. See
-the [run and review record](docs/CPU_REFRESH_2026-10-17.md).
+All seven fresh batteries finished 200 constructed cases each. Q1, Q3, Q4, Q5,
+Q7 and Q8 passed at 100% accuracy; Q9 failed (88% overall; 76% for “no” and 52%
+in one family) and remains disabled. Receipt hashes were verified. No natural-data
+admission is claimed. The first CPU job exited and released its shared slot.
+
+The full 15,602-word / 328-passage capture has a replay-verified partial cache.
+Habits and deviation are complete; agreement, payoff, techniques and goals remain
+partial. The preparation script had stopped after successful partial responses;
+it now continues exact cached work until all available modules finish, while
+retaining live budgets and scientific gates. Five focused preparation checks and
+Ruff passed. At 06:59 Pacific on October 18, continuation started in counted slot
+1, CPU-only and below normal priority. At 07:00 the shared-memory floor stopped
+the owned job; its processes exited and lease was released. Saved calls and the
+partial cache remain intact. Continuation is waiting for more headroom and will
+reuse all seven receipts without rerunning their batteries. See the
+[run and review record](docs/CPU_REFRESH_2026-10-17.md).
 
 ## Earlier October 17 essay passes
 

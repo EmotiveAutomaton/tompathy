@@ -7,6 +7,7 @@ import { EvidenceBadge } from "./PreviewStatus";
 import { confidenceWeight, weight } from "./GoalCloud";
 import { DriveBrain } from "./DriveBrain";
 import { driveFor } from "../core/drive-systems";
+import { demoPreference } from "../core/example-values";
 import { ContourCurrent } from "./ContourCurrent";
 import {
   Compass,
@@ -154,6 +155,12 @@ export function ValueDetails({
         </>
       ) : (
         <>
+          {drive && (
+            <div className="value-reference-diagram">
+              <p className="muted">Illustration only — no setpoint or observations supplied for this drive.</p>
+              <PreferenceChart trace={demoPreference("care")!} illustration />
+            </div>
+          )}
           {h.evidence.slice(0, 3).map((id) => {
             const e = packet?.evidence.find((e) => e.id === id);
             return (

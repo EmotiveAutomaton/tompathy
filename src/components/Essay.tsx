@@ -23,7 +23,7 @@ export function EssayText({ kind, text }: { kind: EssayKind; text: string }) {
   // Close whitespace before superscripts, retaining the space before the next word.
   const parts = text
     .replace(/\s+(?=\[\d+\])/g, "")
-    .split(/(\[\d+\]|\[abrahamhaskins\.org\/art\]|\*[^*]+\*)/g);
+    .split(/(\[\d+\]|here \[abrahamhaskins\.org\/art\]|\*[^*]+\*)/g);
   return (
     <>
       {parts.map((part, i) => {
@@ -47,7 +47,7 @@ export function EssayText({ kind, text }: { kind: EssayKind; text: string }) {
             </sup>
           );
         }
-        if (part === "[abrahamhaskins.org/art]")
+        if (part === "here [abrahamhaskins.org/art]")
           return (
             <a
               key={i}
@@ -55,7 +55,7 @@ export function EssayText({ kind, text }: { kind: EssayKind; text: string }) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              abrahamhaskins.org/art
+              here
             </a>
           );
         if (part.startsWith("*") && part.endsWith("*"))

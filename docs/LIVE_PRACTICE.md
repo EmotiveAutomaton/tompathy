@@ -46,11 +46,21 @@ inspect its disclosure and retry from the menu after resolving its cause.
 
 ## Prepared full-essay review
 
-A newer fixed-Qwen refresh is currently running after seven fresh constructed
-batteries in an allocated CPU slot. It is **not complete yet**. See the
-[run record](CPU_REFRESH_2026-10-17.md) for exact input, coverage limits and the
-post-completion review path. The earlier Clef reading below predates this refresh
-and subsequent engine changes; matching engine/capture identities are required.
+The fixed-Qwen refresh completed all seven constructed batteries. Six passed;
+Q9 remains disabled. The full essay capture has a replay-verified partial cache
+saved **17 October, 19:39 Pacific**: habits and deviation are complete. The
+remaining layers are queued for CPU continuation; the October 18 attempt stopped
+at the shared-memory floor and is waiting for more headroom. Full preparation
+is **not complete yet**. See the [run record](CPU_REFRESH_2026-10-17.md) for exact
+input and coverage. To try the partial cache now, use **Practice ToMpathy.cmd**,
+connect the local engine, leave Follow pages off, open the matching art page and
+choose **Load cached real preview** with Research preview on. Inspect its module
+disclosure; avoid starting duplicate analysis while background preparation runs.
+
+The older Clef and fixed-Qwen readings described below predate the fresh question
+receipts. Their native timing checks are historical; matching engine, receipt
+and capture identities are required, so they are not proof that those older
+packets load under the new receipt set.
 
 The public [art essay](https://abrahamhaskins.org/art/) has a refreshed real Clef
 backup, saved **17 October, 07:04 Pacific**, matching the current engine. It covers

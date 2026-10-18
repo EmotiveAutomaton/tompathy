@@ -71,6 +71,19 @@ test("safe example uses current value artwork and explicit AI attribution", asyn
   await expect(seeking).toBeVisible();
   await seeking.hover();
   await expect(page.locator(".hover-card .drive-brain")).toBeVisible();
+  for (const label of ["SEEKING", "RAGE", "FEAR", "LUST", "CARE", "Belonging", "PLAY"]) {
+    await page.getByRole("button", {name:`Drive ${label}`, exact:true}).hover();
+    const card = page.locator(".hover-card");
+    await expect(card.locator(".value-card-title")).toContainText(label);
+    await expect(card.locator(".preference-chart")).toBeVisible();
+    await expect(card.locator(".preference-vector")).toHaveCount(3);
+    await expect(card.locator(".value-reference-diagram")).toContainText("Illustration only");
+    await expect(card.locator(".value-confidence-number")).toHaveText("Unspecified");
+  }
+  await page.mouse.move(0, 0);
+  await page.getByRole("button", {name:"Drive PLAY", exact:true}).focus();
+  await expect(page.locator(".hover-card")).toHaveCSS("opacity", "1");
+  await page.screenshot({path:"evidence/drive-reference-card.png"});
   await page.mouse.move(20, 20);
   await toggle.evaluate(el => (el as HTMLElement).blur());
   await expect(page.locator(".mark-ai")).toHaveCSS("opacity", "1");

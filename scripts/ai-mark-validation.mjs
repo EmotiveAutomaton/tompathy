@@ -48,6 +48,24 @@ try {
   await checkbox.evaluate(el => el.blur());
   await expect(panel.locator(".mark-ai")).toHaveCSS("opacity", "1");
   await panel.screenshot({path: "evidence/ai-mark-native.png"});
+  receipt.driveCards = [];
+  for (const label of ["SEEKING", "RAGE", "FEAR", "LUST", "CARE", "Belonging", "PLAY"]) {
+    // The native panel reserves part of the first row for its inset heading;
+    // point at the visible label, rather than the full-width button's center.
+    await panel.getByRole("button", {name:`Drive ${label}`, exact:true}).locator("span").first().hover();
+    const card = panel.locator(".hover-card");
+    await expect(card.locator(".value-card-title")).toContainText(label);
+    await expect(card.locator(".preference-chart")).toBeVisible();
+    await expect(card.locator(".preference-vector")).toHaveCount(3);
+    await expect(card.locator(".value-confidence-number")).toHaveText("Unspecified");
+    await expect(card.locator(".value-reference-diagram")).toContainText("Illustration only");
+    receipt.driveCards.push(label);
+  }
+  await panel.mouse.move(0, 0);
+  await panel.getByRole("button", {name:"Drive PLAY", exact:true}).focus();
+  await expect(panel.locator(".hover-card")).toHaveCSS("opacity", "1");
+  await panel.screenshot({path:"evidence/drives-native.png"});
+  await panel.mouse.move(0, 0);
   await checkbox.focus();
   await checkbox.press("Space");
   await expect(panel.locator(".ai-marked")).toHaveCount(0);
