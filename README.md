@@ -31,6 +31,23 @@ resilient context collection, graph stress coverage and inspectable value curves
 Packet 1.8 carries actual current estimates and supplied uncertainty bounds;
 the reader does not invent a trajectory when only one estimate exists.
 
+The [October 25 engine pass](docs/ENGINE_WEEK_2026-10-25_IMPLEMENTATION.md)
+turns Core values into a scrollable hierarchy table: broader goals above their
+supporting nodes, boldness for supplied confidence, and connections on hover or
+focus. Existing diagrams open on click/Enter. It adds optional outline density,
+revision timelines and scoped claim resolution while preserving admission gates.
+The [offline feature exporter](docs/ENGINE_FEATURE_EXPORT.md) retains its frozen
+engine baseline independently of this checkout.
+
+The [November back-half engine pass](docs/ENGINE_BACK_HALF_2026-11-15.md)
+adds source-pinned evaluation runners for attention, AI involvement, edit reasons
+and goals, plus an experimental reader that reuses model state. Float32 speed
+comparisons passed their rank check; the int8 version failed and remains blocked.
+Natural-writing accuracy awaits the verified EX1–EX4 exports. The
+[completion audit](docs/ENGINE_COMPLETENESS_2026-11-11.md) records implemented
+work, verification and remaining dependencies; the [scoreboard](docs/ENGINE_SCOREBOARD.md)
+does not substitute software tests for measured accuracy.
+
 The October 17 development changes and pending research work are tracked in the
 [engine packet implementation](docs/ENGINE_PACKET_2026-10-17_IMPLEMENTATION.md)
 and [local performance record](docs/PERFORMANCE.md). The illustrated help essays
@@ -55,7 +72,7 @@ No account, API key, paid service or model download is needed for the example, r
 
 - **Current attention** is an independent, animated word cloud. It follows the pointed sentence or supplied sub-sentence frame; word size and boldness reflect the supplied support. It retains the last inspected frame between targets; broader graph nodes combine their constituent attention frames. Only the strongest phrases that comfortably fit are shown, with space reserved around the creator control.
 - **Expertise (Previous attention)** shows local choices flowing toward broader goals. Wheel to zoom, drag to pan, and use the corner-bracket button to fit the whole hierarchy. Cell-anchored goal labels fade in together as the graph grows. Hover a resolved reel and roll the mouse wheel to choose and lock the adjacent goal at that tier. Hold a node and hover the odometer: ambiguous reels grow upward into selectable lists over the faded hierarchy. The arrow/magnifier below the lock centers highlighted text in the article, including groups with ambiguous reels.
-- **Core values** shows a stable set of supplied latent-preference hypotheses. The website demo separates drives from constructed values across Current work only (the default), Creator and Global. Hover or select a value for a preferred-state curve, uncertainty band, and individually explained observation vectors.
+- **Core values** has Current work only, Author and Global perspectives. Short labels occupy outlined boxes in a table that scrolls vertically and horizontally. Broader goals sit above supporting nodes; hover/focus traces their connections and shows the full phrase below. Font weight reflects supplied confidence, and line width reflects supplied connection weight. Arrow keys navigate; click/Enter on a value opens its diagram. Authored example links remain illustrative. Live links require explicit supplied evidence.
 
 The Review desk opens the **actual [Art: A Unifying Model essay](https://abrahamhaskins.org/art/)** and **[homepage](https://abrahamhaskins.org/)**. Click ToMpathy in Chrome’s toolbar to read alongside the live page. Images, equations, expandable sections, project dialogs and the original layout stay on the website. Opening a section or project refreshes the analysis for its currently visible text. Mathematical notation remains unmodified; surrounding prose receives sentence annotations. Stable navigation text and the References & Assets footer are included on this demo site; the footer is one reading unit. Transient citation popups are excluded. Unreadable pages explain the access problem and offer a bundled safe example or pasted text; blank pages retain the starting view.
 

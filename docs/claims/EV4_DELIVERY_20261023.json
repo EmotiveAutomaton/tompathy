@@ -1,0 +1,83 @@
+{
+  "schema": "sounding-line.ev4-delivery.v2",
+  "at": "2026-10-23T12:41:55.385754-07:00",
+  "state": "receiving_copies_verified",
+  "approval": "Curator explicitly approved both repository copies in this conversation on 2026-10-23.",
+  "source_package": "EV4_RETURN_20261020",
+  "source_commit": "3661b6ed2513c0ee36a1e5f225ca72b6f3fbdc9b",
+  "prior_receipt": "EV4_DELIVERY_20261020.json",
+  "prior_receipt_sha256": "99d9cb179dad0cc62edffae3cfbbe05b9771bf12f71eb407d6db926de262de44",
+  "manifest_sha256": "ed00083519747277d7dde13d205308693b8ad5fddbb76b54b53d5ec3d1114d75",
+  "files": {
+    "D17-complete.json": "ceebe9f4cad49a9db0f26e8f2cdf202f14f0232ff28f57fbe578ce44fd8922be",
+    "D29.json": "da687cda28f26b468947a4d812423a208fc46006f9ad7ccbcf63fafc83bc531b",
+    "ENGINE_FEATURE_TABLE.json": "05fff7d2f673d700f3934910124c6e3c6ac5c81619815fc581002745c3e2a820",
+    "ENGINE_FEATURE_TABLE.md": "06ac17eda7e27d532445bab56e303be0ffd728286dfb4bffd4386d346f017eff",
+    "EV1_PAUSES_V1.json": "32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa",
+    "EV2_SIGNATURES_V1.json": "0a6b2e61f6b1d2864f2a17a4a76fb3cb0ded94c527b8b4ccbe50ea5d7b063077",
+    "EV3_IDENTIFICATION_V1.json": "1e4e9cd72174d9dfa7d6ad6bc3c47ff2741cd8f114fd4d7a40c2a16065e54db4",
+    "MANIFEST.json": "ed00083519747277d7dde13d205308693b8ad5fddbb76b54b53d5ec3d1114d75",
+    "PMAP-rhythm.json": "685b0245fd5fc481c6c770fb9da3a33af33a4a57b30bea4b68131b993b7f79bc",
+    "PMAP.json": "a48bc49a7ea1f1f15ce5a761ceca1aa0beddf5bca8b94fee4ed1e873cbd3fbc5",
+    "README.md": "11f6b4e3cd794a78c19a853e6d7e312389c122a7ea24373898d8b2313ce4c847",
+    "V3.json": "133f616c0a7401ec3f25ba507312d5571d7e098e380ae0f15bd67a85dbce7847"
+  },
+  "receivers": {
+    "ToMpathy": {
+      "path": "docs/sounding-line-engine-features-2026-10-20",
+      "files": {
+        "D17-complete.json": "ceebe9f4cad49a9db0f26e8f2cdf202f14f0232ff28f57fbe578ce44fd8922be",
+        "D29.json": "da687cda28f26b468947a4d812423a208fc46006f9ad7ccbcf63fafc83bc531b",
+        "ENGINE_FEATURE_TABLE.json": "05fff7d2f673d700f3934910124c6e3c6ac5c81619815fc581002745c3e2a820",
+        "ENGINE_FEATURE_TABLE.md": "06ac17eda7e27d532445bab56e303be0ffd728286dfb4bffd4386d346f017eff",
+        "EV1_PAUSES_V1.json": "32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa",
+        "EV2_SIGNATURES_V1.json": "0a6b2e61f6b1d2864f2a17a4a76fb3cb0ded94c527b8b4ccbe50ea5d7b063077",
+        "EV3_IDENTIFICATION_V1.json": "1e4e9cd72174d9dfa7d6ad6bc3c47ff2741cd8f114fd4d7a40c2a16065e54db4",
+        "MANIFEST.json": "ed00083519747277d7dde13d205308693b8ad5fddbb76b54b53d5ec3d1114d75",
+        "PMAP-rhythm.json": "685b0245fd5fc481c6c770fb9da3a33af33a4a57b30bea4b68131b993b7f79bc",
+        "PMAP.json": "a48bc49a7ea1f1f15ce5a761ceca1aa0beddf5bca8b94fee4ed1e873cbd3fbc5",
+        "README.md": "11f6b4e3cd794a78c19a853e6d7e312389c122a7ea24373898d8b2313ce4c847",
+        "V3.json": "133f616c0a7401ec3f25ba507312d5571d7e098e380ae0f15bd67a85dbce7847"
+      },
+      "all_hashes_match": true,
+      "copy_verified": true,
+      "recipient_uptake_verified": false,
+      "committed_by_this_delivery": false
+    },
+    "Ghost Scale Simulation": {
+      "path": "docs/exchange/sounding-line-engine-features-2026-10-20",
+      "files": {
+        "D17-complete.json": "ceebe9f4cad49a9db0f26e8f2cdf202f14f0232ff28f57fbe578ce44fd8922be",
+        "D29.json": "da687cda28f26b468947a4d812423a208fc46006f9ad7ccbcf63fafc83bc531b",
+        "ENGINE_FEATURE_TABLE.json": "05fff7d2f673d700f3934910124c6e3c6ac5c81619815fc581002745c3e2a820",
+        "ENGINE_FEATURE_TABLE.md": "06ac17eda7e27d532445bab56e303be0ffd728286dfb4bffd4386d346f017eff",
+        "EV1_PAUSES_V1.json": "32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa",
+        "EV2_SIGNATURES_V1.json": "0a6b2e61f6b1d2864f2a17a4a76fb3cb0ded94c527b8b4ccbe50ea5d7b063077",
+        "EV3_IDENTIFICATION_V1.json": "1e4e9cd72174d9dfa7d6ad6bc3c47ff2741cd8f114fd4d7a40c2a16065e54db4",
+        "MANIFEST.json": "ed00083519747277d7dde13d205308693b8ad5fddbb76b54b53d5ec3d1114d75",
+        "PMAP-rhythm.json": "685b0245fd5fc481c6c770fb9da3a33af33a4a57b30bea4b68131b993b7f79bc",
+        "PMAP.json": "a48bc49a7ea1f1f15ce5a761ceca1aa0beddf5bca8b94fee4ed1e873cbd3fbc5",
+        "README.md": "11f6b4e3cd794a78c19a853e6d7e312389c122a7ea24373898d8b2313ce4c847",
+        "V3.json": "133f616c0a7401ec3f25ba507312d5571d7e098e380ae0f15bd67a85dbce7847"
+      },
+      "all_hashes_match": true,
+      "copy_verified": true,
+      "recipient_uptake_verified": false,
+      "committed_by_this_delivery": false
+    }
+  },
+  "file_count_per_receiver": 12,
+  "source_hashes_verified": true,
+  "receiving_copies_verified": true,
+  "recipient_uptake_verified": false,
+  "deployment_performed": false,
+  "raw_participant_data_included": false,
+  "scientific_claim_changed": false,
+  "dictionary_release": "Existing hash-only preparation retained; literal release terms unresolved.",
+  "historical_snapshots_preserved": true,
+  "limits": [
+    "The package and its preparation-date wording remain byte-identical to the approved snapshot.",
+    "Local receiving copies do not establish recipient adoption, scientific admission, publication or deployment.",
+    "Other recipient files, Git indexes, branches, environments and running processes were not changed."
+  ]
+}

@@ -1,0 +1,1393 @@
+{
+  "schemaVersion": "1.10",
+  "id": "d0fb27ffc36e08537440f5c947ffe0a912b13035b777b14065f42fad3c48b6f1",
+  "revision": 1,
+  "artifact": {
+    "id": "https://example.org/week",
+    "revision": "3d608ffc4fd14e2033add9d2bc19c189eb9d96bdedcbf401a4019c0d36a1c5b8",
+    "title": "Test",
+    "source": "https://example.org/week",
+    "capturedAt": "2026-10-25T12:00:00Z",
+    "regions": [
+      {
+        "id": "p1",
+        "anchor": {
+          "exact": "quiet paper [12] light room. zyzzyva zyzzyva glows.",
+          "prefix": "",
+          "suffix": "\n\nordinary paper sits beside the blue shelf.\n\nanother block waits beside the des",
+          "start": 0,
+          "index": 0
+        }
+      },
+      {
+        "id": "p2",
+        "anchor": {
+          "exact": "ordinary paper sits beside the blue shelf.",
+          "prefix": "quiet paper [12] light room. zyzzyva zyzzyva glows.\n\n",
+          "suffix": "\n\nanother block waits beside the desk.",
+          "start": 53,
+          "index": 1
+        }
+      },
+      {
+        "id": "p3",
+        "anchor": {
+          "exact": "another block waits beside the desk.",
+          "prefix": "light room. zyzzyva zyzzyva glows.\n\nordinary paper sits beside the blue shelf.\n\n",
+          "suffix": "",
+          "start": 97,
+          "index": 2
+        }
+      }
+    ],
+    "truncated": false
+  },
+  "provider": {
+    "id": "tompathy-engine",
+    "method": "Research preview; surface descriptions and local reader judgments. ToMpathy engine 0.1.0a1; commit 5f3ad0a304727fff5e1a6beca592e786ee71b181 + local engine changes; implementation ee6a370a49a6fd7a1e3bc3b2963cd83ecf50cfffe7b9b05a7cb4230db1ba232e; evidence tier T0; domain writing. Observed capture and ledger records only. Text alone does not update maker preferences. Actual contributing admission records are in provider.admissions.",
+    "admissions": [],
+    "mode": "preview",
+    "previewNotice": "Research preview: these are the engine's guesses. Each one says what it's based on and whether it has been tested."
+  },
+  "preview": {
+    "timelineCoverage": {
+      "emitted": 2,
+      "total": 2
+    },
+    "departureDefinition": "5f3ad0a:surface-departure-v1",
+    "modules": [
+      {
+        "id": "habits",
+        "title": "Text habits",
+        "status": "complete",
+        "detail": "This page's repeated phrasing, rhythm and punctuation.",
+        "elapsedMs": 1.8
+      },
+      {
+        "id": "deviation",
+        "title": "Deviation map",
+        "status": "unavailable",
+        "detail": "Install and pin Qwen2.5-0.5B locally to enable the deviation map. Analysis never downloads a model."
+      },
+      {
+        "id": "agreement",
+        "title": "Two readers",
+        "status": "unavailable",
+        "detail": "Install and pin SmolLM2-360M alongside Qwen to compare readers."
+      },
+      {
+        "id": "payoff",
+        "title": "Payoff map",
+        "status": "unavailable",
+        "detail": "The pinned local population reader must be installed before payoff can be scored."
+      },
+      {
+        "id": "techniques",
+        "title": "Technique notes",
+        "status": "unavailable",
+        "detail": "No local technique reader is configured. Exact fixed-reader badges require their matching receipts."
+      },
+      {
+        "id": "goals",
+        "title": "Goal tree",
+        "status": "unavailable",
+        "detail": "No local goal producer is configured. A title alone does not establish the maker's purpose."
+      },
+      {
+        "id": "values",
+        "title": "Core values",
+        "status": "unavailable",
+        "detail": "Choices, content corrections, stated goals and revision history would move these estimates. No numerical drive prior is supplied; text topics are never converted to drives."
+      }
+    ],
+    "readers": [
+      {
+        "id": "fixture",
+        "revision": "test",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "backend": "software test"
+      }
+    ],
+    "statistics": {
+      "mean": 35.22222222222222,
+      "median": 7.5,
+      "iqr": 66.0,
+      "words": 18,
+      "heldOut": 1,
+      "heldOutExamples": [
+        "12"
+      ]
+    },
+    "completedAt": "2026-10-25T20:28:43.581995Z",
+    "resumable": false,
+    "coverage": [
+      "p1",
+      "p2"
+    ],
+    "layoutGroups": [
+      [
+        "p1"
+      ],
+      [
+        "p2"
+      ],
+      [
+        "p3"
+      ]
+    ],
+    "timings": {},
+    "rootCueReliability": 0.6,
+    "rootCueStatus": "assumed",
+    "budgetDrops": []
+  },
+  "valueView": {
+    "work": "https://example.org/week",
+    "evidenceTier": "T0",
+    "provenance": "structure-only",
+    "asOf": "2026-10-25T12:00:00Z",
+    "firstMissingLink": "Final text only — no recorded choices or revisions.",
+    "rows": [
+      {
+        "id": "p1",
+        "label": "quiet paper [12] light room. zyzzyva zyzzyva glows.",
+        "order": 0,
+        "date": null,
+        "evidence": [],
+        "region": "p1"
+      },
+      {
+        "id": "p2",
+        "label": "ordinary paper sits beside the blue shelf.",
+        "order": 1,
+        "date": null,
+        "evidence": [],
+        "region": "p2"
+      },
+      {
+        "id": "p3",
+        "label": "another block waits beside the desk.",
+        "order": 2,
+        "date": null,
+        "evidence": [],
+        "region": "p3"
+      }
+    ],
+    "tips": [],
+    "feeds": [],
+    "coSupport": []
+  },
+  "globalFindings": [
+    {
+      "source": "Sounding Line EV1",
+      "claim": "On 44,494 surviving original words from 41 writers, page-normalized departure was associated with longer preceding pauses after the recorded controls. Conditional within-session association, not causal attention. Evaluated engine pin 5f3ad0a; this does not validate this page or admit the current engine.",
+      "number": 0.07296016217920945,
+      "interval": [
+        0.06029289532276097,
+        0.08647261940480985
+      ],
+      "unit": "log-pause slope",
+      "evidenceStatus": "descriptive",
+      "link": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.md",
+      "ledgerRows": [
+        {
+          "ledgerId": "S15-EV1-PAUSES-V1",
+          "wording": "tested on human writing logs: flagged words came after longer pauses",
+          "controlStatus": "passes",
+          "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.json#sha256=32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa"
+        }
+      ]
+    },
+    {
+      "source": "Sounding Line EV2",
+      "claim": "Selected phrases recurred more in the same writer's other-prompt documents than in other writers' documents on those prompts. Aggregate contrast on 769 matched documents from 52 writers; 462 documents lacked the required comparison support. Final text includes typed and model-suggested material. Evaluated engine pin 5f3ad0a; no individual signature, preference or out-of-corpus guarantee.",
+      "number": 1.3841526165212545,
+      "interval": [
+        0.0461127320427846,
+        3.1419352531640783
+      ],
+      "unit": "recurrences per 10,000 words",
+      "evidenceStatus": "descriptive",
+      "link": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV2_SIGNATURES_V1.md",
+      "ledgerRows": [
+        {
+          "ledgerId": "S15-EV2-SIGNATURES-V1",
+          "wording": "recurs in the writer's other work",
+          "controlStatus": "passes",
+          "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV2_SIGNATURES_V1.json#sha256=0a6b2e61f6b1d2864f2a17a4a76fb3cb0ded94c527b8b4ccbe50ea5d7b063077"
+        }
+      ]
+    },
+    {
+      "source": "Sounding Line EV3",
+      "claim": "Both engine habit-identification variants failed their fixed fake-reference bias controls. Positive observed identification is not valid evidence for a habit badge. The engine's connective and punctuation list differs from Sounding Line's PMAP style measure; that measure's observed 47% cannot be transferred here. No ledger row.",
+      "number": null,
+      "interval": null,
+      "unit": null,
+      "evidenceStatus": "descriptive",
+      "link": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV3_IDENTIFICATION_V1.md"
+    },
+    {
+      "source": "Sounding Line V2",
+      "claim": "A model that starts from everyone and adjusts a little for each writer forecast these writers better than population rates. Saved, exposed forecasts; 16,855 decisions from 61 writers. Writer-resampled 95% interval, conditional on saved fits; no new admission. No ledger row.",
+      "number": 0.023962,
+      "interval": [
+        0.017497,
+        0.030691
+      ],
+      "unit": "half-Brier improvement",
+      "evidenceStatus": "descriptive",
+      "link": "https://github.com/EmotiveAutomaton/sounding-line/blob/45c096a1790a4da7f33e0c9addd10061cd2c6ffe/results/phase_2_4_stage_15/DRIVE/V2.md"
+    },
+    {
+      "source": "Sounding Line V1",
+      "claim": "In planted tests, these instruments found a writer's constant lean, not yet their taste or habits. Synthetic outcomes on fixed human-record covariates; this is not a limit on all possible readers. No ledger row.",
+      "number": null,
+      "interval": null,
+      "unit": null,
+      "evidenceStatus": "constructed-tested",
+      "link": "https://github.com/EmotiveAutomaton/sounding-line/blob/45c096a1790a4da7f33e0c9addd10061cd2c6ffe/results/phase_2_4_stage_15/DRIVE/V1_PHASE0.md"
+    },
+    {
+      "source": "Ghost R4",
+      "claim": "Does a root or function cue improve root recovery beyond leaf evidence? R4 nominates a 0.99-reliable root cue with no observed leaves after two complete burn-ins: root log-loss gain is 0.64312 nats, with a descriptive 95% interval of 0.62467–0.66157. All 90 settings and 184,320 cases pass reconstruction and full replay; the 20 neutral-cue settings remain exact zeros. This is a constructed-method discovery, not confirmation or evidence about people. miniature, architecture untested. Reader: Declared exact readers and frozen rivals; N5 hierarchical rival approximate. Choice model: Supplied finite synthetic observation laws; see source report.",
+      "number": 0.6431190348758995,
+      "interval": [
+        0.6246675513184207,
+        0.6615705184333783
+      ],
+      "unit": "nats",
+      "evidenceStatus": "constructed-tested",
+      "link": "https://github.com/EmotiveAutomaton/ghost-scale-sim/blob/8165fb817f54ec635f32ac7379f49cd142af718e/results/v23/packet-20261017/R4-MACHINE_CARD.json",
+      "ledgerRows": [
+        {
+          "ledgerId": "G-V23-R4-1",
+          "wording": "Does a root or function cue improve root recovery beyond leaf evidence? R4 nominates a 0.99-reliable root cue with no observed leaves after two complete burn-ins: root log-loss gain is 0.64312 nats, with a descriptive 95% interval of 0.62467–0.66157. All 90 settings and 184,320 cases pass reconstruction and full replay; the 20 neutral-cue settings remain exact zeros. This is a constructed-method discovery, not confirmation or evidence about people.",
+          "controlStatus": "passes",
+          "source": "ghost-scale-sim:docs/theory/CLAIMS.json#sha256=52c485266f9cb4b00eb0be0026a4a8d65eda765cb722d25a2e27eb0b416bbe48&row=G-V23-R4-1"
+        }
+      ]
+    },
+    {
+      "source": "Ghost N5",
+      "claim": "How much does forecasting from the reader’s own policy cost? N5 nominates prior-shift calibration at the largest anchor-shaped bias with no personal records: log-loss gain is 0.94929 nats, with a descriptive 95% interval of 0.90291–0.99567. Both full burn-ins verify all 128 settings and 262,144 cases. This is a constructed-method discovery with supplied population rates; the approximate hierarchical rival is not an exact ceiling, and no human benefit is established. miniature, architecture untested. Reader: Declared exact readers and frozen rivals; N5 hierarchical rival approximate. Choice model: Supplied finite synthetic observation laws; see source report.",
+      "number": 0.9492858677208594,
+      "interval": [
+        0.9029064198370778,
+        0.9956653156046411
+      ],
+      "unit": "nats",
+      "evidenceStatus": "constructed-tested",
+      "link": "https://github.com/EmotiveAutomaton/ghost-scale-sim/blob/8165fb817f54ec635f32ac7379f49cd142af718e/results/v23/packet-20261017/N5-MACHINE_CARD.json",
+      "ledgerRows": [
+        {
+          "ledgerId": "G-V23-N5-1",
+          "wording": "How much does forecasting from the reader’s own policy cost? N5 nominates prior-shift calibration at the largest anchor-shaped bias with no personal records: log-loss gain is 0.94929 nats, with a descriptive 95% interval of 0.90291–0.99567. Both full burn-ins verify all 128 settings and 262,144 cases. This is a constructed-method discovery with supplied population rates; the approximate hierarchical rival is not an exact ceiling, and no human benefit is established.",
+          "controlStatus": "passes",
+          "source": "ghost-scale-sim:docs/theory/CLAIMS.json#sha256=52c485266f9cb4b00eb0be0026a4a8d65eda765cb722d25a2e27eb0b416bbe48&row=G-V23-N5-1"
+        }
+      ]
+    },
+    {
+      "source": "Ghost N7",
+      "claim": "Can statements improve future-choice forecasts after correcting presentation bias? N7 nominates a setting with 0 personal records, statement noise 0.25, shared shift 1 and aspiration share 0. Its pooled log-loss gain over choices alone is 0.25012 nats (descriptive 95% interval 0.21182–0.28842). All 128 settings and 262,144 cases pass independent reconstruction and complete replay. This is a constructed-method discovery, not confirmation or evidence about people. miniature, architecture untested. Reader: Declared exact readers and frozen rivals; N5 hierarchical rival approximate. Choice model: Supplied finite synthetic observation laws; see source report.",
+      "number": 0.2501206917914891,
+      "interval": [
+        0.2118192090342693,
+        0.2884221745487089
+      ],
+      "unit": "nats",
+      "evidenceStatus": "constructed-tested",
+      "link": "https://github.com/EmotiveAutomaton/ghost-scale-sim/blob/8165fb817f54ec635f32ac7379f49cd142af718e/results/v23/packet-20261017/N7-MACHINE_CARD.json",
+      "ledgerRows": [
+        {
+          "ledgerId": "G-V23-N7-1",
+          "wording": "Can statements improve future-choice forecasts after correcting presentation bias? N7 nominates a setting with 0 personal records, statement noise 0.25, shared shift 1 and aspiration share 0. Its pooled log-loss gain over choices alone is 0.25012 nats (descriptive 95% interval 0.21182–0.28842). All 128 settings and 262,144 cases pass independent reconstruction and complete replay. This is a constructed-method discovery, not confirmation or evidence about people.",
+          "controlStatus": "passes",
+          "source": "ghost-scale-sim:docs/theory/CLAIMS.json#sha256=52c485266f9cb4b00eb0be0026a4a8d65eda765cb722d25a2e27eb0b416bbe48&row=G-V23-N7-1"
+        }
+      ]
+    }
+  ],
+  "origin": "live provider",
+  "scope": {
+    "kind": "artifact",
+    "contextIds": []
+  },
+  "makers": [
+    {
+      "id": "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1",
+      "label": "Author (unresolved)",
+      "identity": "unknown",
+      "relationship": "No generative provenance was found in this capture. Page bylines do not establish a creation process.",
+      "kind": "unknown",
+      "evidence": []
+    }
+  ],
+  "hypotheses": [
+    {
+      "evidenceStatus": "unvalidated",
+      "basis": "text-surface",
+      "entry": "page",
+      "id": "4dc0ffbd428bff8f5309a89ca87acb44637e26ce01a6fe7ac7005dc8b2dbe5e7",
+      "kind": "process",
+      "label": "Sentence rhythm",
+      "description": "4 sentences outside recognizable quotations; mean 5.0 words, standard deviation 1.6. 0 quoted words held apart. Sentence and quotation boundaries are heuristic.",
+      "makers": [
+        "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1"
+      ],
+      "regions": [
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "status": "hypothesis",
+      "evidence": [
+        "73ea9b1b3b99e3aaeb36c8b6d6294a45f526023649d57950a7c68d7f539eb39d",
+        "b68f336049420f81df0d15ef64908fb4e52adc97d9138e55c668c23a7c3c9f85",
+        "e7bca28aa773ee6e0ba531b86edc9a45ddc74bc65260a3ceff346197cbf41293"
+      ],
+      "interpretation": "repertoire"
+    },
+    {
+      "evidenceStatus": "unvalidated",
+      "ledgerRows": [
+        {
+          "ledgerId": "S15-EV1-PAUSES-V1",
+          "wording": "tested on human writing logs: flagged words came after longer pauses",
+          "controlStatus": "passes",
+          "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.json#sha256=32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa"
+        }
+      ],
+      "basis": "text-surface",
+      "entry": "page",
+      "finding": "departure-phrase",
+      "id": "645c050e98a3b646818e95e3e05f068272a9fd80ccfa0bdc9a50ec422f89f434",
+      "kind": "attention",
+      "label": "zyzzyva zyzzyva glows",
+      "description": "Where this text went somewhere a typical writer wouldn't. A proxy for the author's choices; not measured attention. Departure 1.220; fixture at test, file manifest SHA-256 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa. Where attention likely went; untested. What would move this estimate: after a source fails them, do they check it more? Probe pending (D39/N15). Finished 2 of 3 passages. Rankings and normalization cover processed text only, including any partial passage, and can change as coverage expands. ",
+      "makers": [
+        "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1"
+      ],
+      "regions": [
+        "p1"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 1.2196969696969697,
+        "scale": [
+          -1.0,
+          1.2196969696969697
+        ],
+        "semantics": "relative",
+        "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+      },
+      "evidence": [
+        "73ea9b1b3b99e3aaeb36c8b6d6294a45f526023649d57950a7c68d7f539eb39d"
+      ],
+      "spans": [
+        {
+          "start": 29,
+          "end": 50,
+          "region": "p1"
+        }
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "evidenceStatus": "unvalidated",
+      "ledgerRows": [
+        {
+          "ledgerId": "S15-EV1-PAUSES-V1",
+          "wording": "tested on human writing logs: flagged words came after longer pauses",
+          "controlStatus": "passes",
+          "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.json#sha256=32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa"
+        },
+        {
+          "ledgerId": "S15-EV2-SIGNATURES-V1",
+          "wording": "recurs in the writer's other work",
+          "controlStatus": "passes",
+          "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV2_SIGNATURES_V1.json#sha256=0a6b2e61f6b1d2864f2a17a4a76fb3cb0ded94c527b8b4ccbe50ea5d7b063077"
+        }
+      ],
+      "basis": "text-surface",
+      "entry": "page",
+      "finding": "departure-phrase",
+      "id": "050d6d77893638367597935cf7433489c78ee44688c0bd9c7e2698a0da450c1e",
+      "kind": "process",
+      "label": "Signature: paper",
+      "description": "Where this text went somewhere a typical writer wouldn't. A proxy for the author's choices; not measured attention. Departure 1.159; fixture at test, file manifest SHA-256 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa. Signature (habit or deliberate style). Recurrence across this page's sections stands in for recurrence across a writer's work; paragraph regions are used when section metadata is absent. What would move this estimate: under time pressure, which way would they go? Probe untested (Ghost N11 pending). Finished 2 of 3 passages. Rankings and normalization cover processed text only, including any partial passage, and can change as coverage expands. ",
+      "makers": [
+        "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1"
+      ],
+      "regions": [
+        "p1",
+        "p2"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 1.1590909090909092,
+        "scale": [
+          -1.0,
+          1.2196969696969697
+        ],
+        "semantics": "relative",
+        "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+      },
+      "evidence": [
+        "73ea9b1b3b99e3aaeb36c8b6d6294a45f526023649d57950a7c68d7f539eb39d",
+        "b68f336049420f81df0d15ef64908fb4e52adc97d9138e55c668c23a7c3c9f85"
+      ],
+      "spans": [
+        {
+          "start": 6,
+          "end": 11,
+          "region": "p1"
+        }
+      ],
+      "interpretation": "repertoire"
+    },
+    {
+      "evidenceStatus": "unvalidated",
+      "ledgerRows": [
+        {
+          "ledgerId": "S15-EV1-PAUSES-V1",
+          "wording": "tested on human writing logs: flagged words came after longer pauses",
+          "controlStatus": "passes",
+          "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.json#sha256=32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa"
+        }
+      ],
+      "basis": "text-surface",
+      "entry": "page",
+      "finding": "departure-phrase",
+      "id": "e21e82801714c1fd4587d6e17480f9c219807d1a0c0e9fde232563a7e61c65ff",
+      "kind": "attention",
+      "label": "quiet",
+      "description": "Where this text went somewhere a typical writer wouldn't. A proxy for the author's choices; not measured attention. Departure 0.977; fixture at test, file manifest SHA-256 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa. Where attention likely went; untested. What would move this estimate: after a source fails them, do they check it more? Probe pending (D39/N15). Finished 2 of 3 passages. Rankings and normalization cover processed text only, including any partial passage, and can change as coverage expands. ",
+      "makers": [
+        "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1"
+      ],
+      "regions": [
+        "p1"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.9772727272727273,
+        "scale": [
+          -1.0,
+          1.2196969696969697
+        ],
+        "semantics": "relative",
+        "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+      },
+      "evidence": [
+        "73ea9b1b3b99e3aaeb36c8b6d6294a45f526023649d57950a7c68d7f539eb39d"
+      ],
+      "spans": [
+        {
+          "start": 0,
+          "end": 5,
+          "region": "p1"
+        }
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "evidenceStatus": "unvalidated",
+      "ledgerRows": [
+        {
+          "ledgerId": "S15-EV1-PAUSES-V1",
+          "wording": "tested on human writing logs: flagged words came after longer pauses",
+          "controlStatus": "passes",
+          "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.json#sha256=32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa"
+        }
+      ],
+      "basis": "text-surface",
+      "entry": "page",
+      "finding": "departure-phrase",
+      "id": "7e76f99fea77d219e0768a24c236b12d9b66b21c192b5002287c05d51b18a46e",
+      "kind": "attention",
+      "label": "light",
+      "description": "Where this text went somewhere a typical writer wouldn't. A proxy for the author's choices; not measured attention. Departure 0.977; fixture at test, file manifest SHA-256 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa. Where attention likely went; untested. What would move this estimate: after a source fails them, do they check it more? Probe pending (D39/N15). Finished 2 of 3 passages. Rankings and normalization cover processed text only, including any partial passage, and can change as coverage expands. ",
+      "makers": [
+        "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1"
+      ],
+      "regions": [
+        "p1"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.9772727272727273,
+        "scale": [
+          -1.0,
+          1.2196969696969697
+        ],
+        "semantics": "relative",
+        "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+      },
+      "evidence": [
+        "73ea9b1b3b99e3aaeb36c8b6d6294a45f526023649d57950a7c68d7f539eb39d"
+      ],
+      "spans": [
+        {
+          "start": 17,
+          "end": 22,
+          "region": "p1"
+        }
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "evidenceStatus": "unvalidated",
+      "ledgerRows": [
+        {
+          "ledgerId": "S15-EV1-PAUSES-V1",
+          "wording": "tested on human writing logs: flagged words came after longer pauses",
+          "controlStatus": "passes",
+          "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.json#sha256=32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa"
+        }
+      ],
+      "basis": "text-surface",
+      "entry": "page",
+      "finding": "departure-phrase",
+      "id": "134ad89cd31b7107ded465a359a8017e29d8c642298dd65e7bea80a9a7da6ec9",
+      "kind": "attention",
+      "label": "room",
+      "description": "Where this text went somewhere a typical writer wouldn't. A proxy for the author's choices; not measured attention. Departure 0.977; fixture at test, file manifest SHA-256 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa. Where attention likely went; untested. What would move this estimate: after a source fails them, do they check it more? Probe pending (D39/N15). Finished 2 of 3 passages. Rankings and normalization cover processed text only, including any partial passage, and can change as coverage expands. ",
+      "makers": [
+        "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1"
+      ],
+      "regions": [
+        "p1"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 0.9772727272727273,
+        "scale": [
+          -1.0,
+          1.2196969696969697
+        ],
+        "semantics": "relative",
+        "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+      },
+      "evidence": [
+        "73ea9b1b3b99e3aaeb36c8b6d6294a45f526023649d57950a7c68d7f539eb39d"
+      ],
+      "spans": [
+        {
+          "start": 23,
+          "end": 27,
+          "region": "p1"
+        }
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "evidenceStatus": "unvalidated",
+      "ledgerRows": [
+        {
+          "ledgerId": "S15-EV1-PAUSES-V1",
+          "wording": "tested on human writing logs: flagged words came after longer pauses",
+          "controlStatus": "passes",
+          "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.json#sha256=32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa"
+        }
+      ],
+      "basis": "text-surface",
+      "entry": "page",
+      "finding": "departure-phrase",
+      "id": "31b190f928c7677c1325fdae9fcfdcf4497293cfd6e8377771cc949a7055fc63",
+      "kind": "attention",
+      "label": "ordinary paper sits",
+      "description": "Where this text went somewhere a typical writer wouldn't. A proxy for the author's choices; not measured attention. Departure -0.013; fixture at test, file manifest SHA-256 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa. Where attention likely went; untested. What would move this estimate: after a source fails them, do they check it more? Probe pending (D39/N15). Finished 2 of 3 passages. Rankings and normalization cover processed text only, including any partial passage, and can change as coverage expands. ",
+      "makers": [
+        "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1"
+      ],
+      "regions": [
+        "p2"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": -0.012626262626262623,
+        "scale": [
+          -1.0,
+          1.2196969696969697
+        ],
+        "semantics": "relative",
+        "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+      },
+      "evidence": [
+        "b68f336049420f81df0d15ef64908fb4e52adc97d9138e55c668c23a7c3c9f85"
+      ],
+      "spans": [
+        {
+          "start": 0,
+          "end": 19,
+          "region": "p2"
+        }
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "evidenceStatus": "unvalidated",
+      "ledgerRows": [
+        {
+          "ledgerId": "S15-EV1-PAUSES-V1",
+          "wording": "tested on human writing logs: flagged words came after longer pauses",
+          "controlStatus": "passes",
+          "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.json#sha256=32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa"
+        }
+      ],
+      "basis": "text-surface",
+      "entry": "page",
+      "finding": "departure-phrase",
+      "id": "fcfc51660e5233ee5d7d079de80a901d8c6383b53a87ad995264ab6cd3e05883",
+      "kind": "attention",
+      "label": "another block waits",
+      "description": "Where this text went somewhere a typical writer wouldn't. A proxy for the author's choices; not measured attention. Departure -0.013; fixture at test, file manifest SHA-256 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa. Where attention likely went; untested. What would move this estimate: after a source fails them, do they check it more? Probe pending (D39/N15). Finished 2 of 3 passages. Rankings and normalization cover processed text only, including any partial passage, and can change as coverage expands. ",
+      "makers": [
+        "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1"
+      ],
+      "regions": [
+        "p3"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": -0.012626262626262623,
+        "scale": [
+          -1.0,
+          1.2196969696969697
+        ],
+        "semantics": "relative",
+        "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+      },
+      "evidence": [
+        "e7bca28aa773ee6e0ba531b86edc9a45ddc74bc65260a3ceff346197cbf41293"
+      ],
+      "spans": [
+        {
+          "start": 0,
+          "end": 19,
+          "region": "p3"
+        }
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "evidenceStatus": "unvalidated",
+      "ledgerRows": [
+        {
+          "ledgerId": "S15-EV1-PAUSES-V1",
+          "wording": "tested on human writing logs: flagged words came after longer pauses",
+          "controlStatus": "passes",
+          "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.json#sha256=32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa"
+        }
+      ],
+      "basis": "text-surface",
+      "entry": "page",
+      "finding": "departure-phrase",
+      "id": "d63ca6546132b3f76eb607deaa1ccc9faa2f19c7431d0f0972b0ddb06d53ca4f",
+      "kind": "attention",
+      "label": "beside the blue",
+      "description": "Where this text went somewhere a typical writer wouldn't. A proxy for the author's choices; not measured attention. Departure -0.023; fixture at test, file manifest SHA-256 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa. Where attention likely went; untested. What would move this estimate: after a source fails them, do they check it more? Probe pending (D39/N15). Finished 2 of 3 passages. Rankings and normalization cover processed text only, including any partial passage, and can change as coverage expands. ",
+      "makers": [
+        "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1"
+      ],
+      "regions": [
+        "p2"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": -0.022727272727272728,
+        "scale": [
+          -1.0,
+          1.2196969696969697
+        ],
+        "semantics": "relative",
+        "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+      },
+      "evidence": [
+        "b68f336049420f81df0d15ef64908fb4e52adc97d9138e55c668c23a7c3c9f85"
+      ],
+      "spans": [
+        {
+          "start": 20,
+          "end": 35,
+          "region": "p2"
+        }
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "evidenceStatus": "unvalidated",
+      "ledgerRows": [
+        {
+          "ledgerId": "S15-EV1-PAUSES-V1",
+          "wording": "tested on human writing logs: flagged words came after longer pauses",
+          "controlStatus": "passes",
+          "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.json#sha256=32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa"
+        }
+      ],
+      "basis": "text-surface",
+      "entry": "page",
+      "finding": "departure-phrase",
+      "id": "c7bc02977d5531bf484bf1406f4066e0a6d37e425a9c56c4feafe262350a213d",
+      "kind": "attention",
+      "label": "shelf",
+      "description": "Where this text went somewhere a typical writer wouldn't. A proxy for the author's choices; not measured attention. Departure -0.023; fixture at test, file manifest SHA-256 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa. Where attention likely went; untested. What would move this estimate: after a source fails them, do they check it more? Probe pending (D39/N15). Finished 2 of 3 passages. Rankings and normalization cover processed text only, including any partial passage, and can change as coverage expands. ",
+      "makers": [
+        "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1"
+      ],
+      "regions": [
+        "p2"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": -0.022727272727272728,
+        "scale": [
+          -1.0,
+          1.2196969696969697
+        ],
+        "semantics": "relative",
+        "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+      },
+      "evidence": [
+        "b68f336049420f81df0d15ef64908fb4e52adc97d9138e55c668c23a7c3c9f85"
+      ],
+      "spans": [
+        {
+          "start": 36,
+          "end": 41,
+          "region": "p2"
+        }
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "evidenceStatus": "unvalidated",
+      "ledgerRows": [
+        {
+          "ledgerId": "S15-EV1-PAUSES-V1",
+          "wording": "tested on human writing logs: flagged words came after longer pauses",
+          "controlStatus": "passes",
+          "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.json#sha256=32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa"
+        }
+      ],
+      "basis": "text-surface",
+      "entry": "page",
+      "finding": "departure-phrase",
+      "id": "cb1550798dd9337d746630993bcd610d1ce7ff33da191101cbffb3f4b50869c9",
+      "kind": "attention",
+      "label": "beside the desk",
+      "description": "Where this text went somewhere a typical writer wouldn't. A proxy for the author's choices; not measured attention. Departure -0.023; fixture at test, file manifest SHA-256 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa. Where attention likely went; untested. What would move this estimate: after a source fails them, do they check it more? Probe pending (D39/N15). Finished 2 of 3 passages. Rankings and normalization cover processed text only, including any partial passage, and can change as coverage expands. ",
+      "makers": [
+        "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1"
+      ],
+      "regions": [
+        "p3"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": -0.022727272727272728,
+        "scale": [
+          -1.0,
+          1.2196969696969697
+        ],
+        "semantics": "relative",
+        "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+      },
+      "evidence": [
+        "e7bca28aa773ee6e0ba531b86edc9a45ddc74bc65260a3ceff346197cbf41293"
+      ],
+      "spans": [
+        {
+          "start": 20,
+          "end": 35,
+          "region": "p3"
+        }
+      ],
+      "interpretation": "current-attention"
+    },
+    {
+      "evidenceStatus": "unvalidated",
+      "ledgerRows": [],
+      "basis": "text-surface",
+      "entry": "page",
+      "finding": "departure-sentence",
+      "id": "53ca56e110378e5c9b173d30a2a6d1bac6c6cf43e179facda109c9e1bf9ca06b",
+      "kind": "attention",
+      "label": "zyzzyva zyzzyva glows.",
+      "description": "Where this text went somewhere a typical writer wouldn't. A proxy for the author's choices; not measured attention. Departure 1.220; fixture at test, file manifest SHA-256 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa. Where attention likely went; untested. What would move this estimate: after a source fails them, do they check it more? Probe pending (D39/N15). Finished 2 of 3 passages. Rankings and normalization cover processed text only, including any partial passage, and can change as coverage expands. ",
+      "makers": [
+        "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1"
+      ],
+      "regions": [
+        "p1"
+      ],
+      "status": "hypothesis",
+      "support": {
+        "value": 1.2196969696969697,
+        "scale": [
+          -1.0,
+          1.2196969696969697
+        ],
+        "semantics": "relative",
+        "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+      },
+      "evidence": [
+        "73ea9b1b3b99e3aaeb36c8b6d6294a45f526023649d57950a7c68d7f539eb39d"
+      ],
+      "spans": [
+        {
+          "start": 28,
+          "end": 51,
+          "region": "p1"
+        }
+      ],
+      "interpretation": "current-attention"
+    }
+  ],
+  "alternatives": [],
+  "process": {
+    "interpretation": "unspecified",
+    "nodes": [
+      "4dc0ffbd428bff8f5309a89ca87acb44637e26ce01a6fe7ac7005dc8b2dbe5e7",
+      "050d6d77893638367597935cf7433489c78ee44688c0bd9c7e2698a0da450c1e"
+    ],
+    "edges": []
+  },
+  "estimates": [
+    {
+      "region": "p1",
+      "uncertainty": {
+        "level": "unknown",
+        "meaning": "T0 evidence; no admitted estimate of motive or contribution"
+      }
+    },
+    {
+      "region": "p2",
+      "uncertainty": {
+        "level": "unknown",
+        "meaning": "T0 evidence; no admitted estimate of motive or contribution"
+      }
+    },
+    {
+      "region": "p3",
+      "uncertainty": {
+        "level": "unknown",
+        "meaning": "T0 evidence; no admitted estimate of motive or contribution"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "73ea9b1b3b99e3aaeb36c8b6d6294a45f526023649d57950a7c68d7f539eb39d",
+      "source": "https://example.org/week",
+      "excerpt": "quiet paper [12] light room. zyzzyva zyzzyva glows.",
+      "capturedAt": "2026-10-25T12:00:00Z",
+      "relationship": "Observed final text; this alone does not establish a maker's choices or motives"
+    },
+    {
+      "id": "b68f336049420f81df0d15ef64908fb4e52adc97d9138e55c668c23a7c3c9f85",
+      "source": "https://example.org/week",
+      "excerpt": "ordinary paper sits beside the blue shelf.",
+      "capturedAt": "2026-10-25T12:00:00Z",
+      "relationship": "Observed final text; this alone does not establish a maker's choices or motives"
+    },
+    {
+      "id": "e7bca28aa773ee6e0ba531b86edc9a45ddc74bc65260a3ceff346197cbf41293",
+      "source": "https://example.org/week",
+      "excerpt": "another block waits beside the desk.",
+      "capturedAt": "2026-10-25T12:00:00Z",
+      "relationship": "Observed final text; this alone does not establish a maker's choices or motives"
+    },
+    {
+      "id": "580a8c85df98898b66856ea80088b2a0e308b452d8d4ac40411b5c22d3378c7b",
+      "source": "https://example.org/week#revision=10",
+      "excerpt": "t paper ligh",
+      "capturedAt": "2026-10-24T10:00:00Z",
+      "relationship": "Changed fragment; location is weak evidence of attention, not an editor's plan."
+    },
+    {
+      "id": "9cf3df3d869a571fbd23d6b1f10c63cb0faec1cbf00fe0fec52e966800688589",
+      "source": "https://example.org/week#revision=11",
+      "excerpt": "now del\ned\nm\nt\nia\night room.",
+      "capturedAt": "2026-10-24T11:00:00Z",
+      "relationship": "Changed fragment; location is weak evidence of attention, not an editor's plan."
+    }
+  ],
+  "currentAttention": [
+    {
+      "maker": "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1",
+      "span": {
+        "start": 0,
+        "end": 5,
+        "region": "p1"
+      },
+      "items": [
+        {
+          "evidenceStatus": "unvalidated",
+          "ledgerRows": [
+            {
+              "ledgerId": "S15-EV1-PAUSES-V1",
+              "wording": "tested on human writing logs: flagged words came after longer pauses",
+              "controlStatus": "passes",
+              "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.json#sha256=32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa"
+            }
+          ],
+          "basis": "text-surface",
+          "entry": "page",
+          "hypothesis": "e21e82801714c1fd4587d6e17480f9c219807d1a0c0e9fde232563a7e61c65ff",
+          "support": {
+            "value": 0.9772727272727273,
+            "scale": [
+              -1.0,
+              1.2196969696969697
+            ],
+            "semantics": "relative",
+            "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1",
+      "span": {
+        "start": 17,
+        "end": 22,
+        "region": "p1"
+      },
+      "items": [
+        {
+          "evidenceStatus": "unvalidated",
+          "ledgerRows": [
+            {
+              "ledgerId": "S15-EV1-PAUSES-V1",
+              "wording": "tested on human writing logs: flagged words came after longer pauses",
+              "controlStatus": "passes",
+              "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.json#sha256=32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa"
+            }
+          ],
+          "basis": "text-surface",
+          "entry": "page",
+          "hypothesis": "7e76f99fea77d219e0768a24c236b12d9b66b21c192b5002287c05d51b18a46e",
+          "support": {
+            "value": 0.9772727272727273,
+            "scale": [
+              -1.0,
+              1.2196969696969697
+            ],
+            "semantics": "relative",
+            "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1",
+      "span": {
+        "start": 23,
+        "end": 27,
+        "region": "p1"
+      },
+      "items": [
+        {
+          "evidenceStatus": "unvalidated",
+          "ledgerRows": [
+            {
+              "ledgerId": "S15-EV1-PAUSES-V1",
+              "wording": "tested on human writing logs: flagged words came after longer pauses",
+              "controlStatus": "passes",
+              "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.json#sha256=32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa"
+            }
+          ],
+          "basis": "text-surface",
+          "entry": "page",
+          "hypothesis": "134ad89cd31b7107ded465a359a8017e29d8c642298dd65e7bea80a9a7da6ec9",
+          "support": {
+            "value": 0.9772727272727273,
+            "scale": [
+              -1.0,
+              1.2196969696969697
+            ],
+            "semantics": "relative",
+            "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1",
+      "span": {
+        "start": 28,
+        "end": 29,
+        "region": "p1"
+      },
+      "items": [
+        {
+          "evidenceStatus": "unvalidated",
+          "ledgerRows": [],
+          "basis": "text-surface",
+          "entry": "page",
+          "hypothesis": "53ca56e110378e5c9b173d30a2a6d1bac6c6cf43e179facda109c9e1bf9ca06b",
+          "support": {
+            "value": 1.2196969696969697,
+            "scale": [
+              -1.0,
+              1.2196969696969697
+            ],
+            "semantics": "relative",
+            "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1",
+      "span": {
+        "start": 29,
+        "end": 50,
+        "region": "p1"
+      },
+      "items": [
+        {
+          "evidenceStatus": "unvalidated",
+          "ledgerRows": [
+            {
+              "ledgerId": "S15-EV1-PAUSES-V1",
+              "wording": "tested on human writing logs: flagged words came after longer pauses",
+              "controlStatus": "passes",
+              "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.json#sha256=32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa"
+            }
+          ],
+          "basis": "text-surface",
+          "entry": "page",
+          "hypothesis": "645c050e98a3b646818e95e3e05f068272a9fd80ccfa0bdc9a50ec422f89f434",
+          "support": {
+            "value": 1.2196969696969697,
+            "scale": [
+              -1.0,
+              1.2196969696969697
+            ],
+            "semantics": "relative",
+            "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+          }
+        },
+        {
+          "evidenceStatus": "unvalidated",
+          "ledgerRows": [],
+          "basis": "text-surface",
+          "entry": "page",
+          "hypothesis": "53ca56e110378e5c9b173d30a2a6d1bac6c6cf43e179facda109c9e1bf9ca06b",
+          "support": {
+            "value": 1.2196969696969697,
+            "scale": [
+              -1.0,
+              1.2196969696969697
+            ],
+            "semantics": "relative",
+            "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1",
+      "span": {
+        "start": 50,
+        "end": 51,
+        "region": "p1"
+      },
+      "items": [
+        {
+          "evidenceStatus": "unvalidated",
+          "ledgerRows": [],
+          "basis": "text-surface",
+          "entry": "page",
+          "hypothesis": "53ca56e110378e5c9b173d30a2a6d1bac6c6cf43e179facda109c9e1bf9ca06b",
+          "support": {
+            "value": 1.2196969696969697,
+            "scale": [
+              -1.0,
+              1.2196969696969697
+            ],
+            "semantics": "relative",
+            "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1",
+      "span": {
+        "start": 0,
+        "end": 19,
+        "region": "p2"
+      },
+      "items": [
+        {
+          "evidenceStatus": "unvalidated",
+          "ledgerRows": [
+            {
+              "ledgerId": "S15-EV1-PAUSES-V1",
+              "wording": "tested on human writing logs: flagged words came after longer pauses",
+              "controlStatus": "passes",
+              "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.json#sha256=32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa"
+            }
+          ],
+          "basis": "text-surface",
+          "entry": "page",
+          "hypothesis": "31b190f928c7677c1325fdae9fcfdcf4497293cfd6e8377771cc949a7055fc63",
+          "support": {
+            "value": -0.012626262626262623,
+            "scale": [
+              -1.0,
+              1.2196969696969697
+            ],
+            "semantics": "relative",
+            "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1",
+      "span": {
+        "start": 20,
+        "end": 35,
+        "region": "p2"
+      },
+      "items": [
+        {
+          "evidenceStatus": "unvalidated",
+          "ledgerRows": [
+            {
+              "ledgerId": "S15-EV1-PAUSES-V1",
+              "wording": "tested on human writing logs: flagged words came after longer pauses",
+              "controlStatus": "passes",
+              "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.json#sha256=32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa"
+            }
+          ],
+          "basis": "text-surface",
+          "entry": "page",
+          "hypothesis": "d63ca6546132b3f76eb607deaa1ccc9faa2f19c7431d0f0972b0ddb06d53ca4f",
+          "support": {
+            "value": -0.022727272727272728,
+            "scale": [
+              -1.0,
+              1.2196969696969697
+            ],
+            "semantics": "relative",
+            "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1",
+      "span": {
+        "start": 36,
+        "end": 41,
+        "region": "p2"
+      },
+      "items": [
+        {
+          "evidenceStatus": "unvalidated",
+          "ledgerRows": [
+            {
+              "ledgerId": "S15-EV1-PAUSES-V1",
+              "wording": "tested on human writing logs: flagged words came after longer pauses",
+              "controlStatus": "passes",
+              "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.json#sha256=32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa"
+            }
+          ],
+          "basis": "text-surface",
+          "entry": "page",
+          "hypothesis": "c7bc02977d5531bf484bf1406f4066e0a6d37e425a9c56c4feafe262350a213d",
+          "support": {
+            "value": -0.022727272727272728,
+            "scale": [
+              -1.0,
+              1.2196969696969697
+            ],
+            "semantics": "relative",
+            "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1",
+      "span": {
+        "start": 0,
+        "end": 19,
+        "region": "p3"
+      },
+      "items": [
+        {
+          "evidenceStatus": "unvalidated",
+          "ledgerRows": [
+            {
+              "ledgerId": "S15-EV1-PAUSES-V1",
+              "wording": "tested on human writing logs: flagged words came after longer pauses",
+              "controlStatus": "passes",
+              "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.json#sha256=32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa"
+            }
+          ],
+          "basis": "text-surface",
+          "entry": "page",
+          "hypothesis": "fcfc51660e5233ee5d7d079de80a901d8c6383b53a87ad995264ab6cd3e05883",
+          "support": {
+            "value": -0.012626262626262623,
+            "scale": [
+              -1.0,
+              1.2196969696969697
+            ],
+            "semantics": "relative",
+            "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+          }
+        }
+      ]
+    },
+    {
+      "maker": "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1",
+      "span": {
+        "start": 20,
+        "end": 35,
+        "region": "p3"
+      },
+      "items": [
+        {
+          "evidenceStatus": "unvalidated",
+          "ledgerRows": [
+            {
+              "ledgerId": "S15-EV1-PAUSES-V1",
+              "wording": "tested on human writing logs: flagged words came after longer pauses",
+              "controlStatus": "passes",
+              "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.json#sha256=32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa"
+            }
+          ],
+          "basis": "text-surface",
+          "entry": "page",
+          "hypothesis": "cb1550798dd9337d746630993bcd610d1ce7ff33da191101cbffb3f4b50869c9",
+          "support": {
+            "value": -0.022727272727272728,
+            "scale": [
+              -1.0,
+              1.2196969696969697
+            ],
+            "semantics": "relative",
+            "meaning": "Departure from this page's median content-word surprisal, in page interquartile ranges; not a probability."
+          }
+        }
+      ]
+    }
+  ],
+  "attentionTimeline": [
+    {
+      "maker": "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1",
+      "step": 0,
+      "t": "2026-10-24T10:00:00Z",
+      "located": true,
+      "region": "p1",
+      "node": "group-p1",
+      "evidence": [
+        "580a8c85df98898b66856ea80088b2a0e308b452d8d4ac40411b5c22d3378c7b"
+      ],
+      "evidenceStatus": "unvalidated",
+      "basis": "history",
+      "description": "weak evidence of attention"
+    },
+    {
+      "maker": "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1",
+      "step": 1,
+      "t": "2026-10-24T11:00:00Z",
+      "located": false,
+      "region": null,
+      "node": null,
+      "evidence": [
+        "9cf3df3d869a571fbd23d6b1f10c63cb0faec1cbf00fe0fec52e966800688589"
+      ],
+      "evidenceStatus": "unvalidated",
+      "basis": "history",
+      "description": "weak evidence of attention"
+    }
+  ],
+  "goalHierarchy": {
+    "nodes": [
+      {
+        "evidenceStatus": "unvalidated",
+        "basis": "model-judgment",
+        "entry": "page",
+        "attentionDensity": 71.42857142857143,
+        "attentionShare": 0.625,
+        "divergence": true,
+        "attentionEvidence": {
+          "evidenceStatus": "unvalidated",
+          "ledgerRows": [],
+          "basis": "text-surface",
+          "entry": "page",
+          "coverage": "read",
+          "description": "may track rare words and topic changes; untested at paragraph-group level"
+        },
+        "id": "group-p1",
+        "maker": "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1",
+        "label": "Constructed group",
+        "description": "Software fixture",
+        "level": "paragraph",
+        "regions": [
+          "p1"
+        ],
+        "evidence": []
+      },
+      {
+        "evidenceStatus": "unvalidated",
+        "basis": "model-judgment",
+        "entry": "page",
+        "attentionDensity": 50.0,
+        "attentionShare": 0.375,
+        "divergence": false,
+        "attentionEvidence": {
+          "evidenceStatus": "unvalidated",
+          "ledgerRows": [],
+          "basis": "text-surface",
+          "entry": "page",
+          "coverage": "read",
+          "description": "may track rare words and topic changes; untested at paragraph-group level"
+        },
+        "id": "group-p2",
+        "maker": "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1",
+        "label": "Constructed group",
+        "description": "Software fixture",
+        "level": "paragraph",
+        "regions": [
+          "p2"
+        ],
+        "evidence": []
+      },
+      {
+        "evidenceStatus": "unvalidated",
+        "basis": "model-judgment",
+        "entry": "page",
+        "attentionDensity": null,
+        "attentionShare": null,
+        "divergence": false,
+        "attentionEvidence": {
+          "evidenceStatus": "unvalidated",
+          "ledgerRows": [],
+          "basis": "text-surface",
+          "entry": "page",
+          "coverage": "not-read",
+          "description": "may track rare words and topic changes; untested at paragraph-group level"
+        },
+        "id": "group-p3",
+        "maker": "96e46c2ef8360f792d68a5930ae87513b6e22f13034ce29b42dcb8a104b68eb1",
+        "label": "Constructed group",
+        "description": "Software fixture",
+        "level": "paragraph",
+        "regions": [
+          "p3"
+        ],
+        "evidence": []
+      }
+    ]
+  }
+}

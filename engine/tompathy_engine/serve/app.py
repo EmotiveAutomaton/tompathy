@@ -138,7 +138,10 @@ def create_app(
     preview_correction_reader=None,
     preview_cache=None,
     preview_budget=165,
+    preview_preparation=False,
 ):
+    if type(preview_preparation) is not bool:
+        raise ValueError("Preview preparation must be an explicit boolean")
     if type(preview_budget) is not int or not 165 <= preview_budget <= 600:
         raise ValueError("Preview preparation budget must be 165–600 seconds")
     if not re.fullmatch(r"[0-9a-f]{64}", token):
@@ -354,11 +357,11 @@ def create_app(
                                    history=history_payload, correction_reader=preview_correction_reader,
                                    history_adapter="git" if body.history == "github" else "wikipedia",
                                    partial=publish_partial, check=job.check, deadline=job.started + preview_budget, history_error=history_error,
-                                   priority_region=priority)
+                                   priority_region=priority, preparation=preview_preparation)
             if history_cached_at:
                 packet["preview"]["modules"].append({"id": "history", "title": "Source history", "status": "complete", "detail": "Cached public history fetched " + history_cached_at})
             if best is not None and not keeps_progress(packet, best):
-                packet = deepcopy(best)
+                packet = Packet.model_validate(best).wire()
                 packet["preview"]["resumable"] = True
                 job.progress("Retained the previous reading; exact cached work will be reused on continuation")
             if not history_error and all(m["status"] in {"complete", "unavailable"} for m in packet["preview"]["modules"]):

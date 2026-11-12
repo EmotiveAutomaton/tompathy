@@ -1,3 +1,5 @@
+import { AttentionTimeline } from "./components/AttentionTimeline";
+import { EvidenceContext } from "./components/PreviewStatus";
 import { demoGlobalValues, demoWorkValues } from "./core/example-values";
 import { markedAINodes } from "./core/ai-attribution";
 import { ProviderOptions, readProvider } from "./components/ProviderOptions";
@@ -26,6 +28,7 @@ import { isWebsiteDemo } from "./core/site-demo-scope";
 import { ContextTimeline } from "./components/ContextTimeline";
 import {
   bylineContext,
+  contextCreator,
   collectCreatorContext,
   clearContextCache,
   prepareContextSources,
@@ -34,6 +37,7 @@ import {
 import { type ContextWork } from "./components/ContextProgress";
 import { attentionAt, attentionForNode } from "./core/attention";
 import { ValueTabs, type ValuesTab } from "./components/ValueTabs";
+import { ValuesLandscape } from "./components/ValuesLandscape";
 import { SelectionLock } from "./components/SelectionLock";
 import { blockedFocusTracker } from "./core/lock";
 import { GoalCloud } from "./components/GoalCloud";
@@ -44,7 +48,7 @@ import { SectionTitle } from "./components/SectionTitle";
 import { EssayDialog } from "./components/Essay";
 import type { EssayPage } from "./content/essays";
 import { sentences, regionSentences } from "./core/sentences";
-import type { GoalNode } from "./core/hierarchy";
+import type { GoalNode, HierarchyLayout } from "./core/hierarchy";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import {
   ArrowDownLeft,
@@ -510,6 +514,7 @@ export function App({ preview = false }: { preview?: boolean }) {
       setTour(null);
   }, [pinned, tour]);
   const [markAI, setMarkAI] = useState(false);
+  const [overviewLayout, setOverviewLayout] = useState<HierarchyLayout | null>(null);
   useEffect(() => setMarkAI(false), [packet?.artifact.revision, maker]);
   const allMakers = packet?.provider.mode === "preview" && (maker === "all" || !packet.makers.some(m => m.id === maker));
   const activeMaker =
@@ -535,6 +540,7 @@ export function App({ preview = false }: { preview?: boolean }) {
     (artifact?.authors?.length
       ? "Multiple creators listed"
       : "Creator not identified");
+  const contextName = contextCreator(artifact, creatorName, allMakers);
   const hypotheses = ready
     ? packet!.hypotheses.filter((h) => allMakers || h.makers.includes(activeMaker!.id))
     : [];
@@ -1199,7 +1205,7 @@ export function App({ preview = false }: { preview?: boolean }) {
     if (refresh) clearContextCache();
     const request = serial.current;
     const sources = (session.contextSources ?? []).filter(
-      (s) => s.author.toLocaleLowerCase() === creatorName.toLocaleLowerCase(),
+      (s) => s.author.toLocaleLowerCase() === contextName.toLocaleLowerCase(),
     );
     const job = new AbortController();
     collector.current = job;
@@ -1207,7 +1213,7 @@ export function App({ preview = false }: { preview?: boolean }) {
       const plan = prepareContextSources(
         sources,
         session.repositoryLinks ?? [],
-        creatorName,
+        contextName,
         github,
       );
       const origins = [
@@ -1239,7 +1245,7 @@ export function App({ preview = false }: { preview?: boolean }) {
         total: 1,
         label: "Reading byline",
       });
-      const byline = await bylineContext(artifact, creatorName);
+      const byline = await bylineContext(artifact, contextName);
       if (request !== serial.current || job.signal.aborted) return;
       if (byline)
         setSession((s) => ({ ...s, context: mergeContext(s.context, byline) }));
@@ -1248,7 +1254,7 @@ export function App({ preview = false }: { preview?: boolean }) {
         repositoryLinks: session.repositoryLinks,
         pageSource: artifact.source,
         existingContext: refresh ? [] : session.context,
-        creator: creatorName,
+        creator: contextName,
         useGitHub: github,
         followLinks: discover,
         signal: job.signal,
@@ -1299,11 +1305,11 @@ export function App({ preview = false }: { preview?: boolean }) {
   const automaticContextKey = useRef("");
   useEffect(() => {
     if (!hydrated || !artifact || !contextEnabled) return;
-    const key = `${serial.current}:${artifact.id}:${artifact.revision}:${creatorName}:${useGitHub}:${followLinks}`;
+    const key = `${serial.current}:${artifact.id}:${artifact.revision}:${contextName}:${useGitHub}:${followLinks}`;
     if (automaticContextKey.current === key) return;
     automaticContextKey.current = key;
     void toggleContext(true, followLinks, false, true);
-  }, [hydrated, artifact, creatorName]);
+  }, [hydrated, artifact, contextName]);
   function exportReading() {
     try {
       const url = URL.createObjectURL(
@@ -1425,7 +1431,7 @@ export function App({ preview = false }: { preview?: boolean }) {
     setModal("revision");
   }
   return (
-    <div className={preview ? "workspace" : "extension-root"}>
+    <EvidenceContext.Provider value={packet?.preview}><div className={preview ? "workspace" : "extension-root"}>
       {essayKind && <EssayDialog kind={essayKind} onClose={() => setEssayPage(null)} />}
       {preview && artifact && artifact.source !== "tompathy:example" ? (
         <ReadingPreview
@@ -1724,6 +1730,10 @@ export function App({ preview = false }: { preview?: boolean }) {
               setFoundInPage(true);
               void pageCommand(tabId, artifact, "TOMPATHY_FOCUS", { region: id, offset: 0, center: true });
             }} /></>}
+            {ready && packet && <AttentionTimeline packet={packet} onRegion={id => {
+              move(id, true); setFoundInPage(true);
+              void pageCommand(tabId, artifact, "TOMPATHY_FOCUS", { region: id, offset: 0, center: true });
+            }} />}
             {ready && packet && <MakerDetails key={`makers-${packet.id}`} packet={packet} maker={allMakers ? undefined : activeMaker?.id} />}
             {ready &&
             packet?.provider.id === "tompathy-engine" &&
@@ -1802,6 +1812,7 @@ export function App({ preview = false }: { preview?: boolean }) {
               <div className={packet?.preview?.goalLenses ? "goal-lenses" : "goal-single"}>
               {(packet?.preview?.goalLenses ?? [null]).map((lens, lensIndex) => (
               <ProcessHierarchy
+                onLayout={!lens ? setOverviewLayout : undefined}
                 markedAI={markAI ? aiNodes : undefined}
                 lockReminder={lockReminder}
                 onBlockedFocus={blocked}
@@ -1871,30 +1882,15 @@ export function App({ preview = false }: { preview?: boolean }) {
                 valuesTab === "work"
                   ? "Current work only values"
                   : valuesTab === "creator"
-                    ? "Creator values"
+                    ? "Author values"
                     : "Global population values"
               }
             >
-              {ready && valuesTab === "global" && packet?.provider.mode === "preview" ? <PopulationResearch findings={packet.globalFindings} /> : ready && valuesTab === "global" && packet?.population ? (
-                <PopulationValues packet={packet} maker={activeMaker?.id} />
-              ) : (
-                <ValueList
-                  emptyMessage={
-                    valuesTab === "work" && values.length
-                      ? "No page-specific values. See Creator for supplied estimates."
-                      : "No values supplied"
-                  }
-                  values={
-                    valuesTab === "work"
-                      ? demoWorkValues(ready ? packet : null, values)
-                      : valuesTab === "creator"
-                        ? values
-                        : demoGlobalValues(ready ? packet : null, values)
-                  }
-                  packet={packet}
-                  inspect={inspect}
-                />
-              )}
+              {ready && packet && !(valuesTab === "global" && packet.population && packet.provider.mode !== "preview") && <ValuesLandscape key={`${packet.artifact.revision}:${valuesTab}`} packet={packet} nodes={hierarchyNodes} sourceLayout={packet.preview?.goalLenses ? null : overviewLayout} tab={valuesTab} context={session.context}
+                values={valuesTab === "work" ? demoWorkValues(packet, values) : valuesTab === "creator" ? values : demoGlobalValues(packet, values)}
+                onSources={() => setModal("context")} inspect={inspect} />}
+              {!ready && <ValueList values={[]} packet={packet} inspect={inspect} />}
+              {ready && valuesTab === "global" && packet?.provider.mode === "preview" ? <PopulationResearch findings={packet.globalFindings} /> : ready && valuesTab === "global" && packet?.population ? <PopulationValues packet={packet} maker={activeMaker?.id} /> : null}
               {ready &&
                 valuesTab === "creator" &&
                 activeMaker?.predictability && (
@@ -1937,8 +1933,7 @@ export function App({ preview = false }: { preview?: boolean }) {
               });
             }}
           >
-            {detail.kind === "value" &&
-            (detail.preferenceTrace || detail.preferenceEstimate) ? (
+            {detail.kind === "value" ? (
               <ValueDetails h={detail} packet={packet} />
             ) : (
               <section
@@ -3095,7 +3090,7 @@ export function App({ preview = false }: { preview?: boolean }) {
           )}
         </Modal>
       )}
-    </div>
+    </div></EvidenceContext.Provider>
   );
 }
 

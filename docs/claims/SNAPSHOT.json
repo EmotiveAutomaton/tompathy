@@ -1,0 +1,425 @@
+{
+  "schema": "tompathy.claims.v1",
+  "asOf": "2026-10-25",
+  "rows": [
+    {
+      "ledgerId": "S15-EV1-PAUSES-V1",
+      "wording": "tested on human writing logs: flagged words came after longer pauses",
+      "controlStatus": "passes",
+      "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.json#sha256=32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa",
+      "definition": "5f3ad0a:surface-departure-v1",
+      "reader": null,
+      "supersededBy": null,
+      "fieldEligible": true,
+      "basis": "EV4 table interim row; reader identity handoff pending",
+      "tableRow": "EV1.departure_pause",
+      "tableSha256": "05fff7d2f673d700f3934910124c6e3c6ac5c81619815fc581002745c3e2a820"
+    },
+    {
+      "ledgerId": "S15-EV2-SIGNATURES-V1",
+      "wording": "recurs in the writer's other work",
+      "controlStatus": "passes",
+      "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV2_SIGNATURES_V1.json#sha256=0a6b2e61f6b1d2864f2a17a4a76fb3cb0ded94c527b8b4ccbe50ea5d7b063077",
+      "definition": "5f3ad0a:surface-departure-v1",
+      "reader": null,
+      "supersededBy": null,
+      "fieldEligible": true,
+      "basis": "EV4 table interim row; reader identity handoff pending",
+      "tableRow": "EV2.signatures",
+      "tableSha256": "05fff7d2f673d700f3934910124c6e3c6ac5c81619815fc581002745c3e2a820"
+    },
+    {
+      "ledgerId": "G-V23-R4-1",
+      "wording": "Does a root or function cue improve root recovery beyond leaf evidence? R4 nominates a 0.99-reliable root cue with no observed leaves after two complete burn-ins: root log-loss gain is 0.64312 nats, with a descriptive 95% interval of 0.62467–0.66157. All 90 settings and 184,320 cases pass reconstruction and full replay; the 20 neutral-cue settings remain exact zeros. This is a constructed-method discovery, not confirmation or evidence about people.",
+      "controlStatus": "passes",
+      "source": "ghost-scale-sim:docs/theory/CLAIMS.json#sha256=52c485266f9cb4b00eb0be0026a4a8d65eda765cb722d25a2e27eb0b416bbe48&row=G-V23-R4-1",
+      "sourceCommit": null,
+      "sourceBaseCommit": "8165fb817f54ec635f32ac7379f49cd142af718e",
+      "supersededBy": null,
+      "fieldEligible": false,
+      "reader": null,
+      "definition": null,
+      "architecture": "miniature, architecture untested",
+      "assumedChoiceModel": "Supplied finite synthetic observation laws; see source report",
+      "readerDescription": "Declared exact readers and frozen rivals; N5 hierarchical rival approximate",
+      "sourceSha256": "b5508a4ec8c1abca6e13ddb1a6fa423a0bcb88251eefc6ed1885c09057db0dab"
+    },
+    {
+      "ledgerId": "G-V23-N5-1",
+      "wording": "How much does forecasting from the reader’s own policy cost? N5 nominates prior-shift calibration at the largest anchor-shaped bias with no personal records: log-loss gain is 0.94929 nats, with a descriptive 95% interval of 0.90291–0.99567. Both full burn-ins verify all 128 settings and 262,144 cases. This is a constructed-method discovery with supplied population rates; the approximate hierarchical rival is not an exact ceiling, and no human benefit is established.",
+      "controlStatus": "passes",
+      "source": "ghost-scale-sim:docs/theory/CLAIMS.json#sha256=52c485266f9cb4b00eb0be0026a4a8d65eda765cb722d25a2e27eb0b416bbe48&row=G-V23-N5-1",
+      "sourceCommit": null,
+      "sourceBaseCommit": "8165fb817f54ec635f32ac7379f49cd142af718e",
+      "supersededBy": null,
+      "fieldEligible": false,
+      "reader": null,
+      "definition": null,
+      "architecture": "miniature, architecture untested",
+      "assumedChoiceModel": "Supplied finite synthetic observation laws; see source report",
+      "readerDescription": "Declared exact readers and frozen rivals; N5 hierarchical rival approximate",
+      "sourceSha256": "8b5c74a55c76f34de08d2c715562900d4d444e47fedb2ee8cd03b97974c6da94"
+    },
+    {
+      "ledgerId": "G-V23-N7-1",
+      "wording": "Can statements improve future-choice forecasts after correcting presentation bias? N7 nominates a setting with 0 personal records, statement noise 0.25, shared shift 1 and aspiration share 0. Its pooled log-loss gain over choices alone is 0.25012 nats (descriptive 95% interval 0.21182–0.28842). All 128 settings and 262,144 cases pass independent reconstruction and complete replay. This is a constructed-method discovery, not confirmation or evidence about people.",
+      "controlStatus": "passes",
+      "source": "ghost-scale-sim:docs/theory/CLAIMS.json#sha256=52c485266f9cb4b00eb0be0026a4a8d65eda765cb722d25a2e27eb0b416bbe48&row=G-V23-N7-1",
+      "sourceCommit": null,
+      "sourceBaseCommit": "8165fb817f54ec635f32ac7379f49cd142af718e",
+      "supersededBy": null,
+      "fieldEligible": false,
+      "reader": null,
+      "definition": null,
+      "architecture": "miniature, architecture untested",
+      "assumedChoiceModel": "Supplied finite synthetic observation laws; see source report",
+      "readerDescription": "Declared exact readers and frozen rivals; N5 hierarchical rival approximate",
+      "sourceSha256": "b2d5f1d9f31e79120c3f457435deb3ce8fcfb9a14d50c5030e6ae73ec8df524d"
+    },
+    {
+      "ledgerId": "G-V24-N16STRESS-1",
+      "wording": "The true-mechanism-omitted candidate receives the fixed lower-bound score by construction, log(0.1), not recovery of the omitted mechanism.",
+      "controlStatus": "invalid",
+      "source": "ghost-scale-sim:docs/theory/CLAIMS.json#sha256=52c485266f9cb4b00eb0be0026a4a8d65eda765cb722d25a2e27eb0b416bbe48&row=G-V24-N16STRESS-1",
+      "sourceCommit": null,
+      "sourceBaseCommit": "8165fb817f54ec635f32ac7379f49cd142af718e",
+      "supersededBy": "G-V24-N16STRESS-2",
+      "fieldEligible": false,
+      "reader": null,
+      "definition": null,
+      "architecture": "miniature, architecture untested",
+      "assumedChoiceModel": "Supplied finite probe laws",
+      "readerDescription": "Probe chooser and scoring reader incorrectly conflated",
+      "sourceSha256": "98581a3dc10519af1e974ce2f141313bfd803a76e9eb01b7f47713937f9ee138"
+    },
+    {
+      "ledgerId": "G-V24-N16STRESS-2",
+      "wording": "Correction, 25 October 2026: truth is omitted from the probe chooser's model, not from the unchanged full-library scoring reader. The score compares the true-mechanism probability after the chosen probes, mixed 90:10 with the correct fixed-order comparator, against that comparator. The 48 omitted-truth cell means range from -0.044416 to 0.086741 nats; six are negative, all from N4d. The lowest whole-block value is -0.056958 nats. log(0.1) is an analytic lower bound, not an assigned score. This corrects prose; no saved score, source capsule or scientific result is changed.",
+      "controlStatus": "passes",
+      "source": "ghost-scale-sim:docs/theory/CLAIMS.json#sha256=52c485266f9cb4b00eb0be0026a4a8d65eda765cb722d25a2e27eb0b416bbe48&row=G-V24-N16STRESS-2",
+      "sourceCommit": null,
+      "sourceBaseCommit": "8165fb817f54ec635f32ac7379f49cd142af718e",
+      "supersededBy": null,
+      "fieldEligible": false,
+      "reader": null,
+      "definition": null,
+      "architecture": "miniature, architecture untested",
+      "assumedChoiceModel": "Supplied finite probe laws; omission affects chooser only",
+      "readerDescription": "Unchanged full exact scoring reader with comparator mixture",
+      "sourceSha256": "98581a3dc10519af1e974ce2f141313bfd803a76e9eb01b7f47713937f9ee138"
+    },
+    {
+      "ledgerId": "G-V24-N16-1",
+      "wording": "The fresh N16 pilot gains 0.066551 nats over fixed order in four balanced blocks; descriptive, not powered confirmation.",
+      "controlStatus": "passes",
+      "source": "ghost-scale-sim:docs/theory/CLAIMS.json#sha256=52c485266f9cb4b00eb0be0026a4a8d65eda765cb722d25a2e27eb0b416bbe48&row=G-V24-N16-1",
+      "sourceCommit": null,
+      "sourceBaseCommit": "8165fb817f54ec635f32ac7379f49cd142af718e",
+      "supersededBy": null,
+      "fieldEligible": false,
+      "reader": null,
+      "definition": null,
+      "architecture": "miniature, architecture untested",
+      "assumedChoiceModel": "Finite supplied probe likelihoods",
+      "readerDescription": "Randomized adaptive chooser and exact scoring reader",
+      "sourceSha256": "a95f3360a8eae60c59dcf79208a43165d963a378f524add3e8bdc9b6ec077d19"
+    },
+    {
+      "ledgerId": "G-V24-GALLERY-1",
+      "wording": "Shared context alone identifies 5.76% against 2.22% global chance and 6.67% within-context reference; same-sample reuse gives 100%. This methods warning does not diagnose Sounding Line controls.",
+      "controlStatus": "passes",
+      "source": "ghost-scale-sim:docs/theory/CLAIMS.json#sha256=52c485266f9cb4b00eb0be0026a4a8d65eda765cb722d25a2e27eb0b416bbe48&row=G-V24-GALLERY-1",
+      "sourceCommit": null,
+      "sourceBaseCommit": "8165fb817f54ec635f32ac7379f49cd142af718e",
+      "supersededBy": null,
+      "fieldEligible": false,
+      "reader": null,
+      "definition": null,
+      "architecture": "miniature, architecture untested",
+      "assumedChoiceModel": "Constructed Gaussian galleries",
+      "readerDescription": "Nearest-gallery squared distances",
+      "sourceSha256": "98581a3dc10519af1e974ce2f141313bfd803a76e9eb01b7f47713937f9ee138"
+    },
+    {
+      "ledgerId": "G-V24-NEEDS-1",
+      "wording": "Needs/drives reaches 61.59% overall, 98.18% in informative cells, and exactly 25% tie credit where public consequences do not distinguish needs. Satiation was not required in this miniature.",
+      "controlStatus": "passes",
+      "source": "ghost-scale-sim:docs/theory/CLAIMS.json#sha256=52c485266f9cb4b00eb0be0026a4a8d65eda765cb722d25a2e27eb0b416bbe48&row=G-V24-NEEDS-1",
+      "sourceCommit": null,
+      "sourceBaseCommit": "8165fb817f54ec635f32ac7379f49cd142af718e",
+      "supersededBy": null,
+      "fieldEligible": false,
+      "reader": null,
+      "definition": null,
+      "architecture": "miniature, architecture untested",
+      "assumedChoiceModel": "Stipulated finite need/action likelihoods",
+      "readerDescription": "Exact finite-library reader",
+      "sourceSha256": "98581a3dc10519af1e974ce2f141313bfd803a76e9eb01b7f47713937f9ee138"
+    },
+    {
+      "ledgerId": "G-V24-SETPOINTS-1",
+      "wording": "The public-set-point miniature reaches 100% accuracy; it does not recover hidden set-points.",
+      "controlStatus": "passes",
+      "source": "ghost-scale-sim:docs/theory/CLAIMS.json#sha256=52c485266f9cb4b00eb0be0026a4a8d65eda765cb722d25a2e27eb0b416bbe48&row=G-V24-SETPOINTS-1",
+      "sourceCommit": null,
+      "sourceBaseCommit": "8165fb817f54ec635f32ac7379f49cd142af718e",
+      "supersededBy": null,
+      "fieldEligible": false,
+      "reader": null,
+      "definition": null,
+      "architecture": "miniature, architecture untested",
+      "assumedChoiceModel": "Stipulated set-point policies with public reference",
+      "readerDescription": "Exact finite-library reader",
+      "sourceSha256": "98581a3dc10519af1e974ce2f141313bfd803a76e9eb01b7f47713937f9ee138"
+    },
+    {
+      "ledgerId": "G-V24-EDITING-1",
+      "wording": "Higher-goal editing reaches 81.25% accuracy; policies remain exactly aliased without conflict or visible higher goals.",
+      "controlStatus": "passes",
+      "source": "ghost-scale-sim:docs/theory/CLAIMS.json#sha256=52c485266f9cb4b00eb0be0026a4a8d65eda765cb722d25a2e27eb0b416bbe48&row=G-V24-EDITING-1",
+      "sourceCommit": null,
+      "sourceBaseCommit": "8165fb817f54ec635f32ac7379f49cd142af718e",
+      "supersededBy": null,
+      "fieldEligible": false,
+      "reader": null,
+      "definition": null,
+      "architecture": "miniature, architecture untested",
+      "assumedChoiceModel": "Stipulated finite editing policies",
+      "readerDescription": "Exact finite-library reader",
+      "sourceSha256": "98581a3dc10519af1e974ce2f141313bfd803a76e9eb01b7f47713937f9ee138"
+    },
+    {
+      "ledgerId": "G-V24-CONTEXT-1",
+      "wording": "Omitting the true mechanism leaves about 0.150 predictive error against 0.025 with full support after 64 records; finite context does not guarantee prior agreement.",
+      "controlStatus": "passes",
+      "source": "ghost-scale-sim:docs/theory/CLAIMS.json#sha256=52c485266f9cb4b00eb0be0026a4a8d65eda765cb722d25a2e27eb0b416bbe48&row=G-V24-CONTEXT-1",
+      "sourceCommit": null,
+      "sourceBaseCommit": "8165fb817f54ec635f32ac7379f49cd142af718e",
+      "supersededBy": null,
+      "fieldEligible": false,
+      "reader": null,
+      "definition": null,
+      "architecture": "miniature, architecture untested",
+      "assumedChoiceModel": "Supplied binary observation likelihoods",
+      "readerDescription": "Exact readers with two priors and a restricted library",
+      "sourceSha256": "98581a3dc10519af1e974ce2f141313bfd803a76e9eb01b7f47713937f9ee138"
+    },
+    {
+      "ledgerId": "G-V24-DISTURBANCE-1",
+      "wording": "The disturbance miniature reaches 98.96% accuracy when classifying supplied policies; it does not reconstruct an unknown controlled variable.",
+      "controlStatus": "passes",
+      "source": "ghost-scale-sim:docs/theory/CLAIMS.json#sha256=52c485266f9cb4b00eb0be0026a4a8d65eda765cb722d25a2e27eb0b416bbe48&row=G-V24-DISTURBANCE-1",
+      "sourceCommit": null,
+      "sourceBaseCommit": "8165fb817f54ec635f32ac7379f49cd142af718e",
+      "supersededBy": null,
+      "fieldEligible": false,
+      "reader": null,
+      "definition": null,
+      "architecture": "miniature, architecture untested",
+      "assumedChoiceModel": "Stipulated control policies",
+      "readerDescription": "Exact finite-library reader",
+      "sourceSha256": "98581a3dc10519af1e974ce2f141313bfd803a76e9eb01b7f47713937f9ee138"
+    },
+    {
+      "ledgerId": "G-V24-PLAY-1",
+      "wording": "Play retains a uniform hidden-solution posterior without informative feedback; urgent need can suppress informative play.",
+      "controlStatus": "passes",
+      "source": "ghost-scale-sim:docs/theory/CLAIMS.json#sha256=52c485266f9cb4b00eb0be0026a4a8d65eda765cb722d25a2e27eb0b416bbe48&row=G-V24-PLAY-1",
+      "sourceCommit": null,
+      "sourceBaseCommit": "8165fb817f54ec635f32ac7379f49cd142af718e",
+      "supersededBy": null,
+      "fieldEligible": false,
+      "reader": null,
+      "definition": null,
+      "architecture": "miniature, architecture untested",
+      "assumedChoiceModel": "Stipulated finite play policies and fixed uncertainty input",
+      "readerDescription": "Exact finite-library reader",
+      "sourceSha256": "98581a3dc10519af1e974ce2f141313bfd803a76e9eb01b7f47713937f9ee138"
+    },
+    {
+      "ledgerId": "G-V24-D5-1",
+      "wording": "One excluded D5 world completes 70,704 fits and 640 targets with full replay in 1,694.875 CPU-seconds; forty-world production has not run.",
+      "controlStatus": "passes",
+      "source": "ghost-scale-sim:docs/theory/CLAIMS.json#sha256=52c485266f9cb4b00eb0be0026a4a8d65eda765cb722d25a2e27eb0b416bbe48&row=G-V24-D5-1",
+      "sourceCommit": null,
+      "sourceBaseCommit": "8165fb817f54ec635f32ac7379f49cd142af718e",
+      "supersededBy": null,
+      "fieldEligible": false,
+      "reader": null,
+      "definition": null,
+      "architecture": "miniature, architecture untested",
+      "assumedChoiceModel": "Retained chronological constructed maker",
+      "readerDescription": "Certified exact optimizer",
+      "sourceSha256": "c049de8cc497d3b64ddd607bcc22dfc2fddb0916d607b83e03660b08944973c8"
+    },
+    {
+      "ledgerId": "G-V24-T1-1",
+      "wording": "T1 failed on missing dependency metadata before one complete world; no scientific finding.",
+      "controlStatus": "untested",
+      "source": "ghost-scale-sim:docs/theory/CLAIMS.json#sha256=52c485266f9cb4b00eb0be0026a4a8d65eda765cb722d25a2e27eb0b416bbe48&row=G-V24-T1-1",
+      "sourceCommit": null,
+      "sourceBaseCommit": "8165fb817f54ec635f32ac7379f49cd142af718e",
+      "supersededBy": null,
+      "fieldEligible": false,
+      "reader": null,
+      "definition": null,
+      "architecture": "miniature, architecture untested",
+      "assumedChoiceModel": "Not evaluated",
+      "readerDescription": "Not evaluated",
+      "sourceSha256": "864c1eb739f8544ea0d8ade909e9cb773f1bae3f494d760aa5d31590e2934d2b"
+    },
+    {
+      "ledgerId": "G-V24-T3-1",
+      "wording": "T3 exhausted its bounded original pass before one complete world; no scientific finding.",
+      "controlStatus": "untested",
+      "source": "ghost-scale-sim:docs/theory/CLAIMS.json#sha256=52c485266f9cb4b00eb0be0026a4a8d65eda765cb722d25a2e27eb0b416bbe48&row=G-V24-T3-1",
+      "sourceCommit": null,
+      "sourceBaseCommit": "8165fb817f54ec635f32ac7379f49cd142af718e",
+      "supersededBy": null,
+      "fieldEligible": false,
+      "reader": null,
+      "definition": null,
+      "architecture": "miniature, architecture untested",
+      "assumedChoiceModel": "Not evaluated",
+      "readerDescription": "Not evaluated",
+      "sourceSha256": "5411b065e8e14e6b334ec0bc03a97f53d2e83d58a1aa2f0f8a11d7879b765ebe"
+    }
+  ],
+  "globalFindings": [
+    {
+      "source": "Sounding Line EV1",
+      "claim": "On 44,494 surviving original words from 41 writers, page-normalized departure was associated with longer preceding pauses after the recorded controls. Conditional within-session association, not causal attention. Evaluated engine pin 5f3ad0a; this does not validate this page or admit the current engine.",
+      "number": 0.07296016217920945,
+      "interval": [
+        0.06029289532276097,
+        0.08647261940480985
+      ],
+      "unit": "log-pause slope",
+      "evidenceStatus": "descriptive",
+      "link": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.md",
+      "ledgerRows": [
+        {
+          "ledgerId": "S15-EV1-PAUSES-V1",
+          "wording": "tested on human writing logs: flagged words came after longer pauses",
+          "controlStatus": "passes",
+          "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV1_PAUSES_V1.json#sha256=32a1855e4b3f471d71407cfaf3281be61841d424a5758efb42dfbf89a007e0fa"
+        }
+      ]
+    },
+    {
+      "source": "Sounding Line EV2",
+      "claim": "Selected phrases recurred more in the same writer's other-prompt documents than in other writers' documents on those prompts. Aggregate contrast on 769 matched documents from 52 writers; 462 documents lacked the required comparison support. Final text includes typed and model-suggested material. Evaluated engine pin 5f3ad0a; no individual signature, preference or out-of-corpus guarantee.",
+      "number": 1.3841526165212545,
+      "interval": [
+        0.0461127320427846,
+        3.1419352531640783
+      ],
+      "unit": "recurrences per 10,000 words",
+      "evidenceStatus": "descriptive",
+      "link": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV2_SIGNATURES_V1.md",
+      "ledgerRows": [
+        {
+          "ledgerId": "S15-EV2-SIGNATURES-V1",
+          "wording": "recurs in the writer's other work",
+          "controlStatus": "passes",
+          "source": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV2_SIGNATURES_V1.json#sha256=0a6b2e61f6b1d2864f2a17a4a76fb3cb0ded94c527b8b4ccbe50ea5d7b063077"
+        }
+      ]
+    },
+    {
+      "source": "Sounding Line EV3",
+      "claim": "Both engine habit-identification variants failed their fixed fake-reference bias controls. Positive observed identification is not valid evidence for a habit badge. The engine's connective and punctuation list differs from Sounding Line's PMAP style measure; that measure's observed 47% cannot be transferred here. No ledger row.",
+      "number": null,
+      "interval": null,
+      "unit": null,
+      "evidenceStatus": "descriptive",
+      "link": "https://github.com/EmotiveAutomaton/sounding-line/blob/1112368530dca2b7ed4e8223704be9506048ec16/results/phase_2_4_stage_15/DRIVE/EV3_IDENTIFICATION_V1.md"
+    },
+    {
+      "source": "Sounding Line V2",
+      "claim": "A model that starts from everyone and adjusts a little for each writer forecast these writers better than population rates. Saved, exposed forecasts; 16,855 decisions from 61 writers. Writer-resampled 95% interval, conditional on saved fits; no new admission. No ledger row.",
+      "number": 0.023962,
+      "interval": [
+        0.017497,
+        0.030691
+      ],
+      "unit": "half-Brier improvement",
+      "evidenceStatus": "descriptive",
+      "link": "https://github.com/EmotiveAutomaton/sounding-line/blob/45c096a1790a4da7f33e0c9addd10061cd2c6ffe/results/phase_2_4_stage_15/DRIVE/V2.md"
+    },
+    {
+      "source": "Sounding Line V1",
+      "claim": "In planted tests, these instruments found a writer's constant lean, not yet their taste or habits. Synthetic outcomes on fixed human-record covariates; this is not a limit on all possible readers. No ledger row.",
+      "number": null,
+      "interval": null,
+      "unit": null,
+      "evidenceStatus": "constructed-tested",
+      "link": "https://github.com/EmotiveAutomaton/sounding-line/blob/45c096a1790a4da7f33e0c9addd10061cd2c6ffe/results/phase_2_4_stage_15/DRIVE/V1_PHASE0.md"
+    },
+    {
+      "source": "Ghost R4",
+      "claim": "Does a root or function cue improve root recovery beyond leaf evidence? R4 nominates a 0.99-reliable root cue with no observed leaves after two complete burn-ins: root log-loss gain is 0.64312 nats, with a descriptive 95% interval of 0.62467–0.66157. All 90 settings and 184,320 cases pass reconstruction and full replay; the 20 neutral-cue settings remain exact zeros. This is a constructed-method discovery, not confirmation or evidence about people. miniature, architecture untested. Reader: Declared exact readers and frozen rivals; N5 hierarchical rival approximate. Choice model: Supplied finite synthetic observation laws; see source report.",
+      "number": 0.6431190348758995,
+      "interval": [
+        0.6246675513184207,
+        0.6615705184333783
+      ],
+      "unit": "nats",
+      "evidenceStatus": "constructed-tested",
+      "link": "https://github.com/EmotiveAutomaton/ghost-scale-sim/blob/8165fb817f54ec635f32ac7379f49cd142af718e/results/v23/packet-20261017/R4-MACHINE_CARD.json",
+      "ledgerRows": [
+        {
+          "ledgerId": "G-V23-R4-1",
+          "wording": "Does a root or function cue improve root recovery beyond leaf evidence? R4 nominates a 0.99-reliable root cue with no observed leaves after two complete burn-ins: root log-loss gain is 0.64312 nats, with a descriptive 95% interval of 0.62467–0.66157. All 90 settings and 184,320 cases pass reconstruction and full replay; the 20 neutral-cue settings remain exact zeros. This is a constructed-method discovery, not confirmation or evidence about people.",
+          "controlStatus": "passes",
+          "source": "ghost-scale-sim:docs/theory/CLAIMS.json#sha256=52c485266f9cb4b00eb0be0026a4a8d65eda765cb722d25a2e27eb0b416bbe48&row=G-V23-R4-1"
+        }
+      ]
+    },
+    {
+      "source": "Ghost N5",
+      "claim": "How much does forecasting from the reader’s own policy cost? N5 nominates prior-shift calibration at the largest anchor-shaped bias with no personal records: log-loss gain is 0.94929 nats, with a descriptive 95% interval of 0.90291–0.99567. Both full burn-ins verify all 128 settings and 262,144 cases. This is a constructed-method discovery with supplied population rates; the approximate hierarchical rival is not an exact ceiling, and no human benefit is established. miniature, architecture untested. Reader: Declared exact readers and frozen rivals; N5 hierarchical rival approximate. Choice model: Supplied finite synthetic observation laws; see source report.",
+      "number": 0.9492858677208594,
+      "interval": [
+        0.9029064198370778,
+        0.9956653156046411
+      ],
+      "unit": "nats",
+      "evidenceStatus": "constructed-tested",
+      "link": "https://github.com/EmotiveAutomaton/ghost-scale-sim/blob/8165fb817f54ec635f32ac7379f49cd142af718e/results/v23/packet-20261017/N5-MACHINE_CARD.json",
+      "ledgerRows": [
+        {
+          "ledgerId": "G-V23-N5-1",
+          "wording": "How much does forecasting from the reader’s own policy cost? N5 nominates prior-shift calibration at the largest anchor-shaped bias with no personal records: log-loss gain is 0.94929 nats, with a descriptive 95% interval of 0.90291–0.99567. Both full burn-ins verify all 128 settings and 262,144 cases. This is a constructed-method discovery with supplied population rates; the approximate hierarchical rival is not an exact ceiling, and no human benefit is established.",
+          "controlStatus": "passes",
+          "source": "ghost-scale-sim:docs/theory/CLAIMS.json#sha256=52c485266f9cb4b00eb0be0026a4a8d65eda765cb722d25a2e27eb0b416bbe48&row=G-V23-N5-1"
+        }
+      ]
+    },
+    {
+      "source": "Ghost N7",
+      "claim": "Can statements improve future-choice forecasts after correcting presentation bias? N7 nominates a setting with 0 personal records, statement noise 0.25, shared shift 1 and aspiration share 0. Its pooled log-loss gain over choices alone is 0.25012 nats (descriptive 95% interval 0.21182–0.28842). All 128 settings and 262,144 cases pass independent reconstruction and complete replay. This is a constructed-method discovery, not confirmation or evidence about people. miniature, architecture untested. Reader: Declared exact readers and frozen rivals; N5 hierarchical rival approximate. Choice model: Supplied finite synthetic observation laws; see source report.",
+      "number": 0.2501206917914891,
+      "interval": [
+        0.2118192090342693,
+        0.2884221745487089
+      ],
+      "unit": "nats",
+      "evidenceStatus": "constructed-tested",
+      "link": "https://github.com/EmotiveAutomaton/ghost-scale-sim/blob/8165fb817f54ec635f32ac7379f49cd142af718e/results/v23/packet-20261017/N7-MACHINE_CARD.json",
+      "ledgerRows": [
+        {
+          "ledgerId": "G-V23-N7-1",
+          "wording": "Can statements improve future-choice forecasts after correcting presentation bias? N7 nominates a setting with 0 personal records, statement noise 0.25, shared shift 1 and aspiration share 0. Its pooled log-loss gain over choices alone is 0.25012 nats (descriptive 95% interval 0.21182–0.28842). All 128 settings and 262,144 cases pass independent reconstruction and complete replay. This is a constructed-method discovery, not confirmation or evidence about people.",
+          "controlStatus": "passes",
+          "source": "ghost-scale-sim:docs/theory/CLAIMS.json#sha256=52c485266f9cb4b00eb0be0026a4a8d65eda765cb722d25a2e27eb0b416bbe48&row=G-V23-N7-1"
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "EV1/EV2 reader identity has not been delivered; field badges remain untested.",
+    "Ghost ledger is an uncommitted receiving snapshot pinned by file hash, not falsely attributed to its base commit.",
+    "Ghost rows are miniature constructed witnesses, not natural-data admissions."
+  ]
+}

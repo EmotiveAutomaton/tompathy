@@ -63,13 +63,20 @@ class Transcriber:
             }
         )
 
+    def pin_for(self, question_id):
+        return self.pin
+
+    def question(self, question_id):
+        return CATALOGUE["questions"][question_id]
+
     def ask(self, question_id, *, context="", text="", before=None, admission_test=False):
         from .admission import metrics_pass
 
-        question = CATALOGUE["questions"][question_id]
+        question = self.question(question_id)
+        pin = self.pin_for(question_id)
         record = self.admissions.get(question_id)
         if not admission_test and (
-            not record or not record.get("passed") or record.get("transcriber_pin") != self.pin
+            not record or not record.get("passed") or record.get("transcriber_pin") != pin
             or record.get("status") != "admitted" or not metrics_pass(record, question_id)
         ):
             raise ValueError(
@@ -78,7 +85,7 @@ class Transcriber:
         if len(text) > 12000 or before is not None and len(before) > 12000:
             raise ValueError("Literal text window exceeds bound")
         inputs = {"context": context[-1200:], "text": text, "before": before}
-        key = digest([self.pin, question_id, inputs])
+        key = digest([pin, question_id, inputs])
         result = self.cache.get(key)
         if result is None:
             prompt = (
@@ -95,12 +102,12 @@ class Transcriber:
             result = {
                 "answer": answer,
                 "logprobs": response.get("logprobs"),
-                "pin": self.pin,
+                "pin": pin,
                 "key": key,
             }
             self.cache.put(key, result)
         else:
             validate_answer(question_id, {"answer": result["answer"]})
-            if result["pin"] != self.pin or result["key"] != key:
+            if result["pin"] != pin or result["key"] != key:
                 raise ValueError("Transcriber cache pin mismatch")
         return result

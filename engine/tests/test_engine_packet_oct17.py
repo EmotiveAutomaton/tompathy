@@ -14,6 +14,7 @@ from tompathy_engine.admission import Admissions
 from tompathy_engine.packet.build import build_packet
 from tompathy_engine.packet.contract import Packet
 from tompathy_engine.preview.build import BudgetExceeded, build_preview
+from tompathy_engine.preview.findings import findings
 from tompathy_engine.preview.judgments import goals
 from tompathy_engine.preview.makers import correction_steps
 from tompathy_engine.preview.surface import score_regions, words
@@ -50,7 +51,7 @@ def test_uncovered_goals_keep_separate_lenses_and_parity_fixture(tmp_path):
     assert nodes[lenses[0][1]]["parentId"] == lenses[0][0]
     assert all(n["entry"] == "page" for n in nodes.values())
     assert result["preview"]["rootCueStatus"] == "assumed"
-    assert len(result["globalFindings"]) == 5
+    assert result["globalFindings"] == findings()
     Packet.model_validate(result)
 
 

@@ -97,7 +97,7 @@ test("uniform headings, supplied icon, confidence weights and a reachable half r
       "naturalWidth",
       128,
     );
-    await page.getByRole("tab", { name: "creator", exact: true }).click();
+    await page.getByRole("tab", { name: "author", exact: true }).click();
     const valueRows = page.locator(".core-value-row");
     await expect(valueRows).toHaveCount(9);
     const values = await page.locator("#values-view").boundingBox();

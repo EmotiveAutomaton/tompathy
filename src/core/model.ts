@@ -1,7 +1,8 @@
 import { regionSentences } from "./sentences";
 import { z } from "zod";
 import { calendarDate } from "./dates";
-import { previewLabels, PreviewSchema } from "./preview";
+import { previewLabels, PreviewSchema, LedgerRowSchema } from "./preview";
+import { WorkValueViewSchema } from "./value-view";
 
 const id = z.string().min(1).max(200);
 const timestamp = z.iso.datetime();
@@ -224,6 +225,7 @@ export const PreferenceEstimateSchema = z
       });
   });
 export const HypothesisSchema = z.object({
+  finding: z.enum(["departure-phrase", "departure-sentence"]).optional(),
   ...previewLabels,
   id,
   kind: z.enum(["goal", "process", "value", "attention"]),
@@ -289,6 +291,7 @@ const BasePacketSchema = z
       "1.7",
       "1.8",
       "1.9",
+      "1.10",
     ]),
     ghostReadings: z.array(GhostReadingSchema).max(6000).optional(),
     id,
@@ -302,7 +305,14 @@ const BasePacketSchema = z
       previewNotice: z.string().min(1).max(500).optional(),
     }),
     preview: PreviewSchema.optional(),
-    globalFindings: z.array(z.object({ source: z.string().max(500), claim: z.string().max(2000), number: z.number().finite().nullish(), interval: z.tuple([z.number().finite(), z.number().finite()]).nullish(), unit: z.string().max(100).nullish(), evidenceStatus: z.enum(["descriptive", "constructed-tested"]), link: z.url().startsWith("https://").max(4000) })).max(30).nullish(),
+    valueView: WorkValueViewSchema.optional(),
+    attentionTimeline: z.array(z.strictObject({
+      maker: id, step: z.number().int().nonnegative(), t: timestamp, located: z.boolean(),
+      region: id.nullable(), node: id.nullable(), evidence: z.array(id).min(1).max(30),
+      evidenceStatus: z.literal("unvalidated"), basis: z.literal("history"), description: z.string().max(1000),
+      goals: z.record(z.string(), z.number().finite().nonnegative()).optional(),
+    })).max(2000).optional(),
+    globalFindings: z.array(z.object({ ledgerRows: z.array(LedgerRowSchema).max(20).optional(), source: z.string().max(500), claim: z.string().max(2000), number: z.number().finite().nullish(), interval: z.tuple([z.number().finite(), z.number().finite()]).nullish(), unit: z.string().max(100).nullish(), evidenceStatus: z.enum(["descriptive", "constructed-tested"]), link: z.url().startsWith("https://").max(4000) })).max(30).nullish(),
     origin: z.enum(["synthetic example", "imported", "live provider"]),
     scope: z.object({
       kind: z.enum(["artifact", "context"]),
@@ -424,6 +434,10 @@ const BasePacketSchema = z
             z.object({
               id,
               parentId: id.optional(),
+              attentionDensity: z.number().finite().nonnegative().nullish(),
+              attentionShare: z.number().min(0).max(1).nullish(),
+              divergence: z.boolean().optional(),
+              attentionEvidence: z.strictObject({ ...previewLabels, coverage: z.enum(["read", "not-read"]), description: z.string().max(1000) }).optional(),
               ...previewLabels,
               parentIds: z.array(id).min(1).max(16).optional(),
               maker: id,
@@ -523,6 +537,32 @@ const BasePacketSchema = z
       ms = new Set(p.makers.map((x) => x.id)),
       es = new Set(p.evidence.map((x) => x.id));
     const hierarchy = p.goalHierarchy?.nodes ?? [];
+    let previousStep = -1, previousTime = "";
+    for (const item of p.attentionTimeline ?? []) {
+      if (item.step < previousStep || previousTime && Date.parse(item.t) < Date.parse(previousTime) || Date.parse(item.t) > Date.parse(p.artifact.capturedAt) || item.step === previousStep && item.t !== previousTime) error("Invalid timeline chronology.");
+      previousStep = item.step; previousTime = item.t;
+      if (!ms.has(item.maker) || item.evidence.some(e => !es.has(e))) error("Unresolved timeline witness.");
+      if (item.located !== (item.region !== null) || item.region !== null && !rs.has(item.region)) error("Invalid timeline location.");
+      const node = hierarchy.find(n => n.id === item.node);
+      if (item.node !== null && (!item.located || !node || !node.regions.includes(item.region!) || node.level !== "paragraph")) error("Invalid timeline node.");
+      if (item.goals && p.origin !== "imported") error("Timeline goals require imported relative support.");
+    }
+    if (p.preview?.timelineCoverage && (p.preview.timelineCoverage.emitted !== (p.attentionTimeline?.length ?? 0) || p.preview.timelineCoverage.total < p.preview.timelineCoverage.emitted)) error("Invalid timeline coverage.");
+    for (const node of hierarchy) if (node.attentionEvidence) {
+      if (node.attentionEvidence.evidenceStatus !== "unvalidated" || node.attentionEvidence.basis !== "text-surface") error("Paragraph density stays untested.");
+      if (node.attentionEvidence.coverage === "not-read" && (node.attentionDensity != null || node.attentionShare != null || node.divergence)) error("Unread density cannot be zero or divergent.");
+    }
+    if (p.valueView) {
+      const view = p.valueView;
+      if (p.schemaVersion !== "1.10" || view.work !== p.artifact.id) error("Value view requires contract 1.10 and the current work identity.");
+      if (p.provider.mode === "preview" && (view.provenance !== "structure-only" || view.tips.length || view.feeds.length || view.coSupport.length)) error("Preview value view supplies structure only.");
+      if (view.rows.some(r => r.evidence.some(e=>!es.has(e)) || r.region && !rs.has(r.region))) error("Unresolved value-view row source.");
+      for (const tip of view.tips) {
+        const hypothesis = hs.get(tip.hypothesis ?? "");
+        const estimate = hypothesis?.preferenceEstimate;
+        if (tip.support !== null && (!hypothesis || hypothesis.valueCategory !== "drive" || estimate?.quantity !== "Revealed-theme contrast from population" || estimate.value !== tip.support || !estimate.interval || estimate.interval.level !== .95 || estimate.interval.lower !== tip.interval?.[0] || estimate.interval.upper !== tip.interval?.[1])) error("Value-view tip must exactly match its admitted contrast.");
+      }
+    }
     unique(hierarchy, "goal hierarchy");
     const hierarchyById = new Map(hierarchy.map((n) => [n.id, n]));
     if (p.preview?.goalLenses) {
@@ -531,7 +571,7 @@ const BasePacketSchema = z
       if (lenses.some(lens => lens.some(id => { const parent = hierarchyById.get(id)?.parentId; return parent && !lens.includes(parent); }))) error("Goal lens cannot separate a child from its parent.");
     }
     if (
-      !["1.7", "1.8", "1.9"].includes(p.schemaVersion) &&
+      !["1.7", "1.8", "1.9", "1.10"].includes(p.schemaVersion) &&
       (p.population ||
         p.makers.some((m) => m.predictability) ||
         p.hypotheses.some((h) => h.icon || h.interpretation === "drive"))
@@ -541,7 +581,7 @@ const BasePacketSchema = z
       );
     for (const maker of p.makers) {
       if (maker.evidence) {
-        if (p.schemaVersion !== "1.9") error("Maker evidence requires contract 1.9.");
+        if (!["1.9", "1.10"].includes(p.schemaVersion)) error("Maker evidence requires contract 1.9.");
         if (maker.evidence.some(e => e.tier === "statistical")) error("Statistical source signals are disabled.");
         if (maker.kind !== "unknown" && !maker.evidence.some(e => ["signed", "declared", "flagged"].includes(e.tier))) error("Maker entries require signed, declared or flagged evidence.");
       }
@@ -626,7 +666,7 @@ const BasePacketSchema = z
     }
     if (
       p.ghostReadings?.length &&
-      !["1.6", "1.7", "1.8", "1.9"].includes(p.schemaVersion)
+      !["1.6", "1.7", "1.8", "1.9", "1.10"].includes(p.schemaVersion)
     )
       error("Sentence Ghost Scale readings require contract 1.6.");
     const ghostFrames = [...(p.ghostReadings ?? [])].sort(
@@ -680,7 +720,7 @@ const BasePacketSchema = z
     unique(uncertain, "order uncertainty group");
     if (
       uncertain.length &&
-      !["1.5", "1.6", "1.7", "1.8", "1.9"].includes(p.schemaVersion)
+      !["1.5", "1.6", "1.7", "1.8", "1.9", "1.10"].includes(p.schemaVersion)
     )
       error("Order uncertainty groups require contract 1.5.");
     for (const group of uncertain) {
@@ -702,7 +742,7 @@ const BasePacketSchema = z
       if (n.aiAttribution?.evidence.some(e => !es.has(e)))
         error(`Unresolved AI attribution evidence in ${n.id}.`);
       if (
-        !["1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9"].includes(p.schemaVersion) &&
+        !["1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "1.10"].includes(p.schemaVersion) &&
         !["document", "section", "paragraph", "sentence"].includes(
           n.level ?? "",
         )
@@ -718,7 +758,7 @@ const BasePacketSchema = z
         error(`Unresolved hierarchy references in ${n.id}.`);
       if (
         n.parentIds &&
-        (!["1.4", "1.5", "1.6", "1.7", "1.8", "1.9"].includes(p.schemaVersion) ||
+        (!["1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "1.10"].includes(p.schemaVersion) ||
           n.parentId ||
           new Set(n.parentIds).size !== n.parentIds.length)
       )
@@ -746,7 +786,7 @@ const BasePacketSchema = z
     }
     const depths = new Map<string, number>(),
       visitingHierarchy = new Set<string>();
-    const maxDepth = ["1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9"].includes(
+    const maxDepth = ["1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "1.10"].includes(
       p.schemaVersion,
     )
       ? 64
@@ -778,14 +818,14 @@ const BasePacketSchema = z
       return depth;
     };
     hierarchy.forEach((n) => visitHierarchy(n.id));
-    if (!["1.4", "1.5", "1.6", "1.7", "1.8", "1.9"].includes(p.schemaVersion))
+    if (!["1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "1.10"].includes(p.schemaVersion))
       for (const m of p.makers) {
         const nodes = hierarchy.filter((n) => n.maker === m.id);
         if (nodes.length && nodes.filter((n) => !n.parentId).length !== 1)
           error("Each legacy maker hierarchy needs exactly one root.");
       }
     if (
-      !["1.4", "1.5", "1.6", "1.7", "1.8", "1.9"].includes(p.schemaVersion) &&
+      !["1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "1.10"].includes(p.schemaVersion) &&
       (p.currentAttention || p.hypotheses.some((h) => h.kind === "attention"))
     )
       error("Independent current attention requires contract 1.4.");
@@ -913,7 +953,7 @@ const BasePacketSchema = z
         error(`Interpretation does not match hypothesis kind in ${h.id}.`);
       if (
         h.preferenceEstimate &&
-        (!["1.8", "1.9"].includes(p.schemaVersion) || h.kind !== "value")
+        (!["1.8", "1.9", "1.10"].includes(p.schemaVersion) || h.kind !== "value")
       )
         error(
           "Structured preference estimates require a value hypothesis in contract 1.8.",

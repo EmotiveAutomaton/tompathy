@@ -277,6 +277,7 @@ export function ProcessHierarchy({
   onBlockedFocus = () => {},
   previewGroups,
   markedAI,
+  onLayout,
 }: {
   nodes: GoalNode[];
   orderUncertainGroups?: { id: string; nodes: string[]; explanation: string }[];
@@ -295,6 +296,7 @@ export function ProcessHierarchy({
   onBlockedFocus?: (key: string) => void;
   previewGroups?: string[][];
   markedAI?: Map<string, AIMark>;
+  onLayout?: (layout: ReturnType<typeof hierarchyLayout>) => void;
 }) {
   const graph = useMemo(() => {
     const result = goalGraph(nodes);
@@ -304,6 +306,7 @@ export function ProcessHierarchy({
     }
     return result;
   }, [nodes, previewGroups]);
+  const [showDensity, setShowDensity] = useState(false);
   const [entryId, setEntryId] = useState<string>();
   const tabEntry = graph.byId.has(entryId ?? "")
     ? entryId
@@ -395,6 +398,7 @@ export function ProcessHierarchy({
     () => previewGroups ? previewHierarchyLayout(graph, previewGroups, height, 320, tierShares) : hierarchyLayout(graph, height, 320, tierShares),
     [graph, height, tierShares, previewGroups],
   );
+  useEffect(() => { onLayout?.(layout); }, [layout, onLayout]);
   const resizeTier = (index: number, x: number, edges = layout.edges) => {
     const next = [...edges];
     const min = Math.min(24, (edges[index + 1] - edges[index - 1]) / 3);
@@ -608,6 +612,7 @@ export function ProcessHierarchy({
       className={`goal-process ${expanded && canExpand ? "reels-open" : ""}`}
       data-testid="process"
     >
+      {nodes.some(n => n.attentionEvidence) && <label className="density-toggle"><input type="checkbox" checked={showDensity} onChange={e => setShowDensity(e.target.checked)} /> Departure density · untested</label>}
       {!nodes.length && !previewGroups ? (
         <span className="quiet-empty">No goal hierarchy supplied</span>
       ) : (
@@ -750,11 +755,12 @@ export function ProcessHierarchy({
                             }
                           }}
                         >
-                          <title>{t.node.data.label}{aiMark ? ` · ${aiMark.description}` : ""}{t.node.data.evidenceStatus ? ` · ${t.node.data.evidenceStatus} · ${t.node.data.basis}` : ""}</title>
+                          <title>{t.node.data.label}{t.node.data.attentionEvidence ? ` · ${t.node.data.attentionDensity == null ? "not read" : `${t.node.data.attentionDensity.toFixed(2)} departures per 100 content words; ${((t.node.data.attentionShare ?? 0) * 100).toFixed(1)}% of departures`}${t.node.data.divergence ? "; this part departs most from expected wording" : ""} · ${t.node.data.attentionEvidence.description}` : ""}{aiMark ? ` · ${aiMark.description}` : ""}{t.node.data.evidenceStatus ? ` · ${t.node.data.evidenceStatus} · ${t.node.data.basis}` : ""}</title>
                           <path
                             d={t.path}
                             className="brick-face"
                             style={{
+                              ...(showDensity && t.node.data.attentionDensity != null ? { fillOpacity: .06 + .38 * Math.min(1, t.node.data.attentionDensity / 10) } : {}),
                               strokeWidth: Math.min(
                                 1.6,
                                 Math.max(0.025, t.dotHeight * scaleY * 0.14),
@@ -820,7 +826,7 @@ export function ProcessHierarchy({
                               >
                                 <div className="hierarchy-label">
                                   {t.node.data.label}
-                                  <EvidenceBadge item={t.node.data} />
+                                  <EvidenceBadge item={t.node.data} />{showDensity && t.node.data.attentionEvidence && <span className="density-label">{t.node.data.attentionDensity == null ? "not read" : "density: untested"}</span>}
                                 </div>
                               </foreignObject>
                             </g>

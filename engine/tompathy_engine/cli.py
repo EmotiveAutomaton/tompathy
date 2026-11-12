@@ -149,6 +149,7 @@ def main(argv=None):
     p.add_argument("--preview-device", choices=("cpu", "cuda"), default="cpu", help="Explicit scoring device; never silently falls back")
     p.add_argument("--preview-threads", type=int, default=1, help="Explicit CPU reader thread budget (1–16)")
     p.add_argument("--preview-precision", choices=("int8", "int8-channel", "float32"), default="int8")
+    p.add_argument("--preview-scoring", choices=("window", "kv"), default="window", help="Experimental KV reuse; legacy window scoring remains default")
     p.add_argument("--preview-clef-config", help="Optional pinned local Clef-flash SystemOne config; unvalidated joint technique decisions")
     p.add_argument("--preview-cache", help="Local exact-input surface score cache")
     p.add_argument("--preview-preparation-budget", type=int, default=165, help="Explicit offline cache assembly budget, 165–600 seconds; ordinary live default 165")
@@ -341,6 +342,8 @@ def main(argv=None):
 
             result = from_directory(args.packets, args.out, private=args.private)
         elif args.command == "serve":
+            if args.preview_scoring == "kv" and (args.preview_precision != "float32" or args.preview_device != "cpu"):
+                raise ValueError("Experimental KV serving requires CPU float32; int8 failed the November parity gate")
             import uvicorn
 
             from .models.bundle import load_bundle
@@ -380,7 +383,7 @@ def main(argv=None):
                     if name == "smol" and not (root / "manifest.json").exists():
                         root = Path(args.preview_readers) / "smol-small"
                     if (root / "manifest.json").exists():
-                        preview_readers.append(LocalReader(root, args.preview_cache, device=args.preview_device, threads=args.preview_threads, precision=args.preview_precision))
+                        preview_readers.append(LocalReader(root, args.preview_cache, device=args.preview_device, threads=args.preview_threads, precision=args.preview_precision, scoring=args.preview_scoring))
             app = create_app(
                 token=load_token(args.token_file),
                 origins=args.extension_origin,

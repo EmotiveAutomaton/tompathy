@@ -37,8 +37,11 @@ def install(directory, model, revision=None):
 
 
 class LocalReader:
-    def __init__(self, directory, cache=None, device="cpu", threads=1, precision="int8"):
+    def __init__(self, directory, cache=None, device="cpu", threads=1, precision="int8", *, scoring="window", entropy=False):
         started = monotonic()
+        if scoring not in {"window", "kv"} or type(entropy) is not bool:
+            raise ValueError("Choose window or kv scoring and a boolean entropy option")
+        self.scoring, self.entropy = scoring, entropy
         self.directory, self.cache = Path(directory), Path(cache) if cache else None
         self.manifest = json.loads((self.directory / "manifest.json").read_text(encoding="utf8"))
         if self.manifest["model"] not in MODELS.values() or not self.manifest["files"]:
@@ -75,6 +78,8 @@ class LocalReader:
         backend = f"CPU {label}, {threads} thread{'s' if threads != 1 else ''}" if device == "cpu" else "CUDA float16"
         self.identity = {"id": self.manifest["model"], "revision": self.manifest["revision"], "sha256": digest(self.manifest),
                          "backend": f"torch {torch.__version__}; transformers {transformers.__version__}; {backend}"}
+        if scoring != "window" or entropy:
+            self.identity["backend"] += f"; scoring={scoring}; entropy={entropy}"
         if self.cache:
             self.cache.mkdir(parents=True, exist_ok=True)
         self.encodings = OrderedDict()
@@ -108,8 +113,14 @@ class LocalReader:
         is stable across conditions. First token is conditioned on BOS/EOS when
         context is absent. Long targets advance in 512-token blocks.
         """
+        if getattr(self, "scoring", "window") == "kv":
+            from .kv_reader import score_chunks
+            yield from score_chunks(self, text, context, check)
+            return
         check()
-        key = digest(["surface-v1-window2048-chunk512", self.identity, text, context])
+        entropy = getattr(self, "entropy", False)
+        scheme = "surface-v1-window2048-chunk512-entropy-v1" if entropy else "surface-v1-window2048-chunk512"
+        key = digest([scheme, self.identity, text, context])
         path = self.cache / f"{key}.json" if self.cache else None
         if path and path.exists() and path.stat().st_size <= 32_000_000:
             try:
@@ -136,9 +147,10 @@ class LocalReader:
             if not previous:
                 previous = [bos]
             ids = previous + chunk
-            window_key = digest(["surface-window-v1", self.identity, ids, len(previous)])
+            window_scheme = "surface-window-v1-entropy-v1" if entropy else "surface-window-v1"
+            window_key = digest([window_scheme, self.identity, ids, len(previous)])
             window_path = self.cache / f"window-{window_key}.json" if self.cache else None
-            losses = None
+            losses, entropies = None, None
             if window_path and window_path.exists() and window_path.stat().st_size <= 100_000:
                 try:
                     saved = json.loads(window_path.read_text(encoding="utf8"))
@@ -146,6 +158,10 @@ class LocalReader:
                     import math
                     if saved.get("key") == window_key and saved.get("sha256") == digest(candidate) and isinstance(candidate, list) and len(candidate) == len(chunk) and all(isinstance(v, (int, float)) and math.isfinite(v) and v >= 0 for v in candidate):
                         losses = candidate
+                        if entropy:
+                            entropies = saved.get("entropies")
+                            if not isinstance(entropies, list) or len(entropies) != len(chunk) or any(type(v) not in (int, float) or not math.isfinite(v) or v < 0 for v in entropies) or saved.get("entropySha256") != digest(entropies):
+                                losses = None
                         self.metrics["cacheHits"] += 1
                 except (ValueError, UnicodeError):
                     pass
@@ -153,7 +169,7 @@ class LocalReader:
                 for index, loss in enumerate(losses, start):
                     a, b = offsets[index]
                     if b > a:
-                        out.append({"start": a, "end": b, "nats": loss})
+                        out.append({"start": a, "end": b, "nats": loss, **({"entropy": entropies[index-start]} if entropy else {})})
                 yield list(out), start + len(chunk) == len(target)
                 continue
             started = monotonic()
@@ -164,17 +180,21 @@ class LocalReader:
                 logits = self.model(tensor, use_cache=False, logits_to_keep=positions).logits[0].float()
                 labels = self.torch.tensor(chunk, dtype=self.torch.long, device=self.device)
                 losses = self.torch.nn.functional.cross_entropy(logits, labels, reduction="none").tolist()
+                if entropy:
+                    logp = self.torch.log_softmax(logits, dim=-1)
+                    entropies = (-(logp.exp() * logp).sum(dim=-1)).tolist()
             self.metrics["forwardCalls"] += 1
             self.metrics["scoreMs"] += (monotonic() - started) * 1000
             self.metrics["inputTokens"] += len(ids)
             if window_path:
                 temporary = window_path.with_suffix(".tmp")
-                temporary.write_text(json.dumps({"key": window_key, "losses": losses, "sha256": digest(losses)}), encoding="utf8")
+                extra = {"entropies": entropies, "entropySha256": digest(entropies)} if entropy else {}
+                temporary.write_text(json.dumps({"key": window_key, "losses": losses, "sha256": digest(losses), **extra}), encoding="utf8")
                 temporary.replace(window_path)
             for index, loss in enumerate(losses, start):
                 a, b = offsets[index]
                 if b > a:
-                    out.append({"start": a, "end": b, "nats": loss})
+                    out.append({"start": a, "end": b, "nats": loss, **({"entropy": entropies[index-start]} if entropy else {})})
             check()
             yield list(out), start + len(chunk) == len(target)
         if path:

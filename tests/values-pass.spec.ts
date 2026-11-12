@@ -11,7 +11,7 @@ test.beforeEach(async ({ page }) => {
 test("value trajectories and independent perspectives fit a narrow panel", async ({
   page,
 }) => {
-  await page.getByRole("tab", { name: "creator", exact: true }).click();
+  await page.getByRole("tab", { name: "author", exact: true }).click();
   const creatorNames = await page.locator(".core-value-row").allTextContents();
   await page
     .getByRole("button", { name: "Care for others", exact: true })

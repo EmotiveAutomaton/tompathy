@@ -1,0 +1,12 @@
+{
+  "schema": "tompathy.benchmark.v1",
+  "capability": "edit-reasons",
+  "protocol": "958bd166b50bddcadb1627ba9e8f0ae94dd6617d8a64e07646b1b8631a21d4bd",
+  "scope": "Stack Exchange single-hunk body edits, comment-derived labels",
+  "status": "waiting-for-data",
+  "enginePin": null,
+  "dataPin": null,
+  "evidence": "not-run",
+  "rows": [],
+  "productionAdmission": false
+}

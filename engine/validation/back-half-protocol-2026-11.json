@@ -1,0 +1,49 @@
+{
+  "protocol": {
+    "id": "tompathy-back-half-2026-11-11-v1",
+    "seed": 20261111,
+    "draws": 2000,
+    "folds": 5,
+    "cluster": "writer",
+    "decision": "lower paired 95% bound exceeds bar",
+    "attention": {
+      "scope": "CoAuthor writer-typed content words after engine holdouts",
+      "rows": {
+        "1": 0.02,
+        "2": 0.01,
+        "3": 0.0
+      }
+    },
+    "ai-involvement": {
+      "scope": "AI involvement, CoAuthor suggestions, 2021 model",
+      "rows": {
+        "1": 0.02,
+        "2": 0.01,
+        "3": 0.0
+      }
+    },
+    "edit-reasons": {
+      "scope": "Stack Exchange single-hunk body edits, comment-derived labels",
+      "rows": {}
+    },
+    "goals": {
+      "scope": "PEP/EIP Motivation ranking pilot, abstract and summary removed",
+      "rows": {}
+    },
+    "exploratorySelection": "largest row-1 gain among V1, V2, V3, V5; ties in that order",
+    "regularization": "standardized logistic L2=1, unpenalized intercept; fitted inside writer folds"
+  },
+  "sha256": "958bd166b50bddcadb1627ba9e8f0ae94dd6617d8a64e07646b1b8631a21d4bd",
+  "date": "2026-11-11",
+  "status": "registered before outcomes",
+  "interpretations": {
+    "fourThreads": "deferred under the packet's two-thread shared-host limit",
+    "historicalChanges": "October 25 local edits are preserved; its task queue is superseded",
+    "inputFormats": "normalized private bundle contract; actual EX exports need verified adapters",
+    "aucUncertainty": "paired whole-writer bootstrap of fixed OOF forecasts",
+    "V3": "mean of the two page-scaled readers",
+    "A1": "population standard deviation of word nats",
+    "tfidfTies": "candidate ID order",
+    "alignment": "Unicode code-point word lengths, >=98% of both sequences; >5% session loss stops"
+  }
+}

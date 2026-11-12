@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./built-page";
 import { build } from "esbuild";
 
 test("AI outer borders stay above cells and partial shared seams remain thin", async ({ page }) => {
@@ -66,24 +66,28 @@ test("safe example uses current value artwork and explicit AI attribution", asyn
   expect(Math.abs(box!.x + box!.width / 2 - cross!.x - cross!.width / 2)).toBeLessThan(.6);
   expect(Math.abs(box!.y + box!.height / 2 - cross!.y - cross!.height / 2)).toBeLessThan(.6);
   await expect(page.locator(".values-region .support-wheel")).toHaveCount(0);
-  await expect(page.locator(".values-region .value-category-icon").first()).toBeVisible();
+  await expect(page.getByRole("table", { name: "Core values hierarchy" })).toBeVisible();
   const seeking = page.getByRole("button", { name: "Drive SEEKING", exact: true });
   await expect(seeking).toBeVisible();
   await seeking.hover();
-  await expect(page.locator(".hover-card .drive-brain")).toBeVisible();
+  await expect(page.locator(".hover-card")).toHaveCount(0);
   for (const label of ["SEEKING", "RAGE", "FEAR", "LUST", "CARE", "Belonging", "PLAY"]) {
-    await page.getByRole("button", {name:`Drive ${label}`, exact:true}).hover();
-    const card = page.locator(".hover-card");
+    await page.getByRole("button", {name:`Drive ${label}`, exact:true}).click();
+    const card = page.locator(".modal");
     await expect(card.locator(".value-card-title")).toContainText(label);
     await expect(card.locator(".preference-chart")).toBeVisible();
     await expect(card.locator(".preference-vector")).toHaveCount(3);
     await expect(card.locator(".value-reference-diagram")).toContainText("Illustration only");
     await expect(card.locator(".value-confidence-number")).toHaveText("Unspecified");
+    await expect(card.locator(".drive-brain")).toBeVisible();
+    await page.keyboard.press("Escape");
   }
   await page.mouse.move(0, 0);
   await page.getByRole("button", {name:"Drive PLAY", exact:true}).focus();
-  await expect(page.locator(".hover-card")).toHaveCSS("opacity", "1");
+  await page.keyboard.press("Enter");
+  await expect(page.locator(".modal")).toBeVisible();
   await page.screenshot({path:"evidence/drive-reference-card.png"});
+  await page.keyboard.press("Escape");
   await page.mouse.move(20, 20);
   await toggle.evaluate(el => (el as HTMLElement).blur());
   await expect(page.locator(".mark-ai")).toHaveCSS("opacity", "1");

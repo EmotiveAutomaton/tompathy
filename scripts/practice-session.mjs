@@ -13,7 +13,7 @@ export async function startPractice({
   profile = path.resolve(".local/chrome-review"),
   log = console.log,
   judgments = true,
-  clef = process.env.TOMPATHY_CLEF === "1",
+  clef = judgments && process.env.TOMPATHY_CLEF === "1",
   preparationBudget = 165,
   previewCache = path.resolve(".local/preview-score-cache"),
 } = {}) {
@@ -123,6 +123,7 @@ export async function startPractice({
         previous.implementation !== implementation ||
         previous.health.implementationHash !== implementation ||
         Boolean(previous.clef) !== clef ||
+        (previous.judgments ?? true) !== judgments ||
         (previous.questionAdmissions ?? null) !== questionAdmissions ||
         (previous.preparationBudget ?? 165) !== preparationBudget ||
         previous.extensionId !== review.receipt.extensionId
@@ -213,8 +214,10 @@ export async function startPractice({
         }
         if (!healthy) await pause(150);
       }
-      if (!healthy)
+      if (!healthy) {
+        log(`Companion startup diagnostics: ${logTail || "No stderr received."}`);
         throw Error("The companion did not become ready within 60 seconds.");
+      }
       await writeFile(
         path.join(folder, "connection.json"),
         JSON.stringify(
@@ -223,6 +226,7 @@ export async function startPractice({
             implementation,
             extensionId: review.receipt.extensionId,
             clef,
+            judgments,
             questionAdmissions,
             preparationBudget,
           },

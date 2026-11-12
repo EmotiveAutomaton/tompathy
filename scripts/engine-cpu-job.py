@@ -33,7 +33,7 @@ def main():
     resources = resource_snapshot()
     if args.preflight:
         print(json.dumps(resources)); return
-    if resources["ram_available_GiB"] < 24 or resources["commit_headroom_GiB"] < 24 or resources["disk_free_GiB"] < 20:
+    if resources["ram_available_GiB"] < 32 or resources["commit_headroom_GiB"] < 32 or resources["disk_free_GiB"] < 20:
         raise RuntimeError("Insufficient shared headroom; nothing started")
     args.run.mkdir(parents=True, exist_ok=True)
     identity = native_identity()

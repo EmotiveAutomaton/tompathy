@@ -1,0 +1,300 @@
+{
+  "schema": "tompathy.speed.v1",
+  "date": "2026-11-11T22:06:16.553255+00:00",
+  "status": "stopped",
+  "machine": {
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD"
+  },
+  "measurements": [
+    {
+      "text": "manuscript-3000",
+      "precision": "float32",
+      "threads": 1,
+      "path": "window",
+      "loadSeconds": 7.039040999952704,
+      "scoreSeconds": 152.8755956001114,
+      "inputTokens": 13313,
+      "forwardCalls": 8
+    },
+    {
+      "text": "manuscript-3000",
+      "precision": "float32",
+      "threads": 1,
+      "path": "kv",
+      "loadSeconds": 7.039040999952704,
+      "scoreSeconds": 67.34649230004288,
+      "inputTokens": 5984,
+      "forwardCalls": 8
+    },
+    {
+      "text": "art-6000",
+      "precision": "float32",
+      "threads": 1,
+      "path": "window",
+      "loadSeconds": 7.039040999952704,
+      "scoreSeconds": 329.1772861999925,
+      "inputTokens": 27649,
+      "forwardCalls": 15
+    },
+    {
+      "text": "art-6000",
+      "precision": "float32",
+      "threads": 1,
+      "path": "kv",
+      "loadSeconds": 7.039040999952704,
+      "scoreSeconds": 170.13315990008414,
+      "inputTokens": 13540,
+      "forwardCalls": 15
+    },
+    {
+      "text": "distill-excerpt-600",
+      "precision": "float32",
+      "threads": 1,
+      "path": "window",
+      "loadSeconds": 7.039040999952704,
+      "scoreSeconds": 14.356233400059864,
+      "inputTokens": 1240,
+      "forwardCalls": 2
+    },
+    {
+      "text": "distill-excerpt-600",
+      "precision": "float32",
+      "threads": 1,
+      "path": "kv",
+      "loadSeconds": 7.039040999952704,
+      "scoreSeconds": 9.49390219990164,
+      "inputTokens": 728,
+      "forwardCalls": 2
+    },
+    {
+      "text": "manuscript-3000",
+      "precision": "float32",
+      "threads": 2,
+      "path": "window",
+      "loadSeconds": 7.039040999952704,
+      "scoreSeconds": 100.69970829994418,
+      "inputTokens": 13313,
+      "forwardCalls": 8
+    },
+    {
+      "text": "manuscript-3000",
+      "precision": "float32",
+      "threads": 2,
+      "path": "kv",
+      "loadSeconds": 7.039040999952704,
+      "scoreSeconds": 51.65968110016547,
+      "inputTokens": 5984,
+      "forwardCalls": 8
+    },
+    {
+      "text": "art-6000",
+      "precision": "float32",
+      "threads": 2,
+      "path": "window",
+      "loadSeconds": 7.039040999952704,
+      "scoreSeconds": 209.86727970000356,
+      "inputTokens": 27649,
+      "forwardCalls": 15
+    },
+    {
+      "text": "art-6000",
+      "precision": "float32",
+      "threads": 2,
+      "path": "kv",
+      "loadSeconds": 7.039040999952704,
+      "scoreSeconds": 105.3358341997955,
+      "inputTokens": 13540,
+      "forwardCalls": 15
+    },
+    {
+      "text": "distill-excerpt-600",
+      "precision": "float32",
+      "threads": 2,
+      "path": "window",
+      "loadSeconds": 7.039040999952704,
+      "scoreSeconds": 9.467004999984056,
+      "inputTokens": 1240,
+      "forwardCalls": 2
+    },
+    {
+      "text": "distill-excerpt-600",
+      "precision": "float32",
+      "threads": 2,
+      "path": "kv",
+      "loadSeconds": 7.039040999952704,
+      "scoreSeconds": 6.682924999855459,
+      "inputTokens": 728,
+      "forwardCalls": 2
+    },
+    {
+      "text": "manuscript-3000",
+      "precision": "int8",
+      "threads": 1,
+      "path": "window",
+      "loadSeconds": 16.24667250015773,
+      "scoreSeconds": 68.31801359984092,
+      "inputTokens": 13313,
+      "forwardCalls": 8
+    },
+    {
+      "text": "manuscript-3000",
+      "precision": "int8",
+      "threads": 1,
+      "path": "kv",
+      "loadSeconds": 16.24667250015773,
+      "scoreSeconds": 28.376346099888906,
+      "inputTokens": 5984,
+      "forwardCalls": 8
+    }
+  ],
+  "parity": [
+    {
+      "text": "manuscript-3000",
+      "precision": "float32",
+      "threads": 1,
+      "spearman": 0.9987752204187181,
+      "medianAbsoluteNats": 0.013859766721725286,
+      "words": 3044,
+      "firstBlockMaxTokenNats": 0.0,
+      "firstBlockMaxWordNats": 0.0,
+      "wordParityDerivation": "Identical first-block token losses and source offsets under unchanged word allocation; complete first-block words only."
+    },
+    {
+      "text": "art-6000",
+      "precision": "float32",
+      "threads": 1,
+      "spearman": 0.9973155425503889,
+      "medianAbsoluteNats": 0.01319598853588122,
+      "words": 6038,
+      "firstBlockMaxTokenNats": 0.0,
+      "firstBlockMaxWordNats": 0.0,
+      "wordParityDerivation": "Identical first-block token losses and source offsets under unchanged word allocation; complete first-block words only."
+    },
+    {
+      "text": "distill-excerpt-600",
+      "precision": "float32",
+      "threads": 1,
+      "spearman": 0.9999672849594227,
+      "medianAbsoluteNats": 0.0,
+      "words": 598,
+      "firstBlockMaxTokenNats": 0.0,
+      "firstBlockMaxWordNats": 0.0,
+      "wordParityDerivation": "Identical first-block token losses and source offsets under unchanged word allocation; complete first-block words only."
+    },
+    {
+      "text": "manuscript-3000",
+      "precision": "float32",
+      "threads": 2,
+      "spearman": 0.9987752204187181,
+      "medianAbsoluteNats": 0.013859766721725286,
+      "words": 3044,
+      "firstBlockMaxTokenNats": 0.0,
+      "firstBlockMaxWordNats": 0.0,
+      "wordParityDerivation": "Identical first-block token losses and source offsets under unchanged word allocation; complete first-block words only."
+    },
+    {
+      "text": "art-6000",
+      "precision": "float32",
+      "threads": 2,
+      "spearman": 0.9973155425503889,
+      "medianAbsoluteNats": 0.01319598853588122,
+      "words": 6038,
+      "firstBlockMaxTokenNats": 0.0,
+      "firstBlockMaxWordNats": 0.0,
+      "wordParityDerivation": "Identical first-block token losses and source offsets under unchanged word allocation; complete first-block words only."
+    },
+    {
+      "text": "distill-excerpt-600",
+      "precision": "float32",
+      "threads": 2,
+      "spearman": 0.9999672849594227,
+      "medianAbsoluteNats": 0.0,
+      "words": 598,
+      "firstBlockMaxTokenNats": 0.0,
+      "firstBlockMaxWordNats": 0.0,
+      "wordParityDerivation": "Identical first-block token losses and source offsets under unchanged word allocation; complete first-block words only."
+    },
+    {
+      "text": "manuscript-3000",
+      "precision": "int8",
+      "threads": 1,
+      "spearman": 0.8590509769168072,
+      "medianAbsoluteNats": 0.9562290261189146,
+      "words": 3044,
+      "firstBlockMaxTokenNats": 0.0,
+      "firstBlockMaxWordNats": 0.0
+    }
+  ],
+  "quantizationProbe": [
+    {
+      "precision": "float32",
+      "maxAbsoluteTokenNats": 0.0,
+      "medianAbsoluteTokenNats": 0.0,
+      "definition": "Same first 511 next-token losses in 512-token and 1024-token passes, no BOS."
+    },
+    {
+      "precision": "int8",
+      "maxAbsoluteTokenNats": 8.837685585021973,
+      "medianAbsoluteTokenNats": 0.9255829453468323,
+      "definition": "Same first 511 next-token losses in 512-token and 1024-token passes, no BOS."
+    }
+  ],
+  "targetSeconds": 15,
+  "defaultChanged": false,
+  "bindingAttentionParity": "awaiting EX1/TP2",
+  "fourThreads": "not run: packet's shared-host cap is two",
+  "onnx": "not attempted: packet requires stopping after rank correlation below 0.98",
+  "convention": "KV: BOS until first rebuild, 2048-token limit, rebuild from 1024 preceding tokens; initial context tail <=1536; distinct text and segment cache namespaces.",
+  "inputs": [
+    {
+      "id": "manuscript-3000",
+      "sha256": "a6ebc0e6f21132efbf7c058d1ed55fd2b750a6166dac11792ed63de7becea2ca",
+      "words": 3000
+    },
+    {
+      "id": "art-6000",
+      "sha256": "7222e6916099c168bed626fd3765b80ed0c8cb13cebf3d995e7628317c6e45b5",
+      "words": 6000
+    },
+    {
+      "id": "distill-excerpt-600",
+      "sha256": "9d95e9856ba6de05a644ead122d6d6afc3c53aad91899200f8d26187d1d7cfbe",
+      "words": 600
+    }
+  ],
+  "readers": {
+    "float32": {
+      "id": "Qwen/Qwen2.5-0.5B",
+      "revision": "060db6499f32faf8b98477b0a26969ef7d8b9987",
+      "sha256": "7612cbcd48959ed57557d659d6aa3961a8c9e210fd9e4c76f7a8923c1b6a2e8f",
+      "backend": "torch 2.9.1+cpu; transformers 4.57.6; CPU float32, 1 thread"
+    },
+    "int8": {
+      "id": "Qwen/Qwen2.5-0.5B",
+      "revision": "060db6499f32faf8b98477b0a26969ef7d8b9987",
+      "sha256": "7612cbcd48959ed57557d659d6aa3961a8c9e210fd9e4c76f7a8923c1b6a2e8f",
+      "backend": "torch 2.9.1+cpu; transformers 4.57.6; CPU dynamic-int8 linear, float32 embeddings, 1 thread"
+    }
+  },
+  "reason": "TP1 parity stop: do not promote or continue optimizing this path",
+  "elapsedSeconds": 119.34692890010774,
+  "attempts": [
+    {
+      "status": "stopped",
+      "reason": "Resource gate: need 8 GiB RAM/commit headroom; observed {'ramGiB': 31.456401824951172, 'commitGiB': 6.941738128662109}",
+      "elapsedSeconds": 1264.408561799908
+    }
+  ],
+  "sourceFilesSha256": {
+    "engine/tompathy_engine/preview/readers.py": "917edcc625fc9ed1b663e17471993e6c32dbd6e66109eb098247ae3484212702",
+    "engine/tompathy_engine/preview/kv_reader.py": "1111831b234d4e515d09cdf7bbe54b927962e126c6e127bc05dd5cfcf5461102"
+  },
+  "completionReview": {
+    "date": "2026-11-11",
+    "newDefault": false,
+    "int8KvServing": "refused",
+    "naturalDataEvaluated": false,
+    "ownedSpeedProcessesExited": true
+  }
+}

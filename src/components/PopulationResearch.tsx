@@ -1,9 +1,10 @@
+import { currentFindings } from "../core/claims";
 import aggregate from "../core/phase0-aggregate.json";
 import type { Packet } from "../core/model";
 
 export function PopulationResearch({ findings }: { findings?: Packet["globalFindings"] }) {
   if (findings?.length) return <section className="population-values" aria-label="Public population research">
-    {findings.map(f => <article key={f.source}><p><strong>{f.source}</strong> · {f.evidenceStatus === "descriptive" ? "descriptive" : "in constructed worlds"}</p><p>{f.claim}</p>{f.number != null && <p>{f.number.toFixed(4)} {f.unit}{f.interval && <> · interval {f.interval.map(n => n.toFixed(4)).join(" to ")}</>}</p>}<a href={f.link} target="_blank" rel="noreferrer">Source and limits</a></article>)}
+    {currentFindings(findings).map(f => <article key={f.source}><p><strong>{f.source}</strong> · {f.evidenceStatus === "descriptive" ? "descriptive" : "in constructed worlds"}</p><p>{f.claim}</p>{f.ledgerRows?.map(row => <p key={row.ledgerId} title={row.source}><small>{row.ledgerId} · {row.controlStatus}</small></p>)}{f.number != null && <p>{f.number.toFixed(4)} {f.unit}{f.interval && <> · interval {f.interval.map(n => n.toFixed(4)).join(" to ")}</>}</p>}<a href={f.link} target="_blank" rel="noreferrer">Source and limits</a></article>)}
     <p>Constructed-world intervals describe nominated settings and are not selection-adjusted confirmation intervals. These results do not admit personal taste or habit estimates.</p>
   </section>;
   const rows = [

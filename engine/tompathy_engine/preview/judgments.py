@@ -37,6 +37,37 @@ def fixed_reader(backend, cache, admissions=()):
     return Transcriber(backend, cache, admissions)
 
 
+def goal_call(backend, cache, cues, text, *, prepared=None, check=lambda: None):
+    """One bounded goal judgment, reusable by the local pilot.
+
+    Preview passes its exact prepared request, preserving existing cache keys.
+    The returned key/result is cached only after the caller validates its scope.
+    """
+    if prepared is None:
+        cues = cues[:30]
+        schema = deepcopy(SCHEMA)
+        schema["properties"]["cue_ids"].update(maxItems=min(5,len(cues)),items={"type":"string","enum":[c["goal_id"] for c in cues]})
+        schema["properties"]["label"]["maxLength"] = 120
+        schema["properties"]["description"]["maxLength"] = 600
+        prompt = TEMPLATE + " Keep the label under twelve words and the description under forty words. cue_ids must contain exact supplied goal_id values; if empty, cue_match must be zero."
+        data = {"root_cues":cues,"root_cue_reliability":{"value":.6,"status":"assumed"},"scope":"local",
+            "regions":[{"id":digest(text),"text":text}]}
+    else:
+        prompt,schema,data = prepared
+    serialized = json.dumps(data,ensure_ascii=True)
+    if len(serialized) > 24000:
+        raise ValueError("Goal input exceeds 24,000 serialized characters")
+    key = digest(["preview-goals-lenses-v3",backend.model_id,backend.settings,prompt,schema,data])
+    check()
+    result = cache.get(key)
+    if result is None:
+        with backend.checking(check):
+            result = json.loads(backend.complete(prompt+"\n"+serialized,schema)["text"])
+    if not isinstance(result,dict) or set(result) != set(schema["required"]):
+        raise ValueError("Goal judgment does not match its constrained schema")
+    return key,result
+
+
 def techniques(reader):
     @stepped
     def run(packet, check, publish):
@@ -113,11 +144,7 @@ def goals(backend, cache):
             serialized = json.dumps(data, ensure_ascii=True)
             if len(serialized) > 24000:
                 continue  # Explicit coverage count below; never silently truncate target text.
-            key = digest(["preview-goals-lenses-v3", backend.model_id, backend.settings, prompt, call_schema, data])
-            result = cache.get(key)
-            if result is None:
-                with backend.checking(check):
-                    result = json.loads(backend.complete(prompt + "\n" + serialized, call_schema)["text"])
+            key, result = goal_call(backend, cache, cues, "", prepared=(prompt, call_schema, data), check=check)
             if not isinstance(result, dict) or set(result) != set(call_schema["required"]):
                 raise ValueError("Goal judgment does not match its constrained schema")
             covered = result.get("covered_ids", [])

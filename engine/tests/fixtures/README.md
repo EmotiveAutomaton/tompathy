@@ -11,3 +11,15 @@ declared software-test goal backend and three invented short sentences. It tests
 strict field parity, separate goal lenses and UI transport. Its candidate ratings
 are test values, never presented as a demo reading or validation of inference.
 Global findings are the separately attributed aggregate handoff snapshot.
+
+`packets/value-view-t0.json` and `value-view-history.json` are emitted by the real
+builders with invented paragraphs and two invented revisions, with no model
+calls. They exercise packet 1.10 parity and the hollow/structure-only UI states.
+`feature-export-unicode.jsonl` is an invented source/provenance fixture containing
+emoji, accents, a combining mark, CRLF and repeated words. It is not human data.
+
+`packets/week-preview.json` uses three invented paragraphs, a declared software
+reader and structural group fixtures. It exercises typed departures, unknown
+versus zero density, timeline locations and ledger transport. None of its numeric
+values is reader validation or human research data. Field badges deliberately
+remain disabled without a matching received reader identity.

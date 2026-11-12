@@ -9,6 +9,7 @@ import { DriveBrain } from "./DriveBrain";
 import { driveFor } from "../core/drive-systems";
 import { demoPreference } from "../core/example-values";
 import { ContourCurrent } from "./ContourCurrent";
+import { ownerProbeQuestions } from "../core/owner-probes";
 import {
   Compass,
   Flame,
@@ -146,6 +147,7 @@ export function ValueDetails({
         {drive && <DriveBrain h={h} />}
       </div>
       <p className="muted">What would move this estimate: choices among different options, content corrections, stated goals and revision history. {h.valueCategory === "constructed" && "Would it persist if the need it grew from were met another way?"}</p>
+      {h.status !== "unknown" && <div className="owner-probes"><small>Questions for the creator · untested</small><ol>{ownerProbeQuestions.map(q => <li key={q.route}><span title={q.route}>{q.question}</span></li>)}</ol></div>}
       {h.preferenceEstimate ? (
         <PreferenceEstimate estimate={h.preferenceEstimate} />
       ) : h.preferenceTrace ? (

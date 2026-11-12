@@ -1,0 +1,76 @@
+{
+  "schema": "tompathy.software-checks.v1",
+  "date": "2026-11-11",
+  "scientificAdmission": false,
+  "runs": [
+    {
+      "scope": "full engine suite before CLI test fixture correction",
+      "passed": 287,
+      "failed": 1,
+      "xfail": 1,
+      "seconds": 109.16,
+      "failure": "New CLI guard test omitted required --token-file; corrected fixture, no application relaxation."
+    },
+    {
+      "scope": "back-half, KV, frozen exporter, October 17 integration, incremental preview after fixture correction",
+      "passed": 57,
+      "failed": 0,
+      "seconds": 15.41
+    },
+    {
+      "scope": "fixed-reader and final before-load memory guard",
+      "passed": 3,
+      "failed": 0,
+      "seconds": 2.43
+    },
+    {
+      "scope": "full engine suite after completion-audit repairs",
+      "passed": 292,
+      "failed": 0,
+      "xfail": 1,
+      "seconds": 93.25
+    },
+    {
+      "scope": "final replay coverage and CLI failure-receipt closure",
+      "passed": 23,
+      "failed": 0,
+      "seconds": 7.76
+    }
+  ],
+  "expectedFailure": "Rare-topic repetition can dominate outline density without pinned frequency residualisation.",
+  "warnings": [
+    "Existing Starlette httpx deprecation."
+  ],
+  "ruff": "all engine sources and tests passed",
+  "packetSchema": {
+    "validated": 13,
+    "failures": 0
+  },
+  "gitDiffCheck": "all tracked changes clean",
+  "failedParityResume": "refused before model loading; mocked LocalReader would fail if invoked",
+  "environment": "Restricted Windows asyncio socketpair stalled two targeted invocations; owned sessions interrupted and rerun serially with loopback support.",
+  "integratedChecks": {
+    "frontendCore": {
+      "passed": 50,
+      "failed": 0,
+      "seconds": 32.45
+    },
+    "build": "passed",
+    "buildFingerprint": "263fbd852044",
+    "buildChecker": "passed",
+    "localPackage": "passed",
+    "browser": {
+      "tool": "project Playwright built-document fixtures",
+      "passed": 7,
+      "failed": 0,
+      "workers": 1,
+      "seconds": 9.5,
+      "screenshotsInspected": [
+        "week-preview.png",
+        "values-table-narrow.png",
+        "three-views-empty.png"
+      ],
+      "nativeSidePanelRepeated": false
+    }
+  }
+}

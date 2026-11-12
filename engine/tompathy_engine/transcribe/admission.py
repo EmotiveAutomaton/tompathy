@@ -30,6 +30,8 @@ def metrics_pass(record, question_id):
         and rate(record.get("best_constant"), 0)
         and record["accuracy"] >= record["best_constant"] + .10
         and (question_id != "Q10" or rates(record.get("per_tag"), .70))
+        and (record.get("protocol") != "q10-empty-v2" or question_id == "Q10" and record.get("empty_items", 0) >= 40 and rate(record.get("empty_accuracy"), .70)
+             and set(record.get("per_tag", {})) == {"danger", "care", "play or humor", "conflict", "loss or separation", "desire", "discovery", "status", "food or body"})
         and (agreement is None and question_id not in CROSSCHECK or rate(agreement, .80))
     )
 
@@ -51,6 +53,9 @@ def _battery(transcriber, question_id, items):
         raise ValueError("Every battery item needs exactly one family-N tag")
     # Validate the entire battery before any expensive model calls.
     expected_answers = [validate_answer(question_id, {"answer": i["expected"]}) for i in items]
+    empty_gate = question_id == "Q10" and getattr(transcriber, "requires_empty_theme_gate", False)
+    if empty_gate and sum(answer == [] for answer in expected_answers) < 40:
+        raise ValueError("Q10 empty-set protocol requires at least 40 theme-free items")
     crosschecks = []
     for item in items:
         if question_id in CROSSCHECK and "crosscheck" not in item:
@@ -94,10 +99,11 @@ def _battery(transcriber, question_id, items):
         if checked
         else None
     )
+    pin = transcriber.pin_for(question_id) if hasattr(transcriber, "pin_for") else transcriber.pin
     record = {
-        "admission_id": digest([transcriber.pin, question_id, items]),
+        "admission_id": digest([pin, question_id, items]),
         "question_id": question_id,
-        "transcriber_pin": transcriber.pin,
+        "transcriber_pin": pin,
         "battery_hash": digest(items),
         "items": len(items),
         "valid_rate": valid_rate,
@@ -110,5 +116,8 @@ def _battery(transcriber, question_id, items):
         "scope": "lab-tested on templated items",
         "outcomes": outcomes,
     }
+    if empty_gate:
+        empty = [row for row, expected in zip(outcomes, expected_answers) if expected == []]
+        record.update(protocol="q10-empty-v2", empty_items=len(empty), empty_accuracy=sum(row.get("valid", False) and row.get("answer") == [] for row in empty) / len(empty))
     passed = metrics_pass(record, question_id)
     return record | {"passed": passed, "status": "admitted" if passed else "disabled"}

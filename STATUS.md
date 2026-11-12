@@ -1,7 +1,120 @@
 # ToMpathy status
 
-Updated 18 October 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
+Updated 11 November 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
 based on the merged, owner-approved **0.2.0** frontend milestone.
+
+## November 11 engine completion audit
+
+The [back-half packet](docs/ENGINE_BACK_HALF_2026-11-15.md) is implemented through
+the available engineering boundary. Its four natural-writing benchmark runners,
+strict input contracts, scoreboard and default-off field label are present.
+Experimental float32 KV reuse reduced measured scoring time by roughly 1.4–2.3×;
+the int8 comparison failed its rank gate and is refused by serving and dependent
+benchmark commands. The default reader is unchanged.
+
+The completion audit repaired durable pilot deadlines, stopped-run receipts,
+balanced first-call sampling, projection identity checks, replay exclusions and
+source/reader pins. Received GO3 and G1 evidence was checked without granting
+new production admission. EX1–EX4 exports remain absent, so the accuracy rows
+remain pending. The full-art cache remains blocked as documented below.
+See the [complete implementation/dependency matrix](docs/ENGINE_COMPLETENESS_2026-11-11.md).
+
+Verification passed: 292 engine tests with one expected outline-confound failure,
+23 final targeted checks, 50 frontend core checks, 13 packet fixtures, Ruff,
+build/package checks, and seven serial built-interface browser scenarios.
+Screenshots were inspected. This pass did not repeat native Chrome side-panel
+inspection or start research/model jobs.
+
+## October 25 work (historical)
+
+The [October 25 packet implementation](docs/ENGINE_WEEK_2026-10-25_IMPLEMENTATION.md)
+adds the owner's scrollable Core values hierarchy table, optional outline density,
+revision timelines, exact-reader field-label gates and render/cache-time claim
+revocation. B13's new-profile prompt and 200/40 battery are preregistered, not run.
+All 12 EV4 receiving files retain their receipt hashes. No research admission,
+new model run or publication was performed. Frozen essay text/images are unchanged.
+
+This packet improves evidence handling and inspectability; it does not establish
+an inference speedup. Research-dependent classifiers, pieces, planner, adaptive
+reading and cross-work fitting remain gated. The full art cache is not complete.
+Final build `263fbd852044` passes build/package checks. Verification includes
+50 frontend core checks, 45 unique focused engine checks plus one expected
+rare-word-confound failure, seven browser scenarios with targeted reruns, and
+native Chrome side-panel inspection. See the implementation note for exact runs
+and pending real-reader verification.
+
+## October 26 art-cache continuation
+
+The full art cache is **blocked, not ready**. At the delivered **06:25 Pacific**
+checkpoint, the single unchanged-pin retry confirmed the governing goal response
+was cut off at its **256-token output limit** (`done_reason=length`, no thinking).
+The run failed at 06:24:43 after retaining all 20 local goal steps and earlier
+exact work. All owned preparation processes exited and slot 0 was released.
+
+No further retry is running. The next step needs owner authorization for a
+separately pinned governing-goal response change; existing literal-reader pins,
+seven battery receipts and Q9's disabled gate must remain unchanged. The proposed
+repair uses compact exact-mapped evidence references and a bounded response
+allowance only for the final goal call, with cache-isolation and strict-rejection
+checks before one CPU resumption. Other module work remains incomplete too.
+The exhausted checkpoint was deleted; see [the diagnostic and proposed
+repair](docs/CPU_REFRESH_2026-10-17.md#october-26-confirmed-output-limit-blocker).
+
+## October 23 work (historical)
+
+The [October 23 vertical slice](docs/VERTICAL_SLICE_2026-10-23.md) replaces the
+nested fictional timeline with a value list, fine graph leaders and a larger
+background teardrop on zoom out. Existing diagrams remain on the labels. It also
+fixes sole-author context collection in the combined “All makers” view and adds
+`npm run practice:light` for the smaller real CPU readers.
+
+Sounding Line's October 20 aggregate package was read and integrity/source mapping
+checks passed. Scoped EV1/EV2/EV3 summaries are visible in Global research; no
+scientific admission or habit badge was added. See the
+[receiving note](docs/SOUNDING_LINE_UPTAKE_2026-10-23.md).
+
+Build **3e728762a508** passed the focused software checks and a native Chrome 155
+real-blog flow with fresh scoring cache, automatic capture, Light context, two
+continuations, sentence locking and replay. The 440-word article appeared in one
+second after navigation; all available lightweight modules completed across about
+163 seconds of processing. The full 9B judgment attempt hit the shared resource
+floor, so its goals/techniques remain unverified here. The full art cache remains
+partial. Owned browsers/services were closed and the counted test slot released.
+The current visual and review instructions supersede the October 18 visual notes
+below. No current changes were staged, committed, pushed or deployed.
+
+## October 18 work (historical)
+
+The October 18 [three-view pass](docs/THREE_VIEWS_IMPLEMENTATION_2026-10-18.md)
+implements the owner's spoken lower-right design: the current Expertise shape
+zoomed out, a gray article nested in a fictional author's larger teardrop, and
+two non-interactive Global overlays. Dates are landmarks, not proportional time.
+The existing value diagrams remain inspectable. Live T0/history views retain
+honest empty or structural states. No frozen essay prose changed.
+
+Packet 1.10 adds ordered evidence rows, tip status/support intervals, feeds and
+co-support. Preview forbids drive tips. The admission-chain document and explicit
+cross-work scope predicate are implemented; real cross-work/population fitting
+and the new Q10 GPU profile remain dependency-gated. The offline EV exporter
+reads Git objects from `5f3ad0a`, preserving Sounding Line's baseline independently
+of this checkout. No participant corpus or new research study was run.
+
+Verification: 46 frontend core checks, 43 focused engine checks across the
+affected suites, seven browser cases including real packet 1.10 fixtures, and native
+Chrome 155 side-panel interaction. The first native run found Sources hidden
+behind the corner heading; it was fixed, and the rerun passed. Screenshots were
+inspected and the disposable native profiles removed. The final build is
+`0a57c0bb73c1`; current-work copies follow Expertise's actual tier geometry.
+The blank-state centering regression was also caught and repaired. Constructed Unicode export
+also passed against a fresh extraction of the frozen engine; actual corpus
+execution is left to the counted research consumer. These are software checks.
+
+At 15:35 Pacific the art continuation still lacked shared memory headroom, so
+no analysis job was restarted. The requested demo reservation marker is now in
+place, and the prep script publishes a stable success receipt only after complete
+available modules and normal cache replay. The next resource checkpoint is
+scheduled for 16:15 Pacific; scheduling is confirmed, delivery remains unverified.
+No changes from this pass have been staged, committed or pushed.
 
 The final drive/reference pass is implemented in build **460b1c227d1f**. All seven
 drive cards now reuse the preference diagram with its sleeve and three numbered

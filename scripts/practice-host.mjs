@@ -4,7 +4,8 @@ import { startPractice } from "./practice-session.mjs";
 const receipt = process.argv[2];
 let session;
 try {
-  session = await startPractice({ profile: process.argv[3] });
+  const judgments = process.env.TOMPATHY_SURFACE_ONLY !== "1";
+  session = await startPractice({ profile: process.argv[3], judgments });
   await writeFile(
     receipt,
     JSON.stringify(
@@ -13,6 +14,7 @@ try {
         hostPid: process.pid,
         companionPid: session.server?.pid,
         reused: session.reused,
+        judgments,
         chromeVersion: session.review.receipt.chromeVersion,
         url: session.url,
         implementation: session.implementation,

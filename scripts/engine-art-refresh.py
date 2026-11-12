@@ -86,11 +86,12 @@ def main():
         temp.replace(args.run / "art-progress.json")
     try:
         # Populate and continue the exact cache used by Load cached real preview.
-        # Do not change live stage budgets, model settings or admission gates.
+        # Offline stage allowance lets long exact CPU calls finish; live stage
+        # budgets, model settings and admission gates are unchanged.
         token = "1" * 64
         app = create_app(token=token, origins=[], preview_readers=readers, preview_goals=goal_runner,
             preview_techniques=technique_runner, preview_correction_reader=reader,
-            preview_cache=cache_root, preview_budget=600)
+            preview_cache=cache_root, preview_budget=600, preview_preparation=True)
         with TestClient(app, base_url="http://127.0.0.1") as client:
             body = {"requestId": "art-refresh", "artifact": capture, "scope": "artifact", "mode": "preview"}
             saved, attempts = finish_cached_preview(client, body, {"Authorization": f"Bearer {token}"}, check, save)
@@ -100,6 +101,13 @@ def main():
                   "attempts": attempts, "availableModulesComplete": True,
                   "cacheReplayVerified": True, "scientificAdmission": False}
         (args.run / "art-refresh.json").write_text(json.dumps(report, indent=2), encoding="utf8")
+        # Stable handoff location for the shared demo-preparation reservation.
+        # Publish only after every available module and normal cache replay pass.
+        ready = Path(__file__).resolve().parents[1] / ".local/engine-art-ready.json"
+        temporary = ready.with_suffix(".tmp")
+        temporary.write_text(json.dumps(report | {"run": str(args.run.resolve()),
+            "packetSha256": sha256((args.run / "art-packet.json").read_bytes()).hexdigest()}, indent=2), encoding="utf8")
+        temporary.replace(ready)
         print(json.dumps(report), flush=True)
     finally:
         backend.close(recover=True)

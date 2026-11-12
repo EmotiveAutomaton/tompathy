@@ -131,7 +131,7 @@ test("capped cloud clears the creator cutout; work cards and keyboard tabs fit n
     .focus();
   await page.keyboard.press("ArrowRight");
   await expect(
-    page.getByRole("tab", { name: "creator", exact: true }),
+    page.getByRole("tab", { name: "author", exact: true }),
   ).toHaveAttribute("aria-selected", "true");
   await page.keyboard.press("ArrowRight");
   await expect(

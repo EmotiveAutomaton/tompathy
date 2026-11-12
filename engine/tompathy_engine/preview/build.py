@@ -58,7 +58,7 @@ def habits(packet, check):
 def render_deviation(packet, reader, result, covered):
     if reader.identity not in packet["preview"]["readers"]:
         packet["preview"]["readers"].append(reader.identity)
-    old = {h["id"] for h in packet["hypotheses"] if h.get("description", "").startswith("Where this text went somewhere")}
+    old = {h["id"] for h in packet["hypotheses"] if h.get("finding") in {"departure-phrase", "departure-sentence"}}
     packet["hypotheses"] = [h for h in packet["hypotheses"] if h["id"] not in old]
     packet["process"]["nodes"] = [ident for ident in packet["process"]["nodes"] if ident not in old]
     for frame in packet.get("currentAttention", []):
@@ -66,16 +66,18 @@ def render_deviation(packet, reader, result, covered):
     packet["currentAttention"] = [f for f in packet.get("currentAttention", []) if f["items"]]
     packet["preview"]["statistics"] = result["statistics"]
     packet["preview"]["coverage"] = covered
+    packet["preview"]["departureDefinition"] = "5f3ad0a:surface-departure-v1"
     coverage = f"Finished {len(covered)} of {len(packet['artifact']['regions'])} passages. Rankings and normalization cover processed text only, including any partial passage, and can change as coverage expands. "
     scale = (min(-1, *(row["departure"] for row in result["attention"])), max(1, *(row["departure"] for row in result["attention"])))
-    emitted = set()
+    emitted = {}
     for row in result["attention"]:
         key = (row["region"], row["start"], row["end"])
         # A short phrase can also be its entire sentence. It has one source
         # span and must keep one stable hypothesis, even as rankings change.
         if key in emitted:
+            if row.get("finding") == "departure-sentence":
+                emitted[key]["finding"] = "departure-sentence"
             continue
-        emitted.add(key)
         span = {"region": row["region"], "start": row["start"], "end": row["end"]}
         matching = [r for r in packet["artifact"]["regions"] if r["id"] in covered and row["text"].casefold() in r["anchor"]["exact"].casefold()]
         sections = {r.get("pageHint", {}).get("section") or r["id"] for r in matching}
@@ -86,8 +88,18 @@ def render_deviation(packet, reader, result, covered):
                           kind="process" if recurring else "attention", regions=[r["id"] for r in matching] if recurring else [row["region"]], support=score, spans=[span])
         item["description"] += (" Signature (habit or deliberate style). Recurrence across this page's sections stands in for recurrence across a writer's work; paragraph regions are used when section metadata is absent. What would move this estimate: under time pressure, which way would they go? Probe untested (Ghost N11 pending)." if recurring else " Where attention likely went; untested. What would move this estimate: after a source fails them, do they check it more? Probe pending (D39/N15).")
         item["description"] += " " + coverage
+        item["finding"] = row["finding"]
+        emitted[key] = item
         if not recurring:
             packet.setdefault("currentAttention", []).append({"maker": item["makers"][0], "span": span, "items": [{"hypothesis": item["id"], "support": score, **LABELS}]})
+    from .claims import departure_labels
+    for item in emitted.values():
+        item.update(departure_labels(item, packet["preview"]))
+    for frame in packet.get("currentAttention", []):
+        for entry in frame["items"]:
+            found = next((h for h in emitted.values() if h["id"] == entry["hypothesis"]), None)
+            if found:
+                entry.update(evidenceStatus=found["evidenceStatus"], ledgerRows=found["ledgerRows"])
     partition_attention(packet)
     return result
 
@@ -167,7 +179,7 @@ def partition_attention(packet):
     packet["currentAttention"] = frames
 
 
-def build_preview(base, *, readers=(), goal_runner=None, technique_runner=None, history=None, history_adapter="wikipedia", correction_reader=None, progress=lambda _: None, partial=lambda _: None, check=lambda: None, deadline=None, history_error=None, priority_region=None):
+def build_preview(base, *, readers=(), goal_runner=None, technique_runner=None, history=None, history_adapter="wikipedia", correction_reader=None, progress=lambda _: None, partial=lambda _: None, check=lambda: None, deadline=None, history_error=None, priority_region=None, preparation=False):
     deadline = deadline if deadline is not None else monotonic() + 165
     packet = deepcopy(base)
     packet["schemaVersion"] = "1.8"
@@ -225,6 +237,9 @@ def build_preview(base, *, readers=(), goal_runner=None, technique_runner=None, 
         if not history["revisions"]:
             history = None
     decorate(packet, history, adapter=history_adapter)
+    if history and history_adapter == "wikipedia":
+        from .timeline import wikipedia_timeline
+        wikipedia_timeline(packet, history)
     if history:
         modules.append({"id": "corrections", "title": "Content corrections", "status": "pending", "detail": "Content and housekeeping labels; no inferred values."})
         packet["preview"]["historySource"] = "github" if history_adapter == "git" else "wikipedia"
@@ -246,7 +261,14 @@ def build_preview(base, *, readers=(), goal_runner=None, technique_runner=None, 
         if not force and validated is not None and signature == last_signature and monotonic() - last_sent < .75:
             return
         packet["preview"]["timings"] = {f"reader{i}.{key}": max(0, value - metric_starts[i].get(key, 0)) for i, source in enumerate(metric_sources) for key, value in source.metrics.items()}
+        from ..packet.value_view import build_value_view
         from .makers import hide_usernames
+        packet["schemaVersion"] = "1.10"
+        packet["valueView"] = build_value_view(packet, history=history)
+        from .outline import update_attention_density
+        update_attention_density(packet)
+        from .timeline import relink_timeline
+        relink_timeline(packet)
         visible = hide_usernames(Packet.model_validate(packet).wire())
         validated = deepcopy(packet)
         partial(visible)
@@ -295,7 +317,9 @@ def build_preview(base, *, readers=(), goal_runner=None, technique_runner=None, 
             module.update(status="unavailable", detail=absent)
             return
         state = {"module": module, "spent": 0.0}
-        stage_seconds = 25 if ident == "agreement" else 60 if ident == "payoff" else 45 if history and ident in {"corrections", "techniques"} else 90
+        # An offline pass must be able to finish one long CPU call. Live callers
+        # keep their existing stage limits; the overall deadline still bounds both.
+        stage_seconds = 600 if preparation else 25 if ident == "agreement" else 60 if ident == "payoff" else 45 if history and ident in {"corrections", "techniques"} else 90
         def bounded():
             check()
             if monotonic() >= min(deadline, state.get("until", deadline)):
@@ -325,6 +349,8 @@ def build_preview(base, *, readers=(), goal_runner=None, technique_runner=None, 
                 "No exact fixed-Qwen correction reader is configured. Observed revisions remain available.")
     publish()
     def shed_optional():
+        if preparation:
+            return
         order = ["payoff-layer-2", "second-reader", "techniques-after-30", "governing-call"]
         drops = packet["preview"]["budgetDrops"]
         if len(drops) < len(order):
@@ -380,5 +406,12 @@ def build_preview(base, *, readers=(), goal_runner=None, technique_runner=None, 
             state["iterator"].close()
     packet["preview"]["resumable"] = any(m["status"] == "skipped" for m in modules)
     packet["preview"]["completedAt"] = datetime.now(UTC).isoformat().replace("+00:00", "Z")
+    from ..packet.value_view import build_value_view
     from .makers import hide_usernames
+    packet["schemaVersion"] = "1.10"
+    packet["valueView"] = build_value_view(packet, history=history)
+    from .outline import update_attention_density
+    update_attention_density(packet)
+    from .timeline import relink_timeline
+    relink_timeline(packet)
     return hide_usernames(Packet.model_validate(packet).wire())

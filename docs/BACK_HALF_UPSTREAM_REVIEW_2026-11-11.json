@@ -1,0 +1,35 @@
+{
+  "schema": "tompathy.upstream-review.v1",
+  "date": "2026-11-11",
+  "scientificAdmission": false,
+  "ghost": {
+    "manifest": "docs/ghost-v28-2026-11-11/G1_MANIFEST.json",
+    "reportSha256": "fe35a94be5a8f7167d14c01402621633a878490b4e3aca8cfe68c0a2d8a017be",
+    "deliveryHashVerified": true,
+    "claimId": "G-V28-G1-1",
+    "scope": "descriptive constructed-method map",
+    "receivingLedger": "docs/claims/SNAPSHOT.json",
+    "matchingReceivingRows": 0,
+    "ledgerStatus": "no ledger row in receiving snapshot",
+    "route": "TP2 own/other history and TP4 departures pilot are implemented. This constructed map does not license natural-writing accuracy or additional production inference."
+  },
+  "soundingLine": {
+    "manifest": "docs/exchange/sounding-line-week5-go3-2026-11-08/MANIFEST.json",
+    "allDeliveryHashesVerified": true,
+    "claimRows": [
+      {
+        "id": "S15-W5-GO3-PRIMARY-20261108",
+        "publicWording": "The frozen diff-feature classifier supports prediction of comment-derived stated editing-reason categories beyond the training-prior baseline on held-out editors in the five-site archive.",
+        "controlStatus": "passes"
+      },
+      {
+        "id": "S15-W5-GO3-HABIT-SUPPORT-20261108",
+        "publicWording": "The personal editing-pattern comparison is unsupported because its fixed galleries lack independent same-post donor coverage.",
+        "controlStatus": "untested"
+      }
+    ],
+    "route": "TP3 engine comparison is implemented; its EX2 input bundle is still absent. GO3 is not a substitute for an engine-matched evaluation."
+  },
+  "newAutomaticJobs": false,
+  "newRuntimeBadges": false
+}

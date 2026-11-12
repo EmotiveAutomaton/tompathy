@@ -3,3 +3,11 @@ src/content/archive/** -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
 docs/archive/essay-curation/2026-10-17/** -text whitespace=cr-at-eol
 # The working manuscript also retains the owner's authored whitespace.
 src/content/essays-source.txt whitespace=-blank-at-eol,-blank-at-eof
+# Keep Sounding Line's received aggregate hashes stable on every platform.
+docs/sounding-line-engine-features-2026-10-20/** -text
+# Received aggregate evidence and ledger snapshots retain their delivery hashes.
+docs/exchange/** -text whitespace=cr-at-eol
+docs/ghost-v*/** -text whitespace=cr-at-eol
+docs/claims/*.json -text whitespace=cr-at-eol
+# Preserve the received package README's terminal blank line as part of its bytes.
+docs/ghost-v26-20261102/README.md whitespace=cr-at-eol,-blank-at-eof

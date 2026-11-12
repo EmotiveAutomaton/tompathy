@@ -1,0 +1,12 @@
+{
+  "schema": "tompathy.benchmark.v1",
+  "capability": "attention",
+  "protocol": "958bd166b50bddcadb1627ba9e8f0ae94dd6617d8a64e07646b1b8631a21d4bd",
+  "scope": "CoAuthor writer-typed content words after engine holdouts",
+  "status": "waiting-for-data",
+  "enginePin": null,
+  "dataPin": null,
+  "evidence": "not-run",
+  "rows": [],
+  "productionAdmission": false
+}

@@ -444,7 +444,7 @@ test("unnamed nine-level hierarchy and all supplied values remain reachable in a
   await page.getByLabel("Result JSON").fill(JSON.stringify(packet));
   await page.getByRole("button", { name: "Validate & import" }).click();
   await page.getByRole("button", { name: "Accept this revision" }).click();
-  await page.getByRole("tab", { name: "creator", exact: true }).click();
+  await page.getByRole("tab", { name: "author", exact: true }).click();
   await expect(page.locator(".core-value-row")).toHaveCount(19);
   await expect(page.locator(".core-value-row").first()).toHaveText(
     "Fixture preference 1",
@@ -519,7 +519,7 @@ test("corner headings, compact attention, four and a half value rows and prototy
   await page.getByRole("tab", { name: "global", exact: true }).click();
   await expect(page.locator(".core-value-row")).toHaveCount(8);
   await expect(page.getByRole("tabpanel")).toContainText("Personal agency");
-  await page.getByRole("tab", { name: "creator", exact: true }).click();
+  await page.getByRole("tab", { name: "author", exact: true }).click();
   await expect(page.locator(".core-value-row")).toHaveCount(9);
   const world = await page
     .getByRole("tab", { name: "global", exact: true })

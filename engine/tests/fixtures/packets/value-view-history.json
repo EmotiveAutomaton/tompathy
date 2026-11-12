@@ -1,0 +1,257 @@
+{
+  "schemaVersion": "1.10",
+  "id": "d49162a2df18befabe2fadff04c7ec8d8621f4a2c874c14ba322226945503c9f",
+  "revision": 1,
+  "artifact": {
+    "id": "https://example.org/constructed-value-view",
+    "revision": "f67097853de03e5f45a06c5d01ff35ba6c6af110dfed37cbe3acbb921d1f6a20",
+    "title": "Constructed view fixture",
+    "source": "https://example.org/constructed-value-view",
+    "capturedAt": "2026-10-18T12:00:00Z",
+    "regions": [
+      {
+        "id": "p1",
+        "anchor": {
+          "exact": "An ordinary final paragraph.",
+          "prefix": "",
+          "suffix": "",
+          "start": 0,
+          "index": 0
+        }
+      }
+    ],
+    "truncated": false
+  },
+  "provider": {
+    "id": "tompathy-engine",
+    "method": "Research preview; surface descriptions and local reader judgments. ToMpathy engine 0.1.0a1; commit 5f3ad0a304727fff5e1a6beca592e786ee71b181 + local engine changes; implementation 92b9d5da586ff4356f4a677c129e32809252836a7fafea30a7d34bf82061d648; evidence tier T0; domain writing. Observed capture and ledger records only. Text alone does not update maker preferences. Actual contributing admission records are in provider.admissions.",
+    "admissions": [],
+    "mode": "preview",
+    "previewNotice": "Research preview: these are the engine's guesses. Each one says what it's based on and whether it has been tested."
+  },
+  "preview": {
+    "modules": [
+      {
+        "id": "habits",
+        "title": "Text habits",
+        "status": "complete",
+        "detail": "This page's repeated phrasing, rhythm and punctuation.",
+        "elapsedMs": 0.9
+      },
+      {
+        "id": "deviation",
+        "title": "Deviation map",
+        "status": "unavailable",
+        "detail": "Install and pin Qwen2.5-0.5B locally to enable the deviation map. Analysis never downloads a model."
+      },
+      {
+        "id": "agreement",
+        "title": "Two readers",
+        "status": "unavailable",
+        "detail": "Install and pin SmolLM2-360M alongside Qwen to compare readers."
+      },
+      {
+        "id": "payoff",
+        "title": "Payoff map",
+        "status": "unavailable",
+        "detail": "The pinned local population reader must be installed before payoff can be scored."
+      },
+      {
+        "id": "techniques",
+        "title": "Technique notes",
+        "status": "unavailable",
+        "detail": "No local technique reader is configured. Exact fixed-reader badges require their matching receipts."
+      },
+      {
+        "id": "goals",
+        "title": "Goal tree",
+        "status": "unavailable",
+        "detail": "No local goal producer is configured. A title alone does not establish the maker's purpose."
+      },
+      {
+        "id": "values",
+        "title": "Core values",
+        "status": "unavailable",
+        "detail": "Choices, content corrections, stated goals and revision history would move these estimates. No numerical drive prior is supplied; text topics are never converted to drives."
+      },
+      {
+        "id": "corrections",
+        "title": "Content corrections",
+        "status": "unavailable",
+        "detail": "No exact fixed-Qwen correction reader is configured. Observed revisions remain available."
+      }
+    ],
+    "readers": [],
+    "completedAt": "2026-10-18T22:41:32.031099Z",
+    "latestSummary": "Constructed edit",
+    "resumable": false,
+    "layoutGroups": [
+      [
+        "p1"
+      ]
+    ],
+    "historySource": "wikipedia",
+    "timings": {},
+    "rootCueReliability": 0.6,
+    "rootCueStatus": "assumed",
+    "budgetDrops": []
+  },
+  "valueView": {
+    "work": "https://example.org/constructed-value-view",
+    "evidenceTier": "production",
+    "provenance": "structure-only",
+    "asOf": "2026-10-18T12:00:00Z",
+    "firstMissingLink": "No admitted comparison fit with conditional covariance.",
+    "rows": [
+      {
+        "id": "5f3d24aa2086c75e8e4d2bd0ba871c92b8fff5c099ab07a155e11cd8cedab526",
+        "label": "Recorded revision",
+        "order": 0,
+        "date": "2026-10-17T12:00:00Z",
+        "evidence": [],
+        "region": null
+      },
+      {
+        "id": "0d5fa37b1ca177524527fcc5f1f6414b3a7006b10345288940be7ec03e1acc01",
+        "label": "Recorded revision",
+        "order": 1,
+        "date": "2026-10-17T13:00:00Z",
+        "evidence": [],
+        "region": null
+      }
+    ],
+    "tips": [],
+    "feeds": [],
+    "coSupport": []
+  },
+  "globalFindings": [
+    {
+      "source": "Sounding Line V2",
+      "claim": "A model that starts from everyone and adjusts a little for each writer forecast these writers better than population rates. Saved, exposed forecasts; 16,855 decisions from 61 writers. Writer-resampled 95% interval, conditional on saved fits; no new admission.",
+      "number": 0.023962,
+      "interval": [
+        0.017497,
+        0.030691
+      ],
+      "unit": "half-Brier improvement",
+      "evidenceStatus": "descriptive",
+      "link": "https://github.com/EmotiveAutomaton/sounding-line/blob/main/results/phase_2_4_stage_15/DRIVE/V2.md"
+    },
+    {
+      "source": "Sounding Line V1",
+      "claim": "In planted tests, these instruments found a writer's constant lean, not yet their taste or habits. Synthetic outcomes on fixed human-record covariates; this is not a limit on all possible readers.",
+      "number": null,
+      "interval": null,
+      "unit": null,
+      "evidenceStatus": "constructed-tested",
+      "link": "https://github.com/EmotiveAutomaton/sounding-line/blob/main/results/phase_2_4_stage_15/DRIVE/V1_PHASE0.md"
+    },
+    {
+      "source": "Ghost R4",
+      "claim": "In constructed worlds, the largest observed root-cue gain had no leaf evidence and planted cue reliability 0.99. Nominated setting, not confirmation or a real-page reliability estimate.",
+      "number": 0.6431190348758995,
+      "interval": [
+        0.6246675513184207,
+        0.6615705184333783
+      ],
+      "unit": "nats",
+      "evidenceStatus": "constructed-tested",
+      "link": "https://github.com/EmotiveAutomaton/ghost-scale-sim/blob/main/results/v23/packet-20261017/R4-MACHINE_CARD.json"
+    },
+    {
+      "source": "Ghost N5",
+      "claim": "In constructed worlds, correcting a reader's projection with population rates yielded this largest observed gain. Nominated setting; not a natural-data admission.",
+      "number": 0.9492858677208594,
+      "interval": [
+        0.9029064198370778,
+        0.9956653156046411
+      ],
+      "unit": "nats",
+      "evidenceStatus": "constructed-tested",
+      "link": "https://github.com/EmotiveAutomaton/ghost-scale-sim/blob/main/results/v23/packet-20261017/N5-MACHINE_CARD.json"
+    },
+    {
+      "source": "Ghost N7",
+      "claim": "In constructed worlds, a shared-shift correction to stated versus revealed preferences yielded this largest observed gain. Nominated setting; not confirmation or a personal-value measurement.",
+      "number": 0.2501206917914891,
+      "interval": [
+        0.2118192090342693,
+        0.2884221745487089
+      ],
+      "unit": "nats",
+      "evidenceStatus": "constructed-tested",
+      "link": "https://github.com/EmotiveAutomaton/ghost-scale-sim/blob/main/results/v23/packet-20261017/N7-MACHINE_CARD.json"
+    }
+  ],
+  "origin": "live provider",
+  "scope": {
+    "kind": "artifact",
+    "contextIds": []
+  },
+  "makers": [
+    {
+      "id": "7e0b247e162d6223110e280eb5bfd5a4d2cfcf0f9187a0d4412c1394f776b683",
+      "label": "Artifact (unattributed text)",
+      "identity": "unknown",
+      "relationship": "Whole-page surface descriptions; no word-level authorship is inferred from revision counts.",
+      "kind": "unknown",
+      "evidence": []
+    },
+    {
+      "id": "c0dce1dd93caadf2411628fc58add85b00f79de3cab013dfb9e8c45d98406173",
+      "label": "Author (unresolved)",
+      "identity": "unknown",
+      "relationship": "No attributable history at or before this capture.",
+      "kind": "unknown",
+      "evidence": []
+    }
+  ],
+  "hypotheses": [
+    {
+      "evidenceStatus": "unvalidated",
+      "basis": "text-surface",
+      "entry": "page",
+      "id": "8512866ae37d351f8c85ca9185a08170f9b5ee9c449ca632b096b1b759f3075a",
+      "kind": "process",
+      "label": "Sentence rhythm",
+      "description": "1 sentences outside recognizable quotations; mean 4.0 words, standard deviation 0.0. 0 quoted words held apart. Sentence and quotation boundaries are heuristic.",
+      "makers": [
+        "7e0b247e162d6223110e280eb5bfd5a4d2cfcf0f9187a0d4412c1394f776b683"
+      ],
+      "regions": [
+        "p1"
+      ],
+      "status": "hypothesis",
+      "evidence": [
+        "7eb3eab8a3fa54e0a467097fb70587a71e937d51c32d86cced81943f416417a4"
+      ],
+      "interpretation": "repertoire"
+    }
+  ],
+  "alternatives": [],
+  "process": {
+    "interpretation": "unspecified",
+    "nodes": [
+      "8512866ae37d351f8c85ca9185a08170f9b5ee9c449ca632b096b1b759f3075a"
+    ],
+    "edges": []
+  },
+  "estimates": [
+    {
+      "region": "p1",
+      "uncertainty": {
+        "level": "unknown",
+        "meaning": "T0 evidence; no admitted estimate of motive or contribution"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "7eb3eab8a3fa54e0a467097fb70587a71e937d51c32d86cced81943f416417a4",
+      "source": "https://example.org/constructed-value-view",
+      "excerpt": "An ordinary final paragraph.",
+      "capturedAt": "2026-10-18T12:00:00Z",
+      "relationship": "Observed final text; this alone does not establish a maker's choices or motives"
+    }
+  ]
+}

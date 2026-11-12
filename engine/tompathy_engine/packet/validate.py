@@ -1,5 +1,6 @@
 """Relational checks for engine-produced packets; zod parity remains mandatory."""
 
+import math
 import re
 from datetime import datetime
 
@@ -32,6 +33,23 @@ def validate_relations(packet):
     evidence = table(packet.evidence)
     alternatives = table(packet.alternatives)
     hierarchy = table(packet.goalHierarchy.nodes if packet.goalHierarchy else [])
+    previous_step, previous_time = -1, ""
+    for item in packet.attentionTimeline or []:
+        timestamp(item.t)
+        require(item.step >= previous_step and (not previous_time or datetime.fromisoformat(item.t) >= datetime.fromisoformat(previous_time)) and datetime.fromisoformat(item.t) <= datetime.fromisoformat(packet.artifact.capturedAt), "Invalid timeline chronology")
+        require(item.step != previous_step or item.t == previous_time, "One timeline step must have one time")
+        previous_step, previous_time = item.step, item.t
+        require(item.maker in makers and all(e in evidence for e in item.evidence), "Unresolved timeline witness")
+        require(item.located == (item.region is not None) and (item.region is None or item.region in regions), "Invalid timeline location")
+        require(item.node is None or (item.located and item.node in hierarchy and item.region in hierarchy[item.node].regions and hierarchy[item.node].level == "paragraph"), "Invalid timeline node")
+        require(not item.goals or packet.origin == "imported" and all(isinstance(v, (int, float)) and math.isfinite(v) and v >= 0 for v in item.goals.values()), "Timeline goals require imported relative support")
+    if packet.preview and packet.preview.timelineCoverage:
+        coverage = packet.preview.timelineCoverage
+        require(coverage.emitted == len(packet.attentionTimeline or []) and coverage.total >= coverage.emitted, "Invalid timeline coverage")
+    for node in hierarchy.values():
+        if node.attentionEvidence:
+            require(node.attentionEvidence.evidenceStatus == "unvalidated" and node.attentionEvidence.basis == "text-surface", "Paragraph density stays untested")
+            require(node.attentionEvidence.coverage != "not-read" or (node.attentionDensity is None and node.attentionShare is None and not node.divergence), "Unread density cannot be zero or divergent")
     if packet.preview and packet.preview.goalLenses is not None:
         lenses = packet.preview.goalLenses
         flattened = [ident for lens in lenses for ident in lens]
@@ -54,9 +72,26 @@ def validate_relations(packet):
         require(packet.preview is None, "Preview output requires preview mode")
     for row in evidence.values():
         timestamp(row.capturedAt)
+    if packet.valueView:
+        view = packet.valueView
+        require(packet.schemaVersion == "1.10" and view.work == packet.artifact.id, "Value view requires contract 1.10 and current work")
+        timestamp(view.asOf)
+        require(packet.provider.mode != "preview" or (view.provenance == "structure-only" and not view.tips and not view.feeds and not view.coSupport), "Preview value view supplies structure only")
+        for row in view.rows:
+            if row.date:
+                timestamp(row.date)
+            require(all(e in evidence for e in row.evidence) and (not row.region or row.region in regions), "Unresolved value-view row source")
+        for tip in view.tips:
+            if tip.support is None:
+                continue
+            hypothesis = next((item for item in packet.hypotheses if item.id == tip.hypothesis), None)
+            estimate = hypothesis.preferenceEstimate if hypothesis else None
+            require(hypothesis and hypothesis.valueCategory == "drive" and estimate and estimate.quantity == "Revealed-theme contrast from population"
+                    and estimate.value == tip.support and estimate.interval and estimate.interval.level == .95
+                    and (estimate.interval.lower, estimate.interval.upper) == tip.interval, "Value-view tip must exactly match its admitted contrast")
     for maker in makers.values():
         if maker.evidence is not None:
-            require(packet.schemaVersion == "1.9", "Maker evidence requires contract 1.9")
+            require(packet.schemaVersion in {"1.9", "1.10"}, "Maker evidence requires contract 1.9")
             require(not any(e.tier == "statistical" for e in maker.evidence), "Statistical source signals are disabled")
             require(maker.kind == "unknown" or any(e.tier in {"signed", "declared", "flagged"} for e in maker.evidence), "Maker entries require signed, declared or flagged evidence")
     require(
@@ -95,7 +130,7 @@ def validate_relations(packet):
         support(row.support, row.id)
         require(
             row.preferenceEstimate is None
-            or (packet.schemaVersion in {"1.8", "1.9"} and row.kind == "value"),
+            or (packet.schemaVersion in {"1.8", "1.9", "1.10"} and row.kind == "value"),
             "Structured preference estimates require a value hypothesis in contract 1.8",
         )
         for s in row.spans or []:

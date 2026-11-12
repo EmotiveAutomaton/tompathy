@@ -125,7 +125,7 @@ def summarize_deviation(rows, check=lambda: None):
         for sentence in SENTENCE.finditer(row["text"]):
             selected = [w for w in row["words"] if sentence.start() <= w["start"] < sentence.end() and w["content"] and not w["held"]]
             if selected:
-                sentences.append(item(row, selected, sentence.group().strip()[:250], sentence.start(), sentence.end()))
+                sentences.append({**item(row, selected, sentence.group().strip()[:250], sentence.start(), sentence.end()), "finding": "departure-sentence"})
         for i, word in enumerate(row["words"]):
             if word["held"] or not word["content"]:
                 continue
@@ -134,7 +134,7 @@ def summarize_deviation(rows, check=lambda: None):
             if any(w["held"] for w in group) or re.search(r"[.!?\n]", row["text"][word["end"]:group[-1]["start"]]):
                 group = [word]
             selected = [w for w in group if w["content"]]
-            phrases.append(item(row, selected, row["text"][group[0]["start"]:group[-1]["end"]], group[0]["start"], group[-1]["end"]))
+            phrases.append({**item(row, selected, row["text"][group[0]["start"]:group[-1]["end"]], group[0]["start"], group[-1]["end"]), "finding": "departure-phrase"})
     top = []
     for phrase in sorted(phrases, key=lambda r: -r["departure"]):
         if not any(p["region"] == phrase["region"] and p["start"] < phrase["end"] and p["end"] > phrase["start"] for p in top):

@@ -1,5 +1,8 @@
 import type { Hypothesis, Packet } from "../core/model";
 import { PREVIEW_NOTICE } from "../core/preview";
+import { createContext, useContext } from "react";
+import { evidenceStatus } from "../core/claims";
+export const EvidenceContext = createContext<Packet["preview"]>(undefined);
 
 export function EvidenceEntries({ packet, kinds }: { packet: Packet; kinds: Hypothesis["kind"][] }) {
   if (packet.provider.mode !== "preview") return null;
@@ -8,11 +11,13 @@ export function EvidenceEntries({ packet, kinds }: { packet: Packet; kinds: Hypo
   return <small className="preview-entries">{entries.length ? entries.map(e => names[e]).join(" · ") : "No evidence supplied"}</small>;
 }
 
-export function EvidenceBadge({ item }: { item: Pick<Hypothesis, "basis" | "evidenceStatus"> }) {
-  if (!item.evidenceStatus) return null;
-  const labels = { admitted: "tested", "constructed-tested": "lab-tested", unvalidated: "untested" };
-  const reasons = { admitted: "Passed the required scientific admission gates.", "constructed-tested": "Lab-tested on templated items for this exact reader; natural-data accuracy is unestablished.", unvalidated: "No applicable validation has passed." };
-  return <span className={`evidence-badge evidence-${item.evidenceStatus}`} title={`${item.basis}: ${reasons[item.evidenceStatus]}`}>{labels[item.evidenceStatus]}</span>;
+export function EvidenceBadge({ item }: { item: Pick<Hypothesis, "basis" | "evidenceStatus" | "ledgerRows" | "finding"> & Partial<Pick<Hypothesis, "kind">> }) {
+  const status = evidenceStatus(item, useContext(EvidenceContext));
+  if (!status) return null;
+  const labels = { admitted: "tested", "constructed-tested": "lab-tested", "field-tested": "tested on logs", unvalidated: "untested" };
+  const reasons = { admitted: "Passed the required scientific admission gates.", "constructed-tested": "Lab-tested on templated items for this exact reader; natural-data accuracy is unestablished.", "field-tested": "Supported on human writing logs under scoped wording; not an admission gate.", unvalidated: "No applicable validation has passed." };
+  const rows = status === "field-tested" ? item.ledgerRows?.map(r => `${r.ledgerId}: ${r.wording} (${r.controlStatus}); ${r.source}`).join("\n") : "";
+  return <span className={`evidence-badge evidence-${status}`} title={`${item.basis}: ${reasons[status]}${rows ? "\n" + rows : ""}`}>{labels[status]}</span>;
 }
 
 export function PreviewBanner({ packet }: { packet: Packet | null }) {

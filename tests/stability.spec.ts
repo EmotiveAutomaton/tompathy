@@ -160,7 +160,7 @@ test("real engine fit exports structured intervals that render at narrow width",
   await page
     .getByLabel("Import reading", { exact: true })
     .setInputFiles("evidence/engine-interval-reading.html");
-  await page.getByRole("tab", { name: "creator", exact: true }).click();
+  await page.getByRole("tab", { name: "author", exact: true }).click();
   await page.getByRole("button", { name: value.label, exact: true }).click();
   const dialog = page.getByRole("dialog");
   await expect(dialog.locator(".preference-estimate")).toBeVisible();
@@ -183,7 +183,7 @@ test("real engine fit exports structured intervals that render at narrow width",
   await page.keyboard.press("Escape");
   value.preferenceEstimate!.interval = null;
   await show(page, packet);
-  await page.getByRole("tab", { name: "creator", exact: true }).click();
+  await page.getByRole("tab", { name: "author", exact: true }).click();
   await page.getByRole("button", { name: value.label, exact: true }).click();
   await expect(
     page.getByRole("dialog").locator(".preference-sleeve"),

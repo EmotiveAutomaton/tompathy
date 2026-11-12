@@ -17,3 +17,21 @@ are retained beside this file. A cache-only replay reproduced all 200 outcomes
 without inference, and attempting normal Q5 use with this record was refused.
 These template families do not establish performance on natural writing.
 Other question batteries and downstream scientific admissions remain separate.
+
+The October 25 `q10-empty-v2.items.json` is a frozen **unrun** 200-item protocol
+with 40 theme-free cases. Its new-profile boundary, hash and gates are in
+[the B13 preregistration](../../docs/B13_Q10_PREREGISTRATION_2026-10-25.md).
+It does not replace fixed-CPU inputs or receipts.
+
+## November engine benchmarks
+
+`back-half-protocol-2026-11.json` freezes the rows before natural-data outcomes.
+The four associated capability receipts explicitly await EX1–EX4 data; they are
+not negative results or research admissions. The
+[engine scoreboard](../../docs/ENGINE_SCOREBOARD.md) reads those receipts.
+
+`speed-2026-11.json` contains actual CPU measurements on three pinned excerpts.
+Float32 KV reuse passed the word-rank gate; dynamic-int8 KV failed it on the
+3,000-word manuscript, so optimization stopped and defaults remain unchanged.
+`back-half-software-2026-11.json` records software verification separately.
+See [the implementation and limits](../../docs/ENGINE_BACK_HALF_2026-11-15.md).

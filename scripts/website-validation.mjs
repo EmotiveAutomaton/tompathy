@@ -96,7 +96,7 @@ try {
     const workScore = await panel
       .getByRole("button", { name: "Drive SEEKING", exact: true })
       .evaluate((el) => getComputedStyle(el).fontWeight);
-    await panel.getByRole("tab", { name: "creator", exact: true }).click();
+    await panel.getByRole("tab", { name: "author", exact: true }).click();
     expect(
       await panel
         .getByRole("button", { name: "Drive SEEKING", exact: true })
@@ -171,7 +171,7 @@ try {
     );
     await panel.getByRole("tab", { name: "global", exact: true }).click();
     await expect(panel.locator(".core-value-row")).toHaveCount(25);
-    await panel.getByRole("tab", { name: "creator", exact: true }).click();
+    await panel.getByRole("tab", { name: "author", exact: true }).click();
     await panel.mouse.move(5, 5);
     await panel.screenshot({
       path: `evidence/website-${kind}-overview.png`,

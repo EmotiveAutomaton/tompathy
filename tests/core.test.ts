@@ -1,6 +1,9 @@
 import { readFileSync } from "node:fs";
+import "./week-packet.test";
 import { test } from "node:test";
 import { keepsPreviewProgress } from "../src/core/preview";
+import { creatorWorkScope } from "../src/core/creator-scope";
+import { WorkValueViewSchema } from "../src/core/value-view";
 import {
   localProvider,
   registryProvider,
@@ -30,6 +33,33 @@ import {
 } from "../src/core/collector";
 import { acceptRevision, analysisHandoff } from "../src/core/reading";
 import { contextIdentity, mergeContext } from "../src/core/context";
+
+test("combined preview keeps a sole byline without choosing among multiple authors", async () => {
+  const artifact = await makeArtifact(["Constructed context identity fixture."], "https://example.org/context", "Context fixture");
+  const one = {...artifact, authors:[{label:"Explicit Writer",basis:"page-metadata" as const}]};
+  assert.equal(contextCreator(one,"All makers",true),"Explicit Writer");
+  assert.equal(contextCreator(one,"Selected contributor",false),"Selected contributor");
+  assert.equal(contextCreator({...one, authors:[...one.authors,{label:"Second Writer",basis:"page-metadata" as const}]},"All makers",true),"All makers");
+  assert.equal(contextCreator(artifact,"All makers",true),"All makers");
+});
+
+test("creator scope excludes one-way profiles, name matches and third hops", () => {
+  const link = {route:"two-way-profile" as const, hops:2, authorPage:"https://author.example/about", work:"https://profile.example/writer", linkedByNamedAuthor:true};
+  assert.equal(creatorWorkScope(link).include, false);
+  assert.deepEqual(creatorWorkScope({...link,backlink:{href:link.authorPage,rel:["me"]}}), {include:true,lattice:true,reason:"Explicit profile with rel=me backlink"});
+  assert.equal(creatorWorkScope({...link,backlink:{href:"https://other.example/about",rel:["me"]}}).include, false);
+  assert.equal(creatorWorkScope({...link,hops:3,backlink:{href:link.authorPage,rel:["me"]}}).include, false);
+  assert.equal(creatorWorkScope({...link,route:"same-name"}).include, false);
+  assert.equal(creatorWorkScope({...link,route:"works-list",worksList:"https://author.example/works"}).lattice, true);
+  assert.equal(creatorWorkScope({...link,route:"explicit-link",hops:1}).lattice, false);
+});
+
+test("value-view contract refuses tips in structural and final-text states", () => {
+  const view = {work:"w",evidenceTier:"T0",provenance:"structure-only",asOf:"2026-10-18T00:00:00Z",firstMissingLink:"Final text only",rows:[],tips:[],feeds:[],coSupport:[]};
+  assert.ok(WorkValueViewSchema.safeParse(view).success);
+  assert.ok(!WorkValueViewSchema.safeParse({...view,tips:[{id:"care",label:"CARE",status:"drawn",support:1,interval:[.5,1.5],hypothesis:"h"}]}).success);
+  assert.ok(!WorkValueViewSchema.safeParse({...view,feeds:[{row:"missing",tip:"missing",weight:1}]}).success);
+});
 import { createHash } from "node:crypto";
 import {
   goalAt,
@@ -49,7 +79,7 @@ import {
   githubRepository,
 } from "../src/core/github-context";
 import { ContextSchema } from "../src/core/model";
-import { prepareContextSources } from "../src/core/creator-context";
+import { prepareContextSources, contextCreator } from "../src/core/creator-context";
 import { exportSafe } from "../src/core/export-privacy";
 
 test("preview exports refuse personal readings, including history, and remove local usernames", () => {

@@ -19,7 +19,7 @@ OPTIONS = {"temperature": 0, "seed": 0, "num_predict": 256, "num_gpu": 0, "num_t
 
 
 class FixedQwen:
-    def __init__(self, url, *, timeout=110):
+    def __init__(self, url, *, timeout=110, before_load=None):
         parsed = urlsplit(url)
         if parsed.scheme != "http" or parsed.hostname != "127.0.0.1" or parsed.path not in ("", "/") or parsed.username or parsed.password or parsed.query or parsed.fragment:
             raise ValueError("Dedicated Qwen service must be a loopback HTTP origin")
@@ -27,6 +27,7 @@ class FixedQwen:
         if not 5 <= timeout <= 600:
             raise ValueError("Dedicated Qwen transport timeout must be 5–600 seconds")
         self.timeout = timeout
+        self.before_load = before_load
         self.model_digest = DIGEST
         self.model_id = MODEL + "@" + DIGEST
         self.settings = dict(OPTIONS, runtime=RUNTIME, think=False, transport="s15-fixed-models-v1", context_guard="chars3-and-prompt-count-v1", keep_alive=120)
@@ -82,7 +83,9 @@ class FixedQwen:
         if self.uncertain:
             raise RuntimeError("Previous Qwen completion is uncertain; restart the owned service")
         with httpx.Client(timeout=5, trust_env=False, follow_redirects=False) as client:
-            self.inspect(client)
+            residents = self.inspect(client)
+            if not residents and self.before_load is not None:
+                self.before_load()
             self.uncertain = True
             self.owned = True
             try:
@@ -105,7 +108,11 @@ class FixedQwen:
             if raw.get("prompt_eval_count", OPTIONS["num_ctx"]) + OPTIONS["num_predict"] >= OPTIONS["num_ctx"]:
                 raise ValueError("Prompt filled the context window; refuse a potentially truncated answer")
             if raw.get("done_reason") != "stop" or raw.get("thinking"):
-                raise ValueError("Fixed-Qwen response is unfinished or unexpectedly includes thinking")
+                # Record only bounded transport metadata, never generated prose or thinking.
+                reason = raw.get("done_reason") if raw.get("done_reason") in {"stop", "length", "load", "unload"} else "unknown"
+                count = raw.get("eval_count")
+                count = count if type(count) is int and count >= 0 else "unknown"
+                raise ValueError(f"Fixed-Qwen response is unfinished or unexpectedly includes thinking (done_reason={reason}, output_tokens={count}, thinking={bool(raw.get('thinking'))})")
             self.metrics["calls"] += 1
             for source, target, divisor in (("load_duration", "loadMs", 1e6), ("prompt_eval_duration", "promptMs", 1e6), ("eval_duration", "generationMs", 1e6), ("prompt_eval_count", "inputTokens", 1), ("eval_count", "outputTokens", 1)):
                 value = raw.get(source)

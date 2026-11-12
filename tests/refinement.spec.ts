@@ -226,7 +226,7 @@ test("dots fit their bricks; decorative cue and layout hold in light, dark and s
     await expect(page.locator(".attention-cue")).toHaveCSS("opacity", "0.32");
     await page.screenshot({ path: `evidence/refined-${theme}.png` });
   }
-  const creator = page.getByRole("tab", { name: "creator", exact: true });
+  const creator = page.getByRole("tab", { name: "author", exact: true });
   await creator.focus();
   await page.keyboard.press("ArrowRight");
   await expect(

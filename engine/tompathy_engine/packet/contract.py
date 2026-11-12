@@ -9,6 +9,7 @@ from typing import Annotated, Literal
 from pydantic import Field, PlainValidator, model_validator
 
 from ..ledger.schema import Model
+from .value_view import WorkValueView
 
 
 class Support(Model):
@@ -163,8 +164,16 @@ class PreferenceEstimate(Model):
         return self
 
 
+class LedgerRow(Model):
+    ledgerId: str = Field(min_length=1, max_length=200)
+    wording: str = Field(min_length=1, max_length=2000)
+    controlStatus: str = Field(min_length=1, max_length=200)
+    source: str = Field(min_length=1, max_length=4000)
+
+
 class PreviewLabels(Model):
-    evidenceStatus: Literal["admitted", "constructed-tested", "unvalidated"] | None = None
+    evidenceStatus: Literal["admitted", "constructed-tested", "field-tested", "unvalidated"] | None = None
+    ledgerRows: list[LedgerRow] | None = Field(default=None, max_length=20)
     basis: Literal["choices", "corrections", "history", "text-surface", "population", "model-judgment"] | None = None
     entry: Literal["page", "person", "process"] | None = None
 
@@ -179,7 +188,13 @@ class PreviewLabels(Model):
         return self
 
 
+class AttentionEvidence(PreviewLabels):
+    coverage: Literal["read", "not-read"]
+    description: str = Field(max_length=1000)
+
+
 class Hypothesis(PreviewLabels):
+    finding: Literal["departure-phrase", "departure-sentence"] | None = None
     id: str
     kind: Literal["goal", "process", "value", "attention"]
     label: str = Field(min_length=1, max_length=250)
@@ -259,6 +274,10 @@ class CalibratedAI(Model):
 
 
 class HierarchyNode(PreviewLabels):
+    attentionDensity: float | None = Field(default=None, ge=0, allow_inf_nan=False)
+    attentionShare: float | None = Field(default=None, ge=0, le=1, allow_inf_nan=False)
+    divergence: bool | None = None
+    attentionEvidence: AttentionEvidence | None = None
     id: str
     parentId: str | None = None
     parentIds: list[str] | None = Field(default=None, min_length=1, max_length=16)
@@ -285,6 +304,25 @@ class Attention(Model):
     maker: str
     span: Span
     items: list[AttentionItem] = Field(max_length=40)
+
+
+class AttentionTimelineEntry(Model):
+    maker: str
+    step: int = Field(ge=0)
+    t: str
+    located: bool
+    region: str | None
+    node: str | None
+    evidence: list[str] = Field(min_length=1, max_length=30)
+    evidenceStatus: Literal["unvalidated"]
+    basis: Literal["history"]
+    description: str = Field(max_length=1000)
+    goals: dict[str, float] | None = None
+
+
+class TimelineCoverage(Model):
+    emitted: int = Field(ge=0, le=2000)
+    total: int = Field(ge=0)
 
 
 class Uncertainty(Model):
@@ -395,6 +433,8 @@ class GitHubSummary(Model):
 
 
 class Preview(Model):
+    timelineCoverage: TimelineCoverage | None = None
+    departureDefinition: str | None = Field(default=None, max_length=200)
     modules: list[PreviewModule] = Field(max_length=20)
     readers: list[PreviewReader] = Field(default_factory=list, max_length=4)
     statistics: SurfaceStatistics | None = None
@@ -417,6 +457,7 @@ class Preview(Model):
 
 
 class GlobalFinding(Model):
+    ledgerRows: list[LedgerRow] | None = Field(default=None, max_length=20)
     source: str = Field(max_length=500)
     claim: str = Field(max_length=2000)
     number: float | None = None
@@ -432,12 +473,13 @@ class Scope(Model):
 
 
 class Packet(Model):
-    schemaVersion: Literal["1.7", "1.8", "1.9"] = "1.7"
+    schemaVersion: Literal["1.7", "1.8", "1.9", "1.10"] = "1.7"
     id: str
     revision: int = Field(gt=0)
     artifact: Artifact
     provider: Provider
     preview: Preview | None = None
+    valueView: WorkValueView | None = None
     globalFindings: list[GlobalFinding] | None = Field(default=None, max_length=30)
     origin: Literal["synthetic example", "imported", "live provider"]
     scope: Scope
@@ -448,6 +490,7 @@ class Packet(Model):
     estimates: list[Estimate]
     evidence: list[Evidence]
     currentAttention: list[Attention] | None = Field(default=None, max_length=3000)
+    attentionTimeline: list[AttentionTimelineEntry] | None = Field(default=None, max_length=2000)
     goalHierarchy: Hierarchy | None = None
     population: Population | None = None
     revisionOf: str | None = None
@@ -461,4 +504,5 @@ class Packet(Model):
         return self
 
     def wire(self):
-        return self.model_dump(mode="json", by_alias=True, exclude_unset=True)
+        from ..preview.claims import resolve_packet
+        return resolve_packet(self.model_dump(mode="json", by_alias=True, exclude_unset=True))

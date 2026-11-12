@@ -1,0 +1,18 @@
+{
+  "deliveredAt": "2026-10-18",
+  "script": "scripts/export-engine-features.py",
+  "scriptSha256": "a5dd4bc6447524968e75d1d4ae5f7d6c058529b41bbf2143ed44d4b7261273aa",
+  "engineCommit": "5f3ad0a304727fff5e1a6beca592e786ee71b181",
+  "engineArchiveSourceManifestSha256": "8aeee563b8f23202a042c7b4385df0669e1fd78c2d5f7f8455fd85ee6cb32bc7",
+  "readerCanonicalManifestSha256": "7612cbcd48959ed57557d659d6aa3961a8c9e210fd9e4c76f7a8923c1b6a2e8f",
+  "contract": "docs/ENGINE_FEATURE_EXPORT.md",
+  "unicodeFixture": "engine/tests/fixtures/feature-export-unicode.jsonl",
+  "softwareChecks": "engine/tests/test_feature_export.py",
+  "actualCorpusRun": false,
+  "scientificAdmission": false,
+  "recipientUptakeVerified": false,
+  "demoReservation": "E:/EmotiveAutomaton/Projects/SoundingLine/sounding-line/results/tompathy-demo-prep.lock",
+  "demoReadyReceipt": "E:/EmotiveAutomaton/Projects/ToMpathy/.local/engine-art-ready.json",
+  "demoReady": false,
+  "reservationExpires": "2026-10-20T20:00:00-07:00"
+}

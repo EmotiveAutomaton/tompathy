@@ -251,6 +251,15 @@ a declared pin and bounded cache.
 
 ## Validation and remaining gates
 
+The [November engine pass](../docs/ENGINE_BACK_HALF_2026-11-15.md) adds an optional
+KV scoring path (`serve --preview-scoring kv --preview-precision float32`) and local benchmark harnesses for
+attention, accepted AI suggestions, edit reasons and Motivation ranking. Legacy
+window scoring remains default. The [scoreboard](../docs/ENGINE_SCOREBOARD.md)
+distinguishes pending exports from measured results; field labels remain off.
+Private input formats are documented in [the bundle contract](../docs/ENGINE_BENCH_BUNDLES.md).
+The int8 KV configuration failed its rank-parity gate and is refused by serving
+and downstream natural-data commands. Its speed is not an admitted improvement.
+
 See [Engine v1 verification](../docs/ENGINE_V1.md) for results and pending scientific
 acceptance. Default readings show available observed history. Inferred modules
 require their own admissions and feature inputs. `fit-posterior` adds an optional

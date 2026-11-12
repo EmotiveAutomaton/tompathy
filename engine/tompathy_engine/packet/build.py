@@ -244,4 +244,7 @@ def build_packet(
     if any(m.get("localLabel") for m in packet["makers"]):
         packet["schemaVersion"] = "1.9"
     from ..preview.makers import hide_usernames
+    from .value_view import build_value_view
+    packet["schemaVersion"] = "1.10"
+    packet["valueView"] = build_value_view(packet, tier=tier)
     return hide_usernames(Packet.model_validate(packet).wire())

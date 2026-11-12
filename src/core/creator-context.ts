@@ -89,6 +89,12 @@ export function prepareContextSources(
   return { sources: accepted, repositoryLinks: repositories, skipped, origins };
 }
 
+/** A combined analysis view is not an author name. Preserve one explicit byline;
+ * never choose among several credited people on the user's behalf. */
+export function contextCreator(artifact: Artifact | null, displayName: string, allMakers: boolean) {
+  return allMakers && artifact?.authors?.length === 1 ? artifact.authors[0].label : displayName;
+}
+
 export async function bylineContext(
   artifact: Artifact,
   creator: string,

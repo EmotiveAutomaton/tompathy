@@ -1,6 +1,6 @@
 # ToMpathy privacy
 
-Updated 16 October 2026 (Pacific time) · 0.3 beta development
+Updated 11 November 2026 (Pacific time) · 0.3 beta development
 
 ToMpathy is a browser reader with optional analysis sources. It has no developer-operated analytics, advertising, telemetry or hosted inference server. No account is required. Analysis defaults to **None**. With **Follow pages** off, configuring a source does not send a captured page until you choose **Analyze capture**. Enabling Follow pages explicitly opts into automatic readings while the panel is open, using the saved provider.
 
@@ -61,7 +61,27 @@ Light context fetches up to three explicit public creator links after Chrome gra
 
 Agent search follows one additional hop of linked pages or feeds, only within explicitly granted sites, with at most six retrieved sources total, 256 KB per response and a 30-second job deadline. One repository lookup may use up to eight requests within that deadline. It is deterministic link following, without a model or search provider. Successful sources are cached in reader memory for 15 minutes, at most 24 entries; fresh repository context can also be reused from the current saved session. Refresh bypasses caches; Clear context removes collected context and the memory cache. Requests stopped by source limits are reported rather than bypassed.
 
-The destination receives ordinary network information, such as your IP address and the requested URL. Those sites apply their own privacy practices. ToMpathy stores source URLs, excerpts, explicitly supplied dates, retrieval times and link provenance locally. It does not run broad web search, create a model, or train on the creator. Model controls remain marked as planned.
+The destination receives ordinary network information, such as your IP address and the requested URL. Those sites apply their own privacy practices. ToMpathy stores source URLs, excerpts, explicitly supplied dates, retrieval times and link provenance locally. Context collection does not run broad web search, train on the creator, or build a cross-work model.
+
+The Author and Global hierarchy tables in the safe example are authored
+illustrations, not recovered personal or population estimates. On real pages,
+these views retain explicit unavailable states; cross-work modeling remains
+unavailable. Collected context is inspectable separately. The prepared scope
+filter permits owner-supplied works, the named
+author's explicit work links, their same-origin published works list, or an
+explicitly linked profile with a `rel="me"` backlink. At most two explicit hops
+are permitted. A name match, search result, writing style, timing similarity or
+pseudonymous editor is never identity evidence. An explicit work link alone can
+provide context, but cannot enable an inferred motivation lattice. Such a lattice
+also requires owner consent or a published works list/two-way profile, admitted
+readings and an in-panel disclosure. No additional sources are fetched by the
+new views or their scope filter.
+
+The November benchmark commands are explicit local evaluations, separate from
+normal page analysis. Raw logs, texts, identifiers and individual model outputs
+stay in ignored local benchmark storage. Public receipts contain aggregates and
+fingerprints. Their default-off field label does not enable automatic AI
+attribution, change research admission or send text to a hosted service.
 
 ## Permissions and control
 

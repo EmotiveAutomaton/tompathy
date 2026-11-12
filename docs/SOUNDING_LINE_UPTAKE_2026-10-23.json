@@ -1,0 +1,15 @@
+{
+  "schema": "tompathy.sounding-line-uptake.v1",
+  "reviewDate": "2026-10-23",
+  "recipient": "ToMpathy",
+  "sourceCommit": "1112368530dca2b7ed4e8223704be9506048ec16",
+  "manifestSha256": "ed00083519747277d7dde13d205308693b8ad5fddbb76b54b53d5ec3d1114d75",
+  "featureTableSha256": "05fff7d2f673d700f3934910124c6e3c6ac5c81619815fc581002745c3e2a820",
+  "filesVerified": 11,
+  "channelSourceMappingsVerified": 21,
+  "recipientUptakeVerified": true,
+  "newScientificAdmissions": [],
+  "implementation": "Aggregate EV1/EV2/EV3 findings with scoped limits; no page badge or private estimate",
+  "checks": "engine/tests/test_sounding_line_return.py",
+  "deploymentPerformed": false
+}

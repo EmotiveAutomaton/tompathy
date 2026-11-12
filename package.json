@@ -9,6 +9,7 @@
     "chrome": "node scripts/open-chrome.mjs",
     "review": "npm run build && node scripts/open-chrome.mjs",
     "practice": "npm run build && node scripts/open-practice.mjs",
+    "practice:light": "npm run build && node scripts/open-practice.mjs --surface-only",
     "test:practice": "node scripts/practice-validation.mjs",
     "test:preview": "node scripts/preview-validation.mjs",
     "test:preview-pages": "node scripts/preview-live-pages.mjs",

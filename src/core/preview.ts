@@ -15,12 +15,19 @@ export function keepsPreviewProgress(next: Packet, previous: Packet) {
     (next.preview.payoff?.sentencesScored ?? 0) >= (previous.preview.payoff?.sentencesScored ?? 0);
 }
 
+export const LedgerRowSchema = z.strictObject({
+  ledgerId: z.string().min(1).max(200), wording: z.string().min(1).max(2000),
+  controlStatus: z.string().min(1).max(200), source: z.string().min(1).max(4000),
+});
 export const previewLabels = {
   entry: z.enum(["page", "person", "process"]).optional(),
-  evidenceStatus: z.enum(["admitted", "constructed-tested", "unvalidated"]).optional(),
+  evidenceStatus: z.enum(["admitted", "constructed-tested", "field-tested", "unvalidated"]).optional(),
+  ledgerRows: z.array(LedgerRowSchema).max(20).optional(),
   basis: z.enum(["choices", "corrections", "history", "text-surface", "population", "model-judgment"]).optional(),
 };
 export const PreviewSchema = z.object({
+  timelineCoverage: z.strictObject({ emitted: z.number().int().min(0).max(2000), total: z.number().int().nonnegative() }).optional(),
+  departureDefinition: z.string().max(200).optional(),
   rootCueReliability: z.number().min(0).max(1).optional(),
   rootCueStatus: z.literal("assumed").optional(),
   goalLenses: z.array(z.array(z.string())).max(2).nullish(),

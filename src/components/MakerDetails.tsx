@@ -3,7 +3,7 @@ import type { Packet } from "../core/model";
 
 export function MakerDetails({ packet, maker }: { packet: Packet; maker?: string }) {
   const [revealed, setRevealed] = useState<string[]>([]);
-  if (packet.schemaVersion !== "1.9") return null;
+  if (!["1.9", "1.10"].includes(packet.schemaVersion)) return null;
   return <details className="preview-modules"><summary>Makers and source evidence</summary>
     {packet.preview?.github && <p>{packet.preview.github.commits} file commits · {(packet.preview.github.declaredAiCommitShare * 100).toFixed(0)}% contain a recognized tool declaration · GitHub quota remaining: {packet.preview.github.quotaRemaining ?? "unreported"}. This is a declaration share, not a percentage of AI-written text.</p>}
     {packet.makers.filter(m => !maker || m.id === maker).map(m => <article key={m.id}>

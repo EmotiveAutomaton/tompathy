@@ -1,0 +1,2731 @@
+[
+  {
+    "id": "constructed-Q10-0",
+    "context": "It was not raining. Alice carried the book.",
+    "text": "Alice faced immediate danger from a collapsing roof.",
+    "before": null,
+    "expected": [
+      "danger"
+    ],
+    "source": "constructed-writing-v1:97e607069d78ab7e6cc01e6fdc62ab566cc8afa731fa4bd74cbe730e5278477a",
+    "tags": [
+      "paraphrase",
+      "family-0",
+      "negation"
+    ]
+  },
+  {
+    "id": "constructed-Q10-1",
+    "context": "It was not raining. Bob carried the book.",
+    "text": "Bob gently cared for and comforted a sick child.",
+    "before": null,
+    "expected": [
+      "care"
+    ],
+    "source": "constructed-writing-v1:d31601d8b9390ab848e8407616974a4c45113ee5c34e0ab4817e55c2be948bbe",
+    "tags": [
+      "paraphrase",
+      "family-1",
+      "negation"
+    ]
+  },
+  {
+    "id": "constructed-Q10-2",
+    "context": "It was not raining. Carol carried the book.",
+    "text": "Carol played a silly game and laughed at a joke.",
+    "before": null,
+    "expected": [
+      "play or humor"
+    ],
+    "source": "constructed-writing-v1:a705fc5a8e24b748bf8e811b9688e79b730f448c2a880d5e52db189fe38b8d89",
+    "tags": [
+      "paraphrase",
+      "family-2",
+      "negation"
+    ]
+  },
+  {
+    "id": "constructed-Q10-3",
+    "context": "It was not raining. David carried the book.",
+    "text": "David argued and fought with a rival.",
+    "before": null,
+    "expected": [
+      "conflict"
+    ],
+    "source": "constructed-writing-v1:e4923517ca2985fb1bee3567ea68016553b5b05843ff8d70eb94a09fd902c8dd",
+    "tags": [
+      "paraphrase",
+      "family-3",
+      "negation"
+    ]
+  },
+  {
+    "id": "constructed-Q10-4",
+    "context": "It was not raining. Elena carried the book.",
+    "text": "Elena grieved after a loved one's death.",
+    "before": null,
+    "expected": [
+      "loss or separation"
+    ],
+    "source": "constructed-writing-v1:c1784631595c941cc9e9480993f74666363b74eccd8efbf0884c723649f9a3f3",
+    "tags": [
+      "paraphrase",
+      "family-4",
+      "negation"
+    ]
+  },
+  {
+    "id": "constructed-Q10-5",
+    "context": "It was not raining. Farah carried the book.",
+    "text": "Farah felt romantic desire and sexual attraction.",
+    "before": null,
+    "expected": [
+      "desire"
+    ],
+    "source": "constructed-writing-v1:30be3f908822f51fafc0e11d50612d03da3db6aa2552b02ddc5f832f4690e7b8",
+    "tags": [
+      "paraphrase",
+      "family-5",
+      "negation"
+    ]
+  },
+  {
+    "id": "constructed-Q10-6",
+    "context": "It was not raining. Grace carried the book.",
+    "text": "Grace discovered an unknown island while exploring.",
+    "before": null,
+    "expected": [
+      "discovery"
+    ],
+    "source": "constructed-writing-v1:2b8011faec98b14d59bea398bb77eaaecf88bd8dac3f7ee42645d5079ab8e55d",
+    "tags": [
+      "paraphrase",
+      "family-6",
+      "negation"
+    ]
+  },
+  {
+    "id": "constructed-Q10-7",
+    "context": "It was not raining. Henry carried the book.",
+    "text": "Henry gained prestige and high social rank.",
+    "before": null,
+    "expected": [
+      "status"
+    ],
+    "source": "constructed-writing-v1:ed80740a79748fba42d4593811ae94e1a90b1088837cbedddaf7e1af8d2d53af",
+    "tags": [
+      "paraphrase",
+      "family-7",
+      "negation"
+    ]
+  },
+  {
+    "id": "constructed-Q10-8",
+    "context": "It was not raining. Isabel carried the book.",
+    "text": "Isabel ate food to satisfy physical hunger.",
+    "before": null,
+    "expected": [
+      "food or body"
+    ],
+    "source": "constructed-writing-v1:6751da19c16f76c8540bfc57c81c42871c8cd019f82a981503d3c755a5d4be72",
+    "tags": [
+      "paraphrase",
+      "family-8",
+      "negation"
+    ]
+  },
+  {
+    "id": "constructed-Q10-10",
+    "context": "Kara carried the book.",
+    "text": "Kara faced immediate danger from a collapsing roof.",
+    "before": null,
+    "expected": [
+      "danger"
+    ],
+    "source": "constructed-writing-v1:3880d77ff4f13da72933d4dc1b3f20fa861de4d79e78fdf8654552cc36fe2588",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ]
+  },
+  {
+    "id": "constructed-Q10-11",
+    "context": "Liam carried the book.",
+    "text": "Liam gently cared for and comforted a sick child.",
+    "before": null,
+    "expected": [
+      "care"
+    ],
+    "source": "constructed-writing-v1:0070acf70ca770500b348d9a37e368dc536291e3b96c379ee74037769918aa20",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ]
+  },
+  {
+    "id": "constructed-Q10-12",
+    "context": "Maya carried the book.",
+    "text": "Maya played a silly game and laughed at a joke.",
+    "before": null,
+    "expected": [
+      "play or humor"
+    ],
+    "source": "constructed-writing-v1:4cc93d0f37541d90318ea70ab1b4b64a8589b202cc1c7c74fc65a19f0eb42079",
+    "tags": [
+      "paraphrase",
+      "family-2"
+    ]
+  },
+  {
+    "id": "constructed-Q10-13",
+    "context": "Noah carried the book.",
+    "text": "Noah argued and fought with a rival.",
+    "before": null,
+    "expected": [
+      "conflict"
+    ],
+    "source": "constructed-writing-v1:6c9071eb39eea96d7f68fa30526efde06243b331b5a921bffad1ceab03586a07",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ]
+  },
+  {
+    "id": "constructed-Q10-14",
+    "context": "Olivia carried the book.",
+    "text": "Olivia grieved after a loved one's death.",
+    "before": null,
+    "expected": [
+      "loss or separation"
+    ],
+    "source": "constructed-writing-v1:9e6007a753be3b55beee6e4895aa604a778ccf140c8865bfd4aa3863c7b1c2c0",
+    "tags": [
+      "paraphrase",
+      "family-4"
+    ]
+  },
+  {
+    "id": "constructed-Q10-15",
+    "context": "Priya carried the book.",
+    "text": "Priya felt romantic desire and sexual attraction.",
+    "before": null,
+    "expected": [
+      "desire"
+    ],
+    "source": "constructed-writing-v1:987a48369ec8f3c4034ecbf0acdc1c3f902a51c8e4b4c741cdaab6a9a6687809",
+    "tags": [
+      "paraphrase",
+      "family-5"
+    ]
+  },
+  {
+    "id": "constructed-Q10-16",
+    "context": "Quinn carried the book.",
+    "text": "Quinn discovered an unknown island while exploring.",
+    "before": null,
+    "expected": [
+      "discovery"
+    ],
+    "source": "constructed-writing-v1:3d2dd29c9451681ba1674d56df26946d99e560cdd46a58f339463237675c83aa",
+    "tags": [
+      "paraphrase",
+      "family-6"
+    ]
+  },
+  {
+    "id": "constructed-Q10-17",
+    "context": "Rosa carried the book.",
+    "text": "Rosa gained prestige and high social rank.",
+    "before": null,
+    "expected": [
+      "status"
+    ],
+    "source": "constructed-writing-v1:69acfc9f9a680c6c488b853175e6bf8b94e8779a5ce97b2f276e8204c3b57519",
+    "tags": [
+      "paraphrase",
+      "family-7"
+    ]
+  },
+  {
+    "id": "constructed-Q10-18",
+    "context": "Sam carried the book.",
+    "text": "Sam ate food to satisfy physical hunger.",
+    "before": null,
+    "expected": [
+      "food or body"
+    ],
+    "source": "constructed-writing-v1:96ba7ea696535ac402e10b320ccd4419a93b400bf8ca629d979cac8463134ea2",
+    "tags": [
+      "paraphrase",
+      "family-8"
+    ]
+  },
+  {
+    "id": "constructed-Q10-20",
+    "context": "Uma carried the book.",
+    "text": "Uma faced immediate danger from a collapsing roof.",
+    "before": null,
+    "expected": [
+      "danger"
+    ],
+    "source": "constructed-writing-v1:84d0405398af62d90718788ac3cb2be93b3908662078a4a23661f2172ebc0e8f",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ]
+  },
+  {
+    "id": "constructed-Q10-21",
+    "context": "Victor carried the book.",
+    "text": "Victor gently cared for and comforted a sick child.",
+    "before": null,
+    "expected": [
+      "care"
+    ],
+    "source": "constructed-writing-v1:e39431713f9884b5fa27b0ac7f80a5ae5ff356096187d5ab20d453af651f74b4",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ]
+  },
+  {
+    "id": "constructed-Q10-22",
+    "context": "Wendy carried the book.",
+    "text": "Wendy played a silly game and laughed at a joke.",
+    "before": null,
+    "expected": [
+      "play or humor"
+    ],
+    "source": "constructed-writing-v1:2e910ef413d5fe45a8c720e93633b76219b653fa1e87b20f634f044e0774ccce",
+    "tags": [
+      "paraphrase",
+      "family-2"
+    ]
+  },
+  {
+    "id": "constructed-Q10-23",
+    "context": "Xavier carried the book.",
+    "text": "Xavier argued and fought with a rival.",
+    "before": null,
+    "expected": [
+      "conflict"
+    ],
+    "source": "constructed-writing-v1:e8be97d27f9e115c8a5d55e5c6a7301d66ab43a6d347dbf3cf3ed10d015e31d0",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ]
+  },
+  {
+    "id": "constructed-Q10-24",
+    "context": "Yara carried the book.",
+    "text": "Yara grieved after a loved one's death.",
+    "before": null,
+    "expected": [
+      "loss or separation"
+    ],
+    "source": "constructed-writing-v1:9d8dfae911715ec810ded59bcc9773acef920571e44397d191f52348c68cfde2",
+    "tags": [
+      "paraphrase",
+      "family-4"
+    ]
+  },
+  {
+    "id": "constructed-Q10-25",
+    "context": "Alice carried the parcel.",
+    "text": "Alice felt romantic desire and sexual attraction.",
+    "before": null,
+    "expected": [
+      "desire"
+    ],
+    "source": "constructed-writing-v1:6e2396d7985f9d304b4cad4c9cd1b841b4f624878727bd51b917774f381b7abc",
+    "tags": [
+      "paraphrase",
+      "family-5"
+    ]
+  },
+  {
+    "id": "constructed-Q10-26",
+    "context": "Bob carried the parcel.",
+    "text": "Bob discovered an unknown island while exploring.",
+    "before": null,
+    "expected": [
+      "discovery"
+    ],
+    "source": "constructed-writing-v1:fdf763205c2c13ae5dab48fbaa3c2af5f6481982829e5e1780c58facfa6758e3",
+    "tags": [
+      "paraphrase",
+      "family-6"
+    ]
+  },
+  {
+    "id": "constructed-Q10-27",
+    "context": "Carol carried the parcel.",
+    "text": "Carol gained prestige and high social rank.",
+    "before": null,
+    "expected": [
+      "status"
+    ],
+    "source": "constructed-writing-v1:8bf7634d4a6d9d454d7d73d669d4141eb4992e05589e3ea2f631103aecfe821c",
+    "tags": [
+      "paraphrase",
+      "family-7"
+    ]
+  },
+  {
+    "id": "constructed-Q10-28",
+    "context": "David carried the parcel.",
+    "text": "David ate food to satisfy physical hunger.",
+    "before": null,
+    "expected": [
+      "food or body"
+    ],
+    "source": "constructed-writing-v1:e8f80f14d37be82c0f655b007a876b08a753f1d377071ab5ea20790371919a1a",
+    "tags": [
+      "paraphrase",
+      "family-8"
+    ]
+  },
+  {
+    "id": "constructed-Q10-30",
+    "context": "Farah carried the parcel.",
+    "text": "Farah faced immediate danger from a collapsing roof.",
+    "before": null,
+    "expected": [
+      "danger"
+    ],
+    "source": "constructed-writing-v1:b3e453773c9c69808ca8c060d72495c4ebca33271a2034fc4f25d6b420953a55",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ]
+  },
+  {
+    "id": "constructed-Q10-31",
+    "context": "Grace carried the parcel.",
+    "text": "Grace gently cared for and comforted a sick child.",
+    "before": null,
+    "expected": [
+      "care"
+    ],
+    "source": "constructed-writing-v1:5477a25d3a9b64fa578264ecf6fade3226c6815b14b2cd49f7615aa86423e9b1",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ]
+  },
+  {
+    "id": "constructed-Q10-32",
+    "context": "Henry carried the parcel.",
+    "text": "Henry played a silly game and laughed at a joke.",
+    "before": null,
+    "expected": [
+      "play or humor"
+    ],
+    "source": "constructed-writing-v1:dec4ffa887fcd50d22e411213c4573d4c0888750d1c5e3e2af93af56a26347c1",
+    "tags": [
+      "paraphrase",
+      "family-2"
+    ]
+  },
+  {
+    "id": "constructed-Q10-33",
+    "context": "Isabel carried the parcel.",
+    "text": "Isabel argued and fought with a rival.",
+    "before": null,
+    "expected": [
+      "conflict"
+    ],
+    "source": "constructed-writing-v1:8e16a98bb367133f3ac453605f998ad0a731dc213d1bbfa5ded5d9411741d2ae",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ]
+  },
+  {
+    "id": "constructed-Q10-34",
+    "context": "Jonah carried the parcel.",
+    "text": "Jonah grieved after a loved one's death.",
+    "before": null,
+    "expected": [
+      "loss or separation"
+    ],
+    "source": "constructed-writing-v1:435246896a59871a1ebe2d53a73815188551bbb0330c05cee8294f70ea41f188",
+    "tags": [
+      "paraphrase",
+      "family-4"
+    ]
+  },
+  {
+    "id": "constructed-Q10-35",
+    "context": "Kara carried the parcel.",
+    "text": "Kara felt romantic desire and sexual attraction.",
+    "before": null,
+    "expected": [
+      "desire"
+    ],
+    "source": "constructed-writing-v1:363d72acd16b9e2ad46c7e7883681ad5edaf0971b11b2a719e8383cfcb9c7f0c",
+    "tags": [
+      "paraphrase",
+      "family-5"
+    ]
+  },
+  {
+    "id": "constructed-Q10-36",
+    "context": "Liam carried the parcel.",
+    "text": "Liam discovered an unknown island while exploring.",
+    "before": null,
+    "expected": [
+      "discovery"
+    ],
+    "source": "constructed-writing-v1:9c17f401e99d15ab02f6ea20448719c3f4d13dcf455bcec83db676cf6592a2d5",
+    "tags": [
+      "paraphrase",
+      "family-6"
+    ]
+  },
+  {
+    "id": "constructed-Q10-37",
+    "context": "Maya carried the parcel.",
+    "text": "Maya gained prestige and high social rank.",
+    "before": null,
+    "expected": [
+      "status"
+    ],
+    "source": "constructed-writing-v1:7e5f04e8149be9c50c46b417e96609a0ab166c92d372b26bb4ff5260ce82591f",
+    "tags": [
+      "paraphrase",
+      "family-7"
+    ]
+  },
+  {
+    "id": "constructed-Q10-38",
+    "context": "Noah carried the parcel.",
+    "text": "Noah ate food to satisfy physical hunger.",
+    "before": null,
+    "expected": [
+      "food or body"
+    ],
+    "source": "constructed-writing-v1:799a3da2d1c785a5f3282c15e59900482fd5b48d951d701af2eaaa6a10e23aa9",
+    "tags": [
+      "paraphrase",
+      "family-8"
+    ]
+  },
+  {
+    "id": "constructed-Q10-40",
+    "context": "Priya carried the parcel.",
+    "text": "Priya faced immediate danger from a collapsing roof.",
+    "before": null,
+    "expected": [
+      "danger"
+    ],
+    "source": "constructed-writing-v1:19cb48dd424b9485c5527a60682559c07c99e56c4d03c0db70d7f5abc86373ce",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ]
+  },
+  {
+    "id": "constructed-Q10-41",
+    "context": "Quinn carried the parcel.",
+    "text": "Quinn gently cared for and comforted a sick child.",
+    "before": null,
+    "expected": [
+      "care"
+    ],
+    "source": "constructed-writing-v1:c60285518c1bb0ac748ff6c4e19f98a37c5055aea1e39f0a3e8c2ea82132b46c",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ]
+  },
+  {
+    "id": "constructed-Q10-42",
+    "context": "Rosa carried the parcel.",
+    "text": "Rosa played a silly game and laughed at a joke.",
+    "before": null,
+    "expected": [
+      "play or humor"
+    ],
+    "source": "constructed-writing-v1:f878130bd519cf23002b18fdf7691a6126817c81d887bf4c40d6f2f7671b6711",
+    "tags": [
+      "paraphrase",
+      "family-2"
+    ]
+  },
+  {
+    "id": "constructed-Q10-43",
+    "context": "Sam carried the parcel.",
+    "text": "Sam argued and fought with a rival.",
+    "before": null,
+    "expected": [
+      "conflict"
+    ],
+    "source": "constructed-writing-v1:90aabd13ea246d8cb3a3be85323a14494c9b14c03cbe21a3c7947d1cb53b8669",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ]
+  },
+  {
+    "id": "constructed-Q10-44",
+    "context": "Tara carried the parcel.",
+    "text": "Tara grieved after a loved one's death.",
+    "before": null,
+    "expected": [
+      "loss or separation"
+    ],
+    "source": "constructed-writing-v1:4c049821d91a4e17caee00eee8fab666619c511c0c6191f173f37e19a674cd6c",
+    "tags": [
+      "paraphrase",
+      "family-4"
+    ]
+  },
+  {
+    "id": "constructed-Q10-45",
+    "context": "Uma carried the parcel.",
+    "text": "Uma felt romantic desire and sexual attraction.",
+    "before": null,
+    "expected": [
+      "desire"
+    ],
+    "source": "constructed-writing-v1:a3072bfa4783cc444ee5093b6d6a4ba8bc83275618c9a8aa0cc8b246d6342591",
+    "tags": [
+      "paraphrase",
+      "family-5"
+    ]
+  },
+  {
+    "id": "constructed-Q10-46",
+    "context": "Victor carried the parcel.",
+    "text": "Victor discovered an unknown island while exploring.",
+    "before": null,
+    "expected": [
+      "discovery"
+    ],
+    "source": "constructed-writing-v1:9b82ef48c4cc47ae33c33465da02634b5a11473b4e501ca7297a483a10ba552a",
+    "tags": [
+      "paraphrase",
+      "family-6"
+    ]
+  },
+  {
+    "id": "constructed-Q10-47",
+    "context": "Wendy carried the parcel.",
+    "text": "Wendy gained prestige and high social rank.",
+    "before": null,
+    "expected": [
+      "status"
+    ],
+    "source": "constructed-writing-v1:a657e96f9a62f13a7dd52624cae11dd4766b5ebc823798ca860cc8b9d0212136",
+    "tags": [
+      "paraphrase",
+      "family-7"
+    ]
+  },
+  {
+    "id": "constructed-Q10-48",
+    "context": "Xavier carried the parcel.",
+    "text": "Xavier ate food to satisfy physical hunger.",
+    "before": null,
+    "expected": [
+      "food or body"
+    ],
+    "source": "constructed-writing-v1:b2df39f3d4b21c39a801bb35245e2db5807302233368af6c91ee21d3cbce0fe4",
+    "tags": [
+      "paraphrase",
+      "family-8"
+    ]
+  },
+  {
+    "id": "constructed-Q10-50",
+    "context": "Alice carried the lamp.",
+    "text": "Alice faced immediate danger from a collapsing roof.",
+    "before": null,
+    "expected": [
+      "danger"
+    ],
+    "source": "constructed-writing-v1:863a1ead1e0ef17f39a601c81a6902099e4ba88a971ed59ce92829f98e002a86",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ]
+  },
+  {
+    "id": "constructed-Q10-51",
+    "context": "Bob carried the lamp.",
+    "text": "Bob gently cared for and comforted a sick child.",
+    "before": null,
+    "expected": [
+      "care"
+    ],
+    "source": "constructed-writing-v1:623f5efd648275df1dec35470e93383dfb238545eee66d7ed0a2feb38eac1f98",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ]
+  },
+  {
+    "id": "constructed-Q10-52",
+    "context": "Carol carried the lamp.",
+    "text": "Carol played a silly game and laughed at a joke.",
+    "before": null,
+    "expected": [
+      "play or humor"
+    ],
+    "source": "constructed-writing-v1:d6b424a841e38ddd4ca7ffb36dfb61798ff4e6cad0b5882549752a217e0181a2",
+    "tags": [
+      "paraphrase",
+      "family-2"
+    ]
+  },
+  {
+    "id": "constructed-Q10-53",
+    "context": "David carried the lamp.",
+    "text": "David argued and fought with a rival.",
+    "before": null,
+    "expected": [
+      "conflict"
+    ],
+    "source": "constructed-writing-v1:3455b3c4266eab920571dc4b3525b4fe6ec4bb9dc668140c402069f5eb3a8231",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ]
+  },
+  {
+    "id": "constructed-Q10-54",
+    "context": "Elena carried the lamp.",
+    "text": "Elena grieved after a loved one's death.",
+    "before": null,
+    "expected": [
+      "loss or separation"
+    ],
+    "source": "constructed-writing-v1:c492f82858ebd2e947b22d76a3758055c0d1b9c4643535ddc502d68947f6aa0d",
+    "tags": [
+      "paraphrase",
+      "family-4"
+    ]
+  },
+  {
+    "id": "constructed-Q10-55",
+    "context": "Farah carried the lamp.",
+    "text": "Farah felt romantic desire and sexual attraction.",
+    "before": null,
+    "expected": [
+      "desire"
+    ],
+    "source": "constructed-writing-v1:75d47acd77716c6020f9294294604fb6735e79571c2126248f6c475c8580f7de",
+    "tags": [
+      "paraphrase",
+      "family-5"
+    ]
+  },
+  {
+    "id": "constructed-Q10-56",
+    "context": "Grace carried the lamp.",
+    "text": "Grace discovered an unknown island while exploring.",
+    "before": null,
+    "expected": [
+      "discovery"
+    ],
+    "source": "constructed-writing-v1:bc5b49b018213744b07e76d2a0c8b13a1af8cfb6fb8c8e21cf702179de0bfc99",
+    "tags": [
+      "paraphrase",
+      "family-6"
+    ]
+  },
+  {
+    "id": "constructed-Q10-57",
+    "context": "Henry carried the lamp.",
+    "text": "Henry gained prestige and high social rank.",
+    "before": null,
+    "expected": [
+      "status"
+    ],
+    "source": "constructed-writing-v1:9641be11eee50d467a124c44ce8107caf62128637e65aa5db9957dd7926544a9",
+    "tags": [
+      "paraphrase",
+      "family-7"
+    ]
+  },
+  {
+    "id": "constructed-Q10-58",
+    "context": "Isabel carried the lamp.",
+    "text": "Isabel ate food to satisfy physical hunger.",
+    "before": null,
+    "expected": [
+      "food or body"
+    ],
+    "source": "constructed-writing-v1:60a9183fa4a44cb288c81542ceff478df08ac4ea73546a32d4a5b56bd8ff6b21",
+    "tags": [
+      "paraphrase",
+      "family-8"
+    ]
+  },
+  {
+    "id": "constructed-Q10-60",
+    "context": "Kara carried the lamp.",
+    "text": "Kara faced immediate danger from a collapsing roof.",
+    "before": null,
+    "expected": [
+      "danger"
+    ],
+    "source": "constructed-writing-v1:b133cd86232324d1d656443aa29a95ee27a943c6a2aa962d423b25d81b5e87c6",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ]
+  },
+  {
+    "id": "constructed-Q10-61",
+    "context": "Liam carried the lamp.",
+    "text": "Liam gently cared for and comforted a sick child.",
+    "before": null,
+    "expected": [
+      "care"
+    ],
+    "source": "constructed-writing-v1:fc78b0a72ada5f0a0cde31251ddeb6e5b420c8f597414d31d273a2a2c1b0adcc",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ]
+  },
+  {
+    "id": "constructed-Q10-62",
+    "context": "Maya carried the lamp.",
+    "text": "Maya played a silly game and laughed at a joke.",
+    "before": null,
+    "expected": [
+      "play or humor"
+    ],
+    "source": "constructed-writing-v1:9e2957d36f5ace6ae19fb6838693e7dcf267c37707c1342719d75bc8bacb59ea",
+    "tags": [
+      "paraphrase",
+      "family-2"
+    ]
+  },
+  {
+    "id": "constructed-Q10-63",
+    "context": "Noah carried the lamp.",
+    "text": "Noah argued and fought with a rival.",
+    "before": null,
+    "expected": [
+      "conflict"
+    ],
+    "source": "constructed-writing-v1:e6ea509c24f2fa6432733d3ef0386aacf58503ae212a5823dd78ec2045cadd82",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ]
+  },
+  {
+    "id": "constructed-Q10-64",
+    "context": "Olivia carried the lamp.",
+    "text": "Olivia grieved after a loved one's death.",
+    "before": null,
+    "expected": [
+      "loss or separation"
+    ],
+    "source": "constructed-writing-v1:d6357f6dc4f50808e289864a1bc054e9c411205f80641da54efe70bd9a353e29",
+    "tags": [
+      "paraphrase",
+      "family-4"
+    ]
+  },
+  {
+    "id": "constructed-Q10-65",
+    "context": "Priya carried the lamp.",
+    "text": "Priya felt romantic desire and sexual attraction.",
+    "before": null,
+    "expected": [
+      "desire"
+    ],
+    "source": "constructed-writing-v1:7972008b25e847cb17184978d91f38e5f2c7b4bfa383b586e4620e1946182698",
+    "tags": [
+      "paraphrase",
+      "family-5"
+    ]
+  },
+  {
+    "id": "constructed-Q10-66",
+    "context": "Quinn carried the lamp.",
+    "text": "Quinn discovered an unknown island while exploring.",
+    "before": null,
+    "expected": [
+      "discovery"
+    ],
+    "source": "constructed-writing-v1:6b3ca7605ec2dac82e51f15b6739230bb24351ac38417f3663940e0c1f856025",
+    "tags": [
+      "paraphrase",
+      "family-6"
+    ]
+  },
+  {
+    "id": "constructed-Q10-67",
+    "context": "Rosa carried the lamp.",
+    "text": "Rosa gained prestige and high social rank.",
+    "before": null,
+    "expected": [
+      "status"
+    ],
+    "source": "constructed-writing-v1:421d1b69f4ccf3b2c524b8bc9aa46f63f91a3f1821752ef13c20ae4457717c9c",
+    "tags": [
+      "paraphrase",
+      "family-7"
+    ]
+  },
+  {
+    "id": "constructed-Q10-68",
+    "context": "Sam carried the lamp.",
+    "text": "Sam ate food to satisfy physical hunger.",
+    "before": null,
+    "expected": [
+      "food or body"
+    ],
+    "source": "constructed-writing-v1:1fdd3a148b1e8f55700067da2d8ecdac3a46c100ceafd850a0d13cdd98e59454",
+    "tags": [
+      "paraphrase",
+      "family-8"
+    ]
+  },
+  {
+    "id": "constructed-Q10-70",
+    "context": "Uma carried the lamp.",
+    "text": "Uma faced immediate danger from a collapsing roof.",
+    "before": null,
+    "expected": [
+      "danger"
+    ],
+    "source": "constructed-writing-v1:0003f739c567d17e5b0c7f1eb42ac08b9b61d680fb969a25f9ae5e4510ed7a61",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ]
+  },
+  {
+    "id": "constructed-Q10-71",
+    "context": "Victor carried the lamp.",
+    "text": "Victor gently cared for and comforted a sick child.",
+    "before": null,
+    "expected": [
+      "care"
+    ],
+    "source": "constructed-writing-v1:e9e0eee8770d4fb707511eb793990079723138fdd0492463768a2bf951ba047c",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ]
+  },
+  {
+    "id": "constructed-Q10-72",
+    "context": "Wendy carried the lamp.",
+    "text": "Wendy played a silly game and laughed at a joke.",
+    "before": null,
+    "expected": [
+      "play or humor"
+    ],
+    "source": "constructed-writing-v1:03a5fa089fc41eefa3b7dec2a9e5c3007a23644363181d2615aeef5e2b2b471f",
+    "tags": [
+      "paraphrase",
+      "family-2"
+    ]
+  },
+  {
+    "id": "constructed-Q10-73",
+    "context": "Xavier carried the lamp.",
+    "text": "Xavier argued and fought with a rival.",
+    "before": null,
+    "expected": [
+      "conflict"
+    ],
+    "source": "constructed-writing-v1:fede4a679248727db82c6dbacdef044c614f7d8659b09fb3acf78804134f5629",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ]
+  },
+  {
+    "id": "constructed-Q10-74",
+    "context": "Yara carried the lamp.",
+    "text": "Yara grieved after a loved one's death.",
+    "before": null,
+    "expected": [
+      "loss or separation"
+    ],
+    "source": "constructed-writing-v1:aac66ccfb970106569a8752e218ccef7bbf96c0d5d294230ba3f975712a31fe7",
+    "tags": [
+      "paraphrase",
+      "family-4"
+    ]
+  },
+  {
+    "id": "constructed-Q10-75",
+    "context": "Alice carried the chair.",
+    "text": "Alice felt romantic desire and sexual attraction.",
+    "before": null,
+    "expected": [
+      "desire"
+    ],
+    "source": "constructed-writing-v1:d64cdcff9d1e012bf1309f9a538783f9544877a55fc231ee25e67758649d7148",
+    "tags": [
+      "paraphrase",
+      "family-5"
+    ]
+  },
+  {
+    "id": "constructed-Q10-76",
+    "context": "Bob carried the chair.",
+    "text": "Bob discovered an unknown island while exploring.",
+    "before": null,
+    "expected": [
+      "discovery"
+    ],
+    "source": "constructed-writing-v1:b465b0ecad708a4ace54b4f9feb87468be3d1f0a54197f01bedc1fae495ecedf",
+    "tags": [
+      "paraphrase",
+      "family-6"
+    ]
+  },
+  {
+    "id": "constructed-Q10-77",
+    "context": "Carol carried the chair.",
+    "text": "Carol gained prestige and high social rank.",
+    "before": null,
+    "expected": [
+      "status"
+    ],
+    "source": "constructed-writing-v1:e5dac26bd6050c183d322866e06f60817451688c9275d8b857ef2b1d8b2da1d1",
+    "tags": [
+      "paraphrase",
+      "family-7"
+    ]
+  },
+  {
+    "id": "constructed-Q10-78",
+    "context": "David carried the chair.",
+    "text": "David ate food to satisfy physical hunger.",
+    "before": null,
+    "expected": [
+      "food or body"
+    ],
+    "source": "constructed-writing-v1:d1ccf9cd5310569d6ba1690bf33f2893886201ad015c18da449e85d469e19bbe",
+    "tags": [
+      "paraphrase",
+      "family-8"
+    ]
+  },
+  {
+    "id": "constructed-Q10-80",
+    "context": "Farah carried the chair.",
+    "text": "Farah faced immediate danger from a collapsing roof.",
+    "before": null,
+    "expected": [
+      "danger"
+    ],
+    "source": "constructed-writing-v1:109d821c1d6ea19664320ea83f08e47ed765223f22cefcf2052ddf098e770ff2",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ]
+  },
+  {
+    "id": "constructed-Q10-81",
+    "context": "Grace carried the chair.",
+    "text": "Grace gently cared for and comforted a sick child.",
+    "before": null,
+    "expected": [
+      "care"
+    ],
+    "source": "constructed-writing-v1:8517d542bc8d5be131bdb0356ae81b55e8650213c0bfe22cdf6e839f8f808ba4",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ]
+  },
+  {
+    "id": "constructed-Q10-82",
+    "context": "Henry carried the chair.",
+    "text": "Henry played a silly game and laughed at a joke.",
+    "before": null,
+    "expected": [
+      "play or humor"
+    ],
+    "source": "constructed-writing-v1:000ba76f1dde8c2c1e3a7b256a7d405e5e1080f992deb847f1ddee4e86f4aeae",
+    "tags": [
+      "paraphrase",
+      "family-2"
+    ]
+  },
+  {
+    "id": "constructed-Q10-83",
+    "context": "Isabel carried the chair.",
+    "text": "Isabel argued and fought with a rival.",
+    "before": null,
+    "expected": [
+      "conflict"
+    ],
+    "source": "constructed-writing-v1:e28f1d593aad1c073fc75fce99251fdf2662179d594df029e54ec1aa6e29c904",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ]
+  },
+  {
+    "id": "constructed-Q10-84",
+    "context": "Jonah carried the chair.",
+    "text": "Jonah grieved after a loved one's death.",
+    "before": null,
+    "expected": [
+      "loss or separation"
+    ],
+    "source": "constructed-writing-v1:934f1f062257b640bbe14f5c974023416457753252f08f1c837d015c54812d9e",
+    "tags": [
+      "paraphrase",
+      "family-4"
+    ]
+  },
+  {
+    "id": "constructed-Q10-85",
+    "context": "Kara carried the chair.",
+    "text": "Kara felt romantic desire and sexual attraction.",
+    "before": null,
+    "expected": [
+      "desire"
+    ],
+    "source": "constructed-writing-v1:4ff3bcb67956da4c10e01e84998118c750d528bb41543f9e670aac9b0899b93d",
+    "tags": [
+      "paraphrase",
+      "family-5"
+    ]
+  },
+  {
+    "id": "constructed-Q10-86",
+    "context": "Liam carried the chair.",
+    "text": "Liam discovered an unknown island while exploring.",
+    "before": null,
+    "expected": [
+      "discovery"
+    ],
+    "source": "constructed-writing-v1:bbac5528d4831c72425eeca4684e80e9f4db46aa3de0d2a7e7f4d5562beb541f",
+    "tags": [
+      "paraphrase",
+      "family-6"
+    ]
+  },
+  {
+    "id": "constructed-Q10-87",
+    "context": "Maya carried the chair.",
+    "text": "Maya gained prestige and high social rank.",
+    "before": null,
+    "expected": [
+      "status"
+    ],
+    "source": "constructed-writing-v1:aae10afb1179d7516c5a5d7cbf7a134782aaa1aba45ba2fd129235dd452a2b24",
+    "tags": [
+      "paraphrase",
+      "family-7"
+    ]
+  },
+  {
+    "id": "constructed-Q10-88",
+    "context": "Noah carried the chair.",
+    "text": "Noah ate food to satisfy physical hunger.",
+    "before": null,
+    "expected": [
+      "food or body"
+    ],
+    "source": "constructed-writing-v1:1e9407b2bdd7e63cc2189fc4e83c726ee24da3106e0ee0658b2d8a9247dbd4db",
+    "tags": [
+      "paraphrase",
+      "family-8"
+    ]
+  },
+  {
+    "id": "constructed-Q10-90",
+    "context": "Priya carried the chair.",
+    "text": "Priya faced immediate danger from a collapsing roof.",
+    "before": null,
+    "expected": [
+      "danger"
+    ],
+    "source": "constructed-writing-v1:f67bcec6f7e6b535491a0c90a21d87a6271124df643987f3f4a01713b5ecbb7f",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ]
+  },
+  {
+    "id": "constructed-Q10-91",
+    "context": "Quinn carried the chair.",
+    "text": "Quinn gently cared for and comforted a sick child.",
+    "before": null,
+    "expected": [
+      "care"
+    ],
+    "source": "constructed-writing-v1:3307c2c5f6ea52c9d464dd2b09de7b9c6ddd6250935c5a54bea5c1081c11d527",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ]
+  },
+  {
+    "id": "constructed-Q10-92",
+    "context": "Rosa carried the chair.",
+    "text": "Rosa played a silly game and laughed at a joke.",
+    "before": null,
+    "expected": [
+      "play or humor"
+    ],
+    "source": "constructed-writing-v1:8c1a1c771226dca1072166689507e4ea64971ceda4e6662ccf6be628c7ad7311",
+    "tags": [
+      "paraphrase",
+      "family-2"
+    ]
+  },
+  {
+    "id": "constructed-Q10-93",
+    "context": "Sam carried the chair.",
+    "text": "Sam argued and fought with a rival.",
+    "before": null,
+    "expected": [
+      "conflict"
+    ],
+    "source": "constructed-writing-v1:2ee3dbf077ea3bc33ae578b4df48411c1e2dc9245f3bbeaec17465e3b1e77d3e",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ]
+  },
+  {
+    "id": "constructed-Q10-94",
+    "context": "Tara carried the chair.",
+    "text": "Tara grieved after a loved one's death.",
+    "before": null,
+    "expected": [
+      "loss or separation"
+    ],
+    "source": "constructed-writing-v1:dda6989dbdcfb8acabc67fa30178edea48fafea12e7c4e390801164b43682f34",
+    "tags": [
+      "paraphrase",
+      "family-4"
+    ]
+  },
+  {
+    "id": "constructed-Q10-95",
+    "context": "Uma carried the chair.",
+    "text": "Uma felt romantic desire and sexual attraction.",
+    "before": null,
+    "expected": [
+      "desire"
+    ],
+    "source": "constructed-writing-v1:03a5c9274eda801680110ba172b8f907c4593345b2132b00694d1531cd42f6b1",
+    "tags": [
+      "paraphrase",
+      "family-5"
+    ]
+  },
+  {
+    "id": "constructed-Q10-96",
+    "context": "Victor carried the chair.",
+    "text": "Victor discovered an unknown island while exploring.",
+    "before": null,
+    "expected": [
+      "discovery"
+    ],
+    "source": "constructed-writing-v1:9910aff301ffe83517c9b0b1c90f38771b9a91d9c6a8a36400a49042bee2686a",
+    "tags": [
+      "paraphrase",
+      "family-6"
+    ]
+  },
+  {
+    "id": "constructed-Q10-97",
+    "context": "Wendy carried the chair.",
+    "text": "Wendy gained prestige and high social rank.",
+    "before": null,
+    "expected": [
+      "status"
+    ],
+    "source": "constructed-writing-v1:b94ac7eefb9b0194a740be6dc98c469c61bc2657222938579d4b3c7f3d78ed4d",
+    "tags": [
+      "paraphrase",
+      "family-7"
+    ]
+  },
+  {
+    "id": "constructed-Q10-98",
+    "context": "Xavier carried the chair.",
+    "text": "Xavier ate food to satisfy physical hunger.",
+    "before": null,
+    "expected": [
+      "food or body"
+    ],
+    "source": "constructed-writing-v1:9eff57ba7ff46982882b4e3d832868106f6e06aa261ed59c2e5e3516560503ea",
+    "tags": [
+      "paraphrase",
+      "family-8"
+    ]
+  },
+  {
+    "id": "constructed-Q10-100",
+    "context": "Alice carried the scarf.",
+    "text": "Alice faced immediate danger from a collapsing roof.",
+    "before": null,
+    "expected": [
+      "danger"
+    ],
+    "source": "constructed-writing-v1:c129f3d9f9d41da62d2edeccb21af01efb5ad3e7dcbb069d458fea46d5d49b7a",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ]
+  },
+  {
+    "id": "constructed-Q10-101",
+    "context": "Bob carried the scarf.",
+    "text": "Bob gently cared for and comforted a sick child.",
+    "before": null,
+    "expected": [
+      "care"
+    ],
+    "source": "constructed-writing-v1:ee4dd6683a9141e950becd3891928d6ad3fb0bd9171b3607b2283c4b5c91eb09",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ]
+  },
+  {
+    "id": "constructed-Q10-102",
+    "context": "Carol carried the scarf.",
+    "text": "Carol played a silly game and laughed at a joke.",
+    "before": null,
+    "expected": [
+      "play or humor"
+    ],
+    "source": "constructed-writing-v1:23adc112c6cf6c39e67f13988080ecfa9bda0de5a8a20a4f7d4bc7598c889a75",
+    "tags": [
+      "paraphrase",
+      "family-2"
+    ]
+  },
+  {
+    "id": "constructed-Q10-103",
+    "context": "David carried the scarf.",
+    "text": "David argued and fought with a rival.",
+    "before": null,
+    "expected": [
+      "conflict"
+    ],
+    "source": "constructed-writing-v1:faeadb3963b9755a30f1b931ef100dd81039cfa9b750bde5cab5aaa21bf0e181",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ]
+  },
+  {
+    "id": "constructed-Q10-104",
+    "context": "Elena carried the scarf.",
+    "text": "Elena grieved after a loved one's death.",
+    "before": null,
+    "expected": [
+      "loss or separation"
+    ],
+    "source": "constructed-writing-v1:cd9d3eef349b1ad0b819f548f60eaa0e83638fd8d1acba2ed64f23853df4d6bd",
+    "tags": [
+      "paraphrase",
+      "family-4"
+    ]
+  },
+  {
+    "id": "constructed-Q10-105",
+    "context": "Farah carried the scarf.",
+    "text": "Farah felt romantic desire and sexual attraction.",
+    "before": null,
+    "expected": [
+      "desire"
+    ],
+    "source": "constructed-writing-v1:2cd2bdc160556b0efc81eacec5ff1e2eae2ad48c4b87104c4f81c6eb5210c106",
+    "tags": [
+      "paraphrase",
+      "family-5"
+    ]
+  },
+  {
+    "id": "constructed-Q10-106",
+    "context": "Grace carried the scarf.",
+    "text": "Grace discovered an unknown island while exploring.",
+    "before": null,
+    "expected": [
+      "discovery"
+    ],
+    "source": "constructed-writing-v1:303dcaa1cdcb10bbd1c233bc5bfb6c16f29fa271017580f8d7303be5342dcb75",
+    "tags": [
+      "paraphrase",
+      "family-6"
+    ]
+  },
+  {
+    "id": "constructed-Q10-107",
+    "context": "Henry carried the scarf.",
+    "text": "Henry gained prestige and high social rank.",
+    "before": null,
+    "expected": [
+      "status"
+    ],
+    "source": "constructed-writing-v1:0946747c15f00ec90b23e4f45140a7854549d488ccfde35f06d7fa746a396b43",
+    "tags": [
+      "paraphrase",
+      "family-7"
+    ]
+  },
+  {
+    "id": "constructed-Q10-108",
+    "context": "Isabel carried the scarf.",
+    "text": "Isabel ate food to satisfy physical hunger.",
+    "before": null,
+    "expected": [
+      "food or body"
+    ],
+    "source": "constructed-writing-v1:b97db95008a500cd8eac73dfa01886d36a38a64769c8befe40e534cc327b7125",
+    "tags": [
+      "paraphrase",
+      "family-8"
+    ]
+  },
+  {
+    "id": "constructed-Q10-110",
+    "context": "Kara carried the scarf.",
+    "text": "Kara faced immediate danger from a collapsing roof.",
+    "before": null,
+    "expected": [
+      "danger"
+    ],
+    "source": "constructed-writing-v1:2831c7665680248147bb3c8957fa26e0f708ccaf00c1847a101e4a6187ce2a11",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ]
+  },
+  {
+    "id": "constructed-Q10-111",
+    "context": "Liam carried the scarf.",
+    "text": "Liam gently cared for and comforted a sick child.",
+    "before": null,
+    "expected": [
+      "care"
+    ],
+    "source": "constructed-writing-v1:22a823145a6df6abcf764527915733e5376616f1fbb25f5f7db333a7ed9646fb",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ]
+  },
+  {
+    "id": "constructed-Q10-112",
+    "context": "Maya carried the scarf.",
+    "text": "Maya played a silly game and laughed at a joke.",
+    "before": null,
+    "expected": [
+      "play or humor"
+    ],
+    "source": "constructed-writing-v1:1141bb58f84d522e4b9e233ba3c8b3e061a8b8930a3b719ab7d57dcfb1df0b5d",
+    "tags": [
+      "paraphrase",
+      "family-2"
+    ]
+  },
+  {
+    "id": "constructed-Q10-113",
+    "context": "Noah carried the scarf.",
+    "text": "Noah argued and fought with a rival.",
+    "before": null,
+    "expected": [
+      "conflict"
+    ],
+    "source": "constructed-writing-v1:015e867c9505a0a3487c8acff95cee76d7ba1875f76b040834916178d9438940",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ]
+  },
+  {
+    "id": "constructed-Q10-114",
+    "context": "Olivia carried the scarf.",
+    "text": "Olivia grieved after a loved one's death.",
+    "before": null,
+    "expected": [
+      "loss or separation"
+    ],
+    "source": "constructed-writing-v1:9710c657ed8d18e2d5eae13dd1081ff3fa79505b49d2f5101bb985cf261ae829",
+    "tags": [
+      "paraphrase",
+      "family-4"
+    ]
+  },
+  {
+    "id": "constructed-Q10-115",
+    "context": "Priya carried the scarf.",
+    "text": "Priya felt romantic desire and sexual attraction.",
+    "before": null,
+    "expected": [
+      "desire"
+    ],
+    "source": "constructed-writing-v1:15a5fb4df1d20d8f8bbcfe139dc5d7ae90de3679e7661b953ebc76d66eef3453",
+    "tags": [
+      "paraphrase",
+      "family-5"
+    ]
+  },
+  {
+    "id": "constructed-Q10-116",
+    "context": "Quinn carried the scarf.",
+    "text": "Quinn discovered an unknown island while exploring.",
+    "before": null,
+    "expected": [
+      "discovery"
+    ],
+    "source": "constructed-writing-v1:c4accdb0dd323537e48f17811b2faa08c6465abd2ba8cf0960c5dcc06079dec6",
+    "tags": [
+      "paraphrase",
+      "family-6"
+    ]
+  },
+  {
+    "id": "constructed-Q10-117",
+    "context": "Rosa carried the scarf.",
+    "text": "Rosa gained prestige and high social rank.",
+    "before": null,
+    "expected": [
+      "status"
+    ],
+    "source": "constructed-writing-v1:0310f390cfa5c1ed402eac46bd723f69a9fd47f9fff79ba40776dd2209002677",
+    "tags": [
+      "paraphrase",
+      "family-7"
+    ]
+  },
+  {
+    "id": "constructed-Q10-118",
+    "context": "Sam carried the scarf.",
+    "text": "Sam ate food to satisfy physical hunger.",
+    "before": null,
+    "expected": [
+      "food or body"
+    ],
+    "source": "constructed-writing-v1:6785d90e5108ec4d12994793f553f99348ed01b1113e4f5350150d91554aba9d",
+    "tags": [
+      "paraphrase",
+      "family-8"
+    ]
+  },
+  {
+    "id": "constructed-Q10-120",
+    "context": "Uma carried the scarf.",
+    "text": "Uma faced immediate danger from a collapsing roof.",
+    "before": null,
+    "expected": [
+      "danger"
+    ],
+    "source": "constructed-writing-v1:b4a75e4cc27fd11edfd330234f817ed44e940878d8621be74f38d9b33557c23e",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ]
+  },
+  {
+    "id": "constructed-Q10-121",
+    "context": "Victor carried the scarf.",
+    "text": "Victor gently cared for and comforted a sick child.",
+    "before": null,
+    "expected": [
+      "care"
+    ],
+    "source": "constructed-writing-v1:5cdb6e30d2414919a9541bbaea535c4dc0f62f95fae606e60e8f8b57b07170c8",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ]
+  },
+  {
+    "id": "constructed-Q10-122",
+    "context": "Wendy carried the scarf.",
+    "text": "Wendy played a silly game and laughed at a joke.",
+    "before": null,
+    "expected": [
+      "play or humor"
+    ],
+    "source": "constructed-writing-v1:a21abb771be2bc794a5fb12e686caf4e529ee42aeda442a39dfee682aa173beb",
+    "tags": [
+      "paraphrase",
+      "family-2"
+    ]
+  },
+  {
+    "id": "constructed-Q10-123",
+    "context": "Xavier carried the scarf.",
+    "text": "Xavier argued and fought with a rival.",
+    "before": null,
+    "expected": [
+      "conflict"
+    ],
+    "source": "constructed-writing-v1:db79cc6b71054de86c4d8e2a2d9dd1e8401ef3476155603f73d55dd2cd14ff44",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ]
+  },
+  {
+    "id": "constructed-Q10-124",
+    "context": "Yara carried the scarf.",
+    "text": "Yara grieved after a loved one's death.",
+    "before": null,
+    "expected": [
+      "loss or separation"
+    ],
+    "source": "constructed-writing-v1:2fb599abe664c35432dbffd428c005dcc61e7115424c42753f12a1cc046c6d3b",
+    "tags": [
+      "paraphrase",
+      "family-4"
+    ]
+  },
+  {
+    "id": "constructed-Q10-125",
+    "context": "Alice carried the basket.",
+    "text": "Alice felt romantic desire and sexual attraction.",
+    "before": null,
+    "expected": [
+      "desire"
+    ],
+    "source": "constructed-writing-v1:e82effa035303854e4618643eaccf64617d67dd56f2060a57ceeac2e7a1da181",
+    "tags": [
+      "paraphrase",
+      "family-5"
+    ]
+  },
+  {
+    "id": "constructed-Q10-126",
+    "context": "Bob carried the basket.",
+    "text": "Bob discovered an unknown island while exploring.",
+    "before": null,
+    "expected": [
+      "discovery"
+    ],
+    "source": "constructed-writing-v1:0c9605e4970e5d2bf4601234220de990914d5565d9715c22b42b6def4d91ca35",
+    "tags": [
+      "paraphrase",
+      "family-6"
+    ]
+  },
+  {
+    "id": "constructed-Q10-127",
+    "context": "Carol carried the basket.",
+    "text": "Carol gained prestige and high social rank.",
+    "before": null,
+    "expected": [
+      "status"
+    ],
+    "source": "constructed-writing-v1:ff11c21ee8eaba91d3fd15c748ebeff07aff7ff9b3c974633865a1b3ac1eaa1f",
+    "tags": [
+      "paraphrase",
+      "family-7"
+    ]
+  },
+  {
+    "id": "constructed-Q10-128",
+    "context": "David carried the basket.",
+    "text": "David ate food to satisfy physical hunger.",
+    "before": null,
+    "expected": [
+      "food or body"
+    ],
+    "source": "constructed-writing-v1:cb45ca9457e32806645c2822b9c79570b029dcbe505581436c00a036c4133c88",
+    "tags": [
+      "paraphrase",
+      "family-8"
+    ]
+  },
+  {
+    "id": "constructed-Q10-130",
+    "context": "Farah carried the basket.",
+    "text": "Farah faced immediate danger from a collapsing roof.",
+    "before": null,
+    "expected": [
+      "danger"
+    ],
+    "source": "constructed-writing-v1:be20eba7a0e6eb578314c6a9f5431163d4a9ca642317f5bc25ba61f60057f34c",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ]
+  },
+  {
+    "id": "constructed-Q10-131",
+    "context": "Grace carried the basket.",
+    "text": "Grace gently cared for and comforted a sick child.",
+    "before": null,
+    "expected": [
+      "care"
+    ],
+    "source": "constructed-writing-v1:22674614bcee3caba45173db8b96c85057c47e8de2c9fc03b2c658b5f42ae70c",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ]
+  },
+  {
+    "id": "constructed-Q10-132",
+    "context": "Henry carried the basket.",
+    "text": "Henry played a silly game and laughed at a joke.",
+    "before": null,
+    "expected": [
+      "play or humor"
+    ],
+    "source": "constructed-writing-v1:88b2f75d72a971c74fb7cc80deae3aa695a10bd1a2638772746d4c4fdeda9894",
+    "tags": [
+      "paraphrase",
+      "family-2"
+    ]
+  },
+  {
+    "id": "constructed-Q10-133",
+    "context": "Isabel carried the basket.",
+    "text": "Isabel argued and fought with a rival.",
+    "before": null,
+    "expected": [
+      "conflict"
+    ],
+    "source": "constructed-writing-v1:02d58d1f52bcade0b64adfc2cee6c78eb35e44a089e86aee14db294442ffc0e0",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ]
+  },
+  {
+    "id": "constructed-Q10-134",
+    "context": "Jonah carried the basket.",
+    "text": "Jonah grieved after a loved one's death.",
+    "before": null,
+    "expected": [
+      "loss or separation"
+    ],
+    "source": "constructed-writing-v1:0b642ad023d5a260533fbba5edad3438a0ffc488f695f99965348fcdd9b37097",
+    "tags": [
+      "paraphrase",
+      "family-4"
+    ]
+  },
+  {
+    "id": "constructed-Q10-135",
+    "context": "Kara carried the basket.",
+    "text": "Kara felt romantic desire and sexual attraction.",
+    "before": null,
+    "expected": [
+      "desire"
+    ],
+    "source": "constructed-writing-v1:4ba44b22d52e4cfa9531a9d2aae91286e2954d378df85244a47f06ea5136463b",
+    "tags": [
+      "paraphrase",
+      "family-5"
+    ]
+  },
+  {
+    "id": "constructed-Q10-136",
+    "context": "Liam carried the basket.",
+    "text": "Liam discovered an unknown island while exploring.",
+    "before": null,
+    "expected": [
+      "discovery"
+    ],
+    "source": "constructed-writing-v1:dea24bfd23cb1ad888ddb4a0b9f87c1d791c4b6c086e2b3244b74810be8c317d",
+    "tags": [
+      "paraphrase",
+      "family-6"
+    ]
+  },
+  {
+    "id": "constructed-Q10-137",
+    "context": "Maya carried the basket.",
+    "text": "Maya gained prestige and high social rank.",
+    "before": null,
+    "expected": [
+      "status"
+    ],
+    "source": "constructed-writing-v1:3f829e5737b3218e6addb3ea2b94234a6f2ca130121bd8f80a1cd45e832ace69",
+    "tags": [
+      "paraphrase",
+      "family-7"
+    ]
+  },
+  {
+    "id": "constructed-Q10-138",
+    "context": "Noah carried the basket.",
+    "text": "Noah ate food to satisfy physical hunger.",
+    "before": null,
+    "expected": [
+      "food or body"
+    ],
+    "source": "constructed-writing-v1:9978545e5bec5e37a0e3c71070157c0fc3dbfdbb5594414447af114447abe363",
+    "tags": [
+      "paraphrase",
+      "family-8"
+    ]
+  },
+  {
+    "id": "constructed-Q10-140",
+    "context": "Priya carried the basket.",
+    "text": "Priya faced immediate danger from a collapsing roof.",
+    "before": null,
+    "expected": [
+      "danger"
+    ],
+    "source": "constructed-writing-v1:bbec4a67ca71f146112a08655db2445f480dfe79b19f3db7f7570ccfcaafdf83",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ]
+  },
+  {
+    "id": "constructed-Q10-141",
+    "context": "Quinn carried the basket.",
+    "text": "Quinn gently cared for and comforted a sick child.",
+    "before": null,
+    "expected": [
+      "care"
+    ],
+    "source": "constructed-writing-v1:ee683982b4d96d36cb2ad292973d171a53b133f3f28c1a88505d1608b49da59b",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ]
+  },
+  {
+    "id": "constructed-Q10-142",
+    "context": "Rosa carried the basket.",
+    "text": "Rosa played a silly game and laughed at a joke.",
+    "before": null,
+    "expected": [
+      "play or humor"
+    ],
+    "source": "constructed-writing-v1:c0353a2142c7d55a5509062dba7c41ffb3b4661d09ee628ac46d340a8f2e505c",
+    "tags": [
+      "paraphrase",
+      "family-2"
+    ]
+  },
+  {
+    "id": "constructed-Q10-143",
+    "context": "Sam carried the basket.",
+    "text": "Sam argued and fought with a rival.",
+    "before": null,
+    "expected": [
+      "conflict"
+    ],
+    "source": "constructed-writing-v1:ba5d9efe26df22adaa2c2773f09b66e7a04980182f36b1cb6817ecb5685ca0a4",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ]
+  },
+  {
+    "id": "constructed-Q10-144",
+    "context": "Tara carried the basket.",
+    "text": "Tara grieved after a loved one's death.",
+    "before": null,
+    "expected": [
+      "loss or separation"
+    ],
+    "source": "constructed-writing-v1:3fdb05af30c1ebd6e3393f0783f8d4f98c69e6520d2780b59d57a5bd33604b41",
+    "tags": [
+      "paraphrase",
+      "family-4"
+    ]
+  },
+  {
+    "id": "constructed-Q10-145",
+    "context": "Uma carried the basket.",
+    "text": "Uma felt romantic desire and sexual attraction.",
+    "before": null,
+    "expected": [
+      "desire"
+    ],
+    "source": "constructed-writing-v1:0e6f1c9ea27bde065f3677513d8156afeba75f319904115e4a9424ac42f0793d",
+    "tags": [
+      "paraphrase",
+      "family-5"
+    ]
+  },
+  {
+    "id": "constructed-Q10-146",
+    "context": "Victor carried the basket.",
+    "text": "Victor discovered an unknown island while exploring.",
+    "before": null,
+    "expected": [
+      "discovery"
+    ],
+    "source": "constructed-writing-v1:de81e3bc64fcdb1f420fd740163b9df01c94c1f71a27bcbadd7fce89a3429548",
+    "tags": [
+      "paraphrase",
+      "family-6"
+    ]
+  },
+  {
+    "id": "constructed-Q10-147",
+    "context": "Wendy carried the basket.",
+    "text": "Wendy gained prestige and high social rank.",
+    "before": null,
+    "expected": [
+      "status"
+    ],
+    "source": "constructed-writing-v1:dcd7d3421ef023e3e7921a38faeffd9374669c4abd9ef629c1ae80b96f2a1739",
+    "tags": [
+      "paraphrase",
+      "family-7"
+    ]
+  },
+  {
+    "id": "constructed-Q10-148",
+    "context": "Xavier carried the basket.",
+    "text": "Xavier ate food to satisfy physical hunger.",
+    "before": null,
+    "expected": [
+      "food or body"
+    ],
+    "source": "constructed-writing-v1:6231df0f6844bc73546bd7449e35f1b9e508974354fbfa9f42b894727e1acf78",
+    "tags": [
+      "paraphrase",
+      "family-8"
+    ]
+  },
+  {
+    "id": "constructed-Q10-150",
+    "context": "Alice carried the bottle.",
+    "text": "Alice faced immediate danger from a collapsing roof.",
+    "before": null,
+    "expected": [
+      "danger"
+    ],
+    "source": "constructed-writing-v1:71ffc1852e6088973c1833242358a2c189925de3bd55afe0eda62c02d3fdcc1b",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ]
+  },
+  {
+    "id": "constructed-Q10-151",
+    "context": "Bob carried the bottle.",
+    "text": "Bob gently cared for and comforted a sick child.",
+    "before": null,
+    "expected": [
+      "care"
+    ],
+    "source": "constructed-writing-v1:f777c0b19f992e8895b7e0608666445f62c04413ccd06046227566bde409ce77",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ]
+  },
+  {
+    "id": "constructed-Q10-152",
+    "context": "Carol carried the bottle.",
+    "text": "Carol played a silly game and laughed at a joke.",
+    "before": null,
+    "expected": [
+      "play or humor"
+    ],
+    "source": "constructed-writing-v1:a46117a294afe03e253760237a01b097afca9982600fae6b97e6211273069e3c",
+    "tags": [
+      "paraphrase",
+      "family-2"
+    ]
+  },
+  {
+    "id": "constructed-Q10-153",
+    "context": "David carried the bottle.",
+    "text": "David argued and fought with a rival.",
+    "before": null,
+    "expected": [
+      "conflict"
+    ],
+    "source": "constructed-writing-v1:0acaf2ca4fbb0abf7c97f2fdcacc71deef4b803857069cf5c1ff05b2fff78dd1",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ]
+  },
+  {
+    "id": "constructed-Q10-154",
+    "context": "Elena carried the bottle.",
+    "text": "Elena grieved after a loved one's death.",
+    "before": null,
+    "expected": [
+      "loss or separation"
+    ],
+    "source": "constructed-writing-v1:088a04c25f68ac1f3466306363d38aad4e3df97855dca5604d903768f05a5ac8",
+    "tags": [
+      "paraphrase",
+      "family-4"
+    ]
+  },
+  {
+    "id": "constructed-Q10-155",
+    "context": "Farah carried the bottle.",
+    "text": "Farah felt romantic desire and sexual attraction.",
+    "before": null,
+    "expected": [
+      "desire"
+    ],
+    "source": "constructed-writing-v1:cd2800581e35b040253dd5fb8f63f0cefffc24ab50ef49f77ed3a5f244358e7f",
+    "tags": [
+      "paraphrase",
+      "family-5"
+    ]
+  },
+  {
+    "id": "constructed-Q10-156",
+    "context": "Grace carried the bottle.",
+    "text": "Grace discovered an unknown island while exploring.",
+    "before": null,
+    "expected": [
+      "discovery"
+    ],
+    "source": "constructed-writing-v1:d8c80b20a7b38c153cf85d3a462d9513ebb957a9f0172f9cb83fece467df3d00",
+    "tags": [
+      "paraphrase",
+      "family-6"
+    ]
+  },
+  {
+    "id": "constructed-Q10-157",
+    "context": "Henry carried the bottle.",
+    "text": "Henry gained prestige and high social rank.",
+    "before": null,
+    "expected": [
+      "status"
+    ],
+    "source": "constructed-writing-v1:4531a4ddfd7c8e7f58b151f05baa06d0cf01d0e8f419f91ce406d74561d9b616",
+    "tags": [
+      "paraphrase",
+      "family-7"
+    ]
+  },
+  {
+    "id": "constructed-Q10-158",
+    "context": "Isabel carried the bottle.",
+    "text": "Isabel ate food to satisfy physical hunger.",
+    "before": null,
+    "expected": [
+      "food or body"
+    ],
+    "source": "constructed-writing-v1:4a9f707d3bbd62cfb7618f2d4ba9c5c6998653b951b5c12b5737d70b228c36f1",
+    "tags": [
+      "paraphrase",
+      "family-8"
+    ]
+  },
+  {
+    "id": "constructed-Q10-160",
+    "context": "Kara carried the bottle.",
+    "text": "Kara faced immediate danger from a collapsing roof.",
+    "before": null,
+    "expected": [
+      "danger"
+    ],
+    "source": "constructed-writing-v1:4bdaef77f7f6122a3c05a7f806542e82fe72fd8a9b2181404e840a775665fc38",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ]
+  },
+  {
+    "id": "constructed-Q10-161",
+    "context": "Liam carried the bottle.",
+    "text": "Liam gently cared for and comforted a sick child.",
+    "before": null,
+    "expected": [
+      "care"
+    ],
+    "source": "constructed-writing-v1:b6dffb4bac242fa6cf4d9d3d563897a507376c44bb6f5b0243ed583f39130257",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ]
+  },
+  {
+    "id": "constructed-Q10-162",
+    "context": "Maya carried the bottle.",
+    "text": "Maya played a silly game and laughed at a joke.",
+    "before": null,
+    "expected": [
+      "play or humor"
+    ],
+    "source": "constructed-writing-v1:b680eb76c6a4d7214587bc97c1b7c2aa86dee4152ba528ec5f6d40c2563ae922",
+    "tags": [
+      "paraphrase",
+      "family-2"
+    ]
+  },
+  {
+    "id": "constructed-Q10-163",
+    "context": "Noah carried the bottle.",
+    "text": "Noah argued and fought with a rival.",
+    "before": null,
+    "expected": [
+      "conflict"
+    ],
+    "source": "constructed-writing-v1:17cd3e6d0f49b3c808badb8303fa1a3d3c8a0ef61f6d0ae541eca73a5eec1eec",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ]
+  },
+  {
+    "id": "constructed-Q10-164",
+    "context": "Olivia carried the bottle.",
+    "text": "Olivia grieved after a loved one's death.",
+    "before": null,
+    "expected": [
+      "loss or separation"
+    ],
+    "source": "constructed-writing-v1:328d58419dc140e1e00f3e33dc570550c6471da6d22638a0d45e1f8f2f0c813e",
+    "tags": [
+      "paraphrase",
+      "family-4"
+    ]
+  },
+  {
+    "id": "constructed-Q10-165",
+    "context": "Priya carried the bottle.",
+    "text": "Priya felt romantic desire and sexual attraction.",
+    "before": null,
+    "expected": [
+      "desire"
+    ],
+    "source": "constructed-writing-v1:2c4f2ef8b8ee6523b376a33dcb2f009d8ed4f88b5355cdb07a14138d81873c61",
+    "tags": [
+      "paraphrase",
+      "family-5"
+    ]
+  },
+  {
+    "id": "constructed-Q10-166",
+    "context": "Quinn carried the bottle.",
+    "text": "Quinn discovered an unknown island while exploring.",
+    "before": null,
+    "expected": [
+      "discovery"
+    ],
+    "source": "constructed-writing-v1:587ad65d8ba965f4460fc48272dfedf14aee889f8684b34664fb8e3a02de4cf5",
+    "tags": [
+      "paraphrase",
+      "family-6"
+    ]
+  },
+  {
+    "id": "constructed-Q10-167",
+    "context": "Rosa carried the bottle.",
+    "text": "Rosa gained prestige and high social rank.",
+    "before": null,
+    "expected": [
+      "status"
+    ],
+    "source": "constructed-writing-v1:eccecdc78b815567d1cc49f9627387abd4d75c0b4782b10308374705530ed89f",
+    "tags": [
+      "paraphrase",
+      "family-7"
+    ]
+  },
+  {
+    "id": "constructed-Q10-168",
+    "context": "Sam carried the bottle.",
+    "text": "Sam ate food to satisfy physical hunger.",
+    "before": null,
+    "expected": [
+      "food or body"
+    ],
+    "source": "constructed-writing-v1:c7d02d29b31b8d51190a1ac21cbfa1378b064647ca5bfcd2ad5348db67cb6bcd",
+    "tags": [
+      "paraphrase",
+      "family-8"
+    ]
+  },
+  {
+    "id": "constructed-Q10-170",
+    "context": "Uma carried the bottle.",
+    "text": "Uma faced immediate danger from a collapsing roof.",
+    "before": null,
+    "expected": [
+      "danger"
+    ],
+    "source": "constructed-writing-v1:cdd650d1c055ebd577c50adf675d98d9bec5d2c459846e849dc04dc9d11d6db9",
+    "tags": [
+      "paraphrase",
+      "family-0"
+    ]
+  },
+  {
+    "id": "constructed-Q10-171",
+    "context": "Victor carried the bottle.",
+    "text": "Victor gently cared for and comforted a sick child.",
+    "before": null,
+    "expected": [
+      "care"
+    ],
+    "source": "constructed-writing-v1:fee0a46b8db47107f656fec619c3a7ee9c3050585694329e943432c425e331dc",
+    "tags": [
+      "paraphrase",
+      "family-1"
+    ]
+  },
+  {
+    "id": "constructed-Q10-172",
+    "context": "Wendy carried the bottle.",
+    "text": "Wendy played a silly game and laughed at a joke.",
+    "before": null,
+    "expected": [
+      "play or humor"
+    ],
+    "source": "constructed-writing-v1:bc1d5b518283db8654dca23d7e218213fa98c047fd84ad4cf2680613cf90eec4",
+    "tags": [
+      "paraphrase",
+      "family-2"
+    ]
+  },
+  {
+    "id": "constructed-Q10-173",
+    "context": "Xavier carried the bottle.",
+    "text": "Xavier argued and fought with a rival.",
+    "before": null,
+    "expected": [
+      "conflict"
+    ],
+    "source": "constructed-writing-v1:29f076bf77f5f17ab913811e7582285f6a61d227c3f458b38c26fd769fdb279a",
+    "tags": [
+      "paraphrase",
+      "family-3"
+    ]
+  },
+  {
+    "id": "constructed-Q10-174",
+    "context": "Yara carried the bottle.",
+    "text": "Yara grieved after a loved one's death.",
+    "before": null,
+    "expected": [
+      "loss or separation"
+    ],
+    "source": "constructed-writing-v1:281bf964843789e7c326b8ead860550941e17ccd562033758fb8de94278183ca",
+    "tags": [
+      "paraphrase",
+      "family-4"
+    ]
+  },
+  {
+    "id": "constructed-Q10-175",
+    "context": "Alice carried the coat.",
+    "text": "Alice felt romantic desire and sexual attraction.",
+    "before": null,
+    "expected": [
+      "desire"
+    ],
+    "source": "constructed-writing-v1:e6b3e064fdeeba69d056e476a782d4b57235eb0c958dfcea0dc589b4f00f3e6b",
+    "tags": [
+      "paraphrase",
+      "family-5"
+    ]
+  },
+  {
+    "id": "constructed-Q10-176",
+    "context": "Bob carried the coat.",
+    "text": "Bob discovered an unknown island while exploring.",
+    "before": null,
+    "expected": [
+      "discovery"
+    ],
+    "source": "constructed-writing-v1:a09f5970ae1f321b76e07ecc15d7bc5162e665b6c9e0f80f5581088ebce35ecc",
+    "tags": [
+      "paraphrase",
+      "family-6"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-0",
+    "context": "Literal description.",
+    "text": "The panel is rectangular and has 2 numbered sections.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:ab23ce30be836d70e6b4bf3f25567a10d01a5359c9317d062eb2268d89e3fea3",
+    "tags": [
+      "paraphrase",
+      "family-empty-0"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-1",
+    "context": "Literal description.",
+    "text": "The panel is circular and has 3 numbered sections.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:d015201d471b43a46b4adb978b614dc11035dd54f8a700da1b7298fd6217f98f",
+    "tags": [
+      "paraphrase",
+      "family-empty-1"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-2",
+    "context": "Literal description.",
+    "text": "The panel is triangular and has 4 numbered sections.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:2a228ef128114f32d7510b6ccefa7040d8c37e4d730cb4f0858c88c6c7f72e1f",
+    "tags": [
+      "paraphrase",
+      "family-empty-2"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-3",
+    "context": "Literal description.",
+    "text": "The panel is oval and has 5 numbered sections.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:2b19e4165f37a55a9e70336e52e711004560430ae0fe6f17d0d98dfc81ad9b63",
+    "tags": [
+      "paraphrase",
+      "family-empty-3"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-4",
+    "context": "Literal description.",
+    "text": "The panel is square and has 6 numbered sections.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:0b2f216ea9ee80443d13c57b24c065ef72928ed93faa7c88ab66f8257eab5f5f",
+    "tags": [
+      "paraphrase",
+      "family-empty-4"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-5",
+    "context": "Literal description.",
+    "text": "The panel is rectangular and has 7 numbered sections.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:7378206b43df68f1fa9bae593bb14320da21b7681ec0c467a3220c553bd0708b",
+    "tags": [
+      "paraphrase",
+      "family-empty-0"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-6",
+    "context": "Literal description.",
+    "text": "The panel is circular and has 8 numbered sections.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:fc76369f879d155348f3bb122408faa7f77ecef8c0aeb8df261a5dce95449f0c",
+    "tags": [
+      "paraphrase",
+      "family-empty-1"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-7",
+    "context": "Literal description.",
+    "text": "The panel is triangular and has 9 numbered sections.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:c2798dffee9d21e68c353430a39bc618717249cfdb56607c724385475df72531",
+    "tags": [
+      "paraphrase",
+      "family-empty-2"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-8",
+    "context": "Literal description.",
+    "text": "The panel is oval and has 10 numbered sections.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:68ca984047a8131d0a312e7cdbaebbc12e0ff2d68a64e26afb26283dcbd0611b",
+    "tags": [
+      "paraphrase",
+      "family-empty-3"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-9",
+    "context": "Literal description.",
+    "text": "The panel is square and has 11 numbered sections.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:7719e15e75194f82968b73f970c6730dc6d1ff4029d795e8c1dc08be59cb8f24",
+    "tags": [
+      "paraphrase",
+      "family-empty-4"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-10",
+    "context": "Literal description.",
+    "text": "The panel is rectangular and has 12 numbered sections.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:d66358db33a52e91eaf222b9e09a0af14dee6e4d45408ef54aca8ee54217702f",
+    "tags": [
+      "paraphrase",
+      "family-empty-0"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-11",
+    "context": "Literal description.",
+    "text": "The panel is circular and has 13 numbered sections.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:f6e0c73eb14847dd2091ba453d215d7d38239498636a375a76c86253027ea609",
+    "tags": [
+      "paraphrase",
+      "family-empty-1"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-12",
+    "context": "Literal description.",
+    "text": "The panel is triangular and has 14 numbered sections.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:298bebb459fc77573210cca6dfcb632ec08125765d5030f6a679213da1c67a66",
+    "tags": [
+      "paraphrase",
+      "family-empty-2"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-13",
+    "context": "Literal description.",
+    "text": "The panel is oval and has 15 numbered sections.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:d42d72b82487e30ea91a0a523900b780a400febcad5a21c4f8c13ed9bd896bde",
+    "tags": [
+      "paraphrase",
+      "family-empty-3"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-14",
+    "context": "Literal description.",
+    "text": "The panel is square and has 16 numbered sections.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:34e2b5eaea62b38b2a42d307307c74520fb3013ad1a8452b6be7ae3c2770f8f1",
+    "tags": [
+      "paraphrase",
+      "family-empty-4"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-15",
+    "context": "Literal description.",
+    "text": "The panel is rectangular and has 17 numbered sections.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:70ea26286c565546dd473597d948ef5ec89a5deeba1645bd5c1d2e77d79b9837",
+    "tags": [
+      "paraphrase",
+      "family-empty-0"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-16",
+    "context": "Literal description.",
+    "text": "The panel is circular and has 18 numbered sections.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:9748e4609c5927e25befa4514d6b8ba90f7a4233b97dce113c15fd99e8dfafc2",
+    "tags": [
+      "paraphrase",
+      "family-empty-1"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-17",
+    "context": "Literal description.",
+    "text": "The panel is triangular and has 19 numbered sections.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:184ec13a761b3e1844dec18b7dfcf16f9a1bb0569b64fe894ef0dc3e7627d74c",
+    "tags": [
+      "paraphrase",
+      "family-empty-2"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-18",
+    "context": "Literal description.",
+    "text": "The panel is oval and has 20 numbered sections.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:af2710d8600e229a2b988a53319a083d0f767ce59844a2a0228949956bfd71c1",
+    "tags": [
+      "paraphrase",
+      "family-empty-3"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-19",
+    "context": "Literal description.",
+    "text": "The panel is square and has 21 numbered sections.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:958efaa91b519390540d2afb432778763b5be9887c2fc874a76344a4bdb37f55",
+    "tags": [
+      "paraphrase",
+      "family-empty-4"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-20",
+    "context": "Literal description.",
+    "text": "This is a rectangular label for section 22, not a story about caring, danger, conflict, desire, loss, discovery, status, food or play.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:bf8ae8db560051fe7c3b33f87e8dd519cc6742a53fef85f5605645ba8343326e",
+    "tags": [
+      "negation",
+      "family-empty-0"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-21",
+    "context": "Literal description.",
+    "text": "This is a circular label for section 23, not a story about caring, danger, conflict, desire, loss, discovery, status, food or play.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:5d8491d7fdb5b852855bfbd523cb0978933ba3bcc98e788e1372289f6117d821",
+    "tags": [
+      "negation",
+      "family-empty-1"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-22",
+    "context": "Literal description.",
+    "text": "This is a triangular label for section 24, not a story about caring, danger, conflict, desire, loss, discovery, status, food or play.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:95f70c6fe9b9bb2dd136508218aaf345acfe23740ff387afe9d8e883df5aab1c",
+    "tags": [
+      "negation",
+      "family-empty-2"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-23",
+    "context": "Literal description.",
+    "text": "This is a oval label for section 25, not a story about caring, danger, conflict, desire, loss, discovery, status, food or play.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:eca61f5a00896e760a3699d04f33c7187c2de1a593bc99701ea4e5b72790697f",
+    "tags": [
+      "negation",
+      "family-empty-3"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-24",
+    "context": "Literal description.",
+    "text": "This is a square label for section 26, not a story about caring, danger, conflict, desire, loss, discovery, status, food or play.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:f76fcc4e0d969682b5f32863c83c4c2007797504336dafade753a6474042c8ab",
+    "tags": [
+      "negation",
+      "family-empty-4"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-25",
+    "context": "Literal description.",
+    "text": "This is a rectangular label for section 27, not a story about caring, danger, conflict, desire, loss, discovery, status, food or play.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:3eec69e74153dcaf36978e6361e86be06e89dd62dc87aa54a9539b2c57dacf28",
+    "tags": [
+      "negation",
+      "family-empty-0"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-26",
+    "context": "Literal description.",
+    "text": "This is a circular label for section 28, not a story about caring, danger, conflict, desire, loss, discovery, status, food or play.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:b272d9bf005772be11f927fb5cca9517de877f68e0417c8b36af6511b8655582",
+    "tags": [
+      "negation",
+      "family-empty-1"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-27",
+    "context": "Literal description.",
+    "text": "This is a triangular label for section 29, not a story about caring, danger, conflict, desire, loss, discovery, status, food or play.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:b60b89ea78e30bd513bfb8739584db1fcaea0005df6caf853049ad300fba6d74",
+    "tags": [
+      "negation",
+      "family-empty-2"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-28",
+    "context": "Literal description.",
+    "text": "This is a oval label for section 30, not a story about caring, danger, conflict, desire, loss, discovery, status, food or play.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:996857326a0d6238d835dda2e1355d088246f735fe2ea71bcb104e36fb429988",
+    "tags": [
+      "negation",
+      "family-empty-3"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-29",
+    "context": "Literal description.",
+    "text": "This is a square label for section 31, not a story about caring, danger, conflict, desire, loss, discovery, status, food or play.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:c59793f0895520214b543472eb241cb8fd552e2690ebba885d0e9f31ff8024f3",
+    "tags": [
+      "negation",
+      "family-empty-4"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-30",
+    "context": "Literal description.",
+    "text": "This is a rectangular label for section 32, not a story about caring, danger, conflict, desire, loss, discovery, status, food or play.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:57aae2bf3e2add1253a09da08d0759b7d91838fe0b239b2c582a87e9c31ccf51",
+    "tags": [
+      "negation",
+      "family-empty-0"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-31",
+    "context": "Literal description.",
+    "text": "This is a circular label for section 33, not a story about caring, danger, conflict, desire, loss, discovery, status, food or play.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:a760a58415b4fd36219e003f818173fdcf6d105e9ebe7414284293b527751660",
+    "tags": [
+      "negation",
+      "family-empty-1"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-32",
+    "context": "Literal description.",
+    "text": "This is a triangular label for section 34, not a story about caring, danger, conflict, desire, loss, discovery, status, food or play.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:20c1dbd66c0003450d36fcd9425f74d086b8afcb99a4d3ba95dbb56e1474b6d4",
+    "tags": [
+      "negation",
+      "family-empty-2"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-33",
+    "context": "Literal description.",
+    "text": "This is a oval label for section 35, not a story about caring, danger, conflict, desire, loss, discovery, status, food or play.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:7203c7e0a63b04fa650a6c8d0626b347b7e67ec43d3657b65ba1d8c5cc367100",
+    "tags": [
+      "negation",
+      "family-empty-3"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-34",
+    "context": "Literal description.",
+    "text": "This is a square label for section 36, not a story about caring, danger, conflict, desire, loss, discovery, status, food or play.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:30c4ed51aabba1ff1135f95008532b634155583200cb4a42c3631e90ebfb7918",
+    "tags": [
+      "negation",
+      "family-empty-4"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-35",
+    "context": "Literal description.",
+    "text": "This is a rectangular label for section 37, not a story about caring, danger, conflict, desire, loss, discovery, status, food or play.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:8b5da6df1b1ea309c84110f89dcfe211d916a7b47e13924d961f03b32b78c79f",
+    "tags": [
+      "negation",
+      "family-empty-0"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-36",
+    "context": "Literal description.",
+    "text": "This is a circular label for section 38, not a story about caring, danger, conflict, desire, loss, discovery, status, food or play.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:1e79f130feecf89c5e3e589435ad73a7874d17b1e099f51b950f395218cdbe00",
+    "tags": [
+      "negation",
+      "family-empty-1"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-37",
+    "context": "Literal description.",
+    "text": "This is a triangular label for section 39, not a story about caring, danger, conflict, desire, loss, discovery, status, food or play.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:5590843a8f4b265fe0a798197d48ae7cab4035f91d249609407a24576328ca7c",
+    "tags": [
+      "negation",
+      "family-empty-2"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-38",
+    "context": "Literal description.",
+    "text": "This is a oval label for section 40, not a story about caring, danger, conflict, desire, loss, discovery, status, food or play.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:1653ad27410842c1c6a875cae8f215d92ac54b420240dfa33e7f293ef8e034cd",
+    "tags": [
+      "negation",
+      "family-empty-3"
+    ]
+  },
+  {
+    "id": "q10-empty-v2-39",
+    "context": "Literal description.",
+    "text": "This is a square label for section 41, not a story about caring, danger, conflict, desire, loss, discovery, status, food or play.",
+    "before": null,
+    "expected": [],
+    "source": "constructed-q10-empty-v2:6f42e6cdb2eba4e381675ab8f010cad834de1ec3c2e80e6bbe493597f3f473f3",
+    "tags": [
+      "negation",
+      "family-empty-4"
+    ]
+  }
+]

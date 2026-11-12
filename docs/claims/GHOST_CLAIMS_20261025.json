@@ -1,0 +1,307 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-25",
+  "scope": "V25-required backfill; historical claims retain original scientific status",
+  "claims": [
+    {
+      "id": "G-V23-R4-1",
+      "allowed_wording": "Does a root or function cue improve root recovery beyond leaf evidence? R4 nominates a 0.99-reliable root cue with no observed leaves after two complete burn-ins: root log-loss gain is 0.64312 nats, with a descriptive 95% interval of 0.62467–0.66157. All 90 settings and 184,320 cases pass reconstruction and full replay; the 20 neutral-cue settings remain exact zeros. This is a constructed-method discovery, not confirmation or evidence about people.",
+      "estimate": {
+        "nominated_log_loss_gain_nats": 0.64312,
+        "confirmation": false
+      },
+      "control_status": "passes",
+      "claim_kind": "method",
+      "architecture": "miniature, architecture untested",
+      "assumed_choice_model": "Supplied finite synthetic observation laws; see source report",
+      "reader": "Declared exact readers and frozen rivals; N5 hierarchical rival approximate",
+      "source_file": "docs/versions/v23-research-division/R4_REPORT.md",
+      "source_line": 3,
+      "source_sha256": "b5508a4ec8c1abca6e13ddb1a6fa423a0bcb88251eefc6ed1885c09057db0dab",
+      "supersedes": null,
+      "superseded_by": null,
+      "correction_class": null
+    },
+    {
+      "id": "G-V23-N5-1",
+      "allowed_wording": "How much does forecasting from the reader’s own policy cost? N5 nominates prior-shift calibration at the largest anchor-shaped bias with no personal records: log-loss gain is 0.94929 nats, with a descriptive 95% interval of 0.90291–0.99567. Both full burn-ins verify all 128 settings and 262,144 cases. This is a constructed-method discovery with supplied population rates; the approximate hierarchical rival is not an exact ceiling, and no human benefit is established.",
+      "estimate": {
+        "nominated_log_loss_gain_nats": 0.94929,
+        "confirmation": false
+      },
+      "control_status": "passes",
+      "claim_kind": "method",
+      "architecture": "miniature, architecture untested",
+      "assumed_choice_model": "Supplied finite synthetic observation laws; see source report",
+      "reader": "Declared exact readers and frozen rivals; N5 hierarchical rival approximate",
+      "source_file": "docs/versions/v23-research-division/N5_REPORT.md",
+      "source_line": 3,
+      "source_sha256": "8b5c74a55c76f34de08d2c715562900d4d444e47fedb2ee8cd03b97974c6da94",
+      "supersedes": null,
+      "superseded_by": null,
+      "correction_class": null
+    },
+    {
+      "id": "G-V23-N7-1",
+      "allowed_wording": "Can statements improve future-choice forecasts after correcting presentation bias? N7 nominates a setting with 0 personal records, statement noise 0.25, shared shift 1 and aspiration share 0. Its pooled log-loss gain over choices alone is 0.25012 nats (descriptive 95% interval 0.21182–0.28842). All 128 settings and 262,144 cases pass independent reconstruction and complete replay. This is a constructed-method discovery, not confirmation or evidence about people.",
+      "estimate": {
+        "nominated_log_loss_gain_nats": 0.25012,
+        "confirmation": false
+      },
+      "control_status": "passes",
+      "claim_kind": "method",
+      "architecture": "miniature, architecture untested",
+      "assumed_choice_model": "Supplied finite synthetic observation laws; see source report",
+      "reader": "Declared exact readers and frozen rivals; N5 hierarchical rival approximate",
+      "source_file": "docs/versions/v23-research-division/N7_REPORT.md",
+      "source_line": 3,
+      "source_sha256": "b2d5f1d9f31e79120c3f457435deb3ce8fcfb9a14d50c5030e6ae73ec8df524d",
+      "supersedes": null,
+      "superseded_by": null,
+      "correction_class": null
+    },
+    {
+      "id": "G-V24-N16STRESS-1",
+      "allowed_wording": "The true-mechanism-omitted candidate receives the fixed lower-bound score by construction, log(0.1), not recovery of the omitted mechanism.",
+      "estimate": null,
+      "control_status": "invalid",
+      "claim_kind": "method",
+      "architecture": "miniature, architecture untested",
+      "assumed_choice_model": "Supplied finite probe laws",
+      "reader": "Probe chooser and scoring reader incorrectly conflated",
+      "source_file": "docs/versions/v24-powered-readers/FOLLOWUP_RESULTS_2026-10-23.md",
+      "source_line": 41,
+      "source_sha256": "98581a3dc10519af1e974ce2f141313bfd803a76e9eb01b7f47713937f9ee138",
+      "supersedes": null,
+      "superseded_by": "G-V24-N16STRESS-2",
+      "correction_class": "interpretation_error_not_data_change"
+    },
+    {
+      "id": "G-V24-N16STRESS-2",
+      "allowed_wording": "Correction, 25 October 2026: truth is omitted from the probe chooser's model, not from the unchanged full-library scoring reader. The score compares the true-mechanism probability after the chosen probes, mixed 90:10 with the correct fixed-order comparator, against that comparator. The 48 omitted-truth cell means range from -0.044416 to 0.086741 nats; six are negative, all from N4d. The lowest whole-block value is -0.056958 nats. log(0.1) is an analytic lower bound, not an assigned score. This corrects prose; no saved score, source capsule or scientific result is changed.",
+      "estimate": {
+        "cell_mean_min": -0.044416294448801824,
+        "cell_mean_max": 0.08674050634497457,
+        "minimum_block": -0.05695834631525471,
+        "negative_cells": 6,
+        "cells": 48
+      },
+      "control_status": "passes",
+      "claim_kind": "method",
+      "architecture": "miniature, architecture untested",
+      "assumed_choice_model": "Supplied finite probe laws; omission affects chooser only",
+      "reader": "Unchanged full exact scoring reader with comparator mixture",
+      "source_file": "docs/versions/v24-powered-readers/FOLLOWUP_RESULTS_2026-10-23.md",
+      "source_line": 43,
+      "source_sha256": "98581a3dc10519af1e974ce2f141313bfd803a76e9eb01b7f47713937f9ee138",
+      "supersedes": "G-V24-N16STRESS-1",
+      "superseded_by": null,
+      "correction_class": "interpretation_error_not_data_change"
+    },
+    {
+      "id": "G-V24-N16-1",
+      "allowed_wording": "The fresh N16 pilot gains 0.066551 nats over fixed order in four balanced blocks; descriptive, not powered confirmation.",
+      "estimate": {
+        "gain_nats": 0.066551,
+        "blocks": 4
+      },
+      "control_status": "passes",
+      "claim_kind": "method",
+      "architecture": "miniature, architecture untested",
+      "assumed_choice_model": "Finite supplied probe likelihoods",
+      "reader": "Randomized adaptive chooser and exact scoring reader",
+      "source_file": "docs/versions/v24-powered-readers/N16_PILOT_REPORT.md",
+      "source_line": 1,
+      "source_sha256": "a95f3360a8eae60c59dcf79208a43165d963a378f524add3e8bdc9b6ec077d19",
+      "supersedes": null,
+      "superseded_by": null,
+      "correction_class": null
+    },
+    {
+      "id": "G-V24-GALLERY-1",
+      "allowed_wording": "Shared context alone identifies 5.76% against 2.22% global chance and 6.67% within-context reference; same-sample reuse gives 100%. This methods warning does not diagnose Sounding Line controls.",
+      "estimate": {
+        "accuracy": 0.0576,
+        "global_chance": 0.0222,
+        "within_context": 0.0667
+      },
+      "control_status": "passes",
+      "claim_kind": "method",
+      "architecture": "miniature, architecture untested",
+      "assumed_choice_model": "Constructed Gaussian galleries",
+      "reader": "Nearest-gallery squared distances",
+      "source_file": "docs/versions/v24-powered-readers/FOLLOWUP_RESULTS_2026-10-23.md",
+      "source_line": 1,
+      "source_sha256": "98581a3dc10519af1e974ce2f141313bfd803a76e9eb01b7f47713937f9ee138",
+      "supersedes": null,
+      "superseded_by": null,
+      "correction_class": null
+    },
+    {
+      "id": "G-V24-NEEDS-1",
+      "allowed_wording": "Needs/drives reaches 61.59% overall, 98.18% in informative cells, and exactly 25% tie credit where public consequences do not distinguish needs. Satiation was not required in this miniature.",
+      "estimate": {
+        "overall_accuracy": 0.6159,
+        "informative": 0.9818,
+        "alias": 0.25
+      },
+      "control_status": "passes",
+      "claim_kind": "mechanism",
+      "architecture": "miniature, architecture untested",
+      "assumed_choice_model": "Stipulated finite need/action likelihoods",
+      "reader": "Exact finite-library reader",
+      "source_file": "docs/versions/v24-powered-readers/FOLLOWUP_RESULTS_2026-10-23.md",
+      "source_line": 1,
+      "source_sha256": "98581a3dc10519af1e974ce2f141313bfd803a76e9eb01b7f47713937f9ee138",
+      "supersedes": null,
+      "superseded_by": null,
+      "correction_class": null
+    },
+    {
+      "id": "G-V24-SETPOINTS-1",
+      "allowed_wording": "The public-set-point miniature reaches 100% accuracy; it does not recover hidden set-points.",
+      "estimate": {
+        "accuracy": 1
+      },
+      "control_status": "passes",
+      "claim_kind": "mechanism",
+      "architecture": "miniature, architecture untested",
+      "assumed_choice_model": "Stipulated set-point policies with public reference",
+      "reader": "Exact finite-library reader",
+      "source_file": "docs/versions/v24-powered-readers/FOLLOWUP_RESULTS_2026-10-23.md",
+      "source_line": 1,
+      "source_sha256": "98581a3dc10519af1e974ce2f141313bfd803a76e9eb01b7f47713937f9ee138",
+      "supersedes": null,
+      "superseded_by": null,
+      "correction_class": null
+    },
+    {
+      "id": "G-V24-EDITING-1",
+      "allowed_wording": "Higher-goal editing reaches 81.25% accuracy; policies remain exactly aliased without conflict or visible higher goals.",
+      "estimate": {
+        "accuracy": 0.8125
+      },
+      "control_status": "passes",
+      "claim_kind": "mechanism",
+      "architecture": "miniature, architecture untested",
+      "assumed_choice_model": "Stipulated finite editing policies",
+      "reader": "Exact finite-library reader",
+      "source_file": "docs/versions/v24-powered-readers/FOLLOWUP_RESULTS_2026-10-23.md",
+      "source_line": 1,
+      "source_sha256": "98581a3dc10519af1e974ce2f141313bfd803a76e9eb01b7f47713937f9ee138",
+      "supersedes": null,
+      "superseded_by": null,
+      "correction_class": null
+    },
+    {
+      "id": "G-V24-CONTEXT-1",
+      "allowed_wording": "Omitting the true mechanism leaves about 0.150 predictive error against 0.025 with full support after 64 records; finite context does not guarantee prior agreement.",
+      "estimate": {
+        "omitted_error": 0.14984321596,
+        "full_error": 0.02470498518
+      },
+      "control_status": "passes",
+      "claim_kind": "mechanism",
+      "architecture": "miniature, architecture untested",
+      "assumed_choice_model": "Supplied binary observation likelihoods",
+      "reader": "Exact readers with two priors and a restricted library",
+      "source_file": "docs/versions/v24-powered-readers/FOLLOWUP_RESULTS_2026-10-23.md",
+      "source_line": 1,
+      "source_sha256": "98581a3dc10519af1e974ce2f141313bfd803a76e9eb01b7f47713937f9ee138",
+      "supersedes": null,
+      "superseded_by": null,
+      "correction_class": null
+    },
+    {
+      "id": "G-V24-DISTURBANCE-1",
+      "allowed_wording": "The disturbance miniature reaches 98.96% accuracy when classifying supplied policies; it does not reconstruct an unknown controlled variable.",
+      "estimate": {
+        "accuracy": 0.9896
+      },
+      "control_status": "passes",
+      "claim_kind": "mechanism",
+      "architecture": "miniature, architecture untested",
+      "assumed_choice_model": "Stipulated control policies",
+      "reader": "Exact finite-library reader",
+      "source_file": "docs/versions/v24-powered-readers/FOLLOWUP_RESULTS_2026-10-23.md",
+      "source_line": 1,
+      "source_sha256": "98581a3dc10519af1e974ce2f141313bfd803a76e9eb01b7f47713937f9ee138",
+      "supersedes": null,
+      "superseded_by": null,
+      "correction_class": null
+    },
+    {
+      "id": "G-V24-PLAY-1",
+      "allowed_wording": "Play retains a uniform hidden-solution posterior without informative feedback; urgent need can suppress informative play.",
+      "estimate": {
+        "accuracy": 0.6396484375
+      },
+      "control_status": "passes",
+      "claim_kind": "mechanism",
+      "architecture": "miniature, architecture untested",
+      "assumed_choice_model": "Stipulated finite play policies and fixed uncertainty input",
+      "reader": "Exact finite-library reader",
+      "source_file": "docs/versions/v24-powered-readers/FOLLOWUP_RESULTS_2026-10-23.md",
+      "source_line": 33,
+      "source_sha256": "98581a3dc10519af1e974ce2f141313bfd803a76e9eb01b7f47713937f9ee138",
+      "supersedes": null,
+      "superseded_by": null,
+      "correction_class": null
+    },
+    {
+      "id": "G-V24-D5-1",
+      "allowed_wording": "One excluded D5 world completes 70,704 fits and 640 targets with full replay in 1,694.875 CPU-seconds; forty-world production has not run.",
+      "estimate": {
+        "worlds": 1,
+        "cpu_seconds": 1694.875
+      },
+      "control_status": "passes",
+      "claim_kind": "method",
+      "architecture": "miniature, architecture untested",
+      "assumed_choice_model": "Retained chronological constructed maker",
+      "reader": "Certified exact optimizer",
+      "source_file": "docs/versions/v24-powered-readers/D5_COST_PILOT_REPORT.md",
+      "source_line": 1,
+      "source_sha256": "c049de8cc497d3b64ddd607bcc22dfc2fddb0916d607b83e03660b08944973c8",
+      "supersedes": null,
+      "superseded_by": null,
+      "correction_class": null
+    },
+    {
+      "id": "G-V24-T1-1",
+      "allowed_wording": "T1 failed on missing dependency metadata before one complete world; no scientific finding.",
+      "estimate": {
+        "complete_worlds": 0
+      },
+      "control_status": "untested",
+      "claim_kind": "method",
+      "architecture": "miniature, architecture untested",
+      "assumed_choice_model": "Not evaluated",
+      "reader": "Not evaluated",
+      "source_file": "docs/versions/v24-powered-readers/T1_COST_PROFILE_FAILURE.md",
+      "source_line": 1,
+      "source_sha256": "864c1eb739f8544ea0d8ade909e9cb773f1bae3f494d760aa5d31590e2934d2b",
+      "supersedes": null,
+      "superseded_by": null,
+      "correction_class": null
+    },
+    {
+      "id": "G-V24-T3-1",
+      "allowed_wording": "T3 exhausted its bounded original pass before one complete world; no scientific finding.",
+      "estimate": {
+        "complete_worlds": 0
+      },
+      "control_status": "untested",
+      "claim_kind": "method",
+      "architecture": "miniature, architecture untested",
+      "assumed_choice_model": "Not evaluated",
+      "reader": "Not evaluated",
+      "source_file": "docs/versions/v24-powered-readers/T3_COST_PROFILE_FAILURE.md",
+      "source_line": 1,
+      "source_sha256": "5411b065e8e14e6b334ec0bc03a97f53d2e83d58a1aa2f0f8a11d7879b765ebe",
+      "supersedes": null,
+      "superseded_by": null,
+      "correction_class": null
+    }
+  ]
+}

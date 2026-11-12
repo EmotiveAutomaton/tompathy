@@ -8,7 +8,13 @@ import os from "node:os";
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 export async function startFixedQwen({ log = console.log } = {}) {
-  const binary = process.env.TOMPATHY_OLLAMA ?? path.join(process.env.LOCALAPPDATA ?? "", "Programs/Ollama/ollama.exe");
+  // Keep the receipted CPU runtime isolated from desktop auto-updates.
+  let binary = process.env.TOMPATHY_OLLAMA;
+  if (!binary) {
+    const pinned = path.resolve(".local/runtimes/ollama-0.40.3/ollama.exe");
+    try { await access(pinned); binary = pinned; }
+    catch { binary = path.join(process.env.LOCALAPPDATA ?? "", "Programs/Ollama/ollama.exe"); }
+  }
   const models = process.env.TOMPATHY_OLLAMA_MODELS ?? path.resolve("../LocalLM/ollama_models");
   const manifest = path.join(models, "manifests/registry.ollama.ai/library/qwen3.5/9b");
   try { await access(binary); await access(manifest); } catch {
@@ -55,7 +61,8 @@ export async function startFixedQwen({ log = console.log } = {}) {
       let response;
       try { response = await fetch(url + "/api/version", { signal: AbortSignal.timeout(700), redirect: "error" }); } catch {}
       if (response?.ok) {
-        if ((await response.json()).version !== "0.40.3") throw Error("Dedicated Ollama runtime differs from the constructed receipt.");
+        const version = (await response.json()).version;
+        if (version !== "0.40.3") throw Error(`Dedicated Ollama runtime ${version} differs from the constructed receipt (0.40.3).`);
         log("Dedicated fixed Qwen service ready; CPU only, model loaded on first judgment.");
         return { url, stop, pid: child.pid };
       }

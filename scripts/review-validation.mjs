@@ -99,7 +99,7 @@ try {
   await expect(
     panel.getByRole("tab", { name: "current work only", exact: true }),
   ).toHaveAttribute("aria-selected", "true");
-  await panel.getByRole("tab", { name: "creator", exact: true }).click();
+  await panel.getByRole("tab", { name: "author", exact: true }).click();
   await expect(panel.locator(".creator-brain")).toHaveJSProperty(
     "naturalWidth",
     128,
@@ -607,7 +607,7 @@ try {
     path: "evidence/review-global-values.png",
     scale: "css",
   });
-  await panel.getByRole("tab", { name: "creator", exact: true }).click();
+  await panel.getByRole("tab", { name: "author", exact: true }).click();
   await expect(panel.locator(".core-value-row")).toHaveCount(9);
   await panel.getByRole("button", { name: "Open search preview" }).click();
   await panel
@@ -713,9 +713,9 @@ try {
     .waitFor();
   await expect(panel.getByTestId("values")).toContainText("Care for others");
   await expect(
-    panel.getByRole("tab", { name: "creator", exact: true }),
+    panel.getByRole("tab", { name: "author", exact: true }),
   ).toHaveAttribute("aria-selected", "true");
-  await panel.getByRole("tab", { name: "creator", exact: true }).click();
+  await panel.getByRole("tab", { name: "author", exact: true }).click();
   await restored
     .locator('[data-snapshot-region="p4"]')
     .click({ position: { x: 30, y: 18 } });
@@ -757,7 +757,7 @@ try {
   await expect(
     panel.getByRole("tab", { name: "current work only", exact: true }),
   ).toHaveAttribute("aria-selected", "true");
-  await panel.getByRole("tab", { name: "creator", exact: true }).click();
+  await panel.getByRole("tab", { name: "author", exact: true }).click();
   await restored.bringToFront();
   await expect(panel.getByTestId("values")).toContainText("Practical care");
   receipt.checks.push(
@@ -766,9 +766,9 @@ try {
   await source.bringToFront();
   await expect(panel.getByTestId("values")).toContainText("Care for others");
   await expect(
-    panel.getByRole("tab", { name: "creator", exact: true }),
+    panel.getByRole("tab", { name: "author", exact: true }),
   ).toHaveAttribute("aria-selected", "true");
-  await panel.getByRole("tab", { name: "creator", exact: true }).click();
+  await panel.getByRole("tab", { name: "author", exact: true }).click();
   if (!panel.url().includes("qa"))
     await panel.goto(
       panel.url() + (panel.url().includes("?") ? "&" : "?") + "qa",

@@ -5,7 +5,9 @@ import { randomUUID } from "node:crypto";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const profile = process.argv[2] === "--profile" ? process.argv[3] : undefined;
+const profileIndex = process.argv.indexOf("--profile");
+const profile = profileIndex >= 0 ? process.argv[profileIndex + 1] : undefined;
+const surfaceOnly = process.argv.includes("--surface-only");
 await mkdir(path.join(root, ".local"), { recursive: true });
 const receipt = path.join(
   root,
@@ -25,6 +27,7 @@ try {
     ],
     {
       cwd: root,
+      env: { ...process.env, TOMPATHY_SURFACE_ONLY: surfaceOnly ? "1" : "0" },
       detached: true,
       windowsHide: true,
       stdio: ["ignore", log.fd, log.fd],

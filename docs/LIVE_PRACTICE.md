@@ -6,6 +6,14 @@ companion on an available loopback port. The launcher can close after startup;
 a small background host keeps its companion available until review Chrome closes.
 Normal Chrome profiles and research jobs are not touched.
 
+For a smaller CPU footprint, use `npm run practice:light`. This runs the real
+population readers for surface attention, reader comparison and payoff, without
+loading the large fixed-Qwen judgment model. Goals, techniques and correction
+judgments stay unavailable; this is not a full inference pass. Close the previous
+ToMpathy review Chrome before switching modes. The connection checks the selected
+mode and refuses to silently reuse the other one. See the
+[October 23 vertical-slice guide](VERTICAL_SLICE_2026-10-23.md).
+
 The launcher requires this checkout's Node dependencies and installed Python
 engine. If those are not present, install them once:
 
@@ -44,18 +52,43 @@ menu. Completed exact calls and scoring windows are reused. The existing picture
 stays visible while replay catches up. A failed module remains explicitly failed;
 inspect its disclosure and retry from the menu after resolving its cause.
 
+## October 25 table review
+
+For a visual pass without model loading, build and run `npm run chrome`, then
+open the safe example. In Core values, scroll horizontally and vertically. Hover
+a box to trace its parents and children; its complete phrase appears below.
+Use arrow keys or Ctrl+Home/End, and click/Enter a value to open its diagram.
+Release or Escape clears a held graph selection. Check all three perspectives.
+The example's varied connection widths are authored illustrations.
+
+On a real preview with paragraph groups, **Departure density · untested** is an
+optional Expertise control. Unread groups are unknown, not zero. Density can
+reflect rare words/topic changes. Available revision histories can supply an
+**Edit timeline** disclosure; unlocated changes stay explicit. A gap
+between revisions is not a measured pause. No personal drive gate has changed.
+The received EV1/EV2 reader identity remains pending, so their field badges stay
+untested. [Implementation and dependency record](ENGINE_WEEK_2026-10-25_IMPLEMENTATION.md).
+
 ## Prepared full-essay review
 
 The fixed-Qwen refresh completed all seven constructed batteries. Six passed;
 Q9 remains disabled. The full essay capture has a replay-verified partial cache
 saved **17 October, 19:39 Pacific**: habits and deviation are complete. The
-remaining layers are queued for CPU continuation; the October 18 attempt stopped
-at the shared-memory floor and is waiting for more headroom. Full preparation
-is **not complete yet**. See the [run record](CPU_REFRESH_2026-10-17.md) for exact
+remaining layers are incomplete. The October 26 diagnostic retry confirmed that
+the final governing goal response hits its fixed 256-token output limit. The
+job stopped at 06:24 Pacific; its owned processes exited and CPU slot was
+released. Preparation is blocked pending an owner-approved, separately pinned
+goal-response repair. No automatic retry is running. Earlier exact work remains
+saved; ordinary live limits and all research gates are unchanged.
+The launcher now uses a verified isolated Ollama 0.40.3 runtime when available,
+so desktop auto-updates cannot silently change the existing CPU pin. The first
+October 26 attempt stopped safely on that version mismatch; it was repaired
+without changing receipts or installed model weights. Full preparation is
+**not complete yet**. See the [run record](CPU_REFRESH_2026-10-17.md) for exact
 input and coverage. To try the partial cache now, use **Practice ToMpathy.cmd**,
 connect the local engine, leave Follow pages off, open the matching art page and
 choose **Load cached real preview** with Research preview on. Inspect its module
-disclosure; avoid starting duplicate analysis while background preparation runs.
+disclosure; the full-essay fresh path still has the documented goal-response blocker.
 
 The older Clef and fixed-Qwen readings described below predate the fresh question
 receipts. Their native timing checks are historical; matching engine, receipt
