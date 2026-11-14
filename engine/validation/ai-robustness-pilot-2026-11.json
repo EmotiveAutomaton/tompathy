@@ -1,0 +1,11 @@
+{
+  "schema": "tompathy.two-day-pilot.v1",
+  "capability": "ai-robustness",
+  "scope": "RAID training pilot; fixed 5% calibration false-alarm threshold; no detector admission",
+  "status": "queued-after-attention",
+  "date": "2026-11-13",
+  "productionAdmission": false,
+  "ledgerRows": [],
+  "ledgerStatus": "no ledger row",
+  "codePin": "43ecae394e1395cdbb9af02d764616d0c194eb9d1c9a8dc844859bceb9344c28"
+}

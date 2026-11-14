@@ -20,7 +20,7 @@ WINDOW_SCHEME = "surface-kv-segment-v1"
 def segments(target, prefix, bos):
     start = 0
     while start < len(target):
-        previous = prefix[-1536:] if start == 0 else (prefix + target[:start])[-1024:]
+        previous = prefix[-1536:] if start == 0 else (prefix[-(1024 - start):] if start < 1024 else []) + target[max(0, start - 1024):start]
         previous = previous or [bos]
         count = min(2048 - len(previous), len(target) - start)
         yield start, previous, target[start:start + count]
@@ -98,13 +98,17 @@ def score_chunks(reader, text, context, check):
                 result = reader.model(tensor, past_key_values=past, use_cache=True, logits_to_keep=positions)
                 logits = result.logits[0].float()
                 predictions = logits[:-1] if local == 0 else torch.cat([following, logits[:-1]], dim=0)
-                following, past = logits[-1:], result.past_key_values
+                # A view of the last row would retain all vocabulary logits
+                # while the generator yields and during the next forward pass.
+                following, past = logits[-1:].clone(), result.past_key_values
                 losses = torch.nn.functional.cross_entropy(predictions, torch.tensor(block, device=reader.device), reduction="none").tolist()
                 entropies = None
                 if entropy:
                     logp = torch.log_softmax(predictions, dim=-1)
                     entropies = -(logp.exp() * logp).sum(dim=-1)
                     entropies = entropies.tolist()
+                    del logp
+                del predictions, logits, result, tensor, positions
             reader.metrics["forwardCalls"] += 1
             reader.metrics["inputTokens"] += len(ids)
             reader.metrics["scoreMs"] += (monotonic() - started) * 1000

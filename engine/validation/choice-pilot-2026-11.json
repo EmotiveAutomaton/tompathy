@@ -1,0 +1,11 @@
+{
+  "schema": "tompathy.two-day-pilot.v1",
+  "capability": "choice",
+  "scope": "Public accepted-answer choice; not values",
+  "status": "waiting-for-EX5",
+  "date": "2026-11-13",
+  "productionAdmission": false,
+  "ledgerRows": [],
+  "ledgerStatus": "no ledger row",
+  "codePin": "43ecae394e1395cdbb9af02d764616d0c194eb9d1c9a8dc844859bceb9344c28"
+}

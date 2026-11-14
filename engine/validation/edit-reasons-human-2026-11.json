@@ -1,0 +1,11 @@
+{
+  "schema": "tompathy.two-day-pilot.v1",
+  "capability": "human-edits",
+  "scope": "IteraTeR balanced human intentions; fixed Q8; no fitting",
+  "status": "queued-after-attention",
+  "date": "2026-11-13",
+  "productionAdmission": false,
+  "ledgerRows": [],
+  "ledgerStatus": "no ledger row",
+  "codePin": "43ecae394e1395cdbb9af02d764616d0c194eb9d1c9a8dc844859bceb9344c28"
+}

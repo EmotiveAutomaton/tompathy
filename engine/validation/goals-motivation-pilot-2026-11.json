@@ -3,10 +3,37 @@
   "capability": "goals",
   "protocol": "958bd166b50bddcadb1627ba9e8f0ae94dd6617d8a64e07646b1b8631a21d4bd",
   "scope": "PEP/EIP Motivation ranking pilot, abstract and summary removed",
-  "status": "waiting-for-data",
-  "enginePin": null,
-  "dataPin": null,
+  "status": "stopped",
+  "enginePin": "1b60a57a4b27f91551db08d043c88e4d4432a489b5e0e8ae3f38cca2a78c97c6",
+  "dataPin": "dd901f34b399253af97aaa236e15025003222dcb93d8da656c75c49a21a6a1e7",
   "evidence": "not-run",
   "rows": [],
-  "productionAdmission": false
+  "productionAdmission": false,
+  "date": "2026-11-14",
+  "sourceReceiptPin": "852613e02789e3a3695f0fe2ff18c4e5cb837ee3903becbf47888aba6c90c0dd",
+  "ledgerRows": [],
+  "ledgerStatus": "no ledger row",
+  "codePin": "43ecae394e1395cdbb9af02d764616d0c194eb9d1c9a8dc844859bceb9344c28",
+  "wordMatchingComparison": {
+    "status": null
+  },
+  "tfidfBaseline": {
+    "documents": 40,
+    "authors": 38,
+    "top1": {
+      "mean": 0.65,
+      "interval": [
+        0.4878048780487805,
+        0.8048780487804879
+      ]
+    },
+    "reciprocalRank": {
+      "mean": 0.7293976449275362,
+      "interval": [
+        0.6014151947463767,
+        0.8496406249999997
+      ]
+    }
+  },
+  "completedDocuments": 0
 }

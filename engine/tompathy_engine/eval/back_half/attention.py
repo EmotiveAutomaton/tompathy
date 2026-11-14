@@ -1,13 +1,17 @@
 """TP2/TP5: fixed writer folds, text-only scoring and paired history contrasts."""
 import math
+import re
 from collections import Counter
 
 import numpy as np
 
-from ...preview.surface import SENTENCE, WORD, words
+from ...preview.surface import WORD, words
 from .data import history_contexts
 from .metrics import fit_logistic, predict, registered_row
 from .protocol import PROTOCOL, receipt
+
+# Unpunctuated lines are sentences too; the live display regex omits them.
+SENTENCE = re.compile(r'[^.!?\n]+(?:[.!?]+|(?=\n)|$)')
 
 
 def scaled(rows):
@@ -29,8 +33,8 @@ def positions(text, start):
     return len(preceding), not preceding, not text[paragraph:start].strip()
 
 
-def score_sessions(sessions, reader, *, check=lambda: None, smol=None, histories=True):
-    contexts = history_contexts(sessions, reader) if histories else {}
+def score_sessions(sessions, reader, *, check=lambda: None, smol=None, histories=True, contexts=None):
+    contexts = (history_contexts(sessions, reader) if histories else {}) if contexts is None else contexts
     tables = []
     for session in sessions:
         check()
@@ -75,7 +79,7 @@ def score_sessions(sessions, reader, *, check=lambda: None, smol=None, histories
 
 def word_forecast(tables, variants=(), *, own_set=True, require=()):
     selected = [s for s in tables if all(all(v in w["scores"] for v in require) for w in s["words"])]
-    rows = [(s,w) for s in selected for w in s["words"] if w["source"] == "writer" and (not own_set or w["eligible"])]
+    rows = [(s,w) for s in selected for w in s["words"] if w["source"] == "writer" and type(w["stop"]) is bool and (not own_set or w["eligible"])]
     if not rows or len({s["fold"] for s,_ in rows}) != 5:
         raise ValueError("Attention evaluation requires eligible words in all five writer folds")
     forecasts = np.zeros(len(rows))
@@ -132,7 +136,7 @@ def sentence_rows(tables):
         for index, span in enumerate(SENTENCE.finditer(session["text"])):
             selected = [w for w in session["words"] if span.start() <= w["start"] < span.end()]
             counts = Counter(w["source"] for w in selected)
-            if not selected or counts["prompt"]:
+            if not selected or counts["prompt"] or counts["unknown"]:
                 continue
             source, count = counts.most_common(1)[0]
             if count/len(selected) < .9:

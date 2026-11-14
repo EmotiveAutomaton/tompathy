@@ -1,0 +1,100 @@
+{
+  "schema": "tompathy.two-day-pilot.v1",
+  "capability": "first-paint",
+  "scope": "Three frozen texts; CPU; no default change",
+  "status": "complete",
+  "date": "2026-11-14",
+  "sourceReceiptPin": "45b8ba1d4cf96006c89b6c23d82fcad8809fc54763110b0dc2fdd425a019ea39",
+  "productionAdmission": false,
+  "ledgerRows": [],
+  "ledgerStatus": "no ledger row",
+  "codePin": "43ecae394e1395cdbb9af02d764616d0c194eb9d1c9a8dc844859bceb9344c28",
+  "textPin": "ff7eabe832a18e3472b7c5efe0e37e55fbb0d9ac83903ca2376ac0d6fff8b14c",
+  "measurements": [
+    {
+      "model": "qwen",
+      "reader": {
+        "revision": null,
+        "sha256": null,
+        "backend": null
+      },
+      "loadSeconds": 22.92263269983232,
+      "first600WordsSeconds": 10.133014700142667,
+      "totalSeconds": 53.66675560013391,
+      "words": 3044,
+      "threads": 2,
+      "frozenText": "manuscript-3000"
+    },
+    {
+      "model": "qwen",
+      "reader": {
+        "revision": null,
+        "sha256": null,
+        "backend": null
+      },
+      "loadSeconds": 22.92263269983232,
+      "first600WordsSeconds": 9.713770699920133,
+      "totalSeconds": 113.58112139999866,
+      "words": 6038,
+      "threads": 2,
+      "frozenText": "art-6000"
+    },
+    {
+      "model": "qwen",
+      "reader": {
+        "revision": null,
+        "sha256": null,
+        "backend": null
+      },
+      "loadSeconds": 22.92263269983232,
+      "first600WordsSeconds": 7.06054940004833,
+      "totalSeconds": 7.061217500129715,
+      "words": 598,
+      "threads": 2,
+      "frozenText": "distill-excerpt-600"
+    },
+    {
+      "model": "smol",
+      "reader": {
+        "revision": null,
+        "sha256": null,
+        "backend": null
+      },
+      "loadSeconds": 1.2983585000038147,
+      "first600WordsSeconds": 7.651628700084984,
+      "totalSeconds": 41.91836500004865,
+      "words": 3044,
+      "threads": 2,
+      "frozenText": "manuscript-3000"
+    },
+    {
+      "model": "smol",
+      "reader": {
+        "revision": null,
+        "sha256": null,
+        "backend": null
+      },
+      "loadSeconds": 1.2983585000038147,
+      "first600WordsSeconds": 6.212980199838057,
+      "totalSeconds": 80.75730299996212,
+      "words": 6038,
+      "threads": 2,
+      "frozenText": "art-6000"
+    },
+    {
+      "model": "smol",
+      "reader": {
+        "revision": null,
+        "sha256": null,
+        "backend": null
+      },
+      "loadSeconds": 1.2983585000038147,
+      "first600WordsSeconds": 4.041749199852347,
+      "totalSeconds": 4.043181600049138,
+      "words": 598,
+      "threads": 2,
+      "frozenText": "distill-excerpt-600"
+    }
+  ],
+  "defaultChanged": false
+}

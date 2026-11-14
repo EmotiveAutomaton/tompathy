@@ -1,0 +1,110 @@
+{
+  "schema": "tompathy.two-day-pilot.v1",
+  "capability": "weightonly",
+  "scope": "W1 converted local base weights; five ordered gates",
+  "status": "pending",
+  "date": "2026-11-14",
+  "sourceReceiptPin": "74e5fc5b9db82c9c3d7804d1421752a693d6c9bb35e239aacf50daa432cb5ab9",
+  "productionAdmission": false,
+  "ledgerRows": [],
+  "ledgerStatus": "no ledger row",
+  "readerPin": "996dc6c171a8ba4c89937cac9d80e42d5f5fed791791709d15f609a2c580b144",
+  "codePin": "43ecae394e1395cdbb9af02d764616d0c194eb9d1c9a8dc844859bceb9344c28",
+  "textsPin": "ff7eabe832a18e3472b7c5efe0e37e55fbb0d9ac83903ca2376ac0d6fff8b14c",
+  "ggufPin": "cff0f9553e5154597a89a4c58fde14e024676d3765ac62bf5ce559373752254e",
+  "gates": {
+    "a": {
+      "passed": true,
+      "assignedTokenMismatches": 0,
+      "engineTokenizerEntries": 151665,
+      "runtimeEntries": 151936,
+      "modelOutputRows": 151936,
+      "extraRuntimeEntries": 271,
+      "unusedPaddingEquivalence": true,
+      "verifiedUnusedPaddingRows": 271,
+      "definition": null
+    },
+    "b": {
+      "passed": true,
+      "texts": {
+        "manuscript-3000": {
+          "spearman": 0.9985327269152847,
+          "medianAbsoluteNats": 0.04585942029953016,
+          "words": 3044
+        },
+        "art-6000": {
+          "spearman": 0.9969989063123912,
+          "medianAbsoluteNats": 0.043211805356013766,
+          "words": 6038
+        },
+        "distill-excerpt-600": {
+          "spearman": 0.9995843001361995,
+          "medianAbsoluteNats": 0.03182569367068255,
+          "words": 598
+        }
+      }
+    },
+    "c": {
+      "maxAbsoluteTokenNats": 0.0,
+      "passed": true
+    },
+    "d": {
+      "passed": true,
+      "targetSecondsPer3000Words": 15,
+      "definition": null
+    }
+  },
+  "measurements": [
+    {
+      "threads": 1,
+      "loadSeconds": 0.268796700052917,
+      "first600WordsSeconds": 17.38787110010162,
+      "totalSeconds": 103.29801909998059,
+      "secondsPer3000Words": 101.80488084754987,
+      "frozenText": "manuscript-3000"
+    },
+    {
+      "threads": 1,
+      "loadSeconds": 0.268796700052917,
+      "first600WordsSeconds": 17.19908960000612,
+      "totalSeconds": 233.67564569995739,
+      "secondsPer3000Words": 116.10250697248628,
+      "frozenText": "art-6000"
+    },
+    {
+      "threads": 1,
+      "loadSeconds": 0.268796700052917,
+      "first600WordsSeconds": 11.756168900057673,
+      "totalSeconds": 11.756244100164622,
+      "secondsPer3000Words": 58.97781321152821,
+      "frozenText": "distill-excerpt-600"
+    },
+    {
+      "threads": 2,
+      "loadSeconds": 0.29387659998610616,
+      "first600WordsSeconds": 9.699156900169328,
+      "totalSeconds": 56.18464480014518,
+      "secondsPer3000Words": 55.37251458621404,
+      "frozenText": "manuscript-3000"
+    },
+    {
+      "threads": 2,
+      "loadSeconds": 0.29387659998610616,
+      "first600WordsSeconds": 9.590443500084803,
+      "totalSeconds": 125.62269580014981,
+      "secondsPer3000Words": 62.416046273674965,
+      "frozenText": "art-6000"
+    },
+    {
+      "threads": 2,
+      "loadSeconds": 0.29387659998610616,
+      "first600WordsSeconds": 6.422889600042254,
+      "totalSeconds": 6.42304929997772,
+      "secondsPer3000Words": 32.2226553510588,
+      "frozenText": "distill-excerpt-600"
+    }
+  ],
+  "defaultChanged": false,
+  "productionEnabled": false,
+  "servingReceipt": "Use the exact private gate receipt; this aggregate summary cannot enable serving."
+}

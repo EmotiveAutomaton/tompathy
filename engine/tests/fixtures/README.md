@@ -23,3 +23,7 @@ reader and structural group fixtures. It exercises typed departures, unknown
 versus zero density, timeline locations and ledger transport. None of its numeric
 values is reader validation or human research data. Field badges deliberately
 remain disabled without a matching received reader identity.
+
+`packets/bottom-box-empty.json` extends the constructed non-preview capture
+fixture with the requested default-off `bottom-box-0` shape. All entries are
+null/unvalidated with empty evidence and ledger rows; it supplies no estimates.

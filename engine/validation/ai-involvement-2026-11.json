@@ -3,10 +3,55 @@
   "capability": "ai-involvement",
   "protocol": "958bd166b50bddcadb1627ba9e8f0ae94dd6617d8a64e07646b1b8631a21d4bd",
   "scope": "AI involvement, CoAuthor suggestions, 2021 model",
-  "status": "waiting-for-data",
-  "enginePin": null,
-  "dataPin": null,
-  "evidence": "not-run",
-  "rows": [],
-  "productionAdmission": false
+  "status": "complete",
+  "enginePin": "b51c5aea21d0a82c239ab994ae928f273f549b8f66d40f0c153a9e19f865d7d1",
+  "dataPin": "670812f8a6d19837c4772edaac075f6db7ae7d61352701c416214b07071e24f9",
+  "evidence": "natural-writing",
+  "rows": [
+    {
+      "baseline": 0.6002262711498692,
+      "engine": 0.8055067914366064,
+      "gain": 0.2052805202867375,
+      "interval": [
+        0.17328174067295685,
+        0.23610197499812982
+      ],
+      "clusters": 60,
+      "singleClassClustersExcluded": 1,
+      "draws": 2000,
+      "uncertainty": null,
+      "registered": true,
+      "bar": 0.02,
+      "clearsBar": true,
+      "id": "1"
+    },
+    {
+      "baseline": 0.8158384322892768,
+      "engine": 0.8186025876965417,
+      "gain": 0.002764155407264923,
+      "interval": [
+        -0.0013040131441240399,
+        0.006761707179393835
+      ],
+      "clusters": 50,
+      "singleClassClustersExcluded": 0,
+      "draws": 2000,
+      "uncertainty": null,
+      "registered": true,
+      "bar": 0.01,
+      "clearsBar": false,
+      "id": "2"
+    },
+    {
+      "status": "unavailable",
+      "id": "3"
+    }
+  ],
+  "productionAdmission": false,
+  "date": "2026-11-14",
+  "sourceReceiptPin": "8ec778a5fe1fc763a548fe421f874a52512d26dc96595ae12ed111e0c5b72d8e",
+  "ledgerRows": [],
+  "ledgerStatus": "no ledger row",
+  "sentences": 30621,
+  "writerGenreCells": 104
 }

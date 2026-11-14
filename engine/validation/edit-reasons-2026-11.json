@@ -3,10 +3,101 @@
   "capability": "edit-reasons",
   "protocol": "958bd166b50bddcadb1627ba9e8f0ae94dd6617d8a64e07646b1b8631a21d4bd",
   "scope": "Stack Exchange single-hunk body edits, comment-derived labels",
-  "status": "waiting-for-data",
+  "status": "stopped",
   "enginePin": null,
-  "dataPin": null,
+  "dataPin": "df42ef9f24083ccd34e2745ca5d0c27aa61a166ea37cf1390ef1d3f4774d2c80",
   "evidence": "not-run",
   "rows": [],
-  "productionAdmission": false
+  "productionAdmission": false,
+  "date": "2026-11-14",
+  "sourceReceiptPin": "bb8cb2e1a3cd5f5c4a9d409c3bb5ffdc7aa9d3830adf83611cfe9f9d6787d4e2",
+  "ledgerRows": [],
+  "ledgerStatus": "no ledger row",
+  "readerPin": "d45889455cfc6623bd323cf87e08c03fadc5824a67a3a33892468932e3234bf3",
+  "codePin": "43ecae394e1395cdbb9af02d764616d0c194eb9d1c9a8dc844859bceb9344c28",
+  "aggregationCodePin": "3bbec6b1445c068a887b692a3087b9766ffe6d9f9e98bf4311759a02c4b2a9c8",
+  "originalReceiptPin": "50ac9b9243f963becda5ba32c05d0d0b06e8776793dac6af9e7f0ce7c4c4f620",
+  "direct": {
+    "macroF1": 0.25833596049795277,
+    "twoWayAccuracy": 0.5,
+    "edits": 472
+  },
+  "comparison": {
+    "direct": {
+      "macroF1": 0.25833596049795277,
+      "twoWayAccuracy": 0.5,
+      "edits": 472
+    },
+    "feature": {
+      "macroF1": 0.47944199297537626,
+      "twoWayAccuracy": 0.7838983050847458,
+      "edits": 472
+    },
+    "cascadeEligible": false,
+    "cascade": {
+      "macroF1": 0.31746207452556685,
+      "twoWayAccuracy": 0.527542372881356,
+      "edits": 472
+    }
+  },
+  "sampleCoverage": {
+    "typo or spelling": {
+      "eligible": 379,
+      "sampled": 200,
+      "byFold": {
+        "0": 37,
+        "1": 36,
+        "2": 55,
+        "3": 39,
+        "4": 33
+      }
+    },
+    "grammar": {
+      "eligible": 212,
+      "sampled": 200,
+      "byFold": {
+        "0": 42,
+        "1": 34,
+        "2": 52,
+        "3": 40,
+        "4": 32
+      }
+    },
+    "clarity": {
+      "eligible": 322,
+      "sampled": 200,
+      "byFold": {
+        "0": 45,
+        "1": 29,
+        "2": 44,
+        "3": 43,
+        "4": 39
+      }
+    },
+    "added content": {
+      "eligible": 433,
+      "sampled": 200,
+      "byFold": {
+        "0": 39,
+        "1": 35,
+        "2": 35,
+        "3": 33,
+        "4": 58
+      }
+    },
+    "removed content": {
+      "eligible": 346,
+      "sampled": 200,
+      "byFold": {
+        "0": 46,
+        "1": 31,
+        "2": 42,
+        "3": 36,
+        "4": 45
+      }
+    }
+  },
+  "completed": 472,
+  "requested": 1000,
+  "speedQualification": "unavailable: original supplied-feature generation timings absent"
 }

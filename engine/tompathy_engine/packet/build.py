@@ -25,6 +25,7 @@ def build_packet(
     origin="live provider",
     model=None,
     goals=None,
+    bottom_box=False,
 ):
     capture = validate_capture(capture)
     if ledger is not None:
@@ -247,4 +248,8 @@ def build_packet(
     from .value_view import build_value_view
     packet["schemaVersion"] = "1.10"
     packet["valueView"] = build_value_view(packet, tier=tier)
+    if bottom_box:
+        from .bottom_box import empty_bottom_box
+        packet['bottom_box'] = empty_bottom_box()
+        packet['id'] = digest([packet['id'], packet['bottom_box']])
     return hide_usernames(Packet.model_validate(packet).wire())

@@ -251,6 +251,21 @@ a declared pin and bounded cache.
 
 ## Validation and remaining gates
 
+The [two-day continuation](../docs/ENGINE_TWO_DAY_2026-11-14.md) documents received
+EX1–EX3, public pilot inputs, the active CPU run and exact continuation commands.
+Optional benchmark dependencies are pinned in `engine[benchmarks]`; the installed
+llama.cpp route uses a CPU wheel and converts existing pinned weights locally.
+There is no automatic model download. The module contract is
+[eval/two_day/README.md](tompathy_engine/eval/two_day/README.md).
+
+`analyze --bottom-box` adds the empty `bottom-box-0` extension. It carries only
+null, unvalidated entries and has no producer. It is absent by default.
+`serve --preview-precision w8 --preview-weightonly-model <local.gguf>
+--preview-weightonly-receipt <exact-private-receipt.json>` additionally requires
+the original reader directory, CPU, its tested thread count, and all five gates
+at the exact code/data/runtime pins. Pending and failed receipts are refused.
+The aggregate public speed receipt cannot activate this route.
+
 The [November engine pass](../docs/ENGINE_BACK_HALF_2026-11-15.md) adds an optional
 KV scoring path (`serve --preview-scoring kv --preview-precision float32`) and local benchmark harnesses for
 attention, accepted AI suggestions, edit reasons and Motivation ranking. Legacy

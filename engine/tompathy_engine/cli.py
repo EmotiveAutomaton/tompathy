@@ -119,6 +119,7 @@ def main(argv=None):
     p.add_argument("--capture", required=True)
     p.add_argument("--out", required=True)
     p.add_argument("--admissions")
+    p.add_argument("--bottom-box", action="store_true", help="Include the empty bottom-box-0 contract; no readings are produced")
     p.add_argument(
         "--model",
         help="Pinned model JSON from fit; needs scientific admission to contribute estimates",
@@ -148,7 +149,9 @@ def main(argv=None):
     p.add_argument("--preview-readers", help="Directory containing explicitly installed, pinned qwen/ and optional smol/ readers")
     p.add_argument("--preview-device", choices=("cpu", "cuda"), default="cpu", help="Explicit scoring device; never silently falls back")
     p.add_argument("--preview-threads", type=int, default=1, help="Explicit CPU reader thread budget (1–16)")
-    p.add_argument("--preview-precision", choices=("int8", "int8-channel", "float32"), default="int8")
+    p.add_argument("--preview-precision", choices=("int8", "int8-channel", "float32", "w8"), default="int8")
+    p.add_argument("--preview-weightonly-model", type=Path, help="Locally converted Q8_0 weights; requires all five exact-pin parity gates")
+    p.add_argument("--preview-weightonly-receipt", type=Path, help="Completed exact reader/code/TP2 weight-only receipt")
     p.add_argument("--preview-scoring", choices=("window", "kv"), default="window", help="Experimental KV reuse; legacy window scoring remains default")
     p.add_argument("--preview-clef-config", help="Optional pinned local Clef-flash SystemOne config; unvalidated joint technique decisions")
     p.add_argument("--preview-cache", help="Local exact-input surface score cache")
@@ -329,6 +332,7 @@ def main(argv=None):
                 admissions=Admissions.load(Path(args.admissions) if args.admissions else None),
                 model=load_bundle(args.model),
                 goals=GoalInputs.model_validate(read(args.goals)) if args.goals else None,
+                bottom_box=args.bottom_box,
             )
             write(args.out, result)
             result = {"packet": args.out, "hypotheses": len(result["hypotheses"])}
@@ -342,7 +346,13 @@ def main(argv=None):
 
             result = from_directory(args.packets, args.out, private=args.private)
         elif args.command == "serve":
-            if args.preview_scoring == "kv" and (args.preview_precision != "float32" or args.preview_device != "cpu"):
+            if args.preview_precision == 'w8':
+                if args.preview_device != 'cpu' or not args.preview_readers or not args.preview_weightonly_model or not args.preview_weightonly_receipt:
+                    raise ValueError('Weight-only serving requires CPU, original reader directory, converted weights and all-five-gates receipt')
+                if not (Path(args.preview_readers)/'qwen/manifest.json').is_file():
+                    raise ValueError('Weight-only serving requires the original pinned Qwen reader')
+                args.preview_scoring = 'kv'
+            if args.preview_scoring == "kv" and (args.preview_precision not in {"float32", "w8"} or args.preview_device != "cpu"):
                 raise ValueError("Experimental KV serving requires CPU float32; int8 failed the November parity gate")
             import uvicorn
 
@@ -377,13 +387,20 @@ def main(argv=None):
             if args.preview_readers:
                 from .preview.readers import LocalReader
                 for name in ("qwen", "smol"):
+                    if args.preview_precision == 'w8' and name != 'qwen':
+                        continue
                     if name == "smol" and not preview_readers:
                         break
                     root = Path(args.preview_readers) / name
                     if name == "smol" and not (root / "manifest.json").exists():
                         root = Path(args.preview_readers) / "smol-small"
                     if (root / "manifest.json").exists():
-                        preview_readers.append(LocalReader(root, args.preview_cache, device=args.preview_device, threads=args.preview_threads, precision=args.preview_precision, scoring=args.preview_scoring))
+                        if args.preview_precision == 'w8':
+                            from .eval.two_day.weightonly import load_admitted_route
+                            preview_readers.append(load_admitted_route(root, args.preview_weightonly_model, args.preview_weightonly_receipt,
+                                threads=args.preview_threads, cache=args.preview_cache))
+                        else:
+                            preview_readers.append(LocalReader(root, args.preview_cache, device=args.preview_device, threads=args.preview_threads, precision=args.preview_precision, scoring=args.preview_scoring))
             app = create_app(
                 token=load_token(args.token_file),
                 origins=args.extension_origin,

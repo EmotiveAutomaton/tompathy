@@ -3,10 +3,114 @@
   "capability": "attention",
   "protocol": "958bd166b50bddcadb1627ba9e8f0ae94dd6617d8a64e07646b1b8631a21d4bd",
   "scope": "CoAuthor writer-typed content words after engine holdouts",
-  "status": "waiting-for-data",
-  "enginePin": null,
-  "dataPin": null,
-  "evidence": "not-run",
-  "rows": [],
-  "productionAdmission": false
+  "status": "complete",
+  "enginePin": "b51c5aea21d0a82c239ab994ae928f273f549b8f66d40f0c153a9e19f865d7d1",
+  "dataPin": "670812f8a6d19837c4772edaac075f6db7ae7d61352701c416214b07071e24f9",
+  "evidence": "natural-writing",
+  "rows": [
+    {
+      "baseline": 0.5511565126559368,
+      "engine": 0.5676661107429811,
+      "gain": 0.016509598087044296,
+      "interval": [
+        0.008065868982765838,
+        0.024140620673352816
+      ],
+      "clusters": 60,
+      "singleClassClustersExcluded": 1,
+      "draws": 2000,
+      "uncertainty": null,
+      "registered": true,
+      "bar": 0.02,
+      "clearsBar": false,
+      "id": "1"
+    },
+    {
+      "baseline": 0.5590000160732016,
+      "engine": 0.5599967849528433,
+      "gain": 0.000996768879641758,
+      "interval": [
+        -0.0002392526306988335,
+        0.002016694023982261
+      ],
+      "clusters": 49,
+      "singleClassClustersExcluded": 1,
+      "draws": 2000,
+      "uncertainty": null,
+      "registered": true,
+      "bar": 0.01,
+      "clearsBar": false,
+      "sessions": 1302,
+      "id": "2"
+    },
+    {
+      "status": "unavailable",
+      "id": "3"
+    }
+  ],
+  "productionAdmission": false,
+  "date": "2026-11-14",
+  "sourceReceiptPin": "1b021c8a8653e23c02ab6de8a0fff52a673963f30bc9fd30fced216e5b160c6e",
+  "ledgerRows": [],
+  "ledgerStatus": "no ledger row",
+  "stopsOutsideOwnSet": 0.3513783352042138,
+  "V1AllWords": {
+    "baseline": 0.6078227355627766,
+    "engine": 0.6164954520107337,
+    "gain": 0.00867271644795723,
+    "interval": [
+      0.0054356139880098455,
+      0.011772296720756066
+    ],
+    "clusters": 61,
+    "singleClassClustersExcluded": 0,
+    "draws": 2000,
+    "uncertainty": null
+  },
+  "exploratory": [
+    {
+      "baseline": 0.5511565126559368,
+      "engine": 0.5661352626508699,
+      "gain": 0.014978749994933071,
+      "interval": [
+        0.007349248144190475,
+        0.021761193448832226
+      ],
+      "clusters": 60,
+      "singleClassClustersExcluded": 1,
+      "draws": 2000,
+      "uncertainty": null,
+      "registered": false,
+      "bar": 0.02,
+      "clearsBar": false,
+      "variant": "V1",
+      "id": "1"
+    },
+    {
+      "variant": "V2",
+      "status": "unavailable"
+    },
+    {
+      "variant": "V3",
+      "status": "unavailable"
+    },
+    {
+      "baseline": 0.5511565126559368,
+      "engine": 0.5648873843568337,
+      "gain": 0.013730871700896917,
+      "interval": [
+        0.008206154862641734,
+        0.018891460472914595
+      ],
+      "clusters": 60,
+      "singleClassClustersExcluded": 1,
+      "draws": 2000,
+      "uncertainty": null,
+      "registered": false,
+      "bar": 0.02,
+      "clearsBar": false,
+      "variant": "V5",
+      "id": "1"
+    }
+  ]
 }

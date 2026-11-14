@@ -1,9 +1,71 @@
 # ToMpathy status
 
-Updated 11 November 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
+Updated 14 November 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
 based on the merged, owner-approved **0.2.0** frontend milestone.
 
-## November 11 engine completion audit
+## November 13 two-day packet
+
+The [two-day packet implementation](docs/ENGINE_TWO_DAY_2026-11-14.md) receives
+EX1–EX3 with exact hashes: 1,399 replayed sessions, 1,692 eligible edits with
+recovered original features/folds, and the fixed 40-document proposal pilot.
+RAID's 2,500-document subset, IteraTeR's balanced 300 edits and 91 licensed human
+TOEFL essays are prepared. Individual observations stay in ignored storage.
+
+The registered window phase is complete. Attention gained 0.01651 AUC, below
+its 0.02 bar; AI involvement gained 0.20528 and cleared its first bar on CoAuthor's
+2021 suggestion data only. Both added-history rows missed their bars, and both
+matched-donor contrasts are unavailable. No production admission follows.
+Float32 KV reuse passed its primary-AUC binding check: a difference of +0.0000251
+against the allowed 0.005. This does not qualify W1's separate quantization gates.
+Smol's AUC was 0.0009044 below Qwen, meeting the 0.01 first-paint-candidate
+criterion; latency and defaults are unchanged. The job stopped at its memory
+floor after Smol completed and before history began. Native exit and both matching
+lease releases were verified. Registered aggregate receipts and the scoreboard
+are now updated. History and remaining pilots are **not complete**.
+At the 21:00 Pacific checkpoint, resources and shared admission recovered. The
+edit-feature benchmark completed: macro-F1 0.484132 and two-way accuracy 0.802009
+on 1,692 comment-labelled edits. Q8 passed its timing gate but stopped at 23:11
+Pacific after 472/1,000 judgments when commit headroom fell below 8 GiB. Native
+exit and lease release are verified. Its partial aggregate is recorded; a summary
+bug that credited some unclear answers was corrected from saved calls, matching
+the existing paired comparison. No inference or scientific gate was rerun.
+The 40-proposal word-matching baseline then completed with 65% top-1 accuracy;
+its receipt is verified. The goal-reader pilot stopped before 9B loading when
+commit headroom after the small reader loaded was below the required 20 GiB.
+Its zero-document receipt and exact exit/release are verified. W1 gates a-d
+completed: numerical agreement and prefix consistency passed, and timings were
+recorded. On two threads, the long texts took 55.4-62.4 seconds per 3,000 words,
+missing the 15-second target. First-600 scoring took 9.6-9.7 seconds. Gate e then
+passed on all 1,399 sessions: primary AUC differed by +0.0000071, within 0.005.
+Native exit, matching lease release and the combined receipt's public source
+binding are verified. W1's a-e gates are complete for the frozen package; exact
+serving pins remain required and no default or research admission changed. The
+separate first-paint timing comparison is complete: on the two longer texts,
+Smol scored the first 600 words in 6.2-7.7 seconds versus Qwen's 9.7-10.1 seconds,
+excluding loading. These are scoring times, not full engine/UI latency. Native
+exit, lease release and public receipt pins are verified. The serial robustness
+pilot is running under its eight-hour limit and the original queue deadline.
+Cascade speed qualification remains unavailable. The earlier
+foreign-lease warning was an unconfirmed sandbox
+visibility result, not a verified fault; no foreign process or lease was changed.
+The implementation includes resumable scoring, the history/reader ladders,
+feature/Q8 comparisons, goal word-matching controls, robustness and choice pilots,
+and first-paint timing. W1 conversion and the owner-clarified vocabulary preflight
+passed; its explicit serving option still requires matching implementation and reader pins.
+Defaults, failed int8, field labels and the frozen EV exporter pin are unchanged.
+
+The November 14 speed review removes repeated text/token prefix copies and
+releases vocabulary-sized tensors between scoring blocks. Scores and source
+spans matched the prior code exactly in constructed comparisons. Timing reports
+now preserve reader/comparison hashes. The frozen evaluation package is unchanged;
+these software checks grant no new scientific admission.
+
+The optional empty `bottom-box-0` contract has no producer and no frontend edits.
+EX4/EX5 and CP1/EX6 still need their actual exports/results. Full-art preparation
+remains blocked by the separately documented governing-goal output limit.
+See the working record for verification, continuation and remaining dependencies.
+
+## November 11 engine completion audit (historical)
 
 The [back-half packet](docs/ENGINE_BACK_HALF_2026-11-15.md) is implemented through
 the available engineering boundary. Its four natural-writing benchmark runners,

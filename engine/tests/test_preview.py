@@ -57,6 +57,24 @@ def test_surface_alignment_and_holdouts():
     assert result["world"]["nats"] == 7  # word plus its trailing period and space
 
 
+def test_surface_unicode_boundaries_preserve_holdouts_and_utf16_spans():
+    from tompathy_engine.adapters.capture import utf16_length
+    from tompathy_engine.preview.surface import summarize_deviation
+
+    text = '“First” café 😀 Alice.\n  ([{“New” grows.\u00a0Other grows.'
+    tokens = [{"start": i, "end": i + 1, "nats": (i % 5 + 1) / 3} for i in range(len(text))]
+    aligned = words(text, tokens)
+    by_word = {w["text"]: w for w in aligned}
+    assert not by_word["First"]["held"] and not by_word["New"]["held"]
+    assert by_word["Alice"]["held"] and by_word["Other"]["held"]
+    result = summarize_deviation([{"region": "unicode", "text": text, "words": aligned}])
+    new = next(r for r in result["attention"] if r["finding"] == "departure-phrase" and r["text"].startswith("New"))
+    assert new["start"] == utf16_length(text[:text.index("New")])
+    # The candidate triple reaches held-out Other, so the existing rule keeps
+    # only New rather than bridging that holdout.
+    assert new["end"] == utf16_length(text[:text.index("New") + len("New")])
+
+
 def test_preview_registry_refused_even_for_private_registry(tmp_path):
     packet = build_preview(build_packet(capture()))
     with pytest.raises(ValueError, match="stay local"):

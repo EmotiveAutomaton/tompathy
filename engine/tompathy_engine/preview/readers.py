@@ -143,7 +143,8 @@ class LocalReader:
         for start in range(0, len(target), 512):
             check()
             chunk = target[start:start + 512]
-            previous = (prefix + target[:start])[-(2048 - len(chunk)):]
+            limit = 2048 - len(chunk)
+            previous = (prefix[-(limit - start):] if start < limit else []) + target[max(0, start - limit):start]
             if not previous:
                 previous = [bos]
             ids = previous + chunk
@@ -183,6 +184,10 @@ class LocalReader:
                 if entropy:
                     logp = self.torch.log_softmax(logits, dim=-1)
                     entropies = (-(logp.exp() * logp).sum(dim=-1)).tolist()
+                    del logp
+                # Only scalar losses survive a chunk. Release vocabulary-sized
+                # temporaries before yielding or starting the next forward pass.
+                del logits, tensor, positions, labels
             self.metrics["forwardCalls"] += 1
             self.metrics["scoreMs"] += (monotonic() - started) * 1000
             self.metrics["inputTokens"] += len(ids)

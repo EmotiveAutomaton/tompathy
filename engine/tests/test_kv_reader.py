@@ -1,4 +1,5 @@
 """Constructed causal-model checks; no downloaded models or admission."""
+import weakref
 from types import SimpleNamespace
 
 import pytest
@@ -78,3 +79,24 @@ def test_cache_corruption_fails_closed(tmp_path):
     assert read_scores(path, "key", 1, True) is None
     path.write_text('broken', encoding="utf8")
     assert read_scores(path, "key") is None
+
+
+@pytest.mark.parametrize("scoring", ["window", "kv"])
+@pytest.mark.parametrize("entropy", [False, True])
+def test_vocabulary_logits_are_released_between_chunks(scoring, entropy):
+    reader = tiny_reader(scoring=scoring, entropy=entropy)
+    buffers = []
+
+    def observe_output(model, inputs, output):
+        # Starting another forward must not retain the preceding full logits.
+        assert all(ref() is None for ref in buffers)
+        buffers.append(weakref.ref(output.logits))
+
+    hook = reader.model.register_forward_hook(observe_output)
+    try:
+        for tokens, _ in reader.score_chunks("bounded memory " * 180):
+            assert tokens
+            assert all(ref() is None for ref in buffers)
+        assert len(buffers) > 4
+    finally:
+        hook.remove()

@@ -1,0 +1,218 @@
+{
+  "schemaVersion": "1.7",
+  "id": "734475a800e17e430fae8784660d9f55c4dc8e1977f1b97f7d39416dd2464006",
+  "revision": 1,
+  "artifact": {
+    "id": "https://example.org/engine-fixture",
+    "revision": "442e345944aa5c11a28febface52e7ea544e44f63bed12079dce8bf9b814d5a6",
+    "title": "Constructed engine reading",
+    "source": "https://example.org/engine-fixture",
+    "capturedAt": "2026-01-03T00:00:00Z",
+    "regions": [
+      {
+        "id": "p1",
+        "anchor": {
+          "exact": "A deliberate revision. 🌞",
+          "prefix": "",
+          "suffix": "\n\nThe text discusses danger; motives remain unknown.",
+          "start": 0,
+          "index": 0
+        }
+      },
+      {
+        "id": "p2",
+        "anchor": {
+          "exact": "The text discusses danger; motives remain unknown.",
+          "prefix": "A deliberate revision. 🌞\n\n",
+          "suffix": "",
+          "start": 27,
+          "index": 1
+        }
+      }
+    ],
+    "truncated": false
+  },
+  "provider": {
+    "id": "tompathy-engine",
+    "method": "ToMpathy engine 0.1.0a1; commit 82789fdb50d9366ab9352129b01ee37622554dfa + local engine changes; implementation eb44a6a428f6b3cb5598857adea0bdec7efe818ab1aa9cb20fbc69bd2dce7df0; evidence tier T0; domain writing. Observed capture and ledger records only. Text alone does not update maker preferences. Actual contributing admission records are in provider.admissions.",
+    "admissions": []
+  },
+  "bottom_box": {
+    "version": "bottom-box-0",
+    "set_points": {
+      "knowledge": {
+        "value": null,
+        "evidence": [],
+        "status": "unvalidated",
+        "ledgerRows": []
+      },
+      "tending": {
+        "value": null,
+        "evidence": [],
+        "status": "unvalidated",
+        "ledgerRows": []
+      },
+      "belonging": {
+        "value": null,
+        "evidence": [],
+        "status": "unvalidated",
+        "ledgerRows": []
+      },
+      "seen_as_competent": {
+        "value": null,
+        "evidence": [],
+        "status": "unvalidated",
+        "ledgerRows": []
+      },
+      "seen_as_kind": {
+        "value": null,
+        "evidence": [],
+        "status": "unvalidated",
+        "ledgerRows": []
+      }
+    },
+    "body": {
+      "warmth": {
+        "value": null,
+        "evidence": [],
+        "status": "unvalidated",
+        "ledgerRows": []
+      },
+      "food": {
+        "value": null,
+        "evidence": [],
+        "status": "unvalidated",
+        "ledgerRows": []
+      },
+      "sleep": {
+        "value": null,
+        "evidence": [],
+        "status": "unvalidated",
+        "ledgerRows": []
+      }
+    },
+    "readings": {
+      "stress": {
+        "value": null,
+        "evidence": [],
+        "status": "unvalidated",
+        "ledgerRows": []
+      },
+      "freedom": {
+        "value": null,
+        "evidence": [],
+        "status": "unvalidated",
+        "ledgerRows": []
+      }
+    },
+    "hub": null,
+    "channels": {
+      "SEEKING": {
+        "value": null,
+        "evidence": [],
+        "status": "unvalidated",
+        "ledgerRows": []
+      },
+      "FEAR": {
+        "value": null,
+        "evidence": [],
+        "status": "unvalidated",
+        "ledgerRows": []
+      },
+      "RAGE": {
+        "value": null,
+        "evidence": [],
+        "status": "unvalidated",
+        "ledgerRows": []
+      },
+      "PANIC_GRIEF": {
+        "value": null,
+        "evidence": [],
+        "status": "unvalidated",
+        "ledgerRows": []
+      },
+      "CARE": {
+        "value": null,
+        "evidence": [],
+        "status": "unvalidated",
+        "ledgerRows": []
+      },
+      "PLAY": {
+        "value": null,
+        "evidence": [],
+        "status": "unvalidated",
+        "ledgerRows": []
+      },
+      "LUST": {
+        "value": null,
+        "evidence": [],
+        "status": "unvalidated",
+        "ledgerRows": []
+      },
+      "DISGUST": {
+        "value": null,
+        "evidence": [],
+        "status": "unvalidated",
+        "ledgerRows": []
+      },
+      "SHAME": {
+        "value": null,
+        "evidence": [],
+        "status": "unvalidated",
+        "ledgerRows": []
+      }
+    }
+  },
+  "origin": "synthetic example",
+  "scope": {
+    "kind": "artifact",
+    "contextIds": []
+  },
+  "makers": [
+    {
+      "id": "f0875f60a8143cd4cdd4e9015c02dbc39fd922a6cf7c07ba49f19be3c792a9cf",
+      "label": "Unidentified creator",
+      "identity": "unknown",
+      "relationship": "Page attribution only; no verified identity or cross-source join"
+    }
+  ],
+  "hypotheses": [],
+  "alternatives": [],
+  "process": {
+    "interpretation": "unspecified",
+    "nodes": [],
+    "edges": []
+  },
+  "estimates": [
+    {
+      "region": "p1",
+      "uncertainty": {
+        "level": "unknown",
+        "meaning": "T0 evidence; no admitted estimate of motive or contribution"
+      }
+    },
+    {
+      "region": "p2",
+      "uncertainty": {
+        "level": "unknown",
+        "meaning": "T0 evidence; no admitted estimate of motive or contribution"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "3f21856279d5ac146b376249b114f19033e596d2aefd7d7697ca9c5adc5a96a7",
+      "source": "https://example.org/engine-fixture",
+      "excerpt": "A deliberate revision. 🌞",
+      "capturedAt": "2026-01-03T00:00:00Z",
+      "relationship": "Observed final text; this alone does not establish a maker's choices or motives"
+    },
+    {
+      "id": "8d90ef30a51652ad8ab990749dcccf543d1f1dc6b1e8dbc30cd9b5bd5375e55d",
+      "source": "https://example.org/engine-fixture",
+      "excerpt": "The text discusses danger; motives remain unknown.",
+      "capturedAt": "2026-01-03T00:00:00Z",
+      "relationship": "Observed final text; this alone does not establish a maker's choices or motives"
+    }
+  ]
+}

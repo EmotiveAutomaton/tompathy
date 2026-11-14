@@ -5,7 +5,7 @@ from statistics import mean
 
 import numpy as np
 
-from ..adapters.capture import utf16_length, utf16_slice
+from ..adapters.capture import utf16_slice
 
 WORD = re.compile(r"\b\w+(?:['’]\w+)*\b", re.UNICODE)
 CODE = re.compile(r"```[\s\S]*?```|`[^`]*`|https?://\S+|www\.\S+", re.IGNORECASE)
@@ -47,8 +47,12 @@ def words(text, tokens, held_spans=()):
         if not scored:
             continue
         value = match.group()
-        before = text[:a].rstrip(' \t\n\r“"‘([{')
-        initial = not before or before[-1] in ".!?"
+        # Inspect the preceding delimiter without copying the entire prefix for
+        # every word in a long passage.
+        before = a - 1
+        while before >= 0 and text[before] in ' \t\n\r“"‘([{':
+            before -= 1
+        initial = before < 0 or text[before] in ".!?"
         held = any(c.isdigit() for c in value) or (value[0].isupper() and not initial) or any(a < y and b > x for x, y in blocked)
         # Byte-overlap allocation is an explicitly approximate attribution of
         # observed-token loss, not a normalized word probability. Exact boundary
@@ -66,6 +70,7 @@ def score_regions(capture, reader, check=lambda: None, short=False, priority=Non
         region = regions[index]
         check()
         text = region["anchor"]["exact"]
+        held_spans = source_holdouts(region)
         previous = regions[index - 1]["anchor"]["exact"] if index else ""
         if short:
             previous = ""
@@ -91,12 +96,12 @@ def score_regions(capture, reader, check=lambda: None, short=False, priority=Non
                     if crossing:
                         end = crossing.start()
                 excerpt = text[:end]
-                aligned = words(text, tokens, source_holdouts(region))
+                aligned = words(text, tokens, held_spans)
                 byte_end = len(excerpt.encode("utf8"))
                 aligned = [word for word in aligned if word["byteEnd"] <= byte_end]
                 yield {"region": region["id"], "text": excerpt, "words": aligned, "complete": complete}
             continue
-        yield {"region": region["id"], "text": text, "words": words(text, tokens, source_holdouts(region)), "complete": True}
+        yield {"region": region["id"], "text": text, "words": words(text, tokens, held_spans), "complete": True}
 
 
 def score_page(capture, reader, check=lambda: None, short=False):
@@ -116,16 +121,19 @@ def summarize_deviation(rows, check=lambda: None):
     median = float(np.median(content))
     iqr = float(np.quantile(content, .75) - np.quantile(content, .25))
     phrases, sentences = [], []
-    def item(row, selected, text, start, end):
+    def item(row, selected, text, start, end, offsets):
         value = mean(w["nats"] for w in selected)
-        return {"region": row["region"], "start": utf16_length(row["text"][:start]), "end": utf16_length(row["text"][:end]),
+        return {"region": row["region"], "start": offsets[start], "end": offsets[end],
                 "text": text, "departure": (value - median) / iqr if iqr > 1e-12 else 0.0}
     for row in rows:
         check()
+        offsets = [0]
+        for char in row["text"]:
+            offsets.append(offsets[-1] + (2 if ord(char) > 0xFFFF else 1))
         for sentence in SENTENCE.finditer(row["text"]):
             selected = [w for w in row["words"] if sentence.start() <= w["start"] < sentence.end() and w["content"] and not w["held"]]
             if selected:
-                sentences.append({**item(row, selected, sentence.group().strip()[:250], sentence.start(), sentence.end()), "finding": "departure-sentence"})
+                sentences.append({**item(row, selected, sentence.group().strip()[:250], sentence.start(), sentence.end(), offsets), "finding": "departure-sentence"})
         for i, word in enumerate(row["words"]):
             if word["held"] or not word["content"]:
                 continue
@@ -134,7 +142,7 @@ def summarize_deviation(rows, check=lambda: None):
             if any(w["held"] for w in group) or re.search(r"[.!?\n]", row["text"][word["end"]:group[-1]["start"]]):
                 group = [word]
             selected = [w for w in group if w["content"]]
-            phrases.append({**item(row, selected, row["text"][group[0]["start"]:group[-1]["end"]], group[0]["start"], group[-1]["end"]), "finding": "departure-phrase"})
+            phrases.append({**item(row, selected, row["text"][group[0]["start"]:group[-1]["end"]], group[0]["start"], group[-1]["end"], offsets), "finding": "departure-phrase"})
     top = []
     for phrase in sorted(phrases, key=lambda r: -r["departure"]):
         if not any(p["region"] == phrase["region"] and p["start"] < phrase["end"] and p["end"] > phrase["start"] for p in top):

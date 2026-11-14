@@ -9,6 +9,7 @@ from typing import Annotated, Literal
 from pydantic import Field, PlainValidator, model_validator
 
 from ..ledger.schema import Model
+from .bottom_box import BottomBox
 from .value_view import WorkValueView
 
 
@@ -479,6 +480,7 @@ class Packet(Model):
     artifact: Artifact
     provider: Provider
     preview: Preview | None = None
+    bottom_box: BottomBox | None = None
     valueView: WorkValueView | None = None
     globalFindings: list[GlobalFinding] | None = Field(default=None, max_length=30)
     origin: Literal["synthetic example", "imported", "live provider"]
@@ -500,6 +502,8 @@ class Packet(Model):
     def references(self):
         from .validate import validate_relations
 
+        if self.preview is not None and self.bottom_box is not None:
+            raise ValueError('bottom-box-0 is not yet supported by the strict frontend preview contract')
         validate_relations(self)
         return self
 

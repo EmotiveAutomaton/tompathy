@@ -6,10 +6,10 @@ from .reporting import public_receipt, save_json
 
 
 class PilotDeadline:
-    """A restart cannot grant another eight hours; downtime counts conservatively."""
+    """A restart cannot grant a fresh budget; downtime counts conservatively."""
 
     def __init__(self, path, *, hours=8, now=lambda: datetime.now(UTC)):
-        self.path, self.now = path, now
+        self.path, self.now, self.hours = path, now, hours
         if path.exists():
             self.state = json.loads(path.read_text(encoding="utf8"))
             start = datetime.fromisoformat(self.state["startedAt"])
@@ -19,12 +19,12 @@ class PilotDeadline:
         else:
             start = now()
             self.state = {"startedAt":start.isoformat(), "expiresAt":(start+timedelta(hours=hours)).isoformat(),
-                          "definition":"Eight-hour wall ceiling across resumes; downtime counts conservatively"}
+                          "definition":f"{hours}-hour wall ceiling across resumes; downtime counts conservatively"}
             save_json(path,self.state)
 
     def check(self):
         if self.now() >= datetime.fromisoformat(self.state["expiresAt"]):
-            raise RuntimeError("Eight-hour pilot ceiling reached; resuming does not reset it")
+            raise RuntimeError(f"{self.hours}-hour pilot ceiling reached; resuming does not reset it")
 
 
 def finalize(report, output, backend):

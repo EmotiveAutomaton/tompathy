@@ -43,7 +43,15 @@ The [November back-half engine pass](docs/ENGINE_BACK_HALF_2026-11-15.md)
 adds source-pinned evaluation runners for attention, AI involvement, edit reasons
 and goals, plus an experimental reader that reuses model state. Float32 speed
 comparisons passed their rank check; the int8 version failed and remains blocked.
-Natural-writing accuracy awaits the verified EX1–EX4 exports. The
+The [two-day continuation](docs/ENGINE_TWO_DAY_2026-11-14.md) verifies received
+EX1–EX3 inputs and records completed window, float32 KV and smaller-reader
+comparisons. The edit-feature and goal word-matching baselines completed; the Q8
+comparison stopped at its memory guard with partial results. Goal judgments
+remain memory-blocked. Weight-only numerical, prefix and final accuracy checks
+passed, but the measured speed missed the target. The first-paint timing comparison
+is complete; robustness scoring is running and history remains pending. It also adds robustness and
+human-edit pilots and a default-off empty bottom-box contract. No production
+admission follows; EX4/EX5 and CP1/EX6 remain dependencies. The
 [completion audit](docs/ENGINE_COMPLETENESS_2026-11-11.md) records implemented
 work, verification and remaining dependencies; the [scoreboard](docs/ENGINE_SCOREBOARD.md)
 does not substitute software tests for measured accuracy.

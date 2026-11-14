@@ -1,0 +1,35 @@
+{
+  "schema": "tompathy.benchmark.v1",
+  "capability": "goals",
+  "protocol": "958bd166b50bddcadb1627ba9e8f0ae94dd6617d8a64e07646b1b8631a21d4bd",
+  "scope": "PEP/EIP Motivation ranking pilot, abstract and summary removed",
+  "status": "pending",
+  "enginePin": null,
+  "dataPin": "dd901f34b399253af97aaa236e15025003222dcb93d8da656c75c49a21a6a1e7",
+  "evidence": "not-run",
+  "rows": [],
+  "productionAdmission": false,
+  "date": "2026-11-14",
+  "sourceReceiptPin": "1feb2022320ffde75a0b4f6cf52d60f10ebf7f95fa3f8f07e7b1c1e49a0a2995",
+  "ledgerRows": [],
+  "ledgerStatus": "no ledger row",
+  "codePin": "43ecae394e1395cdbb9af02d764616d0c194eb9d1c9a8dc844859bceb9344c28",
+  "tfidfBaseline": {
+    "documents": 40,
+    "authors": 38,
+    "top1": {
+      "mean": 0.65,
+      "interval": [
+        0.4878048780487805,
+        0.8048780487804879
+      ]
+    },
+    "reciprocalRank": {
+      "mean": 0.7293976449275362,
+      "interval": [
+        0.6014151947463767,
+        0.8496406249999997
+      ]
+    }
+  }
+}
