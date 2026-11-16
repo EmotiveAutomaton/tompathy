@@ -1,0 +1,87 @@
+"""Aggregate-only local landing, bound to a verified terminal source job."""
+import hashlib
+import json
+from pathlib import Path
+
+from ...packs.registry import sha256
+from ..back_half.reporting import save_json
+
+OUTPUTS = {'TP10': 'readers-envent-2026-11.json', 'TP12': 'readers-counting-2026-11.json',
+           'TP12-L3':'readers-counting-finetuned-2026-11.json',
+           'TP10-L3':'readers-envent-finetuned-2026-11.json','TP11':'readers-stakes-2026-11.json',
+           'TP14':'readers-motives-2026-11.json','TP13':'readers-transfer-2026-11.json',
+           'TP15':'readers-care-2026-11.json','TP16':'readers-worry-2026-11.json',
+           'TP18':'readers-attention-features-2026-11.json','TP20':'readers-priorities-2026-11.json',
+           'TP17':'readers-cause-words-2026-11.json',
+           'TP4-controls':'readers-goal-controls-2026-11.json',
+           'TP18-probe':'readers-attention-probe-2026-11.json','TP1c':'readers-smol135-2026-11.json',
+           'TP19':'readers-choices-2026-11.json','TP22':'readers-longitudinal-2026-11.json'}
+FIELDS = {
+    'TP18-probe':{'card','status','productionAdmission','ledger','scope','sourceReceiptPin','tablesPin','reader','protocol','sessions','words','pack','row','controls'},
+    'TP1c':{'card','status','productionAdmission','ledger','scope','sourceModelPin','converter','textPin','pack','protocol','ggufPin','gates','attention','candidate','criteria','q4Pin','q4','aggregatePin'},
+    'TP19':{'card','status','productionAdmission','ledger','scope','reader','motives','sourcePin','protocol','rows','gains','pack','controls','continuation'},
+    'TP22':{'card','status','productionAdmission','ledger','scope','source','readerReceiptPin','countingReceiptPin','policy','constructed_qualification','pack','protocol','reason','cohort','topic_encoder','reader','supported','withheld','raw','controlled','controls','bars_passed'},
+    'TP4-controls':{'card','status','productionAdmission','ledger','scope','inputPin','baselinePin','protocol','rows','baselineReproduced'},
+    'TP10':{'card','status','scope','harness','rows','productionAdmission','neutralInputs',
+            'continuation','selected_for_L3','selection_basis'},
+    'TP12':{'card','status','preflight','ladderReceiptPin','authorFilePin','scope','seed','halves',
+            'bagsPerScenarioPerHalf','labels','rows','policies','productionAdmission','estimand',
+            'design','unpacked','neutralStress','bars'},
+    'TP10-L3':{'card','status','scope','ladderReceiptPin','encoder','hyperparameters','rows',
+               'productionAdmission','pack','selected_seed','mean_accuracy','mean_macro_f1'},
+    'TP11':{'card','status','scope','twins','left_out','mapping','encoderScope','encoders',
+            'productionAdmission','ledger','twins_gates','preflight_comparison','interpretation','pack'},
+    'TP14':{'card','status','scope','rows','mapping','twinsControlReceiptPin','threshold',
+            'productionAdmission','ledger','human_reference','pack','agreement','instruments','IM1'},
+    'TP13':{'card','status','scope','productionAdmission','ledger','reader','data','rows','cross',
+            'feature_transfer','mapping','protocol','pack'},
+    'TP15':{'card','status','productionAdmission','ledger','scope','source','n','writers','rows','protocol',
+            'external_references','encoders','fine_tuned_folds','second_check','continuation'},
+    'TP16':{'card','status','productionAdmission','ledger','scope','source','n','writers','rows','protocol',
+            'external_references','encoders','fine_tuned_folds','long_text_channels','plans','continuation'},
+    'TP18':{'card','status','productionAdmission','ledger','scope','sources','protocol','rows','probe'},
+    'TP20':{'card','status','productionAdmission','ledger','scope','source','reader','protocol',
+            'excluded_short_perspectives','rows','external_references','chance'},
+    'TP17':{'card','status','productionAdmission','ledger','scope','source','ed','reader','headPin',
+            'protocol','references','total','completed','excluded_alignment','rows'},
+}
+FIELDS['TP12-L3']=FIELDS['TP12']|{'carriedControls'}
+
+
+def land(job, destination):
+    job, destination = Path(job), Path(destination)
+    verified = json.loads((job/'exit-verification.json').read_text(encoding='utf8'))
+    if not all(verified.get(k) for k in ('nativeExited', 'releaseMatches', 'sharedLeaseAbsent', 'localLeaseAbsent')):
+        raise ValueError('Native exit and exact releases must be verified')
+    if not (job/'complete.json').exists() and not (job/'failed.json').exists():
+        raise ValueError('Terminal job receipt required')
+    source = job/'receipt.json'
+    value = json.loads(source.read_text(encoding='utf8'))
+    card = value['card']
+    if destination.name != OUTPUTS.get(card):
+        raise ValueError('Wrong registered aggregate filename')
+    # Private per-text observations live in separate arrays, never these receipts.
+    allowed = FIELDS[card]
+    if set(value) - allowed or value.get('productionAdmission') is not False:
+        raise ValueError('Unexpected aggregate fields/admission')
+    plan = json.loads((job/'plan.json').read_text(encoding='utf8'))
+    public = {'schema': 'readers-aggregate-1',
+        'snapshotPin': hashlib.sha256(json.dumps(plan['snapshotFiles'],sort_keys=True).encode()).hexdigest(),
+        'launcherPin': plan['launcherSha256'], 'ledger': 'no ledger row', **value}
+    # A dependent source receipt can already cite its upstream experiment.
+    # Keep that citation separate from this aggregate's own source binding.
+    if 'sourceReceiptPin' in value:
+        public['upstreamSourceReceiptPin'] = value['sourceReceiptPin']
+    public['sourceReceiptPin'] = sha256(source)
+    if value['status']=='running':
+        public.update(status='partial',sourceStatus='running',
+                      terminalOutcome='failed' if (job/'failed.json').exists() else 'incomplete-source')
+    if destination.exists():
+        old = json.loads(destination.read_text(encoding='utf8'))
+        if old == public:
+            return {'status':'unchanged', 'sourceReceiptPin': public['sourceReceiptPin']}
+        raise ValueError('Preserve the previous public result; use a separately identified stage')
+    save_json(destination, public)
+    if json.loads(destination.read_text(encoding='utf8')) != public:
+        raise RuntimeError('Public binding verification failed')
+    return {'status':'landed', 'sourceReceiptPin': public['sourceReceiptPin'], 'publicPin': sha256(destination)}

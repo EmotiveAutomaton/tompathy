@@ -19,7 +19,7 @@ import pyarrow.parquet as pq
 import zstandard as zstd
 
 from .ids import canonical, text_hash
-from .schema import ID_FIELDS, RECORDS, SCHEMA_VERSION, Provenance, schema_hash
+from .schema import ID_FIELDS, RECORDS, SCHEMA_VERSION, Provenance, legacy_schema_hash, schema_hash
 
 
 def validate_integrity(records):
@@ -97,6 +97,10 @@ def validate_integrity(records):
                         raise ValueError("Correction precedes or misattributes its decision")
             if kind == "StatedGoal":
                 require(row.scope.title(), row.scope_id)
+            if kind == "ProbeAnswer":
+                require("Artifact", row.artifact_id)
+                if row.maker_id not in tables["Artifact"][row.artifact_id].maker_ids:
+                    raise ValueError("Probe answer maker differs from artifact maker")
 
     # Reject cycles even when two records share an identical timestamp.
     for kind, field in [("Revision", "parent_revision_ids")] + [
@@ -130,13 +134,45 @@ class Ledger:
         self.blobs = self.root / "text"
         self.blobs.mkdir(exist_ok=True)
         expected = {"schema_version": SCHEMA_VERSION, "schema_hash": schema_hash()}
+        self.legacy_schema = False
         path = self.root / "schema.json"
         try:
             with path.open("x", encoding="utf-8") as f:
                 json.dump(expected, f, sort_keys=True)
         except FileExistsError:
-            if json.loads(path.read_text(encoding="utf-8")) != expected:
+            actual = json.loads(path.read_text(encoding="utf-8"))
+            legacy = {"schema_version": "1.0", "schema_hash": legacy_schema_hash()}
+            self.legacy_schema = actual == legacy
+            if actual != expected and not self.legacy_schema:
                 raise ValueError("Ledger schema version/hash mismatch")
+
+    def upgrade_schema(self):
+        """Explicit local 1.0→1.1 header migration, retaining the original header.
+
+        Existing 1.0 ledgers remain readable and accept their existing record types
+        without migration. Only new ProbeAnswer records require this explicit step.
+        """
+        if not self.legacy_schema:
+            return False
+        with self._writer():
+            path = self.root/"schema.json"
+            original = path.read_bytes()
+            expected = {"schema_version": "1.0", "schema_hash": legacy_schema_hash()}
+            if json.loads(original) != expected:
+                raise ValueError("Ledger header changed before migration")
+            validate_integrity(self.all())
+            backup = self.root/"schema-1.0.backup.json"
+            if backup.exists() and backup.read_bytes() != original:
+                raise ValueError("Existing schema backup differs")
+            if not backup.exists():
+                with backup.open("xb") as handle:
+                    handle.write(original)
+            temporary = self.root/".schema-1.1.pending.json"
+            with temporary.open("x", encoding="utf8") as handle:
+                json.dump({"schema_version": SCHEMA_VERSION, "schema_hash": schema_hash()},handle,sort_keys=True)
+            os.replace(temporary,path)
+            self.legacy_schema=False
+        return True
 
     def _blob(self, ref):
         if not re.fullmatch(r"[0-9a-f]{64}", ref):
@@ -226,16 +262,23 @@ class Ledger:
         new = list(records) + list(provenance)
         # Revalidate instances so direct mutation cannot bypass the contract.
         new = [RECORDS[type(r).__name__].model_validate(r.model_dump()) for r in new]
+        if self.legacy_schema and any(type(r).__name__ == "ProbeAnswer" for r in new):
+            raise ValueError("ProbeAnswer requires explicit ledger.upgrade_schema()")
         with self._writer():
             old = self.all()
             validate_integrity(old + new)
             for row in new:
                 refs = [
-                    getattr(row, key, None) for key in ("content_ref", "before_ref", "after_ref")
+                    getattr(row, key, None) for key in ("content_ref", "before_ref", "after_ref",
+                                                       "passage_ref", "answer_ref", "reading_ref")
                 ]
                 refs.extend(o.content_ref for o in getattr(row, "options", []))
                 for ref in filter(None, refs):
                     self.get_text(ref)
+                if type(row).__name__ == "ProbeAnswer":
+                    text = self.get_text(row.passage_ref)
+                    if len(text.encode("utf-16-le"))//2 != row.passage.end-row.passage.start:
+                        raise ValueError("Probe passage UTF-16 span differs from stored text")
             batch = uuid.uuid4().hex
             pending = self.batches / (".pending-" + batch)
             pending.mkdir()

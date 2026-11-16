@@ -1,0 +1,195 @@
+{
+  "schema": "readers-aggregate-1",
+  "sourceReceiptPin": "e7aae87f2fbca899344e5c11235524d95a340f1994869cd3cab98897fcca44d3",
+  "snapshotPin": "e98c3436410614f01361c2af07713af1261dd7f65e9a255f8fbe326e224a8f58",
+  "launcherPin": "6c7dee3f009ff5e29f9e1c3c2d0d5b0badade0d5e42fe1b80e99bce4c39f7784",
+  "ledger": "no ledger row",
+  "card": "TP18",
+  "status": "complete",
+  "productionAdmission": false,
+  "scope": "Same saved CoAuthor writer-typed eligible words, writer folds and original reader scores",
+  "sources": {
+    "tablesPin": "ad2b8cc0ec08538c1345780d5945bc64698a6b6cbf4370e3db275b678f8f7698",
+    "originalReceiptPin": "c451e266f8fd7695759b9dc19d99d54acd901d6f74e48c8a5e7f4edace0ca358",
+    "enginePin": "b51c5aea21d0a82c239ab994ae928f273f549b8f66d40f0c153a9e19f865d7d1",
+    "dataPin": "670812f8a6d19837c4772edaac075f6db7ae7d61352701c416214b07071e24f9"
+  },
+  "protocol": {
+    "features": [
+      "V0",
+      "V5",
+      "previous_nats",
+      "next_nats",
+      "next2_nats",
+      "sentence_tail_nats",
+      "after_punctuation"
+    ],
+    "baseline": "Original five features; fold-local frequency and scaling",
+    "boundaries": "Previous/next raw nats across sentences; missing page-edge words are zero. Tail includes current word to sentence end.",
+    "decision": "Lower paired whole-writer 95% bound exceeds .02",
+    "scope": "Includes current word V0 and the six predeclared additions; forward context is an offline feature"
+  },
+  "rows": [
+    {
+      "baseline": 0.5511565126559368,
+      "engine": 0.572108645508853,
+      "gain": 0.020952132852916014,
+      "interval": [
+        0.010392295323716256,
+        0.03110187565885494
+      ],
+      "clusters": 60,
+      "singleClassClustersExcluded": 1,
+      "draws": 2000,
+      "uncertainty": "cluster bootstrap of fixed out-of-fold predictions; conditional on fitted models",
+      "name": "all",
+      "features": [
+        "V0",
+        "V5",
+        "previous_nats",
+        "next_nats",
+        "next2_nats",
+        "sentence_tail_nats",
+        "after_punctuation"
+      ],
+      "registered": true,
+      "bar": 0.02,
+      "clearsBar": false,
+      "words": 193947,
+      "sessions": 1399
+    },
+    {
+      "baseline": 0.5511565126559368,
+      "engine": 0.5648873843568337,
+      "gain": 0.013730871700896917,
+      "interval": [
+        0.008206154862641734,
+        0.018891460472914595
+      ],
+      "clusters": 60,
+      "singleClassClustersExcluded": 1,
+      "draws": 2000,
+      "uncertainty": "cluster bootstrap of fixed out-of-fold predictions; conditional on fitted models",
+      "name": "V5",
+      "features": [
+        "V5"
+      ],
+      "registered": false,
+      "bar": 0.02,
+      "clearsBar": false,
+      "words": 193947,
+      "sessions": 1399
+    },
+    {
+      "baseline": 0.5511565126559368,
+      "engine": 0.5535683615368027,
+      "gain": 0.0024118488808658792,
+      "interval": [
+        0.0005407801428918954,
+        0.004531638308623607
+      ],
+      "clusters": 60,
+      "singleClassClustersExcluded": 1,
+      "draws": 2000,
+      "uncertainty": "cluster bootstrap of fixed out-of-fold predictions; conditional on fitted models",
+      "name": "previous_nats",
+      "features": [
+        "previous_nats"
+      ],
+      "registered": false,
+      "bar": 0.02,
+      "clearsBar": false,
+      "words": 193947,
+      "sessions": 1399
+    },
+    {
+      "baseline": 0.5511565126559368,
+      "engine": 0.5527092790178113,
+      "gain": 0.001552766361874422,
+      "interval": [
+        0.0002656987964722166,
+        0.0027439033267438366
+      ],
+      "clusters": 60,
+      "singleClassClustersExcluded": 1,
+      "draws": 2000,
+      "uncertainty": "cluster bootstrap of fixed out-of-fold predictions; conditional on fitted models",
+      "name": "next_nats",
+      "features": [
+        "next_nats"
+      ],
+      "registered": false,
+      "bar": 0.02,
+      "clearsBar": false,
+      "words": 193947,
+      "sessions": 1399
+    },
+    {
+      "baseline": 0.5511565126559368,
+      "engine": 0.5509125415042576,
+      "gain": -0.0002439711516790788,
+      "interval": [
+        -0.0009148799843590564,
+        0.0003827367124891007
+      ],
+      "clusters": 60,
+      "singleClassClustersExcluded": 1,
+      "draws": 2000,
+      "uncertainty": "cluster bootstrap of fixed out-of-fold predictions; conditional on fitted models",
+      "name": "next2_nats",
+      "features": [
+        "next2_nats"
+      ],
+      "registered": false,
+      "bar": 0.02,
+      "clearsBar": false,
+      "words": 193947,
+      "sessions": 1399
+    },
+    {
+      "baseline": 0.5511565126559368,
+      "engine": 0.5546533730937835,
+      "gain": 0.0034968604378466613,
+      "interval": [
+        -0.0011959546181030854,
+        0.007873535742378293
+      ],
+      "clusters": 60,
+      "singleClassClustersExcluded": 1,
+      "draws": 2000,
+      "uncertainty": "cluster bootstrap of fixed out-of-fold predictions; conditional on fitted models",
+      "name": "sentence_tail_nats",
+      "features": [
+        "sentence_tail_nats"
+      ],
+      "registered": false,
+      "bar": 0.02,
+      "clearsBar": false,
+      "words": 193947,
+      "sessions": 1399
+    },
+    {
+      "baseline": 0.5511565126559368,
+      "engine": 0.5533060059767951,
+      "gain": 0.0021494933208582616,
+      "interval": [
+        -0.0010269157351425018,
+        0.005116803695972311
+      ],
+      "clusters": 60,
+      "singleClassClustersExcluded": 1,
+      "draws": 2000,
+      "uncertainty": "cluster bootstrap of fixed out-of-fold predictions; conditional on fitted models",
+      "name": "after_punctuation",
+      "features": [
+        "after_punctuation"
+      ],
+      "registered": false,
+      "bar": 0.02,
+      "clearsBar": false,
+      "words": 193947,
+      "sessions": 1399
+    }
+  ],
+  "probe": "preplanned Smol 360M hidden-layer probe eligible; not yet run"
+}

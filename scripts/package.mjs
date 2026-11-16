@@ -1,5 +1,7 @@
 import { zipSync } from "fflate";
 import { readdir, readFile, writeFile } from "node:fs/promises";
+import { assertReleasePacks } from "./reader-pack-safety.mjs";
+await assertReleasePacks("dist");
 const files = {};
 for (const name of await readdir("dist"))
   if (!name.endsWith(".map"))

@@ -14,13 +14,15 @@ from .exports import read
 EXTRA = {'ai-robustness': 'ai-robustness-pilot-2026-11.json',
          'choice': 'choice-pilot-2026-11.json', 'human-edits': 'edit-reasons-human-2026-11.json',
          'human-features': 'edit-reasons-human-features-2026-11.json',
-         'weightonly': 'speed-weightonly-2026-11.json', 'first-paint': 'first-paint-2026-11.json'}
+         'weightonly': 'speed-weightonly-2026-11.json', 'first-paint': 'first-paint-2026-11.json',
+         'history-ladder': 'history-ladder-2026-11.json'}
 SCOPES = {'ai-robustness': 'RAID training pilot; fixed 5% calibration false-alarm threshold; no detector admission',
           'choice': 'Public accepted-answer choice; not values',
           'human-edits': 'IteraTeR balanced human intentions; fixed Q8; no fitting',
           'human-features': 'IteraTeR; EX2-only deterministic-feature control',
           'weightonly': 'W1 converted local base weights; five ordered gates',
-          'first-paint': 'Three frozen texts; CPU; no default change'}
+          'first-paint': 'Three frozen texts; CPU; no default change',
+          'history-ladder': 'Exploratory earlier-session history; registered primaries unchanged'}
 PRIVATE = {'id', 'writer', 'author', 'session', 'text', 'question', 'before', 'after', 'label', 'description',
            'reason', 'callKey', 'candidateIdsPin', 'countsByWriterGenre', 'rowIds', 'path', 'url'}
 ENUM_KEYS = {'variant', 'status', 'bestRarityBaseline', 'signal', 'population', 'mode', 'stratum', 'name', 'model'}
@@ -98,6 +100,23 @@ def public(capability, raw):
     if capability == 'weightonly':
         result['productionEnabled'] = False
         result['servingReceipt'] = 'Use the exact private gate receipt; this aggregate summary cannot enable serving.'
+    if capability == 'history-ladder':
+        rungs = [0, 1, 2, 4, 8, 16]
+        rows = raw.get('rows', [])
+        if (any(type(row.get('k')) is not int or row.get('registered') is not False for row in rows)
+                or [row['k'] for row in rows] != rungs[:len(rows)]
+                or (result['status'] == 'complete' and len(rows) != len(rungs))):
+            raise ValueError('History summary must retain ordered exploratory rungs and completion coverage')
+        for saved, source in zip(result.get('rows', []), rows, strict=True):
+            pin = source.get('enginePin')
+            if not isinstance(pin, str) or not re.fullmatch('[a-f0-9]{64}', pin):
+                raise ValueError('History rung must retain its exact engine pin')
+            saved['enginePin'] = pin
+        if status == 'running' and rows:
+            result['status'] = 'partial'
+        for name in ('contextLimit', 'minimumHistoryTokens'):
+            result[name] = aggregates(raw.get(name))
+        result['registered'] = False
     return result
 
 
@@ -140,6 +159,8 @@ def scoreboard(directory, output):
             metric = '; '.join(f"{k}: {'pass' if v.get('passed') else 'fail'}" for k, v in value['gates'].items())
         elif capability == 'first-paint' and value.get('measurements'):
             metric = f"{len(value['measurements'])} first-600/whole-text timing pairs"
+        elif capability == 'history-ladder' and value.get('rows'):
+            metric = f"{len(value['rows'])}/6 exploratory rungs; coverage and writer intervals in receipt"
         lines.append(f"| {capability} {'(pilot)' if capability in {'ai-robustness', 'choice'} else ''} | {value['status']} | {metric} | [{SCOPES[capability]}](../engine/validation/{filename}) |")
     lines += ['', 'Edit-reasons human-labelled lines are separate from the comment-labelled EX2 result.',
               'Goals also report candidate-only TF-IDF, reader-alone and top-five reranking in their receipt.',

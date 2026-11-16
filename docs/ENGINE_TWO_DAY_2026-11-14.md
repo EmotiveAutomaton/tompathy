@@ -30,13 +30,13 @@ benchmarks are not complete. No production admission or default has changed.
 
 | Item | Implemented path | Current measurement state |
 |---|---|---|
-| TP2 / TP5 | Exact-pin per-session resumption; registered float32 window; float32 KV binding; independent Smol primary; V1/V2/V3/V5; K=0/1/2/4/8/16 history ladder | Window/KV/Smol complete; history not started after resource stop |
+| TP2 / TP5 | Exact-pin per-session resumption; registered float32 window; float32 KV binding; independent Smol primary; V1/V2/V3/V5; K=0/1/2/4/8/16 history ladder | Window/KV/Smol and all six exploratory history rungs complete; aggregates verified |
 | TP3 | Recovered feature bank; original nested folds; first-50 Q8 projection; remaining calls require less than six projected hours; paired cascade accuracy | Feature complete; Q8 resource-stopped at 472/1,000; partial aggregate preserved; cascade timing qualification unavailable |
 | TP4 | Existing three goal readers; candidate-only TF-IDF; top-five reranking from the same body-goal call, with no candidates in its prompt; eight-hour limit | TF-IDF baseline complete; goal judgments memory-blocked before loading |
 | TP1b | Local W1 conversion; ordered vocabulary, numerical, prefix, timing and TP2 gates; serving refuses any pending/failed gate | a-e complete; final accuracy difference +0.0000071 passed; speed target missed; separate first-paint timing complete |
-| TP6 | Quotas; one-pass loss/entropy/log-probability variance; raw/normalized attacks; hash calibration split; Wilson rate intervals | All 2,500 inputs prepared; scoring running |
+| TP6 | Quotas; one-pass loss/entropy/log-probability variance; raw/normalized attacks; hash calibration split; Wilson rate intervals | Deadline-stopped at 2,026/2,500; full fixed calibration retained; paraphrase and auxiliary untested |
 | TP7 | EX5 receiving contract; B0–B5/E1 controls; best-rarity comparison with site-stratified paired resampling; optional E2 | Waiting for actual EX5 format/data |
-| TP9 | Fixed intention mapping; abstentions as errors; balanced 300; majority and EX2-only deterministic-feature control | Inputs prepared; calls queued |
+| TP9 | Fixed intention mapping; abstentions as errors; balanced 300; majority and EX2-only deterministic-feature control | Feature control complete, macro-F1 0.096775; optional Q8 memory-blocked |
 | TS1 | Strict empty `bottom-box-0`; explicit `analyze --bottom-box`; no producer | Implemented; contract and existing frontend schema checks pass |
 
 The history ladder retains the original 1,024-token cap and 512-token minimum.
@@ -198,8 +198,9 @@ The stricter pre-load guard stopped it at 23:36:48 before loading the 9B model;
 zero documents completed. Host-visible inspection confirmed all five recorded
 owned processes exited and both matching leases released. The stopped aggregate
 is verified, retaining the completed TF-IDF baseline. This is a resource stop,
-not an efficacy result. Its original eight-hour deadline is 07:34:30 Pacific
-November 14; a later exact-cache continuation would retain that deadline.
+not an efficacy result. Its original eight-hour deadline expired at 07:34:30
+Pacific November 14 with no resumption; no automatic restart or fresh clock is
+permitted. The zero-document stop and completed baseline remain preserved.
 
 The delivered **00:10 Pacific November 14** checkpoint found W1's a-d run
 completed at 23:57:16 November 13. Native exit and both exact lease releases were
@@ -230,14 +231,118 @@ The owner's follow-up found its terminal receipt; native exit, matching lease
 release and the public aggregate's source binding were verified.
 
 The next serial job, `.local/bench/two-day-robustness`, started at **02:18:39**
-under the unchanged final-v2 package. At 02:27:06 it had saved 156/2,500 base
-documents, with a fresh heartbeat and 43.7/19.6 GiB RAM/commit headroom. Native
-identity and both lease ownerships are verified. No terminal receipt exists.
-Early raw-document throughput suggests roughly two more hours for the base set;
-normalized attacks and the auxiliary essays add work, so this is not a full-pilot
-forecast. Its eight-hour deadline is **10:18:40 Pacific November 14**; the queue
-deadline remains **03:20:11 Pacific November 15**. Next check: **03:30 Pacific
-November 14**, registered and verified; future delivery is unobserved.
+under the unchanged final-v2 package. It stopped at **10:18:45 Pacific November
+14** at its original eight-hour ceiling, retaining **2,026/2,500** documents.
+The delivered **10:25** checkpoint verified host-visible native exit, matching
+release and both exact lease absences, then landed the partial aggregate and
+verified source binding. The pilot cannot restart or receive a fresh clock.
+All 400 calibration and 400 held-out human examples are present; calibration
+was not reduced. Coverage also includes 800 unattacked machine, 300 homoglyph
+and 126/300 zero-width-space examples with their required raw/normalized modes.
+All 300 paraphrase examples and all 91 auxiliary essays remain untested.
+
+At the fixed thresholds, held-out human false-positive rates were 5.0% (A0),
+5.75% (A1) and 7.75% (FD). Unattacked machine flag rates were 54.375%, 51.5%
+and 56.75%. All three raw homoglyph rates were zero; normalization raised them
+to 95%, 69% and 80.667%. These are partial pilot observations with Wilson
+intervals in the public receipt, not detector admission (**no ledger row**).
+Source: `.local/bench/two-day-robustness/pilot/receipt.json`, source receipt pin
+`54490e0e94733964282dfb65228dfe089adecb6829e13a9170b3459be0fdf6c9`.
+
+No EX5 was present. The next primary, `.local/bench/two-day-human-features`,
+ran from **10:27:28 to 10:28:59 Pacific** and completed the EX2-only deterministic
+feature control on all **300** IteraTeR edits. Macro-F1 was **0.096775**, with
+fluency F1 0.217822, meaning-changed F1 0.266055 and zero F1 for clarity,
+coherence and style. There were no abstentions. Host-visible native exit,
+matching release, exact lease absences and the public aggregate's source binding
+are verified. Source receipt pin:
+`e564b1798ae11e13479682897b422e482879c105a5348bf9c6168a9defac9e29`.
+This does not qualify the feature model for human edit intentions. There is
+**no ledger row** or admission. At 10:32, RAM/commit headroom was 45.8/17.0 GiB;
+counted admission allowed small-reader work but blocked the optional 9B human
+comparison, whose reserved-memory requirement was 23.3 GiB. No foreign lease
+or process was changed. The whole queue still ends **03:20:11 Pacific November 15**.
+
+After the primary tasks, the previously unstarted history ladder resumed in
+`.local/bench/two-day-history` at **10:39:12 Pacific**. The continuation plan
+verifies identical reader, surface, history, metric and protocol code between
+the original B and final-v2 packages. All 14,179 copied cache/reference files
+were checked byte-for-byte by SHA-256; the original files remain untouched.
+K=0 reads the copied original table and identity; later rungs get fresh final-v2
+session identities while reusing only unchanged exact-key raw calls/windows.
+Only `--phases ladder` runs. This neither repeats window/KV/Smol nor retries
+failed registered gates. The counted slot, native identity and both leases were
+verified. The delivered **13:05 Pacific November 14** checkpoint confirmed K=1
+session scoring finished at **12:58:23** and its aggregate was saved. Within
+its eligible 554-session, 39-writer cohort, baseline AUC was **0.572405817** and
+history AUC **0.572524262**, a gain of **0.000118445** (paired writer-bootstrap
+95% interval **[-0.001407184, 0.001491917]**). This shows no clear improvement.
+The exploratory rung does not replace a registered contrast or change admission
+(**no ledger row**). Its engine pin matches `k1/run-identity.json`:
+`2739e550ba57b9c2452a1d5f2642426a0c7e80eded13fca50d4332239669b827`.
+Rungs can have different eligible cohorts; their raw AUC values are not a paired
+comparison across rungs. The completed aggregate was subsequently landed after
+overall terminal state and verified release, as recorded below.
+
+The delivered **15:30 Pacific November 14** checkpoint found the whole ladder
+complete at **15:23:00**. Host-visible native inspection verified supervisor exit,
+the matching release receipt and absence of both exact leases. All six rung
+engine pins match their saved run identities. The separate aggregate and
+scoreboard were landed and source-verified:
+`8474fa8ef7d115b6dd5a32825fc80c153eb5434a51b6824af4b716c7947d77b5`.
+The [public receipt](../engine/validation/history-ladder-2026-11.json) retains
+all rung pins and the unchanged 1,024-token cap / 512-token minimum.
+
+Each gain below compares history with its own baseline on that rung's eligible
+cohort. Intervals are paired writer-cluster bootstrap intervals conditional on
+fixed out-of-fold predictions; they are individual intervals, not a simultaneous
+across-rung claim. The cohorts differ, so this does not locate a history onset.
+
+| Prior sessions | Eligible sessions | Supported writers | AUC gain | 95% interval |
+|---:|---:|---:|---:|---|
+| 0 | 1,395 | 60 | +0.000000000 | [+0.000000000, +0.000000000] |
+| 1 | 554 | 39 | +0.000118445 | [-0.001407184, +0.001491917] |
+| 2 | 1,274 | 48 | +0.000905856 | [-0.000170793, +0.001911454] |
+| 4 | 1,187 | 41 | +0.000630093 | [-0.000882525, +0.001937592] |
+| 8 | 1,036 | 34 | +0.000571866 | [-0.000278622, +0.001565486] |
+| 16 | 804 | 23 | +0.001030399 | [+0.000001269, +0.002578642] |
+
+K=1/2/4/8 intervals include zero. K=16's small gain has an individual lower
+bound only 0.000001269 above zero on 804 eligible sessions and 23 supported
+writers. It does not reverse the failed registered bars, establish a monotonic
+benefit or create admission (**no ledger row**). K=0 and K=2 each exclude one
+single-class writer cluster; other rungs exclude none. All K>0 rungs processed
+1,399 sessions before their eligibility filters.
+
+K=2 session scoring finished at 15:18:22. The later rungs reused exact raw-cache
+keys under the frozen context cap: cumulative forward calls rose from 1,770 to
+1,772 at K=4 and stayed at 1,772 through K=16. Their short runtimes are cache reuse,
+not evidence of an overall reader speedup or a changed scoring protocol.
+
+At **15:34:19**, RAM/commit headroom was **45.97/22.28 GiB**. Counted admission
+had one foreign slot occupied and required **23.27 GiB** for the optional human
+Q8 job after reservation, so no replacement scorer or service was launched.
+EX5 is still absent from the received EX1-EX3 inputs. No foreign resource was
+changed. The delivered **00:30 Pacific November 15** checkpoint repeated the
+host-visible admission check at **00:30:41**: RAM/commit **38.79/9.87 GiB**, one
+counted foreign lease and **23.22 GiB** required for large-task admission. The
+local lease and previous owned native process remain absent; the optional
+output is still unstarted. Prior admission audits remain preserved. No
+replacement was launched. Next check is **02:00 Pacific November 15**, a
+conservative 90-minute interval leaving about 80 minutes before the original
+**03:20:11 Pacific** queue deadline. Scheduling is not proof of delivery. Expired
+Q8, goals and robustness pilots remain closed.
+
+A bounded reporting addition gives the history ladder its own aggregate row,
+retains each rung's exact engine pin and context limits, rejects out-of-order or
+registered replacements, and cannot label incomplete rung coverage complete.
+Four targeted reporting tests and Ruff passed. The initial test invocation hit
+a temporary-directory permission error; one retry used a fresh workspace test
+directory with pytest caching disabled. No scoring or scientific gate was rerun;
+the frozen package is unchanged. After terminal exit/release, the completed
+`attention/history-ladder.json` was landed with `--capability history-ladder`.
+A future running source with saved rungs must remain partial; completed-rung
+coverage alone does not establish whole-ladder completion.
 
 ### Completed window measurements
 
@@ -296,7 +401,7 @@ SmolLM2-360M's primary AUC is 0.566761753 versus Qwen's 0.567666111, a differenc
 of -0.000904358. Its receipt marks `candidateFirstPaint: true`: the absolute
 difference is within the specified 0.01 criterion. This is an accuracy candidate,
 not a measured first-paint latency improvement or permission to change defaults.
-The history ladder remains unrun. The separate V2 and V3 exploratory gains were
+The history ladder now has an exact-cache continuation. The separate V2 and V3 exploratory gains were
 0.01561 and 0.01653; neither clears the 0.02 attention bar.
 
 Source: `.local/bench/two-day-20261113-b/attention/reader-ladder.json`, engine pin
@@ -454,8 +559,8 @@ per-measurement reader hashes, text/code pins and the reader-ladder pin. There i
 
 The reviewed hot paths have no further obvious change that can be enabled without
 fresh measurement or changing the selected reader. Pending robustness, human-edit
-work and the deferred history ladder remain measurements, not missing frontend
-implementation. Missing exports and the separately blocked full-art cache retain
+work remains a measurement dependency, not missing frontend implementation;
+the exploratory history ladder subsequently completed. Missing exports and the separately blocked full-art cache retain
 their documented gates and original deadlines.
 
 ## Ghost V29 receiving checkpoint, November 13
@@ -472,6 +577,31 @@ None is present in the app's claim snapshot (**no ledger row** there). The G1b
 and SECONDARY claim report hashes differ from the delivered report bytes;
 the updated Q2 claim/report binding agrees. Preserve the delivered bytes and
 resolve those two source bindings before any public ledger uptake.
+
+The **03:30 Pacific November 14** checkpoint also inspected the new
+[`overnight aggregate delivery`](exchange/ghost-v29-2026-11-13/overnight-20261114/README.md)
+read-only. All 48 manifest entries and all seven claim-to-aggregate hashes match.
+The six supplied family control and verification receipts report passing checks;
+their original-summary hashes match the delivered summaries. No raw reconstruction
+was performed here. All six family claim-to-report hashes differ from the delivered
+report bytes; the `G-V29-Q2-WATCHED-FAILURE-2` follow-on report binding matches.
+All seven claims have **no ledger row** in the app snapshot. These remain
+descriptive constructed-method findings. The gated ToMpathy item is to distinguish
+outcome history from a stable motive inference; these results supply neither
+human validation nor a production admission. Preserve the delivered bytes and
+resolve report bindings before public ledger uptake; no engine default changed.
+
+The **05:45 Pacific November 14** checkpoint inspected the new
+[`second-healing delivery`](exchange/ghost-v29-2026-11-13/second-healing-20261114/README.md)
+read-only. All 38 manifest entries and the five Q2-H2 family landing/report/aggregate
+bindings match. Supplied controls and verification receipts report passing checks,
+with matching original-summary hashes; no raw reconstruction was performed here.
+No claim ledger was delivered with this package, and its five claim IDs have
+**no ledger row** in either the preserved Ghost ledger or app snapshot. The gated
+ToMpathy item remains to preserve competing control-belief and deficit-sensitivity
+explanations, censoring and the declared auxiliary tie rule. These constructed
+maps do not validate human readings or enable an engine admission. Delivery files
+remain unchanged.
 
 Gated items: validate context transfer before interpreting past writing as a
 stable habit; keep control belief and deficit sensitivity as distinct possible
@@ -542,8 +672,18 @@ resource stop, failed parity, absent export or partial pilot is never completion
 
 ## Five-line theory return, pending measurements
 
-1. Own-history onset: registered history rows missed their bars; the exploratory ladder remains unrun after the resource stop.
+1. Own-history onset: registered history bars remain failed. All exploratory rungs completed; K=1/2/4/8 intervals span zero, while K=16 gained 0.001030 with an individual interval barely above zero on a different eligible cohort. No onset or admission follows.
 2. Accepted-answer choice: EX5 absent; no preference/value claim.
 3. Beyond word overlap: candidate-only TF-IDF top-1 is 65% on the 40-proposal pilot; reader and paired reranking results remain pending.
-4. Robustness: scoring is running on the prepared quotas; no measured detection claim yet.
+4. Robustness: deadline-stopped at 2,026/2,500, with the full fixed calibration cohort; raw homoglyph flag rates were zero and normalization improved them, but paraphrase and auxiliary coverage are absent. No detector admission.
 5. Speed: W1 numerical, prefix and final accuracy checks passed; recorded timing missed the speed target. Smol's first-600 scoring was 6.2-7.7 seconds on the longer texts, versus Qwen's 9.7-10.1; no default changed.
+
+## Original-window closeout, November 15
+
+The bounded queue closed at its original 03:20:11 Pacific deadline. Host-visible
+inspection confirmed the last owned history process was absent; its previously
+verified exact releases remain recorded. Optional human Q8 was never launched:
+the last admission check remained below reserved commit capacity. The checkpoint
+was deleted. Expired partial pilots, missing exports and all failed gates remain
+as recorded; no new clock or admission follows. The separately commissioned
+readers study retains its own job, lease and deadline.

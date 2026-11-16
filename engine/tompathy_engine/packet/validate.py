@@ -74,7 +74,7 @@ def validate_relations(packet):
         timestamp(row.capturedAt)
     if packet.valueView:
         view = packet.valueView
-        require(packet.schemaVersion == "1.10" and view.work == packet.artifact.id, "Value view requires contract 1.10 and current work")
+        require(packet.schemaVersion in {"1.10", "1.11"} and view.work == packet.artifact.id, "Value view requires contract 1.10 and current work")
         timestamp(view.asOf)
         require(packet.provider.mode != "preview" or (view.provenance == "structure-only" and not view.tips and not view.feeds and not view.coSupport), "Preview value view supplies structure only")
         for row in view.rows:
@@ -91,7 +91,7 @@ def validate_relations(packet):
                     and (estimate.interval.lower, estimate.interval.upper) == tip.interval, "Value-view tip must exactly match its admitted contrast")
     for maker in makers.values():
         if maker.evidence is not None:
-            require(packet.schemaVersion in {"1.9", "1.10"}, "Maker evidence requires contract 1.9")
+            require(packet.schemaVersion in {"1.9", "1.10", "1.11"}, "Maker evidence requires contract 1.9")
             require(not any(e.tier == "statistical" for e in maker.evidence), "Statistical source signals are disabled")
             require(maker.kind == "unknown" or any(e.tier in {"signed", "declared", "flagged"} for e in maker.evidence), "Maker entries require signed, declared or flagged evidence")
     require(
@@ -130,7 +130,7 @@ def validate_relations(packet):
         support(row.support, row.id)
         require(
             row.preferenceEstimate is None
-            or (packet.schemaVersion in {"1.8", "1.9", "1.10"} and row.kind == "value"),
+            or (packet.schemaVersion in {"1.8", "1.9", "1.10", "1.11"} and row.kind == "value"),
             "Structured preference estimates require a value hypothesis in contract 1.8",
         )
         for s in row.spans or []:

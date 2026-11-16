@@ -266,6 +266,7 @@ export function ProcessHierarchy({
   offset,
   sourceHover,
   softNodeId,
+  relatedNodeIds = [],
   pinned,
   lockedNodeId,
   onHighlight,
@@ -285,6 +286,7 @@ export function ProcessHierarchy({
   offset: number;
   sourceHover: boolean;
   softNodeId?: string;
+  relatedNodeIds?: string[];
   pinned: boolean;
   lockedNodeId?: string;
   onHighlight: (node: GoalNode | null) => void;
@@ -731,7 +733,7 @@ export function ProcessHierarchy({
                           data-root={t.rootId}
                           data-exposure={t.exposure}
                           data-rank={t.node.rank}
-                          className={`${classes(t.node, t.key)} ${markedAI?.has(t.node.id) ? "ai-marked" : ""}`}
+                          className={`${classes(t.node, t.key)} ${markedAI?.has(t.node.id) ? "ai-marked" : ""} ${relatedNodeIds.includes(t.node.id) ? "need-related" : ""}`}
                           aria-label={`${t.node.data.level ?? "Hierarchy"} goal: ${t.node.data.label}${aiMark ? ` · ${aiMark.description}` : ""}`}
                           aria-pressed={
                             pinned &&

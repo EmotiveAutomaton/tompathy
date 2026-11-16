@@ -1,0 +1,831 @@
+{
+  "schema": "readers-aggregate-1",
+  "sourceReceiptPin": "3032a9713d2b46fb98f80e0a7b34626a4163b2db4e6860bb10b793cca28484cf",
+  "snapshotPin": "2f62426d77a8a6c54acac89fde82d73abb7babcb8f0276a689c9b5d021f0740b",
+  "launcherPin": "794ab1c34de738156e396698cc95cfdcfaedd225292fefb161db2d4521ce4a4d",
+  "ledger": "no ledger row",
+  "card": "TP11",
+  "status": "complete",
+  "scope": {
+    "reports": 6600,
+    "judgments": 6000,
+    "writers": 2379,
+    "train": 4898,
+    "dev": 502,
+    "test": 1200,
+    "testReportsWithTrainingWriter": 567,
+    "split": "fixed 1200 validation report IDs; lowest SHA-256 tenth of remaining writers for development",
+    "writerDisjointTest": false,
+    "files": {
+      "generation": "3d2536b555ac7005080c2cd35aadb4d570992bca70d2017e4d8939525fa3a86b",
+      "validation": "ab64ebb18368a0342f2e890e9194cd70367387547936d9e343ba7881ec4314e3"
+    }
+  },
+  "twins": {
+    "pride-joy": {
+      "n": 1100,
+      "writers": 793,
+      "rows": {
+        "constant": {
+          "mean_fold_auc": 0.5,
+          "folds": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "pooled_auc": 0.5,
+          "pooled_interval": [
+            0.5,
+            0.5
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        },
+        "ratings": {
+          "mean_fold_auc": 0.6192070974581985,
+          "folds": [
+            0.619386320403606,
+            0.6671087533156498,
+            0.6043338020014888,
+            0.5652066115702479,
+            0.64
+          ],
+          "pooled_auc": 0.6186545454545455,
+          "pooled_interval": [
+            0.58571452449614,
+            0.6513407514401243
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        },
+        "bow": {
+          "mean_fold_auc": 0.768934465175066,
+          "folds": [
+            0.7494003804482672,
+            0.7725464190981433,
+            0.7198742866594987,
+            0.8433057851239669,
+            0.7595454545454546
+          ],
+          "pooled_auc": 0.767003305785124,
+          "pooled_interval": [
+            0.7409015221406619,
+            0.7951964507163305
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        },
+        "potion": {
+          "mean_fold_auc": 0.7572537055614676,
+          "folds": [
+            0.7642874865602514,
+            0.717092175066313,
+            0.7394756430402779,
+            0.7978512396694215,
+            0.7675619834710744
+          ],
+          "pooled_auc": 0.756404958677686,
+          "pooled_interval": [
+            0.7282878436453344,
+            0.7826164939544619
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        },
+        "minilm": {
+          "mean_fold_auc": 0.8038255863134933,
+          "folds": [
+            0.7971218261516831,
+            0.7571286472148541,
+            0.8352493590273757,
+            0.8151239669421487,
+            0.8145041322314049
+          ],
+          "pooled_auc": 0.8034561983471075,
+          "pooled_interval": [
+            0.7763782317634162,
+            0.828663576873279
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        }
+      },
+      "people": {
+        "auc": 0.7203120000000001,
+        "judgments": 1000,
+        "reports": 200,
+        "scope": "Five individual reader judgments per fixed validation report; outside-pair votes tied at 0.5. Different subset from model folds."
+      }
+    },
+    "guilt-shame": {
+      "n": 550,
+      "writers": 423,
+      "rows": {
+        "constant": {
+          "mean_fold_auc": 0.5,
+          "folds": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "pooled_auc": 0.5,
+          "pooled_interval": [
+            0.5,
+            0.5
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        },
+        "ratings": {
+          "mean_fold_auc": 0.6169516758338969,
+          "folds": [
+            0.6024535809018567,
+            0.5029761904761905,
+            0.6584880636604774,
+            0.6689837802052301,
+            0.6518567639257293
+          ],
+          "pooled_auc": 0.6145719008264462,
+          "pooled_interval": [
+            0.5667531184323285,
+            0.6584813288328106
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        },
+        "bow": {
+          "mean_fold_auc": 0.6883598228537104,
+          "folds": [
+            0.7569628647214854,
+            0.6947751322751323,
+            0.616710875331565,
+            0.6951340615690169,
+            0.6782161803713528
+          ],
+          "pooled_auc": 0.6816595041322315,
+          "pooled_interval": [
+            0.6378595287905873,
+            0.7243518738277107
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        },
+        "potion": {
+          "mean_fold_auc": 0.6583371597197231,
+          "folds": [
+            0.7022546419098143,
+            0.6173941798941799,
+            0.5818965517241379,
+            0.7672955974842767,
+            0.6228448275862069
+          ],
+          "pooled_auc": 0.6533355371900826,
+          "pooled_interval": [
+            0.6127416865766655,
+            0.6979346109702127
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        },
+        "minilm": {
+          "mean_fold_auc": 0.7020662242608618,
+          "folds": [
+            0.6926392572944297,
+            0.7007275132275133,
+            0.7175066312997348,
+            0.7471036080767957,
+            0.6523541114058355
+          ],
+          "pooled_auc": 0.7032132231404958,
+          "pooled_interval": [
+            0.6610042080205147,
+            0.7491930199188733
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        }
+      },
+      "people": {
+        "auc": 0.639232,
+        "judgments": 500,
+        "reports": 100,
+        "scope": "Five individual reader judgments per fixed validation report; outside-pair votes tied at 0.5. Different subset from model folds."
+      }
+    },
+    "fear-sadness": {
+      "n": 1100,
+      "writers": 849,
+      "rows": {
+        "constant": {
+          "mean_fold_auc": 0.5,
+          "folds": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "pooled_auc": 0.5,
+          "pooled_interval": [
+            0.5,
+            0.5
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        },
+        "ratings": {
+          "mean_fold_auc": 0.7245839300487354,
+          "folds": [
+            0.7169875042215468,
+            0.7330848861283643,
+            0.6858947368421052,
+            0.7243037135278515,
+            0.7626488095238095
+          ],
+          "pooled_auc": 0.7239966942148759,
+          "pooled_interval": [
+            0.6934523203176249,
+            0.7538647289546666
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        },
+        "bow": {
+          "mean_fold_auc": 0.859011036931696,
+          "folds": [
+            0.8441404930766633,
+            0.8586335403726708,
+            0.8477473684210527,
+            0.8712698938992043,
+            0.8732638888888888
+          ],
+          "pooled_auc": 0.8584826446280991,
+          "pooled_interval": [
+            0.8363401453196989,
+            0.8795082872483234
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        },
+        "potion": {
+          "mean_fold_auc": 0.8763450809362098,
+          "folds": [
+            0.8706518068220196,
+            0.8781780538302277,
+            0.8343578947368421,
+            0.9097314323607427,
+            0.8888062169312169
+          ],
+          "pooled_auc": 0.8773454545454547,
+          "pooled_interval": [
+            0.8567861387951732,
+            0.897801752412722
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        },
+        "minilm": {
+          "mean_fold_auc": 0.8957915365276184,
+          "folds": [
+            0.8926038500506586,
+            0.8918426501035197,
+            0.8611368421052631,
+            0.9217506631299734,
+            0.9116236772486772
+          ],
+          "pooled_auc": 0.893510743801653,
+          "pooled_interval": [
+            0.8749517642493836,
+            0.9127292006421068
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        }
+      },
+      "people": {
+        "auc": 0.9044559999999999,
+        "judgments": 1000,
+        "reports": 200,
+        "scope": "Five individual reader judgments per fixed validation report; outside-pair votes tied at 0.5. Different subset from model folds."
+      }
+    },
+    "anger-disgust": {
+      "n": 1100,
+      "writers": 811,
+      "rows": {
+        "constant": {
+          "mean_fold_auc": 0.5,
+          "folds": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "pooled_auc": 0.5,
+          "pooled_interval": [
+            0.5,
+            0.5
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        },
+        "ratings": {
+          "mean_fold_auc": 0.7465746241136986,
+          "folds": [
+            0.718667328042328,
+            0.7214999999999999,
+            0.7788525132275131,
+            0.7670994954925152,
+            0.7467537838061368
+          ],
+          "pooled_auc": 0.745395041322314,
+          "pooled_interval": [
+            0.7136785053155804,
+            0.7736174138917767
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        },
+        "bow": {
+          "mean_fold_auc": 0.7797195618357526,
+          "folds": [
+            0.7887731481481481,
+            0.7626666666666666,
+            0.8025380291005292,
+            0.7545281614423953,
+            0.790091803821024
+          ],
+          "pooled_auc": 0.7774000000000001,
+          "pooled_interval": [
+            0.7460287201413348,
+            0.806453016552049
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        },
+        "potion": {
+          "mean_fold_auc": 0.8147904472269154,
+          "folds": [
+            0.8290343915343915,
+            0.8234166666666667,
+            0.825851521164021,
+            0.7833926060706311,
+            0.8122570506988669
+          ],
+          "pooled_auc": 0.8145438016528928,
+          "pooled_interval": [
+            0.7863243362095839,
+            0.8405409253987639
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        },
+        "minilm": {
+          "mean_fold_auc": 0.8534646782566856,
+          "folds": [
+            0.8529265873015873,
+            0.8603333333333334,
+            0.8637152777777778,
+            0.8297907534529816,
+            0.8605574394177488
+          ],
+          "pooled_auc": 0.8530561983471076,
+          "pooled_interval": [
+            0.8287569524093841,
+            0.8766309497872231
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        }
+      },
+      "people": {
+        "auc": 0.7202660000000001,
+        "judgments": 1000,
+        "reports": 200,
+        "scope": "Five individual reader judgments per fixed validation report; outside-pair votes tied at 0.5. Different subset from model folds."
+      }
+    },
+    "trust-joy": {
+      "n": 1100,
+      "writers": 824,
+      "rows": {
+        "constant": {
+          "mean_fold_auc": 0.5,
+          "folds": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "pooled_auc": 0.5,
+          "pooled_interval": [
+            0.5,
+            0.5
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        },
+        "ratings": {
+          "mean_fold_auc": 0.8014724830292161,
+          "folds": [
+            0.8181291869985939,
+            0.759751552795031,
+            0.7732505175983437,
+            0.8371552010634762,
+            0.8190759566906356
+          ],
+          "pooled_auc": 0.8007140495867768,
+          "pooled_interval": [
+            0.7732110347441972,
+            0.8257889512155728
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        },
+        "bow": {
+          "mean_fold_auc": 0.8956595272157702,
+          "folds": [
+            0.9118352493590275,
+            0.9090683229813665,
+            0.8851345755693583,
+            0.8661515453639083,
+            0.9061079428051904
+          ],
+          "pooled_auc": 0.8959074380165288,
+          "pooled_interval": [
+            0.8778674371204266,
+            0.913120160392898
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        },
+        "potion": {
+          "mean_fold_auc": 0.9067871158254489,
+          "folds": [
+            0.9264742370358118,
+            0.9145341614906832,
+            0.9117184265010353,
+            0.8864240611498837,
+            0.8947846929498307
+          ],
+          "pooled_auc": 0.9071867768595041,
+          "pooled_interval": [
+            0.8892948010402896,
+            0.9253039628802618
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        },
+        "minilm": {
+          "mean_fold_auc": 0.9208152422645546,
+          "folds": [
+            0.9193615085600859,
+            0.944016563146998,
+            0.9386335403726709,
+            0.8996759720837487,
+            0.9023886271592694
+          ],
+          "pooled_auc": 0.9209867768595041,
+          "pooled_interval": [
+            0.9043693737745688,
+            0.9373794100172157
+          ],
+          "interval_method": "1000 whole-writer resamples of fixed out-of-fold predictions"
+        }
+      },
+      "people": {
+        "auc": 0.796054,
+        "judgments": 1000,
+        "reports": 200,
+        "scope": "Five individual reader judgments per fixed validation report; outside-pair votes tied at 0.5. Different subset from model folds."
+      }
+    }
+  },
+  "left_out": {
+    "pride": {
+      "n": 550,
+      "writers": 493,
+      "training": 3568,
+      "gold_proposal": [
+        "N4",
+        "up",
+        "self",
+        "already"
+      ],
+      "rows": {
+        "potion": {
+          "joint_accuracy": 0.0,
+          "marginal_chance": 2.562788880540947e-05,
+          "scored_columns": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "ratings_profile_correlation": 0.9891729198460926,
+          "ratings_own_profile_rank": 1,
+          "ratings_reference": "All-label observed mean rows used only as evaluation templates, never fitted targets for held label"
+        },
+        "minilm": {
+          "joint_accuracy": 0.0036363636363636364,
+          "marginal_chance": 3.0442510757461923e-05,
+          "scored_columns": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "ratings_profile_correlation": 0.9906248629193054,
+          "ratings_own_profile_rank": 1,
+          "ratings_reference": "All-label observed mean rows used only as evaluation templates, never fitted targets for held label"
+        }
+      }
+    },
+    "shame": {
+      "n": 275,
+      "writers": 252,
+      "training": 4359,
+      "gold_proposal": [
+        "N4",
+        "down",
+        "self",
+        "already"
+      ],
+      "rows": {
+        "potion": {
+          "joint_accuracy": 0.0,
+          "marginal_chance": 0.0003096465214124719,
+          "scored_columns": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "ratings_profile_correlation": 0.8368172991843953,
+          "ratings_own_profile_rank": 3,
+          "ratings_reference": "All-label observed mean rows used only as evaluation templates, never fitted targets for held label"
+        },
+        "minilm": {
+          "joint_accuracy": 0.007272727272727273,
+          "marginal_chance": 0.00205356272385766,
+          "scored_columns": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "ratings_profile_correlation": 0.9026018035279547,
+          "ratings_own_profile_rank": 1,
+          "ratings_reference": "All-label observed mean rows used only as evaluation templates, never fitted targets for held label"
+        }
+      }
+    },
+    "sadness": {
+      "n": 550,
+      "writers": 493,
+      "training": 3513,
+      "gold_proposal": [
+        "any",
+        "down",
+        "any",
+        "already"
+      ],
+      "rows": {
+        "potion": {
+          "joint_accuracy": 0.3236363636363636,
+          "marginal_chance": 0.29882644628099175,
+          "scored_columns": [
+            1,
+            3
+          ],
+          "ratings_profile_correlation": 0.9071205768183761,
+          "ratings_own_profile_rank": 2,
+          "ratings_reference": "All-label observed mean rows used only as evaluation templates, never fitted targets for held label"
+        },
+        "minilm": {
+          "joint_accuracy": 0.29454545454545455,
+          "marginal_chance": 0.2699603305785124,
+          "scored_columns": [
+            1,
+            3
+          ],
+          "ratings_profile_correlation": 0.9261489776726566,
+          "ratings_own_profile_rank": 1,
+          "ratings_reference": "All-label observed mean rows used only as evaluation templates, never fitted targets for held label"
+        }
+      }
+    },
+    "anger": {
+      "n": 550,
+      "writers": 476,
+      "training": 4149,
+      "gold_proposal": [
+        "any",
+        "down",
+        "other",
+        "already"
+      ],
+      "rows": {
+        "potion": {
+          "joint_accuracy": 0.01818181818181818,
+          "marginal_chance": 0.026644147257700975,
+          "scored_columns": [
+            1,
+            2,
+            3
+          ],
+          "ratings_profile_correlation": 0.9465927932814687,
+          "ratings_own_profile_rank": 1,
+          "ratings_reference": "All-label observed mean rows used only as evaluation templates, never fitted targets for held label"
+        },
+        "minilm": {
+          "joint_accuracy": 0.014545454545454545,
+          "marginal_chance": 0.027317806160781367,
+          "scored_columns": [
+            1,
+            2,
+            3
+          ],
+          "ratings_profile_correlation": 0.97295572870763,
+          "ratings_own_profile_rank": 1,
+          "ratings_reference": "All-label observed mean rows used only as evaluation templates, never fitted targets for held label"
+        }
+      }
+    },
+    "joy": {
+      "n": 550,
+      "writers": 478,
+      "training": 3801,
+      "gold_proposal": [
+        "any",
+        "up",
+        "any",
+        "already"
+      ],
+      "rows": {
+        "potion": {
+          "joint_accuracy": 0.3781818181818182,
+          "marginal_chance": 0.36756363636363637,
+          "scored_columns": [
+            1,
+            3
+          ],
+          "ratings_profile_correlation": 0.9854828191598373,
+          "ratings_own_profile_rank": 1,
+          "ratings_reference": "All-label observed mean rows used only as evaluation templates, never fitted targets for held label"
+        },
+        "minilm": {
+          "joint_accuracy": 0.46,
+          "marginal_chance": 0.4459900826446281,
+          "scored_columns": [
+            1,
+            3
+          ],
+          "ratings_profile_correlation": 0.9874717249141539,
+          "ratings_own_profile_rank": 1,
+          "ratings_reference": "All-label observed mean rows used only as evaluation templates, never fitted targets for held label"
+        }
+      }
+    }
+  },
+  "mapping": {
+    "status": "proposed",
+    "source": "November 14 readers packet TP11",
+    "table": {
+      "pride": [
+        "N4",
+        "up",
+        "self",
+        "already"
+      ],
+      "shame": [
+        "N4",
+        "down",
+        "self",
+        "already"
+      ],
+      "guilt": [
+        "N5",
+        "down",
+        "self",
+        "already"
+      ],
+      "trust": [
+        "N3",
+        "up",
+        "other",
+        "already"
+      ],
+      "surprise": [
+        "N1",
+        "either",
+        "any",
+        "already"
+      ],
+      "relief": [
+        "any",
+        "restored",
+        "any",
+        "already"
+      ],
+      "fear": [
+        "any",
+        "threatened",
+        "any",
+        "ahead"
+      ],
+      "sadness": [
+        "any",
+        "down",
+        "any",
+        "already"
+      ],
+      "anger": [
+        "any",
+        "down",
+        "other",
+        "already"
+      ],
+      "disgust": [
+        "N6",
+        "threatened",
+        "any",
+        "already"
+      ],
+      "joy": [
+        "any",
+        "up",
+        "any",
+        "already"
+      ],
+      "boredom": [
+        "N1",
+        "unfed",
+        "circumstance",
+        "now"
+      ]
+    }
+  },
+  "encoderScope": "Original frozen TP10 L2 encoders; no supervised TP10 encoder is used across held-out writers or labels",
+  "encoders": {
+    "potion": {
+      "source": "https://huggingface.co/minishlab/potion-base-8M",
+      "id": "minishlab/potion-base-8M",
+      "revision": "bf8b056651a2c21b8d2565580b8569da283cab23",
+      "license_as_read": "mit",
+      "research_only": false,
+      "files": {
+        "config.json": "2a6ac0e9aaa356a68a5688070db78fc3a464fefe85d2f06a1905ce3718687553",
+        "model.safetensors": "f65d0f325faadc1e121c319e2faa41170d3fa07d8c89abd48ca5358d9a223de2",
+        "modules.json": "a68dcbed0429dcdd5bfdca92b0b03cc30d09122c0a3fcf4758787d4b244e45b2",
+        "README.md": "de8ec91bf63c5f4c0e20751c227b2d049953e1cab5f8d5d44211c59a44795bdd",
+        "special_tokens_map.json": "a9e8fb6f99fb0b8803f0e6942fdf4d95d6645204620b67dc3310a1024bcbac59",
+        "tokenizer.json": "e67e803f624fb4d67dea1c730d06e1067e1b14d830e2c2202569e3ef0f70bb50",
+        "tokenizer_config.json": "6725995e3ab3039857ff5bd99178a7cdf42863abb04449e7bb31feb1f55fe567",
+        "vocab.txt": "1394523a67ddd404a825428018c0582a6998bcfa044ecbcbf1f4d71adb94c61c"
+      },
+      "at": "2026-11-15T10:14:04.241051+00:00",
+      "token_cap": 128,
+      "device": "cpu",
+      "threads": 2,
+      "versions": {
+        "torch": "2.9.1+cpu",
+        "transformers": "4.57.6",
+        "model2vec": "0.6.0",
+        "sentence-transformers": "5.1.2",
+        "numpy": "2.5.4"
+      },
+      "embeddingCacheSha256": "ae13918288d6647108c4cca7d978095f7c9f1f877d039fcd6ce71c6f7f4f9982"
+    },
+    "minilm": {
+      "source": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
+      "id": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "license_as_read": "apache-2.0",
+      "research_only": false,
+      "files": {
+        "config.json": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+        "config_sentence_transformers.json": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+        "data_config.json": "32edcb108fc2516b920734a862ae0692bcae1c5d45d5f8d972cb0d53434a4c54",
+        "model.safetensors": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+        "modules.json": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+        "README.md": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+        "sentence_bert_config.json": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+        "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+        "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+        "tokenizer_config.json": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+        "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+        "1_Pooling/config.json": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23"
+      },
+      "at": "2026-11-15T10:14:13.259141+00:00",
+      "token_cap": 128,
+      "device": "cpu",
+      "threads": 2,
+      "versions": {
+        "torch": "2.9.1+cpu",
+        "transformers": "4.57.6",
+        "model2vec": "0.6.0",
+        "sentence-transformers": "5.1.2",
+        "numpy": "2.5.4"
+      },
+      "embeddingCacheSha256": "8d7fcdee4ab2bf2270429aff559ad1d65cb09a58048685c3ef7944aa99ee83c4"
+    }
+  },
+  "productionAdmission": false,
+  "twins_gates": {
+    "potion": false,
+    "minilm": true
+  },
+  "preflight_comparison": {
+    "ratings": {
+      "maximum_absolute_difference": 0.010048324166103129
+    },
+    "bow": {
+      "maximum_absolute_difference": 0.011934465175066022
+    }
+  },
+  "interpretation": "Joint proposed-column accuracy and 21-feature profile correlation/rank are distinct estimands; no claim that one numerically dominates the other",
+  "pack": "No independent stake answer key; proposed mappings only, no admitted need pack"
+}

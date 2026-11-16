@@ -49,7 +49,7 @@ export function ValueTabs({
             }}
             onClick={() => onTab(t)}
           >
-            {t === "work" ? "current work only" : t === "creator" ? "author" : t}
+            {t === "work" ? "current artifact" : t === "creator" ? "author" : t}
           </button>
         ))}
       </div>

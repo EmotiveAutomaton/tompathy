@@ -11,7 +11,7 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator, model_valida
 
 from .ids import digest
 
-SCHEMA_VERSION = "1.0"
+SCHEMA_VERSION = "1.1"
 Identifier = Annotated[str, Field(min_length=1, max_length=500)]
 Hash = Annotated[str, Field(pattern=r"^[0-9a-f]{64}$")]
 
@@ -184,6 +184,27 @@ class ContextEvent(Record):
     payload: dict[str, Any]
 
 
+class ProbeAnswer(Record):
+    """An owner's local answer/correction, never a scored or inferred preference."""
+
+    probe_id: Identifier
+    maker_id: Identifier
+    artifact_id: Identifier
+    kind: Literal["probe", "reading-correction"]
+    probe_kind: Literal["Satiate", "Switch", "Remove", "Price"] | None = None
+    passage: Span
+    passage_ref: Hash
+    answer_ref: Hash
+    reading_ref: Hash
+    t: datetime
+
+    @model_validator(mode="after")
+    def route(self):
+        if (self.kind == "probe") != (self.probe_kind is not None):
+            raise ValueError("A probe needs its kind; a reading correction does not invent one")
+        return self
+
+
 class Evidence(Record):
     evidence_id: Identifier
     source_uri: str
@@ -215,6 +236,7 @@ RECORDS = {
         ContextEvent,
         Evidence,
         Provenance,
+        ProbeAnswer,
     )
 }
 ID_FIELDS = dict(
@@ -232,6 +254,7 @@ ID_FIELDS = dict(
             "event_id",
             "evidence_id",
             "record_id",
+            "probe_id",
         ),
         strict=True,
     )
@@ -240,3 +263,8 @@ ID_FIELDS = dict(
 
 def schema_hash() -> str:
     return digest({k: v.model_json_schema() for k, v in RECORDS.items()})
+
+
+def legacy_schema_hash() -> str:
+    """The exact unchanged 1.0 records, for read/append compatibility."""
+    return digest({k: v.model_json_schema() for k, v in RECORDS.items() if k != "ProbeAnswer"})

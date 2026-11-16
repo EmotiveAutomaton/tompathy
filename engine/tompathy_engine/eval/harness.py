@@ -11,13 +11,17 @@ from scipy.special import softmax
 from ..models.reference import ACTIONS, features, intercept_fit
 
 
-def handling_prequential(records, *, until=None, cancel=lambda: False, progress=lambda _: None):
+def handling_prequential(records, *, until=None, cancel=lambda: False, progress=lambda _: None,
+                         additional_features=None, population_extra_iterations=0):
     """Exact warm-start population MAP and personal intercept fits per target.
 
     Personal penalties are selected against each maker's earlier calibration
     slice, using a separate fit whose cutoff precedes that slice. No current
     latency, outcome, or future handling label is a feature.
     """
+    if population_extra_iterations not in (0, 2000):
+        raise ValueError('Unsupported bounded population optimizer continuation')
+    optimizer_continuations = []
     rows = sorted(records, key=lambda r: (r["open_at"], r["key"]))
     if len({r["key"] for r in rows}) != len(rows):
         raise ValueError("Duplicate handling records")
@@ -41,7 +45,13 @@ def handling_prequential(records, *, until=None, cancel=lambda: False, progress=
             if resolves[j] < opens[i] and rows[j].get("session") == row.get("session")
         ]
         safe = {**row, "previous_handling": rows[history[-1]]["handling"] if history else None}
-        xrows.append(features(safe, [], False))
+        vector=features(safe, [], False)
+        if additional_features is not None:
+            extra=np.asarray(additional_features[row['key']],dtype=float)
+            if extra.ndim!=1 or not len(extra) or not np.isfinite(extra).all():
+                raise ValueError('Handling extensions must be finite pre-decision features')
+            vector=np.r_[vector,extra]
+        xrows.append(vector)
         by_maker.setdefault(row["writer"], []).append(i)
     x = np.array(xrows)
     y = np.array([ACTIONS.index(r["handling"]) for r in rows])
@@ -69,8 +79,19 @@ def handling_prequential(records, *, until=None, cancel=lambda: False, progress=
         result = minimize(
             objective, initial.ravel(), jac=True, method="L-BFGS-B", options={"maxiter": 500}
         )
+        # Opt-in engineering continuation: identical objective, penalty and tolerances.
+        # Never accept a failed fit or change the ordinary harness defaults.
+        if (population_extra_iterations and not result.success and result.status == 1
+                and result.nit >= 500 and 'ITERATIONS REACHED LIMIT' in str(result.message)):
+            if cancel():
+                raise InterruptedError('Prequential evaluation cancelled')
+            continued = minimize(objective, result.x, jac=True, method='L-BFGS-B',
+                                 options={'maxiter': population_extra_iterations})
+            optimizer_continuations.append({'first_iterations': int(result.nit),
+                'additional_iterations': int(continued.nit), 'success': bool(continued.success)})
+            result = continued
         if not result.success:
-            raise ValueError("Prequential population MAP failed")
+            raise ValueError("Prequential population MAP failed: " + str(result.message))
         return result.x.reshape(initial.shape)
 
     penalty_cache = {}
@@ -150,6 +171,9 @@ def handling_prequential(records, *, until=None, cancel=lambda: False, progress=
         "seconds": time.monotonic() - start,
         "mode": "prequential exact MAP; earlier geometric calibration milestones",
         "admission": "not established",
+        **({'optimizer_continuations': optimizer_continuations,
+            'optimizer_rule': 'Only iteration-limit failures continue from the last iterate for at most 2000 steps; unchanged objective and tolerances'}
+           if population_extra_iterations else {}),
     }
 
 

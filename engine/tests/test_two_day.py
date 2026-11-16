@@ -39,11 +39,11 @@ def test_bottom_box_is_only_a_fixed_empty_shape():
     from tompathy_engine.packet.bottom_box import BottomBox, empty_bottom_box
     box = empty_bottom_box()
     assert BottomBox.model_validate(box).model_dump() == box
-    box['readings']['stress']['value'] = .5
+    box['about_maker'] = [{'id': 'N1', 'value': .5}]
     with pytest.raises(ValueError):
         BottomBox.model_validate(box)
     box = empty_bottom_box()
-    box['body']['warmth']['evidence'] = ['invented']
+    box['on_page'] = [{'id': 'N6', 'evidence': ['invented']}]
     with pytest.raises(ValueError):
         BottomBox.model_validate(box)
 
@@ -51,7 +51,7 @@ def test_bottom_box_is_only_a_fixed_empty_shape():
 def test_bottom_box_rejects_uncommissioned_axes():
     from tompathy_engine.packet.bottom_box import BottomBox, empty_bottom_box
     box = empty_bottom_box()
-    box['readings']['slope'] = box['readings']['stress']
+    box['outlook'] = {'slope': .2}
     with pytest.raises(ValueError):
         BottomBox.model_validate(box)
 

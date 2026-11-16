@@ -10,7 +10,7 @@ from pathlib import Path
 
 
 @contextmanager
-def lease(sl, output, *, large=False):
+def lease(sl, output, *, large=False, card='ToMpathy-two-day-20261112'):
     # Reuse the shared native identity and reservation readers, read-only.
     sys.path.insert(0, str(sl))
     from runners.drive.cards.week5_policy_v2 import (
@@ -22,7 +22,7 @@ def lease(sl, output, *, large=False):
     from tompathy_engine.eval.back_half.reporting import save_json
     from tompathy_engine.eval.back_half.resources import headroom
     native = native_identity()
-    value = {'native': native, 'card': 'ToMpathy-two-day-20261112', 'at': datetime.now(UTC).isoformat(),
+    value = {'native': native, 'card': card, 'at': datetime.now(UTC).isoformat(),
              'projected_peak_ram_GiB': 14 if large else 6, 'output': str(output.resolve())}
     local = Path.cwd()/'.local/bench/two-day-scoring.lock'
     handle = os.open(local, os.O_WRONLY | os.O_CREAT | os.O_EXCL)

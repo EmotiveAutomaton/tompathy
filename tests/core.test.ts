@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import "./week-packet.test";
+import "./readers.test";
 import { test } from "node:test";
 import { keepsPreviewProgress } from "../src/core/preview";
 import { creatorWorkScope } from "../src/core/creator-scope";

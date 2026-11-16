@@ -474,7 +474,7 @@ class Scope(Model):
 
 
 class Packet(Model):
-    schemaVersion: Literal["1.7", "1.8", "1.9", "1.10"] = "1.7"
+    schemaVersion: Literal["1.7", "1.8", "1.9", "1.10", "1.11"] = "1.7"
     id: str
     revision: int = Field(gt=0)
     artifact: Artifact
@@ -498,12 +498,22 @@ class Packet(Model):
     revisionOf: str | None = None
     changeExplanation: str | None = Field(default=None, max_length=4000)
 
+    @model_validator(mode="before")
+    @classmethod
+    def upgrade(cls, value):
+        from .bottom_box import upgrade_bottom_box
+        if (isinstance(value, dict) and isinstance(value.get('bottom_box'), dict)
+                and value['bottom_box'].get('version') == 'bottom-box-0'):
+            return {**value, 'schemaVersion': '1.11',
+                    'bottom_box': upgrade_bottom_box(value['bottom_box'])}
+        return value
+
     @model_validator(mode="after")
     def references(self):
         from .validate import validate_relations
 
-        if self.preview is not None and self.bottom_box is not None:
-            raise ValueError('bottom-box-0 is not yet supported by the strict frontend preview contract')
+        if self.bottom_box is not None and self.schemaVersion != '1.11':
+            raise ValueError('bottom-box-1 requires packet 1.11')
         validate_relations(self)
         return self
 

@@ -1,0 +1,4527 @@
+{
+  "schema": "readers-aggregate-1",
+  "sourceReceiptPin": "218465767e1e80e9749589e117c914642cec6c98bb1480f875046146fe0404b2",
+  "snapshotPin": "2f62426d77a8a6c54acac89fde82d73abb7babcb8f0276a689c9b5d021f0740b",
+  "launcherPin": "794ab1c34de738156e396698cc95cfdcfaedd225292fefb161db2d4521ce4a4d",
+  "ledger": "no ledger row",
+  "card": "TP12-L3",
+  "status": "complete",
+  "preflight": {
+    "passed": true,
+    "maximumPrintedDifference": 0.0,
+    "cells": 144,
+    "suppliedPin": "9b95b68c02d17c9c0f400d75d7994b47d9ea01c5648d4da7354f7fe0ca09a5ff",
+    "reproducedPin": "998c9ccdc6e77dbc3e6fbf7019479ffbfd001d8cdc10343796ef57e2a6fa2373"
+  },
+  "ladderReceiptPin": "ac5aa48a1e9a83d681969eadf9c7a8268831be97f8fbbc42b259ff72c226b759",
+  "authorFilePin": "8d80d6d908e7411cafb7beb1ff4835092b34dca27ee68beaaf452b4480343547",
+  "scope": {
+    "reports": 6600,
+    "judgments": 6000,
+    "writers": 2379,
+    "train": 4898,
+    "dev": 502,
+    "test": 1200,
+    "testReportsWithTrainingWriter": 567,
+    "split": "fixed 1200 validation report IDs; lowest SHA-256 tenth of remaining writers for development",
+    "writerDisjointTest": false,
+    "files": {
+      "generation": "3d2536b555ac7005080c2cd35aadb4d570992bca70d2017e4d8939525fa3a86b",
+      "validation": "ab64ebb18368a0342f2e890e9194cd70367387547936d9e343ba7881ec4314e3"
+    }
+  },
+  "seed": 20261115,
+  "halves": 20,
+  "bagsPerScenarioPerHalf": 60,
+  "labels": [
+    "anger",
+    "boredom",
+    "disgust",
+    "fear",
+    "guilt",
+    "joy",
+    "no-emotion",
+    "pride",
+    "relief",
+    "sadness",
+    "shame",
+    "surprise",
+    "trust"
+  ],
+  "rows": {
+    "minilm-tuned": [
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.0,
+        "estimator": "raw",
+        "mae": 0.05606406240615153,
+        "top1": 0.42750000000000005,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.05510274624469671,
+          0.05717697952201105
+        ],
+        "top1_interval": [
+          0.4041666666666667,
+          0.4525
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.0,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.07233113751959733,
+        "top1": 0.3916666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07118605537837833,
+          0.07350101578454107
+        ],
+        "top1_interval": [
+          0.3699791666666666,
+          0.4158333333333334
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.0,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.0617479091687805,
+        "top1": 0.3916666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06099235226370373,
+          0.0625505283160145
+        ],
+        "top1_interval": [
+          0.3699791666666666,
+          0.4158333333333334
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.0,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.06086149485628252,
+        "top1": 0.3916666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06023424351183418,
+          0.061533536972302065
+        ],
+        "top1_interval": [
+          0.3699791666666666,
+          0.4158333333333334
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.0,
+        "estimator": "em-head",
+        "mae": 0.05751947557619043,
+        "top1": 0.4575,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.05638098479972398,
+          0.058904109155640934
+        ],
+        "top1_interval": [
+          0.4208333333333333,
+          0.49499999999999994
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "raw",
+        "mae": 0.07784472634730631,
+        "top1": 0.3199999999999999,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07693226617659384,
+          0.07870610019604352
+        ],
+        "top1_interval": [
+          0.29916666666666664,
+          0.33999999999999997
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.09393035475993966,
+        "top1": 0.2858333333333333,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.09225479500505417,
+          0.095723615622488
+        ],
+        "top1_interval": [
+          0.25916666666666666,
+          0.31249999999999994
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.08266751636912971,
+        "top1": 0.2858333333333333,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08187584143823554,
+          0.08340295531029165
+        ],
+        "top1_interval": [
+          0.25916666666666666,
+          0.31249999999999994
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.08294008593125578,
+        "top1": 0.2858333333333333,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08239238249064068,
+          0.08352550918684752
+        ],
+        "top1_interval": [
+          0.25916666666666666,
+          0.31249999999999994
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "em-head",
+        "mae": 0.07635060504553987,
+        "top1": 0.3616666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07508967207061597,
+          0.07761696641663023
+        ],
+        "top1_interval": [
+          0.3383124999999999,
+          0.3875
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "raw",
+        "mae": 0.08246771089713233,
+        "top1": 0.21583333333333332,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08122830019921135,
+          0.08362191646079191
+        ],
+        "top1_interval": [
+          0.19166666666666668,
+          0.23920833333333338
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.0972252490791464,
+        "top1": 0.2608333333333333,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.09550212442615405,
+          0.0989503096398479
+        ],
+        "top1_interval": [
+          0.2341666666666667,
+          0.28835416666666663
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.0866397326439022,
+        "top1": 0.2608333333333333,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08539931390185716,
+          0.08786876677676418
+        ],
+        "top1_interval": [
+          0.2341666666666667,
+          0.28835416666666663
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.08488645529061958,
+        "top1": 0.2608333333333333,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08414014483579452,
+          0.08573340782597787
+        ],
+        "top1_interval": [
+          0.2341666666666667,
+          0.28835416666666663
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "em-head",
+        "mae": 0.08333784768747708,
+        "top1": 0.26249999999999996,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08168999344943842,
+          0.08480555246865182
+        ],
+        "top1_interval": [
+          0.2425,
+          0.2858333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "raw",
+        "mae": 0.08070899059410087,
+        "top1": 0.2658333333333333,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07966190727366353,
+          0.08164711367942831
+        ],
+        "top1_interval": [
+          0.25083333333333335,
+          0.28416666666666657
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.09256258072592131,
+        "top1": 0.24666666666666665,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.09092799473578439,
+          0.094047752646339
+        ],
+        "top1_interval": [
+          0.2241458333333333,
+          0.2716666666666666
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.08573145233706887,
+        "top1": 0.24666666666666665,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.0845854117923473,
+          0.086780956651544
+        ],
+        "top1_interval": [
+          0.2241458333333333,
+          0.2716666666666666
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.08441115807314187,
+        "top1": 0.24666666666666665,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08360757954027026,
+          0.08522663947671832
+        ],
+        "top1_interval": [
+          0.2241458333333333,
+          0.2716666666666666
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "em-head",
+        "mae": 0.08006974013490505,
+        "top1": 0.265,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07837999329346418,
+          0.08171074001009822
+        ],
+        "top1_interval": [
+          0.24331250000000001,
+          0.2891875
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "raw",
+        "mae": 0.10800261561074898,
+        "top1": 0.20999999999999996,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.10647133328936775,
+          0.10955396910698686
+        ],
+        "top1_interval": [
+          0.18997916666666662,
+          0.2308333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.13915812747752315,
+        "top1": 0.17666666666666667,
+        "undefined": 0.019999999999999997,
+        "mae_interval": [
+          0.12898845769444872,
+          0.15004803603058545
+        ],
+        "top1_interval": [
+          0.1558125,
+          0.20249999999999999
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.11590683617819604,
+        "top1": 0.18,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.11463091609148751,
+          0.11726881273049773
+        ],
+        "top1_interval": [
+          0.15831249999999997,
+          0.20585416666666667
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.11867666137920505,
+        "top1": 0.18,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.11784061888263511,
+          0.11958283635804391
+        ],
+        "top1_interval": [
+          0.15831249999999997,
+          0.20585416666666667
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "em-head",
+        "mae": 0.10119315333514185,
+        "top1": 0.20833333333333331,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.09951975477948785,
+          0.10296763451211842
+        ],
+        "top1_interval": [
+          0.18166666666666667,
+          0.23833333333333329
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "raw",
+        "mae": 0.11444917194852695,
+        "top1": 0.15749999999999995,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.1130791358166568,
+          0.11585406616277158
+        ],
+        "top1_interval": [
+          0.1425,
+          0.17333333333333328
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.13167508753261492,
+        "top1": 0.16749999999999998,
+        "undefined": 0.003333333333333333,
+        "mae_interval": [
+          0.12854137766552026,
+          0.13490885259576132
+        ],
+        "top1_interval": [
+          0.15081249999999996,
+          0.18583333333333332
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.1199555356927376,
+        "top1": 0.1683333333333333,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.11881755585603326,
+          0.12119938369900665
+        ],
+        "top1_interval": [
+          0.15166666666666667,
+          0.18583333333333335
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.11929430873221422,
+        "top1": 0.1683333333333333,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.11845042029522865,
+          0.12018996756757336
+        ],
+        "top1_interval": [
+          0.15166666666666667,
+          0.18583333333333335
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "em-head",
+        "mae": 0.11425164211272502,
+        "top1": 0.16499999999999998,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.11252244809793067,
+          0.11603147611240665
+        ],
+        "top1_interval": [
+          0.14497916666666663,
+          0.18666666666666662
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "raw",
+        "mae": 0.11089121205341212,
+        "top1": 0.14750000000000002,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.10921245311310573,
+          0.11244736319469893
+        ],
+        "top1_interval": [
+          0.12583333333333335,
+          0.16916666666666663
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.11802833940999431,
+        "top1": 0.12833333333333335,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.11586813332963224,
+          0.11990853010359681
+        ],
+        "top1_interval": [
+          0.10583333333333333,
+          0.15166666666666667
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.115750465588915,
+        "top1": 0.12833333333333335,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.1142301816415305,
+          0.11716632537866939
+        ],
+        "top1_interval": [
+          0.10583333333333333,
+          0.15166666666666667
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.11731730434939924,
+        "top1": 0.12833333333333335,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.11630876866008467,
+          0.11830942842353155
+        ],
+        "top1_interval": [
+          0.10583333333333333,
+          0.15166666666666667
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "em-head",
+        "mae": 0.11024397375786346,
+        "top1": 0.12916666666666668,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.10856106839343314,
+          0.11190560505109054
+        ],
+        "top1_interval": [
+          0.10666666666666669,
+          0.1550208333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.0,
+        "estimator": "raw",
+        "mae": 0.044707095209077445,
+        "top1": 0.5241666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.0439937874873671,
+          0.04553288726583235
+        ],
+        "top1_interval": [
+          0.4966666666666667,
+          0.5533333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.0,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.058712297840658755,
+        "top1": 0.49000000000000005,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.057540661688531565,
+          0.05986559398473536
+        ],
+        "top1_interval": [
+          0.45497916666666666,
+          0.5266875000000001
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.0,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.051664182040892716,
+        "top1": 0.49000000000000005,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.0506291694602727,
+          0.052683850105034354
+        ],
+        "top1_interval": [
+          0.45497916666666666,
+          0.5266875000000001
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.0,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.04733681702187596,
+        "top1": 0.49000000000000005,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.04642967495751116,
+          0.048242443023258814
+        ],
+        "top1_interval": [
+          0.45497916666666666,
+          0.5266875000000001
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.0,
+        "estimator": "em-head",
+        "mae": 0.04126768995650837,
+        "top1": 0.585,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.04029763620766323,
+          0.04216818741202324
+        ],
+        "top1_interval": [
+          0.5616666666666666,
+          0.6074999999999999
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "raw",
+        "mae": 0.06165997571792993,
+        "top1": 0.33499999999999996,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06105738825397139,
+          0.062359666854328186
+        ],
+        "top1_interval": [
+          0.3024791666666666,
+          0.36583333333333334
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.08466820294494849,
+        "top1": 0.30999999999999994,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08241740491364233,
+          0.0871279443440506
+        ],
+        "top1_interval": [
+          0.2774791666666666,
+          0.3433333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.069282782150251,
+        "top1": 0.30999999999999994,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.0680766197702845,
+          0.07061776337587015
+        ],
+        "top1_interval": [
+          0.2774791666666666,
+          0.3433333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.06276680575702637,
+        "top1": 0.30999999999999994,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06180615013888542,
+          0.06376013862607446
+        ],
+        "top1_interval": [
+          0.2774791666666666,
+          0.3433333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "em-head",
+        "mae": 0.059321883093515146,
+        "top1": 0.41000000000000003,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.058299001642404605,
+          0.06051991713462438
+        ],
+        "top1_interval": [
+          0.3741458333333333,
+          0.4458333333333332
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "raw",
+        "mae": 0.06761137284973542,
+        "top1": 0.17999999999999997,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06680584483937613,
+          0.06854050288134085
+        ],
+        "top1_interval": [
+          0.15916666666666662,
+          0.2025208333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.09379361386806839,
+        "top1": 0.2341666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.09199838707931969,
+          0.0957622036595956
+        ],
+        "top1_interval": [
+          0.21416666666666667,
+          0.25418749999999996
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.08045262987394916,
+        "top1": 0.2341666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07889815476511597,
+          0.08213415678028012
+        ],
+        "top1_interval": [
+          0.21416666666666667,
+          0.25418749999999996
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.06983387087124959,
+        "top1": 0.2341666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06876273047707382,
+          0.0710505605296821
+        ],
+        "top1_interval": [
+          0.21416666666666667,
+          0.25418749999999996
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "em-head",
+        "mae": 0.07254877684709703,
+        "top1": 0.2475,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07091706955277646,
+          0.07424438071232291
+        ],
+        "top1_interval": [
+          0.21666666666666665,
+          0.28168750000000004
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "raw",
+        "mae": 0.06395239114974578,
+        "top1": 0.2816666666666666,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06307189709965971,
+          0.06478449761038352
+        ],
+        "top1_interval": [
+          0.26331249999999995,
+          0.30333333333333334
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.0822544044433243,
+        "top1": 0.24083333333333332,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.0808853084954498,
+          0.08360263756442547
+        ],
+        "top1_interval": [
+          0.2166458333333333,
+          0.2666666666666666
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.07401886758644072,
+        "top1": 0.24083333333333332,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07280644717716747,
+          0.07517715811093229
+        ],
+        "top1_interval": [
+          0.2166458333333333,
+          0.2666666666666666
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.06666225871251105,
+        "top1": 0.24083333333333332,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.0656632474107384,
+          0.06756935325044888
+        ],
+        "top1_interval": [
+          0.2166458333333333,
+          0.2666666666666666
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "em-head",
+        "mae": 0.06464245637668051,
+        "top1": 0.29333333333333333,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06349523202205845,
+          0.0659065343697844
+        ],
+        "top1_interval": [
+          0.2633125,
+          0.32166666666666666
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "raw",
+        "mae": 0.08312450425828866,
+        "top1": 0.18583333333333332,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08220587578318449,
+          0.08422423983974298
+        ],
+        "top1_interval": [
+          0.1683333333333333,
+          0.2025208333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.13323390526531503,
+        "top1": 0.175,
+        "undefined": 0.018333333333333333,
+        "mae_interval": [
+          0.11752368662973589,
+          0.15276525519643203
+        ],
+        "top1_interval": [
+          0.15249999999999997,
+          0.1966666666666667
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.09271818388094617,
+        "top1": 0.1775,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.09081087642578832,
+          0.09487487555557535
+        ],
+        "top1_interval": [
+          0.15497916666666664,
+          0.19916666666666666
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.08441315614590852,
+        "top1": 0.1775,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08324857208001005,
+          0.0856373910847724
+        ],
+        "top1_interval": [
+          0.15497916666666664,
+          0.19916666666666666
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "em-head",
+        "mae": 0.08503712343071536,
+        "top1": 0.22999999999999998,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08343099863863931,
+          0.08663385066920072
+        ],
+        "top1_interval": [
+          0.20083333333333334,
+          0.25999999999999995
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "raw",
+        "mae": 0.09983986332592747,
+        "top1": 0.1216666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.09847215172208454,
+          0.10113973898635634
+        ],
+        "top1_interval": [
+          0.10250000000000001,
+          0.14000000000000004
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.12835729888086136,
+        "top1": 0.13333333333333336,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.1260598845318709,
+          0.13047232652901422
+        ],
+        "top1_interval": [
+          0.11247916666666667,
+          0.155
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.11241208666978361,
+        "top1": 0.13333333333333336,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.11048577866313265,
+          0.11427715968341187
+        ],
+        "top1_interval": [
+          0.11247916666666667,
+          0.155
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.0983905928207336,
+        "top1": 0.13333333333333336,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.0967225074352607,
+          0.10007786126464085
+        ],
+        "top1_interval": [
+          0.11247916666666667,
+          0.155
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "em-head",
+        "mae": 0.11146031490947354,
+        "top1": 0.11666666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.11017061337905085,
+          0.1128449046697613
+        ],
+        "top1_interval": [
+          0.10331250000000002,
+          0.12916666666666665
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "raw",
+        "mae": 0.0878688837982602,
+        "top1": 0.12666666666666665,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08696257096942474,
+          0.0889368590338935
+        ],
+        "top1_interval": [
+          0.11499999999999999,
+          0.1383333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.109291256178305,
+        "top1": 0.12083333333333332,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.10786401460634627,
+          0.11068693597641242
+        ],
+        "top1_interval": [
+          0.10750000000000001,
+          0.1325
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.10075103172878301,
+        "top1": 0.12083333333333332,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.0995394742205327,
+          0.10196373530357383
+        ],
+        "top1_interval": [
+          0.10750000000000001,
+          0.1325
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.09233773099797363,
+        "top1": 0.12083333333333332,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.09133138116529378,
+          0.09339084885535155
+        ],
+        "top1_interval": [
+          0.10750000000000001,
+          0.1325
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "em-head",
+        "mae": 0.09653176048291157,
+        "top1": 0.1125,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.0954532644992675,
+          0.09782005934651958
+        ],
+        "top1_interval": [
+          0.09666666666666666,
+          0.1283333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.0,
+        "estimator": "raw",
+        "mae": 0.03872875191830584,
+        "top1": 0.5866666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.038098932275528685,
+          0.03941610465008272
+        ],
+        "top1_interval": [
+          0.5574791666666665,
+          0.6141666666666667
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.0,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.04713081736639119,
+        "top1": 0.5541666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.04558533795645479,
+          0.04871522964349519
+        ],
+        "top1_interval": [
+          0.5199791666666667,
+          0.5916666666666667
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.0,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.044529370494372875,
+        "top1": 0.5541666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.04309161660385099,
+          0.04602351420778554
+        ],
+        "top1_interval": [
+          0.5199791666666667,
+          0.5916666666666667
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.0,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.04126947605464564,
+        "top1": 0.5541666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.03996377152092062,
+          0.042575048971513846
+        ],
+        "top1_interval": [
+          0.5199791666666667,
+          0.5916666666666667
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.0,
+        "estimator": "em-head",
+        "mae": 0.03148422051312984,
+        "top1": 0.6241666666666666,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.0305137308978521,
+          0.0325212314944226
+        ],
+        "top1_interval": [
+          0.599145833333333,
+          0.6499999999999999
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "raw",
+        "mae": 0.052566059864440205,
+        "top1": 0.365,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.051911430185056326,
+          0.05326743648758659
+        ],
+        "top1_interval": [
+          0.3308125,
+          0.3950000000000001
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.07677959064280401,
+        "top1": 0.3541666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07328839761398001,
+          0.08008011736122891
+        ],
+        "top1_interval": [
+          0.30666666666666675,
+          0.39500000000000013
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.06863044881389929,
+        "top1": 0.3541666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06589569883056234,
+          0.07138052026828004
+        ],
+        "top1_interval": [
+          0.30666666666666675,
+          0.39500000000000013
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.060112486426778945,
+        "top1": 0.3541666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.05791109758451898,
+          0.062414106730492414
+        ],
+        "top1_interval": [
+          0.30666666666666675,
+          0.39500000000000013
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "em-head",
+        "mae": 0.04513860737425735,
+        "top1": 0.4891666666666666,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.04386663523182566,
+          0.046579362636860265
+        ],
+        "top1_interval": [
+          0.4683333333333334,
+          0.51
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "raw",
+        "mae": 0.06135623796019578,
+        "top1": 0.13333333333333333,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.060685975031802994,
+          0.06216315357307895
+        ],
+        "top1_interval": [
+          0.11916666666666667,
+          0.14833333333333332
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.09330647308140176,
+        "top1": 0.21333333333333332,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.09025453882355991,
+          0.09627122826392032
+        ],
+        "top1_interval": [
+          0.18583333333333335,
+          0.24083333333333332
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.08674039509968794,
+        "top1": 0.21333333333333332,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08384792760642362,
+          0.08950370547075245
+        ],
+        "top1_interval": [
+          0.18583333333333335,
+          0.24083333333333332
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.07769552284348959,
+        "top1": 0.21333333333333332,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07526631078260121,
+          0.08014561648406039
+        ],
+        "top1_interval": [
+          0.18583333333333335,
+          0.24083333333333332
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "em-head",
+        "mae": 0.067365272158422,
+        "top1": 0.185,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06616609612117894,
+          0.06882199721623838
+        ],
+        "top1_interval": [
+          0.16166666666666668,
+          0.21166666666666667
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "raw",
+        "mae": 0.055472141499094275,
+        "top1": 0.3141666666666666,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.05482137343481441,
+          0.05619617443375483
+        ],
+        "top1_interval": [
+          0.2849791666666666,
+          0.34752083333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.0739007680021122,
+        "top1": 0.2583333333333333,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07198108675990743,
+          0.07587293055690603
+        ],
+        "top1_interval": [
+          0.23166666666666663,
+          0.2875208333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.07031495907673978,
+        "top1": 0.2583333333333333,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06856990216000718,
+          0.07209776410780007
+        ],
+        "top1_interval": [
+          0.23166666666666663,
+          0.2875208333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.06523903129406136,
+        "top1": 0.2583333333333333,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06378745870168408,
+          0.06679000606720459
+        ],
+        "top1_interval": [
+          0.23166666666666663,
+          0.2875208333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "em-head",
+        "mae": 0.05492707795308148,
+        "top1": 0.2866666666666666,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.054330585668515265,
+          0.05559066673520796
+        ],
+        "top1_interval": [
+          0.25747916666666665,
+          0.32085416666666666
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "raw",
+        "mae": 0.06892966252341388,
+        "top1": 0.1583333333333333,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06801616271664665,
+          0.0697932886597347
+        ],
+        "top1_interval": [
+          0.1383333333333333,
+          0.17999999999999994
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.12833528308636263,
+        "top1": 0.17999999999999997,
+        "undefined": 0.015,
+        "mae_interval": [
+          0.11361949157387466,
+          0.14748906984752397
+        ],
+        "top1_interval": [
+          0.15416666666666662,
+          0.205
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.09358796279713755,
+        "top1": 0.17999999999999997,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08967360798553635,
+          0.09792328718614801
+        ],
+        "top1_interval": [
+          0.15416666666666662,
+          0.205
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.0790120036953139,
+        "top1": 0.17999999999999997,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07612878902943049,
+          0.08221816775066057
+        ],
+        "top1_interval": [
+          0.15416666666666662,
+          0.205
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "em-head",
+        "mae": 0.07148020526130411,
+        "top1": 0.25416666666666665,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06931632908006612,
+          0.0735251402069856
+        ],
+        "top1_interval": [
+          0.22247916666666664,
+          0.28666666666666657
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "raw",
+        "mae": 0.09004320021807836,
+        "top1": 0.08916666666666666,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.0891623894180239,
+          0.09087959728995318
+        ],
+        "top1_interval": [
+          0.07416666666666667,
+          0.10500000000000001
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.12962534405214549,
+        "top1": 0.11499999999999999,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.1276173157013734,
+          0.13169920676651964
+        ],
+        "top1_interval": [
+          0.09247916666666667,
+          0.13502083333333328
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.11992164351560777,
+        "top1": 0.11499999999999999,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.11802205789524822,
+          0.12188796338694197
+        ],
+        "top1_interval": [
+          0.09247916666666667,
+          0.13502083333333328
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.10549845696481448,
+        "top1": 0.11499999999999999,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.1037365448303601,
+          0.10731912422178466
+        ],
+        "top1_interval": [
+          0.09247916666666667,
+          0.13502083333333328
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "em-head",
+        "mae": 0.10876207162811498,
+        "top1": 0.10083333333333336,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.10793982009220054,
+          0.10968389665133794
+        ],
+        "top1_interval": [
+          0.0825,
+          0.11833333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "raw",
+        "mae": 0.07423661628918646,
+        "top1": 0.11416666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07333160390304609,
+          0.07516289764694263
+        ],
+        "top1_interval": [
+          0.0966666666666667,
+          0.13083333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.10527994212010679,
+        "top1": 0.11583333333333332,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.10335036452865828,
+          0.10732662076039337
+        ],
+        "top1_interval": [
+          0.09916666666666667,
+          0.13333333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.0998912645657597,
+        "top1": 0.11583333333333332,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.09810663680402684,
+          0.1018308223192962
+        ],
+        "top1_interval": [
+          0.09916666666666667,
+          0.13333333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.09149346617608484,
+        "top1": 0.11583333333333332,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08990572927419037,
+          0.09325149800552558
+        ],
+        "top1_interval": [
+          0.09916666666666667,
+          0.13333333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "flat",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "em-head",
+        "mae": 0.08951141870247893,
+        "top1": 0.09083333333333335,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08846132517932097,
+          0.09057038091618784
+        ],
+        "top1_interval": [
+          0.07749999999999999,
+          0.10500000000000001
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.0,
+        "estimator": "raw",
+        "mae": 0.06963459608333512,
+        "top1": 0.6541666666666666,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06817846116910553,
+          0.07109493111251003
+        ],
+        "top1_interval": [
+          0.6316666666666666,
+          0.6783333333333332
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.0,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.060359275463977555,
+        "top1": 0.6599999999999998,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.05803902657104618,
+          0.06238153680594593
+        ],
+        "top1_interval": [
+          0.6391666666666668,
+          0.6825208333333334
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.0,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.07211334394119587,
+        "top1": 0.6599999999999998,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07019271211368253,
+          0.07385458868101723
+        ],
+        "top1_interval": [
+          0.6391666666666668,
+          0.6825208333333334
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.0,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.08716209008860548,
+        "top1": 0.6599999999999998,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08588648759729527,
+          0.08836119127008463
+        ],
+        "top1_interval": [
+          0.6391666666666668,
+          0.6825208333333334
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.0,
+        "estimator": "em-head",
+        "mae": 0.04925050828390059,
+        "top1": 0.7574999999999998,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.04734486884367921,
+          0.051113564311168966
+        ],
+        "top1_interval": [
+          0.7291458333333332,
+          0.7874999999999999
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "raw",
+        "mae": 0.09118148963824273,
+        "top1": 0.4716666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08990470648553363,
+          0.09250434520400136
+        ],
+        "top1_interval": [
+          0.4383125,
+          0.5025000000000001
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.08525468086635679,
+        "top1": 0.48250000000000004,
+        "undefined": 0.0016666666666666666,
+        "mae_interval": [
+          0.0823426427814266,
+          0.08890404894047876
+        ],
+        "top1_interval": [
+          0.4491458333333333,
+          0.5150208333333334
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.09574444450065003,
+        "top1": 0.48250000000000004,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.09455546821571893,
+          0.09679597987119366
+        ],
+        "top1_interval": [
+          0.4491458333333333,
+          0.5150208333333334
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.10628134064724934,
+        "top1": 0.48250000000000004,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.10542697403406036,
+          0.10707116613063421
+        ],
+        "top1_interval": [
+          0.4491458333333333,
+          0.5150208333333334
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "em-head",
+        "mae": 0.0694244115248909,
+        "top1": 0.5725,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.0672595157263026,
+          0.07163775003040844
+        ],
+        "top1_interval": [
+          0.5383125,
+          0.6100000000000001
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "raw",
+        "mae": 0.09490463324169138,
+        "top1": 0.35,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.0936775791656439,
+          0.09600582199053034
+        ],
+        "top1_interval": [
+          0.3241666666666666,
+          0.37416666666666665
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.09208144654914621,
+        "top1": 0.43000000000000005,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.09044181407035162,
+          0.09375950577691762
+        ],
+        "top1_interval": [
+          0.40750000000000003,
+          0.45166666666666666
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.10012176900539874,
+        "top1": 0.43000000000000005,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.09912839358122986,
+          0.10102805494664725
+        ],
+        "top1_interval": [
+          0.40750000000000003,
+          0.45166666666666666
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.10817074244613126,
+        "top1": 0.43000000000000005,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.10741975184235822,
+          0.1088794921614925
+        ],
+        "top1_interval": [
+          0.40750000000000003,
+          0.45166666666666666
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "em-head",
+        "mae": 0.07595677417791723,
+        "top1": 0.4541666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07411137379139117,
+          0.0778450824323907
+        ],
+        "top1_interval": [
+          0.4258333333333334,
+          0.4833333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "raw",
+        "mae": 0.0953614869643314,
+        "top1": 0.45499999999999996,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.09433087025288917,
+          0.09637234238729414
+        ],
+        "top1_interval": [
+          0.42414583333333333,
+          0.4841666666666667
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.08951255145124375,
+        "top1": 0.4208333333333334,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08802649441613214,
+          0.09107766489554277
+        ],
+        "top1_interval": [
+          0.3966666666666667,
+          0.44499999999999995
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.09846783775345401,
+        "top1": 0.4208333333333334,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.0974131648101791,
+          0.09951648600472551
+        ],
+        "top1_interval": [
+          0.3966666666666667,
+          0.44499999999999995
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.10675229468206249,
+        "top1": 0.4208333333333334,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.10590519344539401,
+          0.1075656328845724
+        ],
+        "top1_interval": [
+          0.3966666666666667,
+          0.44499999999999995
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.5,
+        "estimator": "em-head",
+        "mae": 0.08057236117183214,
+        "top1": 0.5000000000000001,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07915901343563125,
+          0.0821176008441355
+        ],
+        "top1_interval": [
+          0.4708333333333334,
+          0.5316666666666666
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "raw",
+        "mae": 0.11628925320596824,
+        "top1": 0.23833333333333334,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.11504685388042826,
+          0.1176342208761657
+        ],
+        "top1_interval": [
+          0.21414583333333334,
+          0.265
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.14342152391097435,
+        "top1": 0.2333333333333333,
+        "undefined": 0.028333333333333332,
+        "mae_interval": [
+          0.1302398116174751,
+          0.15915591563970324
+        ],
+        "top1_interval": [
+          0.20583333333333326,
+          0.2633333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.12476919704987462,
+        "top1": 0.23499999999999996,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.12376719371824808,
+          0.12587048958173153
+        ],
+        "top1_interval": [
+          0.2074791666666666,
+          0.26499999999999996
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.1296282991941037,
+        "top1": 0.23499999999999996,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.1290139767286973,
+          0.13032309185864327
+        ],
+        "top1_interval": [
+          0.2074791666666666,
+          0.26499999999999996
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "em-head",
+        "mae": 0.10062908279571445,
+        "top1": 0.3358333333333333,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.09838780969165287,
+          0.10302596193235392
+        ],
+        "top1_interval": [
+          0.30833333333333335,
+          0.36333333333333334
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "raw",
+        "mae": 0.12164800322954669,
+        "top1": 0.13833333333333336,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.12040819961336444,
+          0.12301336726965681
+        ],
+        "top1_interval": [
+          0.12000000000000002,
+          0.15916666666666668
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.12965037335497173,
+        "top1": 0.16416666666666666,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.1275841774126865,
+          0.13158819111723302
+        ],
+        "top1_interval": [
+          0.14331249999999998,
+          0.18916666666666668
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.1285623534139833,
+        "top1": 0.16416666666666666,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.12743583330191063,
+          0.1298888239004477
+        ],
+        "top1_interval": [
+          0.14331249999999998,
+          0.18916666666666668
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.13044230400624193,
+        "top1": 0.16416666666666666,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.1295892113938072,
+          0.1314548616034193
+        ],
+        "top1_interval": [
+          0.14331249999999998,
+          0.18916666666666668
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "em-head",
+        "mae": 0.11489598994215848,
+        "top1": 0.18833333333333332,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.11304804676662139,
+          0.11694878940828804
+        ],
+        "top1_interval": [
+          0.1691666666666667,
+          0.2066875
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "raw",
+        "mae": 0.12062170911948392,
+        "top1": 0.21166666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.11962134280561906,
+          0.1217266757669718
+        ],
+        "top1_interval": [
+          0.18666666666666668,
+          0.23835416666666667
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.120888326126154,
+        "top1": 0.18999999999999995,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.11929125256261187,
+          0.12267164123871689
+        ],
+        "top1_interval": [
+          0.17083333333333334,
+          0.21166666666666661
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.12451230508547602,
+        "top1": 0.18999999999999995,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.12328651627702944,
+          0.12580351231933043
+        ],
+        "top1_interval": [
+          0.17083333333333334,
+          0.21166666666666661
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.12849528673705882,
+        "top1": 0.18999999999999995,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.12760381078044114,
+          0.1293866692044551
+        ],
+        "top1_interval": [
+          0.17083333333333334,
+          0.21166666666666661
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 20,
+        "neutralFraction": 0.8,
+        "estimator": "em-head",
+        "mae": 0.11352696396640083,
+        "top1": 0.22166666666666668,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.11203168122942458,
+          0.11512915223563427
+        ],
+        "top1_interval": [
+          0.19583333333333336,
+          0.24585416666666665
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.0,
+        "estimator": "raw",
+        "mae": 0.06525907204069377,
+        "top1": 0.7533333333333334,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06408162563579547,
+          0.06629083518865551
+        ],
+        "top1_interval": [
+          0.7366666666666667,
+          0.7700000000000002
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.0,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.048847997861245815,
+        "top1": 0.7416666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.04709322718297185,
+          0.05082176107788814
+        ],
+        "top1_interval": [
+          0.7141458333333333,
+          0.7683541666666668
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.0,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.05230348597810823,
+        "top1": 0.7416666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.05079175898257484,
+          0.054000431910741775
+        ],
+        "top1_interval": [
+          0.7141458333333333,
+          0.7683541666666668
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.0,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.06247226412528508,
+        "top1": 0.7416666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06125397800467388,
+          0.06384213898131258
+        ],
+        "top1_interval": [
+          0.7141458333333333,
+          0.7683541666666668
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.0,
+        "estimator": "em-head",
+        "mae": 0.03917337412590159,
+        "top1": 0.8208333333333334,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.03812916773023364,
+          0.0402123311457211
+        ],
+        "top1_interval": [
+          0.8016666666666667,
+          0.8400000000000001
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "raw",
+        "mae": 0.08537992493174883,
+        "top1": 0.5958333333333334,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08430438961455806,
+          0.08652455320252439
+        ],
+        "top1_interval": [
+          0.5625000000000001,
+          0.6266666666666667
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.07064536825939341,
+        "top1": 0.6016666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06802570916057032,
+          0.07370263857215223
+        ],
+        "top1_interval": [
+          0.5675000000000001,
+          0.6358333333333334
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.07463457572156777,
+        "top1": 0.6016666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07276817906520669,
+          0.07665044089817356
+        ],
+        "top1_interval": [
+          0.5675000000000001,
+          0.6358333333333334
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.08474903831809147,
+        "top1": 0.6016666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.0837137398280497,
+          0.0859735979538773
+        ],
+        "top1_interval": [
+          0.5675000000000001,
+          0.6358333333333334
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "em-head",
+        "mae": 0.05644040158178641,
+        "top1": 0.7041666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.054524402290374106,
+          0.058190440258423196
+        ],
+        "top1_interval": [
+          0.6808333333333334,
+          0.7258333333333332
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "raw",
+        "mae": 0.08985342410884435,
+        "top1": 0.3616666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08887662327985606,
+          0.0909004274641036
+        ],
+        "top1_interval": [
+          0.3232916666666667,
+          0.3966875000000001
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.08522628155311168,
+        "top1": 0.49000000000000005,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08291644636285887,
+          0.0878974370805211
+        ],
+        "top1_interval": [
+          0.4491666666666668,
+          0.5258541666666667
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.08665604709188936,
+        "top1": 0.49000000000000005,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08495306933837332,
+          0.08853736865510668
+        ],
+        "top1_interval": [
+          0.4491666666666668,
+          0.5258541666666667
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.09115601861571744,
+        "top1": 0.49000000000000005,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.09008221211354446,
+          0.09232810784852011
+        ],
+        "top1_interval": [
+          0.4491666666666668,
+          0.5258541666666667
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "em-head",
+        "mae": 0.0699868542941844,
+        "top1": 0.48166666666666663,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06872262728562721,
+          0.07139634624278446
+        ],
+        "top1_interval": [
+          0.45916666666666667,
+          0.505
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "raw",
+        "mae": 0.08971632338815227,
+        "top1": 0.55,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.088964712533746,
+          0.09039860498578352
+        ],
+        "top1_interval": [
+          0.5175000000000001,
+          0.5783541666666667
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.07909537825529941,
+        "top1": 0.5191666666666666,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07750132731199265,
+          0.08067877932146753
+        ],
+        "top1_interval": [
+          0.49083333333333334,
+          0.5449999999999999
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.08246003164188334,
+        "top1": 0.5191666666666666,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08126914816226015,
+          0.08359629636836109
+        ],
+        "top1_interval": [
+          0.49083333333333334,
+          0.5449999999999999
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.08813344939467078,
+        "top1": 0.5191666666666666,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08733608262746345,
+          0.08888863535773416
+        ],
+        "top1_interval": [
+          0.49083333333333334,
+          0.5449999999999999
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.5,
+        "estimator": "em-head",
+        "mae": 0.0702863127230644,
+        "top1": 0.6208333333333333,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06917673070025955,
+          0.07133787206632866
+        ],
+        "top1_interval": [
+          0.5933333333333335,
+          0.6458333333333334
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "raw",
+        "mae": 0.10616980402122858,
+        "top1": 0.27166666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.10537229077914458,
+          0.10699625829477223
+        ],
+        "top1_interval": [
+          0.24416666666666673,
+          0.2991666666666667
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.12773052078581712,
+        "top1": 0.265,
+        "undefined": 0.018333333333333333,
+        "mae_interval": [
+          0.11430831669308772,
+          0.1445939224558798
+        ],
+        "top1_interval": [
+          0.24,
+          0.2899999999999999
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.10823133988956217,
+        "top1": 0.26666666666666666,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.10660084339638773,
+          0.10986675322124165
+        ],
+        "top1_interval": [
+          0.24081249999999998,
+          0.29166666666666663
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.11036036185892224,
+        "top1": 0.26666666666666666,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.10930799855908047,
+          0.11139697149296257
+        ],
+        "top1_interval": [
+          0.24081249999999998,
+          0.29166666666666663
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "em-head",
+        "mae": 0.08600023043859259,
+        "top1": 0.4175000000000001,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.0828839973437392,
+          0.08875805963088682
+        ],
+        "top1_interval": [
+          0.37749999999999995,
+          0.45583333333333326
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "raw",
+        "mae": 0.11334470729226713,
+        "top1": 0.12416666666666665,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.11211871188394684,
+          0.11466086370728884
+        ],
+        "top1_interval": [
+          0.10164583333333332,
+          0.14833333333333332
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.12837388059876195,
+        "top1": 0.14916666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.12644594230839498,
+          0.13046426624413815
+        ],
+        "top1_interval": [
+          0.12916666666666668,
+          0.16916666666666666
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.12260135428777497,
+        "top1": 0.14916666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.12110202323772985,
+          0.12420961890278588
+        ],
+        "top1_interval": [
+          0.12916666666666668,
+          0.16916666666666666
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.11862664078142919,
+        "top1": 0.14916666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.11758398263374091,
+          0.11966322265561176
+        ],
+        "top1_interval": [
+          0.12916666666666668,
+          0.16916666666666666
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "em-head",
+        "mae": 0.10802396338044344,
+        "top1": 0.19249999999999998,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.10594969439780623,
+          0.11020422735004885
+        ],
+        "top1_interval": [
+          0.1691458333333333,
+          0.21749999999999997
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "raw",
+        "mae": 0.11071842343833731,
+        "top1": 0.19083333333333335,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.10968527063594144,
+          0.11158316525031768
+        ],
+        "top1_interval": [
+          0.16666666666666666,
+          0.21500000000000002
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.11530080696786289,
+        "top1": 0.16416666666666666,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.11345912234303503,
+          0.11690891881193746
+        ],
+        "top1_interval": [
+          0.14083333333333334,
+          0.1908333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.11417387703207564,
+        "top1": 0.16416666666666666,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.11259680086243647,
+          0.11553523111511534
+        ],
+        "top1_interval": [
+          0.14083333333333334,
+          0.1908333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.11381812174802455,
+        "top1": 0.16416666666666666,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.112660785152886,
+          0.11485593076686176
+        ],
+        "top1_interval": [
+          0.14083333333333334,
+          0.1908333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 60,
+        "neutralFraction": 0.8,
+        "estimator": "em-head",
+        "mae": 0.10667480498448907,
+        "top1": 0.17666666666666664,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.10517047163501125,
+          0.10802908997578951
+        ],
+        "top1_interval": [
+          0.15833333333333335,
+          0.1950208333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.0,
+        "estimator": "raw",
+        "mae": 0.06295189118903713,
+        "top1": 0.7775,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06194558786966028,
+          0.0639698937324293
+        ],
+        "top1_interval": [
+          0.7483333333333334,
+          0.8058333333333334
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.0,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.04137972031289134,
+        "top1": 0.8066666666666669,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.03976211423145932,
+          0.04299324331510503
+        ],
+        "top1_interval": [
+          0.7791666666666667,
+          0.8325000000000001
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.0,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.041874319815316384,
+        "top1": 0.8066666666666669,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.04029732317286457,
+          0.04344019260606854
+        ],
+        "top1_interval": [
+          0.7791666666666667,
+          0.8325000000000001
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.0,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.044757617684427216,
+        "top1": 0.8066666666666669,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.04335187445774135,
+          0.046165883696949114
+        ],
+        "top1_interval": [
+          0.7791666666666667,
+          0.8325000000000001
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.0,
+        "estimator": "em-head",
+        "mae": 0.032902616417348804,
+        "top1": 0.8533333333333332,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.03165507380319477,
+          0.034018993076093546
+        ],
+        "top1_interval": [
+          0.8366458333333332,
+          0.8699999999999999
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "raw",
+        "mae": 0.08217171586311747,
+        "top1": 0.7008333333333332,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08132926311650066,
+          0.08295423167307212
+        ],
+        "top1_interval": [
+          0.6675,
+          0.7325
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.059421295048817026,
+        "top1": 0.7125,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.056759497987809944,
+          0.06192683952453232
+        ],
+        "top1_interval": [
+          0.6808124999999998,
+          0.7441666666666666
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.05978215964326779,
+        "top1": 0.7125,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.0570433919119573,
+          0.062431231362213346
+        ],
+        "top1_interval": [
+          0.6808124999999998,
+          0.7441666666666666
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.06380035564279973,
+        "top1": 0.7125,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06125922579628569,
+          0.06619930137781137
+        ],
+        "top1_interval": [
+          0.6808124999999998,
+          0.7441666666666666
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "em-head",
+        "mae": 0.04773085242316686,
+        "top1": 0.8158333333333333,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.04537584261218439,
+          0.050017339405452985
+        ],
+        "top1_interval": [
+          0.7958333333333333,
+          0.8375
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "raw",
+        "mae": 0.08710871772590811,
+        "top1": 0.3658333333333333,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08603310533597579,
+          0.08811997910475579
+        ],
+        "top1_interval": [
+          0.3333333333333333,
+          0.4
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.08068972927724279,
+        "top1": 0.5433333333333334,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07780445818832031,
+          0.08344262580268848
+        ],
+        "top1_interval": [
+          0.495,
+          0.5900000000000001
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.08040944732652847,
+        "top1": 0.5433333333333334,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07776729503293667,
+          0.08289003619410941
+        ],
+        "top1_interval": [
+          0.495,
+          0.5900000000000001
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.08125373732689,
+        "top1": 0.5433333333333334,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07910833831456379,
+          0.08328684995120883
+        ],
+        "top1_interval": [
+          0.495,
+          0.5900000000000001
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "em-head",
+        "mae": 0.06720047355686878,
+        "top1": 0.4841666666666666,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06527876068945396,
+          0.0693061389560694
+        ],
+        "top1_interval": [
+          0.45333333333333325,
+          0.5191875000000001
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "raw",
+        "mae": 0.08698909906680309,
+        "top1": 0.6658333333333333,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.08609835839621728,
+          0.08779564851312333
+        ],
+        "top1_interval": [
+          0.6333333333333333,
+          0.7016666666666667
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.07232804246668721,
+        "top1": 0.6341666666666668,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07015357323169112,
+          0.07441087492266879
+        ],
+        "top1_interval": [
+          0.5925000000000001,
+          0.6716666666666669
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.07318596402026438,
+        "top1": 0.6341666666666668,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07117211792828664,
+          0.0751129817462328
+        ],
+        "top1_interval": [
+          0.5925000000000001,
+          0.6716666666666669
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.0753649576101956,
+        "top1": 0.6341666666666668,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.07351717685891102,
+          0.07706579974230497
+        ],
+        "top1_interval": [
+          0.5925000000000001,
+          0.6716666666666669
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.5,
+        "estimator": "em-head",
+        "mae": 0.06619207372683737,
+        "top1": 0.7024999999999999,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.06505007217322901,
+          0.06727899112642927
+        ],
+        "top1_interval": [
+          0.6741666666666666,
+          0.7283333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "raw",
+        "mae": 0.1013580427025961,
+        "top1": 0.31250000000000006,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.1005366682054668,
+          0.10223354820456715
+        ],
+        "top1_interval": [
+          0.2708333333333333,
+          0.3508333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.1123223188895899,
+        "top1": 0.31666666666666665,
+        "undefined": 0.008333333333333333,
+        "mae_interval": [
+          0.10501312036741939,
+          0.1208223942547446
+        ],
+        "top1_interval": [
+          0.2716666666666667,
+          0.36333333333333334
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.10049965732753027,
+        "top1": 0.31666666666666665,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.09657573795013291,
+          0.10475435995709431
+        ],
+        "top1_interval": [
+          0.2716666666666667,
+          0.36333333333333334
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.10027443870974126,
+        "top1": 0.31666666666666665,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.09771103895786966,
+          0.10295199046973096
+        ],
+        "top1_interval": [
+          0.2716666666666667,
+          0.36333333333333334
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "corpus",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "em-head",
+        "mae": 0.07601469279100785,
+        "top1": 0.5608333333333333,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.0720681309006192,
+          0.07955257288246388
+        ],
+        "top1_interval": [
+          0.5149791666666665,
+          0.6100208333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "raw",
+        "mae": 0.11044500718314447,
+        "top1": 0.10833333333333335,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.10873315453696912,
+          0.11205270306405464
+        ],
+        "top1_interval": [
+          0.0891666666666667,
+          0.1275
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.12889242553848193,
+        "top1": 0.1391666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.126474249967923,
+          0.13091033832803034
+        ],
+        "top1_interval": [
+          0.11833333333333333,
+          0.16083333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.12516011929058357,
+        "top1": 0.1391666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.12289787324681781,
+          0.12702793441540752
+        ],
+        "top1_interval": [
+          0.11833333333333333,
+          0.16083333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.11984705876285037,
+        "top1": 0.1391666666666667,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.11789331411237763,
+          0.12152857036430097
+        ],
+        "top1_interval": [
+          0.11833333333333333,
+          0.16083333333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "B13",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "em-head",
+        "mae": 0.10727051400160685,
+        "top1": 0.16583333333333333,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.10524934217526949,
+          0.10929457404806986
+        ],
+        "top1_interval": [
+          0.14916666666666664,
+          0.1816875
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "raw",
+        "mae": 0.10599376772973468,
+        "top1": 0.19249999999999995,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.10478154378848621,
+          0.10700768243705766
+        ],
+        "top1_interval": [
+          0.17081249999999995,
+          0.21583333333333332
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-1",
+        "mae": 0.11210680106635318,
+        "top1": 0.175,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.11042412336417076,
+          0.11382811303479058
+        ],
+        "top1_interval": [
+          0.15416666666666662,
+          0.1950208333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-2",
+        "mae": 0.11094309284852666,
+        "top1": 0.175,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.10942782139046636,
+          0.11256064075657045
+        ],
+        "top1_interval": [
+          0.15416666666666662,
+          0.1950208333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "nnls-alpha-4",
+        "mae": 0.10925196960759138,
+        "top1": 0.175,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.10792362096691853,
+          0.11068740338576337
+        ],
+        "top1_interval": [
+          0.15416666666666662,
+          0.1950208333333333
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      },
+      {
+        "neutralSource": "IteraTeR-before",
+        "mixture": "peaked",
+        "size": 200,
+        "neutralFraction": 0.8,
+        "estimator": "em-head",
+        "mae": 0.10213430303282042,
+        "top1": 0.185,
+        "undefined": 0.0,
+        "mae_interval": [
+          0.10101323418680873,
+          0.1031481739820163
+        ],
+        "top1_interval": [
+          0.16083333333333336,
+          0.20999999999999996
+        ],
+        "splits": 20,
+        "bags": 1200,
+        "interval_method": "1000 resamples of split means; repeated halves are not independent new corpora"
+      }
+    ]
+  },
+  "policies": {
+    "minilm-tuned": {
+      "card": "TP12",
+      "status": "no-policy-qualified",
+      "prior": 2,
+      "minimum": null,
+      "bootstrap": 1000,
+      "seed": 20261115,
+      "selection": "Minimum average MAE over corpus-only scenarios; smallest tested count with no MAE/top1 loss against raw in either shape at any neutral fraction",
+      "productionAdmission": false,
+      "reader": "minilm-tuned",
+      "ladderReceiptPin": "ac5aa48a1e9a83d681969eadf9c7a8268831be97f8fbbc42b259ff72c226b759"
+    }
+  },
+  "productionAdmission": false,
+  "estimand": "Label shares conditional on emotion, after correction of all 13 labels including neutral",
+  "design": "Dirichlet(1) or Dirichlet(.15) over 12 emotion labels; fixed neutral fraction; common bags across readers",
+  "unpacked": true,
+  "neutralStress": "Available B13 and verified before-revision sentences only; reference readers have no released predictions on these sets",
+  "carriedControls": {
+    "sourceReceiptPin": "c671e1c4e0480f35c2ddd6351adf458a96ca61ba94838669d9c78205ac397109",
+    "bars": {
+      "human": {
+        "bestEstimator": "nnls-alpha-1",
+        "mae": 0.03894511181289304,
+        "top1": 0.7916666666666667,
+        "passed": true,
+        "stretch": false
+      },
+      "authors-first-released": {
+        "bestEstimator": "em-error-table",
+        "mae": 0.03450112830638686,
+        "top1": 0.8291666666666666,
+        "passed": true,
+        "stretch": false
+      },
+      "constant": {
+        "bestEstimator": "nnls-alpha-4",
+        "mae": 0.12859802282464028,
+        "top1": 0.095,
+        "passed": false,
+        "stretch": false
+      },
+      "bow": {
+        "bestEstimator": "em-head",
+        "mae": 0.043821668103578196,
+        "top1": 0.7900000000000001,
+        "passed": false,
+        "stretch": false
+      }
+    },
+    "scope": "Previously completed reference rows reused unchanged; only the new L3 head is measured"
+  },
+  "bars": {
+    "minilm-tuned": {
+      "bestEstimator": "em-head",
+      "mae": 0.03917337412590159,
+      "top1": 0.8208333333333334,
+      "passed": true,
+      "stretch": false
+    }
+  }
+}

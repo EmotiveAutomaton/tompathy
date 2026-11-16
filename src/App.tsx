@@ -38,6 +38,8 @@ import { type ContextWork } from "./components/ContextProgress";
 import { attentionAt, attentionForNode } from "./core/attention";
 import { ValueTabs, type ValuesTab } from "./components/ValueTabs";
 import { ValuesLandscape } from "./components/ValuesLandscape";
+import { NeedLandscape, NeedGraph, needDescriptions } from "./components/NeedLandscape";
+import { needDetails, type NeedDetailId } from "./core/need-view";
 import { SelectionLock } from "./components/SelectionLock";
 import { blockedFocusTracker } from "./core/lock";
 import { GoalCloud } from "./components/GoalCloud";
@@ -255,6 +257,8 @@ export function App({ preview = false }: { preview?: boolean }) {
     [navigationRequest, setNavigationRequest] = useState(0),
     [lockReminder, setLockReminder] = useState(0),
     [valuesTab, setValuesTab] = useState<ValuesTab>("work"),
+    [needDetail, setNeedDetail] = useState<NeedDetailId | null>(null),
+    [valueRelatedNodes, setValueRelatedNodes] = useState<string[]>([]),
     [sentenceOffset, setSentenceOffset] = useState(0),
     [sourceHover, setSourceHover] = useState(false),
     [relatedNode, setRelatedNode] = useState<GoalNode | null>(null),
@@ -1826,6 +1830,7 @@ export function App({ preview = false }: { preview?: boolean }) {
                 offset={sentenceOffset}
                 sourceHover={sourceHover}
                 softNodeId={relatedNode?.id}
+                relatedNodeIds={valueRelatedNodes}
                 pinned={pinned}
                 lockedNodeId={lockedNode?.id}
                 onSelect={(node) => {
@@ -1886,8 +1891,18 @@ export function App({ preview = false }: { preview?: boolean }) {
                     : "Global population values"
               }
             >
-              {ready && packet && !(valuesTab === "global" && packet.population && packet.provider.mode !== "preview") && <ValuesLandscape key={`${packet.artifact.revision}:${valuesTab}`} packet={packet} nodes={hierarchyNodes} sourceLayout={packet.preview?.goalLenses ? null : overviewLayout} tab={valuesTab} context={session.context}
-                values={valuesTab === "work" ? demoWorkValues(packet, values) : valuesTab === "creator" ? values : demoGlobalValues(packet, values)}
+              {ready && packet && valuesTab !== "global" && <NeedLandscape key={`${packet.artifact.revision}:${valuesTab}`}
+                packet={packet} nodes={hierarchyNodes} values={valuesTab === "work" ? demoWorkValues(packet, values) : values}
+                tab={valuesTab} context={session.context} onSources={() => setModal("context")} inspect={inspect}
+                onNeed={setNeedDetail} onHighlight={sources => {
+                  if (pinned) return;
+                  const ids = sources.flatMap(s => s.nodes), regions = [...new Set(sources.flatMap(s => s.regions))];
+                  setValueRelatedNodes(previous => previous.join("|") === ids.join("|") ? previous : ids); setSourceHover(false);
+                  setRelatedNode(hierarchyNodes.find(n => ids.includes(n.id)) ?? hierarchyNodes.find(n => regions.includes(n.regions[0])) ?? null);
+                  void pageCommand(tabId, artifact, "TOMPATHY_RELATED", { regions });
+                }} />}
+              {ready && packet && valuesTab === "global" && !(packet.population && packet.provider.mode !== "preview") && <ValuesLandscape key={`${packet.artifact.revision}:${valuesTab}`} packet={packet} nodes={hierarchyNodes} sourceLayout={packet.preview?.goalLenses ? null : overviewLayout} tab={valuesTab} context={session.context}
+                values={demoGlobalValues(packet, values)}
                 onSources={() => setModal("context")} inspect={inspect} />}
               {!ready && <ValueList values={[]} packet={packet} inspect={inspect} />}
               {ready && valuesTab === "global" && packet?.provider.mode === "preview" ? <PopulationResearch findings={packet.globalFindings} /> : ready && valuesTab === "global" && packet?.population ? <PopulationValues packet={packet} maker={activeMaker?.id} /> : null}
@@ -1923,6 +1938,13 @@ export function App({ preview = false }: { preview?: boolean }) {
                   : "Choose a text"}
           </span>
         </div>
+        {needDetail && <Modal title={needDetails.find(n => n.id === needDetail)!.label} onClose={() => setNeedDetail(null)}>
+          <section className="need-details"><span className="eyebrow">Need · proposed account</span>
+            <p>{needDescriptions[needDetail]}</p><NeedGraph large stress={needDetail === "S1"} />
+            <p className="muted">The band and line are a notional illustration of fluctuation. No preferred range, state or effect has been measured for this author.</p>
+            <p>Connections can describe how an action might serve a need. Establishing a personal preference requires evidence of choices and alternatives, not the topic of a passage alone.</p>
+          </section>
+        </Modal>}
         {detail && (
           <Modal
             title={detail.label}

@@ -1,0 +1,48 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "e98c3436410614f01361c2af07713af1261dd7f65e9a255f8fbe326e224a8f58",
+  "launcherPin": "6c7dee3f009ff5e29f9e1c3c2d0d5b0badade0d5e42fe1b80e99bce4c39f7784",
+  "ledger": "no ledger row",
+  "card": "TP18-probe",
+  "status": "complete",
+  "productionAdmission": false,
+  "scope": "One research row on a fixed third of CoAuthor sessions; no default or original gate change",
+  "sourceReceiptPin": "93e07b858ed6924656801a6b150861bbb42b10b10172f9ba45d913f9384b3f00",
+  "tablesPin": "ad2b8cc0ec08538c1345780d5945bc64698a6b6cbf4370e3db275b678f8f7698",
+  "reader": {
+    "id": "HuggingFaceTB/SmolLM2-360M",
+    "revision": "f8027fd0eaeea54caa13c31d31b9fdc459c38b49",
+    "sha256": "b1b01b99b2753ac2c68fe6747cda77cfe6ffa68aae4eb09ab7130682d7dba8b5",
+    "backend": "torch 2.9.1+cpu; transformers 4.57.6; CPU float32, 2 threads"
+  },
+  "protocol": {
+    "selection": "Lowest SHA-256(session ID), floor(N/3), before outcomes",
+    "states": "Mean final hidden state over tokens intersecting each word; causal context <=2048, target chunks512",
+    "probe": "PCA64 fitted separately on training-fold words only; five original baseline covariates plus 64 components",
+    "folds": "Original five writer folds, same eligible words within the selected third",
+    "bar": "Lower paired whole-writer 95% AUC gain >.02; result applies to this fixed subset only"
+  },
+  "sessions": 466,
+  "words": 65395,
+  "pack": "No serving or maker admission",
+  "row": {
+    "baseline": 0.5580395409130278,
+    "engine": 0.536289586962128,
+    "gain": -0.021749953950899775,
+    "interval": [
+      -0.03790409825477003,
+      -0.008198161065581706
+    ],
+    "clusters": 49,
+    "singleClassClustersExcluded": 1,
+    "draws": 2000,
+    "uncertainty": "cluster bootstrap of fixed out-of-fold predictions; conditional on fitted models",
+    "clearsBar": false
+  },
+  "controls": {
+    "constant_auc": 0.5,
+    "bow": "Original five-feature frequency/length/position baseline",
+    "human": "No independent human pause forecast reference"
+  },
+  "upstreamSourceReceiptPin": "e7aae87f2fbca899344e5c11235524d95a340f1994869cd3cab98897fcca44d3"
+}

@@ -2,10 +2,27 @@
   "schema": "tompathy.two-day-pilot.v1",
   "capability": "human-features",
   "scope": "IteraTeR; EX2-only deterministic-feature control",
-  "status": "queued-after-attention",
-  "date": "2026-11-13",
+  "status": "complete",
+  "date": "2026-11-14",
+  "sourceReceiptPin": "e564b1798ae11e13479682897b422e482879c105a5348bf9c6168a9defac9e29",
   "productionAdmission": false,
   "ledgerRows": [],
   "ledgerStatus": "no ledger row",
-  "codePin": "43ecae394e1395cdbb9af02d764616d0c194eb9d1c9a8dc844859bceb9344c28"
+  "codePin": "43ecae394e1395cdbb9af02d764616d0c194eb9d1c9a8dc844859bceb9344c28",
+  "samplePin": "d2ccfa149555e5b55d943fc376d0f55294db952db37b04396fba678b4eabc87e",
+  "trainingPin": "83da8c9371a5eb7854027c5cb9f87d584e68b1a525399b6eed97cc48927549c4",
+  "modelPin": "5e78c7d69f17ba1dd21110770563be19d498650942f0a5b9adddb034e78be6ab",
+  "scores": {
+    "macroF1": 0.0967753656099555,
+    "perIntention": {
+      "clarity": 0.0,
+      "fluency": 0.21782178217821782,
+      "coherence": 0.0,
+      "style": 0.0,
+      "meaning-changed": 0.26605504587155965
+    },
+    "pairs": 300,
+    "abstentions": 0,
+    "abstentionRate": 0.0
+  }
 }

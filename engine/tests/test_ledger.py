@@ -118,3 +118,29 @@ def test_ids_are_canonical_and_source_scoped():
     assert maker_id("first", "same-person") != maker_id("second", "same-person")
     with pytest.raises(ValueError):
         digest(float("nan"))
+
+
+def test_owner_probe_roundtrip_and_explicit_legacy_upgrade(tmp_path):
+    from tompathy_engine.ledger.schema import ProbeAnswer, Span, legacy_schema_hash
+
+    old_header = json.dumps({"schema_version":"1.0","schema_hash":legacy_schema_hash()})
+    (tmp_path/"schema.json").write_text(old_header,encoding="utf8")
+    ledger=Ledger(tmp_path)
+    rows=fixture_rows()
+    ledger.append(rows,provenance(rows))
+    probe=ProbeAnswer(probe_id="probe-1",maker_id="fixture:a",artifact_id="a",
+        kind="probe",probe_kind="Price",passage=Span(region="r",start=7,end=11),
+        passage_ref=ledger.put_text("A 🌞"),answer_ref=ledger.put_text("Owner's answer"),
+        reading_ref=ledger.put_text('{"reading":"constructed test"}'),t=rows[-1].t_resolve)
+    with pytest.raises(ValueError,match="upgrade_schema"):
+        ledger.append([probe],provenance([probe]))
+    assert ledger.upgrade_schema()
+    assert (tmp_path/"schema-1.0.backup.json").read_text(encoding="utf8")==old_header
+    ledger.append([probe],provenance([probe]))
+    assert Ledger(tmp_path).rows("ProbeAnswer")==[probe]
+    assert ledger.rows("Decision")==[rows[-1]]
+    wrong=probe.model_copy(update={"probe_id":"probe-2","passage":Span(region="r",start=7,end=10)})
+    with pytest.raises(ValueError,match="UTF-16"):
+        ledger.append([wrong],provenance([wrong]))
+    with pytest.raises(ValidationError,match="probe needs"):
+        ProbeAnswer.model_validate({**probe.model_dump(),"probe_kind":None})

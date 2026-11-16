@@ -39,6 +39,8 @@ def vocabulary_gate(tokenizer, runtime, model_vocabulary_size, *, allow_unused_p
 
 
 class WeightOnlyReader:
+    expected_model = 'Qwen/Qwen2.5-0.5B'
+    quantization = 'Q8_0'
     def __init__(self, directory, gguf, *, threads=2, cache=None):
         import llama_cpp
         from transformers import AutoTokenizer
@@ -46,7 +48,7 @@ class WeightOnlyReader:
         manifest = read(self.directory/'manifest.json')
         self.manifest, self.device, self.scoring = manifest, 'cpu', 'kv'
         actual = {p.name for p in self.directory.iterdir() if p.is_file() and p.name != 'manifest.json'}
-        if threads not in (1, 2) or manifest['model'] != 'Qwen/Qwen2.5-0.5B':
+        if threads not in (1, 2) or manifest['model'] != self.expected_model:
             raise ValueError('W1 requires the pinned base reader and one or two CPU threads')
         if actual != set(manifest['files']) or not {'config.json', 'tokenizer.json', 'model.safetensors'} <= actual:
             raise ValueError('Original manifest must pin every local model/tokenizer file')
@@ -55,7 +57,7 @@ class WeightOnlyReader:
         self.tokenizer = AutoTokenizer.from_pretrained(self.directory, local_files_only=True, trust_remote_code=False)
         self.identity = {'id': manifest['model'], 'revision': manifest['revision'], 'sha256': digest(manifest),
             'gguf': sha(gguf), 'runtime': importlib.metadata.version('llama-cpp-python'),
-            'backend': f'llama.cpp Q8_0 CPU {threads} threads; KV2048/rebuild1024; engine token IDs'}
+            'backend': f'llama.cpp {self.quantization} CPU {threads} threads; KV2048/rebuild1024; engine token IDs'}
         start = monotonic()
         self.model = llama_cpp.Llama(model_path=str(gguf), n_ctx=2048, n_batch=1024, n_ubatch=512,
             n_threads=threads, n_threads_batch=threads, n_gpu_layers=0, logits_all=True, verbose=False,
@@ -196,7 +198,8 @@ def first_paint(readers, texts, output, check, ladder):
     return report
 
 
-def run(directory, gguf, texts, output, check, *, reference_tables=None, candidate_tables=None, data_pin=None):
+def run(directory, gguf, texts, output, check, *, reference_tables=None, candidate_tables=None, data_pin=None,
+        reader_type=WeightOnlyReader, allow_unused_padding=True):
     output = Path(output)
     if output.exists():
         raise ValueError('Preserve earlier gate receipt; a failed research route cannot be rerun')
@@ -212,9 +215,9 @@ def run(directory, gguf, texts, output, check, *, reference_tables=None, candida
         return value['passed']
     try:
         check()
-        reader = WeightOnlyReader(directory, gguf, threads=2)
+        reader = reader_type(directory, gguf, threads=2)
         report['readerPin'] = digest(reader.identity)
-        if not gate('a', vocabulary_gate(reader.tokenizer, reader.model, read(Path(directory)/'config.json')['vocab_size'], allow_unused_padding=True)):
+        if not gate('a', vocabulary_gate(reader.tokenizer, reader.model, read(Path(directory)/'config.json')['vocab_size'], allow_unused_padding=allow_unused_padding)):
             return report
         candidate = {name: reader.score(text, check=check) for name, text in texts.items()}
         reader.close(); reader = None
@@ -227,13 +230,13 @@ def run(directory, gguf, texts, output, check, *, reference_tables=None, candida
             gc.collect()
         if not gate('b', {'passed': all(r['spearman'] >= .98 and r['medianAbsoluteNats'] <= .05 for r in rows.values()), 'texts': rows}):
             return report
-        reader = WeightOnlyReader(directory, gguf, threads=2)
+        reader = reader_type(directory, gguf, threads=2)
         if not gate('c', reader.prefix_probe(next(iter(texts.values())))):
             return report
         reader.close(); reader = None
         for threads in (1, 2):
             check()
-            reader = WeightOnlyReader(directory, gguf, threads=threads)
+            reader = reader_type(directory, gguf, threads=threads)
             for name, text in texts.items():
                 boundary = list(WORD.finditer(text))[min(600, len(list(WORD.finditer(text))))-1].end()
                 started, first = monotonic(), None

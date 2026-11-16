@@ -1,0 +1,440 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "5050650c1a7794668440588e80ab9c5d097d07b3f6bfd67abd167051a8e3a6f8",
+  "launcherPin": "938e050928ebbe59f6fdcc14f1c0b447ce638fab866fbd8fe45e8b572caedb76",
+  "ledger": "no ledger row",
+  "card": "TP16",
+  "status": "complete",
+  "productionAdmission": false,
+  "scope": "Writer self-report prediction; text-level benchmark, not maker estimates",
+  "source": {
+    "intakePin": "bab11d00a905c50ef4029ce6a9ad5d93ceac593e82ed9fe5778c081e420d7dfe",
+    "license": "gpl-3.0",
+    "research_only": true,
+    "counts": {
+      "rows": 2500,
+      "fields": [
+        "",
+        "startdate",
+        "enddate",
+        "duration",
+        "worry",
+        "chosen_emotion",
+        "anger",
+        "disgust",
+        "fear",
+        "anxiety",
+        "sadness",
+        "happiness",
+        "relaxation",
+        "desire",
+        "text_long",
+        "text_short",
+        "self_rating_general",
+        "self_rating_short",
+        "self_rating_long",
+        "twitter_general_often",
+        "twitter_tweet_often",
+        "twitter_participate_often",
+        "eng_native"
+      ]
+    }
+  },
+  "n": 2500,
+  "writers": 2500,
+  "rows": {
+    "constant": {
+      "n": 2500,
+      "writers": 2500,
+      "interval_method": "1000 whole-writer resamples of fixed held-out predictions",
+      "targets": {
+        "worry": {
+          "correlation": -0.023724548706064906,
+          "r2": -0.0003166054938601448,
+          "rmse": 1.7650490644738464,
+          "r2_interval": [
+            -0.0023841025060273523,
+            2.7119241060024397e-06
+          ],
+          "rmse_interval": [
+            1.7107348094445052,
+            1.8187182860679683
+          ],
+          "undefined_correlation_resamples": 0,
+          "undefined_r2_resamples": 0,
+          "correlation_interval": [
+            -0.0641366420536456,
+            0.015297384734251875
+          ]
+        }
+      },
+      "primary": false,
+      "stretch": false
+    },
+    "bow": {
+      "n": 2500,
+      "writers": 2500,
+      "interval_method": "1000 whole-writer resamples of fixed held-out predictions",
+      "targets": {
+        "worry": {
+          "correlation": 0.5076117177313717,
+          "r2": 0.20631105393044413,
+          "rmse": 1.5722196108993833,
+          "r2_interval": [
+            0.1887821731582005,
+            0.22261921252784767
+          ],
+          "rmse_interval": [
+            1.5235242769401927,
+            1.6201020322075346
+          ],
+          "undefined_correlation_resamples": 0,
+          "undefined_r2_resamples": 0,
+          "correlation_interval": [
+            0.47817229415607304,
+            0.5361340309652387
+          ]
+        }
+      },
+      "primary": true,
+      "stretch": false
+    },
+    "potion": {
+      "n": 2500,
+      "writers": 2500,
+      "interval_method": "1000 whole-writer resamples of fixed held-out predictions",
+      "targets": {
+        "worry": {
+          "correlation": 0.4666625953459628,
+          "r2": 0.21637515225838977,
+          "rmse": 1.5622198163781624,
+          "r2_interval": [
+            0.19035376594041303,
+            0.2416721104426561
+          ],
+          "rmse_interval": [
+            1.513507787273101,
+            1.6106863293754956
+          ],
+          "undefined_correlation_resamples": 0,
+          "undefined_r2_resamples": 0,
+          "correlation_interval": [
+            0.4369188172893988,
+            0.49578014875775
+          ]
+        }
+      },
+      "primary": true,
+      "stretch": false
+    },
+    "minilm": {
+      "n": 2500,
+      "writers": 2500,
+      "interval_method": "1000 whole-writer resamples of fixed held-out predictions",
+      "targets": {
+        "worry": {
+          "correlation": 0.4725978332493592,
+          "r2": 0.2224596181408387,
+          "rmse": 1.5561430590254919,
+          "r2_interval": [
+            0.19591646385101721,
+            0.24884344032372419
+          ],
+          "rmse_interval": [
+            1.507996347486422,
+            1.6047466776904722
+          ],
+          "undefined_correlation_resamples": 0,
+          "undefined_r2_resamples": 0,
+          "correlation_interval": [
+            0.4429695314089614,
+            0.5026762376015832
+          ]
+        }
+      },
+      "primary": true,
+      "stretch": false
+    },
+    "fine_tuned": {
+      "n": 2500,
+      "writers": 2500,
+      "interval_method": "1000 whole-writer resamples of fixed held-out predictions",
+      "targets": {
+        "worry": {
+          "correlation": 0.5541974563889646,
+          "r2": 0.30133495074640815,
+          "rmse": 1.475103699799572,
+          "r2_interval": [
+            0.2670529342016924,
+            0.33189594905955627
+          ],
+          "rmse_interval": [
+            1.4264387840536248,
+            1.5237755370507504
+          ],
+          "undefined_correlation_resamples": 0,
+          "undefined_r2_resamples": 0,
+          "correlation_interval": [
+            0.5247091753211094,
+            0.5800325542023193
+          ]
+        }
+      },
+      "primary": true,
+      "stretch": true
+    }
+  },
+  "protocol": {
+    "folds": "GroupKFold(5), writers disjoint; each source response_id is one empathy writer",
+    "head": "Ridge alpha=3; BOW word 1-2 grams, min_df=2, sublinear TF",
+    "fine_tuned": "Original pretrained MiniLM, fresh regression head; 3 epochs, writer dev tenth per fold, dev RMSE selection",
+    "training": "batch16; encoderLR2e-5, headLR1e-3; AdamW .01; clip1; seed23; fold-local target scaling; cap128",
+    "long_text_limit": "First 128 model tokens for embedding/regression rows; BOW uses whole text"
+  },
+  "external_references": {
+    "human": "No human-reader score supplied for these sets",
+    "primary": ".16 variance explained",
+    "stretch": ".25 variance explained"
+  },
+  "continuation": {
+    "kind": "host-restart-continuation",
+    "sourceReceiptPin": "f1fd9dcaa9fca266b9340a89fd5029a3c2aadecc32c1a6559409c9222b6ddf74",
+    "failurePin": "a52aaa67339b481eee394571a9dfa4fb6350b8ea57fde40f0f131dbbf8b9293a",
+    "exitVerificationPin": "ccfa37a669d5f58dd492d5fff0f8fc0156f6a3e0b3ec6874a71f03930b6a67fe",
+    "encoderCodePin": "a20f8f0e91afdc9b1c7019edc8b8437416c074ba5c09f23f26bd358c619ef1a4",
+    "caches": {
+      "potion": {
+        "key": "a1475e4108a05365a05ce6b478c276feea172f4748bb4661e7d62d587ea8995c",
+        "sha256": "4bb73aebf7c1133d99f5bd9715d0060879cf996491096b2415400737da5c16f4",
+        "shape": [
+          2500,
+          256
+        ]
+      },
+      "minilm": {
+        "key": "3446b0bb35154f1cb20658c767ad27e3c14a23afaefc1ee29220fc6d66d1f251",
+        "sha256": "973666b1957ad349dea007a29bae0208c07a9331bfe813772652237b39dbdeff",
+        "shape": [
+          2500,
+          384
+        ]
+      }
+    },
+    "completedInferenceRepeated": false,
+    "completedFoldsReused": 1,
+    "partialForecastsPin": "6256b7ac58e0a000caa80e24db50e58516701baa19affe47cfe70fa3a9c86ea6",
+    "hostRecoveryPin": "95c6e43e51e955122ce68089c1f2b1ae0cbc3d8fd6e96cca90dccc1174d32bd5",
+    "foldFiles": {
+      "fold-0/best.safetensors": "5e46f39b585d58d9de11ea653d8ed46d04e1e8f144928937746daf7cf8428883",
+      "fold-0/epochs.json": "b420f152311778cb4c23a355485f2ec9cafbe626d307d5cd87eae6759d824197",
+      "fold-0/head.npz": "4af18222826cd384010813778207b75d10f732526f64c79a8fc97152d3c17259",
+      "fold-0/progress.json": "2eefe9d65f9c1a9316e450fb181437c29f59b335917d0294bfc8e170a078eb04",
+      "fold-0/encoder/config.json": "038a9fbf343363a7b9f8296a0a8402375e8e4e24f612ee4d7f1ec6fa67548508",
+      "fold-0/encoder/config_sentence_transformers.json": "11e91cd46ff21e48bad612fa772168cbdf6dc45d99287100b8bf19cf47a8ebc7",
+      "fold-0/encoder/model.safetensors": "46f85181da7e948d343a86ea77c997d4065e2690d8ae8f269ece574e59ba690f",
+      "fold-0/encoder/modules.json": "e7989e94b5b809d895a9521b708312c1ccd333e183effebaf3838908da2acd53",
+      "fold-0/encoder/sentence_bert_config.json": "874954176b1baf79cb203116c9583f72249d6d28012447ecccfc248a680e0400",
+      "fold-0/encoder/special_tokens_map.json": "5aa43c2f985a25296d5a5ce621c2f77376ca8091a47993c492fd5460b895b140",
+      "fold-0/encoder/tokenizer.json": "2fc687b11de0bc1b3d8348f92e3b49ef1089a621506c7661fbf3248fcd54947e",
+      "fold-0/encoder/tokenizer_config.json": "d4f505dfdb84b5a987fc5f520e0c2bac59e4ac6e43a1d00cab1e96647971dad8",
+      "fold-0/encoder/vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+      "fold-0/encoder/1_Pooling/config.json": "b4105bf48c5257a542a7e1968cef220b3ecd49ae24943143279650c4ac6e30a0"
+    },
+    "unfinishedFoldRestarted": 1
+  },
+  "encoders": {
+    "potion": {
+      "source": "https://huggingface.co/minishlab/potion-base-8M",
+      "id": "minishlab/potion-base-8M",
+      "revision": "bf8b056651a2c21b8d2565580b8569da283cab23",
+      "license_as_read": "mit",
+      "research_only": false,
+      "files": {
+        "config.json": "2a6ac0e9aaa356a68a5688070db78fc3a464fefe85d2f06a1905ce3718687553",
+        "model.safetensors": "f65d0f325faadc1e121c319e2faa41170d3fa07d8c89abd48ca5358d9a223de2",
+        "modules.json": "a68dcbed0429dcdd5bfdca92b0b03cc30d09122c0a3fcf4758787d4b244e45b2",
+        "README.md": "de8ec91bf63c5f4c0e20751c227b2d049953e1cab5f8d5d44211c59a44795bdd",
+        "special_tokens_map.json": "a9e8fb6f99fb0b8803f0e6942fdf4d95d6645204620b67dc3310a1024bcbac59",
+        "tokenizer.json": "e67e803f624fb4d67dea1c730d06e1067e1b14d830e2c2202569e3ef0f70bb50",
+        "tokenizer_config.json": "6725995e3ab3039857ff5bd99178a7cdf42863abb04449e7bb31feb1f55fe567",
+        "vocab.txt": "1394523a67ddd404a825428018c0582a6998bcfa044ecbcbf1f4d71adb94c61c"
+      },
+      "at": "2026-11-15T10:14:04.241051+00:00",
+      "token_cap": 128,
+      "device": "cpu",
+      "threads": 2,
+      "versions": {
+        "torch": "2.9.1+cpu",
+        "transformers": "4.57.6",
+        "model2vec": "0.6.0",
+        "sentence-transformers": "5.1.2",
+        "numpy": "2.5.4"
+      }
+    },
+    "minilm": {
+      "source": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
+      "id": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "license_as_read": "apache-2.0",
+      "research_only": false,
+      "files": {
+        "config.json": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+        "config_sentence_transformers.json": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+        "data_config.json": "32edcb108fc2516b920734a862ae0692bcae1c5d45d5f8d972cb0d53434a4c54",
+        "model.safetensors": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+        "modules.json": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+        "README.md": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+        "sentence_bert_config.json": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+        "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+        "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+        "tokenizer_config.json": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+        "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+        "1_Pooling/config.json": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23"
+      },
+      "at": "2026-11-15T10:14:13.259141+00:00",
+      "token_cap": 128,
+      "device": "cpu",
+      "threads": 2,
+      "versions": {
+        "torch": "2.9.1+cpu",
+        "transformers": "4.57.6",
+        "model2vec": "0.6.0",
+        "sentence-transformers": "5.1.2",
+        "numpy": "2.5.4"
+      }
+    }
+  },
+  "fine_tuned_folds": [
+    {
+      "fit": 1800,
+      "development": 200,
+      "test": 500,
+      "selected_epoch": 3,
+      "epochs": [
+        {
+          "epoch": 1,
+          "development_rmse": 1.5505734931491746
+        },
+        {
+          "epoch": 2,
+          "development_rmse": 1.5023029659802412
+        },
+        {
+          "epoch": 3,
+          "development_rmse": 1.4849023880945067
+        }
+      ],
+      "token_cap": 128
+    },
+    {
+      "fit": 1800,
+      "development": 200,
+      "test": 500,
+      "selected_epoch": 2,
+      "epochs": [
+        {
+          "epoch": 1,
+          "development_rmse": 1.547649261563576
+        },
+        {
+          "epoch": 2,
+          "development_rmse": 1.503536637614622
+        },
+        {
+          "epoch": 3,
+          "development_rmse": 1.5250640696494404
+        }
+      ],
+      "token_cap": 128
+    },
+    {
+      "fit": 1800,
+      "development": 200,
+      "test": 500,
+      "selected_epoch": 3,
+      "epochs": [
+        {
+          "epoch": 1,
+          "development_rmse": 1.601221354647188
+        },
+        {
+          "epoch": 2,
+          "development_rmse": 1.5653913185344266
+        },
+        {
+          "epoch": 3,
+          "development_rmse": 1.469463345143902
+        }
+      ],
+      "token_cap": 128
+    },
+    {
+      "fit": 1800,
+      "development": 200,
+      "test": 500,
+      "selected_epoch": 2,
+      "epochs": [
+        {
+          "epoch": 1,
+          "development_rmse": 1.5154021217812392
+        },
+        {
+          "epoch": 2,
+          "development_rmse": 1.4684141778637723
+        },
+        {
+          "epoch": 3,
+          "development_rmse": 1.4700798812608145
+        }
+      ],
+      "token_cap": 128
+    },
+    {
+      "fit": 1800,
+      "development": 200,
+      "test": 500,
+      "selected_epoch": 3,
+      "epochs": [
+        {
+          "epoch": 1,
+          "development_rmse": 1.5969540611743984
+        },
+        {
+          "epoch": 2,
+          "development_rmse": 1.5887157531404934
+        },
+        {
+          "epoch": 3,
+          "development_rmse": 1.576652751327871
+        }
+      ],
+      "token_cap": 128
+    }
+  ],
+  "long_text_channels": {
+    "status": "blocked",
+    "reason": "No learned TP12 NNLS prior/minimum policy qualifies; TS2 withholds corrected shares",
+    "readerReceiptPin": "ac5aa48a1e9a83d681969eadf9c7a8268831be97f8fbbc42b259ff72c226b759",
+    "countingReceiptPin": "218465767e1e80e9749589e117c914642cec6c98bb1480f875046146fe0404b2",
+    "unpacked": true,
+    "policy": {
+      "card": "TP12",
+      "status": "no-policy-qualified",
+      "prior": 2,
+      "minimum": null,
+      "bootstrap": 1000,
+      "seed": 20261115,
+      "selection": "Minimum average MAE over corpus-only scenarios; smallest tested count with no MAE/top1 loss against raw in either shape at any neutral fraction",
+      "productionAdmission": false,
+      "reader": "minilm-tuned",
+      "ladderReceiptPin": "ac5aa48a1e9a83d681969eadf9c7a8268831be97f8fbbc42b259ff72c226b759"
+    },
+    "productionAdmission": false
+  },
+  "plans": {
+    "status": "blocked",
+    "reason": "Required negative corrected-share covariate unavailable",
+    "interpretation": "The analyst proposal that plans accompany lower worry remains unsettled"
+  },
+  "sourceReceiptPin": "99da1d6376ce2cdd480afb2d9f62f7330f4399b4f614eddcda8dbe5aacf7d457"
+}

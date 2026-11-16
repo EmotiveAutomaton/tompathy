@@ -1,7 +1,62 @@
 # ToMpathy status
 
-Updated 14 November 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
+Updated 15 November 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
 based on the merged, owner-approved **0.2.0** frontend milestone.
+
+## November 14 readers packet
+
+The [readers implementation](docs/ENGINE_READERS_2026-11-17.md) adds packet 1.11,
+verified local reader packs and corrected page-share aggregation, all default-off.
+Current Artifact and Author now have the owner-described teardrops, connected
+need diagrams and keyboard-accessible need details. The November 15 refinement
+adds Expertise-shaped tips, quieter individual vectors, Heat/Food/Sleep and
+Stress, and removes overview captions. Native Chrome verification passed;
+supplied/demo connections remain distinct from measured inference.
+
+The supplied Crowd-enVENT human/model and corrected-counting preflights reproduced.
+The frozen-reader ladder completed: Potion macro-F1 0.3919 and MiniLM 0.4252,
+against BOW 0.3886. Neither meets 0.49; observed neutral checks also miss.
+Completed rows were retained across one missing-dependency repair. MiniLM wins
+development selection for the preplanned fine-tuning stage. All three seeds
+completed; the development-selected seed scores macro-F1 **0.4738** (95% interval
+0.4428–0.5017), below 0.49. Neutral and confidence checks also fail; no pack is written.
+TP12 completed: MiniLM's probability-based mix estimate meets the peaked-bag
+bar (MAE 0.0383, largest-label accuracy 0.8483). Its fixed NNLS prior policy does
+not qualify at any tested minimum, and the 80%-neutral check does not improve
+both scores. The selected fine-tuned head's separate counting run clears the
+same narrow bar (0.0392/0.8208), but again qualifies no prior/minimum policy.
+This does not qualify a page-share pack. TP11 completed: frozen MiniLM clears
+the twins bar on all five pairs, but the proposed four-column description does
+not transfer consistently to held-out labels. TP14 stopped at its memory floor:
+achievement and affiliation are complete, power is partial, and the second
+instrument and IM1 handoff are unrun. Its partial aggregate is source-bound;
+no validity gate is evaluated. TP18 completed: combined features gained 0.02095
+AUC, but the lower interval bound 0.01039 misses the required 0.02. Its original
+gate remains failed. The separately preplanned Smol hidden-state probe completed
+on a fixed third of sessions: AUC 0.5363 versus baseline 0.5580, gain -0.02175
+with interval [-0.03790, -0.00820], also missing its gate. Native exit, exact
+release and the aggregate source binding are verified. TP13 corpus transfer
+completed: EmpatheticDialogues accuracy is 0.4912; GoEmotions macro-F1 is 0.2734,
+below its BOW control. Both feature-row transfer gates miss, so the proposed
+new channel rows remain withheld. The aggregate is source-bound. TP16 worry
+completed all five writer-held-out folds: fine-tuned R² is **0.3013** (95% interval
+0.2671–0.3319), clearing the 0.16 main and 0.25 stretch bars; BOW gives 0.2063.
+Native exit, exact release and aggregate source binding are verified. The repaired
+shape failure and host restart preserved the completed fold and exact embeddings.
+Corrected-share and plans checks remain blocked by TP12's missing qualification.
+TP19 completed after one bounded numerical continuation, preserving the original
+choice rows and baseline handling. Both choice and both handling improvement
+gates miss; personal-history handling gives no reliable gain. Native exit, exact
+releases and aggregate source binding are verified. Incomplete motive input was
+omitted. TP15 has saved all five writer-held-out folds on 1,860 texts from 372
+writers. Fine-tuned concern/distress correlations are 0.3875/0.3791, missing
+the 0.40 primary and 0.54 stretch bars; all controls also miss. The separately
+preplanned descriptive group comparisons are still running. Final aggregate
+landing awaits terminal state and verified release.
+Optional TP10 L4 is blocked
+by reserved commit headroom and has not launched.
+No pack or maker inference is qualified. See the working record for exact results,
+coverage limits, dependency repairs and remaining work.
 
 ## November 13 two-day packet
 
@@ -21,7 +76,8 @@ Smol's AUC was 0.0009044 below Qwen, meeting the 0.01 first-paint-candidate
 criterion; latency and defaults are unchanged. The job stopped at its memory
 floor after Smol completed and before history began. Native exit and both matching
 lease releases were verified. Registered aggregate receipts and the scoreboard
-are now updated. History and remaining pilots are **not complete**.
+are now updated. Later pilot outcomes and the completed history continuation
+are recorded below; resource-stopped and dependency-gated work remains incomplete.
 At the 21:00 Pacific checkpoint, resources and shared admission recovered. The
 edit-feature benchmark completed: macro-F1 0.484132 and two-way accuracy 0.802009
 on 1,692 comment-labelled edits. Q8 passed its timing gate but stopped at 23:11
@@ -44,7 +100,29 @@ separate first-paint timing comparison is complete: on the two longer texts,
 Smol scored the first 600 words in 6.2-7.7 seconds versus Qwen's 9.7-10.1 seconds,
 excluding loading. These are scoring times, not full engine/UI latency. Native
 exit, lease release and public receipt pins are verified. The serial robustness
-pilot is running under its eight-hour limit and the original queue deadline.
+pilot stopped at its original eight-hour deadline with 2,026/2,500 documents.
+All 400 calibration and 400 held-out human examples were retained, along with
+800 unattacked machine, 300 homoglyph and 126 zero-width-space examples.
+Paraphrase and the 91 auxiliary essays remain untested. The partial aggregate,
+native exit and exact lease releases are verified; no detector admission follows.
+The EX2-only feature control then completed on all 300 human edits: macro-F1
+0.096775, with native exit, exact release and public source binding verified.
+The optional human Q8 comparison remains blocked by the reserved memory gate.
+The unstarted exploratory history ladder resumed at 10:39 Pacific from a verified
+independent copy of the original raw cache and window table. Only the ladder
+phase runs, with unchanged reader settings and the original queue deadline;
+completed phases and failed registered gates are not rerun.
+All six exploratory history rungs completed at 15:23 Pacific. Native exit, exact
+lease release, each rung identity and the public aggregate binding are verified.
+The one-, two-, four- and eight-session gain intervals span zero; sixteen sessions
+gained 0.001030 AUC with an individual interval barely above zero on its different
+eligible cohort. This establishes neither history onset nor admission and does
+not change the failed registered bars. At the 02:00 Pacific checkpoint, optional human Q8 still lacked reserved commit
+headroom (21.65 GiB available; 23.28 required). The new readers packet has priority;
+the old queue closed at its original 03:20:11 Pacific deadline on November 15.
+The final owned process was confirmed absent and optional human Q8 was never
+launched. The old checkpoint was deleted; the separately authorized readers
+study continues.
 Cascade speed qualification remains unavailable. The earlier
 foreign-lease warning was an unconfirmed sandbox
 visibility result, not a verified fault; no foreign process or lease was changed.
@@ -60,7 +138,7 @@ spans matched the prior code exactly in constructed comparisons. Timing reports
 now preserve reader/comparison hashes. The frozen evaluation package is unchanged;
 these software checks grant no new scientific admission.
 
-The optional empty `bottom-box-0` contract has no producer and no frontend edits.
+The former empty `bottom-box-0` contract is now upgraded by TS2 in the readers packet.
 EX4/EX5 and CP1/EX6 still need their actual exports/results. Full-art preparation
 remains blocked by the separately documented governing-goal output limit.
 See the working record for verification, continuation and remaining dependencies.

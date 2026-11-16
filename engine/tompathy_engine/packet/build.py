@@ -250,6 +250,7 @@ def build_packet(
     packet["valueView"] = build_value_view(packet, tier=tier)
     if bottom_box:
         from .bottom_box import empty_bottom_box
+        packet['schemaVersion'] = '1.11'
         packet['bottom_box'] = empty_bottom_box()
         packet['id'] = digest([packet['id'], packet['bottom_box']])
     return hide_usernames(Packet.model_validate(packet).wire())

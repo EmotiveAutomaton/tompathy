@@ -1,0 +1,1216 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "400a145a9497b2ff15209be860fd1628ebe73ee92e795d997ebdbbd51e959f1a",
+  "launcherPin": "04e2b467ee17fbeeaf6cee608f73733eab10cc5689cf8e0eea198c9eaff5a77f",
+  "ledger": "no ledger row",
+  "card": "TP19",
+  "status": "complete",
+  "productionAdmission": false,
+  "scope": "Observed CoAuthor five-suggestion choices; no values or endorsement inference",
+  "reader": {
+    "sourceReceiptPin": "ac5aa48a1e9a83d681969eadf9c7a8268831be97f8fbbc42b259ff72c226b759",
+    "selectedSeed": 47,
+    "headPin": "5f22c9d133b6b31e7d118d1f443be3808c0980ad3cf4e4ade640297c232e6880",
+    "unpacked": true,
+    "productionAdmission": false,
+    "sourceGates": {
+      "B1": false,
+      "B2_stretch": false,
+      "B3": null,
+      "B4": false,
+      "pack_eligible": false,
+      "productionAdmission": false
+    },
+    "token_cap": 128,
+    "threads": 2
+  },
+  "motives": null,
+  "sourcePin": "d8ccba287e876c8e6913a7d99baa4429888216e145db7aeb2a29364144488d7f",
+  "protocol": {
+    "choice": "GroupKFold(5) by writer, conditional logit L2 .005, scale within training fold",
+    "history": "Taken minus mean not-taken, only strictly earlier resolved picks, sum/(n+10); elementwise match with each current option",
+    "handling": "Existing exact prequential MAP; added mean and largest reader feature over five options, then mean/largest historical match",
+    "primary_metrics": "Choice accuracy and handling negative log loss; positive nested gain excludes zero",
+    "own_option": "Missing flag only, no invented continuation text or reader features"
+  },
+  "rows": {
+    "0": {
+      "choice_accuracy": 0.2862388529463193,
+      "choice_log_loss": 1.573001189618681,
+      "choices": 5719,
+      "handling": {
+        "mean_log_loss": 0.8996625977906458,
+        "metadata": {
+          "decisions": 8988,
+          "seconds": 53.72689040000023,
+          "mode": "prequential exact MAP; earlier geometric calibration milestones",
+          "admission": "not established"
+        }
+      }
+    },
+    "1": {
+      "choice_accuracy": 0.27959433467389405,
+      "choice_log_loss": 1.5729415693737274,
+      "choices": 5719,
+      "handling": {
+        "mean_log_loss": 0.9052569159370725,
+        "metadata": {
+          "decisions": 8988,
+          "seconds": 245.35750879999978,
+          "mode": "prequential exact MAP; earlier geometric calibration milestones",
+          "admission": "not established",
+          "optimizer_continuations": [
+            {
+              "first_iterations": 500,
+              "additional_iterations": 22,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 14,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 26,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 101,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 19,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 24,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 18,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 20,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 9,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 35,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 32,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 123,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 29,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 21,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 33,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 26,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 3,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 150,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 6,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 133,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 30,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 20,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 133,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 41,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 124,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 93,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 28,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 117,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 113,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 140,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 120,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 33,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 103,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 135,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 94,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 50,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 139,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 34,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 121,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 94,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 137,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 129,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 28,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 46,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 34,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 151,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 115,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 28,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 112,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 6,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 25,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 29,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 107,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 3,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 27,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 35,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 46,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 50,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 97,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 122,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 28,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 26,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 146,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 49,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 22,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 29,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 44,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 36,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 3,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 121,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 42,
+              "success": true
+            }
+          ],
+          "optimizer_rule": "Only iteration-limit failures continue from the last iterate for at most 2000 steps; unchanged objective and tolerances"
+        }
+      }
+    },
+    "2": {
+      "choice_accuracy": 0.2813428921140059,
+      "choice_log_loss": 1.575177789583431,
+      "choices": 5719,
+      "handling": {
+        "mean_log_loss": 0.9047245831968009,
+        "metadata": {
+          "decisions": 8988,
+          "seconds": 690.635436999999,
+          "mode": "prequential exact MAP; earlier geometric calibration milestones",
+          "admission": "not established",
+          "optimizer_continuations": [
+            {
+              "first_iterations": 500,
+              "additional_iterations": 125,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 3,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 23,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 25,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 53,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 24,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 22,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 33,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 20,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 104,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 99,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 44,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 131,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 39,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 144,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 13,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 103,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 34,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 35,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 116,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 39,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 126,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 130,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 115,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 114,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 32,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 119,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 25,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 39,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 38,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 33,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 36,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 167,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 129,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 115,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 26,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 41,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 136,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 27,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 150,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 148,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 111,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 128,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 18,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 41,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 32,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 24,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 7,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 41,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 97,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 110,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 40,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 5,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 42,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 140,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 120,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 21,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 3,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 42,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 20,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 13,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 7,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 29,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 21,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 20,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 14,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 34,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 45,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 25,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 107,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 1,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 2,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 37,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 40,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 109,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 16,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 5,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 50,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 42,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 26,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 101,
+              "success": true
+            },
+            {
+              "first_iterations": 500,
+              "additional_iterations": 25,
+              "success": true
+            }
+          ],
+          "optimizer_rule": "Only iteration-limit failures continue from the last iterate for at most 2000 steps; unchanged objective and tolerances"
+        }
+      }
+    }
+  },
+  "gains": {
+    "choice_1_over_0": {
+      "gain": -0.006644518272425249,
+      "interval": [
+        -0.014918647556091345,
+        0.0018777546926223927
+      ],
+      "passed": false,
+      "writers": 60,
+      "interval_method": "2000 whole-writer resamples of fixed predictions"
+    },
+    "choice_2_over_1": {
+      "gain": 0.0017485574401119076,
+      "interval": [
+        -0.004468555196034393,
+        0.008645116290154804
+      ],
+      "passed": false,
+      "writers": 60,
+      "interval_method": "2000 whole-writer resamples of fixed predictions"
+    },
+    "handling_1_over_0": {
+      "gain": -0.005594318146426828,
+      "interval": [
+        -0.010540229137918968,
+        -0.0012162089261117395
+      ],
+      "passed": false,
+      "writers": 60,
+      "interval_method": "2000 whole-writer resamples of fixed predictions"
+    },
+    "handling_2_over_1": {
+      "gain": 0.0005323327402716572,
+      "interval": [
+        -0.005933617419253407,
+        0.006707773135939917
+      ],
+      "passed": false,
+      "writers": 60,
+      "interval_method": "2000 whole-writer resamples of fixed predictions"
+    }
+  },
+  "pack": "No automatic about_maker admission; existing admission chain remains required",
+  "continuation": {
+    "kind": "population-iteration-limit-continuation",
+    "sourceReceiptPin": "5ece2f99ed353b6c4061210aa3757e65a81bec83fed7511d2cc4fd7229ad258d",
+    "failurePin": "93bdedf0c238f6d3a322b16b9e436ae1c927a7e629c91f985654d9d51fb15297",
+    "exitVerificationPin": "88b29e0c6dcadb22020b811171355f4bcdafd380b30d6966c8b53580a2722a58",
+    "artifactCount": 87470,
+    "completedChoiceRowsReused": 3,
+    "completedHandlingRowsReused": 1,
+    "completedReaderInferenceRepeated": false,
+    "completedResearchGatesRepeated": false
+  },
+  "controls": {
+    "choice_chance": 0.2,
+    "handling": "Population count baseline retained in each forecast file",
+    "bow": {
+      "choice_accuracy": 0.23745410036719705,
+      "choice_log_loss": 1.6066419361107342,
+      "protocol": "Writer-held-out conditional logit, word 1-2 grams, min_df2, sublinear TF, maximum20000 training-fold terms"
+    },
+    "human": "Observed writer choice is the outcome; no independent human forecast reference"
+  },
+  "sourceReceiptPin": "5b155a76203f161d26c1d0457ffa465ed12273e83d743ac055703648f3166a67"
+}

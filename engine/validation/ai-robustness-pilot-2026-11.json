@@ -2,10 +2,1635 @@
   "schema": "tompathy.two-day-pilot.v1",
   "capability": "ai-robustness",
   "scope": "RAID training pilot; fixed 5% calibration false-alarm threshold; no detector admission",
-  "status": "queued-after-attention",
-  "date": "2026-11-13",
+  "status": "stopped",
+  "date": "2026-11-14",
+  "sourceReceiptPin": "54490e0e94733964282dfb65228dfe089adecb6829e13a9170b3459be0fdf6c9",
   "productionAdmission": false,
   "ledgerRows": [],
   "ledgerStatus": "no ledger row",
-  "codePin": "43ecae394e1395cdbb9af02d764616d0c194eb9d1c9a8dc844859bceb9344c28"
+  "enginePin": "7fe6bd63a4d2fadfffac711dfb09db8a1a295a81f21a2eb6aab134214e5d4320",
+  "dataPin": "3d534ce247e77cd2dda306f0d15e6e8a34f32691dd51a1404f81d6c8f7b22f9d",
+  "thresholds": {
+    "A0": {
+      "orientedThreshold": -2.638491904865228,
+      "strict": true,
+      "calibration": {
+        "n": 400,
+        "events": 20,
+        "rate": 0.05,
+        "interval": [
+          0.03259742983714726,
+          0.07596363506371961
+        ]
+      }
+    },
+    "A1": {
+      "orientedThreshold": -2.366679941466539,
+      "strict": true,
+      "calibration": {
+        "n": 400,
+        "events": 20,
+        "rate": 0.05,
+        "interval": [
+          0.03259742983714726,
+          0.07596363506371961
+        ]
+      }
+    },
+    "FD": {
+      "orientedThreshold": 1.176879761874745,
+      "strict": true,
+      "calibration": {
+        "n": 400,
+        "events": 20,
+        "rate": 0.05,
+        "interval": [
+          0.03259742983714726,
+          0.07596363506371961
+        ]
+      }
+    }
+  },
+  "rates": [
+    {
+      "signal": "A0",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "all",
+      "name": "all",
+      "n": 400,
+      "events": 20,
+      "rate": 0.05,
+      "interval": [
+        0.03259742983714726,
+        0.07596363506371961
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "attack",
+      "name": "none",
+      "n": 400,
+      "events": 20,
+      "rate": 0.05,
+      "interval": [
+        0.03259742983714726,
+        0.07596363506371961
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "human",
+      "n": 400,
+      "events": 20,
+      "rate": 0.05,
+      "interval": [
+        0.03259742983714726,
+        0.07596363506371961
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "abstracts",
+      "n": 50,
+      "events": 0,
+      "rate": 0.0,
+      "interval": [
+        6.938893903907228e-18,
+        0.07134759913335872
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "books",
+      "n": 50,
+      "events": 0,
+      "rate": 0.0,
+      "interval": [
+        6.938893903907228e-18,
+        0.07134759913335872
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "news",
+      "n": 50,
+      "events": 0,
+      "rate": 0.0,
+      "interval": [
+        6.938893903907228e-18,
+        0.07134759913335872
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "poetry",
+      "n": 50,
+      "events": 1,
+      "rate": 0.02,
+      "interval": [
+        0.003539259271646236,
+        0.10495443589637815
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "recipes",
+      "n": 50,
+      "events": 16,
+      "rate": 0.32,
+      "interval": [
+        0.20758216260656845,
+        0.45810297308144077
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "reddit",
+      "n": 50,
+      "events": 0,
+      "rate": 0.0,
+      "interval": [
+        6.938893903907228e-18,
+        0.07134759913335872
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "reviews",
+      "n": 50,
+      "events": 0,
+      "rate": 0.0,
+      "interval": [
+        6.938893903907228e-18,
+        0.07134759913335872
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "wiki",
+      "n": 50,
+      "events": 3,
+      "rate": 0.06,
+      "interval": [
+        0.02061497034897397,
+        0.16217091688838173
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "normalized",
+      "stratum": "all",
+      "name": "all",
+      "n": 426,
+      "events": 405,
+      "rate": 0.9507042253521126,
+      "interval": [
+        0.9258182479151748,
+        0.9675343873879344
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "normalized",
+      "stratum": "attack",
+      "name": "homoglyph",
+      "n": 300,
+      "events": 285,
+      "rate": 0.95,
+      "interval": [
+        0.9191529665272558,
+        0.9694683593706526
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "normalized",
+      "stratum": "attack",
+      "name": "zero_width_space",
+      "n": 126,
+      "events": 120,
+      "rate": 0.9523809523809523,
+      "interval": [
+        0.8999983205231048,
+        0.9779955116120489
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "normalized",
+      "stratum": "generator",
+      "name": "llama-chat",
+      "n": 426,
+      "events": 405,
+      "rate": 0.9507042253521126,
+      "interval": [
+        0.9258182479151748,
+        0.9675343873879344
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "normalized",
+      "stratum": "genre",
+      "name": "abstracts",
+      "n": 426,
+      "events": 405,
+      "rate": 0.9507042253521126,
+      "interval": [
+        0.9258182479151748,
+        0.9675343873879344
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "all",
+      "name": "all",
+      "n": 1226,
+      "events": 561,
+      "rate": 0.45758564437194127,
+      "interval": [
+        0.4298742170324917,
+        0.48556203757245026
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "attack",
+      "name": "homoglyph",
+      "n": 300,
+      "events": 0,
+      "rate": 0.0,
+      "interval": [
+        8.673617379884035e-19,
+        0.012642971224546034
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "attack",
+      "name": "none",
+      "n": 800,
+      "events": 435,
+      "rate": 0.54375,
+      "interval": [
+        0.5091081534905834,
+        0.5779736948414199
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "attack",
+      "name": "zero_width_space",
+      "n": 126,
+      "events": 126,
+      "rate": 1.0,
+      "interval": [
+        0.9704142355178014,
+        0.9999999999999998
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "chatgpt",
+      "n": 32,
+      "events": 29,
+      "rate": 0.90625,
+      "interval": [
+        0.7578184527161212,
+        0.9675984487016337
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "cohere",
+      "n": 96,
+      "events": 26,
+      "rate": 0.2708333333333333,
+      "interval": [
+        0.19203783802941934,
+        0.36726347307201535
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "gpt2",
+      "n": 96,
+      "events": 48,
+      "rate": 0.5,
+      "interval": [
+        0.401924024529863,
+        0.598075975470137
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "gpt3",
+      "n": 96,
+      "events": 67,
+      "rate": 0.6979166666666666,
+      "interval": [
+        0.5999149981303159,
+        0.7806884150093544
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "llama-chat",
+      "n": 522,
+      "events": 194,
+      "rate": 0.3716475095785441,
+      "interval": [
+        0.3312709229177629,
+        0.4138994173963651
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "mistral",
+      "n": 96,
+      "events": 45,
+      "rate": 0.46875,
+      "interval": [
+        0.3720607443853214,
+        0.5678439798557835
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "mistral-chat",
+      "n": 96,
+      "events": 63,
+      "rate": 0.65625,
+      "interval": [
+        0.5568803111840908,
+        0.7435960676103857
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "mpt",
+      "n": 96,
+      "events": 48,
+      "rate": 0.5,
+      "interval": [
+        0.401924024529863,
+        0.598075975470137
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "mpt-chat",
+      "n": 96,
+      "events": 41,
+      "rate": 0.4270833333333333,
+      "interval": [
+        0.33282083114008043,
+        0.5269568587558306
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "abstracts",
+      "n": 526,
+      "events": 191,
+      "rate": 0.36311787072243346,
+      "interval": [
+        0.3231506682746608,
+        0.4050699199735464
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "books",
+      "n": 100,
+      "events": 54,
+      "rate": 0.54,
+      "interval": [
+        0.44264860323368227,
+        0.6343919169097589
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "news",
+      "n": 100,
+      "events": 45,
+      "rate": 0.45,
+      "interval": [
+        0.3561453797951198,
+        0.5475539700255787
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "poetry",
+      "n": 100,
+      "events": 30,
+      "rate": 0.3,
+      "interval": [
+        0.2189488529493276,
+        0.3958485463334666
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "recipes",
+      "n": 100,
+      "events": 70,
+      "rate": 0.7,
+      "interval": [
+        0.6041514536665332,
+        0.7810511470506724
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "reddit",
+      "n": 100,
+      "events": 58,
+      "rate": 0.58,
+      "interval": [
+        0.4820648670304296,
+        0.6720161732564526
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "reviews",
+      "n": 100,
+      "events": 51,
+      "rate": 0.51,
+      "interval": [
+        0.4134801193402717,
+        0.6057800106955886
+      ]
+    },
+    {
+      "signal": "A0",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "wiki",
+      "n": 100,
+      "events": 62,
+      "rate": 0.62,
+      "interval": [
+        0.5220975529551107,
+        0.7090240074752127
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "all",
+      "name": "all",
+      "n": 400,
+      "events": 23,
+      "rate": 0.0575,
+      "interval": [
+        0.038617542757733075,
+        0.08480083772811935
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "attack",
+      "name": "none",
+      "n": 400,
+      "events": 23,
+      "rate": 0.0575,
+      "interval": [
+        0.038617542757733075,
+        0.08480083772811935
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "human",
+      "n": 400,
+      "events": 23,
+      "rate": 0.0575,
+      "interval": [
+        0.038617542757733075,
+        0.08480083772811935
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "abstracts",
+      "n": 50,
+      "events": 0,
+      "rate": 0.0,
+      "interval": [
+        6.938893903907228e-18,
+        0.07134759913335872
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "books",
+      "n": 50,
+      "events": 0,
+      "rate": 0.0,
+      "interval": [
+        6.938893903907228e-18,
+        0.07134759913335872
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "news",
+      "n": 50,
+      "events": 2,
+      "rate": 0.04,
+      "interval": [
+        0.011038884327619805,
+        0.1346009068750702
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "poetry",
+      "n": 50,
+      "events": 3,
+      "rate": 0.06,
+      "interval": [
+        0.02061497034897397,
+        0.16217091688838173
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "recipes",
+      "n": 50,
+      "events": 12,
+      "rate": 0.24,
+      "interval": [
+        0.1429739139699173,
+        0.3741268375794292
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "reddit",
+      "n": 50,
+      "events": 5,
+      "rate": 0.1,
+      "interval": [
+        0.04347576493189041,
+        0.21360231437479654
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "reviews",
+      "n": 50,
+      "events": 1,
+      "rate": 0.02,
+      "interval": [
+        0.003539259271646236,
+        0.10495443589637815
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "wiki",
+      "n": 50,
+      "events": 0,
+      "rate": 0.0,
+      "interval": [
+        6.938893903907228e-18,
+        0.07134759913335872
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "normalized",
+      "stratum": "all",
+      "name": "all",
+      "n": 426,
+      "events": 322,
+      "rate": 0.755868544600939,
+      "interval": [
+        0.712907916871938,
+        0.7942558187949312
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "normalized",
+      "stratum": "attack",
+      "name": "homoglyph",
+      "n": 300,
+      "events": 207,
+      "rate": 0.69,
+      "interval": [
+        0.6355391960366674,
+        0.739656474898005
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "normalized",
+      "stratum": "attack",
+      "name": "zero_width_space",
+      "n": 126,
+      "events": 115,
+      "rate": 0.9126984126984127,
+      "interval": [
+        0.8504236729488102,
+        0.9505531563674703
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "normalized",
+      "stratum": "generator",
+      "name": "llama-chat",
+      "n": 426,
+      "events": 322,
+      "rate": 0.755868544600939,
+      "interval": [
+        0.712907916871938,
+        0.7942558187949312
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "normalized",
+      "stratum": "genre",
+      "name": "abstracts",
+      "n": 426,
+      "events": 322,
+      "rate": 0.755868544600939,
+      "interval": [
+        0.712907916871938,
+        0.7942558187949312
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "all",
+      "name": "all",
+      "n": 1226,
+      "events": 538,
+      "rate": 0.43882544861337686,
+      "interval": [
+        0.4112814946286402,
+        0.46675156489771835
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "attack",
+      "name": "homoglyph",
+      "n": 300,
+      "events": 0,
+      "rate": 0.0,
+      "interval": [
+        8.673617379884035e-19,
+        0.012642971224546034
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "attack",
+      "name": "none",
+      "n": 800,
+      "events": 412,
+      "rate": 0.515,
+      "interval": [
+        0.4803790919344114,
+        0.5494775417794183
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "attack",
+      "name": "zero_width_space",
+      "n": 126,
+      "events": 126,
+      "rate": 1.0,
+      "interval": [
+        0.9704142355178014,
+        0.9999999999999998
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "chatgpt",
+      "n": 32,
+      "events": 22,
+      "rate": 0.6875,
+      "interval": [
+        0.5143332169904459,
+        0.8204745836639026
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "cohere",
+      "n": 96,
+      "events": 20,
+      "rate": 0.20833333333333334,
+      "interval": [
+        0.13910828905878492,
+        0.3000024705248593
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "gpt2",
+      "n": 96,
+      "events": 55,
+      "rate": 0.5729166666666666,
+      "interval": [
+        0.47304314124416946,
+        0.6671791688599197
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "gpt3",
+      "n": 96,
+      "events": 57,
+      "rate": 0.59375,
+      "interval": [
+        0.49373884894170256,
+        0.6865469783349833
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "llama-chat",
+      "n": 522,
+      "events": 190,
+      "rate": 0.36398467432950193,
+      "interval": [
+        0.3238422489825879,
+        0.4061143803055179
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "mistral",
+      "n": 96,
+      "events": 47,
+      "rate": 0.4895833333333333,
+      "interval": [
+        0.3919286123125563,
+        0.5880396291011453
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "mistral-chat",
+      "n": 96,
+      "events": 62,
+      "rate": 0.6458333333333334,
+      "interval": [
+        0.5462430234225731,
+        0.7342015967856051
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "mpt",
+      "n": 96,
+      "events": 48,
+      "rate": 0.5,
+      "interval": [
+        0.401924024529863,
+        0.598075975470137
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "mpt-chat",
+      "n": 96,
+      "events": 37,
+      "rate": 0.3854166666666667,
+      "interval": [
+        0.29425768590940465,
+        0.4853929696413128
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "abstracts",
+      "n": 526,
+      "events": 186,
+      "rate": 0.35361216730038025,
+      "interval": [
+        0.3139511562890148,
+        0.39539586169865126
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "books",
+      "n": 100,
+      "events": 57,
+      "rate": 0.57,
+      "interval": [
+        0.47215389549212305,
+        0.6626670147588988
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "news",
+      "n": 100,
+      "events": 51,
+      "rate": 0.51,
+      "interval": [
+        0.4134801193402717,
+        0.6057800106955886
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "poetry",
+      "n": 100,
+      "events": 32,
+      "rate": 0.32,
+      "interval": [
+        0.23669147324999093,
+        0.41662618610452384
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "recipes",
+      "n": 100,
+      "events": 60,
+      "rate": 0.6,
+      "interval": [
+        0.5020025867910618,
+        0.6905987135675411
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "reddit",
+      "n": 100,
+      "events": 63,
+      "rate": 0.63,
+      "interval": [
+        0.5322052958094291,
+        0.7181763946567546
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "reviews",
+      "n": 100,
+      "events": 47,
+      "rate": 0.47,
+      "interval": [
+        0.3751081795934127,
+        0.5671114302990063
+      ]
+    },
+    {
+      "signal": "A1",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "wiki",
+      "n": 100,
+      "events": 42,
+      "rate": 0.42,
+      "interval": [
+        0.3279838267435473,
+        0.5179351329695703
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "all",
+      "name": "all",
+      "n": 400,
+      "events": 31,
+      "rate": 0.0775,
+      "interval": [
+        0.05513293467684451,
+        0.10790495403563602
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "attack",
+      "name": "none",
+      "n": 400,
+      "events": 31,
+      "rate": 0.0775,
+      "interval": [
+        0.05513293467684451,
+        0.10790495403563602
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "human",
+      "n": 400,
+      "events": 31,
+      "rate": 0.0775,
+      "interval": [
+        0.05513293467684451,
+        0.10790495403563602
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "abstracts",
+      "n": 50,
+      "events": 3,
+      "rate": 0.06,
+      "interval": [
+        0.02061497034897397,
+        0.16217091688838173
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "books",
+      "n": 50,
+      "events": 3,
+      "rate": 0.06,
+      "interval": [
+        0.02061497034897397,
+        0.16217091688838173
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "news",
+      "n": 50,
+      "events": 8,
+      "rate": 0.16,
+      "interval": [
+        0.08337420678033404,
+        0.2851421606303499
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "poetry",
+      "n": 50,
+      "events": 3,
+      "rate": 0.06,
+      "interval": [
+        0.02061497034897397,
+        0.16217091688838173
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "recipes",
+      "n": 50,
+      "events": 3,
+      "rate": 0.06,
+      "interval": [
+        0.02061497034897397,
+        0.16217091688838173
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "reddit",
+      "n": 50,
+      "events": 2,
+      "rate": 0.04,
+      "interval": [
+        0.011038884327619805,
+        0.1346009068750702
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "reviews",
+      "n": 50,
+      "events": 6,
+      "rate": 0.12,
+      "interval": [
+        0.05617600150932274,
+        0.23804817383202992
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "human-heldout",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "wiki",
+      "n": 50,
+      "events": 3,
+      "rate": 0.06,
+      "interval": [
+        0.02061497034897397,
+        0.16217091688838173
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "normalized",
+      "stratum": "all",
+      "name": "all",
+      "n": 426,
+      "events": 350,
+      "rate": 0.8215962441314554,
+      "interval": [
+        0.7824151804846359,
+        0.8550291478306035
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "normalized",
+      "stratum": "attack",
+      "name": "homoglyph",
+      "n": 300,
+      "events": 242,
+      "rate": 0.8066666666666666,
+      "interval": [
+        0.7582162445043988,
+        0.8473627331445462
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "normalized",
+      "stratum": "attack",
+      "name": "zero_width_space",
+      "n": 126,
+      "events": 108,
+      "rate": 0.8571428571428571,
+      "interval": [
+        0.7854668219109349,
+        0.9076862034589233
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "normalized",
+      "stratum": "generator",
+      "name": "llama-chat",
+      "n": 426,
+      "events": 350,
+      "rate": 0.8215962441314554,
+      "interval": [
+        0.7824151804846359,
+        0.8550291478306035
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "normalized",
+      "stratum": "genre",
+      "name": "abstracts",
+      "n": 426,
+      "events": 350,
+      "rate": 0.8215962441314554,
+      "interval": [
+        0.7824151804846359,
+        0.8550291478306035
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "all",
+      "name": "all",
+      "n": 1226,
+      "events": 476,
+      "rate": 0.38825448613376834,
+      "interval": [
+        0.36136379630927185,
+        0.41584325909220965
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "attack",
+      "name": "homoglyph",
+      "n": 300,
+      "events": 0,
+      "rate": 0.0,
+      "interval": [
+        8.673617379884035e-19,
+        0.012642971224546034
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "attack",
+      "name": "none",
+      "n": 800,
+      "events": 454,
+      "rate": 0.5675,
+      "interval": [
+        0.532927617815995,
+        0.6014272338962388
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "attack",
+      "name": "zero_width_space",
+      "n": 126,
+      "events": 22,
+      "rate": 0.1746031746031746,
+      "interval": [
+        0.1182265752111826,
+        0.2502340016740576
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "chatgpt",
+      "n": 32,
+      "events": 21,
+      "rate": 0.65625,
+      "interval": [
+        0.4831108797896222,
+        0.7958956207556682
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "cohere",
+      "n": 96,
+      "events": 69,
+      "rate": 0.71875,
+      "interval": [
+        0.6217410386959606,
+        0.7989258916163063
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "gpt2",
+      "n": 96,
+      "events": 49,
+      "rate": 0.5104166666666666,
+      "interval": [
+        0.41196037089885484,
+        0.6080713876874437
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "gpt3",
+      "n": 96,
+      "events": 85,
+      "rate": 0.8854166666666666,
+      "interval": [
+        0.8063737876272061,
+        0.9348012800658358
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "llama-chat",
+      "n": 522,
+      "events": 70,
+      "rate": 0.13409961685823754,
+      "interval": [
+        0.10752507819999461,
+        0.16602022030744462
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "mistral",
+      "n": 96,
+      "events": 46,
+      "rate": 0.4791666666666667,
+      "interval": [
+        0.3819741598954924,
+        0.577962322931911
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "mistral-chat",
+      "n": 96,
+      "events": 49,
+      "rate": 0.5104166666666666,
+      "interval": [
+        0.41196037089885484,
+        0.6080713876874437
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "mpt",
+      "n": 96,
+      "events": 50,
+      "rate": 0.5208333333333334,
+      "interval": [
+        0.4220376770680893,
+        0.6180258401045079
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "generator",
+      "name": "mpt-chat",
+      "n": 96,
+      "events": 37,
+      "rate": 0.3854166666666667,
+      "interval": [
+        0.29425768590940465,
+        0.4853929696413128
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "abstracts",
+      "n": 526,
+      "events": 82,
+      "rate": 0.155893536121673,
+      "interval": [
+        0.12739992887452645,
+        0.1893768276938833
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "books",
+      "n": 100,
+      "events": 60,
+      "rate": 0.6,
+      "interval": [
+        0.5020025867910618,
+        0.6905987135675411
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "news",
+      "n": 100,
+      "events": 60,
+      "rate": 0.6,
+      "interval": [
+        0.5020025867910618,
+        0.6905987135675411
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "poetry",
+      "n": 100,
+      "events": 50,
+      "rate": 0.5,
+      "interval": [
+        0.4038315303659956,
+        0.5961684696340044
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "recipes",
+      "n": 100,
+      "events": 42,
+      "rate": 0.42,
+      "interval": [
+        0.3279838267435473,
+        0.5179351329695703
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "reddit",
+      "n": 100,
+      "events": 53,
+      "rate": 0.53,
+      "interval": [
+        0.4328885697009936,
+        0.6248918204065872
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "reviews",
+      "n": 100,
+      "events": 64,
+      "rate": 0.64,
+      "interval": [
+        0.5423540245160874,
+        0.7272877959859567
+      ]
+    },
+    {
+      "signal": "FD",
+      "population": "machine",
+      "mode": "raw",
+      "stratum": "genre",
+      "name": "wiki",
+      "n": 100,
+      "events": 65,
+      "rate": 0.65,
+      "interval": [
+        0.5525444329688796,
+        0.7363575175690247
+      ]
+    }
+  ],
+  "nonNativeWriting": {
+    "dataPin": null,
+    "completed": 0,
+    "total": 91,
+    "status": "partial",
+    "rates": {
+      "A0": {
+        "n": 0,
+        "rate": null,
+        "interval": null
+      },
+      "A1": {
+        "n": 0,
+        "rate": null,
+        "interval": null
+      },
+      "FD": {
+        "n": 0,
+        "rate": null,
+        "interval": null
+      }
+    }
+  },
+  "completedDocuments": 2026,
+  "totalDocuments": 2500,
+  "omittedParaphrase": false
 }

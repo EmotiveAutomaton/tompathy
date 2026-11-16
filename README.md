@@ -6,6 +6,26 @@
 
 **0.3 beta development · MIT licensed · Engine v1.** The Python engine in [engine/](engine/README.md) provides the decision ledger, source adapters, model/evaluation components, static registry generation and authenticated local companion. Scientific admissions remain separate from software checks: unadmitted modules do not supply maker estimates. The commissioned website demo remains hand-authored, fictional analysis.
 
+The [November readers pass](docs/ENGINE_READERS_2026-11-17.md) adds a default-off
+reader-pack contract and source-pinned CPU benchmarks. Initial frozen readers
+and the development-selected fine-tuned reader remain below the label and
+neutral-text requirements; no pack is qualified. Counting improves on a narrow
+mixture benchmark but has not qualified the page-share policy.
+The completed worry benchmark explains 30.1% of held-out variance with its
+fine-tuned reader; corrected-share and plans checks remain dependency-blocked.
+This target-task result does not enable maker inference or change a live default.
+The observed-choice and handling extensions miss all four registered gain bars;
+their completed aggregate preserves the original results across a numerical repair.
+Core values now has a first-pass Current Artifact layout with fluencies, five
+needs and a bodily-needs area. Author uses attributed dated actions when supplied
+and centers the current work. Curves are illustrative; absent life history and
+need measurements remain unknown. Hover/focus traces supplied or explicitly
+demonstrative connections into attention and expertise. Clicking a need opens
+its detail diagram. Authored prose and images are preserved.
+The next visual pass gives fluencies the Expertise terminal contour, quiet
+individual vectors, narrow Heat/Food/Sleep channels and a tapered Stress graph
+with a fading curl. Explanatory captions are removed from the overview.
+
 This branch is **codex/0.3-engine**, based on the reviewed 0.2 frontend. npm uses **0.3.0-beta.1** and Chrome uses **0.3.0** with a beta display name. The stable 0.2 download remains available below. See [our branch and version workflow](docs/VERSIONING.md).
 
 For engine readings, open **Options → Analysis source** and choose a public registry or your local companion. The default provider is None. A connected companion uses **Research preview** by default: local surface readings and model judgments have explicit evidence/status badges. **Analyze capture** requests an exact matching reading; an existing account stays in place until you accept its proposed revision. Preview off uses the admitted path. Personal values stay unknown without the required evidence; preview never maps text topics to drives. See [driver progress and measured limits](docs/DRIVER_IMPLEMENTATION.md).
@@ -49,8 +69,11 @@ comparisons. The edit-feature and goal word-matching baselines completed; the Q8
 comparison stopped at its memory guard with partial results. Goal judgments
 remain memory-blocked. Weight-only numerical, prefix and final accuracy checks
 passed, but the measured speed missed the target. The first-paint timing comparison
-is complete; robustness scoring is running and history remains pending. It also adds robustness and
-human-edit pilots and a default-off empty bottom-box contract. No production
+is complete. Robustness stopped at its fixed deadline with 2,026/2,500 documents;
+the human-edit feature control completed with macro-F1 0.097 on 300 edits.
+All six exploratory history rungs completed; they do not establish history onset
+or change the registered results. Optional human Q8 was never launched before the bounded queue closed. It also adds a
+default-off empty bottom-box contract. No production
 admission follows; EX4/EX5 and CP1/EX6 remain dependencies. The
 [completion audit](docs/ENGINE_COMPLETENESS_2026-11-11.md) records implemented
 work, verification and remaining dependencies; the [scoreboard](docs/ENGINE_SCOREBOARD.md)
@@ -80,7 +103,7 @@ No account, API key, paid service or model download is needed for the example, r
 
 - **Current attention** is an independent, animated word cloud. It follows the pointed sentence or supplied sub-sentence frame; word size and boldness reflect the supplied support. It retains the last inspected frame between targets; broader graph nodes combine their constituent attention frames. Only the strongest phrases that comfortably fit are shown, with space reserved around the creator control.
 - **Expertise (Previous attention)** shows local choices flowing toward broader goals. Wheel to zoom, drag to pan, and use the corner-bracket button to fit the whole hierarchy. Cell-anchored goal labels fade in together as the graph grows. Hover a resolved reel and roll the mouse wheel to choose and lock the adjacent goal at that tier. Hold a node and hover the odometer: ambiguous reels grow upward into selectable lists over the faded hierarchy. The arrow/magnifier below the lock centers highlighted text in the article, including groups with ambiguous reels.
-- **Core values** has Current work only, Author and Global perspectives. Short labels occupy outlined boxes in a table that scrolls vertically and horizontally. Broader goals sit above supporting nodes; hover/focus traces their connections and shows the full phrase below. Font weight reflects supplied confidence, and line width reflects supplied connection weight. Arrow keys navigate; click/Enter on a value opens its diagram. Authored example links remain illustrative. Live links require explicit supplied evidence.
+- **Core values** has Current Artifact, Author and Global perspectives. The first two use reliability-weighted teardrops and connected need diagrams; Global retains the hierarchy table. Hover/focus traces supplied connections. Click/Enter on a need opens its diagram. Example connections are illustrative; live connections require explicit supplied evidence.
 
 The Review desk opens the **actual [Art: A Unifying Model essay](https://abrahamhaskins.org/art/)** and **[homepage](https://abrahamhaskins.org/)**. Click ToMpathy in Chrome’s toolbar to read alongside the live page. Images, equations, expandable sections, project dialogs and the original layout stay on the website. Opening a section or project refreshes the analysis for its currently visible text. Mathematical notation remains unmodified; surrounding prose receives sentence annotations. Stable navigation text and the References & Assets footer are included on this demo site; the footer is one reading unit. Transient citation popups are excluded. Unreadable pages explain the access problem and offer a bundled safe example or pasted text; blank pages retain the starting view.
 

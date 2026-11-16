@@ -15,6 +15,25 @@ from .embeddings import EmbeddingCache, encode_local
 from .records import inputs, subject
 
 
+def reader_option_features(text, predict, *, readable, check):
+    """Research extension: an unwritten own option has no imputed reader scores.
+
+    The caller pins its reader and stores these separately from ledger evidence.
+    This helper grants no scientific or runtime admission.
+    """
+    import numpy as np
+    if text is None:
+        return {'reader_missing':1.0}
+    probability,ratings=predict([text],check)
+    if (probability.shape!=(1,13) or ratings.shape!=(1,21)
+            or not np.isfinite(probability).all() or not np.isfinite(ratings).all()
+            or not np.isclose(probability.sum(),1) or (probability<0).any()):
+        raise ValueError('Invalid reader option features')
+    return {'reader_missing':0.0,
+            **{f'label_{i}':float(v) for i,v in enumerate(probability[0])},
+            **{f'rated_{i}':float(ratings[0,i]) for i in readable}}
+
+
 def directory_pin(path):
     root = Path(path).resolve()
     if not root.is_dir():

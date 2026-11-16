@@ -218,6 +218,37 @@ def test_timing_report_keeps_reader_pins_and_can_repair_same_source(tmp_path):
     assert list((directory/'two-day-history').glob('*.json')) == archives
 
 
+def test_history_report_preserves_partial_rungs_and_pins_without_private_fields():
+    from tompathy_engine.eval.two_day.reporting import public
+    raw = {'status': 'running', 'dataPin': 'a'*64, 'contextLimit': 1024,
+           'minimumHistoryTokens': 512, 'rows': [
+               {'k': 0, 'registered': False, 'enginePin': 'b'*64, 'clusters': 60,
+                'gain': 0., 'interval': [0., 0.], 'writer': 'private-person'}]}
+    result = public('history-ladder', raw)
+    assert result['status'] == 'partial' and result['registered'] is False
+    assert result['rows'][0]['enginePin'] == 'b'*64
+    assert result['rows'][0]['clusters'] == 60 and result['contextLimit'] == 1024
+    assert result['minimumHistoryTokens'] == 512 and result['productionAdmission'] is False
+    assert 'private-person' not in str(result) and result['ledgerRows'] == []
+    with pytest.raises(ValueError, match='coverage'):
+        public('history-ladder', {**raw, 'status': 'complete'})
+    raw['rows'][0]['enginePin'] = 'private-path'
+    with pytest.raises(ValueError, match='pin'):
+        public('history-ladder', raw)
+
+
+def test_history_report_never_substitutes_registered_or_unordered_results():
+    from tompathy_engine.eval.two_day.reporting import public
+    rows = [{'k': k, 'registered': False, 'enginePin': 'a'*64} for k in (0, 1, 2, 4, 8, 16)]
+    assert public('history-ladder', {'status': 'complete', 'rows': rows})['status'] == 'complete'
+    rows[1]['registered'] = True
+    with pytest.raises(ValueError, match='exploratory'):
+        public('history-ladder', {'status': 'complete', 'rows': rows})
+    rows[1]['registered'] = False
+    with pytest.raises(ValueError, match='ordered'):
+        public('history-ladder', {'status': 'running', 'rows': list(reversed(rows))})
+
+
 def test_goal_cleanup_failure_does_not_leave_complete_receipt(tmp_path, monkeypatch):
     from tompathy_engine.eval.back_half.reporting import save_json
     from tompathy_engine.eval.two_day.exports import read

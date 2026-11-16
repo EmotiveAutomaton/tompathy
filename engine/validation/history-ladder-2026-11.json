@@ -1,0 +1,119 @@
+{
+  "schema": "tompathy.two-day-pilot.v1",
+  "capability": "history-ladder",
+  "scope": "Exploratory earlier-session history; registered primaries unchanged",
+  "status": "complete",
+  "date": "2026-11-14",
+  "sourceReceiptPin": "8474fa8ef7d115b6dd5a32825fc80c153eb5434a51b6824af4b716c7947d77b5",
+  "productionAdmission": false,
+  "ledgerRows": [],
+  "ledgerStatus": "no ledger row",
+  "dataPin": "670812f8a6d19837c4772edaac075f6db7ae7d61352701c416214b07071e24f9",
+  "rows": [
+    {
+      "k": 0,
+      "registered": false,
+      "enginePin": "b51c5aea21d0a82c239ab994ae928f273f549b8f66d40f0c153a9e19f865d7d1",
+      "baseline": 0.5676661107429811,
+      "engine": 0.5676661107429811,
+      "gain": 0.0,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "clusters": 60,
+      "singleClassClustersExcluded": 1,
+      "draws": 2000,
+      "uncertainty": null,
+      "sessions": 1395
+    },
+    {
+      "k": 1,
+      "registered": false,
+      "enginePin": "2739e550ba57b9c2452a1d5f2642426a0c7e80eded13fca50d4332239669b827",
+      "baseline": 0.5724058170242989,
+      "engine": 0.5725242617081651,
+      "gain": 0.0001184446838659051,
+      "interval": [
+        -0.00140718372736051,
+        0.00149191710692799
+      ],
+      "clusters": 39,
+      "singleClassClustersExcluded": 0,
+      "draws": 2000,
+      "uncertainty": null,
+      "sessions": 554
+    },
+    {
+      "k": 2,
+      "registered": false,
+      "enginePin": "e8cebf4d3286932954bf0fcad5b7dac61556edd3943f8e57be0d1741809f57ca",
+      "baseline": 0.5585939599730239,
+      "engine": 0.5594998157318294,
+      "gain": 0.0009058557588054449,
+      "interval": [
+        -0.0001707927148265674,
+        0.001911453973998671
+      ],
+      "clusters": 48,
+      "singleClassClustersExcluded": 1,
+      "draws": 2000,
+      "uncertainty": null,
+      "sessions": 1274
+    },
+    {
+      "k": 4,
+      "registered": false,
+      "enginePin": "cd1000994946fa4f3ed3160d096b8cbb379d3bd5c555c5259245b8977e1a587e",
+      "baseline": 0.560661412856436,
+      "engine": 0.5612915059842482,
+      "gain": 0.0006300931278121954,
+      "interval": [
+        -0.0008825254547283213,
+        0.0019375923792561169
+      ],
+      "clusters": 41,
+      "singleClassClustersExcluded": 0,
+      "draws": 2000,
+      "uncertainty": null,
+      "sessions": 1187
+    },
+    {
+      "k": 8,
+      "registered": false,
+      "enginePin": "5d5d3f3b88819ee9ee04a425a3a6b5950f9e399da95c941b8da8d5d73dcaad71",
+      "baseline": 0.5520326336171189,
+      "engine": 0.5526044991471886,
+      "gain": 0.0005718655300698245,
+      "interval": [
+        -0.00027862221728476263,
+        0.0015654859159869292
+      ],
+      "clusters": 34,
+      "singleClassClustersExcluded": 0,
+      "draws": 2000,
+      "uncertainty": null,
+      "sessions": 1036
+    },
+    {
+      "k": 16,
+      "registered": false,
+      "enginePin": "af853655bbf04c8946059ce8ded0b7a14fe350f09504737127436c1e8c504b37",
+      "baseline": 0.5578084893063486,
+      "engine": 0.5588388878117492,
+      "gain": 0.0010303985054004317,
+      "interval": [
+        1.2694743688302762e-06,
+        0.002578642128114992
+      ],
+      "clusters": 23,
+      "singleClassClustersExcluded": 0,
+      "draws": 2000,
+      "uncertainty": null,
+      "sessions": 804
+    }
+  ],
+  "contextLimit": 1024,
+  "minimumHistoryTokens": 512,
+  "registered": false
+}

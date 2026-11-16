@@ -844,6 +844,51 @@
   scroll-padding-block: 4px;
 }
 .values-region #values-view:has(.values-landscape) { height: 250px; overflow: hidden; }
+.values-region #values-view:has(.need-landscape) { height: 390px; overflow: hidden; }
+.need-landscape { position: relative; color: var(--green); padding: 4px 5px; min-width: 0; }
+.need-sources-control { position: absolute; top: 3px; left: 5px; z-index: 3; border: 0; background: none; color: var(--green); font: 9px system-ui; cursor: pointer; padding: 3px 0; }
+.need-scene { position: relative; display: grid; grid-template-columns: 46% 50%; justify-content: space-between; height: 378px; isolation: isolate; }
+.need-sources { position: relative; overflow-y: auto; scrollbar-width: thin; overscroll-behavior: contain; padding: 1px 2px 14px 0; }
+.need-empty { font-size: 10px; line-height: 1.5; color: var(--green); }
+.need-source { position: relative; width: 100%; min-height: 50px; padding: 10px 18px 10px 3px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 3px; border: 0; color: var(--green); background: transparent; font-family: "ToMpathy Confidence", system-ui, sans-serif; font-size: 12px; line-height: 1.3; text-align: left; cursor: pointer; }
+.need-source.fluency { font-size: 10px; }
+.need-source.channel { min-height: 43px; }
+.need-source > span { position: relative; max-width: 83%; overflow-wrap: anywhere; }
+.need-source small { font: 9px system-ui; color: var(--green); }
+.need-drop { position: absolute; inset: 0; height: 100%; width: 100%; fill: color-mix(in srgb, var(--green) 18%, transparent); stroke: var(--green); stroke-width: .7; pointer-events: none; }
+.need-source.action { min-height: 90px; padding: 20px 24px 20px 14px; }
+.need-source.action .need-drop { inset: 6px 0; height: calc(100% - 12px); }
+.author-actions { padding-top: 140px; padding-bottom: 170px; }
+.need-targets { display: flex; flex-direction: column; justify-content: space-between; padding: 24px 1px 0; min-width: 0; }
+.need-target { display: block; border: 0; padding: 0; color: var(--green); background: transparent; text-align: left; cursor: pointer; width: 100%; min-height: 38px; }
+.need-target > span { display: block; padding-left: 9%; font-size: 10px; line-height: 1.2; }
+.need-target.body-need { margin-top: 3px; }
+.need-graph { display: block; width: 100%; height: 26px; overflow: visible; }
+.need-band { stroke: none; }
+.need-trace { fill: none; stroke-width: 1.1; opacity: .45; }
+.need-pigtail { fill: none; stroke-width: 1.1; }
+.body-subchannels { width: 87%; margin-top: 2px; margin-left: 3%; }
+.body-subchannel { display: flex; align-items: center; gap: 3px; width: 100%; min-height: 15px; border: 0; padding: 0; background: transparent; color: var(--green); cursor: pointer; }
+.body-subchannel .need-graph { width: 74%; height: 10px; }
+.body-subchannel span { font-size: 7px; line-height: 1; }
+.body-subchannel:hover .need-trace, .body-subchannel:focus-visible .need-trace { opacity: 1; }
+.stress-need { margin-top: 17px; }
+.need-returns { position: absolute; inset: 0; pointer-events: none; overflow: visible; }
+.need-returns path { fill: none; stroke: var(--green); stroke-width: .65; opacity: .12; transition: opacity .16s; }
+.need-returns path.lit { opacity: .4; }
+.need-connections { position: absolute; inset: 0; pointer-events: none; overflow: visible; }
+.need-connections path { fill: none; stroke: var(--green); stroke-width: .8; }
+.need-connections g { opacity: .045; transition: opacity .16s; }
+.need-connections g.lit { opacity: .9; }
+.need-connections .need-vector { stroke-width: 1.8; }
+.need-connections g.lit .need-vector { stroke-width: 2.1; }
+.need-connections g.lit .need-vector { filter: drop-shadow(0 0 2px color-mix(in srgb, var(--green) 45%, transparent)); }
+.need-source.connected .need-drop { opacity: .65 !important; }
+.need-target.connected .need-trace { opacity: 1; stroke-width: 1.7; }
+.need-source:focus-visible, .need-target:focus-visible, .body-subchannel:focus-visible { outline: 1px solid var(--green); outline-offset: 2px; border-radius: 3px; }
+.need-details .need-graph.large { height: 160px; margin: 25px 0; }
+.need-related .brick-face { stroke: var(--green) !important; fill: var(--green); fill-opacity: .22 !important; }
+@media (prefers-reduced-motion: reduce) { .need-connections g, .need-returns path { transition: none; } }
 .values-landscape { color: var(--green); padding: 0 7px; min-width: 0; max-width: 100%; }
 .landscape-meta { display: flex; flex-wrap: wrap; gap: 2px 8px; align-items: center; color: var(--muted); font-size: 9px; min-height: 23px; padding-right: 105px; }
 .landscape-meta button, .landscape-unavailable button { border: 0; background: none; color: inherit; font: inherit; cursor: pointer; padding: 3px 5px; }

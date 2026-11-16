@@ -1,0 +1,150 @@
+{
+  "schema": "readers-aggregate-1",
+  "sourceReceiptPin": "730c8012116e093dcf28524cfe51756293c8ae13fa90f445b66079d15733b934",
+  "snapshotPin": "de1abdefb4cd259b27b5c88073303cd525f2bba653cea957dcfe0ae685a8d218",
+  "launcherPin": "6c7dee3f009ff5e29f9e1c3c2d0d5b0badade0d5e42fe1b80e99bce4c39f7784",
+  "ledger": "no ledger row",
+  "card": "TP14",
+  "status": "partial",
+  "scope": {
+    "crowd": 6600,
+    "agreement_per_corpus": 2000,
+    "constructed": 200,
+    "arxiv": 73,
+    "corpus": {
+      "reports": 6600,
+      "judgments": 6000,
+      "writers": 2379,
+      "train": 4898,
+      "dev": 502,
+      "test": 1200,
+      "testReportsWithTrainingWriter": 567,
+      "split": "fixed 1200 validation report IDs; lowest SHA-256 tenth of remaining writers for development",
+      "writerDisjointTest": false,
+      "files": {
+        "generation": "3d2536b555ac7005080c2cd35aadb4d570992bca70d2017e4d8939525fa3a86b",
+        "validation": "ab64ebb18368a0342f2e890e9194cd70367387547936d9e343ba7881ec4314e3"
+      }
+    },
+    "ed": {
+      "intakePin": "dbc8e8faec17897f67b3cef9f26a031786bcc8c78f709475e5f8103f47a3e8ec",
+      "license": "cc-by-nc-4.0",
+      "research_only": true,
+      "counts": {
+        "train": {
+          "utterances": 84169,
+          "situations": 19533,
+          "firstUtterances": 19533,
+          "labels": 32
+        },
+        "valid": {
+          "utterances": 12078,
+          "situations": 2770,
+          "firstUtterances": 2770,
+          "labels": 32
+        },
+        "test": {
+          "utterances": 10973,
+          "situations": 2547,
+          "firstUtterances": 2547,
+          "labels": 32
+        }
+      }
+    },
+    "themePin": "ef2c6a534d079262b0f2d0e79f00fc057a76395aed98f83315239373213e5676",
+    "neutralPin": "6d76a99ad2e089c6d6cf11fe26e8d4285bd05b32f9ebb103e40d22d6928115d4"
+  },
+  "rows": {
+    "achievement": {
+      "identity": {
+        "source": "https://huggingface.co/theharmonylab/implicit-motives-achievement-roberta-large",
+        "id": "theharmonylab/implicit-motives-achievement-roberta-large",
+        "revision": "97fb653e1e6291496a31fbe8407645e874382bd2",
+        "license_as_read": "mit",
+        "research_only": false,
+        "files": {
+          "config.json": "38fd6e44060650268f4a28e18b790bfce42ae5682f8867bfb72e104c153a6690",
+          "merges.txt": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+          "model.safetensors": "6e6d059b308d403809b6b7a3efff7b8b0702d9b6d266be6f9d56d9bb63e22b98",
+          "README.md": "e5c1f9bb4cb179608704ae5d5cac90a9b43e5ff33e28a8c3116586bcb76136df",
+          "special_tokens_map.json": "06e405a36dfe4b9604f484f6a1e619af1a7f7d09e34a8555eb0b77b66318067f",
+          "tokenizer.json": "e0f54f632d0602468dbdb5102e0c145947131ef4327c975dc1854f49ff7316dc",
+          "tokenizer_config.json": "cab32109624013c709099c929de7ae9ddc2abb8905225a9d5373c674a6fea68c",
+          "vocab.json": "ed19656ea1707df69134c4af35c8ceda2cc9860bf2c3495026153a133670ab5e"
+        },
+        "at": "2026-11-15T10:49:04.563652+00:00",
+        "device": "cpu",
+        "threads": 2,
+        "token_cap": 512,
+        "batch": 8,
+        "score": "Independent motive presence probability, fixed 0.5 classification threshold",
+        "versions": {
+          "torch": "2.9.1+cpu",
+          "transformers": "4.57.6",
+          "sentence-transformers": "5.1.2",
+          "numpy": "2.5.4"
+        }
+      },
+      "timing": {
+        "seconds150": 51.98383280006237,
+        "excludes_loading": true,
+        "includes_tokenization": true,
+        "offline_only": true,
+        "threads": 2
+      },
+      "scorePin": "31886d58dba3828efeb7fb5e00ae96dfc4b972fdeb7e46484474fadfe8ebab7a"
+    },
+    "affiliation": {
+      "identity": {
+        "source": "https://huggingface.co/theharmonylab/implicit-motives-affiliation-roberta-large",
+        "id": "theharmonylab/implicit-motives-affiliation-roberta-large",
+        "revision": "95f654a3caec23952d29847ac91575c75674f74e",
+        "license_as_read": "mit",
+        "research_only": false,
+        "files": {
+          "config.json": "b4a971b0e9233b85e87280be75f23911b4368c86fd436a403daffc8828929745",
+          "merges.txt": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+          "model.safetensors": "69d452bc44aeef20b3739f4c37ebf47539dce13f09abb0b457b1d1c2f534cf45",
+          "README.md": "3c1526ab3735538b77e77ca84dd0f44bd9aeda37f87791637a9ec0deed3d48e7",
+          "special_tokens_map.json": "06e405a36dfe4b9604f484f6a1e619af1a7f7d09e34a8555eb0b77b66318067f",
+          "tokenizer.json": "e0f54f632d0602468dbdb5102e0c145947131ef4327c975dc1854f49ff7316dc",
+          "tokenizer_config.json": "cab32109624013c709099c929de7ae9ddc2abb8905225a9d5373c674a6fea68c",
+          "vocab.json": "ed19656ea1707df69134c4af35c8ceda2cc9860bf2c3495026153a133670ab5e"
+        },
+        "at": "2026-11-15T10:49:52.388609+00:00",
+        "device": "cpu",
+        "threads": 2,
+        "token_cap": 512,
+        "batch": 8,
+        "score": "Independent motive presence probability, fixed 0.5 classification threshold",
+        "versions": {
+          "torch": "2.9.1+cpu",
+          "transformers": "4.57.6",
+          "sentence-transformers": "5.1.2",
+          "numpy": "2.5.4"
+        }
+      },
+      "timing": {
+        "seconds150": 52.67099139955826,
+        "excludes_loading": true,
+        "includes_tokenization": true,
+        "offline_only": true,
+        "threads": 2
+      },
+      "scorePin": "f47186acbdfe5aa951e1140cdde4079fb09f3dc703271f953e1696f44d944021"
+    }
+  },
+  "mapping": {
+    "status": "proposed",
+    "affiliation": "N3",
+    "power": "N4",
+    "achievement": null
+  },
+  "twinsControlReceiptPin": "3032a9713d2b46fb98f80e0a7b34626a4163b2db4e6860bb10b793cca28484cf",
+  "threshold": 0.5,
+  "productionAdmission": false,
+  "human_reference": "Expert-coded validation corpus unavailable; published person-level correlations are not a per-text floor here",
+  "pack": "pending; page content only, never self-stated wants or maker need estimates",
+  "sourceStatus": "running",
+  "terminalOutcome": "failed"
+}

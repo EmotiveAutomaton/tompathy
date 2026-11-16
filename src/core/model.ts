@@ -2,6 +2,7 @@ import { regionSentences } from "./sentences";
 import { z } from "zod";
 import { calendarDate } from "./dates";
 import { previewLabels, PreviewSchema, LedgerRowSchema } from "./preview";
+import { BottomBoxSchema, upgradeBottomBoxPacket } from "./bottom-box";
 import { WorkValueViewSchema } from "./value-view";
 
 const id = z.string().min(1).max(200);
@@ -292,6 +293,7 @@ const BasePacketSchema = z
       "1.8",
       "1.9",
       "1.10",
+      "1.11",
     ]),
     ghostReadings: z.array(GhostReadingSchema).max(6000).optional(),
     id,
@@ -306,6 +308,7 @@ const BasePacketSchema = z
     }),
     preview: PreviewSchema.optional(),
     valueView: WorkValueViewSchema.optional(),
+    bottom_box: BottomBoxSchema.optional(),
     attentionTimeline: z.array(z.strictObject({
       maker: id, step: z.number().int().nonnegative(), t: timestamp, located: z.boolean(),
       region: id.nullable(), node: id.nullable(), evidence: z.array(id).min(1).max(30),
@@ -552,9 +555,10 @@ const BasePacketSchema = z
       if (node.attentionEvidence.evidenceStatus !== "unvalidated" || node.attentionEvidence.basis !== "text-surface") error("Paragraph density stays untested.");
       if (node.attentionEvidence.coverage === "not-read" && (node.attentionDensity != null || node.attentionShare != null || node.divergence)) error("Unread density cannot be zero or divergent.");
     }
+    if (p.bottom_box && p.schemaVersion !== "1.11") error("bottom-box-1 requires packet 1.11.");
     if (p.valueView) {
       const view = p.valueView;
-      if (p.schemaVersion !== "1.10" || view.work !== p.artifact.id) error("Value view requires contract 1.10 and the current work identity.");
+      if (!["1.10", "1.11"].includes(p.schemaVersion) || view.work !== p.artifact.id) error("Value view requires contract 1.10 and the current work identity.");
       if (p.provider.mode === "preview" && (view.provenance !== "structure-only" || view.tips.length || view.feeds.length || view.coSupport.length)) error("Preview value view supplies structure only.");
       if (view.rows.some(r => r.evidence.some(e=>!es.has(e)) || r.region && !rs.has(r.region))) error("Unresolved value-view row source.");
       for (const tip of view.tips) {
@@ -571,7 +575,7 @@ const BasePacketSchema = z
       if (lenses.some(lens => lens.some(id => { const parent = hierarchyById.get(id)?.parentId; return parent && !lens.includes(parent); }))) error("Goal lens cannot separate a child from its parent.");
     }
     if (
-      !["1.7", "1.8", "1.9", "1.10"].includes(p.schemaVersion) &&
+      !["1.7", "1.8", "1.9", "1.10", "1.11"].includes(p.schemaVersion) &&
       (p.population ||
         p.makers.some((m) => m.predictability) ||
         p.hypotheses.some((h) => h.icon || h.interpretation === "drive"))
@@ -581,7 +585,7 @@ const BasePacketSchema = z
       );
     for (const maker of p.makers) {
       if (maker.evidence) {
-        if (!["1.9", "1.10"].includes(p.schemaVersion)) error("Maker evidence requires contract 1.9.");
+        if (!["1.9", "1.10", "1.11"].includes(p.schemaVersion)) error("Maker evidence requires contract 1.9.");
         if (maker.evidence.some(e => e.tier === "statistical")) error("Statistical source signals are disabled.");
         if (maker.kind !== "unknown" && !maker.evidence.some(e => ["signed", "declared", "flagged"].includes(e.tier))) error("Maker entries require signed, declared or flagged evidence.");
       }
@@ -666,7 +670,7 @@ const BasePacketSchema = z
     }
     if (
       p.ghostReadings?.length &&
-      !["1.6", "1.7", "1.8", "1.9", "1.10"].includes(p.schemaVersion)
+      !["1.6", "1.7", "1.8", "1.9", "1.10", "1.11"].includes(p.schemaVersion)
     )
       error("Sentence Ghost Scale readings require contract 1.6.");
     const ghostFrames = [...(p.ghostReadings ?? [])].sort(
@@ -720,7 +724,7 @@ const BasePacketSchema = z
     unique(uncertain, "order uncertainty group");
     if (
       uncertain.length &&
-      !["1.5", "1.6", "1.7", "1.8", "1.9", "1.10"].includes(p.schemaVersion)
+      !["1.5", "1.6", "1.7", "1.8", "1.9", "1.10", "1.11"].includes(p.schemaVersion)
     )
       error("Order uncertainty groups require contract 1.5.");
     for (const group of uncertain) {
@@ -742,7 +746,7 @@ const BasePacketSchema = z
       if (n.aiAttribution?.evidence.some(e => !es.has(e)))
         error(`Unresolved AI attribution evidence in ${n.id}.`);
       if (
-        !["1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "1.10"].includes(p.schemaVersion) &&
+        !["1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "1.10", "1.11"].includes(p.schemaVersion) &&
         !["document", "section", "paragraph", "sentence"].includes(
           n.level ?? "",
         )
@@ -758,7 +762,7 @@ const BasePacketSchema = z
         error(`Unresolved hierarchy references in ${n.id}.`);
       if (
         n.parentIds &&
-        (!["1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "1.10"].includes(p.schemaVersion) ||
+        (!["1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "1.10", "1.11"].includes(p.schemaVersion) ||
           n.parentId ||
           new Set(n.parentIds).size !== n.parentIds.length)
       )
@@ -786,7 +790,7 @@ const BasePacketSchema = z
     }
     const depths = new Map<string, number>(),
       visitingHierarchy = new Set<string>();
-    const maxDepth = ["1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "1.10"].includes(
+    const maxDepth = ["1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "1.10", "1.11"].includes(
       p.schemaVersion,
     )
       ? 64
@@ -818,14 +822,14 @@ const BasePacketSchema = z
       return depth;
     };
     hierarchy.forEach((n) => visitHierarchy(n.id));
-    if (!["1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "1.10"].includes(p.schemaVersion))
+    if (!["1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "1.10", "1.11"].includes(p.schemaVersion))
       for (const m of p.makers) {
         const nodes = hierarchy.filter((n) => n.maker === m.id);
         if (nodes.length && nodes.filter((n) => !n.parentId).length !== 1)
           error("Each legacy maker hierarchy needs exactly one root.");
       }
     if (
-      !["1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "1.10"].includes(p.schemaVersion) &&
+      !["1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "1.10", "1.11"].includes(p.schemaVersion) &&
       (p.currentAttention || p.hypotheses.some((h) => h.kind === "attention"))
     )
       error("Independent current attention requires contract 1.4.");
@@ -953,7 +957,7 @@ const BasePacketSchema = z
         error(`Interpretation does not match hypothesis kind in ${h.id}.`);
       if (
         h.preferenceEstimate &&
-        (!["1.8", "1.9", "1.10"].includes(p.schemaVersion) || h.kind !== "value")
+        (!["1.8", "1.9", "1.10", "1.11"].includes(p.schemaVersion) || h.kind !== "value")
       )
         error(
           "Structured preference estimates require a value hypothesis in contract 1.8.",
@@ -1069,6 +1073,7 @@ function strippedPaths(raw: unknown, parsed: unknown, path: (string | number)[] 
   return Object.entries(raw).flatMap(([key, value]) => key in target ? strippedPaths(value, target[key], [...path, key]) : [[...path, key]]);
 }
 export const PacketSchema = z.unknown().transform((raw, ctx) => {
+  raw = upgradeBottomBoxPacket(raw);
   const result = BasePacketSchema.safeParse(raw);
   if (!result.success) {
     for (const issue of result.error.issues) ctx.addIssue({ code: "custom", path: issue.path, message: issue.message });
