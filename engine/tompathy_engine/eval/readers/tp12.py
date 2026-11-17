@@ -112,7 +112,18 @@ def policy_for(rows):
         'productionAdmission': False}
 
 
-def run(directory, ladder, output, check, *, fine_tuned=False, reference=None):
+def apply_gate(probabilities, gate, threshold, neutral):
+    probabilities, gate = np.asarray(probabilities, float), np.asarray(gate, float)
+    if gate.shape != (len(probabilities),) or not np.isfinite(gate).all() or (gate < 0).any() or (gate > 1).any():
+        raise ValueError('Gate forecasts differ from source order')
+    result = probabilities.copy()
+    rejected = gate < threshold
+    result[rejected] = 0
+    result[rejected, neutral] = 1
+    return result
+
+
+def run(directory, ladder, output, check, *, fine_tuned=False, reference=None, gate_job=None):
     output, ladder = Path(output), Path(ladder)
     verification = json.loads((ladder/'exit-verification.json').read_text(encoding='utf8'))
     if not all(verification.get(k) for k in ('nativeExited', 'releaseMatches', 'sharedLeaseAbsent', 'localLeaseAbsent')):
@@ -132,7 +143,7 @@ def run(directory, ladder, output, check, *, fine_tuned=False, reference=None):
     expected_status='complete' if fine_tuned else 'L0-L2 complete; L3 and final pack gates pending'
     if receipt['scope'] != corpus.summary() or receipt['status'] != expected_status:
         raise ValueError('TP10 split or completion differs')
-    report = {'card': 'TP12-L3' if fine_tuned else 'TP12', 'status': 'running', 'preflight': verify_preflight(Path('.local')),
+    report = {'card': 'TP12-gated' if gate_job else ('TP12-L3' if fine_tuned else 'TP12'), 'status': 'running', 'preflight': verify_preflight(Path('.local')),
         'ladderReceiptPin': sha256(ladder/'receipt.json'), 'authorFilePin': sha256(author_path),
         'scope': corpus.summary(), 'seed': SEED, 'halves': 20, 'bagsPerScenarioPerHalf': 60,
         'labels': corpus.labels, 'rows': {}, 'policies': {}, 'productionAdmission': False,
@@ -162,6 +173,34 @@ def run(directory, ladder, output, check, *, fine_tuned=False, reference=None):
             if not np.array_equal(data['y'], y):
                 raise ValueError('TP10 prediction order differs')
             readers[name] = {key: data[key] for key in ('test_probabilities', 'theme_probabilities', 'revision_probabilities')}
+    if gate_job is not None:
+        from .artifacts import verified
+        gate_job = Path(gate_job)
+        gate, _ = verified(gate_job, 'TP25', check)
+        if not fine_tuned or not gate.get('qualifies') or set(readers) != {'minilm-tuned'}:
+            raise ValueError('New gated row requires qualified TP25 and exact selected L3 forecasts')
+        if gate['sources']['envent'] != corpus.pins:
+            raise ValueError('Gate corpus differs from counting corpus')
+        report['gate'] = {'sourceReceiptPin': sha256(gate_job/'receipt.json'), 'threshold': gate['final_threshold'],
+            'scope': 'New full fixed mixture grid; gate held-source bars passed separately. Counting is conditional on this fixed all-source gate, which saw the source corpus during fitting; not a new held-out gate evaluation.',
+            'rejection': 'Rejected sentences become explicit no-emotion before table calibration, counting and correction',
+            'oldPolicies': 'unchanged; a new qualified selection is bound to this exact gate'}
+        files = [('test_probabilities', 'envent-gate-probabilities.npz'),
+                 ('theme_probabilities', 'theme-free-predictions.npz'), ('revision_probabilities', 'revisions-predictions.npz')]
+        for field, filename in files:
+            with np.load(gate_job/filename, allow_pickle=False) as d:
+                p = d['probability']
+            if field == 'test_probabilities':
+                if p.shape != (6600,):
+                    raise ValueError('Gate needs exact ordered envent forecasts')
+                p = p[corpus.test]
+            readers['minilm-tuned'][field] = apply_gate(readers['minilm-tuned'][field], p, gate['final_threshold'], neutral)
+        save_json(output/'gated-error-table.json', {'labels': corpus.labels, 'orientation': 'key-by-reader',
+            'held_out': True, 'held_out_scope': 'original TP10 forecasts; gate trained on source corpus as disclosed',
+            'abstention_threshold': 0, 'smoothing': .5,
+            'counts': confusion(y, readers['minilm-tuned']['test_probabilities'].argmax(1), k).tolist()})
+        report['gatedErrorTablePin'] = sha256(output/'gated-error-table.json')
+        save_json(output/'receipt.json', report)
     for name, data in readers.items():
         check()
         save_json(output/'phase.json', {'reader': name, 'half': 0})
@@ -229,6 +268,9 @@ def run(directory, ladder, output, check, *, fine_tuned=False, reference=None):
         report['rows'][name] = rows
         policy = policy_for(rows)
         policy.update(reader=name, ladderReceiptPin=report['ladderReceiptPin'])
+        if gate_job is not None:
+            policy.update(gateReceiptPin=report['gate']['sourceReceiptPin'], gateThreshold=gate['final_threshold'],
+                          scope=report['gate']['scope'], gatedErrorTablePin=report['gatedErrorTablePin'])
         report['policies'][name] = policy
         save_json(output/(name+'-policy.json'), policy)
         save_json(output/'receipt.json', report)

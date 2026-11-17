@@ -11,11 +11,13 @@ const share = z.strictObject({ value: unit, interval: z.tuple([unit, unit]),
   of: z.literal("sentences read as carrying a feeling"), method: z.literal("corrected") })
   .refine(s => s.interval[0] <= s.value && s.value <= s.interval[1], "Invalid share interval");
 export const PageReadingSchema = z.strictObject({
-  id: readingId, tier: z.literal("on_page"), share: share.nullable(),
+  id: readingId.nullable(), tier: z.literal("on_page"), share: share.nullable(),
   events: z.array(z.strictObject({
     span, label: z.string().min(1).max(200), confidence: unit,
     who: z.enum(["writer", "other", "unclear"]).default("unclear"),
     words: z.array(span).max(200).default([]),
+    channel_by_table: z.strictObject({ channel: z.enum(["C2", "C3", "C6", "C8", "C9"]),
+      version: z.string().min(1).max(200) }).nullish(),
     stake: z.strictObject({ need: z.enum(["N1", "N2", "N3", "N4", "N5", "N6"]),
       direction: z.enum(["up", "down", "threatened", "restored", "unfed", "either"]),
       by: z.enum(["self", "other", "circumstance", "any"]), when: z.enum(["ahead", "already", "now", "any"]),
@@ -28,14 +30,22 @@ export const PageReadingSchema = z.strictObject({
   score: z.strictObject({ metric: z.string().min(1).max(100), value: z.number().finite(), interval: z.tuple([z.number().finite(), z.number().finite()]).nullable() })
     .refine(s => !s.interval || s.interval[0] <= s.value && s.value <= s.interval[1], "Invalid score interval"),
   people: z.record(z.string(), z.number().finite()), floor: z.record(z.string(), z.number().finite()),
-  nothing_here: z.record(z.string(), unit.nullable()), mapping, status: z.literal("benchmarked"),
-});
-export const BottomBoxSchema = z.strictObject({
+  nothing_here: z.record(z.string(), unit.nullable()), mapping, status: z.enum(["benchmarked", "research"]),
+}).refine(r => r.id !== null || (r.status === "research" && r.share === null && !r.series.length
+  && r.events.every(e => !e.stake)), "Unmapped labels cannot imply a level or stake");
+const BottomBoxV1Schema = z.strictObject({
   version: z.literal("bottom-box-1"), on_page: z.array(PageReadingSchema).max(100),
   about_maker: z.array(z.never()).max(0),
   marketplace: z.array(z.strictObject({ id: z.string().min(1).max(200), label: z.string().min(1).max(250), source: z.string().min(1).max(2000) })).max(100),
-}).refine(b => new Set(b.on_page.map(r => `${r.id}:${r.pack}`)).size === b.on_page.length
+}).refine(b => b.on_page.every(r => r.id !== null) && new Set(b.on_page.map(r => `${r.id}:${r.pack}`)).size === b.on_page.length
   && new Set(b.marketplace.map(t => t.id)).size === b.marketplace.length, "Duplicate reader or tile");
+const BottomBoxV2Schema = z.strictObject({
+  version: z.literal("bottom-box-2"), on_page: z.array(PageReadingSchema).max(100),
+  about_maker: z.array(z.never()).max(0),
+  toolbox: z.array(z.strictObject({ id: z.string().min(1).max(200), label: z.string().min(1).max(250), source: z.string().min(1).max(2000) })).max(100),
+}).refine(b => new Set(b.on_page.map(r => `${r.id}:${r.pack}`)).size === b.on_page.length
+  && new Set(b.toolbox.map(t => t.id)).size === b.toolbox.length, "Duplicate reader or tile");
+export const BottomBoxSchema = z.union([BottomBoxV1Schema, BottomBoxV2Schema]);
 const empty = z.strictObject({ value: z.null(), evidence: z.array(z.never()).max(0),
   status: z.literal("unvalidated"), ledgerRows: z.array(z.never()).max(0) });
 const group = (keys: string[]) => z.record(z.string(), empty).refine(g => keys.length === Object.keys(g).length && keys.every(k => k in g));
@@ -48,6 +58,11 @@ export function upgradeBottomBoxPacket(raw: unknown): unknown {
   const p = raw as Record<string, unknown>;
   if (legacy.safeParse(p.bottom_box).success) return { ...p, schemaVersion: "1.11",
     bottom_box: { version: "bottom-box-1", on_page: [], about_maker: [], marketplace: [] } };
+  const old = BottomBoxV1Schema.safeParse(p.bottom_box);
+  if (old.success) {
+    const { marketplace, ...rest } = old.data;
+    return { ...p, bottom_box: { ...rest, version: "bottom-box-2", toolbox: marketplace } };
+  }
   return raw;
 }
 export type PageReading = z.infer<typeof PageReadingSchema>;

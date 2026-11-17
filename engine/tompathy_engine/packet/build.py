@@ -26,6 +26,12 @@ def build_packet(
     model=None,
     goals=None,
     bottom_box=False,
+    packs=(),
+    research=False,
+    reader_adapters=None,
+    reader_check=lambda: None,
+    reader_diagnostics=None,
+    reader_cache=None,
 ):
     capture = validate_capture(capture)
     if ledger is not None:
@@ -252,5 +258,19 @@ def build_packet(
         from .bottom_box import empty_bottom_box
         packet['schemaVersion'] = '1.11'
         packet['bottom_box'] = empty_bottom_box()
+        if packs:
+            from ..packs.runtime import run, sentence_rows
+            rows = [s for r in capture['regions']
+                    for s in sentence_rows(r['anchor']['exact'], r['anchor']['start'])]
+            packet['bottom_box'] = run(packs, rows, enabled=True, research=research,
+                adapters=reader_adapters, check=reader_check, diagnostics=reader_diagnostics,
+                cache_directory=reader_cache)
+            if packet['bottom_box']['version'] == 'bottom-box-2':
+                from ..packs.v2 import load_pack
+                pins = [p.pin for d in packs if (p := load_pack(d)) is not None
+                        and (research or (p.manifest.status != 'research' and not p.manifest.research_only))]
+                packet['id'] = digest([packet['id'], pins])
+                if research and any((p := load_pack(d)) is not None and p.manifest.status == 'research' for d in packs):
+                    packet['provider']['method'] += ' Research readers are present; passage readings only, not maker estimates.'
         packet['id'] = digest([packet['id'], packet['bottom_box']])
     return hide_usernames(Packet.model_validate(packet).wire())

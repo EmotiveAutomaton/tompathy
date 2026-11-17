@@ -258,8 +258,19 @@ llama.cpp route uses a CPU wheel and converts existing pinned weights locally.
 There is no automatic model download. The module contract is
 [eval/two_day/README.md](tompathy_engine/eval/two_day/README.md).
 
-`analyze --bottom-box` adds the empty `bottom-box-0` extension. It carries only
-null, unvalidated entries and has no producer. It is absent by default.
+`analyze --bottom-box` adds the empty `bottom-box-1` contract. It is absent by
+default. The November 15 TS3 path accepts repeated `--reader-pack <directory>`
+arguments and explicit `--research-readers`; `--reader-vector-cache <private-dir>`
+reuses exact vectors. It writes `bottom-box-2` only when eligible packs are
+attached. A gate is required for need/channel/trigger events; scalar worry
+remains available in research view on plain prose. Research packs cannot enter
+release packaging. This offline/programmatic path does not automatically alter
+the running companion, browser profile or live defaults. Use the counted Gear 2
+runner for the commissioned studies; do not start an extra live scorer beside it.
+Reader-pack-1 format remains readable, with its original exact execution-pin
+requirement. A changed execution pin requires a fresh verified compatibility
+export, never mutation of the original pack or a bypass of that check.
+See [the trigger-reader record](../docs/ENGINE_TRIGGER_READER_2026-11-22.md).
 `serve --preview-precision w8 --preview-weightonly-model <local.gguf>
 --preview-weightonly-receipt <exact-private-receipt.json>` additionally requires
 the original reader directory, CPU, its tested thread count, and all five gates

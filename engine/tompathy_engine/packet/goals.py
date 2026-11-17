@@ -72,7 +72,7 @@ def apply_goals(packet, ledger, goals, admissions, domain):
             ]
         nodes.append(node)
     if nodes:
-        packet["goalHierarchy"] = {"nodes": nodes}
+        packet["goalHierarchy"] = {"nodes": nodes, "status": "unscored"}
         return [
             admissions.require(m, domain).admission_id for m in ("goal-candidates", "goal-tree")
         ]

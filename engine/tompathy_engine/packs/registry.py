@@ -128,6 +128,9 @@ def load_pack(directory, *, release=False):
     if not root.exists():
         return None
     manifest_file = local_file(root, 'pack.json')
+    if json.loads(manifest_file.read_text(encoding='utf8')).get('version') == 'reader-pack-2':
+        from .v2 import load_pack as current
+        return current(directory, release=release)
     m = Manifest.model_validate_json(manifest_file.read_text(encoding='utf8'))
     if release and (m.research_only or m.encoder.kind == 'constructed'):
         raise ValueError('Research-only or constructed reader cannot enter a release')

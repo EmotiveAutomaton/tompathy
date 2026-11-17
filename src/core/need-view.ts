@@ -12,6 +12,35 @@ export type NeedDetailId = typeof needDetails[number]["id"];
 export type NeedSource = { id: string; label: string; type: "fluency" | "channel" | "action";
   confidence: number | null; regions: string[]; nodes: string[]; hypothesis?: Hypothesis;
   date?: string; current?: boolean; needs: { id: NeedId; direction: -1 | 1; illustration: boolean }[] };
+
+/** Only actual packet spans are joined. This is not a label-to-need inference. */
+export function pageNeedSources(packet: Packet): NeedSource[] {
+  return (packet.bottom_box?.on_page ?? []).filter(r => r.id !== null && /^C[1-9]$/.test(r.id)).map(r => {
+    const links = new Map<string, NeedSource["needs"][number]>();
+    for (const event of r.events) {
+      const stake = event.stake;
+      if (!stake || stake.direction === "either" || stake.need === "N5") continue;
+      const direction = ["up", "restored"].includes(stake.direction) ? 1 : -1;
+      links.set(`${stake.need}:${direction}`, { id: stake.need, direction, illustration: false });
+    }
+    return { id: `page:${r.pack}:${r.id}`, label: readerNames[r.id!] ?? r.id!, type: "channel",
+      confidence: r.events.length ? r.events.reduce((s, e) => s + e.confidence, 0) / r.events.length : null,
+      regions: packet.artifact.regions.filter(region => r.events.some(e =>
+        e.span[0] < region.anchor.start + region.anchor.exact.length && region.anchor.start < e.span[1])).map(r => r.id),
+      nodes: [], needs: [...links.values()] };
+  });
+}
+
+export function pageNeedActivity(packet: Packet) {
+  return Object.fromEntries(needs.map(n => [n.id, (packet.bottom_box?.on_page ?? [])
+    .filter(r => r.id === n.id && n.id !== "N5")
+    .flatMap(r => r.events.map(e => ({ span: e.span, tag: e.label, pack: r.pack })))])) as
+    Record<NeedId, { span: [number, number]; tag: string; pack: string }[]>;
+}
+
+export function pageStress(packet: Packet, research = false) {
+  return research ? (packet.bottom_box?.on_page ?? []).filter(r => r.id === "S1" && r.series.length) : [];
+}
 const support = (h?: Hypothesis) => !h?.support ? null : Math.max(0, Math.min(1,
   (h.support.value - h.support.scale[0]) / (h.support.scale[1] - h.support.scale[0])));
 // Explicit interface illustration, restricted to the constructed example provider.
@@ -24,7 +53,7 @@ const illustrationFluencies: Record<string, NeedId[]> = {
   "Make room for discovery": ["N1"], "Keep learning from play": ["N1", "N3"],
   "Keep play accessible": ["N3", "N6"], "Complete automated assembly": ["N2"],
 };
-export function workNeedSources(packet: Packet, nodes: GoalNode[], values: Hypothesis[]): NeedSource[] {
+export function workNeedSources(packet: Packet, nodes: GoalNode[], values: Hypothesis[], research = false): NeedSource[] {
   const illustration = packet.provider.id === "tompathy-example" && packet.origin === "synthetic example";
   const roots = goalGraph(nodes).roots.map(n => n.data);
   const entries: NeedSource[] = roots.map(node => ({ id: node.id, label: node.label, type: "fluency",
@@ -47,7 +76,7 @@ export function workNeedSources(packet: Packet, nodes: GoalNode[], values: Hypot
     source.nodes = [...new Set([...source.nodes, ...related.flatMap(s => s.nodes)])];
     source.regions = [...new Set([...source.regions, ...related.flatMap(s => s.regions)])];
   }
-  return entries;
+  return research ? [...entries, ...pageNeedSources(packet)] : entries;
 }
 
 export function authorNeedSources(packet: Packet, context: ContextItem[], work: NeedSource[]): NeedSource[] {

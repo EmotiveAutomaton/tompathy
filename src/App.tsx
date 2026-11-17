@@ -39,6 +39,9 @@ import { attentionAt, attentionForNode } from "./core/attention";
 import { ValueTabs, type ValuesTab } from "./components/ValueTabs";
 import { ValuesLandscape } from "./components/ValuesLandscape";
 import { NeedLandscape, NeedGraph, needDescriptions } from "./components/NeedLandscape";
+import { ResearchStress } from "./components/ResearchStress";
+import { ResearchReadings } from "./components/ResearchReadings";
+import { pageStress } from "./core/need-view";
 import { needDetails, type NeedDetailId } from "./core/need-view";
 import { SelectionLock } from "./components/SelectionLock";
 import { blockedFocusTracker } from "./core/lock";
@@ -1801,6 +1804,7 @@ export function App({ preview = false }: { preview?: boolean }) {
               Mark likely AI
             </label>}
             {ready && packet && <><PreviewBanner packet={packet} /><PreviewModules packet={packet} ids={["habits", "techniques", "goals"]} /></>}
+            {ready && packet?.goalHierarchy?.nodes.length ? <p className="preview-vocabulary">Goal tree · unscored</p> : null}
             {ready && packet?.provider.mode === "preview" && <p className="preview-vocabulary" title="Goals are often several at once. This is one lens.">A functional reading: what the page seems built to do, read by assuming its maker would use it as we would. <span title="Declared prior, not measured on real pages; separate from the model’s own rating.">Root cue reliability: {packet.preview?.rootCueReliability ?? .6} (assumed).</span></p>}
             {ready && packet?.provider.mode === "preview" && hierarchyNodes.length > 0 && <details className="preview-modules"><summary>Writer signatures and technique notes</summary><RecordedProcess packet={packet} maker={allMakers ? undefined : activeMaker?.id} inspect={inspect} /></details>}
             {ready &&
@@ -1893,7 +1897,7 @@ export function App({ preview = false }: { preview?: boolean }) {
             >
               {ready && packet && valuesTab !== "global" && <NeedLandscape key={`${packet.artifact.revision}:${valuesTab}`}
                 packet={packet} nodes={hierarchyNodes} values={valuesTab === "work" ? demoWorkValues(packet, values) : values}
-                tab={valuesTab} context={session.context} onSources={() => setModal("context")} inspect={inspect}
+                tab={valuesTab} context={session.context} onSources={() => setModal("context")} inspect={inspect} research={researchPreview}
                 onNeed={setNeedDetail} onHighlight={sources => {
                   if (pinned) return;
                   const ids = sources.flatMap(s => s.nodes), regions = [...new Set(sources.flatMap(s => s.regions))];
@@ -1940,9 +1944,12 @@ export function App({ preview = false }: { preview?: boolean }) {
         </div>
         {needDetail && <Modal title={needDetails.find(n => n.id === needDetail)!.label} onClose={() => setNeedDetail(null)}>
           <section className="need-details"><span className="eyebrow">Need · proposed account</span>
-            <p>{needDescriptions[needDetail]}</p><NeedGraph large stress={needDetail === "S1"} />
-            <p className="muted">The band and line are a notional illustration of fluctuation. No preferred range, state or effect has been measured for this author.</p>
+            {needDetail === "S1" && packet && pageStress(packet, researchPreview).length
+              ? <ResearchStress packet={packet} enabled={researchPreview} />
+              : <><p>{needDescriptions[needDetail]}</p><NeedGraph large stress={needDetail === "S1"} /></>}
+            {!(needDetail === "S1" && packet && pageStress(packet, researchPreview).length > 0) && <p className="muted">The band and line are a notional illustration of fluctuation. No preferred range, state or effect has been measured for this author.</p>}
             <p>Connections can describe how an action might serve a need. Establishing a personal preference requires evidence of choices and alternatives, not the topic of a passage alone.</p>
+            {packet && <ResearchReadings packet={packet} enabled={researchPreview} need={needDetail} />}
           </section>
         </Modal>}
         {detail && (
@@ -2145,6 +2152,7 @@ export function App({ preview = false }: { preview?: boolean }) {
                   setSession(s => ({ ...s, packet: null }));
                 }} /> Research preview</label>
                 <p className="muted">Runs available local modules with their evidence and test labels. Turning this off requests only the admitted path.</p>
+                {packet && <ResearchReadings packet={packet} enabled={researchPreview} />}
               </section>
               <ProviderOptions
                 settings={provider}

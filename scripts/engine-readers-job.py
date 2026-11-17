@@ -12,6 +12,22 @@ from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 
+def heartbeat(output, deadline, headroom):
+    """Bound transient Windows replacement contention without weakening guards."""
+    from tompathy_engine.eval.back_half.reporting import save_json
+    for attempt in range(6):
+        if time.monotonic() >= deadline or (output/'STOP').exists():
+            raise RuntimeError('Preflight bounded deadline or requested stop')
+        value = {'at': datetime.now(UTC).isoformat(), **headroom()}
+        try:
+            save_json(output/'heartbeat.json', value)
+            return
+        except PermissionError as exc:
+            if getattr(exc, 'winerror', None) not in (5, 32, 33) or attempt == 5:
+                raise
+            time.sleep(.05 * 2**attempt)
+
+
 def remaining_seconds(hours, resume, card, now):
     seconds = hours * 3600
     if resume is not None and card in {'TP15', 'TP16', 'TP19'}:
@@ -33,7 +49,7 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--checks', nargs='+', choices=['pf_a', 'pf_b', 'pf_c', 'pf_c2',
         'pf_d', 'pf_e', 'pf_f', 'pf_g', 'pf_h', 'pf_i'], default=[])
-    parser.add_argument('--card', choices=['TP10', 'TP12', 'TP12-L3', 'TP10-L3', 'TP11', 'TP13', 'TP14', 'TP15', 'TP16', 'TP17', 'TP18', 'TP18-probe', 'TP19', 'TP20', 'TP22', 'TP1c', 'TP4-controls'])
+    parser.add_argument('--card', choices=['TP10', 'TP12', 'TP12-L3', 'TP10-L3', 'TP11', 'TP13', 'TP14', 'TP15', 'TP16', 'TP17', 'TP18', 'TP18-probe', 'TP19', 'TP20', 'TP22', 'TP1c', 'TP4-controls', 'TP26', 'TP7', 'TP23', 'TP24', 'TP25', 'TP27', 'TP12-gated', 'TP22-gated', 'TS3-real', 'TRIGGER-export'])
     parser.add_argument('--models', type=Path, default=Path('.local/readers/models'))
     parser.add_argument('--prepared', type=Path, default=Path('.local/bench/two-day-prepared'))
     parser.add_argument('--ladder', type=Path)
@@ -49,6 +65,7 @@ def main():
     parser.add_argument('--coverage-job', type=Path)
     parser.add_argument('--goal-baseline', type=Path, default=Path('.local/bench/two-day-tp4-tfidf'))
     parser.add_argument('--primary-job', type=Path)
+    parser.add_argument('--preflight-decision', type=Path, help='Explicit source-bound TP23 table-scope ruling')
     parser.add_argument('--ledger', type=Path)
     parser.add_argument('--source-config', type=Path, default=Path('.local/bench/two-day-input-config.json'))
     parser.add_argument('--motive-job', type=Path)
@@ -60,14 +77,34 @@ def main():
     parser.add_argument('--attention-source', type=Path, default=Path('.local/bench/two-day-20261113-b'))
     parser.add_argument('--resume', type=Path, help='Verified unfinished TP10, rated or TP19 engineering failure/host restart')
     parser.add_argument('--hours', type=float, default=2)
+    parser.add_argument('--rung', choices=['bow', 'frozen', 'fine', 'base'], default='bow')
+    parser.add_argument('--seed', type=int, choices=[23,47,71], default=23)
+    parser.add_argument('--fold', type=int, choices=range(5))
+    parser.add_argument('--fold-jobs', type=Path, nargs=5, default=[])
+    parser.add_argument('--gate-job', type=Path)
+    parser.add_argument('--needs-job', type=Path)
+    parser.add_argument('--packs', type=Path, nargs='+', default=[])
+    parser.add_argument('--vector-cache', type=Path)
+    parser.add_argument('--vector-source', type=Path)
+    parser.add_argument('--export-kind', choices=['worry','need','gate','label','trigger','counting'])
+    parser.add_argument('--rung-jobs', type=Path, nargs='+', default=[])
+    parser.add_argument('--gate-pack', type=Path)
+    parser.add_argument('--need-pack', type=Path)
+    parser.add_argument('--label-pack', type=Path)
     parser.add_argument('--inputs', type=Path, help='Verified preceding pf_b output for counting checks')
     args = parser.parse_args()
     if bool(args.checks) == bool(args.card):
         parser.error('Choose either supplied preflight checks or one reader card')
+    if args.resume is not None and args.card not in {'TP10','TP15','TP16','TP19'}:
+        parser.error('This card has no reviewed engineering continuation yet; preserve the failure and original clock before implementing one')
     root = Path(__file__).resolve().parents[1]
     output = args.output.resolve()
     if not output.is_relative_to(root / '.local') or not 0 < args.hours <= 8:
         parser.error('Private fresh output and a bounded 0–8 hour job required')
+    if args.vector_cache is not None and not args.vector_cache.resolve().is_relative_to(root/'.local'):
+        parser.error('Shared vectors must remain private')
+    if args.preflight_decision is not None and not (args.card == 'TP23' and args.rung != 'bow' or args.card == 'TRIGGER-export' and args.export_kind == 'need'):
+        parser.error('A TP23 preflight decision only applies to later need rungs and need selection')
     started = datetime.now(UTC)
     seconds = remaining_seconds(args.hours, args.resume, args.card, started)
     deadline = time.monotonic() + seconds
@@ -90,6 +127,12 @@ def main():
     scripts = {n: (args.bundle / 'corpus/scripts' / (n + '.py')).resolve() for n in args.checks}
     hashes = {n: hashlib.sha256(p.read_bytes()).hexdigest() for n, p in scripts.items()}
     auxiliary = {}
+    if args.preflight_decision is not None:
+        name = 'preflight-decision.json'
+        payload = args.preflight_decision.read_bytes()
+        (output/name).write_bytes(payload)
+        auxiliary[name] = hashlib.sha256(payload).hexdigest()
+        args.preflight_decision = output/name
     if 'pf_e' in args.checks:
         name = 'twin_predictions_written_before_numbers.json'
         source = args.bundle/'corpus/out'/name
@@ -99,9 +142,7 @@ def main():
     next_check = 0.
 
     def check():
-        if time.monotonic() >= deadline or (output/'STOP').exists():
-            raise RuntimeError('Preflight bounded deadline or requested stop')
-        save_json(output/'heartbeat.json', {'at': datetime.now(UTC).isoformat(), **guard()})
+        heartbeat(output, deadline, guard)
 
     def trace(frame, event, arg):
         nonlocal next_check
@@ -125,7 +166,52 @@ def main():
             # No import can create additional BLAS workers beyond this allowance.
             from threadpoolctl import threadpool_limits
             with threadpool_limits(limits=2):
-                if args.card == 'TP10':
+                if args.card == 'TRIGGER-export':
+                    from tompathy_engine.eval.readers.trigger_export import run_export
+                    run_export(args.export_kind,args,output,check)
+                    completed.append('TRIGGER export '+args.export_kind)
+                elif args.card == 'TP23':
+                    from tompathy_engine.eval.readers.tp23 import run
+                    run(args.rated_data,args.corpus,args.models,output,check,rung=args.rung,seed=args.seed,bundle=args.bundle,
+                        fold=args.fold,fold_jobs=args.fold_jobs,preflight_job=args.primary_job,
+                        vector_cache=args.vector_cache,vector_source=args.vector_source,preflight_decision=args.preflight_decision)
+                    completed.append('TP23 '+args.rung)
+                elif args.card == 'TP25':
+                    from tompathy_engine.eval.readers.tp25 import run
+                    run(args.rated_data,args.corpus,args.go,args.models,args.prepared,output,check,
+                        vector_cache=args.vector_cache,vector_source=args.vector_source)
+                    completed.append('TP25')
+                elif args.card == 'TP24':
+                    from tompathy_engine.eval.readers.tp24 import run
+                    run(args.corpus,args.reader_job,args.needs_job,args.models,output,check,
+                        vector_cache=args.vector_cache,vector_source=args.vector_source)
+                    completed.append('TP24')
+                elif args.card == 'TP27':
+                    from tompathy_engine.eval.readers.tp27 import run
+                    run(args.attention_source,args.primary_job,args.models/'smol135',output,check)
+                    completed.append('TP27 diagnostic')
+                elif args.card == 'TP12-gated':
+                    from tompathy_engine.eval.readers.tp12 import run
+                    if args.gate_job is None:
+                        raise ValueError('The new counting row requires a qualified gate')
+                    run(args.corpus,args.reader_job,output,check,fine_tuned=True,reference=args.counting,gate_job=args.gate_job)
+                    completed.append('TP12 gated grid')
+                elif args.card == 'TS3-real':
+                    from tompathy_engine.eval.readers.trigger_acceptance import run
+                    if args.vector_cache is not None and not args.vector_cache.resolve().is_relative_to(root/'.local'):
+                        raise ValueError('Runtime vector cache must remain private')
+                    run(args.packs,args.source_config,output,check,cache=args.vector_cache)
+                    completed.append('TS3 real packets')
+                elif args.card == 'TP7':
+                    from tompathy_engine.eval.readers.tp7 import run
+                    run(args.rated_data, args.primary_job, output, check)
+                    completed.append('TP7')
+                elif args.card == 'TP26':
+                    from tompathy_engine.eval.readers.tp26 import run
+                    run(args.rated_data, args.models, output, check, benchmark=args.primary_job,
+                        corpus=args.corpus, ed_root=args.ed, go_root=args.go, prepared=args.prepared)
+                    completed.append('TP26')
+                elif args.card == 'TP10':
                     from tompathy_engine.eval.readers.tp10 import run
                     run(args.corpus, args.models, args.prepared, output, check, args.resume)
                     completed.append('TP10 L0-L2')
@@ -198,11 +284,12 @@ def main():
                     run(args.ledger,args.reader_job,output,check,motive_job=args.motive_job,
                         models=args.models,motive_head=args.motive_head,source_config=args.source_config,resume=args.resume)
                     completed.append(args.card)
-                elif args.card == 'TP22':
+                elif args.card in {'TP22','TP22-gated'}:
                     from tompathy_engine.eval.readers.tp22 import run
                     if args.reader_job is None:
                         raise ValueError('TP22 requires the completed TP10 reader and counting policy')
-                    run(args.blogs,args.reader_job,args.counting,args.models,output,check)
+                    run(args.blogs,args.reader_job,args.counting,args.models,output,check,
+                        gate_job=args.gate_job if args.card == 'TP22-gated' else None)
                     completed.append(args.card)
                 elif args.card == 'TP1c':
                     from tompathy_engine.eval.readers.tp1c import run

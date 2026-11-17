@@ -18,6 +18,15 @@ class Sentence:
 def encoder_for(pack):
     """Load exclusively from verified local files; never fetch a missing model."""
     m = pack.manifest
+    if m.encoder.kind == 'tfidf':
+        import json
+
+        from sklearn.feature_extraction.text import TfidfVectorizer
+        source = json.loads((pack.root/'encoder/vocabulary.json').read_text(encoding='utf8'))
+        vectorizer = TfidfVectorizer(vocabulary=source['vocabulary'],
+            ngram_range=tuple(source['ngram']), sublinear_tf=source['sublinear_tf'])
+        vectorizer.idf_ = np.asarray(source['idf'], float)
+        return lambda texts: vectorizer.transform(texts).toarray()
     import torch
     torch.set_num_threads(2)
     if m.encoder.kind == 'model2vec':
@@ -35,7 +44,12 @@ def encoder_for(pack):
     raise ValueError('Constructed encoder requires an explicit test adapter')
 
 
-def run(directory, sentences, *, enabled=False, encoder=None, check=lambda: None):
+def run(directory, sentences, *, enabled=False, encoder=None, check=lambda: None,
+        research=False, adapters=None, diagnostics=None):
+    if isinstance(directory, (list, tuple)):
+        from .runtime import run as current
+        return current(directory, sentences, enabled=enabled, research=research,
+                       adapters=adapters, check=check, diagnostics=diagnostics)
     box = empty_bottom_box()
     if not enabled:
         return box

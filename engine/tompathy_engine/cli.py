@@ -119,7 +119,10 @@ def main(argv=None):
     p.add_argument("--capture", required=True)
     p.add_argument("--out", required=True)
     p.add_argument("--admissions")
-    p.add_argument("--bottom-box", action="store_true", help="Include the empty bottom-box-0 contract; no readings are produced")
+    p.add_argument("--bottom-box", action="store_true", help="Include bottom-box-1; empty unless explicitly supplied readers run")
+    p.add_argument("--reader-pack", type=Path, action="append", default=[], help="Verified local pack directory; repeat for multiple packs; requires --bottom-box")
+    p.add_argument("--research-readers", action="store_true", help="Explicitly include research-only passage readings; maker tier stays empty")
+    p.add_argument("--reader-vector-cache", type=Path, help="Private exact-input vector cache, with encoder/code/package binding")
     p.add_argument(
         "--model",
         help="Pinned model JSON from fit; needs scientific admission to contribute estimates",
@@ -324,6 +327,10 @@ def main(argv=None):
             capture = read(args.capture)
             if capture["id"] != args.artifact:
                 raise ValueError("Requested artifact differs from the capture")
+            if (args.reader_pack or args.research_readers) and not args.bottom_box:
+                raise ValueError('Reader attachment requires --bottom-box')
+            if any(not (path/'pack.json').is_file() for path in args.reader_pack):
+                raise ValueError('Explicit reader pack is missing its local manifest')
             result = build_packet(
                 capture,
                 ledger=Ledger(args.ledger) if args.ledger else None,
@@ -333,6 +340,9 @@ def main(argv=None):
                 model=load_bundle(args.model),
                 goals=GoalInputs.model_validate(read(args.goals)) if args.goals else None,
                 bottom_box=args.bottom_box,
+                packs=args.reader_pack,
+                research=args.research_readers,
+                reader_cache=args.reader_vector_cache,
             )
             write(args.out, result)
             result = {"packet": args.out, "hypotheses": len(result["hypotheses"])}

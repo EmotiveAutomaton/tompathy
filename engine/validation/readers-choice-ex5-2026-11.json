@@ -1,0 +1,292 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "c62ba9ecde5666408adbc25f59657b1bb2da63169aca2e2fb7d35eb293abc08b",
+  "launcherPin": "6219ad021c7232680f7c92f03eb47a87ccdf4aaf3785371b15698c690d497e5a",
+  "ledger": "no ledger row",
+  "card": "TP7",
+  "status": "complete",
+  "productionAdmission": false,
+  "scope": "Public accepted-answer choice; not values or endorsement",
+  "sourcePin": "84c707d9a24c77e73bba98dfa453e78891bb29a905ef28eef6a22c0aa95e98ea",
+  "protocol": {
+    "task": "TP7-E1",
+    "dataPin": "6871166ca527920fbcb35f8c3a70d54122455fc2ac15c25f12a63478d10ebc4d",
+    "codePin": "314280f0af3b8d2acd0fa7e45968bfa28cc87d3947f1c053c05b49fa1c4a88a2",
+    "reader": {
+      "id": "Qwen/Qwen2.5-0.5B",
+      "revision": "060db6499f32faf8b98477b0a26969ef7d8b9987",
+      "sha256": "7612cbcd48959ed57557d659d6aa3961a8c9e210fd9e4c76f7a8923c1b6a2e8f",
+      "backend": "torch 2.9.1+cpu; transformers 4.57.6; CPU float32, 2 threads"
+    }
+  },
+  "rows": {
+    "status": "complete",
+    "questions": 2000,
+    "sites": 5,
+    "rows": {
+      "B0": {
+        "top1": {
+          "mean": 0.6905,
+          "interval": [
+            0.67,
+            0.7115
+          ]
+        },
+        "reciprocalRank": {
+          "mean": 0.8247374999999999,
+          "interval": [
+            0.8130536458333333,
+            0.8367125
+          ]
+        }
+      },
+      "B1": {
+        "top1": {
+          "mean": 0.3785,
+          "interval": [
+            0.358,
+            0.401
+          ]
+        },
+        "reciprocalRank": {
+          "mean": 0.621939880952381,
+          "interval": [
+            0.6088325744047619,
+            0.6356336458333335
+          ]
+        }
+      },
+      "B2": {
+        "top1": {
+          "mean": 0.4205,
+          "interval": [
+            0.3995,
+            0.442
+          ]
+        },
+        "reciprocalRank": {
+          "mean": 0.6396720238095238,
+          "interval": [
+            0.6262633184523809,
+            0.6536023214285714
+          ]
+        }
+      },
+      "B3": {
+        "top1": {
+          "mean": 0.381,
+          "interval": [
+            0.36048749999999996,
+            0.402
+          ]
+        },
+        "reciprocalRank": {
+          "mean": 0.617167261904762,
+          "interval": [
+            0.6032708035714286,
+            0.6306503273809525
+          ]
+        }
+      },
+      "B4": {
+        "top1": {
+          "mean": 0.379,
+          "interval": [
+            0.35798749999999996,
+            0.4
+          ]
+        },
+        "reciprocalRank": {
+          "mean": 0.6154309523809525,
+          "interval": [
+            0.6018737351190476,
+            0.6289918898809524
+          ]
+        }
+      },
+      "B5": {
+        "top1": {
+          "mean": 0.3725,
+          "interval": [
+            0.352,
+            0.3935
+          ]
+        },
+        "reciprocalRank": {
+          "mean": 0.6112107142857143,
+          "interval": [
+            0.5977684821428572,
+            0.6248186904761905
+          ]
+        }
+      },
+      "E1": {
+        "top1": {
+          "mean": 0.361,
+          "interval": [
+            0.3409875,
+            0.3825
+          ]
+        },
+        "reciprocalRank": {
+          "mean": 0.6038714285714285,
+          "interval": [
+            0.5902889285714286,
+            0.6175226339285714
+          ]
+        }
+      }
+    },
+    "primary": {
+      "gain": -0.020000000000000018,
+      "bestRarityBaseline": "B3",
+      "interval": [
+        -0.03701250000000003,
+        -0.0050000000000000044
+      ],
+      "bar": 0.02,
+      "clearsBar": false,
+      "uncertainty": "paired question bootstrap within site; best rarity baseline reselected in each draw"
+    },
+    "B0": "descriptive only; acceptance can raise final answer scores",
+    "productionAdmission": false,
+    "scope": "accepted-answer choice; not set points or values"
+  },
+  "acceptedNotTopScore": {
+    "status": "complete",
+    "questions": 497,
+    "sites": 5,
+    "rows": {
+      "B0": {
+        "top1": {
+          "mean": 0.0,
+          "interval": [
+            0.0,
+            0.0
+          ]
+        },
+        "reciprocalRank": {
+          "mean": 0.4254359490274983,
+          "interval": [
+            0.4167169684775318,
+            0.43423918511066395
+          ]
+        }
+      },
+      "B1": {
+        "top1": {
+          "mean": 0.19919517102615694,
+          "interval": [
+            0.16297786720321933,
+            0.23541247484909456
+          ]
+        },
+        "reciprocalRank": {
+          "mean": 0.48375730573919706,
+          "interval": [
+            0.4596115382772827,
+            0.5069966225926991
+          ]
+        }
+      },
+      "B2": {
+        "top1": {
+          "mean": 0.4104627766599598,
+          "interval": [
+            0.36619718309859156,
+            0.45271629778672035
+          ]
+        },
+        "reciprocalRank": {
+          "mean": 0.6332878221711219,
+          "interval": [
+            0.6040640270192584,
+            0.6612229328351059
+          ]
+        }
+      },
+      "B3": {
+        "top1": {
+          "mean": 0.3762575452716298,
+          "interval": [
+            0.33400402414486924,
+            0.41851106639839036
+          ]
+        },
+        "reciprocalRank": {
+          "mean": 0.611121490849861,
+          "interval": [
+            0.5822557966848712,
+            0.6379284636389768
+          ]
+        }
+      },
+      "B4": {
+        "top1": {
+          "mean": 0.3641851106639839,
+          "interval": [
+            0.32193158953722334,
+            0.40643863179074446
+          ]
+        },
+        "reciprocalRank": {
+          "mean": 0.6015138449746095,
+          "interval": [
+            0.5744860831656606,
+            0.6285462177828878
+          ]
+        }
+      },
+      "B5": {
+        "top1": {
+          "mean": 0.34808853118712274,
+          "interval": [
+            0.3058350100603622,
+            0.386317907444668
+          ]
+        },
+        "reciprocalRank": {
+          "mean": 0.5892881096100412,
+          "interval": [
+            0.5606930272108843,
+            0.6155973938871322
+          ]
+        }
+      },
+      "E1": {
+        "top1": {
+          "mean": 0.3420523138832998,
+          "interval": [
+            0.29979879275653926,
+            0.38028169014084506
+          ]
+        },
+        "reciprocalRank": {
+          "mean": 0.5828830123598736,
+          "interval": [
+            0.5529040313308422,
+            0.6092676894701543
+          ]
+        }
+      }
+    },
+    "primary": {
+      "gain": -0.03420523138832998,
+      "bestRarityBaseline": "B3",
+      "interval": [
+        -0.0663983903420523,
+        -0.006036217303822922
+      ],
+      "bar": 0.02,
+      "clearsBar": false,
+      "uncertainty": "paired question bootstrap within site; best rarity baseline reselected in each draw"
+    },
+    "B0": "descriptive only; acceptance can raise final answer scores",
+    "productionAdmission": false,
+    "scope": "accepted-answer choice; not set points or values"
+  },
+  "sourceSelection": "400 questions per site, source-export verified non-self accepted choice; no owner IDs received",
+  "E2": "unrun; local generative reading is outside this week",
+  "license": "Source CC BY-SA 3.0 notice; public attribution URLs retained in private source file",
+  "sourceReceiptPin": "9338d0ffa9386236c2f20a9fc283ccb908d776b64b5ec2dcfc48adc5a23244e2"
+}

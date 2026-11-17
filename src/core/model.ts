@@ -421,6 +421,7 @@ const BasePacketSchema = z
     }),
     goalHierarchy: z
       .object({
+        status: z.literal("unscored").optional(),
         orderUncertainGroups: z
           .array(
             z.object({

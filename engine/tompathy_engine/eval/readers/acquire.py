@@ -9,6 +9,7 @@ from ...packs.registry import sha256
 MODELS = {
     'potion': ('minishlab/potion-base-8M', 'mit'),
     'minilm': ('sentence-transformers/all-MiniLM-L6-v2', 'apache-2.0'),
+    'base': ('sentence-transformers/all-mpnet-base-v2', 'apache-2.0'),
     'smol135': ('HuggingFaceTB/SmolLM2-135M', 'apache-2.0'),
     'achievement': ('theharmonylab/implicit-motives-achievement-roberta-large', None),
     'affiliation': ('theharmonylab/implicit-motives-affiliation-roberta-large', None),

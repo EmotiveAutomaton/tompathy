@@ -1,0 +1,579 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "44cff18c3990a27ba39e170f5e9c19963a5c9736e2ea501f6072de690aa31cb9",
+  "launcherPin": "ab303d370e9e76648d5c7ef80efcc3562cfb3d78e9795769e110c1c8d740a32b",
+  "ledger": "no ledger row",
+  "card": "TP15",
+  "status": "complete",
+  "productionAdmission": false,
+  "scope": "Writer self-report prediction; text-level benchmark, not maker estimates",
+  "source": {
+    "intakePin": "fb3bbc86fa6a1d4b750bc79a9749f6e7d930b5259887ba0913931807d13ee294",
+    "license": "cc-by-4.0",
+    "research_only": false,
+    "counts": {
+      "rows": 1860,
+      "fields": [
+        "message_id",
+        "response_id",
+        "article_id",
+        "empathy",
+        "distress",
+        "empathy_bin",
+        "distress_bin",
+        "essay"
+      ]
+    }
+  },
+  "n": 1860,
+  "writers": 372,
+  "rows": {
+    "constant": {
+      "n": 1860,
+      "writers": 372,
+      "interval_method": "1000 whole-writer resamples of fixed held-out predictions",
+      "targets": {
+        "concern": {
+          "correlation": -0.046841207798571975,
+          "r2": -0.0012325105146295812,
+          "rmse": 1.8260396432012638,
+          "r2_interval": [
+            -0.009592882357364135,
+            0.00010221793405164578
+          ],
+          "rmse_interval": [
+            1.765718072688856,
+            1.891096603636057
+          ],
+          "undefined_correlation_resamples": 0,
+          "undefined_r2_resamples": 0,
+          "correlation_interval": [
+            -0.1296065235524512,
+            0.03499032718123575
+          ]
+        },
+        "distress": {
+          "correlation": -0.07858731906659855,
+          "r2": -0.003487495309762334,
+          "rmse": 1.8943027308578329,
+          "r2_interval": [
+            -0.012536805226913727,
+            -0.0007411682338271903
+          ],
+          "rmse_interval": [
+            1.829241272910675,
+            1.9530277688806756
+          ],
+          "undefined_correlation_resamples": 0,
+          "undefined_r2_resamples": 0,
+          "correlation_interval": [
+            -0.15441914806419654,
+            0.0044054474377545495
+          ]
+        }
+      },
+      "primary": false,
+      "stretch": false,
+      "concern_given_distress": -0.02855901517870395
+    },
+    "bow": {
+      "n": 1860,
+      "writers": 372,
+      "interval_method": "1000 whole-writer resamples of fixed held-out predictions",
+      "targets": {
+        "concern": {
+          "correlation": 0.35717568599338545,
+          "r2": 0.10314395892757078,
+          "rmse": 1.7282401855303409,
+          "r2_interval": [
+            0.08242177792174582,
+            0.11870335713127587
+          ],
+          "rmse_interval": [
+            1.6672656083814703,
+            1.7927355226288537
+          ],
+          "undefined_correlation_resamples": 0,
+          "undefined_r2_resamples": 0,
+          "correlation_interval": [
+            0.31242765396532596,
+            0.39666778836114397
+          ]
+        },
+        "distress": {
+          "correlation": 0.3732736488641095,
+          "r2": 0.11162398370530802,
+          "rmse": 1.7823451778680266,
+          "r2_interval": [
+            0.08987132663213682,
+            0.13041451943460183
+          ],
+          "rmse_interval": [
+            1.717016274924901,
+            1.8421219455439632
+          ],
+          "undefined_correlation_resamples": 0,
+          "undefined_r2_resamples": 0,
+          "correlation_interval": [
+            0.3255145815633739,
+            0.42020305183795814
+          ]
+        }
+      },
+      "primary": false,
+      "stretch": false,
+      "concern_given_distress": 0.2822192003403091
+    },
+    "potion": {
+      "n": 1860,
+      "writers": 372,
+      "interval_method": "1000 whole-writer resamples of fixed held-out predictions",
+      "targets": {
+        "concern": {
+          "correlation": 0.35232385638226565,
+          "r2": 0.12322613587039666,
+          "rmse": 1.7087814784535487,
+          "r2_interval": [
+            0.08870613744479253,
+            0.15307638186670927
+          ],
+          "rmse_interval": [
+            1.6480838327276286,
+            1.7745080938699647
+          ],
+          "undefined_correlation_resamples": 0,
+          "undefined_r2_resamples": 0,
+          "correlation_interval": [
+            0.311981867323705,
+            0.39229897687467286
+          ]
+        },
+        "distress": {
+          "correlation": 0.3747268931292626,
+          "r2": 0.14031857457359143,
+          "rmse": 1.753323987532599,
+          "r2_interval": [
+            0.10782841675821819,
+            0.1740918100713182
+          ],
+          "rmse_interval": [
+            1.6913552037079427,
+            1.811670430378717
+          ],
+          "undefined_correlation_resamples": 0,
+          "undefined_r2_resamples": 0,
+          "correlation_interval": [
+            0.33416212692540054,
+            0.4197679276589485
+          ]
+        }
+      },
+      "primary": false,
+      "stretch": false,
+      "concern_given_distress": 0.28346834657014847
+    },
+    "minilm": {
+      "n": 1860,
+      "writers": 372,
+      "interval_method": "1000 whole-writer resamples of fixed held-out predictions",
+      "targets": {
+        "concern": {
+          "correlation": 0.3272986107716796,
+          "r2": 0.10366229089294876,
+          "rmse": 1.727740700909001,
+          "r2_interval": [
+            0.07167040766806584,
+            0.1299048364584685
+          ],
+          "rmse_interval": [
+            1.6682635029680992,
+            1.7930560093291126
+          ],
+          "undefined_correlation_resamples": 0,
+          "undefined_r2_resamples": 0,
+          "correlation_interval": [
+            0.2896677540048327,
+            0.3626104093504583
+          ]
+        },
+        "distress": {
+          "correlation": 0.3285464688804748,
+          "r2": 0.10573866232025586,
+          "rmse": 1.7882392803011178,
+          "r2_interval": [
+            0.07160972890808609,
+            0.13755903399094951
+          ],
+          "rmse_interval": [
+            1.7276537201711293,
+            1.8456924069590515
+          ],
+          "undefined_correlation_resamples": 0,
+          "undefined_r2_resamples": 0,
+          "correlation_interval": [
+            0.28510050878631826,
+            0.37386311114112136
+          ]
+        }
+      },
+      "primary": false,
+      "stretch": false,
+      "concern_given_distress": 0.2957961091269262
+    },
+    "fine_tuned": {
+      "n": 1860,
+      "writers": 372,
+      "interval_method": "1000 whole-writer resamples of fixed held-out predictions",
+      "targets": {
+        "concern": {
+          "correlation": 0.3875066001407636,
+          "r2": 0.148060437391198,
+          "rmse": 1.684407333812486,
+          "r2_interval": [
+            0.11016657178942663,
+            0.1813442186266179
+          ],
+          "rmse_interval": [
+            1.6247685148832272,
+            1.7495471852446889
+          ],
+          "undefined_correlation_resamples": 0,
+          "undefined_r2_resamples": 0,
+          "correlation_interval": [
+            0.34464506120442073,
+            0.42899707694022393
+          ]
+        },
+        "distress": {
+          "correlation": 0.37906774993479564,
+          "r2": 0.14346353985351434,
+          "rmse": 1.7501139638927867,
+          "r2_interval": [
+            0.10321550936589288,
+            0.17988017955989025
+          ],
+          "rmse_interval": [
+            1.6853393728193122,
+            1.813544453663937
+          ],
+          "undefined_correlation_resamples": 0,
+          "undefined_r2_resamples": 0,
+          "correlation_interval": [
+            0.3285275258053664,
+            0.4275198458422619
+          ]
+        }
+      },
+      "primary": false,
+      "stretch": false,
+      "concern_given_distress": 0.31273739766063813
+    }
+  },
+  "protocol": {
+    "folds": "GroupKFold(5), writers disjoint; each source response_id is one empathy writer",
+    "head": "Ridge alpha=3; BOW word 1-2 grams, min_df=2, sublinear TF",
+    "fine_tuned": "Original pretrained MiniLM, fresh regression head; 3 epochs, writer dev tenth per fold, dev RMSE selection",
+    "training": "batch16; encoderLR2e-5, headLR1e-3; AdamW .01; clip1; seed23; fold-local target scaling; cap128",
+    "long_text_limit": "First 128 model tokens for embedding/regression rows; BOW uses whole text"
+  },
+  "external_references": {
+    "human": "No human-reader score supplied for these sets",
+    "primary": ".40 correlation on both targets",
+    "stretch": ".54 correlation on both targets"
+  },
+  "encoders": {
+    "potion": {
+      "source": "https://huggingface.co/minishlab/potion-base-8M",
+      "id": "minishlab/potion-base-8M",
+      "revision": "bf8b056651a2c21b8d2565580b8569da283cab23",
+      "license_as_read": "mit",
+      "research_only": false,
+      "files": {
+        "config.json": "2a6ac0e9aaa356a68a5688070db78fc3a464fefe85d2f06a1905ce3718687553",
+        "model.safetensors": "f65d0f325faadc1e121c319e2faa41170d3fa07d8c89abd48ca5358d9a223de2",
+        "modules.json": "a68dcbed0429dcdd5bfdca92b0b03cc30d09122c0a3fcf4758787d4b244e45b2",
+        "README.md": "de8ec91bf63c5f4c0e20751c227b2d049953e1cab5f8d5d44211c59a44795bdd",
+        "special_tokens_map.json": "a9e8fb6f99fb0b8803f0e6942fdf4d95d6645204620b67dc3310a1024bcbac59",
+        "tokenizer.json": "e67e803f624fb4d67dea1c730d06e1067e1b14d830e2c2202569e3ef0f70bb50",
+        "tokenizer_config.json": "6725995e3ab3039857ff5bd99178a7cdf42863abb04449e7bb31feb1f55fe567",
+        "vocab.txt": "1394523a67ddd404a825428018c0582a6998bcfa044ecbcbf1f4d71adb94c61c"
+      },
+      "at": "2026-11-15T10:14:04.241051+00:00",
+      "token_cap": 128,
+      "device": "cpu",
+      "threads": 2,
+      "versions": {
+        "torch": "2.9.1+cpu",
+        "transformers": "4.57.6",
+        "model2vec": "0.6.0",
+        "sentence-transformers": "5.1.2",
+        "numpy": "2.5.4"
+      },
+      "embeddingCacheSha256": "c843f1dafb7dec1b3aeb3eb8ff6825fabd1d4df14af4b439c05353f0b155f6ae"
+    },
+    "minilm": {
+      "source": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
+      "id": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "license_as_read": "apache-2.0",
+      "research_only": false,
+      "files": {
+        "config.json": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+        "config_sentence_transformers.json": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+        "data_config.json": "32edcb108fc2516b920734a862ae0692bcae1c5d45d5f8d972cb0d53434a4c54",
+        "model.safetensors": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+        "modules.json": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+        "README.md": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+        "sentence_bert_config.json": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+        "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+        "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+        "tokenizer_config.json": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+        "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+        "1_Pooling/config.json": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23"
+      },
+      "at": "2026-11-15T10:14:13.259141+00:00",
+      "token_cap": 128,
+      "device": "cpu",
+      "threads": 2,
+      "versions": {
+        "torch": "2.9.1+cpu",
+        "transformers": "4.57.6",
+        "model2vec": "0.6.0",
+        "sentence-transformers": "5.1.2",
+        "numpy": "2.5.4"
+      },
+      "embeddingCacheSha256": "b813ab7468b6599acb80b80b307702445e1d332f28981e67b6c833a9ddc3158a"
+    }
+  },
+  "fine_tuned_folds": [
+    {
+      "fit": 1340,
+      "development": 145,
+      "test": 375,
+      "selected_epoch": 3,
+      "epochs": [
+        {
+          "epoch": 1,
+          "development_rmse": 1.6621609783505968
+        },
+        {
+          "epoch": 2,
+          "development_rmse": 1.5927562796966968
+        },
+        {
+          "epoch": 3,
+          "development_rmse": 1.5860237780454445
+        }
+      ],
+      "token_cap": 128
+    },
+    {
+      "fit": 1340,
+      "development": 145,
+      "test": 375,
+      "selected_epoch": 2,
+      "epochs": [
+        {
+          "epoch": 1,
+          "development_rmse": 1.5983361864718522
+        },
+        {
+          "epoch": 2,
+          "development_rmse": 1.5826352549035125
+        },
+        {
+          "epoch": 3,
+          "development_rmse": 1.5848299328322681
+        }
+      ],
+      "token_cap": 128
+    },
+    {
+      "fit": 1345,
+      "development": 145,
+      "test": 370,
+      "selected_epoch": 2,
+      "epochs": [
+        {
+          "epoch": 1,
+          "development_rmse": 1.5239852294709542
+        },
+        {
+          "epoch": 2,
+          "development_rmse": 1.4983643069409367
+        },
+        {
+          "epoch": 3,
+          "development_rmse": 1.5131446961292847
+        }
+      ],
+      "token_cap": 128
+    },
+    {
+      "fit": 1345,
+      "development": 145,
+      "test": 370,
+      "selected_epoch": 2,
+      "epochs": [
+        {
+          "epoch": 1,
+          "development_rmse": 1.6497089879737312
+        },
+        {
+          "epoch": 2,
+          "development_rmse": 1.6016114429106265
+        },
+        {
+          "epoch": 3,
+          "development_rmse": 1.6473475686008083
+        }
+      ],
+      "token_cap": 128
+    },
+    {
+      "fit": 1345,
+      "development": 145,
+      "test": 370,
+      "selected_epoch": 2,
+      "epochs": [
+        {
+          "epoch": 1,
+          "development_rmse": 1.5851391398643744
+        },
+        {
+          "epoch": 2,
+          "development_rmse": 1.565915837997975
+        },
+        {
+          "epoch": 3,
+          "development_rmse": 1.6590221705626442
+        }
+      ],
+      "token_cap": 128
+    }
+  ],
+  "continuation": {
+    "kind": "saved-descriptive-head-heartbeat-repair",
+    "sourceReceiptPin": "47378b7c9342722c42a7c662dfd42b3f72d9ec44a4daafb7779a66166a387d40",
+    "failurePin": "9e09689e87ed33bb0133bf105fb74166fe25cbd714f37aed29df4f14f334c1f6",
+    "exitVerificationPin": "b74ddb4e8349903035a91db5d3b727f14b11d17b81ece6a464eae166e88416e0",
+    "preservationPin": "3d8b31e31d2fbde3b2b10a22fb63dd2b9481daa0b4218a75fbb0e12ac8d391b2",
+    "forecastPin": "db8228cf2bd96962e460f636349991178dac043034f82dd64df4fa3741c53ee6",
+    "copiedArtifactCount": 15,
+    "completedHeldOutInferenceRepeated": false,
+    "completedTrainingRepeated": false,
+    "unsavedDescriptiveScoringRestarted": true,
+    "limitation": "Original in-memory group forecasts were not durable; their count is unknown.",
+    "groupInputProofPin": "e6b6f9cc9c34495f70632d297b253a4f40bfca5e1112fb4fcf1c302260facc2e",
+    "groupSourcePins": {
+      "ed": "dbc8e8faec17897f67b3cef9f26a031786bcc8c78f709475e5f8103f47a3e8ec",
+      "go": "7d521e3a7e83ac940cc1f2d94be4c175f65a28389e35a253a34ff33bb0d15f5f"
+    }
+  },
+  "second_check": {
+    "head": {
+      "fit": 1860,
+      "development": 0,
+      "test": 0,
+      "selected_epoch": 3,
+      "epochs": [
+        {
+          "epoch": 1,
+          "development_rmse": null
+        },
+        {
+          "epoch": 2,
+          "development_rmse": null
+        },
+        {
+          "epoch": 3,
+          "development_rmse": null
+        }
+      ],
+      "token_cap": 128
+    },
+    "groups": {
+      "ed": {
+        "caring_n": 683,
+        "other_n": 24167,
+        "targets": [
+          "concern",
+          "distress"
+        ],
+        "caring_mean": [
+          4.215438365936279,
+          3.350398302078247
+        ],
+        "other_mean": [
+          3.5032899379730225,
+          3.0720012187957764
+        ],
+        "difference": [
+          0.7121484279632568,
+          0.2783970832824707
+        ],
+        "source": {
+          "intakePin": "dbc8e8faec17897f67b3cef9f26a031786bcc8c78f709475e5f8103f47a3e8ec",
+          "license": "cc-by-nc-4.0",
+          "research_only": true,
+          "counts": {
+            "train": {
+              "utterances": 84169,
+              "situations": 19533,
+              "firstUtterances": 19533,
+              "labels": 32
+            },
+            "valid": {
+              "utterances": 12078,
+              "situations": 2770,
+              "firstUtterances": 2770,
+              "labels": 32
+            },
+            "test": {
+              "utterances": 10973,
+              "situations": 2547,
+              "firstUtterances": 2547,
+              "labels": 32
+            }
+          }
+        },
+        "bar": null
+      },
+      "go": {
+        "caring_n": 1375,
+        "other_n": 52888,
+        "targets": [
+          "concern",
+          "distress"
+        ],
+        "caring_mean": [
+          3.2991371154785156,
+          3.0743160247802734
+        ],
+        "other_mean": [
+          3.040458917617798,
+          2.8742403984069824
+        ],
+        "difference": [
+          0.2586781978607178,
+          0.20007562637329102
+        ],
+        "source": {
+          "intakePin": "7d521e3a7e83ac940cc1f2d94be4c175f65a28389e35a253a34ff33bb0d15f5f",
+          "license": "apache-2.0",
+          "research_only": false,
+          "counts": {
+            "individual_judgments": 211225,
+            "unique_comments": 58011
+          },
+          "published_labelled": 54263,
+          "writer_unknown": 1063,
+          "raw_unlabelled_policy": "Features can be read for every raw comment; label-group tests use released consensus labels only"
+        },
+        "bar": null
+      }
+    },
+    "interpretation": "Analyst proposal; model group contrast is not an independent concern answer key"
+  },
+  "sourceReceiptPin": "3d41bb3ec3c5b0d19be22b389d81d716cc45a585347e8dfe2c2926bcea55d01d"
+}

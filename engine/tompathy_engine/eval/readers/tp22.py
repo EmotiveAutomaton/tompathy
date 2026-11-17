@@ -2,6 +2,7 @@
 import hashlib
 import heapq
 import html
+import json
 import re
 import zipfile
 from collections import defaultdict
@@ -106,16 +107,16 @@ def stability(parts,labels,draws=2000):
     return result
 
 
-def run(root,reader_job,counting_job,models,output,check):
+def run(root,reader_job,counting_job,models,output,check,*,gate_job=None):
     root,output=Path(root),Path(output)
     data=verify(root)
-    counted=completed(counting_job,'TP12-L3')
+    counted=completed(counting_job,'TP12-gated' if gate_job else 'TP12-L3')
     model=completed(reader_job,'TP10-L3')
     if counted['ladderReceiptPin']!=sha256(Path(reader_job)/'receipt.json'):
         raise ValueError('Counting policy and reader differ')
     policy=counted['policies']['minilm-tuned']
     calibration=qualify()
-    report={'card':'TP22','status':'running','productionAdmission':False,'ledger':'no ledger row',
+    report={'card':'TP22-gated' if gate_job else 'TP22','status':'running','productionAdmission':False,'ledger':'no ledger row',
         'scope':'Research-only Blog Authorship Corpus; maker tier remains closed; no age or sex fields read',
         'source':data,'readerReceiptPin':sha256(Path(reader_job)/'receipt.json'),
         'countingReceiptPin':sha256(Path(counting_job)/'receipt.json'),'policy':policy,
@@ -133,6 +134,26 @@ def run(root,reader_job,counting_job,models,output,check):
         report.update(status='blocked',reason='No qualified selected-head counting policy' if policy['status']!='complete' else 'Constructed estimator qualification failed')
         save_json(output/'receipt.json',report)
         return
+    gate_predict = None
+    if gate_job:
+        from .artifacts import verified
+        from .encoders import load_encoder
+        gate, _ = verified(gate_job, 'TP25', check)
+        if not gate.get('qualifies') or policy.get('gateReceiptPin') != sha256(Path(gate_job)/'receipt.json'):
+            raise ValueError('TP22 counting and gate sources differ')
+        if sha256(Path(counting_job)/'gated-error-table.json') != counted['gatedErrorTablePin'] or policy['gatedErrorTablePin'] != counted['gatedErrorTablePin']:
+            raise ValueError('TP22 gated calibration bytes changed')
+        gate_encode, gate_identity = load_encoder(Path(models)/'minilm', 'minilm', cap=128)
+        with np.load(Path(gate_job)/'head.npz', allow_pickle=False) as d:
+            gate_w, gate_b = d['weights'], d['bias']
+        def gate_predict(texts):
+            values = []
+            for start in range(0, len(texts), 16):
+                check()
+                values.extend((gate_encode(texts[start:start+16])@gate_w.T+gate_b)[:, 0])
+            return 1/(1+np.exp(-np.clip(values, -700, 700))) >= gate['final_threshold']
+        report['gate'] = {'sourceReceiptPin': sha256(Path(gate_job)/'receipt.json'), 'encoder': gate_identity,
+                          'scope': 'New gate-conditioned stability; old TP22 prerequisite block unchanged'}
     save_json(output/'receipt.json',report)
     candidates=[];excluded=0;eligible_writers=0
     with zipfile.ZipFile(root/'blogs.zip') as archive:
@@ -170,13 +191,22 @@ def run(root,reader_job,counting_job,models,output,check):
     labels=model['rows'][str(model['selected_seed'])]['labels']
     neutral=labels.index('no-emotion'); emotion=[i for i in range(len(labels)) if i!=neutral]
     table=error_table(model['rows'][str(model['selected_seed'])]['development_error_counts'])
+    if gate_job:
+        error = json.loads((Path(counting_job)/'gated-error-table.json').read_text(encoding='utf8'))
+        if error['labels'] != labels:
+            raise ValueError('Gated counting labels differ')
+        table = error_table(np.asarray(error['counts']), error['smoothing'])
     counts=np.zeros((len(records),len(labels)),int)
     for i,row in enumerate(records):
         check()
         sentences=[m.group().strip() for m in SENTENCE.finditer(row['text']) if m.group().strip()]
         if sentences:
             p,_=predict(sentences,check)
-            counts[i]=np.bincount(p.argmax(axis=1),minlength=len(labels))
+            predicted = p.argmax(axis=1)
+            if gate_predict:
+                predicted[~gate_predict(sentences)] = neutral
+            counts[i]=np.bincount(predicted,minlength=len(labels))
+        save_json(output/'post-counts'/f'{i:07d}.json', {'index': i, 'counts': counts[i].tolist(), 'cluster': int(cluster[i])})
         if (i+1)%100==0 or i+1==len(records):
             np.savez(output/'sentence-counts-partial.npz',counts=counts[:i+1],clusters=cluster[:i+1])
             save_json(output/'progress.json',{'posts':i+1,'total':len(records)})

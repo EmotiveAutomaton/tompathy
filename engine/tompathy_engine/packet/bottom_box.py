@@ -75,12 +75,18 @@ class ReadingEvent(Model):
     stake: Stake | None = None
     who: Literal['writer', 'other', 'unclear'] = 'unclear'
     words: list[tuple[int, int]] = Field(default_factory=list, max_length=200)
+    channel_by_table: dict[str, str] | None = None
 
     @model_validator(mode='after')
     def spans(self):
         a, b = self.span
         if not 0 <= a < b or any(not a <= x < y <= b for x, y in self.words):
             raise ValueError('Invalid event or attribution span')
+        if self.channel_by_table is not None and (
+                set(self.channel_by_table) != {'channel', 'version'}
+                or self.channel_by_table['channel'] not in ('C2', 'C3', 'C6', 'C8', 'C9')
+                or not self.channel_by_table['version']):
+            raise ValueError('Invalid trigger-table channel')
         return self
 
 
@@ -127,7 +133,7 @@ class PageReading(Model):
     floor: dict[str, float]
     nothing_here: dict[str, Unit | None]
     mapping: Mapping
-    status: Literal['benchmarked']
+    status: Literal['benchmarked', 'research']
 
 
 class MarketplaceTile(Model):
@@ -151,6 +157,35 @@ class BottomBoxV1(Model):
         if len({t.id for t in self.marketplace}) != len(self.marketplace):
             raise ValueError('Duplicate marketplace tile')
         return self
+
+
+class BottomBoxV2(Model):
+    version: Literal['bottom-box-2']
+    on_page: list['PageReadingV2'] = Field(max_length=100)
+    about_maker: list[dict] = Field(max_length=0)
+    toolbox: list[MarketplaceTile] = Field(max_length=100)
+
+    @model_validator(mode='after')
+    def unique(self):
+        keys = [(r.id, r.pack) for r in self.on_page]
+        if len(keys) != len(set(keys)) or len({t.id for t in self.toolbox}) != len(self.toolbox):
+            raise ValueError('Duplicate reading or toolbox tile')
+        return self
+
+
+class PageReadingV2(PageReading):
+    # Owner ruling: labels without a theory home stay inspectable, unassigned.
+    id: ReadingId | None
+
+    @model_validator(mode='after')
+    def label_only(self):
+        if self.id is None and (self.status != 'research' or self.share is not None
+                or self.series or any(e.stake is not None for e in self.events)):
+            raise ValueError('Unmapped research labels cannot imply a level or stake')
+        return self
+
+
+BottomBoxV2.model_rebuild()
 
 
 def empty_bottom_box():

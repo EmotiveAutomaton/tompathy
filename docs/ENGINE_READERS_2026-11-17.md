@@ -701,6 +701,265 @@ ED/Go group scoring remain, with no measured whole-card completion estimate.
 The next checkpoint is 16:30 Pacific. The completed held-out rows are recorded
 now; final aggregate landing still awaits terminal state and verified release.
 
+The 16:30 checkpoint found that TP15-a had stopped at 16:23:40 on Windows
+`PermissionError` replacing `heartbeat.tmp` with `heartbeat.json`. The last
+recorded commit headroom was 20.14 GiB, with no observed memory-floor stop.
+The locking cause is unknown; native exit and exact shared/local releases were
+verified at 16:31:34. The original source receipt, failure, 171-file snapshot,
+all held-out forecasts and completed three-epoch descriptive head remain intact.
+The preservation audit binds 269 saved files. Descriptive group forecasts had
+only existed in memory; their completed count and corpus boundary are unknown.
+They were not recovered, and no complete group result was claimed.
+
+The bounded engineering repair retries only Windows replacement errors 5/32/33
+up to five times after the first failure, with exponential waits totaling at
+most 1.55 seconds. Each attempt rechecks the unchanged resource floor, STOP and
+deadline. Persistent or other errors still stop the job. A TP15-specific
+continuation validates the original exit, failure, snapshot, source, packages,
+model bytes and saved forecasts, then independently copies the completed head
+and forecasts. It preserves all held-out rows without refitting or recomputing
+their scientific gates. The same Torch forward calculation is restored from
+the saved state, including exact scaling. The original ED/Go intake pins remain
+required. Each new 16-text descriptive batch is saved privately before the next
+batch; completed group aggregates are also saved as they become available.
+
+The copy-only preflight verified 15 copied artifacts, 103 encoder tensors and
+both head tensors against the original saved state without forward inference.
+All five forecast arrays retain pin
+`db8228cf2bd96962e460f636349991178dac043034f82dd64df4fa3741c53ee6`.
+Twelve targeted cases passed, covering bounded heartbeat retries, STOP/floor
+checks, deadline preservation, batch interruption/reuse, altered-source rejection
+and a mocked full continuation that forbids completed fitting/gate repetition.
+Ruff passed after small test-style corrections. The failed attempt and preflight
+remain preserved; this repair does not revisit the failed primary result.
+
+TP15-b began at 16:38:46 Pacific, the first bounded retry, with the original
+22:55:24 deadline. Admission found 26.66 GiB commit against 19.89 GiB required,
+with two foreign leases left unchanged. Native identity and exact shared/local
+ownership were verified at 16:39:18; all 172 new snapshot files match. At
+16:39:20 the receipt retained all five held-out rows, no terminal/release receipt
+existed, and the 16:38:53 heartbeat showed 36.35 GiB RAM and 26.23 GiB commit.
+The source receipt pin is
+`47378b7c9342722c42a7c662dfd42b3f72d9ec44a4daafb7779a66166a387d40`.
+Only the unsaved descriptive scoring restarts; completed training and held-out
+inference are not repeated. One engineering retry remains. The next checkpoint
+is 17:10 Pacific, with no measured completion ETA for the remaining group scoring.
+
+
+The delivered 17:10 checkpoint found TP15-b complete at 16:52:08 Pacific.
+Host-visible native exit and both exact releases were verified at 17:15:16.
+All 172 snapshot files, 15 copied artifacts and the unchanged held-out forecasts
+match their pins. Both descriptive groups are durable: 1,554 ED batches contain
+24,850 situations (final batch 2); 3,392 Go batches contain 54,263 comments
+(final batch 7). Group completion is also recorded in the final receipt.
+The aggregate source pin is
+`3d41bb3ec3c5b0d19be22b389d81d716cc45a585347e8dfe2c2926bcea55d01d`;
+public pin `9bc60823f42456371cc289f3dc55accb1b0fdfbc4a728318eec26e0a26cb4f7f`.
+
+The descriptive ED caring-minus-other concern/distress differences are
+0.712148/0.278397 (683 caring and 24,167 other situations); Go differences are
+0.258678/0.200076 (1,375 caring and 52,888 other comments). These are predictions
+from the separate full-data head, not an independent concern answer key or a
+replacement for the failed held-out bars. ED remains research-only. No ledger
+row, CARE/maker admission or live default change follows. The original failed
+attempt and its unsaved, unrecovered group scoring remain explicitly documented.
+
+Before TP17 launch, the actual prerequisite check caught the publisher's
+`__label__` delimiters, which the original runner would not find in the head's
+plain label list. The adapter now removes only that exact paired wrapper and
+requires equality with the original ED situation label and membership in both
+saved heads. All 4,613 items agree: 3,775 validation and 838 test situations,
+with no duplicate IDs, training situations or token-alignment exclusions.
+The 14 selected-reader files and both fixed TP13 heads match their original
+pins. Eight targeted label cases and Ruff passed. No inference or scientific
+gate was run during this prelaunch repair; source data and heads are unchanged.
+Prerequisite audit: `.local/readers/tp17-prerequisites-20261115.json`.
+
+
+TP17-a started at 17:19:15 Pacific November 15, with an eight-hour deadline
+at 01:19:13 Pacific November 16. Host-visible startup verification at 17:20:10
+confirmed the native identity and exact shared/local leases; all 172 snapshot
+files match. Admission found 22.12 GiB commit against 19.05 GiB required, with
+two foreign leases unchanged. At 17:20:27 it had saved 251/4,613 situations,
+no alignment exclusions and no aggregate rows yet. Its heartbeat was fresh with
+35.74 GiB RAM/22.51 GiB commit. No terminal/release receipt existed.
+The fixed supplied-label deletion comparison has top-three hit-rate bars of
+0.481 primary and 0.60 stretch. It concerns marked cause words, not motives.
+Next check is 17:50 Pacific; one startup sample establishes no whole-card ETA.
+
+
+The delivered 17:50 checkpoint found TP17-a complete at 17:39:36 Pacific.
+Native exit and exact shared/local release were verified at 17:50:33. All 172
+snapshot files match; all 4,613 private observations are finite and unique, with
+149 writers and no alignment exclusions. Saved hit indicators reproduce each
+aggregate row without forward inference or new bootstrap evaluation. Source pin
+`72a731a62cfd86046d0e511a404368838fb77a737baab0b676e05ce5f5273fee`;
+public pin `10078d3c730f877bf16960f9243fdcee721f3a465d75eace99d2decb9e1aa98d`.
+
+Combined top-one/three/five hit rates are 0.348580/0.637329/0.746152; top-three
+95% writer interval [0.614730, 0.661302], 1,000 whole-writer resamples of fixed
+predictions. BOW top-three is 0.553219, deterministic original-order 0.270323,
+and per-item chance 0.396084. Validation/test top-three rates are 0.602914/0.792363
+with intervals [0.578779, 0.628772]/[0.759101, 0.831934]. Both splits and combined
+clear the declared point-estimate 0.481 primary and 0.60 stretch bars. Chance
+rates vary by split (0.370061/0.513309), so raw split performance is not a paired
+comparison. The endpoint is at least one marked cause word among top k, not
+recall of all marked words or the maker's motives. ED remains research-only;
+no pack, maker admission, live default or ledger row follows.
+
+TP1c preflight verified all eight Smol135 files at revision
+`93efa2f097d58c2a74874c7e644dbc9b0cee75a2`, eight original Smol360 files, all 112
+pinned converter files and llama-cpp-python 0.3.36. The three timing texts and
+original 1,399-session cohort match their saved bindings. An initial audit
+comparison confused file-byte SHA with canonical intake digest; the check was
+corrected to the original canonical session and intake identities, without
+changing any input or protocol. Audit: `.local/readers/tp1c-prerequisites-20261115.json`.
+Its five gates use the smaller model's own float32 reference, with no padding
+waiver; candidate accuracy/speed remain distinct from efficacy and serving.
+The separately preplanned Smol360 Q4 row is timing only.
+
+
+TP1c-a started at 17:52:53 Pacific November 15, with its eight-hour deadline
+at 01:52:51 Pacific November 16. Admission found 25.05 GiB commit against
+19.63 GiB required, with five foreign leases left unchanged. Native identity
+and exact shared/local ownership were verified at 17:53:51; all 172 snapshot
+files match. At 17:54:06 the Q8 conversion was saved and gate a passed: all
+49,152 assigned token IDs and output rows agree, with no padding waiver.
+Its GGUF pin is `7ef4905316f5ab3400a1b70929fd54b634b4d59c5e020d174cc80f8935ed29ab`.
+The heartbeat was fresh with 37.51 GiB RAM/24.27 GiB commit; no terminal/release
+receipt existed. Later numerical gates, own-reference cohort scoring if eligible,
+and the separately preplanned Q4 timing remain. No whole-card ETA is measured.
+Next checkpoint is 18:25 Pacific. This is a new commissioned small-reader study;
+it does not rerun the closed two-day pilots or change their failed gates.
+
+
+The delivered 18:25 checkpoint found TP1c-a complete at 18:04:10 Pacific.
+Native exit and exact shared/local release were verified at 18:25:33. All 172
+snapshot files and both converted-weight pins match. Gate a passes; gate b
+fails the <=0.05 median absolute word-surprisal error criterion on manuscript
+(0.057081) and art (0.053915); excerpt is 0.049763. Spearman correlations are
+0.998276/0.998795/0.999460, above 0.98. Gates c-e, the 1,399-session comparison
+and Smol135 timing never ran. This scientific failure will not be retried.
+Source pin `5816ced9606b73ba0dddd73441858398d56ec7ab456c7e17a96826e7af00513b`;
+public pin `32a3fff5cd5da8cef3f8fdfe20e8e56480e2aa120b9087b19fd98b29649a907a`.
+
+The independently planned Smol360 Q4_K_M timing completed: manuscript 3,044 words
+in 93.213779 seconds, art 6,038 in 222.398572, excerpt 598 in 10.294524. Long-text
+rates are 91.866405/110.499456 seconds per 3,000 words, above 15; the excerpt's
+51.644767 extrapolation is not an actual 3,000-word measurement. Loading is
+excluded. Quantizer output reported 192/290 fallback tensors because 960 columns
+are not divisible by 256. Read-only GGUF inspection confirms F32=65, Q8_0=17,
+Q5_0=176, Q6_K=16 and Q4_K=16, so this is a mixed-type requested Q4_K_M output,
+not a uniformly 4-bit model. Its exact GGUF pin is
+`565282553127d18f962a6699b74b7c33bf01578fcc69c294b16efd989a36b477`.
+No Q4 accuracy, serving admission or live default change follows.
+
+TP22's actual prerequisites retain TP12-L3 status `no-policy-qualified`, prior2,
+minimum null and the exact selected L3 head binding. The queued guarded job ran
+at 18:26:55 and exited at 18:26:59 before reading blog posts or loading a reader.
+Its constructed estimator recovered 0.984576/0.505221/0.007849 for planted
+1/0.5/0; all constructed controls pass. The receipt remains dependency-blocked,
+not completed human science. Native exit and exact releases verified at 18:27:20;
+all 172 snapshot files match. Source pin
+`a86cce05620d396f9c7944eec6dca64161fa45ef26b0226f1a5c1f93604d409b`;
+public pin `8d242df486d7d75f5351d7c559c7ae625d64daa0623b18ec4702f734e3ad8120`.
+No substitute page shares or minimum were used. Four foreign leases were left
+unchanged; admission had 23.75 GiB commit against 14 required.
+
+TP20 prerequisites verify the original 1,030 CaSiNo dialogues and exact selected
+reader's 14 files. The declared first-five-message rule yields 2,052 perspectives
+from 1,026 dialogues and excludes eight short perspectives; 10,260 messages are
+encoded separately in chronological order. Five dialogue-disjoint folds keep
+both perspectives together. Global participant identities are unavailable, so
+this is not a writer-held-out result. Only assigned resource-order targets and
+ordinary messages enter the analysis; private reasons, allocations, outcomes and
+demographic/personality fields are not features. Input pin
+`6b9c202e0b78d97551097ae19075fc9bb93e4a902215e21c7b9aba0749909775`.
+Audit: `.local/readers/tp20-prerequisites-20261115.json`.
+
+
+TP20-a began at 18:28:22 Pacific November 15, with a four-hour deadline at
+22:28:21 Pacific. Admission at 18:28:07 found 24.46 GiB commit against 14 required,
+with four foreign leases unchanged. Host-visible startup at 18:29:31 verified
+native identity and exact shared/local ownership; all 172 frozen files match.
+At 18:29:41 the heartbeat was fresh with 37.38 GiB RAM/23.88 GiB commit.
+No phase, aggregate or terminal/release receipt existed yet, consistent with
+initial message encoding before the aggregate is created. No whole-card ETA is
+established. Next checkpoint is 19:00 Pacific. The exact-order bar is 0.45;
+assigned negotiation priorities cannot establish stable values or endorsement.
+
+
+The delivered 19:00 checkpoint found TP20-a complete at 18:31:24 Pacific.
+Native exit and exact shared/local release were verified at 19:00:43. All 172
+snapshot files match; all three forecast arrays and truth are finite 2,052-by-3,
+and saved exact-order hits reproduce the aggregate without inference or new
+bootstrap evaluation. Forecast pin
+`77b538c7c8b36b11c7f6298c9e882f64fc944fa5f9e911eded79d31a7e89f9cb`.
+Source pin `ce05ace3ffa14515e475fcee8bec9fa2b4ba88e82394a434483f0961f0c053bc`;
+public pin `c53a9b853464e49d604ce70aa036de2880fa8d15569def14bf5fb8619a8e12cd`.
+
+Constant/BOW/reader exact-order accuracies are 0.146199/0.356238/0.310429,
+with 95% whole-dialogue intervals [0.130592, 0.164230]/[0.334795, 0.376706]/
+[0.291423, 0.330446], using 1,000 resamples of fixed forecasts. Top-priority
+accuracies are 0.316277/0.597466/0.604288, a distinct endpoint. All exact-order
+rows miss 0.45; chance is 1/6. Global participant identity remains unavailable,
+so no writer-disjoint, stable-value or maker admission claim follows.
+
+Before the final lexical controls, the prerequisite check found a stale queued
+path: `two-day-prepared/goals.json` does not match the saved baseline's canonical
+data pin. The earlier two-day record explicitly places its corrected section
+spans in `two-day-prepared-v2`; that file matches the baseline pin exactly,
+`dd901f34b399253af97aaa236e15025003222dcb93d8da656c75c49a21a6a1e7`.
+Only section spans differ between preparations. The queue now points to this
+original corrected input, retaining 40 proposals/38 authors and the exact saved
+TF-IDF rows. Neither prepared file was changed; no ranking was run. Audit:
+`.local/readers/tp4-controls-prerequisites-20261115.json`.
+
+At 19:03:43 a single host-visible admission check found RAM/commit 39.69/27.89
+GiB, six counted foreign leases, capacity eight and 22.40 GiB reserved foreign
+headroom. The required small-task headroom is 36.40 GiB, so the final control
+was not launched. The local scoring lock and last owned native process were
+absent; fresh output remains uncreated. No foreign process or lease changed.
+Audit: `.local/readers/admission-20261115-post-tp20.json`. Next admission check
+is 19:45 Pacific, a conservative 45-minute interval; recovery time is unknown.
+
+At the delivered 20:30 checkpoint, admission recovered at 20:30:37 Pacific:
+RAM/commit 38.97/24.07 GiB against 19.05 GiB required, with five foreign leases
+left unchanged. The final TP4-controls job ran from 20:30:59 to 20:31:09 Pacific,
+with the queued one-hour bound, two CPU threads and existing resource guards.
+Host-visible native exit and exact shared/local release were verified at 20:31:28.
+All 172 frozen files match; the saved TF-IDF rows reproduce the original baseline
+exactly. All three private ranking tables contain 40 proposals / 38 authors, and
+their saved ranks reproduce each aggregate point estimate without new inference.
+
+TF-IDF / BM25 / rarity top-one accuracy is 0.6500 / 0.6750 / 0.7250, with 95%
+whole-author intervals [0.4878, 0.8049] / [0.5128, 0.8250] / [0.5853, 0.8537].
+Mean reciprocal rank is 0.729398 / 0.741073 / 0.800026, with intervals
+[0.6014, 0.8496] / [0.6047, 0.8633] / [0.6922, 0.8967]. These use 2,000
+whole-author resamples of fixed rankings. No paired gain test or new efficacy
+bar was evaluated; point differences do not establish a reliable improvement.
+BM25 retains k1=1.2 and b=0.75, candidate-only IDF and raw query frequency.
+Rarity retains the TP7 B5 cosine definition with frequencies from unique pilot
+candidate Motivation texts. Both use the original answer-withheld 12,000-character
+body and candidate-ID tie breaking. No model or 9B service was loaded.
+
+The aggregate `engine/validation/readers-goal-controls-2026-11.json` is bound to
+source receipt `f984653714b401682e8151856a61ea56dda15473460bf523d1406ff42f4d29c2`,
+public pin `88bc50c66d32602fe59ef4e8290577b91ca45fd6ceac49434319664064849070`.
+Audit: `.local/readers/tp4-controls-completion-20261115.json`. No ledger row,
+maker admission, live default change or further push follows.
+
+The bounded readers queue is now closed and its checkpoint was deleted. All 17
+reader aggregates retain verified source-receipt bindings and recorded native
+exit/exact-release audits. Closeout: `.local/readers/readers-closeout-20261115.json`.
+TP14 remains partial and IM1 unrun;
+TP16 B/C and TP22 retain the missing qualified counting policy. Optional L4 did
+not launch; model-labeller expansion and proposed mappings still require owner
+rulings. Failed research gates remain failed, and previously unsaved TP14 power
+scores and TP15 descriptive forecasts were not retroactively recovered. All
+saved attempts, engineering repairs and source pins remain preserved. Closing
+this queue does not claim every proposed study or pack type is complete.
+
 TP22 uses a bounded writer-selection heap, never demographic filename fields.
 Its TR1 adaptation reports true variance before unclipped corrected stability,
 invalidates an interval containing undefined resamples, and has explicit planted
@@ -723,7 +982,8 @@ not a replicated result.
 The Smol135 source is downloaded with Apache 2.0, its revision and every file
 hashed. TP1c reuses the pinned converter, requires the smaller model's own float32
 references, and preserves the existing Qwen route's model requirement. Its Q4
-360M row is timing only. Conversion and numerical/accuracy gates remain unrun.
+360M row is timing only. The completed conversion, gate-b failure and timing
+limits are recorded above; later gates and cohort accuracy remain unrun.
 
 Six new targeted tests passed for strict historical cutoffs, missing own options,
 constructed conditional choice, planted stability, dated post parsing and

@@ -21,6 +21,8 @@ METHODS = ('B0', 'B1', 'B2', 'B3', 'B4', 'B5', 'E1')
 
 def load_choice(directory):
     manifest, pin = verify_export(directory, 'EX5')
+    if manifest.get('schema') is None and manifest.get('complete_export') is True:
+        return load_received_choice(directory, manifest), pin
     if manifest.get('schema') != 'EX5-choice-v1':
         raise ValueError('EX5 actual format needs a reviewed adapter; provisional contract is EX5-choice-v1')
     rows = read(Path(directory)/'QUESTIONS.json')
@@ -41,6 +43,43 @@ def load_choice(directory):
     if len(rows) != 2000 or len({r['site'] for r in rows}) != 5:
         raise ValueError('EX5 requires the frozen 2000-question/five-site cohort')
     return rows, pin
+
+
+def load_received_choice(directory, manifest):
+    """November 15 export: public IDs/order, no private owner identifiers."""
+    directory = Path(directory)
+    raw, selection = read(directory/'QUESTIONS.json'), read(directory/'SELECTION.json')
+    if selection.get('owner_values_never_exported') is not True or not selection.get('original_member_preserved'):
+        raise ValueError('Missing source selection provenance')
+    selected = {(r['site'], r['question_id']) for r in selection['questions']}
+    if len(selected) != 2000 or selected != {(r['site'], r['question_id']) for r in raw}:
+        raise ValueError('EX5 selection mismatch')
+    source_sites = {s['site'] for s in manifest['sources']}
+    if len(source_sites) != 5 or any(sum(r['site'] == s for r in raw) != 400 for s in source_sites):
+        raise ValueError('EX5 fixed per-site census mismatch')
+    rows = []
+    for row in raw:
+        answers = row['answers']
+        accepted = [a for a in answers if a['accepted'] is True]
+        if (not 3 <= len(answers) <= 8 or len(accepted) != 1
+                or len({a['answer_id'] for a in answers}) != len(answers)
+                or not 80 <= len(row['body'].split()) <= 600
+                or not row['attribution_url'].startswith('https://')):
+            raise ValueError('Invalid actual EX5 question')
+        if len({a['posting_order'] for a in answers}) != len(answers):
+            raise ValueError('Ambiguous answer posting order')
+        converted = []
+        for answer in answers:
+            if (not answer['body'].strip() or not math.isfinite(answer['final_score'])
+                    or not answer['attribution_url'].startswith('https://')
+                    or type(answer['posting_order']) is not int):
+                raise ValueError('Invalid actual EX5 answer')
+            converted.append({'id': answer['answer_id'], 'text': answer['body'],
+                              'score': answer['final_score'], 'postingOrder': answer['posting_order']})
+        rows.append({'id': row['site']+':'+row['question_id'], 'site': row['site'],
+                     'question': row['body'], 'answers': converted, 'accepted': accepted[0]['answer_id'],
+                     'attribution': row['attribution_url']})
+    return rows
 
 
 def frequencies(rows):
@@ -75,7 +114,7 @@ def rank_question(row, tokens, frequency):
         score = np.divide(matrix@vector, norm, out=np.zeros(len(bags)), where=norm > 0)
         orders[name] = [answers[i]['id'] for i in sorted(range(len(answers)), key=lambda i: (-score[i], answers[i]['id']))]
     orders.update(B0=[a['id'] for a in sorted(answers, key=lambda a: (-a['score'], a['id']))],
-                  B1=[a['id'] for a in sorted(answers, key=lambda a: (datetime.fromisoformat(a['created']), a['id']))],
+                  B1=[a['id'] for a in sorted(answers, key=lambda a: (a['postingOrder'] if 'postingOrder' in a else datetime.fromisoformat(a['created']), a['id']))],
                   B2=[a['id'] for a in sorted(answers, key=lambda a: (-len(list(WORD.finditer(a['text']))), a['id']))])
     accepted = next(a for a in answers if a['id'] == row['accepted'])
     return {'id': row['id'], 'site': row['site'], 'acceptedNotTopScore': accepted['score'] < max(a['score'] for a in answers),

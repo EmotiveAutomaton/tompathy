@@ -1,0 +1,217 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "a589b237254ce39259074aa6c0423561af08c41b69b7c87f81b79e641e49d228",
+  "launcherPin": "ab303d370e9e76648d5c7ef80efcc3562cfb3d78e9795769e110c1c8d740a32b",
+  "ledger": "no ledger row",
+  "card": "TP17",
+  "status": "complete",
+  "productionAdmission": false,
+  "scope": "Words marked as causes in held-out situations, not the maker's motives",
+  "source": {
+    "intakePin": "dbb9a7bba789b2ad69987fefbf3173b7cec4a1531c1dbae34adcb93ce155a313",
+    "license": "MIT repository; EmpatheticDialogues source situations CC BY-NC 4.0",
+    "research_only": true,
+    "counts": {
+      "valid": 3775,
+      "test": 838
+    }
+  },
+  "ed": {
+    "intakePin": "dbc8e8faec17897f67b3cef9f26a031786bcc8c78f709475e5f8103f47a3e8ec",
+    "license": "cc-by-nc-4.0",
+    "research_only": true,
+    "counts": {
+      "train": {
+        "utterances": 84169,
+        "situations": 19533,
+        "firstUtterances": 19533,
+        "labels": 32
+      },
+      "valid": {
+        "utterances": 12078,
+        "situations": 2770,
+        "firstUtterances": 2770,
+        "labels": 32
+      },
+      "test": {
+        "utterances": 10973,
+        "situations": 2547,
+        "firstUtterances": 2547,
+        "labels": 32
+      }
+    }
+  },
+  "reader": {
+    "sourceReceiptPin": "ac5aa48a1e9a83d681969eadf9c7a8268831be97f8fbbc42b259ff72c226b759",
+    "selectedSeed": 47,
+    "headPin": "5f22c9d133b6b31e7d118d1f443be3808c0980ad3cf4e4ade640297c232e6880",
+    "unpacked": true,
+    "productionAdmission": false,
+    "sourceGates": {
+      "B1": false,
+      "B2_stretch": false,
+      "B3": null,
+      "B4": false,
+      "pack_eligible": false,
+      "productionAdmission": false
+    },
+    "token_cap": 128,
+    "threads": 2
+  },
+  "headPin": "8b010274266a68f1f390138184cadc1138615c9b221ed6a7a41b2d4a6f2e1837",
+  "protocol": {
+    "method": "Drop each original token span and measure fall in supplied emotion-label probability",
+    "head": "ED training split only; TP13 fixed head",
+    "metric": "At least one annotated token among top k; deterministic original-order ties",
+    "denominator": "All exactly aligned items, exclusions explicit; no token-level tuning"
+  },
+  "references": {
+    "human": [
+      0.413,
+      0.811,
+      0.95
+    ],
+    "chance": [
+      0.107,
+      0.306,
+      0.485
+    ],
+    "paper": [
+      0.173,
+      0.481,
+      0.684
+    ]
+  },
+  "total": 4613,
+  "completed": 4613,
+  "excluded_alignment": 0,
+  "rows": {
+    "valid": {
+      "n": 3775,
+      "hit_rates": {
+        "1": 0.3120529801324503,
+        "3": 0.6029139072847682,
+        "5": 0.7141721854304636
+      },
+      "intervals": {
+        "1": [
+          0.2877030603226416,
+          0.3404103454721037
+        ],
+        "3": [
+          0.5787786236651293,
+          0.6287716517368316
+        ],
+        "5": [
+          0.6894035560563823,
+          0.7377134063539347
+        ]
+      },
+      "interval_method": "1000 whole-writer resamples, fixed predictions",
+      "controls": {
+        "bow": {
+          "1": 0.25933774834437084,
+          "3": 0.52,
+          "5": 0.6627814569536424
+        },
+        "constant": {
+          "1": 0.020132450331125828,
+          "3": 0.24158940397350995,
+          "5": 0.456158940397351
+        },
+        "chance": {
+          "1": 0.14458852467600572,
+          "3": 0.3700609209385836,
+          "5": 0.5321882157644133
+        }
+      },
+      "primary": true,
+      "stretch": true
+    },
+    "test": {
+      "n": 838,
+      "hit_rates": {
+        "1": 0.513126491646778,
+        "3": 0.7923627684964201,
+        "5": 0.8902147971360382
+      },
+      "intervals": {
+        "1": [
+          0.45725346082916196,
+          0.5696042708581408
+        ],
+        "3": [
+          0.7591010986972296,
+          0.8319343996805395
+        ],
+        "5": [
+          0.8656330600024382,
+          0.9148013057722677
+        ]
+      },
+      "interval_method": "1000 whole-writer resamples, fixed predictions",
+      "controls": {
+        "bow": {
+          "1": 0.40930787589498807,
+          "3": 0.7028639618138425,
+          "5": 0.8353221957040573
+        },
+        "constant": {
+          "1": 0.032219570405727926,
+          "3": 0.3997613365155131,
+          "5": 0.6073985680190931
+        },
+        "chance": {
+          "1": 0.21945136789795208,
+          "3": 0.5133093514275997,
+          "5": 0.6897353311453107
+        }
+      },
+      "primary": true,
+      "stretch": true
+    },
+    "all": {
+      "n": 4613,
+      "hit_rates": {
+        "1": 0.3485800997181877,
+        "3": 0.637329286798179,
+        "5": 0.7461521786256232
+      },
+      "intervals": {
+        "1": [
+          0.32372857625310814,
+          0.37638377001896345
+        ],
+        "3": [
+          0.6147304525467058,
+          0.6613015598942392
+        ],
+        "5": [
+          0.7236697860424551,
+          0.7691125449032639
+        ]
+      },
+      "interval_method": "1000 whole-writer resamples, fixed predictions",
+      "controls": {
+        "bow": {
+          "1": 0.2865814003902016,
+          "3": 0.5532191632343377,
+          "5": 0.6941252980706698
+        },
+        "constant": {
+          "1": 0.022328202904834164,
+          "3": 0.2703230002167787,
+          "5": 0.4836332104920876
+        },
+        "chance": {
+          "1": 0.15818814804907988,
+          "3": 0.39608350596997216,
+          "5": 0.5608083073944138
+        }
+      },
+      "primary": true,
+      "stretch": true
+    }
+  },
+  "sourceReceiptPin": "72a731a62cfd86046d0e511a404368838fb77a737baab0b676e05ce5f5273fee"
+}

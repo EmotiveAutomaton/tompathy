@@ -3,6 +3,45 @@
 Only measured engine accuracy belongs here. Pending rows are not zero scores.
 Field labels remain off. A passed software test is not a natural-writing result.
 
+TP23 frozen MiniLM clears both bars: mean story-held-out tag AUC **.776711539**
+against .76; mean twin-pair transfer gain **.096892812** against .06, with all five
+pairs above .03. Gains for pride/joy, guilt/shame, fear/sadness, anger/disgust and
+trust/joy are .158994021 / .050853357 / .118851596 / .063459785 / .092305304.
+Thirteen-label macro-F1 is .377775213 for ratings, .270293849 for tags alone,
+and .461516370 for both. This qualifies a candidate rung, with final seed/rung
+selection and private export pending; TP25 still blocks serving. No maker claim.
+[Frozen need aggregate](../engine/validation/readers-need-frozen-2026-11.json), source
+`1d996fdce019a3cbf60bb55ad7cb77fdd0dc6d5481e0f95f8a8c9b4025334bf4`.
+
+TP27's **circular diagnostic**, not independent accuracy: AUC .954120488 versus
+the saved baseline .551156513, gain .402963976 with writer interval
+[.368969562, .427655734]. The residual and stop key share the same timing source.
+All 193,947 eligible words and 1,399 sessions are retained; 2,000 fixed-forecast
+writer resamples. No display or maker admission follows.
+[Diagnostic aggregate](../engine/validation/readers-pause-remainder-diagnostic-2026-11.json),
+source `b50cb33c9f05b02ea958393664c132606996dcb7ef8f6859d365f88351c045d6`.
+
+TP25's gate fails: positive detection on held-out Crowd-enVENT / Go / Story is
+**.396033 / .573237 / .265882**, each below .70. At its fixed .5 diagnostic
+threshold, silence is **.025** on 40 theme-free controls and **.905759** on 191
+verified revision sentences. No tested grid threshold jointly meets all bars;
+no gate pack or new corrected-share policy follows.
+[Gate aggregate](../engine/validation/readers-stakes-gate-2026-11.json), source
+`7803918cf1969c76aa6e4ee17603cf54c57dc0d91e3107214b6d6c5a9c9f69d1`.
+
+TP23 BOW completed on 48,065 character-lines from 4,853 stories: mean held-out
+story AUC **.728771**. On the independent Crowd-enVENT domain, mean twin-pair
+gain from adding need tags to the 21 ratings is **.049646**, with four pairs
+gaining at least .03. It misses the required .06 mean gain, so no pack qualifies.
+The supplied five-pair table reproduces within .012070, including its gain
+column, below the .02 tolerance.
+Extra per-tag story checks differ by .035144 (power), .024882 (serenity) and
+.039050 (belonging); the original full-check flag remains false. The owner
+ratified the table scope through a separately bound decision, allowing later
+rungs without replacing any result or failed packing gate.
+[BOW aggregate](../engine/validation/readers-need-bow-2026-11.json), source
+`46348623c7450c9cc903ef3f58a0e67109cc5a6db9e30d2a5d646c66b486fd26`.
+
 ## Readers packet (no pack qualified)
 
 Fixed Crowd-enVENT test, 1,200 writer-labelled reports; development writers are
@@ -88,8 +127,7 @@ The card is complete; original completed rows survived the numerical continuatio
 unchanged. No maker admission follows. [Choice/handling aggregate](../engine/validation/readers-choices-2026-11.json).
 
 TP15 has saved all five writer-held-out folds on 1,860 reports from 372 writers.
-These held-out rows are complete; the separate descriptive group comparison is
-still running and final aggregate landing awaits terminal exit and release.
+The card is complete, with native exit, exact release and source binding verified.
 
 | Concern/distress reader | Concern correlation | Distress correlation | 0.40 primary / 0.54 stretch on both |
 |---|---|---|---|
@@ -103,7 +141,83 @@ Fine-tuned 95% writer intervals are [0.3446, 0.4290] for concern and
 [0.3285, 0.4275] for distress, using 1,000 whole-writer resamples of fixed
 forecasts. Concern partial correlation controlling reported distress is 0.3127.
 Descriptive caring-label contrasts cannot replace this failed primary or qualify
-CARE/maker inference. [Observed rows and coverage](ENGINE_READERS_2026-11-17.md).
+CARE/maker inference. Descriptive caring-minus-other concern/distress differences
+are 0.7121/0.2784 in ED and 0.2587/0.2001 in GoEmotions, using the separate
+full-data head. These group contrasts have no independent concern answer key.
+[Completed care aggregate](../engine/validation/readers-care-2026-11.json).
+
+
+TP17 completed all 4,613 held-out EmoCause situations with zero alignment
+exclusions, using the fixed ED training-only head. Hit rates count at least one
+human-marked cause word among the top one, three or five deleted-word effects.
+
+| Split | Situations | Top one | Top three | Top five | BOW top three | Primary / stretch |
+|---|---:|---:|---:|---:|---:|---|
+| Validation | 3,775 | 0.3121 | 0.6029 | 0.7142 | 0.5200 | passed / passed |
+| Test | 838 | 0.5131 | 0.7924 | 0.8902 | 0.7029 | passed / passed |
+| Combined | 4,613 | 0.3486 | 0.6373 | 0.7462 | 0.5532 | passed / passed |
+
+Combined top-three 95% writer interval is [0.6147, 0.6613], using 1,000
+whole-writer resamples of fixed predictions across 149 writers. Combined
+per-item chance is 0.3961; deterministic original-order control is 0.2703.
+The point-estimate bars are 0.481 and 0.60. Split difficulty and chance rates
+differ; these are not paired cross-split comparisons. ED is research-only.
+This marked-word result creates no motive/maker or serving admission and no
+ledger row. [Cause-word aggregate](../engine/validation/readers-cause-words-2026-11.json).
+
+
+TP1c completed with Smol135 Q8 gate b failed: median absolute word-surprisal
+errors are 0.057081/0.053915/0.049763 nats for manuscript/art/excerpt, against
+<=0.05 on every text. Spearman correlations 0.998276/0.998795/0.999460 meet
+>=0.98; exact vocabulary gate a passes. Gates c-e, Smol135 cohort accuracy and
+its timing are unrun. The failure remains fixed; no candidate or serving admission.
+[Smol135 aggregate](../engine/validation/readers-smol135-2026-11.json).
+
+The separate two-thread Smol360 requested Q4_K_M timing gives 93.214 seconds
+for 3,044 words and 222.399 seconds for 6,038 words: 91.866/110.499 seconds
+per 3,000, missing 15 seconds. The 598-word excerpt takes 10.295 seconds;
+its 51.645-second extrapolation is not a measured 3,000-word run. All exclude
+loading. Conversion used fallback types for 192 of 290 tensors; actual types
+are F32=65, Q8_0=17, Q5_0=176, Q6_K=16, Q4_K=16. This is the pinned mixed-type
+Q4_K_M conversion, with no Q4 numerical/accuracy qualification.
+
+TP22 remains **dependency-blocked**: the exact selected head's TP12 policy has
+prior 2 and no qualified minimum. No blog cohort, page-share inference or human
+stability result was produced. The constructed estimator check recovered
+0.984576/0.505221/0.007849 for planted 1/0.5/0 worlds; these are software controls,
+not human-data findings. [Blocked longitudinal aggregate](../engine/validation/readers-longitudinal-2026-11.json).
+
+
+TP20 completed five dialogue-disjoint folds on 2,052 perspectives in 1,026
+CaSiNo dialogues, excluding eight perspectives with fewer than five ordinary
+messages. Intervals use 1,000 whole-dialogue resamples of fixed forecasts.
+
+| Assigned-priority reader | Exact order | 95% dialogue interval | Top priority | 0.45 bar |
+|---|---:|---|---:|---|
+| Constant | 0.1462 | [0.1306, 0.1642] | 0.3163 | missed |
+| BOW Ridge | 0.3562 | [0.3348, 0.3767] | 0.5975 | missed |
+| Selected reader + Ridge | 0.3104 | [0.2914, 0.3304] | 0.6043 | missed |
+
+Exact-order chance is 1/6. Top-priority accuracy is a different endpoint and does
+not rescue the exact-order miss. Participant identities are unavailable across
+dialogues, so this is not writer-held-out. These are assigned resource priorities,
+not values or endorsement; no maker admission or ledger row follows.
+[Priority aggregate](../engine/validation/readers-priorities-2026-11.json).
+
+The final lexical controls completed on the unchanged 40-proposal / 38-author
+pilot. The original TF-IDF rows reproduce exactly. Intervals use 2,000 whole-author
+resamples of fixed rankings.
+
+| Lexical control | Top-one accuracy | 95% author interval | Mean reciprocal rank | 95% author interval |
+|---|---:|---|---:|---|
+| Original TF-IDF | 0.6500 | [0.4878, 0.8049] | 0.7294 | [0.6014, 0.8496] |
+| BM25 | 0.6750 | [0.5128, 0.8250] | 0.7411 | [0.6047, 0.8633] |
+| Rarity weighting | 0.7250 | [0.5853, 0.8537] | 0.8000 | [0.6922, 0.8967] |
+
+These are lexical pilot controls; no paired improvement test or new efficacy gate
+was evaluated. They do not reopen the closed goal readers or qualify maker inference.
+[Goal-control aggregate](../engine/validation/readers-goal-controls-2026-11.json).
+The bounded readers queue is closed, retaining partial and blocked outcomes.
 
 ## Registered attention and earlier pilots
 
@@ -158,3 +272,40 @@ These are separate pilot scopes. No row enables a detector, values reading or fi
 Edit-reasons human-labelled lines are separate from the comment-labelled EX2 result.
 Goals also report candidate-only TF-IDF, reader-alone and top-five reranking in their receipt.
 Live progress and dependencies: [two-day working record](ENGINE_TWO_DAY_2026-11-14.md).
+
+
+### November 15 trigger commission — TP26
+
+Full-data worry refit completed; original TP16 held-out R² 0.301334951 is retained.
+Known-group AUCs: Crowd-enVENT 0.700173370 (3300), ED 0.857812050 (5283),
+GoEmotions 0.780889933 (18627, 37 overlapping-label comments excluded).
+All three point-estimate bars of .70 clear. Forty theme-free texts average
+5.946152687 of 9 (range 5.428977013–6.485096455); no plain-prose bar was set.
+No independent Stress key, writer estimate, maker admission or live default.
+Aggregate: `engine/validation/readers-worry-transfer-2026-11.json`, source pin
+`99d507ec9350998b41af76ea95626cd789c78bdc59b607fe24c6ea99dcfb3789`.
+Native exit, exact leases and all 175 frozen code files verified. No ledger row.
+
+
+The trigger infrastructure now includes separately bounded TP23 fold jobs,
+conditional gate/calibrated-counting exports and the owner's diagnostic-only
+pause residual. These are implemented, unexecuted rows, not completed science.
+The new full TP12 grid is authorized only behind a qualified gate; old failures
+and minimum-policy dependencies remain. Current software checks and source
+preservation evidence are in the trigger-reader working record.
+
+
+The trigger infrastructure now includes separately bounded TP23 fold jobs,
+conditional gate/calibrated-counting exports and the owner's diagnostic-only
+pause residual. These are implemented, unexecuted rows, not completed science.
+The new full TP12 grid is authorized only behind a qualified gate; old failures
+and minimum-policy dependencies remain. Current software checks and source
+preservation evidence are in the trigger-reader working record.
+
+
+TP7 EX5 is complete: E1 top-choice .3610 versus best rarity control .3810;
+paired gain -.0200, interval [-.0370125, -.0050], fails the >.02 lower-bound bar.
+All 2,000 observations are saved. The accepted-not-top-score subset (497) also
+misses. Final-score baseline is descriptive because acceptance affects scores.
+No values, endorsement, maker or E2 claim. [EX5 aggregate](../engine/validation/readers-choice-ex5-2026-11.json)
+(source `9338d0ffa9386236c2f20a9fc283ccb908d776b64b5ec2dcfc48adc5a23244e2`).

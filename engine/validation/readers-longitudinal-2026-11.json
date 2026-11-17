@@ -1,0 +1,68 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "a589b237254ce39259074aa6c0423561af08c41b69b7c87f81b79e641e49d228",
+  "launcherPin": "ab303d370e9e76648d5c7ef80efcc3562cfb3d78e9795769e110c1c8d740a32b",
+  "ledger": "no ledger row",
+  "card": "TP22",
+  "status": "blocked",
+  "productionAdmission": false,
+  "scope": "Research-only Blog Authorship Corpus; maker tier remains closed; no age or sex fields read",
+  "source": {
+    "intakePin": "9bdf28a3f56dbb16ce04606338ece00a351a134b8d1b9c39a12aedcb68eab327",
+    "license": "non-commercial-research",
+    "research_only": true,
+    "counts": {
+      "writer_files": 19320
+    }
+  },
+  "readerReceiptPin": "ac5aa48a1e9a83d681969eadf9c7a8268831be97f8fbbc42b259ff72c226b759",
+  "countingReceiptPin": "218465767e1e80e9749589e117c914642cec6c98bb1480f875046146fe0404b2",
+  "policy": {
+    "card": "TP12",
+    "status": "no-policy-qualified",
+    "prior": 2,
+    "minimum": null,
+    "bootstrap": 1000,
+    "seed": 20261115,
+    "selection": "Minimum average MAE over corpus-only scenarios; smallest tested count with no MAE/top1 loss against raw in either shape at any neutral fraction",
+    "productionAdmission": false,
+    "reader": "minilm-tuned",
+    "ladderReceiptPin": "ac5aa48a1e9a83d681969eadf9c7a8268831be97f8fbbc42b259ff72c226b759"
+  },
+  "constructed_qualification": {
+    "constructed": true,
+    "writers": 2000,
+    "worlds": [
+      {
+        "planted": 1.0,
+        "recovered": 0.9845764468234228,
+        "passed": true
+      },
+      {
+        "planted": 0.5,
+        "recovered": 0.5052210155445915,
+        "passed": true
+      },
+      {
+        "planted": 0.0,
+        "recovered": 0.007849139977565546,
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  "pack": "No maker admission; voluntary subject return remains unruled",
+  "protocol": {
+    "cohort": "Lowest SHA-256 1000 writer IDs with >=40 dated posts >=100 words",
+    "halves": "Chronological equal sides; each subdivided into alternating posts",
+    "measurement": "Pool sentence predictions in each replicate, exact TP12 correction, then condition on emotion",
+    "subject_control": "20 unsupervised Potion word-vector clusters; earlier-half other-writer cluster means only",
+    "variance": "TR1 Spearman-Brown within-side reliability and observed variance times reliability",
+    "stability": "Unclipped consecutive-half correlation divided by sqrt(reliabilities); 2000 whole-writer draws, undefined draw invalidates interval",
+    "log_score": "Later mix under earlier writer mix versus other-writer earlier population; subject control adjusts historical departure by later subject composition; clipping 1e-6 then renormalizing",
+    "reference": "Sounding Line docs/design/stage-15/week5/TR1_BACK_HALF.md; split-half measurement adaptation, no gain model",
+    "bars": "After subject control: at least three labels with whole interval >.5 and positive-variance interval; own-history log-score gain interval >0"
+  },
+  "reason": "No qualified selected-head counting policy",
+  "sourceReceiptPin": "a86cce05620d396f9c7944eec6dca64161fa45ef26b0226f1a5c1f93604d409b"
+}

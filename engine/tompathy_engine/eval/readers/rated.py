@@ -193,6 +193,9 @@ def inputs(root,card):
 
 def run(card,root,models,output,check,*,ed_root=None,go_root=None,counting=None,reader_job=None,resume=None):
     output,models=Path(output),Path(models)
+    if card == 'TP15' and resume is not None and (Path(resume)/'forecasts.npz').exists():
+        from .tp15_resume import run as resume_descriptive
+        return resume_descriptive(root,models,output,check,resume,ed_root,go_root)
     texts,y,writers,names,identity=inputs(root,card)
     receipt={'card':card,'status':'running','productionAdmission':False,'ledger':'no ledger row',
         'scope':'Writer self-report prediction; text-level benchmark, not maker estimates',

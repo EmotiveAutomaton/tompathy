@@ -1,0 +1,1485 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "947c348cd1e2e83f2505dd67fa417e4b416c16faa8e3d51f58dd4499fbe27494",
+  "launcherPin": "ef65cb269b75f63117a236bc2f40035d7c3af6fb2cd7b8da2cdeb1d2f04d8c87",
+  "ledger": "no ledger row",
+  "card": "TP25",
+  "status": "complete",
+  "productionAdmission": false,
+  "scope": "Sentence event/stakes gate, source-held-out sensitivity; not a maker state",
+  "sources": {
+    "envent": {
+      "generation": "3d2536b555ac7005080c2cd35aadb4d570992bca70d2017e4d8939525fa3a86b",
+      "validation": "ab64ebb18368a0342f2e890e9194cd70367387547936d9e343ba7881ec4314e3"
+    },
+    "go": {
+      "intakePin": "7d521e3a7e83ac940cc1f2d94be4c175f65a28389e35a253a34ff33bb0d15f5f",
+      "license": "apache-2.0",
+      "research_only": false,
+      "counts": {
+        "individual_judgments": 211225,
+        "unique_comments": 58011
+      },
+      "published_labelled": 54263,
+      "writer_unknown": 1063,
+      "raw_unlabelled_policy": "Features can be read for every raw comment; label-group tests use released consensus labels only"
+    },
+    "story": {
+      "files": {
+        "csv_version/dev/emotion/allcharlinepairs.csv": "36af2bf8b4db0d9f4edef08a4b12174a6cd878e82aeb77c28734a4a0544d8dcc",
+        "csv_version/test/emotion/allcharlinepairs.csv": "164b7dd54b574f61c0915987b1b9f2ab32966609a826c803ade3a10007833077"
+      },
+      "conflicting_or_missing_flags": 0,
+      "rule": "publisher affected yes/no flag, identical across category-annotation rows; no cases legitimately have emotionworkerid none",
+      "formatReadmePin": "84fa9380196a2ef46c533140bfd43190c7e01f9c736595b04c000c0822eaa76b"
+    }
+  },
+  "protocol": {
+    "encoder": "frozen MiniLM, cap128",
+    "head": "balanced logistic C1",
+    "development": "lowest SHA256 tenth of groups within each fitting source",
+    "threshold": "lowest .05-grid threshold passing .70 sensitivity/.80 silence for each development source; otherwise fixed .5 diagnostic, no pack",
+    "external": "B13 theme-free and verified revision sentences used once for evaluation, never threshold selection"
+  },
+  "rows": {
+    "envent": {
+      "n": 6600,
+      "positive": 6050,
+      "threshold": 0.5,
+      "validation_qualified": false,
+      "development_curves": {
+        "go": [
+          {
+            "threshold": 0.05,
+            "sensitivity": 1.0,
+            "silence": 0.0
+          },
+          {
+            "threshold": 0.1,
+            "sensitivity": 1.0,
+            "silence": 0.001265022137887413
+          },
+          {
+            "threshold": 0.15000000000000002,
+            "sensitivity": 0.9994487320837927,
+            "silence": 0.008855154965211892
+          },
+          {
+            "threshold": 0.2,
+            "sensitivity": 0.9933847850055126,
+            "silence": 0.03478810879190386
+          },
+          {
+            "threshold": 0.25,
+            "sensitivity": 0.9807056229327453,
+            "silence": 0.10056925996204934
+          },
+          {
+            "threshold": 0.3,
+            "sensitivity": 0.9514884233737596,
+            "silence": 0.1834282099936749
+          },
+          {
+            "threshold": 0.35000000000000003,
+            "sensitivity": 0.9142778390297684,
+            "silence": 0.28716002530044277
+          },
+          {
+            "threshold": 0.4,
+            "sensitivity": 0.8563947078280044,
+            "silence": 0.4092346616065781
+          },
+          {
+            "threshold": 0.45,
+            "sensitivity": 0.7921719955898566,
+            "silence": 0.5376344086021505
+          },
+          {
+            "threshold": 0.5,
+            "sensitivity": 0.7056229327453142,
+            "silence": 0.6641366223908919
+          },
+          {
+            "threshold": 0.55,
+            "sensitivity": 0.619625137816979,
+            "silence": 0.7685009487666035
+          },
+          {
+            "threshold": 0.6000000000000001,
+            "sensitivity": 0.5195700110253583,
+            "silence": 0.8513598987982289
+          },
+          {
+            "threshold": 0.6500000000000001,
+            "sensitivity": 0.4335722160970232,
+            "silence": 0.9070208728652751
+          },
+          {
+            "threshold": 0.7000000000000001,
+            "sensitivity": 0.34702315325248073,
+            "silence": 0.9531941808981658
+          },
+          {
+            "threshold": 0.7500000000000001,
+            "sensitivity": 0.2692943770672547,
+            "silence": 0.9778621125869703
+          },
+          {
+            "threshold": 0.8,
+            "sensitivity": 0.20672546857772878,
+            "silence": 0.989247311827957
+          },
+          {
+            "threshold": 0.8500000000000001,
+            "sensitivity": 0.14718853362734288,
+            "silence": 0.9955724225173941
+          },
+          {
+            "threshold": 0.9000000000000001,
+            "sensitivity": 0.08627342888643881,
+            "silence": 0.9993674889310563
+          },
+          {
+            "threshold": 0.9500000000000001,
+            "sensitivity": 0.029492833517089305,
+            "silence": 1.0
+          }
+        ],
+        "story": [
+          {
+            "threshold": 0.05,
+            "sensitivity": 1.0,
+            "silence": 0.0
+          },
+          {
+            "threshold": 0.1,
+            "sensitivity": 1.0,
+            "silence": 0.0
+          },
+          {
+            "threshold": 0.15000000000000002,
+            "sensitivity": 0.9996822370511599,
+            "silence": 0.0011507479861910242
+          },
+          {
+            "threshold": 0.2,
+            "sensitivity": 0.9977756593581188,
+            "silence": 0.0028768699654775605
+          },
+          {
+            "threshold": 0.25,
+            "sensitivity": 0.9920559262789959,
+            "silence": 0.009205983889528193
+          },
+          {
+            "threshold": 0.3,
+            "sensitivity": 0.9567842389577376,
+            "silence": 0.05523590333716916
+          },
+          {
+            "threshold": 0.35000000000000003,
+            "sensitivity": 0.8795678423895774,
+            "silence": 0.1622554660529344
+          },
+          {
+            "threshold": 0.4,
+            "sensitivity": 0.7454718779790277,
+            "silence": 0.3135788262370541
+          },
+          {
+            "threshold": 0.45,
+            "sensitivity": 0.5808706704798221,
+            "silence": 0.49597238204833144
+          },
+          {
+            "threshold": 0.5,
+            "sensitivity": 0.3997457896409279,
+            "silence": 0.6777905638665133
+          },
+          {
+            "threshold": 0.55,
+            "sensitivity": 0.24149984111852557,
+            "silence": 0.8026467203682394
+          },
+          {
+            "threshold": 0.6000000000000001,
+            "sensitivity": 0.13918017159199236,
+            "silence": 0.8924050632911392
+          },
+          {
+            "threshold": 0.6500000000000001,
+            "sensitivity": 0.07594534477279949,
+            "silence": 0.9424626006904487
+          },
+          {
+            "threshold": 0.7000000000000001,
+            "sensitivity": 0.03876707975850016,
+            "silence": 0.9677790563866513
+          },
+          {
+            "threshold": 0.7500000000000001,
+            "sensitivity": 0.016205910390848427,
+            "silence": 0.9861910241657077
+          },
+          {
+            "threshold": 0.8,
+            "sensitivity": 0.0044486812837623135,
+            "silence": 0.9982738780207134
+          },
+          {
+            "threshold": 0.8500000000000001,
+            "sensitivity": 0.0019065776930409914,
+            "silence": 1.0
+          },
+          {
+            "threshold": 0.9000000000000001,
+            "sensitivity": 0.0,
+            "silence": 1.0
+          },
+          {
+            "threshold": 0.9500000000000001,
+            "sensitivity": 0.0,
+            "silence": 1.0
+          }
+        ]
+      },
+      "curve": [
+        {
+          "threshold": 0.05,
+          "sensitivity": 0.9998347107438017,
+          "silence": 0.0
+        },
+        {
+          "threshold": 0.1,
+          "sensitivity": 0.9993388429752066,
+          "silence": 0.0018181818181818182
+        },
+        {
+          "threshold": 0.15000000000000002,
+          "sensitivity": 0.9948760330578512,
+          "silence": 0.007272727272727273
+        },
+        {
+          "threshold": 0.2,
+          "sensitivity": 0.9760330578512396,
+          "silence": 0.02181818181818182
+        },
+        {
+          "threshold": 0.25,
+          "sensitivity": 0.9348760330578513,
+          "silence": 0.07818181818181819
+        },
+        {
+          "threshold": 0.3,
+          "sensitivity": 0.8642975206611571,
+          "silence": 0.16
+        },
+        {
+          "threshold": 0.35000000000000003,
+          "sensitivity": 0.7646280991735537,
+          "silence": 0.28
+        },
+        {
+          "threshold": 0.4,
+          "sensitivity": 0.6378512396694215,
+          "silence": 0.4036363636363636
+        },
+        {
+          "threshold": 0.45,
+          "sensitivity": 0.5125619834710744,
+          "silence": 0.5181818181818182
+        },
+        {
+          "threshold": 0.5,
+          "sensitivity": 0.39603305785123966,
+          "silence": 0.64
+        },
+        {
+          "threshold": 0.55,
+          "sensitivity": 0.2912396694214876,
+          "silence": 0.7418181818181818
+        },
+        {
+          "threshold": 0.6000000000000001,
+          "sensitivity": 0.1943801652892562,
+          "silence": 0.8472727272727273
+        },
+        {
+          "threshold": 0.6500000000000001,
+          "sensitivity": 0.10859504132231405,
+          "silence": 0.9181818181818182
+        },
+        {
+          "threshold": 0.7000000000000001,
+          "sensitivity": 0.04809917355371901,
+          "silence": 0.9654545454545455
+        },
+        {
+          "threshold": 0.7500000000000001,
+          "sensitivity": 0.0143801652892562,
+          "silence": 0.990909090909091
+        },
+        {
+          "threshold": 0.8,
+          "sensitivity": 0.0024793388429752068,
+          "silence": 1.0
+        },
+        {
+          "threshold": 0.8500000000000001,
+          "sensitivity": 0.0,
+          "silence": 1.0
+        },
+        {
+          "threshold": 0.9000000000000001,
+          "sensitivity": 0.0,
+          "silence": 1.0
+        },
+        {
+          "threshold": 0.9500000000000001,
+          "sensitivity": 0.0,
+          "silence": 1.0
+        }
+      ],
+      "sensitivity": 0.39603305785123966,
+      "silence": 0.64
+    },
+    "go": {
+      "n": 52512,
+      "positive": 36491,
+      "threshold": 0.5,
+      "validation_qualified": false,
+      "development_curves": {
+        "envent": [
+          {
+            "threshold": 0.05,
+            "sensitivity": 1.0,
+            "silence": 0.0
+          },
+          {
+            "threshold": 0.1,
+            "sensitivity": 1.0,
+            "silence": 0.0
+          },
+          {
+            "threshold": 0.15000000000000002,
+            "sensitivity": 1.0,
+            "silence": 0.0
+          },
+          {
+            "threshold": 0.2,
+            "sensitivity": 1.0,
+            "silence": 0.0
+          },
+          {
+            "threshold": 0.25,
+            "sensitivity": 1.0,
+            "silence": 0.0
+          },
+          {
+            "threshold": 0.3,
+            "sensitivity": 1.0,
+            "silence": 0.019230769230769232
+          },
+          {
+            "threshold": 0.35000000000000003,
+            "sensitivity": 1.0,
+            "silence": 0.038461538461538464
+          },
+          {
+            "threshold": 0.4,
+            "sensitivity": 0.9900826446280991,
+            "silence": 0.057692307692307696
+          },
+          {
+            "threshold": 0.45,
+            "sensitivity": 0.9867768595041322,
+            "silence": 0.11538461538461539
+          },
+          {
+            "threshold": 0.5,
+            "sensitivity": 0.9735537190082645,
+            "silence": 0.2692307692307692
+          },
+          {
+            "threshold": 0.55,
+            "sensitivity": 0.9404958677685951,
+            "silence": 0.34615384615384615
+          },
+          {
+            "threshold": 0.6000000000000001,
+            "sensitivity": 0.8710743801652893,
+            "silence": 0.5384615384615384
+          },
+          {
+            "threshold": 0.6500000000000001,
+            "sensitivity": 0.7867768595041322,
+            "silence": 0.6346153846153846
+          },
+          {
+            "threshold": 0.7000000000000001,
+            "sensitivity": 0.6446280991735537,
+            "silence": 0.6538461538461539
+          },
+          {
+            "threshold": 0.7500000000000001,
+            "sensitivity": 0.45454545454545453,
+            "silence": 0.8076923076923077
+          },
+          {
+            "threshold": 0.8,
+            "sensitivity": 0.23801652892561984,
+            "silence": 0.9230769230769231
+          },
+          {
+            "threshold": 0.8500000000000001,
+            "sensitivity": 0.06942148760330578,
+            "silence": 0.9807692307692307
+          },
+          {
+            "threshold": 0.9000000000000001,
+            "sensitivity": 0.011570247933884297,
+            "silence": 1.0
+          },
+          {
+            "threshold": 0.9500000000000001,
+            "sensitivity": 0.0,
+            "silence": 1.0
+          }
+        ],
+        "story": [
+          {
+            "threshold": 0.05,
+            "sensitivity": 1.0,
+            "silence": 0.0
+          },
+          {
+            "threshold": 0.1,
+            "sensitivity": 1.0,
+            "silence": 0.0
+          },
+          {
+            "threshold": 0.15000000000000002,
+            "sensitivity": 1.0,
+            "silence": 0.0
+          },
+          {
+            "threshold": 0.2,
+            "sensitivity": 0.9996822370511599,
+            "silence": 0.0005753739930955121
+          },
+          {
+            "threshold": 0.25,
+            "sensitivity": 0.9952335557673975,
+            "silence": 0.01093210586881473
+          },
+          {
+            "threshold": 0.3,
+            "sensitivity": 0.9768033047346679,
+            "silence": 0.045454545454545456
+          },
+          {
+            "threshold": 0.35000000000000003,
+            "sensitivity": 0.9246901811248809,
+            "silence": 0.11334867663981588
+          },
+          {
+            "threshold": 0.4,
+            "sensitivity": 0.8220527486495075,
+            "silence": 0.2422324510932106
+          },
+          {
+            "threshold": 0.45,
+            "sensitivity": 0.6663489037178265,
+            "silence": 0.4194476409666283
+          },
+          {
+            "threshold": 0.5,
+            "sensitivity": 0.4820463933905307,
+            "silence": 0.5857307249712314
+          },
+          {
+            "threshold": 0.55,
+            "sensitivity": 0.3136320305052431,
+            "silence": 0.7364787111622555
+          },
+          {
+            "threshold": 0.6000000000000001,
+            "sensitivity": 0.16619002224340643,
+            "silence": 0.8728423475258918
+          },
+          {
+            "threshold": 0.6500000000000001,
+            "sensitivity": 0.07308547823323801,
+            "silence": 0.950517836593786
+          },
+          {
+            "threshold": 0.7000000000000001,
+            "sensitivity": 0.027963139497934542,
+            "silence": 0.9718066743383199
+          },
+          {
+            "threshold": 0.7500000000000001,
+            "sensitivity": 0.00794407372100413,
+            "silence": 0.9930955120828538
+          },
+          {
+            "threshold": 0.8,
+            "sensitivity": 0.0019065776930409914,
+            "silence": 0.997698504027618
+          },
+          {
+            "threshold": 0.8500000000000001,
+            "sensitivity": 0.0,
+            "silence": 1.0
+          },
+          {
+            "threshold": 0.9000000000000001,
+            "sensitivity": 0.0,
+            "silence": 1.0
+          },
+          {
+            "threshold": 0.9500000000000001,
+            "sensitivity": 0.0,
+            "silence": 1.0
+          }
+        ]
+      },
+      "curve": [
+        {
+          "threshold": 0.05,
+          "sensitivity": 1.0,
+          "silence": 0.0
+        },
+        {
+          "threshold": 0.1,
+          "sensitivity": 0.999972595982571,
+          "silence": 0.0
+        },
+        {
+          "threshold": 0.15000000000000002,
+          "sensitivity": 0.9994793236688498,
+          "silence": 0.0005617626864740029
+        },
+        {
+          "threshold": 0.2,
+          "sensitivity": 0.9968759420130991,
+          "silence": 0.002746395356095125
+        },
+        {
+          "threshold": 0.25,
+          "sensitivity": 0.9854758707626539,
+          "silence": 0.013981649085575183
+        },
+        {
+          "threshold": 0.3,
+          "sensitivity": 0.9568660765668247,
+          "silence": 0.043193308782223334
+        },
+        {
+          "threshold": 0.35000000000000003,
+          "sensitivity": 0.9044695952426626,
+          "silence": 0.10049310280257162
+        },
+        {
+          "threshold": 0.4,
+          "sensitivity": 0.8228604313392344,
+          "silence": 0.1920604206978341
+        },
+        {
+          "threshold": 0.45,
+          "sensitivity": 0.7095448192705051,
+          "silence": 0.31951813245115784
+        },
+        {
+          "threshold": 0.5,
+          "sensitivity": 0.5732372365788825,
+          "silence": 0.4598339679171088
+        },
+        {
+          "threshold": 0.55,
+          "sensitivity": 0.42961278123372887,
+          "silence": 0.6007739841458086
+        },
+        {
+          "threshold": 0.6000000000000001,
+          "sensitivity": 0.29747060919130747,
+          "silence": 0.7332251420011235
+        },
+        {
+          "threshold": 0.6500000000000001,
+          "sensitivity": 0.1822367159025513,
+          "silence": 0.8425191935584545
+        },
+        {
+          "threshold": 0.7000000000000001,
+          "sensitivity": 0.09711983776821682,
+          "silence": 0.9179202296985207
+        },
+        {
+          "threshold": 0.7500000000000001,
+          "sensitivity": 0.04409306404318873,
+          "silence": 0.963984769989389
+        },
+        {
+          "threshold": 0.8,
+          "sensitivity": 0.014304897097914554,
+          "silence": 0.9895761812620935
+        },
+        {
+          "threshold": 0.8500000000000001,
+          "sensitivity": 0.0027678057603244635,
+          "silence": 0.9976905311778291
+        },
+        {
+          "threshold": 0.9000000000000001,
+          "sensitivity": 0.00032884820914746103,
+          "silence": 0.9999375819237251
+        },
+        {
+          "threshold": 0.9500000000000001,
+          "sensitivity": 0.0,
+          "silence": 1.0
+        }
+      ],
+      "sensitivity": 0.5732372365788825,
+      "silence": 0.4598339679171088
+    },
+    "story": {
+      "n": 48065,
+      "positive": 31089,
+      "threshold": 0.5,
+      "validation_qualified": false,
+      "development_curves": {
+        "envent": [
+          {
+            "threshold": 0.05,
+            "sensitivity": 1.0,
+            "silence": 0.0
+          },
+          {
+            "threshold": 0.1,
+            "sensitivity": 0.9983471074380166,
+            "silence": 0.0
+          },
+          {
+            "threshold": 0.15000000000000002,
+            "sensitivity": 0.9917355371900827,
+            "silence": 0.0
+          },
+          {
+            "threshold": 0.2,
+            "sensitivity": 0.9851239669421488,
+            "silence": 0.057692307692307696
+          },
+          {
+            "threshold": 0.25,
+            "sensitivity": 0.9768595041322314,
+            "silence": 0.07692307692307693
+          },
+          {
+            "threshold": 0.3,
+            "sensitivity": 0.9669421487603306,
+            "silence": 0.07692307692307693
+          },
+          {
+            "threshold": 0.35000000000000003,
+            "sensitivity": 0.9487603305785124,
+            "silence": 0.11538461538461539
+          },
+          {
+            "threshold": 0.4,
+            "sensitivity": 0.9239669421487603,
+            "silence": 0.17307692307692307
+          },
+          {
+            "threshold": 0.45,
+            "sensitivity": 0.8876033057851239,
+            "silence": 0.25
+          },
+          {
+            "threshold": 0.5,
+            "sensitivity": 0.8330578512396695,
+            "silence": 0.2692307692307692
+          },
+          {
+            "threshold": 0.55,
+            "sensitivity": 0.7702479338842976,
+            "silence": 0.34615384615384615
+          },
+          {
+            "threshold": 0.6000000000000001,
+            "sensitivity": 0.7041322314049587,
+            "silence": 0.4230769230769231
+          },
+          {
+            "threshold": 0.6500000000000001,
+            "sensitivity": 0.6396694214876033,
+            "silence": 0.5961538461538461
+          },
+          {
+            "threshold": 0.7000000000000001,
+            "sensitivity": 0.5487603305785124,
+            "silence": 0.7307692307692307
+          },
+          {
+            "threshold": 0.7500000000000001,
+            "sensitivity": 0.4446280991735537,
+            "silence": 0.8269230769230769
+          },
+          {
+            "threshold": 0.8,
+            "sensitivity": 0.3239669421487603,
+            "silence": 0.8461538461538461
+          },
+          {
+            "threshold": 0.8500000000000001,
+            "sensitivity": 0.1884297520661157,
+            "silence": 0.9038461538461539
+          },
+          {
+            "threshold": 0.9000000000000001,
+            "sensitivity": 0.05785123966942149,
+            "silence": 0.9423076923076923
+          },
+          {
+            "threshold": 0.9500000000000001,
+            "sensitivity": 0.008264462809917356,
+            "silence": 1.0
+          }
+        ],
+        "go": [
+          {
+            "threshold": 0.05,
+            "sensitivity": 1.0,
+            "silence": 0.001265022137887413
+          },
+          {
+            "threshold": 0.1,
+            "sensitivity": 0.99696802646086,
+            "silence": 0.03099304237824162
+          },
+          {
+            "threshold": 0.15000000000000002,
+            "sensitivity": 0.9875964718853363,
+            "silence": 0.09108159392789374
+          },
+          {
+            "threshold": 0.2,
+            "sensitivity": 0.9633406835722161,
+            "silence": 0.174573055028463
+          },
+          {
+            "threshold": 0.25,
+            "sensitivity": 0.9332965821389195,
+            "silence": 0.2719797596457938
+          },
+          {
+            "threshold": 0.3,
+            "sensitivity": 0.8847850055126791,
+            "silence": 0.3763440860215054
+          },
+          {
+            "threshold": 0.35000000000000003,
+            "sensitivity": 0.8329658213891952,
+            "silence": 0.4756483238456673
+          },
+          {
+            "threshold": 0.4,
+            "sensitivity": 0.7764608599779493,
+            "silence": 0.5755850727387729
+          },
+          {
+            "threshold": 0.45,
+            "sensitivity": 0.7125137816979051,
+            "silence": 0.6597090449082859
+          },
+          {
+            "threshold": 0.5,
+            "sensitivity": 0.6507717750826902,
+            "silence": 0.726122707147375
+          },
+          {
+            "threshold": 0.55,
+            "sensitivity": 0.5826901874310915,
+            "silence": 0.7975964579380139
+          },
+          {
+            "threshold": 0.6000000000000001,
+            "sensitivity": 0.519845644983462,
+            "silence": 0.8431372549019608
+          },
+          {
+            "threshold": 0.6500000000000001,
+            "sensitivity": 0.4520396912899669,
+            "silence": 0.8937381404174574
+          },
+          {
+            "threshold": 0.7000000000000001,
+            "sensitivity": 0.3875413450937156,
+            "silence": 0.9342188488298545
+          },
+          {
+            "threshold": 0.7500000000000001,
+            "sensitivity": 0.3269018743109151,
+            "silence": 0.9626818469323213
+          },
+          {
+            "threshold": 0.8,
+            "sensitivity": 0.2566152149944873,
+            "silence": 0.9753320683111955
+          },
+          {
+            "threshold": 0.8500000000000001,
+            "sensitivity": 0.1940463065049614,
+            "silence": 0.9879822896900696
+          },
+          {
+            "threshold": 0.9000000000000001,
+            "sensitivity": 0.12734288864388094,
+            "silence": 0.9955724225173941
+          },
+          {
+            "threshold": 0.9500000000000001,
+            "sensitivity": 0.06615214994487321,
+            "silence": 1.0
+          }
+        ]
+      },
+      "curve": [
+        {
+          "threshold": 0.05,
+          "sensitivity": 0.9992923542088842,
+          "silence": 0.000471253534401508
+        },
+        {
+          "threshold": 0.1,
+          "sensitivity": 0.9891601531088167,
+          "silence": 0.008129123468426014
+        },
+        {
+          "threshold": 0.15000000000000002,
+          "sensitivity": 0.9532632120685773,
+          "silence": 0.037111215834118756
+        },
+        {
+          "threshold": 0.2,
+          "sensitivity": 0.8787674096947473,
+          "silence": 0.10432375117813383
+        },
+        {
+          "threshold": 0.25,
+          "sensitivity": 0.7755154556273923,
+          "silence": 0.20334590009425071
+        },
+        {
+          "threshold": 0.3,
+          "sensitivity": 0.6603943516999582,
+          "silence": 0.3135603204524034
+        },
+        {
+          "threshold": 0.35000000000000003,
+          "sensitivity": 0.5425069960436167,
+          "silence": 0.43484919886899154
+        },
+        {
+          "threshold": 0.4,
+          "sensitivity": 0.43867605905625784,
+          "silence": 0.5498939679547596
+        },
+        {
+          "threshold": 0.45,
+          "sensitivity": 0.3424683971822831,
+          "silence": 0.6496229971724788
+        },
+        {
+          "threshold": 0.5,
+          "sensitivity": 0.26588182315288367,
+          "silence": 0.7300895381715363
+        },
+        {
+          "threshold": 0.55,
+          "sensitivity": 0.2045417993502525,
+          "silence": 0.7925895381715363
+        },
+        {
+          "threshold": 0.6000000000000001,
+          "sensitivity": 0.15320531377657692,
+          "silence": 0.8530278039585297
+        },
+        {
+          "threshold": 0.6500000000000001,
+          "sensitivity": 0.11274084081186271,
+          "silence": 0.8949104618284637
+        },
+        {
+          "threshold": 0.7000000000000001,
+          "sensitivity": 0.07816269420052109,
+          "silence": 0.9281927426955702
+        },
+        {
+          "threshold": 0.7500000000000001,
+          "sensitivity": 0.0528804400270192,
+          "silence": 0.9548185673892554
+        },
+        {
+          "threshold": 0.8,
+          "sensitivity": 0.0318440606002123,
+          "silence": 0.9729029217719133
+        },
+        {
+          "threshold": 0.8500000000000001,
+          "sensitivity": 0.01524655022676831,
+          "silence": 0.9871583411875589
+        },
+        {
+          "threshold": 0.9000000000000001,
+          "sensitivity": 0.006368812120042458,
+          "silence": 0.9948162111215834
+        },
+        {
+          "threshold": 0.9500000000000001,
+          "sensitivity": 0.0012222972755637042,
+          "silence": 0.9989396795475967
+        }
+      ],
+      "sensitivity": 0.26588182315288367,
+      "silence": 0.7300895381715363
+    }
+  },
+  "pack": null,
+  "encoder": {
+    "source": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
+    "id": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "license_as_read": "apache-2.0",
+    "research_only": false,
+    "files": {
+      "config.json": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+      "config_sentence_transformers.json": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+      "data_config.json": "32edcb108fc2516b920734a862ae0692bcae1c5d45d5f8d972cb0d53434a4c54",
+      "model.safetensors": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+      "modules.json": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+      "README.md": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+      "sentence_bert_config.json": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+      "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+      "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+      "tokenizer_config.json": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+      "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+      "1_Pooling/config.json": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23"
+    },
+    "at": "2026-11-15T10:14:13.259141+00:00",
+    "token_cap": 128,
+    "device": "cpu",
+    "threads": 2,
+    "versions": {
+      "torch": "2.9.1+cpu",
+      "transformers": "4.57.6",
+      "model2vec": "0.6.0",
+      "sentence-transformers": "5.1.2",
+      "numpy": "2.5.4"
+    }
+  },
+  "neutral_source": {
+    "sources": {
+      "iterater": {
+        "source": "https://huggingface.co/datasets/wanyu/IteraTeR_human_sent",
+        "revision": "e22e0371dac444239b944f9293f5b491d62b73f0",
+        "license": "Apache-2.0",
+        "files": {
+          "README.md": "bce7ed1c2b2853aa94548bf43f46f425f91ac8f2c08436b4ddf519b4ffc14be2",
+          "train.json": "0b1d1dbe74e2a68495cd0770746899c354cf6787450fc6b14b7ee1f95914eb4c",
+          "dev.json": "7e60c860608a853e55e3b702d104039ab15235e732e5bbe78bade0b81a739189",
+          "test.json": "1a30452c33bd5379ff56159016d68ecd7e2669ede1e4ea77244c6e300952e9cb"
+        }
+      },
+      "iterater-doc": {
+        "source": "https://huggingface.co/datasets/wanyu/IteraTeR_human_doc",
+        "revision": "3b0bdabb090d04062ebc17e54ac889a64f5cb791",
+        "license": "Apache-2.0",
+        "files": {
+          "README.md": "f3ac097ea21d996e8e32a7895ad023afa398829d5d610e70b46ea0cdd2afb956",
+          "train.json": "3f60e9989879b7a51b994edbe4536a5bd30556670f47b6677815bf0ed45c0acc",
+          "dev.json": "9b8e216ca1874260bcf63365877225b2ee1547b70f1945fc172be1fcd945fc70",
+          "test.json": "b3f371261389662eebd8395f8b78020eef84a85218c03b2df6823d2c7f551b4b"
+        }
+      }
+    },
+    "selectedPin": "ce20c956c352d0c86c7e52f5e58433f926f6e25882e14c45b665501bde0f4441",
+    "outputPin": "6d76a99ad2e089c6d6cf11fe26e8d4285bd05b32f9ebb103e40d22d6928115d4",
+    "n": 191,
+    "domains": {
+      "wikipedia": 118,
+      "arxiv": 73
+    },
+    "excluded": {
+      "news": 87,
+      "unknown domain": 22
+    },
+    "coverageComplete": false,
+    "scope": "All eligible before sentences from the original TP9 sample, capped at 2000; no replacement sentences"
+  },
+  "final_threshold": 0.5,
+  "final_validation_qualified": false,
+  "final_development_curves": {
+    "envent": [
+      {
+        "threshold": 0.05,
+        "sensitivity": 1.0,
+        "silence": 0.0
+      },
+      {
+        "threshold": 0.1,
+        "sensitivity": 1.0,
+        "silence": 0.0
+      },
+      {
+        "threshold": 0.15000000000000002,
+        "sensitivity": 1.0,
+        "silence": 0.0
+      },
+      {
+        "threshold": 0.2,
+        "sensitivity": 0.996694214876033,
+        "silence": 0.0
+      },
+      {
+        "threshold": 0.25,
+        "sensitivity": 0.9917355371900827,
+        "silence": 0.0
+      },
+      {
+        "threshold": 0.3,
+        "sensitivity": 0.9834710743801653,
+        "silence": 0.038461538461538464
+      },
+      {
+        "threshold": 0.35000000000000003,
+        "sensitivity": 0.968595041322314,
+        "silence": 0.09615384615384616
+      },
+      {
+        "threshold": 0.4,
+        "sensitivity": 0.9371900826446281,
+        "silence": 0.19230769230769232
+      },
+      {
+        "threshold": 0.45,
+        "sensitivity": 0.8925619834710744,
+        "silence": 0.2692307692307692
+      },
+      {
+        "threshold": 0.5,
+        "sensitivity": 0.8148760330578513,
+        "silence": 0.36538461538461536
+      },
+      {
+        "threshold": 0.55,
+        "sensitivity": 0.7305785123966942,
+        "silence": 0.46153846153846156
+      },
+      {
+        "threshold": 0.6000000000000001,
+        "sensitivity": 0.6347107438016529,
+        "silence": 0.6153846153846154
+      },
+      {
+        "threshold": 0.6500000000000001,
+        "sensitivity": 0.5107438016528926,
+        "silence": 0.75
+      },
+      {
+        "threshold": 0.7000000000000001,
+        "sensitivity": 0.40165289256198344,
+        "silence": 0.8653846153846154
+      },
+      {
+        "threshold": 0.7500000000000001,
+        "sensitivity": 0.26776859504132233,
+        "silence": 0.9038461538461539
+      },
+      {
+        "threshold": 0.8,
+        "sensitivity": 0.15206611570247933,
+        "silence": 0.9038461538461539
+      },
+      {
+        "threshold": 0.8500000000000001,
+        "sensitivity": 0.05785123966942149,
+        "silence": 0.9423076923076923
+      },
+      {
+        "threshold": 0.9000000000000001,
+        "sensitivity": 0.0049586776859504135,
+        "silence": 1.0
+      },
+      {
+        "threshold": 0.9500000000000001,
+        "sensitivity": 0.0,
+        "silence": 1.0
+      }
+    ],
+    "go": [
+      {
+        "threshold": 0.05,
+        "sensitivity": 1.0,
+        "silence": 0.0
+      },
+      {
+        "threshold": 0.1,
+        "sensitivity": 1.0,
+        "silence": 0.001265022137887413
+      },
+      {
+        "threshold": 0.15000000000000002,
+        "sensitivity": 0.9991730981256891,
+        "silence": 0.006325110689437065
+      },
+      {
+        "threshold": 0.2,
+        "sensitivity": 0.9950385887541345,
+        "silence": 0.03289057558507274
+      },
+      {
+        "threshold": 0.25,
+        "sensitivity": 0.980154355016538,
+        "silence": 0.08981657179000632
+      },
+      {
+        "threshold": 0.3,
+        "sensitivity": 0.9495589856670342,
+        "silence": 0.19291587602783047
+      },
+      {
+        "threshold": 0.35000000000000003,
+        "sensitivity": 0.9057331863285557,
+        "silence": 0.30613535736875397
+      },
+      {
+        "threshold": 0.4,
+        "sensitivity": 0.8486769570011026,
+        "silence": 0.4250474383301708
+      },
+      {
+        "threshold": 0.45,
+        "sensitivity": 0.775909592061742,
+        "silence": 0.545224541429475
+      },
+      {
+        "threshold": 0.5,
+        "sensitivity": 0.6901874310915105,
+        "silence": 0.6666666666666666
+      },
+      {
+        "threshold": 0.55,
+        "sensitivity": 0.5984013230429989,
+        "silence": 0.7760910815939279
+      },
+      {
+        "threshold": 0.6000000000000001,
+        "sensitivity": 0.5035832414553473,
+        "silence": 0.8437697659709045
+      },
+      {
+        "threshold": 0.6500000000000001,
+        "sensitivity": 0.4178610804851158,
+        "silence": 0.9089184060721063
+      },
+      {
+        "threshold": 0.7000000000000001,
+        "sensitivity": 0.3382028665931643,
+        "silence": 0.9493991144845034
+      },
+      {
+        "threshold": 0.7500000000000001,
+        "sensitivity": 0.26267916207276737,
+        "silence": 0.9772296015180265
+      },
+      {
+        "threshold": 0.8,
+        "sensitivity": 0.19597574421168687,
+        "silence": 0.9886148007590133
+      },
+      {
+        "threshold": 0.8500000000000001,
+        "sensitivity": 0.13395810363836824,
+        "silence": 0.9955724225173941
+      },
+      {
+        "threshold": 0.9000000000000001,
+        "sensitivity": 0.07690187431091511,
+        "silence": 1.0
+      },
+      {
+        "threshold": 0.9500000000000001,
+        "sensitivity": 0.026460859977949284,
+        "silence": 1.0
+      }
+    ],
+    "story": [
+      {
+        "threshold": 0.05,
+        "sensitivity": 1.0,
+        "silence": 0.0
+      },
+      {
+        "threshold": 0.1,
+        "sensitivity": 1.0,
+        "silence": 0.0
+      },
+      {
+        "threshold": 0.15000000000000002,
+        "sensitivity": 0.9996822370511599,
+        "silence": 0.0
+      },
+      {
+        "threshold": 0.2,
+        "sensitivity": 0.9990467111534795,
+        "silence": 0.0023014959723820483
+      },
+      {
+        "threshold": 0.25,
+        "sensitivity": 0.9872894820463934,
+        "silence": 0.010356731875719217
+      },
+      {
+        "threshold": 0.3,
+        "sensitivity": 0.9440737210041309,
+        "silence": 0.06386651323360185
+      },
+      {
+        "threshold": 0.35000000000000003,
+        "sensitivity": 0.8624086431522084,
+        "silence": 0.16398158803222093
+      },
+      {
+        "threshold": 0.4,
+        "sensitivity": 0.7210041309183349,
+        "silence": 0.3245109321058688
+      },
+      {
+        "threshold": 0.45,
+        "sensitivity": 0.5567206863679695,
+        "silence": 0.4844649021864212
+      },
+      {
+        "threshold": 0.5,
+        "sensitivity": 0.38004448681283765,
+        "silence": 0.643843498273878
+      },
+      {
+        "threshold": 0.55,
+        "sensitivity": 0.23482681919288212,
+        "silence": 0.7917146144994246
+      },
+      {
+        "threshold": 0.6000000000000001,
+        "sensitivity": 0.13663806800127104,
+        "silence": 0.8762945914844649
+      },
+      {
+        "threshold": 0.6500000000000001,
+        "sensitivity": 0.07816968541468065,
+        "silence": 0.9286536248561565
+      },
+      {
+        "threshold": 0.7000000000000001,
+        "sensitivity": 0.0438512869399428,
+        "silence": 0.9637514384349828
+      },
+      {
+        "threshold": 0.7500000000000001,
+        "sensitivity": 0.019065776930409915,
+        "silence": 0.9827387802071347
+      },
+      {
+        "threshold": 0.8,
+        "sensitivity": 0.005401970130282809,
+        "silence": 0.9948216340621404
+      },
+      {
+        "threshold": 0.8500000000000001,
+        "sensitivity": 0.0009532888465204957,
+        "silence": 1.0
+      },
+      {
+        "threshold": 0.9000000000000001,
+        "sensitivity": 0.0,
+        "silence": 1.0
+      },
+      {
+        "threshold": 0.9500000000000001,
+        "sensitivity": 0.0,
+        "silence": 1.0
+      }
+    ]
+  },
+  "neutral": {
+    "theme-free": {
+      "n": 40,
+      "silence": 0.025,
+      "curve": [
+        {
+          "threshold": 0.05,
+          "silence": 0.0
+        },
+        {
+          "threshold": 0.1,
+          "silence": 0.0
+        },
+        {
+          "threshold": 0.15000000000000002,
+          "silence": 0.0
+        },
+        {
+          "threshold": 0.2,
+          "silence": 0.0
+        },
+        {
+          "threshold": 0.25,
+          "silence": 0.0
+        },
+        {
+          "threshold": 0.3,
+          "silence": 0.0
+        },
+        {
+          "threshold": 0.35000000000000003,
+          "silence": 0.0
+        },
+        {
+          "threshold": 0.4,
+          "silence": 0.0
+        },
+        {
+          "threshold": 0.45,
+          "silence": 0.0
+        },
+        {
+          "threshold": 0.5,
+          "silence": 0.025
+        },
+        {
+          "threshold": 0.55,
+          "silence": 0.65
+        },
+        {
+          "threshold": 0.6000000000000001,
+          "silence": 0.975
+        },
+        {
+          "threshold": 0.6500000000000001,
+          "silence": 1.0
+        },
+        {
+          "threshold": 0.7000000000000001,
+          "silence": 1.0
+        },
+        {
+          "threshold": 0.7500000000000001,
+          "silence": 1.0
+        },
+        {
+          "threshold": 0.8,
+          "silence": 1.0
+        },
+        {
+          "threshold": 0.8500000000000001,
+          "silence": 1.0
+        },
+        {
+          "threshold": 0.9000000000000001,
+          "silence": 1.0
+        },
+        {
+          "threshold": 0.9500000000000001,
+          "silence": 1.0
+        }
+      ]
+    },
+    "revisions": {
+      "n": 191,
+      "silence": 0.9057591623036649,
+      "curve": [
+        {
+          "threshold": 0.05,
+          "silence": 0.0
+        },
+        {
+          "threshold": 0.1,
+          "silence": 0.0
+        },
+        {
+          "threshold": 0.15000000000000002,
+          "silence": 0.015706806282722512
+        },
+        {
+          "threshold": 0.2,
+          "silence": 0.05759162303664921
+        },
+        {
+          "threshold": 0.25,
+          "silence": 0.17801047120418848
+        },
+        {
+          "threshold": 0.3,
+          "silence": 0.2670157068062827
+        },
+        {
+          "threshold": 0.35000000000000003,
+          "silence": 0.43455497382198954
+        },
+        {
+          "threshold": 0.4,
+          "silence": 0.6230366492146597
+        },
+        {
+          "threshold": 0.45,
+          "silence": 0.7958115183246073
+        },
+        {
+          "threshold": 0.5,
+          "silence": 0.9057591623036649
+        },
+        {
+          "threshold": 0.55,
+          "silence": 0.9633507853403142
+        },
+        {
+          "threshold": 0.6000000000000001,
+          "silence": 0.9790575916230366
+        },
+        {
+          "threshold": 0.6500000000000001,
+          "silence": 0.9947643979057592
+        },
+        {
+          "threshold": 0.7000000000000001,
+          "silence": 1.0
+        },
+        {
+          "threshold": 0.7500000000000001,
+          "silence": 1.0
+        },
+        {
+          "threshold": 0.8,
+          "silence": 1.0
+        },
+        {
+          "threshold": 0.8500000000000001,
+          "silence": 1.0
+        },
+        {
+          "threshold": 0.9000000000000001,
+          "silence": 1.0
+        },
+        {
+          "threshold": 0.9500000000000001,
+          "silence": 1.0
+        }
+      ]
+    }
+  },
+  "qualifies": false,
+  "artifactsPin": "16f98c9d52bfd99dad86017b5e7219bd1b890216fddcb1791f03f4ed68759bc6",
+  "sourceReceiptPin": "7803918cf1969c76aa6e4ee17603cf54c57dc0d91e3107214b6d6c5a9c9f69d1"
+}

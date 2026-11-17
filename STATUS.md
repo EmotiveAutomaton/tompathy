@@ -1,7 +1,58 @@
 # ToMpathy status
 
-Updated 15 November 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
+Updated 16 November 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
 based on the merged, owner-approved **0.2.0** frontend milestone.
+
+## November 15 trigger-reader packet
+
+The [new implementation](docs/ENGINE_TRIGGER_READER_2026-11-22.md) is a separate
+Gear 2 commission. Default-off gate/tag/channel/scalar and composite contracts
+and their private exporters are implemented; no production path is enabled. TP26 completed its full-data
+worry refit and all three known-group checks: AUC 0.7002 / 0.8578 / 0.7809.
+The 40 plain-prose controls average 5.95 of 9. Its source-bound aggregate is
+saved; the full-data head is research-only and is not independently benchmarked.
+The original five-fold R² remains 0.3013. This does not establish writer Stress.
+TP7 EX5 completed all 2,000 questions: .3610 top-choice accuracy versus .3810
+for the best rarity control, paired gain -.0200 with interval [-.0370, -.0050].
+Its gate fails; observations, native exit, leases and source-bound aggregate are verified. Story Commonsense
+matches the commissioned archive pin; its BOW rung is now measured.
+The owner approved separate component encoders, unassigned label-only tags,
+and the same TP23 transfer bars for every packed rung. Wakes are every three
+hours or on completion, replacing the old frequent checkpoint.
+Fifty focused backend checks and all 56 frontend checks pass; Ruff and the
+extension build also pass. Native Chrome verifies constructed
+unassigned tags, table/label disagreements and Stress alongside the passage;
+real worry-pack acceptance completed on all 203 inputs with default-off parity,
+empty maker tiers and an exact saved essay verified in native Chrome. TP23 BOW
+completed: story mean AUC .72877, transfer gain .04965 on five pairs with four
+above .03; the .06 mean bar fails, so no pack. The required five-pair preflight
+table reproduces within .02, but three additional per-tag checks do not. The
+owner ruled to use the packet's five-pair table scope. A separate source-bound
+decision qualifies continuation while preserving the original false full-check
+flag and failed BOW packing result. Frozen MiniLM completed and clears both
+bars: story mean AUC .776711539 and five-pair mean gain .096892812, with all five
+pairs above .03. Saved forecasts, native exit and exact releases are verified;
+its aggregate is source-bound. It is a candidate for final rung selection, with
+no pack or IM2 export yet. Seed-23 folds zero through three completed; each fold's
+619 saved artifacts and 190 snapshot files are verified. The first three hold
+out 9,615 rows each and the fourth 9,610, with disjoint held-out rows.
+The fifth original fold is running with exact
+native/shared/local ownership verified.
+TP25 completed and failed: held-out positive detection .3960 / .5732 / .2659
+for Crowd-enVENT / GoEmotions / Story Commonsense. At the fixed .5 diagnostic
+threshold it is silent on 1/40 plain-prose items and 173/191 revision sentences.
+No tested threshold jointly meets the required bars; no gate pack or new
+counting policy is qualified. Its native exit, leases and saved forecasts are
+verified, and the aggregate is source-bound. TP27 completed with diagnostic AUC
+.95412 versus the saved baseline .55116. Because its residual shares the stop
+label's timing source, this is circular evidence and enables no display or
+independent accuracy claim. Its original forecasts, all 1,399 scored sessions,
+native exit and leases are verified. The TP23 ladder now has
+separately bounded fine-tuning folds and an optional base-size rung; its scientific
+final fine-tuned rows remain unmeasured. TP25's intake retains the publisher's 16,976 explicitly
+unaffected story lines. The owner authorized the full original TP12 grid behind
+a qualified gate, with unchanged prior/minimum rules. TP27 is built as an explicitly
+circular diagnostic, with no independent accuracy or display admission.
 
 ## November 14 readers packet
 
@@ -48,11 +99,32 @@ TP19 completed after one bounded numerical continuation, preserving the original
 choice rows and baseline handling. Both choice and both handling improvement
 gates miss; personal-history handling gives no reliable gain. Native exit, exact
 releases and aggregate source binding are verified. Incomplete motive input was
-omitted. TP15 has saved all five writer-held-out folds on 1,860 texts from 372
-writers. Fine-tuned concern/distress correlations are 0.3875/0.3791, missing
-the 0.40 primary and 0.54 stretch bars; all controls also miss. The separately
-preplanned descriptive group comparisons are still running. Final aggregate
-landing awaits terminal state and verified release.
+omitted. TP15 is complete and its aggregate is source-bound: all five held-out
+folds on 1,860 texts from 372 writers are preserved. Fine-tuned concern/distress
+correlations 0.3875/0.3791 miss the 0.40 primary and 0.54 stretch bars; all controls
+also miss. Its descriptive group comparisons are saved for 24,850 ED situations
+and 54,263 GoEmotions comments, with no independent concern answer key.
+One bounded retry preserved the original forecasts and trained head after a
+Windows heartbeat replacement error; only unsaved descriptive scoring restarted.
+TP17 cause-word attribution completed all 4,613 held-out situations: top-three
+hit rate 0.6373 (writer interval 0.6147-0.6613) clears the 0.481 primary and
+0.60 stretch bars; BOW gives 0.5532. Native exit, exact release and source binding
+are verified. This concerns marked cause words, not motives or maker inference.
+TP1c completed: Smol135 Q8 passed exact vocabulary parity but failed numerical
+gate b on two long texts, so later gates, cohort accuracy and its timing remain
+unrun. The separate Smol360 Q4_K_M timing gives 91.87/110.50 seconds per 3,000
+words on the long texts, above 15 seconds; its mixed tensor types are explicit.
+TP22 is dependency-blocked by the unqualified counting policy; constructed
+estimator checks passed, but no blog stability measurement ran. Both outcomes
+have verified exit, exact release and source-bound aggregates. TP20 completed:
+exact-order accuracy is 0.3104 for the reader versus BOW 0.3562, both below 0.45.
+All 2,052 forecasts are saved; native exit, release and source binding are verified.
+The final TP4 controls completed on 40 proposals from 38 authors: TF-IDF top-one
+accuracy 0.6500 was reproduced exactly; BM25 gives 0.6750 and rarity weighting
+0.7250. Native exit, exact releases, frozen snapshot and source binding are
+verified. The bounded readers queue is closed; no owned scorer remains.
+The preflight input-path correction used the original baseline preparation
+without changing source inputs. No maker admission or live default changes follow.
 Optional TP10 L4 is blocked
 by reserved commit headroom and has not launched.
 No pack or maker inference is qualified. See the working record for exact results,

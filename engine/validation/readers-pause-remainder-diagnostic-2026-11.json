@@ -1,0 +1,67 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "947c348cd1e2e83f2505dd67fa417e4b416c16faa8e3d51f58dd4499fbe27494",
+  "launcherPin": "ef65cb269b75f63117a236bc2f40035d7c3af6fb2cd7b8da2cdeb1d2f04d8c87",
+  "ledger": "no ledger row",
+  "card": "TP27",
+  "status": "complete",
+  "productionAdmission": false,
+  "scope": "Circular diagnostic only: stop key and residual share the timing source; no independent accuracy or maker claim",
+  "sourceReceiptPin": "b50cb33c9f05b02ea958393664c132606996dcb7ef8f6859d365f88351c045d6",
+  "tablesPin": "ad2b8cc0ec08538c1345780d5945bc64698a6b6cbf4370e3db275b678f8f7698",
+  "baselineForecastPin": "8332694ce7c713611638c4bd28dc72c449a7d9426c1b51f8980ee688a7bd6341",
+  "protocol": {
+    "fit": "within-writer OLS, intercept, length/log1p-frequency/sentence-start/preceding-punctuation/Smol135 surprisal",
+    "frequency": "each writer own saved session words",
+    "regression_rows": "all writer words with observed logPause",
+    "prediction_rows": "unchanged original eligible writer words and five folds",
+    "comparison": "original five-feature baseline; second contrast against saved TP18 combined model",
+    "bar": "lower writer interval bound >.02, diagnostic only even if cleared",
+    "display": "unchanged; external Sounding Line KP1 is required"
+  },
+  "row": {
+    "baseline": 0.5511565126559368,
+    "engine": 0.9541204882795424,
+    "gain": 0.4029639756236055,
+    "interval": [
+      0.36896956236380524,
+      0.4276557344786578
+    ],
+    "clusters": 60,
+    "singleClassClustersExcluded": 1,
+    "draws": 2000,
+    "uncertainty": "cluster bootstrap of fixed out-of-fold predictions; conditional on fitted models",
+    "diagnostic_bar_cleared": true,
+    "words": 193947,
+    "sessions": 1399,
+    "independent_accuracy": false
+  },
+  "reader": {
+    "id": "HuggingFaceTB/SmolLM2-135M",
+    "revision": "93efa2f097d58c2a74874c7e644dbc9b0cee75a2",
+    "sha256": "96ad35f7d21abec59dc63e422103c82c40553b08ea5adb823d536d5da208b348",
+    "backend": "torch 2.9.1+cpu; transformers 4.57.6; CPU float32, 2 threads"
+  },
+  "residual": {
+    "writers": 61,
+    "rows": 315240,
+    "rank_deficient_writers": 0,
+    "diagnostic_only": true,
+    "stop_label_uses_same_pause": true
+  },
+  "versus_combined": {
+    "baseline": 0.572108645508853,
+    "engine": 0.9541204882795424,
+    "gain": 0.3820118427706894,
+    "interval": [
+      0.35282014996451866,
+      0.40347669206184544
+    ],
+    "clusters": 60,
+    "singleClassClustersExcluded": 1,
+    "draws": 2000,
+    "uncertainty": "cluster bootstrap of fixed out-of-fold predictions; conditional on fitted models"
+  },
+  "artifactsPin": "ed1e4b280df75af01086557b65a9f0bd4c0e8a67c61a0286a85326c420c601a0",
+  "upstreamSourceReceiptPin": "e7aae87f2fbca899344e5c11235524d95a340f1994869cd3cab98897fcca44d3"
+}

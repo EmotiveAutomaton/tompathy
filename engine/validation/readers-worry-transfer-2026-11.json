@@ -1,0 +1,175 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "b299bb2ead98b6a5d82585b2e6970a5c410353458b4ce37bb1517f1774b38a30",
+  "launcherPin": "a24b2e4907cc1795dd892595bc56367b424726a7bf6830eae1337f37870d898e",
+  "ledger": "no ledger row",
+  "card": "TP26",
+  "status": "complete",
+  "productionAdmission": false,
+  "scope": "Full-data worry refit and known-group checks; no independent Stress key or maker estimate",
+  "source": {
+    "intakePin": "bab11d00a905c50ef4029ce6a9ad5d93ceac593e82ed9fe5778c081e420d7dfe",
+    "license": "gpl-3.0",
+    "research_only": true,
+    "counts": {
+      "rows": 2500,
+      "fields": [
+        "",
+        "startdate",
+        "enddate",
+        "duration",
+        "worry",
+        "chosen_emotion",
+        "anger",
+        "disgust",
+        "fear",
+        "anxiety",
+        "sadness",
+        "happiness",
+        "relaxation",
+        "desire",
+        "text_long",
+        "text_short",
+        "self_rating_general",
+        "self_rating_short",
+        "self_rating_long",
+        "twitter_general_often",
+        "twitter_tweet_often",
+        "twitter_participate_often",
+        "eng_native"
+      ]
+    }
+  },
+  "benchmarkSourcePin": "99da1d6376ce2cdd480afb2d9f62f7330f4399b4f614eddcda8dbe5aacf7d457",
+  "protocol": {
+    "fit": "All 2500 writers, 3 fixed epochs, seed23, original TP16 settings; packed head unscored",
+    "scale": [
+      1,
+      9
+    ],
+    "cap": 128,
+    "group_bar": 0.7,
+    "plain_prose_bar": null,
+    "known_groups": "Unchanged predeclared labels; unambiguous positive versus negative; all released splits"
+  },
+  "groups": {
+    "envent": {
+      "n": 3300,
+      "positive": 1650,
+      "negative": 1650,
+      "overlap_excluded": 0,
+      "auc": 0.7001733700642792,
+      "bar": 0.7,
+      "passed": true,
+      "source": {
+        "generation": "3d2536b555ac7005080c2cd35aadb4d570992bca70d2017e4d8939525fa3a86b",
+        "validation": "ab64ebb18368a0342f2e890e9194cd70367387547936d9e343ba7881ec4314e3"
+      }
+    },
+    "ed": {
+      "n": 5283,
+      "positive": 2961,
+      "negative": 2322,
+      "overlap_excluded": 0,
+      "auc": 0.8578120504834454,
+      "bar": 0.7,
+      "passed": true,
+      "source": {
+        "intakePin": "dbc8e8faec17897f67b3cef9f26a031786bcc8c78f709475e5f8103f47a3e8ec",
+        "license": "cc-by-nc-4.0",
+        "research_only": true,
+        "counts": {
+          "train": {
+            "utterances": 84169,
+            "situations": 19533,
+            "firstUtterances": 19533,
+            "labels": 32
+          },
+          "valid": {
+            "utterances": 12078,
+            "situations": 2770,
+            "firstUtterances": 2770,
+            "labels": 32
+          },
+          "test": {
+            "utterances": 10973,
+            "situations": 2547,
+            "firstUtterances": 2547,
+            "labels": 32
+          }
+        }
+      }
+    },
+    "go": {
+      "n": 18627,
+      "positive": 892,
+      "negative": 17735,
+      "overlap_excluded": 37,
+      "auc": 0.7808899328808151,
+      "bar": 0.7,
+      "passed": true,
+      "source": {
+        "intakePin": "7d521e3a7e83ac940cc1f2d94be4c175f65a28389e35a253a34ff33bb0d15f5f",
+        "license": "apache-2.0",
+        "research_only": false,
+        "counts": {
+          "individual_judgments": 211225,
+          "unique_comments": 58011
+        },
+        "published_labelled": 54263,
+        "writer_unknown": 1063,
+        "raw_unlabelled_policy": "Features can be read for every raw comment; label-group tests use released consensus labels only"
+      }
+    }
+  },
+  "training": {
+    "fit": 2500,
+    "development": 0,
+    "test": 0,
+    "selected_epoch": 3,
+    "epochs": [
+      {
+        "epoch": 1,
+        "development_rmse": null
+      },
+      {
+        "epoch": 2,
+        "development_rmse": null
+      },
+      {
+        "epoch": 3,
+        "development_rmse": null
+      }
+    ],
+    "token_cap": 128
+  },
+  "nothing_here": {
+    "n": 40,
+    "mean": 5.946152687072754,
+    "quantiles": [
+      5.428977012634277,
+      5.544752836227417,
+      6.006270170211792,
+      6.3352370262146,
+      6.485096454620361
+    ],
+    "keyRange": [
+      1,
+      9
+    ],
+    "bar": null,
+    "not_a_stress_measure": true
+  },
+  "transferPassed": true,
+  "pack": {
+    "name": "rp-worry-1",
+    "pin": "rp-worry-1@b29957a4c46dbf8233a448c4a3225560ea0574e6fa70a1e1bf1cb0fbe4e5de2f",
+    "manifestPin": "b29957a4c46dbf8233a448c4a3225560ea0574e6fa70a1e1bf1cb0fbe4e5de2f",
+    "headPin": "a8769895cff71ba61bf5a29262a8bac97c94377f11e39760c845f7d7055411b1",
+    "trainingPin": "4e9115dcb08721bd0e37870ed1a7803cafb2ea1a8bb8442f0ea9ba13bcf17fdb",
+    "benchmarkPin": "99da1d6376ce2cdd480afb2d9f62f7330f4399b4f614eddcda8dbe5aacf7d457",
+    "packedHeadEvaluated": false,
+    "status": "research"
+  },
+  "sourceReceiptPin": "99d507ec9350998b41af76ea95626cd789c78bdc59b607fe24c6ea99dcfb3789"
+}

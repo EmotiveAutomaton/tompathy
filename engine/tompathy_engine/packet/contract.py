@@ -9,7 +9,7 @@ from typing import Annotated, Literal
 from pydantic import Field, PlainValidator, model_validator
 
 from ..ledger.schema import Model
-from .bottom_box import BottomBox
+from .bottom_box import BottomBox, BottomBoxV2
 from .value_view import WorkValueView
 
 
@@ -293,6 +293,7 @@ class HierarchyNode(PreviewLabels):
 
 
 class Hierarchy(Model):
+    status: Literal['unscored'] = 'unscored'
     nodes: list[HierarchyNode] = Field(min_length=1, max_length=3000)
 
 
@@ -480,7 +481,7 @@ class Packet(Model):
     artifact: Artifact
     provider: Provider
     preview: Preview | None = None
-    bottom_box: BottomBox | None = None
+    bottom_box: BottomBox | BottomBoxV2 | None = None
     valueView: WorkValueView | None = None
     globalFindings: list[GlobalFinding] | None = Field(default=None, max_length=30)
     origin: Literal["synthetic example", "imported", "live provider"]

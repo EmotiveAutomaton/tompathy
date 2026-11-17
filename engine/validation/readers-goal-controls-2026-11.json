@@ -1,0 +1,76 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "a589b237254ce39259074aa6c0423561af08c41b69b7c87f81b79e641e49d228",
+  "launcherPin": "ab303d370e9e76648d5c7ef80efcc3562cfb3d78e9795769e110c1c8d740a32b",
+  "ledger": "no ledger row",
+  "card": "TP4-controls",
+  "status": "complete",
+  "productionAdmission": false,
+  "scope": "Fixed 40-proposal lexical ranking; no 9B judgments or maker estimates",
+  "inputPin": "0ac27e67d300d71c9b8d5ddae21dac6cc5a3895d4a490c56c3b7ee1f6db2a21f",
+  "baselinePin": "4a9fdc4e4669eae5ceacde1a74eb4642d904e51deadf158355b6fc6d94047b9b",
+  "protocol": {
+    "bm25": "k1=1.2,b=.75; candidate-only IDF; raw query frequency",
+    "rarity": "TP7 B5 cosine; corpus frequencies from unique pilot candidate Motivation texts",
+    "ties": "candidate ID",
+    "query": "Same 12000-character answer-withheld body"
+  },
+  "rows": {
+    "tfidf": {
+      "documents": 40,
+      "authors": 38,
+      "top1": {
+        "mean": 0.65,
+        "interval": [
+          0.4878048780487805,
+          0.8048780487804879
+        ]
+      },
+      "reciprocalRank": {
+        "mean": 0.7293976449275362,
+        "interval": [
+          0.6014151947463767,
+          0.8496406249999997
+        ]
+      }
+    },
+    "bm25": {
+      "documents": 40,
+      "authors": 38,
+      "top1": {
+        "mean": 0.675,
+        "interval": [
+          0.5128048780487805,
+          0.825
+        ]
+      },
+      "reciprocalRank": {
+        "mean": 0.7410733908948195,
+        "interval": [
+          0.6046723441666044,
+          0.8633424744897956
+        ]
+      }
+    },
+    "rarity": {
+      "documents": 40,
+      "authors": 38,
+      "top1": {
+        "mean": 0.725,
+        "interval": [
+          0.5852665910380034,
+          0.8536585365853658
+        ]
+      },
+      "reciprocalRank": {
+        "mean": 0.8000259625126646,
+        "interval": [
+          0.6921845396403242,
+          0.8966674849972723
+        ]
+      }
+    }
+  },
+  "baselineReproduced": true,
+  "sourceReceiptPin": "f984653714b401682e8151856a61ea56dda15473460bf523d1406ff42f4d29c2"
+}

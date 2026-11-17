@@ -6,6 +6,16 @@
 
 **0.3 beta development · MIT licensed · Engine v1.** The Python engine in [engine/](engine/README.md) provides the decision ledger, source adapters, model/evaluation components, static registry generation and authenticated local companion. Scientific admissions remain separate from software checks: unadmitted modules do not supply maker estimates. The commissioned website demo remains hand-authored, fictional analysis.
 
+The [trigger-reader pass](docs/ENGINE_TRIGGER_READER_2026-11-22.md) adds opt-in
+research plumbing. Its worry refit clears three known-group checks, but scores
+plain prose 5.95 of 9 on average; it is not a measure of the author.
+The completed EX5 choice test trails its rarity control; no personal-choice
+or values inference follows.
+The new plain-prose gate also misses its sensitivity/silence requirements;
+gated counting and new channel/trigger serving remain blocked.
+The frozen need-tag reader clears its story and transfer bars; final selection
+awaits the fine-tuned rungs. This does not override the failed serving gate.
+
 The [November readers pass](docs/ENGINE_READERS_2026-11-17.md) adds a default-off
 reader-pack contract and source-pinned CPU benchmarks. Initial frozen readers
 and the development-selected fine-tuned reader remain below the label and
@@ -16,6 +26,16 @@ fine-tuned reader; corrected-share and plans checks remain dependency-blocked.
 This target-task result does not enable maker inference or change a live default.
 The observed-choice and handling extensions miss all four registered gain bars;
 their completed aggregate preserves the original results across a numerical repair.
+The completed concern/distress reader misses both required correlation bars;
+its descriptive caring-label contrasts do not qualify CARE or maker inference.
+The cause-word benchmark reaches 63.7% top-three hit rate, clearing its two bars;
+this scoped result does not establish motives or enable maker inference.
+The smaller-reader Q8 candidate fails numerical parity; the separate Q4_K_M
+timing misses the speed target. Longitudinal reading remains dependency-blocked.
+Assigned negotiation-priority accuracy also misses its bar and trails BOW;
+the final lexical controls reproduce TF-IDF and score 67.5% BM25 / 72.5% rarity
+top-choice accuracy on the fixed pilot. The bounded readers queue is closed,
+with partial and dependency-blocked work retained explicitly.
 Core values now has a first-pass Current Artifact layout with fluencies, five
 needs and a bodily-needs area. Author uses attributed dated actions when supplied
 and centers the current work. Curves are illustrative; absent life history and

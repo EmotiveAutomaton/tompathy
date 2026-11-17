@@ -1,0 +1,96 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "a589b237254ce39259074aa6c0423561af08c41b69b7c87f81b79e641e49d228",
+  "launcherPin": "ab303d370e9e76648d5c7ef80efcc3562cfb3d78e9795769e110c1c8d740a32b",
+  "ledger": "no ledger row",
+  "card": "TP20",
+  "status": "complete",
+  "productionAdmission": false,
+  "scope": "Randomly assigned resource priorities, not values or refusals",
+  "source": {
+    "intakePin": "6b9c202e0b78d97551097ae19075fc9bb93e4a902215e21c7b9aba0749909775",
+    "license": "cc-by-4.0",
+    "research_only": false,
+    "counts": {
+      "dialogues": 1030
+    }
+  },
+  "reader": {
+    "sourceReceiptPin": "ac5aa48a1e9a83d681969eadf9c7a8268831be97f8fbbc42b259ff72c226b759",
+    "selectedSeed": 47,
+    "headPin": "5f22c9d133b6b31e7d118d1f443be3808c0980ad3cf4e4ade640297c232e6880",
+    "unpacked": true,
+    "productionAdmission": false,
+    "sourceGates": {
+      "B1": false,
+      "B2_stretch": false,
+      "B3": null,
+      "B4": false,
+      "pack_eligible": false,
+      "productionAdmission": false
+    },
+    "token_cap": 128,
+    "threads": 2
+  },
+  "protocol": {
+    "input": "Five ordinary messages from the target participant only; fewer than five excluded",
+    "folds": "Five dialogue-disjoint folds; both perspectives always share a fold",
+    "ranker": "Ridge alpha=3 predicts three ordinal scores; descending order, stable fixed issue-order ties",
+    "encoder": "Five separately encoded capped messages concatenated in chronological order",
+    "writerLimitation": "Global participant IDs unavailable; role names are not writer IDs"
+  },
+  "excluded_short_perspectives": 8,
+  "rows": {
+    "constant": {
+      "exact_order_accuracy": 0.14619883040935672,
+      "top_priority_accuracy": 0.3162768031189084,
+      "interval": [
+        0.1305921052631579,
+        0.1642300194931774
+      ],
+      "cluster": "whole dialogue, 1000 resamples",
+      "bar": 0.45,
+      "passes": false,
+      "n": 2052,
+      "dialogues": 1026
+    },
+    "bow": {
+      "exact_order_accuracy": 0.3562378167641326,
+      "top_priority_accuracy": 0.5974658869395711,
+      "interval": [
+        0.3347953216374269,
+        0.3767056530214425
+      ],
+      "cluster": "whole dialogue, 1000 resamples",
+      "bar": 0.45,
+      "passes": false,
+      "n": 2052,
+      "dialogues": 1026
+    },
+    "reader": {
+      "exact_order_accuracy": 0.3104288499025341,
+      "top_priority_accuracy": 0.6042884990253411,
+      "interval": [
+        0.29142300194931775,
+        0.3304459064327485
+      ],
+      "cluster": "whole dialogue, 1000 resamples",
+      "bar": 0.45,
+      "passes": false,
+      "n": 2052,
+      "dialogues": 1026
+    }
+  },
+  "external_references": {
+    "source": "https://aclanthology.org/2022.findings-naacl.50.pdf",
+    "Table1_k5": {
+      "random": 0.1646,
+      "bow": 0.2849,
+      "roberta_CD_CA_DND": 0.6357
+    },
+    "section5_3_expert_100_dialogues": 0.75,
+    "limitation": "Published model sees partial dialogue context and adapted additional training data; our opponent-only input and folds differ"
+  },
+  "chance": 0.16666666666666666,
+  "sourceReceiptPin": "ce05ace3ffa14515e475fcee8bec9fa2b4ba88e82394a434483f0961f0c053bc"
+}

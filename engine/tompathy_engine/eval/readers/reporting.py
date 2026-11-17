@@ -6,7 +6,7 @@ from pathlib import Path
 from ...packs.registry import sha256
 from ..back_half.reporting import save_json
 
-OUTPUTS = {'TP10': 'readers-envent-2026-11.json', 'TP12': 'readers-counting-2026-11.json',
+OUTPUTS = {'TP7':'readers-choice-ex5-2026-11.json', 'TP26':'readers-worry-transfer-2026-11.json', 'TP10': 'readers-envent-2026-11.json', 'TP12': 'readers-counting-2026-11.json',
            'TP12-L3':'readers-counting-finetuned-2026-11.json',
            'TP10-L3':'readers-envent-finetuned-2026-11.json','TP11':'readers-stakes-2026-11.json',
            'TP14':'readers-motives-2026-11.json','TP13':'readers-transfer-2026-11.json',
@@ -17,6 +17,8 @@ OUTPUTS = {'TP10': 'readers-envent-2026-11.json', 'TP12': 'readers-counting-2026
            'TP18-probe':'readers-attention-probe-2026-11.json','TP1c':'readers-smol135-2026-11.json',
            'TP19':'readers-choices-2026-11.json','TP22':'readers-longitudinal-2026-11.json'}
 FIELDS = {
+    'TP7':{'card','status','productionAdmission','ledger','scope','sourcePin','protocol','rows','acceptedNotTopScore','sourceSelection','E2','license','reason'},
+    'TP26':{'card','status','productionAdmission','ledger','scope','source','benchmarkSourcePin','protocol','groups','training','nothing_here','transferPassed','pack'},
     'TP18-probe':{'card','status','productionAdmission','ledger','scope','sourceReceiptPin','tablesPin','reader','protocol','sessions','words','pack','row','controls'},
     'TP1c':{'card','status','productionAdmission','ledger','scope','sourceModelPin','converter','textPin','pack','protocol','ggufPin','gates','attention','candidate','criteria','q4Pin','q4','aggregatePin'},
     'TP19':{'card','status','productionAdmission','ledger','scope','reader','motives','sourcePin','protocol','rows','gains','pack','controls','continuation'},
@@ -46,6 +48,30 @@ FIELDS = {
             'protocol','references','total','completed','excluded_alignment','rows'},
 }
 FIELDS['TP12-L3']=FIELDS['TP12']|{'carriedControls'}
+FIELDS['TP12-gated']=FIELDS['TP12-L3']|{'gate','gatedErrorTablePin'}
+OUTPUTS['TP12-gated']='readers-counting-gated-2026-11.json'
+FIELDS['TP22-gated']=FIELDS['TP22']|{'gate'}
+OUTPUTS['TP22-gated']='readers-longitudinal-gated-2026-11.json'
+FIELDS['TP25']={'card','status','productionAdmission','ledger','scope','sources','protocol','rows','pack','encoder',
+    'neutral_source','final_threshold','final_validation_qualified','final_development_curves','neutral','qualifies','artifactsPin'}
+OUTPUTS['TP25']='readers-stakes-gate-2026-11.json'
+FIELDS['TP24']={'card','status','productionAdmission','ledger','scope','needsReceiptPin','rows','pack','protocol',
+    'reason','reader','stakes_qualified','tense','table','ablations','rulesPin','artifactsPin','featureReuse'}
+OUTPUTS['TP24']='readers-trigger-slots-2026-11.json'
+FIELDS['TP27']={'card','status','productionAdmission','ledger','scope','sourceReceiptPin','tablesPin','protocol','row',
+    'reader','residual','versus_combined','artifactsPin','baselineForecastPin'}
+OUTPUTS['TP27']='readers-pause-remainder-diagnostic-2026-11.json'
+FIELDS['TS3-real']={'card','status','productionAdmission','ledger','scope','sources','packs','rows','defaultOffParity','browser','artifactsPin'}
+OUTPUTS['TS3-real']='readers-trigger-wire-2026-11.json'
+for rung in ('bow','frozen','fine-23','fine-47','fine-71','base'):
+    card='TP23-'+rung
+    OUTPUTS[card]='readers-need-'+rung+'-2026-11.json'
+    FIELDS[card]={'card','status','productionAdmission','ledger','source','scope','protocol','people','folds','pack',
+        'encoder','story','transfer','qualifies','preflight','foldSources','artifactsPin','preflightSourcePin','preflightScope'}
+for kind in ('worry','need','gate','label','trigger','counting'):
+    card='TRIGGER-export-'+kind
+    OUTPUTS[card]='readers-export-'+kind+'-2026-11.json'
+    FIELDS[card]={'card','status','productionAdmission','ledger','scope','pack','reason','selection','IM2ManifestPin'}
 
 
 def land(job, destination):

@@ -1,0 +1,19 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "d94582e844505bce7c8a1166ec7c93760902b14a6dacc0498614ad8dbcd61213",
+  "launcherPin": "ef65cb269b75f63117a236bc2f40035d7c3af6fb2cd7b8da2cdeb1d2f04d8c87",
+  "ledger": "no ledger row",
+  "card": "TRIGGER-export-worry",
+  "status": "complete",
+  "productionAdmission": false,
+  "scope": "Private opt-in research export; no automatic live attachment or release",
+  "pack": {
+    "name": "rp-worry-1",
+    "pin": "rp-worry-1@59c6bb3e90fc1723e6ac6682107ea91d118eea63ecf719d25b32764fa9785b3a",
+    "encoder": "12655d3f583034ecbc3786484f692616a6e9b2caa1b67ebd71db7300515c60ae",
+    "head": "a8769895cff71ba61bf5a29262a8bac97c94377f11e39760c845f7d7055411b1",
+    "evidencePin": "7c5118e2050b49f2e7b67b4bfb0c65dc31181ad9a612be1898e9820cf7f331d3",
+    "researchOnly": true
+  },
+  "sourceReceiptPin": "467b8d5ba1558b964347e2122fb6409dde141d34434a40aa48b9f9ef72e83c8f"
+}

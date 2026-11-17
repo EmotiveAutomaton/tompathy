@@ -9,7 +9,7 @@ export async function assertReleasePacks(directory) {
     if (entry.isDirectory()) await assertReleasePacks(path);
     else if (entry.name === 'pack.json') {
       const pack = JSON.parse(await readFile(path, 'utf8'));
-      if (pack.version !== 'reader-pack-1' || pack.research_only !== false ||
+      if (!['reader-pack-1', 'reader-pack-2'].includes(pack.version) || pack.status === 'research' || pack.research_only !== false ||
           pack.encoder?.kind === 'constructed' || !pack.training?.length ||
           [...pack.training, pack.encoder?.license].some(x => x?.commercial_use !== true)) {
         throw new Error(`Research-only, constructed or unlicensed reader refused by release: ${path}`);

@@ -1,7 +1,7 @@
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { ContextItem, Hypothesis, Packet } from "../core/model";
 import type { GoalNode } from "../core/hierarchy";
-import { authorNeedSources, bodyChannels, needs, workNeedSources, type NeedDetailId, type NeedId, type NeedSource } from "../core/need-view";
+import { authorNeedSources, bodyChannels, needs, pageNeedActivity, workNeedSources, type NeedDetailId, type NeedId, type NeedSource } from "../core/need-view";
 import type { ValuesTab } from "./ValueTabs";
 
 export const needDescriptions: Record<NeedDetailId, string> = {
@@ -38,15 +38,17 @@ const tipEdge = Array.from({ length: 25 }, (_, i) => {
 });
 const tipPath = `M${tipEdge.map(p => `${p.x},${32 - p.half}`).join(" L")} Q201 32 198 33.5 L${[...tipEdge].reverse().map(p => `${p.x},${32 + p.half}`).join(" L")}`;
 
-export function NeedLandscape({ packet, nodes, values, tab, context, onSources, inspect, onNeed, onHighlight }: {
+export function NeedLandscape({ packet, nodes, values, tab, context, onSources, inspect, onNeed, onHighlight, research = false }: {
   packet: Packet; nodes: GoalNode[]; values: Hypothesis[]; tab: ValuesTab; context: ContextItem[];
   onSources: () => void; inspect: (h: Hypothesis) => void; onNeed: (id: NeedDetailId) => void;
   onHighlight: (sources: NeedSource[]) => void;
+  research?: boolean;
 }) {
   // Parent demo adapters recreate records. Depend on their contents to avoid
   // re-centering the author timeline and clearing hover on every parent render.
   const valueKey = JSON.stringify(values);
-  const work = useMemo(() => workNeedSources(packet, nodes, values), [packet, nodes, valueKey]);
+  const work = useMemo(() => workNeedSources(packet, nodes, values, research), [packet, nodes, valueKey, research]);
+  const activity = research && tab === "work" ? pageNeedActivity(packet) : null;
   const sources = useMemo(() => tab === "creator" ? authorNeedSources(packet, context, work) : work, [tab, packet, context, work]);
   const [active, setActive] = useState<string | null>(null);
   const [links, setLinks] = useState<{ key: string; from: string; need: NeedId; x: number; y: number; tx: number; ty: number; direction: number }[]>([]);
@@ -127,7 +129,7 @@ export function NeedLandscape({ packet, nodes, values, tab, context, onSources, 
           className={`need-target ${i === 5 ? "body-need" : ""} ${active === need.id || selectedNeeds.has(need.id) ? "connected" : ""}`}
           onMouseEnter={() => setActive(need.id)} onMouseLeave={() => setActive(null)}
           onFocus={() => setActive(need.id)} onBlur={() => setActive(null)} onClick={() => onNeed(need.id)}>
-          <span>{need.label}</span><NeedGraph /></button>
+          <span>{need.label}{activity?.[need.id]?.length ? ` · ${activity[need.id].length}` : ""}</span><NeedGraph /></button>
           {i === 5 && <div className="body-subchannels">{bodyChannels.map(channel => <button key={channel.id} data-outlet={channel.id} className="body-subchannel" aria-label={channel.label}
             onMouseEnter={() => setActive("N6")} onMouseLeave={() => setActive(null)} onFocus={() => setActive("N6")} onBlur={() => setActive(null)} onClick={() => onNeed(channel.id)}>
             <NeedGraph /><span>{channel.label}</span></button>)}</div>}
