@@ -13,8 +13,10 @@ The completed EX5 choice test trails its rarity control; no personal-choice
 or values inference follows.
 The new plain-prose gate also misses its sensitivity/silence requirements;
 gated counting and new channel/trigger serving remain blocked.
-The frozen need-tag reader clears its story and transfer bars; final selection
-awaits the fine-tuned rungs. This does not override the failed serving gate.
+The frozen need-tag reader and all three fine-tuned seeds clear their story and
+transfer bars. Development scores select seed 47 among the fine-tuned readers;
+the optional larger-reader comparison is running before final selection/export.
+This does not override the failed serving gate.
 
 The [November readers pass](docs/ENGINE_READERS_2026-11-17.md) adds a default-off
 reader-pack contract and source-pinned CPU benchmarks. Initial frozen readers

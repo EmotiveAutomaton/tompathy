@@ -8,10 +8,45 @@ against .76; mean twin-pair transfer gain **.096892812** against .06, with all f
 pairs above .03. Gains for pride/joy, guilt/shame, fear/sadness, anger/disgust and
 trust/joy are .158994021 / .050853357 / .118851596 / .063459785 / .092305304.
 Thirteen-label macro-F1 is .377775213 for ratings, .270293849 for tags alone,
-and .461516370 for both. This qualifies a candidate rung, with final seed/rung
+and .461516370 for both. This qualifies a candidate rung, with final rung
 selection and private export pending; TP25 still blocks serving. No maker claim.
 [Frozen need aggregate](../engine/validation/readers-need-frozen-2026-11.json), source
 `1d996fdce019a3cbf60bb55ad7cb77fdd0dc6d5481e0f95f8a8c9b4025334bf4`.
+
+Fine-tuned seed 23 also clears both bars: story-held-out mean tag AUC
+**.780278654**, transfer mean gain **.098599881**, all five pairs above .03.
+Pair gains in the same order are .174868722 / .034043399 / .111419221 /
+.066509045 / .106159015. Thirteen-label macro-F1 is .377775213 for ratings,
+.287072017 for tags and .468480790 for both. All 48,065 held-out forecasts
+match the five original saved folds; all 6,600 transfer forecasts are verified.
+The seed's development AUC .779447851 trails seed47's .785652886; the completed
+three-seed comparison selects seed47. No pack or IM2 export yet. TP25 still blocks
+serving. [Seed-23 aggregate](../engine/validation/readers-need-fine-23-2026-11.json),
+source `e858b23384caef6edec71471e555ed3946a477542552411f9fc57eb90363e982`.
+
+Fine-tuned seed 47 also clears both bars: story-held-out mean tag AUC
+**.788030458**, transfer mean gain **.100700184**, all five pairs above .03.
+Pair gains in the same order are .174059880 / .044975079 / .119689416 /
+.057773049 / .107003495. Thirteen-label macro-F1 is .377775213 for ratings,
+.281855489 for tags and .464320731 for both. All 48,065 held-out forecasts
+match the five original saved folds; all 6,600 transfer forecasts are verified.
+Development AUC .785652886 selects seed47 among all three completed fine seeds,
+before applying scientific gates. Final rung selection awaits the optional
+MPNet base comparison; no pack or IM2 export yet.
+TP25 still blocks serving. [Seed-47 aggregate](../engine/validation/readers-need-fine-47-2026-11.json),
+source `264e2acd2f16cc854f64c5cfbb208d30b304c5dc67238f58f94f363154063f0d`.
+
+Fine-tuned seed 71 also clears both bars: story-held-out mean tag AUC
+**.786680164**, transfer mean gain **.104038220**, all five pairs above .03.
+Pair gains in the same order are .168423780 / .061207312 / .114815797 /
+.072128544 / .103615667. Thirteen-label macro-F1 is .377775213 for ratings,
+.287723929 for tags and .472303028 for both. All 48,065 held-out forecasts
+match the five original saved folds; all 6,600 transfer forecasts are verified.
+Its development AUC .777746393 does not replace the selected seed47, regardless
+of the higher transfer gain. The optional base rung's first fold is verified
+complete and its second is running; there is no final base accuracy result.
+[Seed-71 aggregate](../engine/validation/readers-need-fine-71-2026-11.json),
+source `d8b3d7059f3893bb1f75906bd5e4eae9bad15c4091678f4ba1540b1219f03e54`.
 
 TP27's **circular diagnostic**, not independent accuracy: AUC .954120488 versus
 the saved baseline .551156513, gain .402963976 with writer interval
@@ -287,20 +322,11 @@ Aggregate: `engine/validation/readers-worry-transfer-2026-11.json`, source pin
 Native exit, exact leases and all 175 frozen code files verified. No ledger row.
 
 
-The trigger infrastructure now includes separately bounded TP23 fold jobs,
-conditional gate/calibrated-counting exports and the owner's diagnostic-only
-pause residual. These are implemented, unexecuted rows, not completed science.
-The new full TP12 grid is authorized only behind a qualified gate; old failures
-and minimum-policy dependencies remain. Current software checks and source
-preservation evidence are in the trigger-reader working record.
-
-
-The trigger infrastructure now includes separately bounded TP23 fold jobs,
-conditional gate/calibrated-counting exports and the owner's diagnostic-only
-pause residual. These are implemented, unexecuted rows, not completed science.
-The new full TP12 grid is authorized only behind a qualified gate; old failures
-and minimum-policy dependencies remain. Current software checks and source
-preservation evidence are in the trigger-reader working record.
+TP23's optional base result remains pending. The completed circular pause
+diagnostic is reported above. Conditional gate/calibrated-counting exports and
+the new full TP12 grid are implemented but remain blocked by the completed TP25
+failure; old failures and minimum-policy dependencies remain. Current software
+checks and source preservation evidence are in the trigger-reader working record.
 
 
 TP7 EX5 is complete: E1 top-choice .3610 versus best rarity control .3810;

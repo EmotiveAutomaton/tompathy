@@ -1,6 +1,6 @@
 # ToMpathy status
 
-Updated 16 November 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
+Updated 18 November 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
 based on the merged, owner-approved **0.2.0** frontend milestone.
 
 ## November 15 trigger-reader packet
@@ -33,11 +33,30 @@ flag and failed BOW packing result. Frozen MiniLM completed and clears both
 bars: story mean AUC .776711539 and five-pair mean gain .096892812, with all five
 pairs above .03. Saved forecasts, native exit and exact releases are verified;
 its aggregate is source-bound. It is a candidate for final rung selection, with
-no pack or IM2 export yet. Seed-23 folds zero through three completed; each fold's
-619 saved artifacts and 190 snapshot files are verified. The first three hold
-out 9,615 rows each and the fourth 9,610, with disjoint held-out rows.
-The fifth original fold is running with exact
-native/shared/local ownership verified.
+no pack or IM2 export yet. Fine-tuned seed 23 is complete and also clears both
+bars: story mean AUC .780278654, transfer mean gain .098599881, all five pairs
+above .03. All 48,065 held-out rows match the five original saved folds;
+the full-data head and 6,600 transfer forecasts are verified. Native exit,
+exact releases and the new aggregate's source binding are verified. Final
+seed selection uses development scores before gates. Fine-tuned seed 47 is now
+complete and also clears both bars: story mean AUC .788030458, transfer mean
+gain .100700184, all five pairs above .03. All 48,065 held-out rows retain the
+five original fold forecasts; the 6,600 transfer forecasts, 18 sealed artifacts
+and 190 frozen files are verified. Native exit, exact releases and aggregate
+source binding are verified. The storage interruption and recovery audits remain
+preserved; no completed inference was repeated. Fine-tuned seed 71 is complete
+and clears both bars: story mean AUC .786680164, transfer mean gain .104038220,
+all five pairs above .03. All 48,065 held-out rows preserve the original folds;
+the 6,600 transfer forecasts, 18 sealed artifacts and 190 frozen files match.
+Native exit, exact releases and the new aggregate's source binding are verified.
+All three fine seeds are now complete; their development scores select seed 47
+(.785652886 versus seed23 .779447851 and seed71 .777746393), before applying gates.
+The optional MPNet base rung's first fold completed at 17:32:44 Pacific November
+18. Its 619 saved artifacts, 190 frozen files and 9,615 held-out rows match their
+pins and original fold order/truth; native exit and exact releases are verified.
+Fold one started at 17:37:30 after larger resource admission and exact
+native/shared/local ownership verification. This is partial rung progress;
+final selection/export await the full comparison. TP25 still blocks serving/counting.
 TP25 completed and failed: held-out positive detection .3960 / .5732 / .2659
 for Crowd-enVENT / GoEmotions / Story Commonsense. At the fixed .5 diagnostic
 threshold it is silent on 1/40 plain-prose items and 173/191 revision sentences.
@@ -48,8 +67,8 @@ verified, and the aggregate is source-bound. TP27 completed with diagnostic AUC
 label's timing source, this is circular evidence and enables no display or
 independent accuracy claim. Its original forecasts, all 1,399 scored sessions,
 native exit and leases are verified. The TP23 ladder now has
-separately bounded fine-tuning folds and an optional base-size rung; its scientific
-final fine-tuned rows remain unmeasured. TP25's intake retains the publisher's 16,976 explicitly
+separately bounded fine-tuning folds and an optional base-size rung; the base
+result remains unmeasured. TP25's intake retains the publisher's 16,976 explicitly
 unaffected story lines. The owner authorized the full original TP12 grid behind
 a qualified gate, with unchanged prior/minimum rules. TP27 is built as an explicitly
 circular diagnostic, with no independent accuracy or display admission.

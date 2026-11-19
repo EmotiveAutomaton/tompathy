@@ -1,5 +1,161 @@
 # Readers packet — theory return
 
+November 18, 17:36 Pacific verification: MPNet base fold0 completed at 17:32:44.
+All 619 saved artifacts and 190 frozen files match; the 9,615 held-out rows
+retain the original order/truth and finite forecasts. Native exit and exact
+releases are verified. Development AUC .822259845 is retained for later
+selection; no final base result or gate conclusion exists yet. Source pin:
+`de90341eaf701df1185995fc5d25bf2623ecd0ea30ecc1cd73de8a2a734ab1da`.
+Fold1 started at 17:37:30 after original prerequisites, LARGE counted admission
+and exact native/shared/local ownership verification. Its frozen snapshot
+matches. The selected MiniLM fine seed47 remains fixed by development scores;
+final rung selection/export await the optional base comparison. TP25 still
+blocks serving/counting. No completed inference or failed gate was repeated.
+
+November 18, 14:30 Pacific verification: TP23 fine seed71 completed at 12:17:13.
+Story-held-out mean tag AUC .786680164 and transfer mean gain .104038220 clear
+both bars, with all five pair gains above .03. The 48,065 held-out forecasts
+retain all five original folds; 6,600 transfer forecasts, 18 sealed artifacts
+and 190 snapshot files are verified. Native exit, exact releases and aggregate
+source binding are verified: `engine/validation/readers-need-fine-71-2026-11.json`,
+source `d8b3d7059f3893bb1f75906bd5e4eae9bad15c4091678f4ba1540b1219f03e54`.
+Development AUCs for seeds23/47/71 are .779447851 / .785652886 / .777746393,
+so the registered development-before-gates rule selects seed47. The larger
+seed71 transfer gain does not change that selection. The optional MPNet base
+fold0 started at 14:32:27 after verified original model/source prerequisites,
+LARGE counted admission and exact ownership. Final rung selection/export await
+this comparison. TP25 still blocks serving/counting; no maker admission follows.
+
+November 18, 11:31 Pacific verification: seed71 fold4 completed at 09:00:03.
+Its 619 saved artifacts and 190 frozen files match; all five folds cover exactly
+48,065 original held-out rows once each, with unchanged order/truth and finite
+forecasts. Native exits and exact releases are verified. Final-fold development
+AUC .778910069 is retained for later selection. Source receipt pin:
+`114b1c559575e8eb648b257e7c8d6327dd1575b684e11ebdb651ae737a2ced97`.
+The final seed71 head/transfer job acquired its owned lease at 11:32:28 with
+verified ownership and snapshot, configured to reuse the five completed folds.
+Final seed results and selection remain pending; TP25 still blocks serving/counting.
+A manifest-layout correction to the private coverage helper is preserved in its
+repair audit; no completed inference or scientific gate was rerun.
+
+November 18, 08:26 Pacific verification: seed71 fold3 completed at 06:02:20.
+All 619 saved artifacts and 190 frozen files match; its 9,610 held-out rows
+retain the original order/truth and are disjoint from folds0–2. Native exit
+and exact releases are verified. Development AUC .772706687 is retained for
+later selection; this is not a final seed result. Source receipt pin:
+`6bfde2b33a588b2ff9f8d3f4793e4f5fd16fccb88894cda498b49ccf85f5ba74`.
+Seed71 fold4 acquired its owned lease at 08:27:03 with verified ownership,
+snapshot and unchanged settings. The final full-data head and transfer stage
+remain pending after this last fold; no final selection/export or admission
+follows yet. TP25 still blocks serving/counting. No completed inference repeated.
+
+November 18, 05:28 Pacific verification: seed71 fold2 completed at 03:07:00.
+All 619 saved artifacts and 190 frozen files match; its 9,615 held-out rows
+retain the original order/truth and are disjoint from folds0/1. Native exit
+and exact releases are verified. Development AUC .779469958 is retained for
+later selection; this is not a final seed result. Source receipt pin:
+`68668195f08379e4cbe98809987040c056d1e471d7107e20b53be4845b5ccfab`.
+Seed71 fold3 acquired its owned lease at 05:28:47 with verified ownership,
+snapshot and unchanged settings. Final selection/export remain pending;
+TP25 still blocks serving/counting. No completed inference was repeated.
+
+November 18, 02:27 Pacific verification: seed71 fold1 completed at 23:58:42
+Pacific November 17. All 619 saved artifacts and 190 frozen files match; its
+9,615 held-out rows retain the original order/truth and are disjoint from fold0.
+Native exit and exact releases are verified. Development AUC .788595860 is
+retained for later selection; this is not a final seed result. Source receipt pin:
+`6bb66b0432003b6e72b2591839a59e9370422a93b034ee7c9bae6113f25e1d91`.
+Seed71 fold2 acquired its owned lease at 02:30:27 with verified ownership,
+snapshot and unchanged settings. Final selection/export remain pending;
+TP25 still blocks serving/counting. No completed inference was repeated.
+
+November 17, 23:25 Pacific verification: seed71 fold0 completed at 20:54:22.
+All 619 saved artifacts and 190 frozen files match; the 9,615 held-out rows
+retain the original order/truth. Native exit and exact releases are verified.
+Development AUC .769049391 is retained for later selection; this is not a final
+seed result. Source receipt pin:
+`ae92cc36ae475e534da31485bb715216a6aeb718ec252e92b597ea10a9e0af67`.
+Seed71 fold1 started at 23:25:53 with verified ownership and unchanged settings.
+Final seed selection and export remain pending; no completed inference repeated.
+
+November 17, 20:21 Pacific verification: TP23 fine-tuned seed 47 completed at
+18:18:52 and clears both registered bars. Story-held-out mean tag AUC .788030458;
+transfer mean gain .100700184, all five pairs above .03. Pair gains are
+.174059880 / .044975079 / .119689416 / .057773049 / .107003495 for pride/joy,
+guilt/shame, fear/sadness, anger/disgust and trust/joy. Thirteen-label macro-F1
+is .377775213 for ratings, .281855489 for tags and .464320731 for both.
+Development AUC .785652886 is retained for later seed selection.
+
+All 190 snapshot files and 18 sealed artifacts match. All 48,065 held-out rows
+retain the original five fold forecasts; 6,600 transfer forecasts are verified.
+Native exit, exact releases and the new aggregate's source binding are verified:
+`engine/validation/readers-need-fine-47-2026-11.json`, source receipt pin
+`264e2acd2f16cc854f64c5cfbb208d30b304c5dc67238f58f94f363154063f0d`.
+Seed71 fold0 started at 20:22:51 with verified ownership and unchanged settings.
+Final selection/export await the remaining planned work. TP25 still blocks
+serving/counting; no maker or live-default admission follows.
+
+November 17, 17:35 Pacific: all five seed47 folds are complete and verified,
+covering exactly 48,065 original held-out rows once each. Fold4 completed at
+11:49:48; native exit/releases were verified at 14:23:21. Its 619 artifacts,
+190 frozen files and original order/truth match; development AUC .779131898
+is retained for later selection. Source receipt pin:
+`9fd2d79f2ff54e2bfc49a39fa392c51f58e32fa68f36beadb1d937eb7148e787`.
+A disk-full interruption delayed record writes and the next launch; the audit
+was preserved separately and has now been reconciled after the owner restored
+space. The final seed47 head/transfer stage started at 17:34:24 with verified
+ownership and all five completed fold forecasts reused. Final results and
+seed selection remain pending; no completed inference or failed gate was rerun.
+
+November 17, 11:21 Pacific verification: seed47 fold3 completed at 08:45:58.
+All 619 artifacts and 190 frozen files match; its 9,610 held-out rows retain
+the original order/truth and are disjoint from folds0–2. Native exit and exact
+release are verified. Development AUC .783553793 is retained for later selection.
+Fold4 started at 11:22:36 with verified ownership and unchanged settings.
+Final seed47 results remain pending. Source receipt pin:
+`5fe7af403580399a6ad6e4b5a7ed88d5dd3a74821892801cec203988922e7b17`.
+
+November 17, 08:18 Pacific verification: seed47 fold2 completed at 05:46:37.
+All 619 artifacts and 190 frozen files match; its 9,615 held-out rows retain
+the original order/truth and are disjoint from folds0/1. Native exit and exact
+release are verified. Development AUC .788457232 is retained for later selection.
+Fold3 started at 08:20:36 with verified ownership and unchanged settings.
+Final seed47 results remain pending. Source receipt pin:
+`1f11cd58cea925ea02ecb6fac211cb9aa070e9544ff9546e446275db642da7b6`.
+
+November 17, 05:15 Pacific verification: seed47 fold1 completed at 02:47:29.
+Its 619 artifacts and 190 frozen files match; all 9,615 held-out forecasts
+retain the original order/truth and are disjoint from fold0. Native exit and
+exact release are verified. Development AUC .797591925 is retained for later
+selection; no final seed47 result follows yet. Fold2 started at 05:17:00 with
+verified ownership and unchanged settings. Source receipt pin:
+`cbd0bc2edf7ec18053c25b939239fd464ab4160b35b4159aed139306ea618362`.
+
+November 17, 02:14 Pacific verification: seed47 fold0 completed at 23:45:44
+the preceding evening. All 619 saved artifacts and 190 frozen files match;
+the 9,615 held-out rows retain the original fold order and truth. Native exit
+and exact releases are verified. Development AUC .779529583 is recorded for
+later selection, without a final seed gate result. Seed47 fold1 started at
+02:16:24 with verified ownership. Source receipt pin:
+`b842bde4e79ea54e38e3b91c70ab311f18cb56c92207ee11227ee992d474517d`.
+
+November 16, 23:10 Pacific verification: TP23 fine-tuned seed 23 completed at
+20:58:42 and clears both registered bars. Story-held-out mean tag AUC .780278654;
+transfer mean gain .098599881, all five pairs above .03. Pride/joy, guilt/shame,
+fear/sadness, anger/disgust and trust/joy gains are .174868722 / .034043399 /
+.111419221 / .066509045 / .106159015. Thirteen-label macro-F1 is .377775213 for
+ratings, .287072017 for tags and .468480790 for both. These are scoped tag/transfer
+measurements; no maker inference follows.
+
+All 48,065 held-out forecasts match the five original folds, with every row
+covered once. The 6,600 transfer rows, 18 sealed final artifacts, 190 snapshot
+files, native exit and exact releases are verified. Mean development AUC
+.779447851 is retained for selection after seeds 47/71; no seed is selected yet.
+Seed47 fold0 started at 23:12:24 with verified ownership. TP25 continues to block
+serving/counting; final private export and IM2 are pending.
+[Seed-23 aggregate](../../engine/validation/readers-need-fine-23-2026-11.json),
+source `e858b23384caef6edec71471e555ed3946a477542552411f9fc57eb90363e982`.
+
 November 16, 05:03 Pacific: TP23 frozen MiniLM completed and clears both bars.
 Story mean AUC .776711539; transfer mean gain .096892812, all five pairs above
 .03. Pride/joy, guilt/shame, fear/sadness, anger/disgust and trust/joy gains are
@@ -8,10 +164,13 @@ this rung improves guilt/shame under the registered comparison, unlike BOW's
 sub-.03 result. Thirteen-label macro-F1: ratings .377775213, tags .270293849,
 both .461516370. Final selection waits for the original fine-tuned seeds and
 memory-eligible optional base rung; no IM2 handoff yet. TP25's failed gate still
-blocks serving, and no maker inference follows. Seed-23 folds zero through three
+blocks serving, and no maker inference follows. All five seed-23 folds
 subsequently completed, each with 619 saved artifacts verified; held-out counts
-are 9,615 / 9,615 / 9,615 / 9,610 and the rows are disjoint.
-The fifth original fold is running.
+are 9,615 / 9,615 / 9,615 / 9,610 / 9,610 and together cover the exact 48,065-row
+cohort without overlap. The fifth fold's native exit and exact releases were
+verified at 20:08:30 Pacific November 16. The final seed-23 stage started at
+20:10:34 with verified ownership, reusing those forecasts before its separately
+planned full-data head and transfer checks; its completed result is recorded above.
 [Frozen need aggregate](../../engine/validation/readers-need-frozen-2026-11.json),
 source `1d996fdce019a3cbf60bb55ad7cb77fdd0dc6d5481e0f95f8a8c9b4025334bf4`.
 

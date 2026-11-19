@@ -23,8 +23,12 @@ build passes. The first real worry-pack acceptance completed on all 203 inputs,
 with default-off parity, empty maker tiers and native Chrome verification of an
 exact saved essay packet. The tag-reader BOW run is complete; its packing bar
 fails. The owner ratified the packet's five-pair table scope, and the frozen
-MiniLM rung completed with both bars cleared. Seed-23 folds zero through three are
-complete and verified; the fifth original fold is running. TP25 completed with failed gates; TP27 completed as
+MiniLM rung completed with both bars cleared. All three fine-tuned seeds also
+clear both bars, with their original five-fold forecasts preserved. Development
+scores select seed47 before gates. The optional MPNet base rung's first fold is
+complete and verified; its second fold is running after larger admission.
+Final rung selection and export remain pending.
+TP25 completed with failed gates; TP27 completed as
 a circular diagnostic with no display admission.
 
 TP26 completed as the first new measurement: one full-data, three-epoch worry refit,
@@ -65,13 +69,356 @@ row; it does not retrospectively rescue the original counting policy.
 | TS3 | Worry acceptance complete on 203 real inputs and native Chrome; final all-existing-pack acceptance remains conditional | Default off; exact pins/spans; maker empty |
 | TP26 | Complete; aggregate source-bound; research pack saved | AUC >= .70 on each of three known groups; plain prose descriptive |
 | TP7 | Complete; registered gain fails; aggregate source-bound | Original held-out controls retained |
-| TP23 | BOW fails; frozen MiniLM clears both bars; four seed-23 folds complete, fifth running, final selection pending | Encoder story AUC .76; every rung transfer mean gain .06 and >=.03 on four pairs |
+| TP23 | BOW fails; frozen MiniLM and all fine seeds clear both bars; fine seed47 selected by development; optional base fold0 verified complete, fold1 running, final selection pending | Encoder story AUC .76; every rung transfer mean gain .06 and >=.03 on four pairs |
 | TP25 | Complete; failed, no gate pack; aggregate source-bound | .80 silence on both neutral sets; .70 sensitivity in each held-out source |
 | TP24 | Runner built; qualified need/gate dependencies pending | Slots within .10 of direct; table accuracy .33; tense AUC .60 |
 | TP12 gated | Full-grid runner built; blocked by completed TP25 failure | Original fixed mixture grid, priors/minima unchanged |
 | TP27 / TP18b | Complete; diagnostic-only gain, no display admission | Circular timing comparison; >.02 lower bound is diagnostic only; no display before KP1 |
 
 ### Ratified TP23 scope and completed TP27
+
+MPNet base fold zero completed at 17:32:44 Pacific November 18. Native exit and
+exact shared/local releases were verified at 17:36:35. All 619 saved artifacts
+and 190 frozen files match; its finite 9,615-by-19 held-out forecasts preserve
+the original fold order/truth. Development AUC .822259845 is retained for later
+selection, not a final rung result. Source receipt pin:
+`de90341eaf701df1185995fc5d25bf2623ecd0ea30ecc1cd73de8a2a734ab1da`.
+Audit: `.local/trigger/tp23-base-fold-0-completion.json`.
+Fold one acquired its owned lease at 17:37:30 after original source/model
+prerequisites and LARGE counted admission: 35.26 GiB commit headroom against
+22 GiB required, with no foreign leases counted. Its exact ownership and 190
+snapshot files are verified; at 17:41:03 the heartbeat had 32.88 GiB commit
+headroom and epoch one had reached 1,648/34,690 fitting texts. The existing
+20:29 Pacific checkpoint remains scheduled; scheduling is not delivery.
+The first fold took about three hours, but no whole-rung ETA is established.
+Final selection/export and TP25-blocked serving/counting remain unchanged.
+Startup audit: `.local/trigger/tp23-base-fold-1-start.json`.
+
+Fine-tuned seed71 completed at 12:17:13 Pacific November 18. Native exit and
+exact shared/local releases were verified at 14:30:29. All 190 snapshot files
+and 18 sealed artifacts match. All 48,065 held-out forecasts retain the original
+five fold arrays, and the 6,600 transfer forecasts are finite and source-bound.
+Story mean AUC .786680164 and transfer mean gain .104038220 clear both bars;
+all five pair gains exceed .03. Gains for pride/joy, guilt/shame, fear/sadness,
+anger/disgust and trust/joy are .168423780 / .061207312 / .114815797 /
+.072128544 / .103615667. Thirteen-label macro-F1 is .377775213 for ratings,
+.287723929 for tags and .472303028 for both. Aggregate:
+`engine/validation/readers-need-fine-71-2026-11.json`, source receipt pin
+`d8b3d7059f3893bb1f75906bd5e4eae9bad15c4091678f4ba1540b1219f03e54`.
+Audit: `.local/trigger/tp23-fine-71-completion.json`.
+
+With all three fine seeds terminal, development AUCs .779447851 / .785652886 /
+.777746393 select seed47 before gates. This preserves the registered rule
+despite seed71's larger transfer gain. The source-bound selection is retained
+in `.local/trigger/tp23-fine-seed-selection.json`. Final rung selection awaits
+the optional base comparison; no pack, IM2, serving or maker admission follows.
+
+The optional MPNet base fold zero acquired its owned lease at 14:32:27 Pacific
+November 18. Its eleven original model files at revision
+`e8c3b32edf5434bc2275fc9bab85f82640a19130`, story inputs and unchanged training
+helpers were verified. LARGE counted admission found 37.25 GiB commit against
+22 GiB required, no foreign leases, and 684.53 GiB disk space. Native/shared/local
+ownership and all 190 snapshot files are verified. The original fold has 34,635
+fitting, 3,815 development and 9,615 held-out texts; seed23, three epochs,
+cap128 and batch16 remain fixed. At 14:33:16 the heartbeat was fresh with
+36.40 GiB commit headroom during initialization, without phase, receipt or
+terminal/release files yet. Its eight-hour deadline is 22:32:26 Pacific; the
+next checkpoint is approximately 17:29 Pacific. No whole-fold ETA is measured
+for this larger model. Prerequisites and startup audits:
+`.local/trigger/tp23-base-fold-0-prerequisites.json` and
+`.local/trigger/tp23-base-fold-0-start.json`. Memory stop ends this optional rung.
+
+Seed-71 fold four completed at 09:00:03 Pacific November 18; native exit and
+exact shared/local release were verified at 11:31:03. All 619 saved artifacts
+and 190 frozen files match. All five folds cover exactly 48,065 original
+held-out rows once each, with finite forecasts and unchanged order/truth.
+The final fold's development AUC .778910069 is retained for later selection.
+Source receipt pin:
+`114b1c559575e8eb648b257e7c8d6327dd1575b684e11ebdb651ae737a2ced97`.
+Audits: `.local/trigger/tp23-fine-71-fold-4-completion.json` and
+`.local/trigger/tp23-fine-71-prerequisites.json`. No final transfer or packing
+result follows from completed folds alone.
+
+The coverage helper initially assumed the frozen final manifest sealed each
+intermediate fold file; it instead seals the full held-out table. That audit
+attempt stopped before any completion record or inference. The corrected check
+binds fold order to the sealed original seed-23 fold forecasts and retains the
+truth comparison to the sealed frozen cohort. Both helper versions and pins
+are retained in `.local/trigger/tp23-fine-71-coverage-helper-repair.json`.
+No source, prediction, scientific rule or research retry allowance changed.
+
+The final seed-71 job acquired its owned lease at 11:32:28 Pacific November 18
+after verified prerequisites and counted admission: 39.13 GiB commit against
+14 GiB required, no foreign leases, and 634.72 GiB disk space available. Exact
+native/shared/local ownership and all 190 frozen files are verified. Its planned
+new work is the fixed three-epoch full-data head and transfer evaluation; all
+five completed fold forecasts will be reused. At 11:33:25 the heartbeat was
+fresh with 38.63 GiB commit headroom during initialization; receipt, phase,
+head progress and copied fold files were not yet present, with no terminal or
+release receipt. Its eight-hour bound ends at 19:32:27 Pacific. The next check
+is approximately 14:30 Pacific, not a completion forecast. Startup audit:
+`.local/trigger/tp23-fine-71-start.json`. No completed inference was repeated.
+
+Seed-71 fold three completed at 06:02:20 Pacific November 18; native exit and
+exact shared/local release were verified at 08:26:33. All 619 saved artifacts
+and 190 frozen files match. Its finite 9,610-by-19 held-out arrays retain the
+original order/truth and are disjoint from folds zero through two. Development
+AUC .772706687 is retained for later selection. Source receipt pin:
+`6bfde2b33a588b2ff9f8d3f4793e4f5fd16fccb88894cda498b49ccf85f5ba74`.
+Audit: `.local/trigger/tp23-fine-71-fold-3-completion.json`. This private fold
+does not establish a final seed-71 accuracy, transfer or packing result.
+
+The fifth seed-71 fold acquired its owned lease at 08:27:03 Pacific November 18
+after verified prerequisites and counted admission: 37.15 GiB commit against
+14 GiB required, no foreign leases, and 590.97 GiB disk space available. Exact
+native/shared/local ownership and all 190 frozen files are verified. It uses
+the original 34,675 fitting, 3,780 development and 9,610 held-out rows, three
+epochs, cap128 and batch16. At 08:27:42 the heartbeat was fresh with 36.64 GiB
+commit headroom during initialization; receipt, phase and fold progress were
+not yet present, with no terminal/release receipt. Its eight-hour bound ends
+at 16:27:02 Pacific. The next scheduled check is approximately 11:26 Pacific,
+not a completion forecast. Audit: `.local/trigger/tp23-fine-71-fold-4-start.json`.
+The final full-data head and transfer stage follows all-five-fold verification;
+no completed inference was repeated.
+
+Seed-71 fold two completed at 03:07:00 Pacific November 18; native exit and
+exact shared/local release were verified at 05:28:01. All 619 saved artifacts
+and 190 frozen files match. Its finite 9,615-by-19 held-out arrays retain the
+original order/truth and are disjoint from folds zero and one. Development
+AUC .779469958 is retained for later selection. Source receipt pin:
+`68668195f08379e4cbe98809987040c056d1e471d7107e20b53be4845b5ccfab`.
+Audit: `.local/trigger/tp23-fine-71-fold-2-completion.json`. This private fold
+does not establish a final seed-71 accuracy, transfer or packing result.
+
+The fourth seed-71 fold acquired its owned lease at 05:28:47 Pacific November 18
+after verified prerequisites and counted admission: 34.28 GiB commit against
+14 GiB required, no foreign leases, and 305.40 GiB disk space available. Exact
+native/shared/local ownership and all 190 frozen files are verified. It uses
+the original 34,675 fitting, 3,780 development and 9,610 held-out rows, three
+epochs, cap128 and batch16. At 05:29:36 the heartbeat was fresh with 33.15 GiB
+commit headroom during initialization; receipt, phase and fold progress were
+not yet present, with no terminal/release receipt. Its eight-hour bound ends
+at 13:28:45 Pacific. The next scheduled check is approximately 08:27 Pacific,
+not a completion forecast. Audit: `.local/trigger/tp23-fine-71-fold-3-start.json`.
+No completed inference was repeated.
+
+Seed-71 fold one completed at 23:58:42 Pacific November 17; native exit and
+exact shared/local release were verified at 02:27:32 Pacific November 18.
+All 619 saved artifacts and 190 frozen files match. Its finite 9,615-by-19
+held-out arrays retain the original order/truth and are disjoint from fold zero.
+Development AUC .788595860 is retained for later selection. Source receipt pin:
+`6bb66b0432003b6e72b2591839a59e9370422a93b034ee7c9bae6113f25e1d91`.
+Audit: `.local/trigger/tp23-fine-71-fold-1-completion.json`. This private fold
+does not establish a final seed-71 accuracy, transfer or packing result.
+
+The third seed-71 fold acquired its owned lease at 02:30:27 Pacific November 18
+after verified prerequisites and counted admission: 41.26 GiB commit against
+14 GiB required, no foreign leases, and 29.55 GiB disk space available. Exact
+native/shared/local ownership and all 190 frozen files are verified. It uses
+the original 34,705 fitting, 3,745 development and 9,615 held-out rows, three
+epochs, cap128 and batch16. At 02:31:44 its first epoch had reached 368 fitting
+rows; the heartbeat was fresh with 41.56 GiB commit headroom. Its eight-hour
+bound ends at 10:30:27 Pacific. The next scheduled check is approximately
+05:26 Pacific, not a completion forecast. Audit:
+`.local/trigger/tp23-fine-71-fold-2-start.json`. No completed inference repeated.
+
+Seed-71 fold zero completed at 20:54:22 Pacific November 17; native exit and
+exact shared/local release were verified at 23:25:06. All 619 saved artifacts
+and 190 frozen files match. Its 9,615-by-19 held-out arrays are finite and match
+the original fold order/truth. Development AUC .769049391 is retained for later
+selection. Source receipt pin:
+`ae92cc36ae475e534da31485bb715216a6aeb718ec252e92b597ea10a9e0af67`.
+Audit: `.local/trigger/tp23-fine-71-fold-0-completion.json`. No final seed-71
+accuracy, transfer or packing result follows from this private fold.
+
+The second seed-71 fold started at 23:25:53 Pacific after verified prerequisites
+and counted admission: 42.38 GiB commit against 14 GiB required, no foreign
+leases. Exact native/shared/local ownership and all 190 frozen files are
+verified. It uses the original 34,690 fitting, 3,760 development and 9,615
+held-out rows, three epochs, cap128 and batch16. At 23:26:48 its first epoch
+had reached 64 fitting rows and the heartbeat was fresh with 41.39 GiB commit
+headroom. Its eight-hour bound ends at 07:25:52 Pacific November 18; the next
+scheduled check is approximately 02:24 Pacific, not a completion forecast.
+Startup audit: `.local/trigger/tp23-fine-71-fold-1-start.json`.
+
+Fine-tuned seed 47 completed at 18:18:52 Pacific November 17. Host-visible native
+exit and exact shared/local releases were verified at 20:21:38. Story-held-out
+mean tag AUC is **.788030458**; transfer mean gain is **.100700184**, with all
+five pairs above .03. Pride/joy, guilt/shame, fear/sadness, anger/disgust and
+trust/joy gains are .174059880 / .044975079 / .119689416 / .057773049 / .107003495.
+Thirteen-label macro-F1 is .377775213 for ratings, .281855489 for tags alone,
+and .464320731 for both. Development AUC .785652886 is retained for the
+prescribed selection after seed 71; no seed is selected early.
+
+All 190 frozen files and 18 sealed final artifacts match. The 48,065-by-19
+held-out arrays exactly retain all five original fold forecasts and cover the
+cohort once; the 6,600-by-19 transfer arrays are finite and uniquely identified.
+The new aggregate is saved at `engine/validation/readers-need-fine-47-2026-11.json`,
+source receipt pin `264e2acd2f16cc854f64c5cfbb208d30b304c5dc67238f58f94f363154063f0d`,
+public pin `621c04efd374762d51551d3187ea2b8dab219a6637e82c78f9f3240d33e9148f`.
+Audit: `.local/trigger/tp23-fine-47-completion.json`. Final seed/rung selection,
+private pack and IM2 export remain pending; TP25 still blocks serving/counting.
+No maker claim, ledger admission or live-default change follows.
+
+The first seed-71 fold started at 20:22:51 Pacific after verified source/model
+prerequisites and counted admission: 43.79 GiB commit against 14 GiB required,
+no foreign leases. Exact native/shared/local ownership and all 190 frozen files
+are verified. It retains 34,635 fitting, 3,815 development and 9,615 held-out
+rows, three epochs, cap128 and batch16. Its eight-hour bound ends at 04:22:49
+Pacific November 18; the next scheduled check is approximately 23:20 Pacific
+November 17. Startup heartbeat was fresh at 20:23:44 with 43.53 GiB commit
+headroom. Startup audit: `.local/trigger/tp23-fine-71-fold-0-start.json`.
+
+Seed-47 fold four completed at 11:49:48 Pacific November 17; native exit and
+exact shared/local release were verified at 14:23:21. Its 619 saved artifacts
+and 190 frozen files match. All five folds cover the original 48,065 held-out
+rows exactly once, retaining original order/truth. The final fold's development
+AUC is .779131898. Source receipt pin:
+`9fd2d79f2ff54e2bfc49a39fa392c51f58e32fa68f36beadb1d937eb7148e787`.
+Audit: `.local/trigger/tp23-fine-47-fold-4-completion.json`.
+
+At the 14:22 checkpoint, the project drive was full. The completed run and
+release receipts survived; a new private verification-script write failed
+before execution, leaving a zero-byte file. Read-only verification succeeded,
+and its audit was preserved in the chat workspace. No research retry or next
+job ran during the blockage. After the owner restored space, 137.73 GiB free
+was observed at 17:32:47. Recovery audits were copied back with exact hashes;
+all five source receipts/forecasts, artifact presence, model and corpus pins,
+and helper semantics were checked. Originals and completed inference were
+unchanged. Evidence: `.local/trigger/storage-reconciled-20261117.json` and
+`.local/trigger/storage-recovery-20261117/`.
+
+The final seed-47 stage started at 17:34:24 Pacific after counted admission:
+39.90 GiB commit against 14 GiB required, no foreign leases. Exact ownership,
+all 190 frozen files and the scope-decision pin are verified. It reused all
+five completed fold forecasts, then began the fixed three-epoch full-data head.
+At 17:35:33 it was in epoch one with 112/48,065 fitting rows; heartbeat was
+fresh with 38.72 GiB commit headroom. Transfer scoring and final aggregation
+remain. Its eight-hour bound ends at 01:34:22 Pacific November 18; the next
+scheduled check is approximately 20:24 Pacific November 17, not a completion
+forecast. Startup audit: `.local/trigger/tp23-fine-47-start.json`.
+
+Seed-47 fold three completed at 08:45:58 Pacific November 17; native exit and
+exact shared/local release were verified at 11:21:25. All 619 saved artifacts
+and 190 frozen files match. Its 9,610-by-19 held-out arrays are finite, match
+the original fold order/truth and are disjoint from folds zero through two.
+Development AUC .783553793 is retained for later selection. Source receipt pin:
+`5fe7af403580399a6ad6e4b5a7ed88d5dd3a74821892801cec203988922e7b17`.
+Audit: `.local/trigger/tp23-fine-47-fold-3-completion.json`.
+
+The fifth seed-47 fold started at 11:22:36 Pacific after verified prerequisites
+and counted admission: 42.95 GiB commit against 14 GiB required, no foreign
+leases. Exact native/shared/local ownership and all 190 frozen files are
+verified. It uses the original 34,675 fitting, 3,780 development and 9,610
+held-out rows. Its eight-hour bound ends at 19:22:35 Pacific; the next scheduled
+check is approximately 14:18 Pacific. At 11:23:39 its first epoch had reached
+352 fitting rows and the heartbeat was fresh, with 41.84 GiB commit headroom.
+No completed fit or inference is repeated. Startup audit:
+`.local/trigger/tp23-fine-47-fold-4-start.json`.
+
+Seed-47 fold two completed at 05:46:37 Pacific November 17; native exit and
+exact shared/local release were verified at 08:18:51. All 619 saved artifacts
+and 190 frozen files match. Its 9,615-by-19 held-out arrays are finite, match
+the original fold order/truth and are disjoint from folds zero and one.
+Development AUC .788457232 is retained for later selection. Source receipt pin:
+`1f11cd58cea925ea02ecb6fac211cb9aa070e9544ff9546e446275db642da7b6`.
+Audit: `.local/trigger/tp23-fine-47-fold-2-completion.json`.
+
+The fourth seed-47 fold started at 08:20:36 Pacific after verified prerequisites
+and counted admission: 42.72 GiB commit against 14 GiB required, no foreign
+leases. Exact native/shared/local ownership and all 190 frozen files are
+verified. It uses the original 34,675 fitting, 3,780 development and 9,610
+held-out rows. Its eight-hour bound ends at 16:20:35 Pacific; the next scheduled
+check is approximately 11:18 Pacific. No completed fit or inference is repeated.
+Startup audit: `.local/trigger/tp23-fine-47-fold-3-start.json`.
+
+Seed-47 fold one completed at 02:47:29 Pacific November 17; native exit and
+exact shared/local release were verified at 05:15:32. All 619 saved artifacts
+and 190 frozen files match. Its 9,615-by-19 held-out arrays are finite, match
+the original fold order/truth and are disjoint from fold zero. Development
+AUC .797591925 is retained for later selection. Source receipt pin:
+`cbd0bc2edf7ec18053c25b939239fd464ab4160b35b4159aed139306ea618362`.
+Audit: `.local/trigger/tp23-fine-47-fold-1-completion.json`.
+The first private verification script retained the preceding fold's card name;
+the guard rejected it before changing any result. Its corrected copy passed,
+with both script hashes preserved in `tp23-fine-47-fold-1-audit-repair.json`.
+No runner, snapshot, inference or research gate was changed or repeated.
+
+The third seed-47 fold started at 05:17:00 Pacific after verified prerequisites
+and counted admission: 39.98 GiB commit against 21.72 GiB required, with one
+foreign lease left unchanged. Exact native/shared/local ownership and all 190
+frozen files are verified. It uses the original 34,705 fitting, 3,745 development
+and 9,615 held-out rows. Its eight-hour bound ends at 13:16:59 Pacific; the next
+scheduled check is approximately 08:14 Pacific. Startup audit:
+`.local/trigger/tp23-fine-47-fold-2-start.json`.
+
+Seed-47 fold zero completed at 23:45:44 Pacific November 16; native exit and
+exact shared/local release were verified at 02:14:48 Pacific November 17.
+All 619 saved artifacts and 190 frozen files match. Its 9,615-by-19 held-out
+arrays are finite and match the original fold order/truth; development AUC
+.779529583 is retained for later selection. This private fold is not a final
+seed result. Source receipt pin:
+`b842bde4e79ea54e38e3b91c70ab311f18cb56c92207ee11227ee992d474517d`.
+Audit: `.local/trigger/tp23-fine-47-fold-0-completion.json`.
+
+The second seed-47 fold started at 02:16:24 Pacific November 17, after verified
+source/model prerequisites and counted admission: 23.51 GiB commit against
+14 GiB required, no foreign leases. Exact native/shared/local ownership and
+all 190 frozen files are verified. It retains 34,690 fitting, 3,760 development
+and 9,615 held-out rows with the original settings. Its eight-hour deadline is
+10:16:24 Pacific; the next scheduled check is approximately 05:14 Pacific.
+No completed fit or inference is repeated. Startup audit:
+`.local/trigger/tp23-fine-47-fold-1-start.json`.
+
+Fine-tuned seed 23 completed at 20:58:42 Pacific November 16. Host-visible native
+exit and exact shared/local releases were verified at 23:10:36. Story-held-out
+mean tag AUC is **.780278654**; transfer mean gain is **.098599881**, with all
+five pairs above .03. Pride/joy, guilt/shame, fear/sadness, anger/disgust and
+trust/joy gains are .174868722 / .034043399 / .111419221 / .066509045 / .106159015.
+Thirteen-label macro-F1 is .377775213 for ratings, .287072017 for tags alone,
+and .468480790 for both. Mean development AUC .779447851 is retained for the
+prescribed seed selection; it does not select this seed before seeds 47/71 finish.
+
+All 190 snapshot files and 18 sealed final artifacts match. The 48,065-by-19
+held-out arrays match the five completed source folds exactly, with every row
+covered once; the 6,600-by-19 transfer arrays are finite and uniquely identified.
+The new aggregate is saved at
+`engine/validation/readers-need-fine-23-2026-11.json`, source receipt pin
+`e858b23384caef6edec71471e555ed3946a477542552411f9fc57eb90363e982`,
+public pin `27e9276fca4f4d21974fd01108aca269b228739219cdaf9033b7341cf15788cb`.
+Audit: `.local/trigger/tp23-fine-23-completion.json`. This is a qualified seed
+result, with final seed/rung selection, private pack and IM2 export still pending.
+TP25 still blocks serving/counting; no maker claim or live-default change follows.
+
+The first seed-47 fold started at 23:12:24 Pacific after its source/model
+prerequisites and counted admission passed: 23.52 GiB commit against 14 GiB
+required, no foreign leases. Exact native/shared/local ownership and all 190
+frozen files are verified. It uses the original 34,635 fitting, 3,815 development
+and 9,615 held-out rows, three epochs, cap128 and batch16. The next scheduled
+check is approximately 02:10 Pacific November 17; its own eight-hour bound ends
+at 07:12:23 Pacific. Startup audit: `.local/trigger/tp23-fine-47-fold-0-start.json`.
+
+Seed-23 fold four completed at 17:32:15 Pacific November 16. Host-visible native
+exit and exact shared/local releases were verified at 20:08:30. Its 619 saved
+artifacts and 190 frozen files match; all 9,610-by-19 forecasts are finite.
+The five folds cover exactly 48,065 unique held-out rows, matching the original
+fold order and truth. Development AUC .790879137 is retained for prescribed
+selection. Source receipt pin:
+`35c4cfe98b4fea2c038e785b8a411a0dabc5edaa837ea09854290fc960539755`.
+Audits: `.local/trigger/tp23-fine-23-fold-4-completion.json` and
+`.local/trigger/tp23-fine-23-prerequisites.json`.
+
+The final seed-23 stage started at 20:10:34 Pacific after counted admission:
+20.64 GiB commit against 14 GiB required, no foreign leases. Original source
+files, all 12 model files, the table-scope ruling and five fold receipts were
+verified. Exact native/shared/local ownership and all 190 frozen files match.
+It reuses completed fold predictions, then fits the separately planned
+three-epoch full-data head and evaluates transfer. No completed fit or inference
+is repeated. The prior push's LF normalization leaves training/feature helper
+ASTs identical to the completed folds. This is a separate bounded stage,
+ending by 04:10:33 Pacific November 17; the next scheduled check is approximately
+23:07 Pacific, not a completion forecast. No final seed-23 gate or selection
+claim follows yet. Startup audit: `.local/trigger/tp23-fine-23-start.json`.
 
 The November 16 owner-requested build check passed 50 focused backend cases,
 56 frontend checks, the TypeScript/extension build and Ruff. One lint-only
