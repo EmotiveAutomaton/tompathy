@@ -6,8 +6,11 @@
 
 **0.3 beta development · MIT licensed · Engine v1.** The Python engine in [engine/](engine/README.md) provides the decision ledger, source adapters, model/evaluation components, static registry generation and authenticated local companion. Scientific admissions remain separate from software checks: unadmitted modules do not supply maker estimates. The commissioned website demo remains hand-authored, fictional analysis.
 
-The new [nine-channel commission](docs/ENGINE_NINE_CHANNEL_2026-11-19.md) is
-continuing in Gear 2 implementation; no research scorer is currently active. Its first export selects the completed frozen need reader
+The [November 20 packet](docs/ENGINE_TEACHER_WORD_TABLE_2026-11-20.md) adds
+two GPU queues. The Spark started fresh reader comparisons and the workstation
+started a food-topic check. Reader clearance now follows each card's registered
+use. The [nine-channel commission](docs/ENGINE_NINE_CHANNEL_2026-11-19.md)
+continues alongside it. Its first export selects the completed frozen need reader
 under the existing development rule and preserves all 6,600 saved tag-score
 rows. IM2 is delivered privately. The stand-in table passes six of nine rows,
 while the separate joy-split prediction fails. The embarrassment/shame label test
@@ -18,8 +21,8 @@ Spark's encoder parity check passed and its 500-report CPU/GPU timing is filed.
 The original 9B panel is preserved but unqualified: its prompt reversed two
 answer-key meanings. The owner approved a separate corrected SP1-v2 panel with
 the original reports and thresholds. Both corrected panels fail the correlation
-bar. Reader B ranks higher but remains unqualified; dependent teacher work is
-blocked while independent commissioned work continues.
+bar. Reader B ranks higher on that panel. TP31 now measures its separate
+agreement and known-group requirements before admitting a teacher.
 Competence and Meaning
 are wired through the engine and panel and verified in native Chrome.
 [Source filing](docs/SOURCE_DOCUMENTS.md)

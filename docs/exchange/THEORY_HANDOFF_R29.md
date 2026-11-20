@@ -203,3 +203,193 @@ In place: memory, the reader environment, a pulled model, the sealed-run image, 
 ## 9. Files of this round
 
 `claude/THEORY_HANDOFF_2026-11-19.md` (this file); `claude/EVIDENCE_LEDGER.md` and `.jsonl`; `claude/THEORY_BOOK.md`, `claude/THEORY_BOOK_A_CHANNELS.md`, `claude/THEORY_BOOK_B_NEEDS_TOOLBOX.md`; `claude/TABLE_GALLERY.md`; `claude/PREDICTIONS_REGISTER.md`; `claude/THEORY_PICTURE_2026-11-19.html`; `claude/THEORY_THREAD_STATE_2026-11-04.md` (updated); `claude/CORRECTIONS_LOG.md` (eleventh delivery).
+
+## 10. Round 30 addendum (19 November 2026, afternoon)
+
+*Added in place by the theory thread at the close of Round 30, after the curator's message of 19 November, 11:32 PT. It stands with the handoff above and replaces nothing in the packets of 19 November. No new results were read for it: the curator said the day's studies had not pushed and asked that the repositories not be checked. Read times: the implementation thread's two packets, its pre-flight summary and its corrections addition, as they stood on the shelf at 11:41 PT; Sounding Line fetched at 11:50 PT (head `005f38fa7`), for the errata only; the engine and the made-world repository not fetched this round.*
+
+### 10.1 Corrections to the handoff above
+
+Found by the implementation thread on 19 November and accepted by the theory thread.
+
+- **Leg C1** said the script was not written. Sounding Line's statistical cores had passed their constructed cases on 18 November. What was missing was an accepted way to run them.
+- **Section 7** said how agents reach the Spark was undecided. It was decided and installed at about 07:14 the same morning.
+- **Leg B4** offered helping and the helper's mood in members 0049 and 0050 as a first test of CARE. That is the source paper's own published result. It is cited, not rerun.
+- **Leg B1** listed during-interaction feelings for all three dominance samples. Member 0044 lacks them, and none of the three rates an event.
+- **Legs A4 and A3** as designed can be faked by a rating floor. The lattice's forms replace them.
+
+### 10.2 What the curator ruled or said on 19 November that bears on the packets
+
+- **Names (ruled).** The fourth and fifth needs are Respect and Compassion. "I think that for the larger-than-life needs, we're going to go with respect and compassion." New cards and reader exports use these names; older cards keep their wording as history.
+- **PANIC/GRIEF.** He said "God, panic grief just really needs to be sadness." The thread has taken it as a rename to SADNESS and asked him to confirm. Until he does, packets keep PANIC/GRIEF.
+- **SHAME (ruled).** A decrease in competence; someone present is not required. "I think competence is correct still, but I agree that present is not correct." Card LD1 tests exactly the dropped word, so it stands as written.
+- **Embarrassment.** He holds it as shame with a little play. Cards TP29 and LP7 stand as written.
+- **The equation (ruled).** No general table of brakes: "I think that might be a special case for play." Attention is a transformation over the features and not a weight on single features. The resting push is replaced by a scaler with a threshold. The lattice's Form O, which reads whether a rating is above its floor, is the threshold form of the same line, so no card changes.
+- **Words as mixes (his instruction).** The thread keeps a list of feeling words as mixes of channels. Its first entries are his: embarrassed is SHAME with a little PLAY; anxious is FEAR with predicted grief (open); hope is SEEKING plus something (open); enthusiasm is SEEKING's hallmark; a nervous laugh is PLAY's ask.
+- **Methodology** is the thread's to decide, and the running tally is the thread's to keep.
+
+### 10.3 New claim ids
+
+Added by the thread under the rule that a claim is added when a test first reaches it. Each is written with the word claim, since need codes share some letters.
+
+- **Claim N4.** The needs travel together and are still distinct: every pair parts somewhere.
+- **Claim N5.** Meaning is a floor that is defended and rises, with no ceiling (his ruling of 19 November).
+- **Claim S4.** A feeling returns only while its cause is unresolved; it is not a charge left in the channel (his, open; the rival of claim S2).
+- **Claim W1.** A feeling word is a mix of channels (his instruction; first mixes above).
+- **Claim T10.** LUST is raised when other channels fire, CARE excepted (his, open).
+- **Claim P3.** A person has her own version of a word, stable across her text (his, open).
+
+### 10.4 New legs
+
+Each leg is the theory's ask. Bars, forms, support counts and pre-flight are the implementation thread's, as before. Under its own lesson of 19 November, a leg that splits its rows counts its support before any outcome is read.
+
+**D1. Is anxious a clean marker for FEAR? (claim W1; bears on card LD4)**
+- Why: card LD4 takes anxious as FEAR's marker. On the curator's statement of 19 November, anxious is FEAR with predicted grief, so it is not clean.
+- Ask, in member 0072 (the parents' diary of card LB3, which asks afraid, worried and sad each evening): with afraid marking FEAR and sad marking SADNESS, does worried take from both? Registered as two rows: on `excluded_ostracized`, worried rises more than afraid does; on a health or money stressor, worried rises more than sad does. Both positive is his reading. Worried following afraid alone is the plain reading.
+- Ask, for LD4: report its recipes a second time with anxious treated as an ordinary word, if the diary leaves any other marker for FEAR. If it leaves none, say so in LD4's verdict.
+
+**D2. Which needs part? (claim N4)**
+- Why: the curator holds that the needs are not independent and gave the question to the thread. The thread's answer is that travelling together is expected and that the test is whether each pair parts.
+- Ask, on the need reader's export (card C0): for every pair of need tags, the share of reports where both move the same way, where they move opposite ways, and where one moves alone. File the table whole. The pair to watch is Compassion with Belonging.
+- Ask, in member 0072's nightly need items: the within-person table of the need composites against each other, and for each pair, whether one need's bad day forecasts the other's next day beyond its own.
+- No Spark. No new data.
+
+**D3. The reference in the phone game (claim N5; extends the set-point cards)**
+- Why: on repeat plays people defended a surplus they had not defended on first plays, and the record says the repeat-play pattern depends on the reference used. A floor that rises to whatever level has been held predicts which reference fits.
+- Ask: refit the repeat-play model on the same held-out split with three references: the starting score, the last session's end, and the best level held so far. Registered: the best level held so far fits best on repeat plays.
+- Limit, to travel with any result: a game score is not anyone's meaning. The leg tests the shape.
+
+**D4. Meaning's floor after a loss (claim N5; sealed, on the Spark)**
+- Why: one-directional says that after losing a role, people climb back to the old level and do not settle below it.
+- Ask, in MIDUS: purpose in life at the three waves, for people with a role loss between the first and second waves (the codebook says which losses are recorded). Registered: purpose at the third wave is back within the bar of its first-wave level. The rival: it settles lower.
+- Runs through the sealed runner; only gated totals return; no cell under ten people.
+
+**D5. Reconvergence against leftover (claims S4 and S2)**
+- Why: the curator reads the carry-over term of the equation as a reconvergence and not as a charge left in the channel, and asked that it be checked.
+- First, a codebook check: does any held diary, open or sealed, record whether an event has been settled? The thread has not confirmed one.
+- If one does: registered, the carry of an event's feeling into the next report is larger when the event is still open than when it is settled, with the feeling's own previous level held. Second row: carry between two different feelings follows how alike their events were rated.
+- If none does, the leg is parked and the return says so.
+
+**D6. LUST's first open set (claims T9 and T10)**
+- Why: the curator asked for a dataset from sex research.
+- Admission card: the diary of van Tuijl and others (2021, doi 10.3390/sexes3010001): 154 people, up to ten prompts a day for seven days, with sexual desire, shame, self-esteem and sexual activity at each prompt, and the data on OSF by the paper's own statement. An agent reads the item list and the terms before anything is downloaded.
+- If admitted: within a person, does a rise in self-esteem since the last prompt forecast desire at the next (claim T9, his trigger of a rise in standing)? Registered positive.
+- The paper's own published result is that earlier shame forecast desire in one group of eleven and not in the others. That is cited, not rerun as new.
+- Person side: for each person, which way a bad moment moves desire, and whether that direction is the same in the two halves of her prompts.
+- Pool the sample. The thread's standing rule is no analysis of sex differences.
+- A second set exists by request only (94 couples, DataverseNL, doi 10.34894/AUESHE). Requests are the curator's.
+
+**D7. A writer's own version of a word (claim P3; on the Spark)**
+- Why: the curator holds that each concept has a central cultural vector and a person an error around it, and that this is a way to read her fluencies.
+- Ask, on a held corpus with enough words per writer: with a frozen reader, embed each use of a short list of feeling and need words in its context; a writer's offset from the corpus centre, per word. Registered: the offset is stable across the two halves of her text, above its bar; and it tells writers apart beyond what the style reader already does, which is the control.
+- Each corpus's terms apply, including aggregate reporting where a licence asks for it.
+
+### 10.5 The equation as ruled, for the cards that fill it
+
+- Features: $x = T_{\sigma} m$, where $m$ is the moment, $\sigma$ the schema held, and $T_{\sigma}$ the transformation it applies.
+- Push: $s_c = \sum_k w_{ck} x_k$ for channel $c$.
+- Firing: $a_c = g_c \max(0, s_c - \theta_c)$, with threshold $\theta_c$ and scaler $g_c$.
+- Words: $r_\ell = \sum_c u_{\ell c} a_c + \varepsilon_\ell$.
+- Three channels read other channels in their own rows: PLAY (off above a lot of FEAR), LUST (a share of every other channel but CARE), DISGUST (lowered by LUST).
+- Needs: $e_i = \hat{n}_i - n_i$; what is open, $o_i = (1 - p_i) \lvert e_i \rvert$; Stress, $S = \sum_i \omega_i o_i$; the next moment as received, $m' = m + S \xi$.
+- The carry-over term of the Round 29 form is withdrawn in favour of the last line, pending leg D5.
+
+## 11. Round 31 addendum (19 November 2026, evening)
+
+*Added in place by the theory thread at the close of Round 31, after the curator's message of 19 November, 16:40 PT. It stands with sections 1 to 10 and replaces nothing in the packets of 19 November. Read times: the engine branch at 17:40 to 18:15 PT (head `0e7a04f`, pushed 17:34), first-hand: its theory return, its three result files, its ledger rows, the owner's verdict ruling and its status file. Sounding Line (head `005f38fa7`) and the made-world repository (head `fe7b22f69a`) had nothing newer than the morning's heads at 18:13 PT. No sibling thread had filed to the shelf since noon.*
+
+### 11.1 What landed, with the thread's grades
+
+Each is a test on labelled words and each carries the engine's own limit.
+
+- **TP28, the word table (ledger row E-TP28-20261119).** Passed its bar: 6 rows of 9 filled at need level, with SEEKING (4 cells of 5) and PLAY (1 of 1) among them. Not filled: CARE (2 of 4), SHAME (1 of 2), LUST (0 of 1). The joy split failed, 2 of 4. Grade: claim N1 cleared on fresh text; claims T6 and T7 leaning at the level of a word; claim T8 mixed; claim T9 could not say.
+- **TP29, embarrassed against ashamed (E-TP29-20261119).** Readings 1 and 2 passed and reading 3 failed on size (a rise of 0.0148 against a bar of 0.02, interval above zero). The rival account's reading could not be told from no difference. Filed verdict under the owner's rule: no for both accounts. The fitted weights were about 0.94 for SHAME's stand-in and 0.46 for PLAY's in all five folds. Grade: LP7 and claim W1 leaning.
+- **TP30, the profile reader, frozen rung (E-TP30-FROZEN-20261119).** Six of seven channels separated at 0.81 to 0.89 on writers' labels; CARE at 0.66. The test that the mix is real failed both clauses. Grade: claim M3 cleared for six channels; claims A2 and W1 against, on readers' labels.
+- **What the misses in the word table say** (the thread's reading; each a word and a tag): ashamed and guilty landed on food, where disgusted lands. Anxious landed on approval and status, the tags the map gave SHAME, where afraid landed on safety. Lonely landed on contact, and readers' caring on safety and health; both were scored as misses because the map had predicted family. Hopeful landed on status. Proud landed on status, competition and honor at about one standard deviation in all three sources.
+- **Two things the nine-channel packet said the theory expects did not show** in readers' labels: RAGE with FEAR was flat, and PLAY was no lower with FEAR than with any other channel. The pair that travelled together was RAGE with DISGUST.
+- The readable ledger on the shelf is not rebuilt in this round. These rows and grades are the thread's addition to the tally until it is.
+
+### 11.2 What the curator ruled or said on the evening of 19 November that bears on the packets
+
+- **SADNESS (ruled).** "If his questionnaire named it sadness, we will also name it sadness." New cards and exports use SADNESS. Older cards and results keep PANIC/GRIEF as history.
+- **Schema and attention (ruled).** "So the toolbox is full of schemas. and then the dotted box is attention and it's around a single schema." The word fluency is retired as the name of the thing. Before this date a schema was a fluency held in attention; from this date a schema is any learned tool, and attention is what holds one. Cards written before this date keep their wording, and claims AT1 and AT2 are unchanged in content.
+- **Neuroticism (ruled).** "how strong the down is, is neuroticism." It is mapped onto Stress and replaces the Round 20 reading, sensitivity to drops on the needs. Cards for claim S3 keep their forms; what they read is now how hard, and perhaps how long, Stress presses.
+- **Stress (ruled).** "Stress only wants down." It has no bottom side. Attention binds nothing, and a schema binds more solidly while it is held.
+- **Identity (ruled).** A need has many schemas that predict it, and an identity is one that predicts it strongly enough. "You can have many of these weightings that predict a given need."
+- **Capital (ruled).** It is not a need. "I don't think capital is one of the meanings of life. I think autonomy is a convergent solution."
+- **Belonging and Compassion (ruled in direction, form open).** "We have to find a word that fits them both, though." The thread proposed one need, Belonging, with Compassion as the name of the identity that predicts it. Until he rules on the form, exports keep the fifth need code and its tag.
+- **Need names in the engine's reader.** At `0e7a04f` the reader's names for need codes N4 and N5 are still the long forms of 14 November. Need code N4 is Respect by his ruling of the morning. Need code N5 should wait for his ruling on the form of the merge.
+- **Put to the thread to check, and not ruled:** the needs sit on the world's side, with two crossings, sensed and acts; Stress is fed by the error on identities and not by the error on the needs. Neither changes a card.
+- **His prediction:** "Seeking speeds you up a LOT. You speak much, much faster." Leg E2.
+
+### 11.3 New claim id
+
+- **Claim P4.** A channel's threshold differs between people by inheritance. It is the thread's, held against his statement that people differ only in their weights on the needs and their schemas, and it is open.
+
+### 11.4 New legs
+
+Each leg is the theory's ask. Bars, forms, support counts and pre-flight are the implementation thread's, as before.
+
+**E1. The word list from saved forecasts (claim W1; the engine).**
+- Why: the curator asked for blind guesses at each feeling word's mix of channels, to be replaced by data. The profile reader of card TP30 has saved a nine-number forecast for every one of the 24,850 chat situations, each of which carries the writer's own word.
+- Ask: for each of the 32 writers' words, the mean of each of the nine outputs over its situations minus the mean over the other situations, in standard deviations of that output, with whole-writer intervals. File the 32 by 9 table whole.
+- Registered before the data: the thread's blind table of 19 November (the gallery, Round 31), read as the top two channels per word. The rows it can test are embarrassed, ashamed, guilty, proud, anxious, hopeful, joyful, jealous, lonely, grateful and disappointed.
+- Limits to carry: the reader was trained on readers' labels, SHAME's output on one source only, and LUST's stand-in means wanting in general. A row is a recipe for a word.
+- No new data. No Spark.
+
+**E2. SEEKING and speaking rate (claim T6; sealed).**
+- Why: his prediction of 19 November that SEEKING speeds a person up. In print dopamine sets the rate of responding; for speech nothing was looked up.
+- Ask, in the sealed conversation set: words per second over a speaker's turns against that speaker's own rating of interest in the conversation, within speaker across her conversations. Registered positive, with her other ratings held, since fast speech also marks other high-arousal states.
+- Terms: general modelling of speech and voice is permitted; no voiceprints. Only gated totals leave the machine.
+- First a codebook check: which after-conversation items exist, and how many speakers have more than one conversation.
+
+**E3. Twins in a daily diary (claim P4; sealed).**
+- Why: the thread disagrees with the curator's statement that people differ only in weights on the needs and in schemas; channel thresholds have evidence from breeding, twins by questionnaire and infant temperament. A diary with twins can separate inherited reactivity from learned schemas.
+- First a codebook check: does the held second-wave MIDUS daily diary carry twin or family identifiers? The first wave's diary has 452 twins by its record page and is not held.
+- If twins are in hand: per person, affect on stressor days minus affect on other days; registered, that difference is more alike within identical pairs than within fraternal pairs.
+- MIDUS terms apply: no row into any hosted model, no cell under ten people, gated totals only.
+
+**E4. Feeling words in the same moment (claim W1).**
+- Admission card first: Emotions in Everyday Life (Trampe, Quoidbach and Taquet 2015): 11,572 people, 65,721 prompts, a yes or no for each of 18 feeling words. The paper states consent and an Open Science Framework deposit; the deposit's licence is unread.
+- The paper's own published result is the map of which feelings come together in daily life, already named as prior art in leg B6. That is cited, not rerun as new.
+- If admitted, three registered contrasts, within person: embarrassment comes with amusement more than guilt does; contempt comes with disgust and anger more than with any other pair; hope comes with anxiety more than joy does.
+
+**E5. Meaning, company and Stress by activity (claims N4 and N5).**
+- Admission card first: the American Time Use Survey's Well-Being Module, four years. For three stretches of a diary day it asks happy, tired, stressed, sad and pain on a scale of 0 to 6, how meaningful the activity was, and whether the person was interacting with anyone. Read the notice about an activity-selection error first.
+- If admitted: meaningful against happy by activity; stressed with and without other people present, by how many stretches of the day had people in them.
+
+**E6. CARE's first real test (claim T8).**
+- Admission card first: Empathic Reactions (Buechel and others 2018), 1,860 short texts with the writer's own ratings of concern and of distress; CC BY 4.0 by its repository page.
+- If admitted: do concern and distress part, and does the profile reader's CARE output follow concern and not distress?
+
+**Rows added to legs of section 10.**
+- **D1:** on an event about standing or evaluation, worried rises more than afraid does. From the word table: anxious landed on approval and status.
+- **D2:** on days when the Belonging and Compassion items move opposite ways, Stress is higher than on days when they move together. It is the proposed merge's prediction.
+
+### 11.5 The equation, lines revised
+
+- Features: $x = (1-h)\,T_{0}\,m + h\,T_{\sigma}\,m$, where $h$ is how strongly the schema is held, from 0 to 1, and $T_{0}$ is the reading with nothing held.
+- Needs: $\hat{n}_i = \sum_j \beta_{ij} z_j$ and $e_i = \hat{n}_i - n_i$, where $z_j$ is what schema $j$ reports and $\beta_{ij}$ is how much it counts toward the forecast of need $i$. An identity is a schema whose $\beta$ is near 1.
+- What is open: $\text{open}_i = (1 - p_i)\lvert e_i \rvert$.
+- Stress: $S_t = \lambda S_{t-1} + \sum_i \omega_i\,\text{open}_{i,t}$. At $\lambda = 0$ it is the Round 30 line and his reconvergence reading; above 0 it is the leftover reading. Leg D5 decides.
+- The next moment: $m' = m + \nu S \xi$, with $\nu$ for Neuroticism and $\xi$ drawn wide in the directions of what is open.
+- SEEKING's reading goes with $k_1\dot{c} + k_2\ddot{c}$, where $c$ is how well the model compresses what comes in.
+- Lines 2, 3 and 4 stand as in section 10.5.
+
+### 11.6 Data
+
+`claude/DATA_GATHERING_GUIDE_2026-11-19.md` lists ten stops for the curator in order, what needs his signature, what is already held, and a paste block for the data agent. Admission of anything in it is the implementation thread's, by a card, as before.
+
+### 11.7 Read again at the close: Sounding Line's push of 18:15 PT
+
+*Read first-hand between 18:32 and 18:43 PT at head `e54a18b66` (pushed 18:15:07), which was still the head at the 18:43 fetch: the laughter card's record, saved totals and follow-ups; the errata's record and receipt; the lattice build record and its calibration ruling; three chess-replay records; the local-review records; the first diary bindings. The engine and the made-world repository had not moved. This subsection was added after the rest of section 11 was filed.*
+
+- **The errata of 19 November is applied.** The repository's receipt gives 16:55 PT, at the curator's request. All 23 edits are in, rows G305 to G318 are filed OPEN, and the applying agent made three afterword wording changes, which the thread has read and finds faithful. The curator has nothing to carry. The second delta, for the rulings in 11.2, will be anchored to `e54a18b66` or later.
+- **LA6 landed (S15-W6-LA6-COMPLETE-20261119), the card for laughter prediction LP9.** Held-out meetings, matched pairs, bar 0.60. With the time since the last laugh as an input: 0.639 (0.614 to 0.663), supported. Without it: 0.621 (0.593 to 0.648), inconclusive. No paired difference between the arms was registered. The act-type table has no result: there were 1,858 labels, and every one of the 2,000 resamples lacked at least one. Limit as filed: "This tests an observable context prediction relevant to PLAY, not the proposed channel or its causal trigger." The thread's grade: for LP9 as written, could not say; the card's own prediction cleared in one arm of two; claim T7 does not move.
+- **What the thread reads in it.** The inherited label marks 108,486 of 221,947 utterances (49%, the thread's arithmetic) and can mark laughter already under way, so it stands for being near laughter and not for drawing a laugh. One rival the thread adds to the record's own list: a longer utterance spends longer inside a laugh's window, word count is an input, and the pairs were not matched on length.
+- **Asks (the theory's; forms, bars and order are the implementation thread's).**
+  - Of the three registered follow-ups, LA6.s is the one that bears on a trigger: a laugh that starts after the utterance has ended, with none already running. If it is built, report it with utterance length matched or held, so that the length rival is closed.
+  - A new card for the act table, with the labels pooled into the annotation schemes' own general classes and the pooling fixed before any outcome is read. The repository did not pool after seeing the failure, and that was right.
+- **LD1 and SHAME.** The repository notes that the applied clarification on SHAME does not require another person to be present, and keeps LD1 frozen with its scope to be stated. That matches 10.2: LD1 tests the word he dropped. A positive result would read as an audience turning shame up, which is the thread's Round 29 wording, and not as a required part of the trigger.
+- **Frozen or running, nothing to grade.** The lattice's 44 predictions across fourteen source groups, frozen before any new lattice outcome was read, under the curator's calibration rule. CH14 (claim AT2), running under its final allowance of 80,000 CPU seconds. The first diary source adapter, passing on constructed data.
+- **The ledger.** The repository holds the thread's Round 29 ledger as a filed seed of 238 rows, marked as no replacement for reviewed claims. LA6's landing added no row to it. Until landings add rows there, the thread's grades stay in this handoff and in the register.

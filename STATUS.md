@@ -3,6 +3,25 @@
 Updated 20 November 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
 based on the merged, owner-approved **0.2.0** frontend milestone.
 
+## November 20 teacher and word-table packet
+
+Gear 2 has two GPU queues. The Spark started Q1 at 09:17 Pacific with its exact
+native identity and shared lock verified. Q2 follows automatically. The
+workstation started G1 at 09:18 and has saved reader W's GPU responses. Its
+first dispatcher failed before inference and the Windows identity probe was
+repaired. The registered selections are 350 fresh reports per reader in Q1,
+5,400 reports in Q2 and 3,915 situations in G1. The 350 F2 items stay reserved.
+BB provides a separate yielding workstation GPU lane. Its training library is
+CPU-only, so G2 will run on the Spark after Q5. Under BA, TP31 teacher clearance
+now comes from its own checks. BD applies only to RD2 reader C.
+[Execution record](docs/ENGINE_TEACHER_WORD_TABLE_2026-11-20.md) ·
+[source filing](docs/SOURCE_DOCUMENTS.md) · [morning return](docs/exchange/THEORY_RETURN_2026-11-21.md).
+
+By 09:47 Pacific Q1 and G1 had finished and both handoffs were verified.
+Q1 retained 350 valid responses from each reader. G1 retained 3,907 valid
+responses and eight unknowns. Q2 and G3 are saving answers. The Spark has
+the six-source Q3 teacher check and its two conditional continuations.
+
 ## November 19 nine-channel packet
 
 **New commission running at Gear 2.** The earlier queues remain closed.
