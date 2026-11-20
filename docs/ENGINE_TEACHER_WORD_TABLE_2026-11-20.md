@@ -67,3 +67,107 @@ among those sentences, with 339 ED situations, 297 feeling reports and 314
 question-site answers. Identical B requests are reused. Protected or overlength
 documents stay in the denominator with an unknown response. Q4 and Q7 read
 the signed decision before loading a model.
+
+## Overnight queue and reserved reports
+
+The Spark has all eight jobs in order: Q1, Q2, Q3, conditional Q4, Q5, G2,
+Q6 and conditional Q7. At 10:15 Pacific Q2 held the shared GPU lock and had
+saved 2,159 valid responses in 2,159 attempts out of 5,400. G3 on the workstation
+had finished its first two development prompts and was running the thinking
+prompt V2. Its invalid responses remain visible in the denominator. The G2
+training payload preserved the original masks and source order. Its 500-example
+pilot, checkpoint continuation and prediction paths passed the software checks.
+Its GPU timing and scientific results await execution.
+
+The owner approved transferring the 350 F2 texts and opaque IDs to the Spark
+only after Q5 freezes its development choices. A separate monitor checks the
+live worker, registration, selection digest and exact transfer manifest at that
+boundary. Writer ratings and the ID crosswalk stay on the workstation. At 10:15
+the Spark still held development inputs only for Q5.
+
+All 350 F2 report IDs are distinct and held out. After case and whitespace
+normalization, two texts match earlier panels. One also matches byte for byte.
+The owner selected the registered 350-report estimate and a second estimate
+using the 348 text-fresh reports. Each candidate comparison will display both
+panel sizes, valid paired counts, rank correlations, difference and 95% interval
+from 2,000 report draws. The same rule applies in both panels. A change in an F2
+nomination, an F3-confirmed slot or reader C's six-of-eight result will be flagged
+explicitly. A nominated candidate can take a slot only with independent F3
+confirmation. The overlap audit precedes selection and keeps its two IDs private.
+
+The original prompted-reader panel used its first 300 reports for comparison.
+The trained TP10-L3 comparator had already been scored against writers on
+all 1,200 held-out reports, including all 200 proposed for F3. The audit used
+the saved score routine, forecast archive and roster. The prior-use rule
+therefore leaves both standards slots with the trained reader. Each F2
+nomination will still be filed. [Local comparison protocol](RD_PANEL_PROTOCOL_2026-11-20.md).
+
+## TP34 word recipes
+
+The completed table covers 24,850 situations from 810 writers. Each of its
+288 standardized word lifts was checked against the saved forecasts. The
+registered top-two score passed, at 9 of 19 names against an exact reference
+cutoff of 8. Top-three gave 12 against 10. No situation fell below or at all
+nine floors. SHAME had a zero floor on 741 unanimously neutral held-out forum
+comments, and all 24,850 situation forecasts exceeded it. All words therefore
+tied on the quiet share. This comparison cannot identify feelings the nine
+outputs miss. Ledger E-TP34-20261120 records the limits and source binding.
+[Result sheet](exchange/result-sheets/TP34-word-lifts.md)
+
+## TP35 and TP36
+
+TP35 completed at 10:23 Pacific. The exact native exit and both CPU lease
+releases were verified. Direct least-squares calculations reproduced every
+point estimate. The anger slope passed its own bar at .161 [.072, .247].
+Its .028 advantage over sadness had interval [−.097, .153], which leaves
+the anger-specific claim unresolved. Duration and intensity slopes differed
+by .001 [−.044, .052] across writers. The analysis used only the registered
+ratings, two trait items and the anonymous grouping keys.
+[TP35 result sheet](exchange/result-sheets/TP35-suddenness.md)
+
+TP36 began after counted admission at 10:30. The original score archives
+stored their report IDs as object arrays. Before launch, the ordered IDs
+from all three releases were serialized locally and matched byte for byte.
+The analysis reads only the numeric tag scores from those archives. It uses
+strict movement thresholds, re-estimates them in each whole-writer draw,
+and gives separate and merged Belonging tables.
+[TP36 protocol](TP36_PROTOCOL_2026-11-20.md)
+
+TP36 finished at 10:31 Pacific. All 375 point estimates across the separate
+and merged views match an independent calculation from the three score
+arrays. The registered distinctness rule held in every source. The proposed
+Belonging–Compassion pair led in zero of three, below the required two.
+Go had 997 comments whose writers were unavailable. Each contributed a
+separate cluster. Crowd-enVENT reuses the original qualification set, and
+the dialogue data retain their research-only license.
+[TP36 result sheet](exchange/result-sheets/TP36-need-pairs.md)
+
+## TP38 food-topic comparison
+
+TP38 finished at 10:40 Pacific using the saved G1 answers and TP28 food-tag
+probabilities. The native exit, both CPU lease releases, 209 frozen files
+and original input pins were verified. Independent calculations on all
+3,915 ordered situations reproduced the 32 food shares, both original lifts,
+the 12 removal estimates and the word-list agreement table. The weighted
+lifts went from .571 to .233 for *ashamed* and from .908 to .448 for *guilty*.
+Both point reductions clear half, with uncertainty across that cutoff.
+Eight missing reader responses remain visible. [Result sheet](exchange/result-sheets/TP38-food-topic.md).
+
+At 10:52 Pacific the Spark worker had 4,202 valid Q2 answers out of 5,400,
+at 106.8 seconds per 100. Both GPU workers and their locks were verified.
+W had finished V0 and V1 with 600 valid answers apiece. V2 had 26 valid
+answers in 238 attempts at 1,462.4 seconds per 100. These timings describe
+the individual prompts. Q5 had yet to freeze its selection and F2 texts
+were still solely on the workstation. A synthetic run through the RD2 exporter
+verified that the 350 and 348 estimates can give different nominations, that
+the report names the affected feature, and that both slots retain the trained
+reader when F3 is unavailable.
+
+The TP24 intake check reconciled 6,600 distinct IDs across the four reader-B
+sources. The 500 original first passes have the same corrected prompt and
+model as Q1. The initial cohort has 6,250 reports. The 350 reserved reports
+join after Q5. For the 5,400 missing trained forecasts, the recorded G2 split
+assigns each report to exactly one held-out fold and keeps all fitting,
+development and forecast writers disjoint within that fold. All five test
+folds contain 1,080 reports. The intake check computed no study scores.
+[TP24 amended input protocol](TP24_MIXED_PROTOCOL_2026-11-20.md).

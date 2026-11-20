@@ -49,7 +49,7 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--checks', nargs='+', choices=['pf_a', 'pf_b', 'pf_c', 'pf_c2',
         'pf_d', 'pf_e', 'pf_f', 'pf_g', 'pf_h', 'pf_i'], default=[])
-    parser.add_argument('--card', choices=['TP10', 'TP12', 'TP12-L3', 'TP10-L3', 'TP11', 'TP13', 'TP14', 'TP15', 'TP16', 'TP17', 'TP18', 'TP18-probe', 'TP19', 'TP20', 'TP22', 'TP1c', 'TP4-controls', 'TP26', 'TP7', 'TP23', 'TP24', 'TP25', 'TP27', 'TP28', 'TP29', 'TP30-frozen', 'TP12-gated', 'TP22-gated', 'TS3-real', 'TRIGGER-export'])
+    parser.add_argument('--card', choices=['TP10', 'TP12', 'TP12-L3', 'TP10-L3', 'TP11', 'TP13', 'TP14', 'TP15', 'TP16', 'TP17', 'TP18', 'TP18-probe', 'TP19', 'TP20', 'TP22', 'TP1c', 'TP4-controls', 'TP26', 'TP7', 'TP23', 'TP24', 'TP25', 'TP27', 'TP28', 'TP29', 'TP30-frozen', 'TP34', 'TP35', 'TP36', 'TP38', 'RD1', 'RD2', 'TP12-gated', 'TP22-gated', 'TS3-real', 'TRIGGER-export'])
     parser.add_argument('--models', type=Path, default=Path('.local/readers/models'))
     parser.add_argument('--prepared', type=Path, default=Path('.local/bench/two-day-prepared'))
     parser.add_argument('--ladder', type=Path)
@@ -187,6 +187,37 @@ def main():
                     from tompathy_engine.eval.readers.trigger_export import run_export
                     run_export(args.export_kind,args,output,check)
                     completed.append('TRIGGER export '+args.export_kind)
+                elif args.card == 'TP34':
+                    from tompathy_engine.eval.readers.tp34 import run
+                    if not args.ledger_row or not args.study_protocol or not args.primary_job:
+                        raise ValueError('TP34 requires its frozen source, protocol and ledger identity')
+                    run(args.primary_job,args.ed,args.go,output,check,args.ledger_row,args.study_protocol)
+                    completed.append('TP34')
+                elif args.card == 'TP35':
+                    from tompathy_engine.eval.readers.tp35 import run
+                    if not args.ledger_row or not args.study_protocol:
+                        raise ValueError('TP35 requires its protocol and ledger identity')
+                    run(args.corpus,output,check,args.ledger_row,args.study_protocol)
+                    completed.append('TP35')
+                elif args.card == 'TP36':
+                    from tompathy_engine.eval.readers.tp36 import run
+                    if not args.ledger_row or not args.study_protocol or not args.primary_job:
+                        raise ValueError('TP36 requires its original TP28 export, protocol and ledger identity')
+                    run(args.primary_job,args.ed,args.go,args.corpus,output,check,args.ledger_row,args.study_protocol)
+                    completed.append('TP36')
+                elif args.card == 'TP38':
+                    from tompathy_engine.eval.readers.tp38 import run
+                    if not all((args.ledger_row,args.study_protocol,args.primary_job)):
+                        raise ValueError('TP38 requires G1 and TP28 source bindings and its registered protocol')
+                    run(args.ed,args.primary_job,args.prepared,output,check,args.ledger_row,args.study_protocol)
+                    completed.append('TP38')
+                elif args.card in ('RD1','RD2'):
+                    from tompathy_engine.eval.readers.word_panels import run
+                    if not all((args.ledger_row,args.study_protocol,args.primary_job,args.reader_job)):
+                        raise ValueError('Panel scoring requires its verified source, trained comparator, protocol and ledger identity')
+                    run(args.card,args.corpus,args.prepared,args.primary_job,args.reader_job,output,check,
+                        args.ledger_row,args.study_protocol,companion=args.coverage_job)
+                    completed.append(args.card)
                 elif args.card == 'TP30-frozen':
                     from tompathy_engine.eval.readers.tp30 import run
                     if args.ledger_row is None or args.study_protocol is None or args.vector_source is None:

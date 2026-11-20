@@ -545,3 +545,9 @@ source-bound public payload, outer guarded Spark runner, actual GPU runtime
 check and aggregate evaluation/landing remain to build. No fine-rung fitting
 or inference has run, and no new research job was launched. TP31/TP24 remain
 blocked by unqualified SP1; no failed scientific gate was reopened.
+
+The [November 20 commission](ENGINE_TEACHER_WORD_TABLE_2026-11-20.md) supersedes
+that last dependency under approved amendment BA. SP1's original scores stand.
+TP31 now uses its own agreement and known-group checks. TP24 evaluates the
+eight slots selected by RD1. The fine rung and larger encoders are registered
+on the Spark under the workstation fallback.

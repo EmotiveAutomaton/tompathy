@@ -1,0 +1,526 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "034c4219b77136659a24c343788ad614a4cba74986f5a737281c2fc15bb4780e",
+  "launcherPin": "8f2c7c81ffeb85d0c753830a85905a2f9615b00c17ee52bb9db4bd861e21ffd2",
+  "ledger": "E-TP35-20261120",
+  "card": "TP35",
+  "status": "complete",
+  "productionAdmission": false,
+  "sourcePin": "3d2536b555ac7005080c2cd35aadb4d570992bca70d2017e4d8939525fa3a86b",
+  "protocolPin": "bfa32967b0cf53f0838df31f7d96dbfc20f241b77ad3adb8a4c7f10631f8ce05",
+  "scope": "A report is a remembered case of a word, chosen to fit it, and not a sample of moments. Suddenness and intensity are one person's ratings made together afterwards. The Neuroticism score is two items and the comparison is between people.",
+  "columns": [
+    "anxious",
+    "calm",
+    "emotion",
+    "emotion_duration",
+    "event_duration",
+    "intensity",
+    "other_responsblt",
+    "predict_event",
+    "prolific_id",
+    "self_responsblt",
+    "suddenness",
+    "unpleasantness"
+  ],
+  "rows": {
+    "suddenness/anger": {
+      "estimate": 0.1606617872873596,
+      "interval": [
+        0.07236853315772873,
+        0.24694504584723131
+      ],
+      "finiteDraws": 2000
+    },
+    "predictability/anger": {
+      "estimate": -0.16860852459119022,
+      "interval": [
+        -0.24825263951988838,
+        -0.08805519821823476
+      ],
+      "finiteDraws": 2000
+    },
+    "ceiling/anger": {
+      "estimate": 0.06802204949031504,
+      "interval": [
+        0.02439312313075607,
+        0.1114880404824644
+      ],
+      "finiteDraws": 2000
+    },
+    "suddenness/boredom": {
+      "estimate": 0.19358495430863118,
+      "interval": [
+        0.10292179147185893,
+        0.2748111377030772
+      ],
+      "finiteDraws": 2000
+    },
+    "predictability/boredom": {
+      "estimate": -0.077189637230984,
+      "interval": [
+        -0.16227218209747027,
+        0.006550505743830248
+      ],
+      "finiteDraws": 2000
+    },
+    "ceiling/boredom": {
+      "estimate": 0.07258219891070844,
+      "interval": [
+        0.0324741049036062,
+        0.1135898281266403
+      ],
+      "finiteDraws": 2000
+    },
+    "suddenness/disgust": {
+      "estimate": 0.14387010451620774,
+      "interval": [
+        0.059291154307009465,
+        0.22929107802487456
+      ],
+      "finiteDraws": 2000
+    },
+    "predictability/disgust": {
+      "estimate": -0.04585809937862611,
+      "interval": [
+        -0.13107999047927332,
+        0.03927334945542165
+      ],
+      "finiteDraws": 2000
+    },
+    "ceiling/disgust": {
+      "estimate": 0.07247114350848438,
+      "interval": [
+        0.033698167999079744,
+        0.11034631597694038
+      ],
+      "finiteDraws": 2000
+    },
+    "suddenness/fear": {
+      "estimate": 0.1918146775699675,
+      "interval": [
+        0.10029596430438129,
+        0.2807397159724849
+      ],
+      "finiteDraws": 2000
+    },
+    "predictability/fear": {
+      "estimate": -0.06862133727472383,
+      "interval": [
+        -0.1513759378631827,
+        0.017287921970427972
+      ],
+      "finiteDraws": 2000
+    },
+    "ceiling/fear": {
+      "estimate": 0.07694104384779524,
+      "interval": [
+        0.03405240521602061,
+        0.11861200660398673
+      ],
+      "finiteDraws": 2000
+    },
+    "suddenness/guilt": {
+      "estimate": 0.08323911760283474,
+      "interval": [
+        -0.03492177552570372,
+        0.20542485247754383
+      ],
+      "finiteDraws": 2000
+    },
+    "predictability/guilt": {
+      "estimate": 0.006396976240459881,
+      "interval": [
+        -0.10903285426144636,
+        0.12551326355679795
+      ],
+      "finiteDraws": 2000
+    },
+    "ceiling/guilt": {
+      "estimate": 0.05698683786658652,
+      "interval": [
+        -0.0010493955111029359,
+        0.11418829813736513
+      ],
+      "finiteDraws": 2000
+    },
+    "suddenness/sadness": {
+      "estimate": 0.13258122298824646,
+      "interval": [
+        0.050931233452410456,
+        0.2135279091452391
+      ],
+      "finiteDraws": 2000
+    },
+    "predictability/sadness": {
+      "estimate": -0.07213045058310055,
+      "interval": [
+        -0.14976402684831716,
+        0.001709558427489427
+      ],
+      "finiteDraws": 2000
+    },
+    "ceiling/sadness": {
+      "estimate": 0.08467468236271697,
+      "interval": [
+        0.047105496910502025,
+        0.12091821083892937
+      ],
+      "finiteDraws": 2000
+    },
+    "suddenness/shame": {
+      "estimate": 0.08592626981080889,
+      "interval": [
+        -0.036317996598456,
+        0.20464649807609203
+      ],
+      "finiteDraws": 2000
+    },
+    "predictability/shame": {
+      "estimate": 0.0007934454582792358,
+      "interval": [
+        -0.10907920436674863,
+        0.10783972409117738
+      ],
+      "finiteDraws": 2000
+    },
+    "ceiling/shame": {
+      "estimate": -0.004105631544904715,
+      "interval": [
+        -0.06293355055636528,
+        0.05401210301546268
+      ],
+      "finiteDraws": 2000
+    },
+    "angerMinusSadness": {
+      "estimate": 0.028080564299113153,
+      "interval": [
+        -0.0971193856399443,
+        0.1533803552228526
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/anger/intensity": {
+      "estimate": 0.014987832771716437,
+      "interval": [
+        -0.09098110106850135,
+        0.11170010470028095
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/anger/duration": {
+      "estimate": 0.021880785419884464,
+      "interval": [
+        -0.07204490691870849,
+        0.11452515589500366
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/anger/difference": {
+      "estimate": 0.006892952648168027,
+      "interval": [
+        -0.10469513942718639,
+        0.12558722368233738
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/boredom/intensity": {
+      "estimate": 0.10918875811824555,
+      "interval": [
+        -0.004593848837083707,
+        0.2272084714979631
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/boredom/duration": {
+      "estimate": -0.00010791242162477652,
+      "interval": [
+        -0.04518432795591427,
+        0.04846176171802543
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/boredom/difference": {
+      "estimate": -0.10929667053987033,
+      "interval": [
+        -0.22334306729911504,
+        0.007361192338506255
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/disgust/intensity": {
+      "estimate": 0.03088321225961937,
+      "interval": [
+        -0.06941579067032018,
+        0.1270380121663724
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/disgust/duration": {
+      "estimate": 0.11916752125045843,
+      "interval": [
+        0.02799971190532176,
+        0.2105004357546619
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/disgust/difference": {
+      "estimate": 0.08828430899083906,
+      "interval": [
+        -0.018172213283648087,
+        0.19625856150784238
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/fear/intensity": {
+      "estimate": 0.01050545622912455,
+      "interval": [
+        -0.0963579677079673,
+        0.11175238421540067
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/fear/duration": {
+      "estimate": 0.10740433665272155,
+      "interval": [
+        0.018098630707709167,
+        0.19871744842477204
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/fear/difference": {
+      "estimate": 0.096898880423597,
+      "interval": [
+        -0.015376494583389863,
+        0.21599243847379268
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/guilt/intensity": {
+      "estimate": 0.20789365577711233,
+      "interval": [
+        0.07192630290505667,
+        0.33437566821467934
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/guilt/duration": {
+      "estimate": 0.2030614559051295,
+      "interval": [
+        0.06982049041784852,
+        0.32890366936522386
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/guilt/difference": {
+      "estimate": -0.0048321998719828285,
+      "interval": [
+        -0.1233252279619517,
+        0.11969847630573895
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/sadness/intensity": {
+      "estimate": 0.04767783076076861,
+      "interval": [
+        -0.049894912737111316,
+        0.14556542544528228
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/sadness/duration": {
+      "estimate": -0.0009928393062736437,
+      "interval": [
+        -0.08414587197729945,
+        0.08413691560942074
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/sadness/difference": {
+      "estimate": -0.04867067006704225,
+      "interval": [
+        -0.15165198495967405,
+        0.05598629484192526
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/shame/intensity": {
+      "estimate": 0.06084946386424809,
+      "interval": [
+        -0.0730902673281443,
+        0.18622363975906137
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/shame/duration": {
+      "estimate": 0.13981933277204442,
+      "interval": [
+        0.016911646973541083,
+        0.26494079788543773
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/shame/difference": {
+      "estimate": 0.07896986890779634,
+      "interval": [
+        -0.0743410407848547,
+        0.23088669770331677
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/pooled/intensity": {
+      "estimate": 0.052677095523287816,
+      "interval": [
+        0.009217206659045603,
+        0.09682906601162962
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/pooled/duration": {
+      "estimate": 0.054104841191132,
+      "interval": [
+        0.01792586363056981,
+        0.0909153644677676
+      ],
+      "finiteDraws": 2000
+    },
+    "betweenWriter/pooled/difference": {
+      "estimate": 0.0014277456678441838,
+      "interval": [
+        -0.04425236618823441,
+        0.05200712578183944
+      ],
+      "finiteDraws": 2000
+    }
+  },
+  "groups": {
+    "suddenness/anger": {
+      "reports": 550,
+      "writers": 476
+    },
+    "predictability/anger": {
+      "reports": 550,
+      "writers": 476
+    },
+    "ceiling/anger": {
+      "reports": 550,
+      "writers": 476,
+      "atMaximumShare": 0.42363636363636364
+    },
+    "suddenness/boredom": {
+      "reports": 550,
+      "writers": 478
+    },
+    "predictability/boredom": {
+      "reports": 550,
+      "writers": 478
+    },
+    "ceiling/boredom": {
+      "reports": 550,
+      "writers": 478,
+      "atMaximumShare": 0.16545454545454547
+    },
+    "suddenness/disgust": {
+      "reports": 550,
+      "writers": 476
+    },
+    "predictability/disgust": {
+      "reports": 550,
+      "writers": 476
+    },
+    "ceiling/disgust": {
+      "reports": 550,
+      "writers": 476,
+      "atMaximumShare": 0.3509090909090909
+    },
+    "suddenness/fear": {
+      "reports": 550,
+      "writers": 476
+    },
+    "predictability/fear": {
+      "reports": 550,
+      "writers": 476
+    },
+    "ceiling/fear": {
+      "reports": 550,
+      "writers": 476,
+      "atMaximumShare": 0.62
+    },
+    "suddenness/guilt": {
+      "reports": 275,
+      "writers": 262
+    },
+    "predictability/guilt": {
+      "reports": 275,
+      "writers": 262
+    },
+    "ceiling/guilt": {
+      "reports": 275,
+      "writers": 262,
+      "atMaximumShare": 0.37454545454545457
+    },
+    "suddenness/sadness": {
+      "reports": 550,
+      "writers": 493
+    },
+    "predictability/sadness": {
+      "reports": 550,
+      "writers": 493
+    },
+    "ceiling/sadness": {
+      "reports": 550,
+      "writers": 493,
+      "atMaximumShare": 0.649090909090909
+    },
+    "suddenness/shame": {
+      "reports": 275,
+      "writers": 252
+    },
+    "predictability/shame": {
+      "reports": 275,
+      "writers": 252
+    },
+    "ceiling/shame": {
+      "reports": 275,
+      "writers": 252,
+      "atMaximumShare": 0.4036363636363636
+    },
+    "betweenWriter/anger": {
+      "writerWordRows": 476
+    },
+    "betweenWriter/boredom": {
+      "writerWordRows": 478
+    },
+    "betweenWriter/disgust": {
+      "writerWordRows": 476
+    },
+    "betweenWriter/fear": {
+      "writerWordRows": 476
+    },
+    "betweenWriter/guilt": {
+      "writerWordRows": 262
+    },
+    "betweenWriter/sadness": {
+      "writerWordRows": 493
+    },
+    "betweenWriter/shame": {
+      "writerWordRows": 252
+    },
+    "betweenWriter/pooled": {
+      "reports": 3300,
+      "writerWordRows": 2913,
+      "writers": 1590
+    }
+  },
+  "void": {},
+  "bars": {
+    "suddenness/anger": true,
+    "angerMinusSadness": false,
+    "betweenWriter/pooled/difference": false,
+    "angerIntervalWithinEquivalenceBand": false
+  },
+  "writerDraws": 2000,
+  "releasedReports": 6600,
+  "writers": 2379,
+  "sourceReceiptPin": "53b958e2de90c38dfabbbbdea93d6417e4ae152b59db6d5fcfba5a2ce3821438"
+}

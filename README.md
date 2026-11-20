@@ -8,7 +8,14 @@
 
 The [November 20 packet](docs/ENGINE_TEACHER_WORD_TABLE_2026-11-20.md) adds
 two GPU queues. The Spark started fresh reader comparisons and the workstation
-started a food-topic check. Reader clearance now follows each card's registered
+completed a food-topic reading and started prompt comparisons. The first
+[word-table result](docs/exchange/result-sheets/TP34-word-lifts.md) cleared its
+registered top-two bar and found a tie on quiet share for all 32 words.
+The [food-topic comparison](docs/exchange/result-sheets/TP38-food-topic.md)
+found that removing food situations more than halved the food-tag lift for
+both *ashamed* and *guilty* on the point estimates. The November 21
+[theory return](docs/exchange/THEORY_RETURN_2026-11-21.md) collects the four completed studies.
+Reader clearance now follows each card's registered
 use. The [nine-channel commission](docs/ENGINE_NINE_CHANNEL_2026-11-19.md)
 continues alongside it. Its first export selects the completed frozen need reader
 under the existing development rule and preserves all 6,600 saved tag-score

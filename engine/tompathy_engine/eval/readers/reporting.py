@@ -70,6 +70,28 @@ OUTPUTS['TP29']='readers-embarrassment-shame-2026-11.json'
 FIELDS['TP30-frozen']={'card','status','productionAdmission','ledger','scope','protocolPin','protocol',
                      'sources','vectors','vectorSourceReceiptPin','map','intake','rows','artifactsPin'}
 OUTPUTS['TP30-frozen']='readers-profile-frozen-2026-11.json'
+OUTPUTS['TP34']='readers-word-recipes-2026-11.json'
+OUTPUTS['TP35']='readers-suddenness-2026-11.json'
+OUTPUTS['TP38']='readers-food-topic-2026-11.json'
+FIELDS['TP38']={'card','status','productionAdmission','ledger','scope','protocolPin','readerReceiptPin',
+                'tp28ReceiptPin','writerDraws','sampled','valid','controlsPopulation','shares','contrasts',
+                'originalLifts','kindsByWord','kinds','wordList','bothFellByMoreThanHalf'}
+OUTPUTS['RD1']='readers-feature-slots-2026-11.json'
+OUTPUTS['RD2']='readers-standards-panel-2026-11.json'
+_PANEL_FIELDS={'card','status','productionAdmission','ledger','protocolPin','readerJobPin',
+               'companionPin','trainedReceiptPin','scope','rows','human'}
+FIELDS['RD1']=_PANEL_FIELDS|{'slots'}
+FIELDS['RD2']=_PANEL_FIELDS|{'differenceFlags','developmentWinners','trainedArms','researchReaderC',
+                            'overlapAuditPin','primaryReports','textFreshReports','f3Status','developmentSelectionPin'}
+OUTPUTS['TP36']='readers-need-pairs-2026-11.json'
+FIELDS['TP36']={'card','status','productionAdmission','ledger','scope','sourceReceiptPinTP28','protocolPin',
+                'sources','writerDraws','tagMapVersion','distinctInEverySource','belongingCompassionHighestSources',
+                'mergePredictionPasses'}
+FIELDS['TP35']={'card','status','productionAdmission','ledger','sourcePin','protocolPin','scope',
+                'columns','rows','groups','void','bars','writerDraws','releasedReports','writers'}
+FIELDS['TP34']={'card','status','scope','productionAdmission','ledger','sourceReceiptPinFrozen','protocolPin',
+                'sources','channels','rows','writerDraws','writers','floor','baseline','quietRanking',
+                'blindTopTwo','blindTopThree','disappointedSeeking'}
 FIELDS['TS3-real']={'card','status','productionAdmission','ledger','scope','sources','packs','rows','defaultOffParity','browser','artifactsPin'}
 OUTPUTS['TS3-real']='readers-trigger-wire-2026-11.json'
 for rung in ('bow','frozen','fine-23','fine-47','fine-71','base'):

@@ -6,8 +6,8 @@ from pathlib import Path
 FIELDS = {'id', 'date', 'question', 'data', 'estimate', 'interval', 'bar',
           'verdict', 'limit', 'claims', 'family'}
 CLAIMS = {f'{prefix}{i}' for prefix, count in
-          (('T', 9), ('N', 3), ('A', 3), ('S', 3), ('AT', 2), ('TB', 1),
-           ('P', 2), ('M', 4), ('LP', 15)) for i in range(1, count+1)}
+          (('T', 10), ('N', 5), ('A', 3), ('S', 4), ('W', 1), ('AT', 2), ('TB', 1),
+           ('P', 4), ('M', 4), ('LP', 15)) for i in range(1, count+1)}
 
 
 def append(path, row):

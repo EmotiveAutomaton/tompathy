@@ -22,6 +22,33 @@ Q1 retained 350 valid responses from each reader. G1 retained 3,907 valid
 responses and eight unknowns. Q2 and G3 are saving answers. The Spark has
 the six-source Q3 teacher check and its two conditional continuations.
 
+All eight Spark jobs are registered. At 10:15 Pacific Q2 had saved 2,159 of
+5,400 responses. W had finished two G3 development prompts. For RD2 the owner
+approved F2 transfer after development selection, with writer ratings held locally.
+The registered 350 and text-fresh 348 will be reported side by side. TP34
+completed on the counted processor. Nine of 19 names landed in the top two,
+above the cutoff of eight. All words tied at zero quiet share. [Result sheet
+and scope](docs/exchange/result-sheets/TP34-word-lifts.md).
+
+TP35 finished on the counted CPU. Suddenness predicted stronger recalled
+anger, but the difference from sadness missed its registered bar. Neuroticism
+had similar associations with feeling duration and intensity. TP36 then
+completed on the saved tag forecasts for 24,850 situations, 54,263 comments
+and 6,600 reports. Belonging and Compassion ranked first in zero sources.
+[TP35 result sheet](docs/exchange/result-sheets/TP35-suddenness.md) ·
+[TP36 result sheet](docs/exchange/result-sheets/TP36-need-pairs.md).
+
+TP38 completed on the saved food judgments. Removing food situations reduced
+the food-tag lifts by 59.2% for *ashamed* and 50.6% for *guilty*. Both pass
+the point threshold. Both writer intervals allow reductions under half.
+[TP38 result sheet](docs/exchange/result-sheets/TP38-food-topic.md).
+
+RD2 will report both the 350 registered reports and the 348 text-fresh reports,
+including any change in nomination. The earlier TP10-L3 evaluation compared its
+trained forecasts with writers on all 200 proposed F3 reports as part of its
+1,200-report test. A slot change must therefore await fresh confirmation.
+[Panel protocol](docs/RD_PANEL_PROTOCOL_2026-11-20.md).
+
 ## November 19 nine-channel packet
 
 **New commission running at Gear 2.** The earlier queues remain closed.

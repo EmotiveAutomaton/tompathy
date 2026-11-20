@@ -1,0 +1,814 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "a74b261b170549816ee3ca6146ff02810072e65b6b6d3df0c531c84ce567336d",
+  "launcherPin": "e12ac340208cef052889731ef815076e2c924000b9f2f995b147268c660987e5",
+  "ledger": "E-TP38-20261120",
+  "card": "TP38",
+  "status": "complete",
+  "productionAdmission": false,
+  "scope": "One source of short situations; one small local reader, checked only against a word list.",
+  "protocolPin": "f4cd2e1eab903634215a281612c63cac8b21bbdd8cdd179d93193703d5e1ce6e",
+  "readerReceiptPin": "6ed78310e5e15961a3e26a0a5f3cad64d5dc8d8a4a0e7986a9c61142b4bd83f4",
+  "tp28ReceiptPin": "1bd4094c39de11b271796da1a4b4140c491dd86e483c346982327c51ba3dd56f",
+  "writerDraws": 2000,
+  "sampled": 3915,
+  "valid": 3907,
+  "controlsPopulation": 21935,
+  "shares": {
+    "afraid": {
+      "estimate": 0.02631578947368421,
+      "interval": [
+        0.0,
+        0.08571428571428572
+      ],
+      "finiteDraws": 2000,
+      "sampled": 38,
+      "valid": 38,
+      "food": 1,
+      "unknown": 0,
+      "unknownBounds": [
+        0.02631578947368421,
+        0.02631578947368421
+      ]
+    },
+    "angry": {
+      "estimate": 0.06382978723404255,
+      "interval": [
+        0.0,
+        0.13513513513513514
+      ],
+      "finiteDraws": 2000,
+      "sampled": 47,
+      "valid": 47,
+      "food": 3,
+      "unknown": 0,
+      "unknownBounds": [
+        0.06382978723404255,
+        0.06382978723404255
+      ]
+    },
+    "annoyed": {
+      "estimate": 0.0975609756097561,
+      "interval": [
+        0.020833333333333332,
+        0.1951219512195122
+      ],
+      "finiteDraws": 2000,
+      "sampled": 41,
+      "valid": 41,
+      "food": 4,
+      "unknown": 0,
+      "unknownBounds": [
+        0.0975609756097561,
+        0.0975609756097561
+      ]
+    },
+    "anticipating": {
+      "estimate": 0.03125,
+      "interval": [
+        0.0,
+        0.08695652173913043
+      ],
+      "finiteDraws": 2000,
+      "sampled": 32,
+      "valid": 32,
+      "food": 1,
+      "unknown": 0,
+      "unknownBounds": [
+        0.03125,
+        0.03125
+      ]
+    },
+    "anxious": {
+      "estimate": 0.0,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "finiteDraws": 2000,
+      "sampled": 30,
+      "valid": 30,
+      "food": 0,
+      "unknown": 0,
+      "unknownBounds": [
+        0.0,
+        0.0
+      ]
+    },
+    "apprehensive": {
+      "estimate": 0.03571428571428571,
+      "interval": [
+        0.0,
+        0.11365259740259731
+      ],
+      "finiteDraws": 2000,
+      "sampled": 28,
+      "valid": 28,
+      "food": 1,
+      "unknown": 0,
+      "unknownBounds": [
+        0.03571428571428571,
+        0.03571428571428571
+      ]
+    },
+    "ashamed": {
+      "estimate": 0.2197452229299363,
+      "interval": [
+        0.16799741697416976,
+        0.2747645931751363
+      ],
+      "finiteDraws": 2000,
+      "sampled": 628,
+      "valid": 628,
+      "food": 138,
+      "unknown": 0,
+      "unknownBounds": [
+        0.2197452229299363,
+        0.2197452229299363
+      ]
+    },
+    "caring": {
+      "estimate": 0.07407407407407407,
+      "interval": [
+        0.0,
+        0.20014705882352862
+      ],
+      "finiteDraws": 2000,
+      "sampled": 27,
+      "valid": 27,
+      "food": 2,
+      "unknown": 0,
+      "unknownBounds": [
+        0.07407407407407407,
+        0.07407407407407407
+      ]
+    },
+    "confident": {
+      "estimate": 0.03125,
+      "interval": [
+        0.0,
+        0.10810810810810811
+      ],
+      "finiteDraws": 2000,
+      "sampled": 32,
+      "valid": 32,
+      "food": 1,
+      "unknown": 0,
+      "unknownBounds": [
+        0.03125,
+        0.03125
+      ]
+    },
+    "content": {
+      "estimate": 0.0975609756097561,
+      "interval": [
+        0.023809523809523808,
+        0.19150981996726665
+      ],
+      "finiteDraws": 2000,
+      "sampled": 41,
+      "valid": 41,
+      "food": 4,
+      "unknown": 0,
+      "unknownBounds": [
+        0.0975609756097561,
+        0.0975609756097561
+      ]
+    },
+    "devastated": {
+      "estimate": 0.02631578947368421,
+      "interval": [
+        0.0,
+        0.09375
+      ],
+      "finiteDraws": 2000,
+      "sampled": 38,
+      "valid": 38,
+      "food": 1,
+      "unknown": 0,
+      "unknownBounds": [
+        0.02631578947368421,
+        0.02631578947368421
+      ]
+    },
+    "disappointed": {
+      "estimate": 0.034482758620689655,
+      "interval": [
+        0.0,
+        0.11538461538461539
+      ],
+      "finiteDraws": 2000,
+      "sampled": 29,
+      "valid": 29,
+      "food": 1,
+      "unknown": 0,
+      "unknownBounds": [
+        0.034482758620689655,
+        0.034482758620689655
+      ]
+    },
+    "disgusted": {
+      "estimate": 0.33077905491698595,
+      "interval": [
+        0.2759669310636277,
+        0.38627493796980433
+      ],
+      "finiteDraws": 2000,
+      "sampled": 787,
+      "valid": 783,
+      "food": 259,
+      "unknown": 4,
+      "unknownBounds": [
+        0.3290978398983482,
+        0.3341804320203304
+      ]
+    },
+    "embarrassed": {
+      "estimate": 0.10419485791610285,
+      "interval": [
+        0.08322492454473462,
+        0.12724683236073822
+      ],
+      "finiteDraws": 2000,
+      "sampled": 740,
+      "valid": 739,
+      "food": 77,
+      "unknown": 1,
+      "unknownBounds": [
+        0.10405405405405406,
+        0.10540540540540541
+      ]
+    },
+    "excited": {
+      "estimate": 0.06,
+      "interval": [
+        0.0,
+        0.12904719235364387
+      ],
+      "finiteDraws": 2000,
+      "sampled": 50,
+      "valid": 50,
+      "food": 3,
+      "unknown": 0,
+      "unknownBounds": [
+        0.06,
+        0.06
+      ]
+    },
+    "faithful": {
+      "estimate": 0.05,
+      "interval": [
+        0.0,
+        0.16666666666666666
+      ],
+      "finiteDraws": 2000,
+      "sampled": 20,
+      "valid": 20,
+      "food": 1,
+      "unknown": 0,
+      "unknownBounds": [
+        0.05,
+        0.05
+      ]
+    },
+    "furious": {
+      "estimate": 0.08333333333333333,
+      "interval": [
+        0.0,
+        0.19050151975683877
+      ],
+      "finiteDraws": 2000,
+      "sampled": 36,
+      "valid": 36,
+      "food": 3,
+      "unknown": 0,
+      "unknownBounds": [
+        0.08333333333333333,
+        0.08333333333333333
+      ]
+    },
+    "grateful": {
+      "estimate": 0.13513513513513514,
+      "interval": [
+        0.03225806451612903,
+        0.25929951690821235
+      ],
+      "finiteDraws": 2000,
+      "sampled": 37,
+      "valid": 37,
+      "food": 5,
+      "unknown": 0,
+      "unknownBounds": [
+        0.13513513513513514,
+        0.13513513513513514
+      ]
+    },
+    "guilty": {
+      "estimate": 0.2862796833773087,
+      "interval": [
+        0.2358565476917633,
+        0.34339541995761896
+      ],
+      "finiteDraws": 2000,
+      "sampled": 760,
+      "valid": 758,
+      "food": 217,
+      "unknown": 2,
+      "unknownBounds": [
+        0.2855263157894737,
+        0.2881578947368421
+      ]
+    },
+    "hopeful": {
+      "estimate": 0.0,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "finiteDraws": 2000,
+      "sampled": 28,
+      "valid": 28,
+      "food": 0,
+      "unknown": 0,
+      "unknownBounds": [
+        0.0,
+        0.0
+      ]
+    },
+    "impressed": {
+      "estimate": 0.0,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "finiteDraws": 2000,
+      "sampled": 30,
+      "valid": 30,
+      "food": 0,
+      "unknown": 0,
+      "unknownBounds": [
+        0.0,
+        0.0
+      ]
+    },
+    "jealous": {
+      "estimate": 0.04878048780487805,
+      "interval": [
+        0.0,
+        0.12903225806451613
+      ],
+      "finiteDraws": 2000,
+      "sampled": 41,
+      "valid": 41,
+      "food": 2,
+      "unknown": 0,
+      "unknownBounds": [
+        0.04878048780487805,
+        0.04878048780487805
+      ]
+    },
+    "joyful": {
+      "estimate": 0.08333333333333333,
+      "interval": [
+        0.0,
+        0.21056618819776693
+      ],
+      "finiteDraws": 2000,
+      "sampled": 36,
+      "valid": 36,
+      "food": 3,
+      "unknown": 0,
+      "unknownBounds": [
+        0.08333333333333333,
+        0.08333333333333333
+      ]
+    },
+    "lonely": {
+      "estimate": 0.04878048780487805,
+      "interval": [
+        0.0,
+        0.12244897959183673
+      ],
+      "finiteDraws": 2000,
+      "sampled": 41,
+      "valid": 41,
+      "food": 2,
+      "unknown": 0,
+      "unknownBounds": [
+        0.04878048780487805,
+        0.04878048780487805
+      ]
+    },
+    "nostalgic": {
+      "estimate": 0.05405405405405406,
+      "interval": [
+        0.0,
+        0.14285714285714285
+      ],
+      "finiteDraws": 2000,
+      "sampled": 37,
+      "valid": 37,
+      "food": 2,
+      "unknown": 0,
+      "unknownBounds": [
+        0.05405405405405406,
+        0.05405405405405406
+      ]
+    },
+    "prepared": {
+      "estimate": 0.14285714285714285,
+      "interval": [
+        0.0,
+        0.3333333333333333
+      ],
+      "finiteDraws": 2000,
+      "sampled": 21,
+      "valid": 21,
+      "food": 3,
+      "unknown": 0,
+      "unknownBounds": [
+        0.14285714285714285,
+        0.14285714285714285
+      ]
+    },
+    "proud": {
+      "estimate": 0.05263157894736842,
+      "interval": [
+        0.0,
+        0.13513513513513514
+      ],
+      "finiteDraws": 2000,
+      "sampled": 38,
+      "valid": 38,
+      "food": 2,
+      "unknown": 0,
+      "unknownBounds": [
+        0.05263157894736842,
+        0.05263157894736842
+      ]
+    },
+    "sad": {
+      "estimate": 0.0,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "finiteDraws": 2000,
+      "sampled": 43,
+      "valid": 43,
+      "food": 0,
+      "unknown": 0,
+      "unknownBounds": [
+        0.0,
+        0.0
+      ]
+    },
+    "sentimental": {
+      "estimate": 0.0,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "finiteDraws": 2000,
+      "sampled": 29,
+      "valid": 28,
+      "food": 0,
+      "unknown": 1,
+      "unknownBounds": [
+        0.0,
+        0.034482758620689655
+      ]
+    },
+    "surprised": {
+      "estimate": 0.10526315789473684,
+      "interval": [
+        0.023255813953488372,
+        0.20371315192743758
+      ],
+      "finiteDraws": 2000,
+      "sampled": 57,
+      "valid": 57,
+      "food": 6,
+      "unknown": 0,
+      "unknownBounds": [
+        0.10526315789473684,
+        0.10526315789473684
+      ]
+    },
+    "terrified": {
+      "estimate": 0.02702702702702703,
+      "interval": [
+        0.0,
+        0.09378720238095217
+      ],
+      "finiteDraws": 2000,
+      "sampled": 37,
+      "valid": 37,
+      "food": 1,
+      "unknown": 0,
+      "unknownBounds": [
+        0.02702702702702703,
+        0.02702702702702703
+      ]
+    },
+    "trusting": {
+      "estimate": 0.0,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "finiteDraws": 2000,
+      "sampled": 36,
+      "valid": 36,
+      "food": 0,
+      "unknown": 0,
+      "unknownBounds": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "contrasts": {
+    "sourceWeighted": {
+      "ashamed": {
+        "before": {
+          "estimate": 0.5706333927605401,
+          "interval": [
+            0.4016235946690325,
+            0.7525872172438525
+          ],
+          "finiteDraws": 2000
+        },
+        "after": {
+          "estimate": 0.23267277136690004,
+          "interval": [
+            0.11874348585084968,
+            0.37633952112249114
+          ],
+          "finiteDraws": 2000
+        },
+        "afterMinusHalfBefore": {
+          "estimate": -0.052643925013370035,
+          "interval": [
+            -0.17290980779052562,
+            0.07785754861524324
+          ],
+          "finiteDraws": 2000
+        },
+        "fellByMoreThanHalf": true
+      },
+      "guilty": {
+        "before": {
+          "estimate": 0.9075483643751874,
+          "interval": [
+            0.6955740689728577,
+            1.1397879882884259
+          ],
+          "finiteDraws": 2000
+        },
+        "after": {
+          "estimate": 0.4480919998432341,
+          "interval": [
+            0.2671110689103469,
+            0.6671399858835447
+          ],
+          "finiteDraws": 2000
+        },
+        "afterMinusHalfBefore": {
+          "estimate": -0.0056821823443595765,
+          "interval": [
+            -0.15902349320955161,
+            0.16526054744028118
+          ],
+          "finiteDraws": 2000
+        },
+        "fellByMoreThanHalf": true
+      }
+    },
+    "sampleUnweighted": {
+      "ashamed": {
+        "before": {
+          "estimate": 0.06598613619599353,
+          "interval": [
+            -0.04591849279838718,
+            0.18441673929079228
+          ],
+          "finiteDraws": 2000
+        },
+        "after": {
+          "estimate": -0.05995481879867556,
+          "interval": [
+            -0.15608838648701948,
+            0.04093117419294802
+          ],
+          "finiteDraws": 2000
+        },
+        "afterMinusHalfBefore": {
+          "estimate": -0.09294788689667233,
+          "interval": [
+            -0.1855105093326634,
+            0.005988413631677097
+          ],
+          "finiteDraws": 2000
+        },
+        "fellByMoreThanHalf": true
+      },
+      "guilty": {
+        "before": {
+          "estimate": 0.37290576024268246,
+          "interval": [
+            0.2526360888420991,
+            0.5014116153838643
+          ],
+          "finiteDraws": 2000
+        },
+        "after": {
+          "estimate": 0.14922609995084454,
+          "interval": [
+            0.02083894242905096,
+            0.28212049630218816
+          ],
+          "finiteDraws": 2000
+        },
+        "afterMinusHalfBefore": {
+          "estimate": -0.03722678017049669,
+          "interval": [
+            -0.15848432148289235,
+            0.08384711230947188
+          ],
+          "finiteDraws": 2000
+        },
+        "fellByMoreThanHalf": true
+      }
+    }
+  },
+  "originalLifts": {
+    "ashamed": {
+      "lift": 0.6297343758447839,
+      "newAfterBelowHalfOfOriginal": true
+    },
+    "guilty": {
+      "lift": 0.984453332119435,
+      "newAfterBelowHalfOfOriginal": true
+    }
+  },
+  "kindsByWord": {
+    "embarrassed": {
+      "not_about_food": 662,
+      "ate_or_drank": 56,
+      "given_taken_or_wasted": 19,
+      "diet_or_weight_goal": 2
+    },
+    "ashamed": {
+      "not_about_food": 490,
+      "ate_or_drank": 118,
+      "diet_or_weight_goal": 9,
+      "given_taken_or_wasted": 11
+    },
+    "guilty": {
+      "not_about_food": 541,
+      "ate_or_drank": 171,
+      "given_taken_or_wasted": 29,
+      "diet_or_weight_goal": 17
+    },
+    "disgusted": {
+      "not_about_food": 524,
+      "ate_or_drank": 217,
+      "given_taken_or_wasted": 41,
+      "diet_or_weight_goal": 1
+    },
+    "angry": {
+      "not_about_food": 44,
+      "given_taken_or_wasted": 2,
+      "ate_or_drank": 1
+    },
+    "excited": {
+      "not_about_food": 47,
+      "ate_or_drank": 3
+    },
+    "disappointed": {
+      "ate_or_drank": 1,
+      "not_about_food": 28
+    },
+    "trusting": {
+      "not_about_food": 36
+    },
+    "impressed": {
+      "not_about_food": 30
+    },
+    "joyful": {
+      "not_about_food": 33,
+      "ate_or_drank": 3
+    },
+    "confident": {
+      "not_about_food": 31,
+      "diet_or_weight_goal": 1
+    },
+    "surprised": {
+      "not_about_food": 51,
+      "ate_or_drank": 5,
+      "given_taken_or_wasted": 1
+    },
+    "furious": {
+      "not_about_food": 33,
+      "ate_or_drank": 3
+    },
+    "anxious": {
+      "not_about_food": 30
+    },
+    "proud": {
+      "not_about_food": 36,
+      "diet_or_weight_goal": 1,
+      "ate_or_drank": 1
+    },
+    "apprehensive": {
+      "not_about_food": 27,
+      "given_taken_or_wasted": 1
+    },
+    "sentimental": {
+      "not_about_food": 28
+    },
+    "afraid": {
+      "not_about_food": 37,
+      "ate_or_drank": 1
+    },
+    "terrified": {
+      "not_about_food": 36,
+      "ate_or_drank": 1
+    },
+    "annoyed": {
+      "not_about_food": 37,
+      "ate_or_drank": 4
+    },
+    "lonely": {
+      "not_about_food": 39,
+      "ate_or_drank": 1,
+      "given_taken_or_wasted": 1
+    },
+    "hopeful": {
+      "not_about_food": 28
+    },
+    "caring": {
+      "not_about_food": 25,
+      "ate_or_drank": 2
+    },
+    "sad": {
+      "not_about_food": 43
+    },
+    "faithful": {
+      "not_about_food": 19,
+      "diet_or_weight_goal": 1
+    },
+    "anticipating": {
+      "not_about_food": 31,
+      "ate_or_drank": 1
+    },
+    "grateful": {
+      "ate_or_drank": 5,
+      "not_about_food": 32
+    },
+    "prepared": {
+      "not_about_food": 18,
+      "given_taken_or_wasted": 2,
+      "ate_or_drank": 1
+    },
+    "jealous": {
+      "not_about_food": 39,
+      "ate_or_drank": 2
+    },
+    "nostalgic": {
+      "not_about_food": 35,
+      "ate_or_drank": 2
+    },
+    "content": {
+      "not_about_food": 37,
+      "ate_or_drank": 4
+    },
+    "devastated": {
+      "not_about_food": 37,
+      "given_taken_or_wasted": 1
+    }
+  },
+  "kinds": {
+    "not_about_food": 3164,
+    "ate_or_drank": 603,
+    "given_taken_or_wasted": 108,
+    "diet_or_weight_goal": 32
+  },
+  "wordList": {
+    "pin": "679dc5684b810ae72b579954094c14d7a91ca11d989ade4a16eb44d038caa95a",
+    "matrixReaderByListNoYes": [
+      [
+        3140,
+        24
+      ],
+      [
+        295,
+        448
+      ]
+    ],
+    "agreement": 0.9183516764781162
+  },
+  "bothFellByMoreThanHalf": true,
+  "sourceReceiptPin": "1c1c627384631a46443bd74552bb4dc885ba010487473b1244bb73ed9ad49711"
+}

@@ -3,6 +3,35 @@
 Only measured engine accuracy belongs here. Pending rows are not zero scores.
 Field labels remain off. A passed software test is not a natural-writing result.
 
+**TP34 word recipes.** Nine of 19 named outputs appeared among their word's
+top two lifts, above the reference cutoff of eight across 17,280 within-valence
+deals. Top-three gave 12 against 10. Across 24,850 situations the mean largest
+output was .23355 and the quiet share was zero for every word. The SHAME floor
+was zero on the 741 unanimously neutral reference comments. The 288 lifts
+carry 2,000 whole-writer draws. Ledger E-TP34-20261120 binds this word-label
+result. [Table, picture and limits](exchange/result-sheets/TP34-word-lifts.md).
+
+**TP35 suddenness.** The adjusted anger slope was .161 [.072, .247] and the
+sadness slope was .133 [.051, .214]. Anger cleared .08. The paired difference
+of .028 [−.097, .153] missed the required .08 and its interval spans zero.
+The Neuroticism slopes were .053 for intensity and .054 for feeling duration.
+The paired advantage was .001 [−.044, .052]. Intervals use 2,000 whole-writer
+draws. [Tables and limits, E-TP35-20261120](exchange/result-sheets/TP35-suddenness.md).
+
+**TP36 need-tag separation.** All 45 correlations in the separate view
+cleared the distinctness rule of less than .80. Belonging–Compassion ranked
+first in zero of three sources, missing the required two. Its correlations
+were .020 [.003, .037] in dialogue, .038 [.029, .047] in forum comments and
+−.013 [−.038, .010] in recalled events. Both views include movement shares and
+writer intervals. [Tables and limits, E-TP36-20261120](exchange/result-sheets/TP36-need-pairs.md).
+
+**TP38 food topic.** Among 3,907 valid reader judgments, removing food situations
+reduced the weighted ashamed lift from .571 to .233 and the guilty lift from
+.908 to .448. Both clear the registered point threshold. The after-minus-half
+contrasts were −.053 [−.173, .078] and −.006 [−.159, .165]. W and the
+fixed word list agreed on 91.8%. Eight answers remain unknown.
+[Tables and limits, E-TP38-20261120](exchange/result-sheets/TP38-food-topic.md).
+
 The new November 19 commission has completed C0's exact export, not a new
 accuracy test. The existing development rule selects frozen MiniLM overall
 (.785861344 versus fine47 .785652886); seed47 remains the fine-rung winner.
