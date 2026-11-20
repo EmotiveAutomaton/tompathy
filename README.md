@@ -7,8 +7,9 @@
 **0.3 beta development · MIT licensed · Engine v1.** The Python engine in [engine/](engine/README.md) provides the decision ledger, source adapters, model/evaluation components, static registry generation and authenticated local companion. Scientific admissions remain separate from software checks: unadmitted modules do not supply maker estimates. The commissioned website demo remains hand-authored, fictional analysis.
 
 The [November 20 packet](docs/ENGINE_TEACHER_WORD_TABLE_2026-11-20.md) adds
-two GPU queues. The Spark started fresh reader comparisons and the workstation
-completed a food-topic reading and started prompt comparisons. The first
+two GPU queues. The Spark completed the first two reader passes and is checking
+teacher agreement. The workstation completed the food-topic reading and is
+comparing prompts. The first
 [word-table result](docs/exchange/result-sheets/TP34-word-lifts.md) cleared its
 registered top-two bar and found a tie on quiet share for all 32 words.
 The [food-topic comparison](docs/exchange/result-sheets/TP38-food-topic.md)

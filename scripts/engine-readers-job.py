@@ -49,7 +49,7 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--checks', nargs='+', choices=['pf_a', 'pf_b', 'pf_c', 'pf_c2',
         'pf_d', 'pf_e', 'pf_f', 'pf_g', 'pf_h', 'pf_i'], default=[])
-    parser.add_argument('--card', choices=['TP10', 'TP12', 'TP12-L3', 'TP10-L3', 'TP11', 'TP13', 'TP14', 'TP15', 'TP16', 'TP17', 'TP18', 'TP18-probe', 'TP19', 'TP20', 'TP22', 'TP1c', 'TP4-controls', 'TP26', 'TP7', 'TP23', 'TP24', 'TP25', 'TP27', 'TP28', 'TP29', 'TP30-frozen', 'TP34', 'TP35', 'TP36', 'TP38', 'RD1', 'RD2', 'TP12-gated', 'TP22-gated', 'TS3-real', 'TRIGGER-export'])
+    parser.add_argument('--card', choices=['TP10', 'TP12', 'TP12-L3', 'TP10-L3', 'TP11', 'TP13', 'TP14', 'TP15', 'TP16', 'TP17', 'TP18', 'TP18-probe', 'TP19', 'TP20', 'TP22', 'TP1c', 'TP4-controls', 'TP26', 'TP7', 'TP23', 'TP24', 'TP25', 'TP27', 'TP28', 'TP29', 'TP30-frozen', 'TP34', 'TP35', 'TP36', 'TP37', 'TP38', 'RD1', 'RD2', 'TP12-gated', 'TP22-gated', 'TS3-real', 'TRIGGER-export'])
     parser.add_argument('--models', type=Path, default=Path('.local/readers/models'))
     parser.add_argument('--prepared', type=Path, default=Path('.local/bench/two-day-prepared'))
     parser.add_argument('--ladder', type=Path)
@@ -199,6 +199,12 @@ def main():
                         raise ValueError('TP35 requires its protocol and ledger identity')
                     run(args.corpus,output,check,args.ledger_row,args.study_protocol)
                     completed.append('TP35')
+                elif args.card == 'TP37':
+                    from tompathy_engine.eval.readers.tp37 import run
+                    if not args.ledger_row or not args.study_protocol:
+                        raise ValueError('TP37 requires its registered protocol and ledger identity')
+                    run(args.corpus,output,check,args.ledger_row,args.study_protocol)
+                    completed.append('TP37')
                 elif args.card == 'TP36':
                     from tompathy_engine.eval.readers.tp36 import run
                     if not args.ledger_row or not args.study_protocol or not args.primary_job:

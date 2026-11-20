@@ -5,6 +5,13 @@ based on the merged, owner-approved **0.2.0** frontend milestone.
 
 ## November 20 teacher and word-table packet
 
+At 11:14 Pacific Q2 finished with 5,400 valid answers in 5,400 attempts.
+All 5,412 files matched their Spark hashes after transfer. Q3 took the GPU
+lock and had 259 valid first-reader answers at 11:15. The workstation was
+still running G3. The first TP24 input now holds 6,250 distinct reports with
+all eight prompted features. RD1 is next on the CPU. At 11:16 available
+commit headroom was 22.65 GiB and counted admission required 23.37 GiB.
+
 Gear 2 has two GPU queues. The Spark started Q1 at 09:17 Pacific with its exact
 native identity and shared lock verified. Q2 follows automatically. The
 workstation started G1 at 09:18 and has saved reader W's GPU responses. Its

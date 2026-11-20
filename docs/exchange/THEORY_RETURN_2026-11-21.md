@@ -4,15 +4,15 @@ Opened November 20 when the two GPU queues started. Completed rows will give the
 
 | Card | Current state |
 |---|---|
-| RD1 | Q1 complete. Both readers returned 350 valid answers. Slot decisions await the comparison. |
-| TP24 | Q2 running after verified handoff. Evaluation awaits the slot decision and saved readings. |
-| TP31 | Q3 queued on 2,000 sentences from a roster of 288,619. Q4 and Q7 require both checks to pass. |
+| RD1 | Both readers returned 350 valid answers. Q1 and Q2 are verified. The CPU memory reservation deferred the slot comparison at 11:16 Pacific. |
+| TP24 | Reader B's eight features are available for all 6,250 initial reports. The downstream evaluation awaits RD1's assignments and the missing trained forecasts. |
+| TP31 | Q3 began on 2,000 sentences from a roster of 288,619. Q4 and Q7 require its agreement and known-group checks to pass. |
 | TP30 / G2 | The workstation training library is CPU-only. The packet assigns training to the Spark between Q5 and Q6. |
 | RD2 | G3 is running W's development prompts. Q5 has development data only. After selection, report the registered 350 and text-fresh 348 with the same rules and flag any conclusion change. Prior TP10-L3 scoring included all 200 proposed F3 reports. Both slots stay with the trained reader pending fresh confirmation. |
 | TP34 | Pass. The blind top-two list gave 9 of 19 against 8. Top-three gave 12 against 10. All 32 words tied at zero quiet share. The predicted negative SEEKING lift for *disappointed* was −.290 [−.318, −.260]. [Result sheet](result-sheets/TP34-word-lifts.md), E-TP34-20261120. |
 | TP35 | Anger passes its .08 bar at .161 [.072, .247]. Its advantage over sadness, .028 [−.097, .153], misses .08. The duration advantage for Neuroticism was .001 [−.044, .052]. [Result sheet](result-sheets/TP35-suddenness.md), E-TP35-20261120. |
 | TP36 | Distinctness passes. All 45 separate-need correlations were below .80. Belonging with Compassion led in zero sources against a bar of two. Its correlations were .020 [.003, .037], .038 [.029, .047] and −.013 [−.038, .010]. [Separate and merged tables](result-sheets/TP36-need-pairs.md), E-TP36-20261120. |
-| TP37 | Held-out dimension counts pending. |
+| TP37 | The [dimension-count procedure](../TP37_PROTOCOL_2026-11-20.md) passed its three constructed checks. The held-out study is pending. |
 | TP38 | Pass on both point estimates. Ashamed fell from .571 to .233 and guilty from .908 to .448. The after-minus-half intervals were [−.173, .078] and [−.159, .165]. One source of short situations; one small local reader, checked only against a word list. [Result sheet](result-sheets/TP38-food-topic.md), E-TP38-20261120. |
 | TP32 / TP33 | Carried refusal-direction and worry-lift studies pending. |
 | TS4 | Display awaits a qualified TP31 gate. |
@@ -48,3 +48,8 @@ At the 10:52 Pacific observation the Spark had saved 4,202 of 5,400 Q2
 answers, all valid, at 106.8 seconds per 100 reports. On the workstation W
 returned 600 valid answers each for G3 V0 and V1, at 37.5 and 40.7 seconds
 per 100. V2 had 26 valid answers in its first 238 attempts.
+
+Q2 finished at 11:14 Pacific with 5,400 valid answers at 106.65 seconds per
+100 reports. Q3 had 259 valid B answers at the 11:15 check. Workstation V2
+had reached 39 valid answers in 333 attempts. Neither observation settles
+the corresponding comparison.

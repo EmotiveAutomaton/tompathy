@@ -18,6 +18,11 @@ extends it to 6,600. Preserve both stages and their denominators. Keep B’s
 model, corrected questions, options and feature order fixed across the four
 sources. A and W are outside this comparison.
 
+The opening prompted archive is now verified. Each of 6,250 distinct reports
+has all eight ratings under the pinned B model and prompt. The 200 original
+timing reports use their saved first answer. The preparation reads the
+registered order and model outputs only. F2 is absent from this archive.
+
 The filed selected TP10-L3 seed already supplies the trained comparator for
 1,200 reports. For the other 5,400, the MiniLM regression component of G2
 uses five writer-disjoint outer folds of 1,080 reports each. Its original

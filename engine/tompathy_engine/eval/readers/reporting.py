@@ -72,6 +72,10 @@ FIELDS['TP30-frozen']={'card','status','productionAdmission','ledger','scope','p
 OUTPUTS['TP30-frozen']='readers-profile-frozen-2026-11.json'
 OUTPUTS['TP34']='readers-word-recipes-2026-11.json'
 OUTPUTS['TP35']='readers-suddenness-2026-11.json'
+OUTPUTS['TP37']='readers-rating-dimensions-2026-11.json'
+FIELDS['TP37']={'card','status','ledger','productionAdmission','scope','sourcePin','protocolPin','reports',
+                'writers','words','ratings','foldSizes','effectiveRanks','foldLosses','rankMeanLoss',
+                'rankStandardError','oneSE','consecutiveTwoSE','tablesByRank','writerDraws','lossArchivePin','completedFolds','axisArchivePins'}
 OUTPUTS['TP38']='readers-food-topic-2026-11.json'
 FIELDS['TP38']={'card','status','productionAdmission','ledger','scope','protocolPin','readerReceiptPin',
                 'tp28ReceiptPin','writerDraws','sampled','valid','controlsPopulation','shares','contrasts',

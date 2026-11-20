@@ -171,3 +171,27 @@ assigns each report to exactly one held-out fold and keeps all fitting,
 development and forecast writers disjoint within that fold. All five test
 folds contain 1,080 reports. The intake check computed no study scores.
 [TP24 amended input protocol](TP24_MIXED_PROTOCOL_2026-11-20.md).
+
+TP37’s dimension-count runner is built. Three constructed tests verified the
+two stopping rules, the loss curve against the supplied discriminant and
+multinomial form, and the rotated table cells against direct correlations
+and word means. The writer-report counts await the CPU queue.
+[TP37 registered procedure](TP37_PROTOCOL_2026-11-20.md).
+
+## Second Spark handoff
+
+Q2 completed at 11:14 Pacific. B returned all 5,400 answers in the registered
+format at 106.65 seconds per 100 reports. The exact native process exited and
+released its GPU lock. All 5,412 files matched after transfer. The receipt
+SHA-256 is `d9191c98961ab62cb44ccde1e0a6e4a3f054cfaf0ebf3b62a59882fb13e178ee`.
+Q3 acquired the lock and had saved B's first 259 valid answers from its
+2,000-sentence panel at 11:15. Its comparison with A and its checks on known
+groups are pending. At the same check the workstation's G3 worker held its
+own lock. V2 had returned 39 valid answers in 333 attempts. Both machines'
+thermal guards reported safe readings.
+
+The private TP24 input combines all 500 original B first passes, the 350 Q1
+answers and the 5,400 Q2 answers. All 6,250 reports have eight valid features
+under the same reader and prompt. The reserved 350 reports are excluded.
+RD1's source prerequisites are satisfied. Its 11:16 CPU admission found
+22.65 GiB available against 23.37 GiB required. Its output is still pending.
