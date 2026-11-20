@@ -390,3 +390,7 @@ Corrected SP1-v2 reader A fails: mean Spearman 0.458263 versus
 600/600 valid outputs. Exact exit/releases and copied artifacts are verified.
 E-SP1-V2-READER-A-PANEL-20261119 binds the full table. Reader B comparison and
 downstream teacher gates remain pending; no serving or maker admission.
+
+- SP1-v2 reader-B setup is complete/source-bound (E-SP1-V2-READER-B-SETUP-20261119): 34.66B Q4_K_M, original IDs retained. No inference or resident-fit result; own 500-report pilot remains required.
+
+- Reader B's corrected pilot is running from 01:56:49 Pacific November 20; exact process/lock ownership verified. Startup: 103/500 valid, 47 C without throttling. No completed pilot or panel result yet.

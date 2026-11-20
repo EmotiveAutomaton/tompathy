@@ -73,6 +73,30 @@ def land(job, exit_audit, destination, *, role=None):
         allowed = {'kind','n','pilot','maximumProbabilityDifferences','passes','numberFormat','pack'}
         public_row = {k: row[k] for k in allowed}
         public_row['encoder'] = {k: row['encoder'][k] for k in ('id','revision')}
+    elif row['kind']=='model-pull' and role=='b' and version==2:
+        card,filename='SP1-v2-reader-b-setup','readers-spark-v2-reader-b-setup-2026-11.json'
+        required={'model.json','models-before.json','models-after.json','pull-result.json'}
+        if not required <= set(manifest['files']):
+            raise ValueError('Complete pinned model setup artifacts required')
+        model=json.loads((job/'model.json').read_text())
+        before=json.loads((job/'models-before.json').read_text())
+        after=json.loads((job/'models-after.json').read_text())
+        current={r['name']:r['digest'] for r in after}
+        if (row.get('inferenceRan') is not False or row.get('residentFitVerified') is not False or
+                row.get('priorModelIdsPreserved') is not True or row['model']!=model['tag'] or
+                row['model']['name']!='qwen3.5:35b' or
+                current.get('qwen3.5:35b')!=row['model']['digest'] or
+                model['show']['model_info']['general.parameter_count']<27_000_000_000 or
+                row['model']['size']>64*1024**3 or
+                json.loads((job/'pull-result.json').read_text()).get('status')!='success' or
+                any(current.get(r['name'])!=r['digest'] for r in before) or
+                any(r['name']=='qwen3.5:35b' for r in before)):
+            raise ValueError('Setup must preserve existing IDs without claiming inference or fit')
+        public_row={'kind':'model-pull','model':{k:row['model'][k] for k in ('name','digest','size')},
+                    'parameters':model['show']['model_info']['general.parameter_count'],
+                    'quantization':model['tag']['details']['quantization_level'],
+                    'priorModelIdsPreserved':True,'inferenceRan':False,'residentFitVerified':False,
+                    'requires500Pilot':True}
     elif row['kind'] in ('reader-pilot','reader-repeat') and role in ('a','b'):
         stage='panel' if row['kind']=='reader-repeat' else 'pilot'
         prefix='SP1-v2' if version==2 else 'SP1'
@@ -92,6 +116,8 @@ def land(job, exit_audit, destination, *, role=None):
         raise ValueError('Registered aggregate filename required')
     protocol_keys = {'context','features','numericalThreads','outputTokens','promptPin','seed',
                      'telemetryThreads','temperature','thermalStopC','thinking'}
+    if row['kind']=='model-pull':
+        protocol_keys={'numericalThreads','telemetryThreads','thermalStopC'}
     value = {'schema':'SP1-aggregate-1','card':card,'status':'complete','productionAdmission':False,
              'sourceReceiptPin':pin,'sourceArtifactManifestPin':receipt['artifactsPin'],
              'sourceCommit':owner['commit'],'scriptPin':owner['scriptPin'],
@@ -102,6 +128,8 @@ def land(job, exit_audit, destination, *, role=None):
         value['protocol']['version']=2
     if row['kind']=='reader-repeat':
         value['scope']='Fixed open Crowd-enVENT report-held-out repeated panel. Writer ratings are the comparison key; this panel alone establishes no downstream teacher, serving or maker admission.'
+    elif row['kind']=='model-pull':
+        value['scope']='One-time reader-B download and frozen model identity only. No inference, measured resident fit, panel qualification, teacher or serving admission.'
     data = (json.dumps(value,indent=2,sort_keys=True,allow_nan=False)+'\n').encode()
     if destination.exists() and destination.read_bytes() != data:
         raise ValueError('Preserve existing aggregate; use an explicit correction')

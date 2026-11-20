@@ -1,0 +1,37 @@
+{
+  "card": "SP1-v2-reader-b-setup",
+  "payloadPin": "632745f3fd68ca4e605013c037e3ef099c0c6b70ff740db0b2d88eace1da7bbd",
+  "productionAdmission": false,
+  "protocol": {
+    "numericalThreads": 3,
+    "telemetryThreads": 1,
+    "thermalStopC": 90,
+    "version": 2
+  },
+  "row": {
+    "inferenceRan": false,
+    "kind": "model-pull",
+    "model": {
+      "digest": "72aac7c28be8ff9b81c2a270eb489c88e6d822a76ec0cb7bf34d965768848567",
+      "name": "qwen3.5:35b",
+      "size": 22069592181
+    },
+    "parameters": 34660610688,
+    "priorModelIdsPreserved": true,
+    "quantization": "Q4_K_M",
+    "requires500Pilot": true,
+    "residentFitVerified": false
+  },
+  "schema": "SP1-aggregate-1",
+  "scope": "One-time reader-B download and frozen model identity only. No inference, measured resident fit, panel qualification, teacher or serving admission.",
+  "scriptPin": "2553ddc84443cf77ae7af8bb743cfbed7c02ef591f6992778db2eb49165b32ea",
+  "sourceArtifactManifestPin": "7c3d4761f6503d0baf43886591bee550a6d402752f5b925541d84b00010bfad7",
+  "sourceCommit": "71e6ea83e1ccf3e60d0cd15872ea59f5a705e591",
+  "sourceReceiptPin": "0b50216730d8c0720be33a217a7716f78f3810cf3221810512977a36f5095f1d",
+  "status": "complete",
+  "versions": {
+    "numpy": "2.5.5",
+    "torch": "2.14.1+cu130",
+    "transformers": "5.14.1"
+  }
+}

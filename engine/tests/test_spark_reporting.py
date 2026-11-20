@@ -86,3 +86,36 @@ def test_interrupted_audit_preserves_failure_and_checks_saved_bytes(tmp_path):
     (tmp_path/'raw.json').write_text('changed')
     with pytest.raises(ValueError,match='Preserved source changed'):
         land_interrupted_audit(tmp_path,tmp_path/'audit.json',tmp_path/'preservation.json',summary,output)
+
+
+@pytest.mark.parametrize('claims_fit',[False,True])
+def test_reader_b_setup_excludes_inventory_and_cannot_claim_runtime_fit(tmp_path,claims_fit):
+    fixture(tmp_path)
+    model={'name':'qwen3.5:35b','digest':'d'*64,'size':22*1024**3,
+           'details':{'quantization_level':'Q4_K_M','privateMetadata':'never publish this'}}
+    previous=[{'name':'private-other-model','digest':'e'*64}]
+    artifacts={'model.json':{'tag':model,'show':{'model_info':{'general.parameter_count':35_000_000_000}}},
+               'models-before.json':previous,'models-after.json':previous+[model],
+               'pull-result.json':{'status':'success'}}
+    for name,value in artifacts.items():
+        (tmp_path/name).write_text(json.dumps(value))
+    (tmp_path/'artifacts.json').write_text(json.dumps({'files':{name:sha256(tmp_path/name) for name in artifacts}}))
+    receipt=json.loads((tmp_path/'receipt.json').read_text())
+    receipt['protocol']['version']=2
+    receipt['artifactsPin']=sha256(tmp_path/'artifacts.json')
+    receipt['row']={'kind':'model-pull','model':model,'inferenceRan':False,
+                    'residentFitVerified':claims_fit,'priorModelIdsPreserved':True}
+    (tmp_path/'receipt.json').write_text(json.dumps(receipt))
+    pin=sha256(tmp_path/'receipt.json')
+    audit=json.loads((tmp_path/'audit.json').read_text());audit['receiptPin']=pin
+    (tmp_path/'audit.json').write_text(json.dumps(audit))
+    (tmp_path/'complete.json').write_text(json.dumps({'receiptPin':pin}))
+    output=tmp_path/'readers-spark-v2-reader-b-setup-2026-11.json'
+    if claims_fit:
+        with pytest.raises(ValueError,match='without claiming'):
+            land(tmp_path,tmp_path/'audit.json',output,role='b')
+    else:
+        land(tmp_path,tmp_path/'audit.json',output,role='b')
+        raw=output.read_text()
+        assert 'private-other-model' not in raw and 'private-host' not in raw and 'never publish' not in raw
+        assert not json.loads(raw)['row']['residentFitVerified']

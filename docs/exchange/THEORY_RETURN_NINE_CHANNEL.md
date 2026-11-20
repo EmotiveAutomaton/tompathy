@@ -575,3 +575,25 @@ was rechecked before launch: 35b is listed at 22 GB, while 122b is 81 GB. The fu
 installed digest will be frozen from the completed download. This setup has run
 no inference and does not establish runtime fit, panel success or teacher admission.
 Reader A's completed corrected failure remains fixed; no further A retry is queued.
+
+Reader B's one-time setup completed at 22:41:16 Pacific November 19. The owner's
+November 20 continuation verified exact native exit and GPU-lock release at
+01:54:19, then all 11 copied files and the four indexed artifacts. The frozen
+model ID is `72aac7c28be8ff9b81c2a270eb489c88e6d822a76ec0cb7bf34d965768848567`; it contains 34,660,610,688 parameters,
+Q4_K_M weights totaling 22,069,592,181 bytes. Previous installed model
+IDs remain unchanged. E-SP1-V2-READER-B-SETUP-20261119 binds source
+`0b50216730d8c0720be33a217a7716f78f3810cf3221810512977a36f5095f1d`. No inference ran during setup, and resident fit,
+speed, panel gates and teacher qualification remain unmeasured. The separate
+500-report v2 pilot is the next stage, with a four-hour bound because this model's
+runtime is not yet measured. No completed A gate is reopened.
+
+Reader B's corrected 500-report pilot started at 01:56:49 Pacific November 20
+from committed runner `71e6ea8`, using its frozen model ID and fresh predictions.
+Exact native identity, below-normal priority and GPU-lock ownership were verified
+at 01:59:08. At that check, 103/500 responses were saved and valid after 138.90
+seconds; temperature was 47 C without throttling. Its four-hour deadline is
+05:56:49 Pacific. Full timing, resident-fit acceptance and panel gates are still
+pending. The same pilot's first 300 responses will be reused for its separately
+bounded repeat, after measured timing. Reader A's failed gate remains fixed.
+The setup reporter passes eight targeted cases and Ruff, including private-model
+inventory exclusion and rejection of an unsupported runtime-fit claim.

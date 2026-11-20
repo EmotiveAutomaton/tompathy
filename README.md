@@ -17,7 +17,9 @@ but fails its mix test and CARE noninferiority check. The full tables are filed.
 Spark's encoder parity check passed and its 500-report CPU/GPU timing is filed.
 The original 9B panel is preserved but unqualified: its prompt reversed two
 answer-key meanings. The owner approved a separate corrected SP1-v2 panel with
-the original reports and thresholds; its fresh 500-report pilot completed, and its repeated panel fails; Reader B's guarded download is now running. Competence and Meaning
+the original reports and thresholds. Reader A's corrected repeated panel fails;
+Reader B's frozen model identity is verified and its 500-report pilot is running.
+Competence and Meaning
 are wired through the engine and panel and verified in native Chrome.
 [Source filing](docs/SOURCE_DOCUMENTS.md)
 and the [theory return](docs/exchange/THEORY_RETURN_NINE_CHANNEL.md) distinguish
