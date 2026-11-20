@@ -394,3 +394,5 @@ downstream teacher gates remain pending; no serving or maker admission.
 - SP1-v2 reader-B setup is complete/source-bound (E-SP1-V2-READER-B-SETUP-20261119): 34.66B Q4_K_M, original IDs retained. No inference or resident-fit result; own 500-report pilot remains required.
 
 - Reader B's corrected pilot is running from 01:56:49 Pacific November 20; exact process/lock ownership verified. Startup: 103/500 valid, 47 C without throttling. No completed pilot or panel result yet.
+
+- E-SP1-V2-READER-B-PILOT-20261120: corrected B pilot complete, 500/500 valid, 110.961823 seconds per 100; 21,392,869,292 resident bytes. Panel gates pending; exact exit and copied source binding verified.

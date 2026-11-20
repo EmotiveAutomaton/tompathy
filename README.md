@@ -18,7 +18,7 @@ Spark's encoder parity check passed and its 500-report CPU/GPU timing is filed.
 The original 9B panel is preserved but unqualified: its prompt reversed two
 answer-key meanings. The owner approved a separate corrected SP1-v2 panel with
 the original reports and thresholds. Reader A's corrected repeated panel fails;
-Reader B's frozen model identity is verified and its 500-report pilot is running.
+Reader B's 500-report pilot is complete; its repeated panel is running.
 Competence and Meaning
 are wired through the engine and panel and verified in native Chrome.
 [Source filing](docs/SOURCE_DOCUMENTS.md)

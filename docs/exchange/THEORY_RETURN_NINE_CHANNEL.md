@@ -597,3 +597,30 @@ pending. The same pilot's first 300 responses will be reused for its separately
 bounded repeat, after measured timing. Reader A's failed gate remains fixed.
 The setup reporter passes eight targeted cases and Ruff, including private-model
 inventory exclusion and rejection of an unsupported runtime-fit claim.
+
+Reader B's corrected pilot completed at 02:06:14 Pacific November 20. Exact
+native exit and GPU-lock release were verified at 02:18:48. All 510 copied
+files (502 indexed artifacts) and all 500 ordered raw/parsed responses match.
+Every response is valid. Request time totals 554.809115 seconds,
+or 110.961823 per 100 including request loading. Temperatures
+were 29–58 C without throttling; observed resident allocation
+was 21,392,869,292 bytes, within 64 GiB. E-SP1-V2-READER-B-PILOT-20261120
+binds source `3511182fa3da08e31f9dbb9ae859a143da691231e6ca641937cbd42d8d5a6156`.
+This is measured timing and resident fit, not a qualified panel or teacher.
+Its first 300 responses will be reused exactly; only the second 300 execute.
+Measured B timing projects 332.89 seconds for that pass, with a
+one-hour bound. A's failed panel remains fixed; no original v1 output is reused.
+
+Reader B's corrected repeat pass started at 02:21:01 Pacific November 20 using
+the same committed runner, model, prompt and original pilot first pass. Exact
+native identity and GPU-lock ownership were verified at 02:21:36; 28/300 new
+responses were saved and valid, at 42 C without throttling. Only the second
+pass executes. Its deadline is 03:21:01 Pacific; no panel result is claimed yet.
+
+The final SP1 comparison reporter now verifies both completed v2 source receipts,
+exact exits/releases, original pilot manifests, ordered raw/parsed ratings and
+fixed answer-key/comparator bytes before calculating the common-row comparison.
+It preserves individual gates, refuses an altered source and emits aggregate
+scores plus pins only. Five new constructed cases and the three existing
+comparison cases pass; Ruff passes. This reporter has not yet run on the paired
+research outputs. Teacher eligibility still requires the actual panel outcome.
