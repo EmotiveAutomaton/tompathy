@@ -109,6 +109,13 @@ reader quality. E-SP1-V1-READER-A-AUDIT-20261119 records the stopped source.
 The owner approved a separate corrected SP1-v2 panel, with fixed report selection
 and thresholds. No score flips, old gate rerun or teacher admission.
 
+The corrected SP1-v2 reader-A pilot started at 18:39:45 Pacific November 19
+from committed script `75d28ea`. Its exact remote process and GPU-lock ownership
+were verified at 18:40:08; nine of 500 responses were saved and valid, with
+41 C and no thermal throttle. The new one-hour deadline is 19:39:45. This
+separate authorized study preserves the fixed reports, model and thresholds,
+and writes fresh predictions. Its panel score/repeatability remain unmeasured.
+
 ## November 15 trigger-reader packet
 
 **Closed at the owner's request on November 19.** The active MPNet fold stopped

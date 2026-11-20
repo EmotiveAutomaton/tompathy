@@ -487,3 +487,10 @@ new model output, with the same reports, comparison rules and thresholds. Both
 readers receive fresh v2 predictions. Original parity stays completed; no new
 encoder run is authorized by this correction. Sixteen targeted job/reporting
 cases and Ruff pass; the original prompt hash is unchanged.
+
+The corrected SP1-v2 reader-A pilot started at 18:39:45 Pacific November 19
+from committed script `75d28ea`. Its exact remote process and GPU-lock ownership
+were verified at 18:40:08; nine of 500 responses were saved and valid, with
+41 C and no thermal throttle. The new one-hour deadline is 19:39:45. This
+separate authorized study preserves the fixed reports, model and thresholds,
+and writes fresh predictions. Its panel score/repeatability remain unmeasured.

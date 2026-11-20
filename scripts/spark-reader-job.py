@@ -68,9 +68,15 @@ def valid_features(value):
 
 def guarded_generate(value, guard):
     """Cancel only this job's HTTP client if its guard trips during generation."""
-    process = subprocess.Popen(['curl','--silent','--show-error','--fail-with-body','--max-time','120',
+    return guarded_request('generate', value, guard, 120)
+
+
+def guarded_request(route, value, guard, seconds):
+    if route not in ('generate','pull') or not 0 < seconds <= 3600:
+        raise ValueError('Only bounded local generation or pull is supported')
+    process = subprocess.Popen(['curl','--silent','--show-error','--fail-with-body','--max-time',str(seconds),
         '-H','Content-Type: application/json','--data-binary','@-',
-        'http://127.0.0.1:11434/api/generate'], stdin=subprocess.PIPE,
+        'http://127.0.0.1:11434/api/'+route], stdin=subprocess.PIPE,
         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     try:
         payload = json.dumps(value).encode()
@@ -232,6 +238,45 @@ def rank_correlation(x, y):
         end = np.cumsum(counts)
         return ((end-counts+1+end)/2)[inverse]
     return float(np.corrcoef(ranks(x),ranks(y))[0,1])
+
+
+def pull_reader_b(output, guard, model):
+    """One catalog-selected download, without updating any installed model."""
+    if model != 'qwen3.5:35b':
+        raise ValueError('Only the registered reader-B candidate may be pulled')
+    before=api('tags')['models']
+    if any(row['name']==model for row in before):
+        raise ValueError('Reader B already exists; preserve its ID and do not pull again')
+    if api('ps')['models']:
+        raise RuntimeError('Resident model found; no foreign unload')
+    write(output/'models-before.json',before)
+    guard.check()
+    result=guarded_request('pull',{'model':model,'stream':False},guard,3600)
+    write(output/'pull-result.json',result)
+    guard.check()
+    if result.get('status')!='success' or result.get('error'):
+        raise RuntimeError('Reader-B pull did not complete successfully')
+    after=api('tags')['models']
+    write(output/'models-after.json',after)
+    old={row['name']:row['digest'] for row in before}
+    current={row['name']:row['digest'] for row in after}
+    if any(current.get(name)!=pin for name,pin in old.items()):
+        raise RuntimeError('An existing model ID changed; preserve and investigate')
+    candidates=[row for row in after if row['name']==model]
+    if len(candidates)!=1 or len(candidates[0]['digest'])!=64:
+        raise ValueError('A single complete reader-B ID is required')
+    candidate=candidates[0]
+    if candidate['size']>64*1024**3:
+        raise RuntimeError('Downloaded weight size exceeds the registered budget')
+    show=api('show',{'model':model})
+    write(output/'model.json',{'tag':candidate,'show':show})
+    if show.get('model_info',{}).get('general.parameter_count',0)<27_000_000_000:
+        raise RuntimeError('Downloaded candidate lacks the required >=27B parameter metadata')
+    guard.check()
+    if api('ps')['models']:
+        raise RuntimeError('Unexpected resident model after download; leave it untouched')
+    return {'kind':'model-pull','model':candidate,'priorModelIdsPreserved':True,
+            'inferenceRan':False,'residentFitVerified':False,'requires500Pilot':True}
 
 
 def panel_statistics(first, second, truth, baseline):
@@ -423,7 +468,7 @@ def finalize_repeat(args, guard, items):
 def main():
     global PROMPT
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--kind',choices=['parity','reader-pilot','reader-repeat','reader-finalize'],required=True)
+    parser.add_argument('--kind',choices=['parity','reader-pilot','reader-repeat','reader-finalize','model-pull'],required=True)
     parser.add_argument('--payload',type=Path,required=True)
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--commit',required=True)
@@ -485,7 +530,9 @@ def main():
             if api('ps')['models']:
                 raise RuntimeError('GPU resident model found; leave it unchanged')
             with Guard(args.output,args.hours,deadline=deadline) as guard:
-                if args.kind=='reader-finalize':
+                if args.kind=='model-pull':
+                    row=pull_reader_b(args.output,guard,args.model)
+                elif args.kind=='reader-finalize':
                     row=finalize_repeat(args,guard,items)
                 else:
                     row = (parity(args.payload,args.output,guard,manifest,items) if args.kind == 'parity' else
@@ -493,7 +540,7 @@ def main():
                 guard.check()
             guard.check()
             artifacts = {p.relative_to(args.output).as_posix():digest(p) for p in args.output.rglob('*')
-                         if p.is_file() and (p.suffix == '.npz' or p.name.startswith('row-') or p.name in ('model.json','resident.json','source-preservation.json'))}
+                         if p.is_file() and (p.suffix == '.npz' or p.name.startswith('row-') or p.name in ('model.json','resident.json','source-preservation.json','models-before.json','models-after.json','pull-result.json'))}
             write(args.output/'artifacts.json',{'files':artifacts})
             receipt['artifactsPin'] = digest(args.output/'artifacts.json')
             receipt.update(status='complete',row=row)

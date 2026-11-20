@@ -57,3 +57,7 @@ thermal/STOP controls and measured-pilot sizing apply. Each v2 job has a fresh
 explicit bound because this is a separately authorized study, not an extension
 of the expired v1 retry window. Any future engineering continuation retains its
 own original v2 deadline. Failed scientific gates are never rerun.
+
+The reader-B setup retains all existing model IDs and refuses to refresh an
+already installed candidate. A catalog download is not runtime fit or a panel
+result; those require its own fixed v2 pilot and repeat pass.

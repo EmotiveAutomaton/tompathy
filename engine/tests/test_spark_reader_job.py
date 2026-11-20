@@ -87,6 +87,49 @@ def test_reader_guard_cancels_only_its_own_client(monkeypatch):
     assert process.terminated
 
 
+def test_reader_b_pull_pins_new_model_without_inference(monkeypatch,tmp_path):
+    existing={'name':'qwen3.5:9b','digest':'a'*64,'size':5}
+    candidate={'name':'qwen3.5:35b','digest':'b'*64,'size':22*1024**3}
+    inventories=iter([[existing],[existing,candidate]])
+    calls=[]
+    def api(route,value=None):
+        calls.append(route)
+        if route=='tags':return {'models':next(inventories)}
+        if route=='ps':return {'models':[]}
+        if route=='show':return {'details':{'quantization_level':'Q4_K_M'},
+                                 'model_info':{'general.parameter_count':35_000_000_000}}
+        raise AssertionError('No inference request is permitted')
+    monkeypatch.setattr(job,'api',api)
+    requests=[]
+    def request(route,value,guard,seconds):
+        requests.append((route,value,seconds));return {'status':'success'}
+    monkeypatch.setattr(job,'guarded_request',request)
+    guard=job.Guard(tmp_path,1)
+    row=job.pull_reader_b(tmp_path,guard,'qwen3.5:35b')
+    assert requests==[('pull',{'model':'qwen3.5:35b','stream':False},3600)]
+    assert row['model']['digest']=='b'*64 and not row['residentFitVerified']
+    assert not row['inferenceRan'] and row['priorModelIdsPreserved']
+    assert 'generate' not in calls
+
+
+def test_reader_b_pull_refuses_existing_tag_or_other_model(monkeypatch,tmp_path):
+    monkeypatch.setattr(job,'api',lambda route:{'models':[{'name':'qwen3.5:35b'}]})
+    guard=job.Guard(tmp_path,1)
+    with pytest.raises(ValueError,match='already exists'):
+        job.pull_reader_b(tmp_path,guard,'qwen3.5:35b')
+    with pytest.raises(ValueError,match='registered reader-B'):
+        job.pull_reader_b(tmp_path,guard,'qwen3.5:9b')
+
+
+def test_reader_b_pull_detects_changed_foreign_id(monkeypatch,tmp_path):
+    inventories=iter([[{'name':'other','digest':'a'*64}],
+                      [{'name':'other','digest':'c'*64},{'name':'qwen3.5:35b','digest':'b'*64}]])
+    monkeypatch.setattr(job,'api',lambda route,value=None:{'models':next(inventories)} if route=='tags' else {'models':[]})
+    monkeypatch.setattr(job,'guarded_request',lambda *args:{'status':'success'})
+    with pytest.raises(RuntimeError,match='existing model ID changed'):
+        job.pull_reader_b(tmp_path,job.Guard(tmp_path,1),'qwen3.5:35b')
+
+
 def test_repeat_panel_keeps_invalid_pairs_and_constant_columns_visible():
     rows=[[1+i%5]*8 for i in range(300)]
     good=job.panel_statistics(rows,rows,rows,rows)

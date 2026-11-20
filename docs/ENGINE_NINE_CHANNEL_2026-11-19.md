@@ -332,3 +332,21 @@ new model output, with the same reports, comparison rules and thresholds. Both
 readers receive fresh v2 predictions. Original parity stays completed; no new
 encoder run is authorized by this correction. Sixteen targeted job/reporting
 cases and Ruff pass; the original prompt hash is unchanged.
+
+The corrected SP1-v2 reader-A pilot started at 18:39:45 Pacific November 19
+from committed script `75d28ea`. Its exact remote process and GPU-lock ownership
+were verified at 18:40:08; nine of 500 responses were saved and valid, with
+41 C and no thermal throttle. The new one-hour deadline is 19:39:45. This
+separate authorized study preserves the fixed reports, model and thresholds,
+and writes fresh predictions. Its panel score/repeatability remain unmeasured.
+
+Reader B's one-time catalog pull is implemented separately from inference. It
+accepts only the registered 35b candidate, refuses an already installed tag,
+retains the prior model inventory, and stops if an existing ID changes. It records
+the downloaded full digest, quantization and parameter count; weight size is
+checked against 64 GiB and at least 27B parameters are required. Actual resident
+fit still requires B's own 500-report pilot. The request shares the GPU lock and
+thermal/STOP/deadline guards; interruption cancels only its own HTTP client,
+retaining any partial download. The script issues no generation during pull and
+never removes a foreign model. Three new constructed tests cover a successful
+pin, existing-tag refusal and foreign-ID change detection. No B pull has run.
