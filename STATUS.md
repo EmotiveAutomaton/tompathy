@@ -84,6 +84,22 @@ are preserved; the landed reporter binds the ruling and retains the original run
 verdict while deriving A/B from saved measurements. Twenty targeted cases pass,
 including this source-preserving amendment path. No measurement is restarted.
 
+
+Reader A's pilot completed at 17:24:31 Pacific. Exact remote native exit/release
+and all 502 copied artifacts are verified; every ordered response is retained.
+All 500 responses are valid structured ratings. Request time totals 974.832234
+seconds, or 194.966447 seconds per 100, including request loading. Temperatures
+ranged 30-69 C without throttling; observed resident allocation was 5,606,337,412
+bytes, within 64 GiB. E-SP1-READER-A-PILOT-20261119 binds source
+`7da5e4ff68094da30de1091b269e6973fc26021280c4cd4ff3230be703537f79`.
+This timing pilot is not a qualified panel or teacher. The measured time projects
+about 585 seconds for the registered second 300 pass; a one-hour bound leaves
+headroom. The first 300 responses will be reused exactly, with unchanged model,
+prompt, options and inputs. No completed inference or gate is repeated.
+The committed second pass started at 17:27:08 Pacific; exact native identity and
+GPU-lock ownership are verified. At 17:34:07, 220/300 responses were saved and
+valid; temperature was 65 C without throttling. The fixed deadline is 18:27:08.
+
 ## November 15 trigger-reader packet
 
 **Closed at the owner's request on November 19.** The active MPNet fold stopped

@@ -7,7 +7,7 @@ protocols, repairs and private execution receipts. The prior queues are closed.
 | Card | Current evidence | Verdict and limit |
 |---|---|---|
 | C0 | Existing development AUC .785861344 frozen / .785652886 fine47; exact original 6,600-by-19 score export | Verified export and private delivery, `E-C0-20261119` / `E-C0-DELIVERY-20261119`. No new accuracy measurement or serving admission. |
-| SP1 | Environment verified; CPU/GPU parity passes, E-SP1-PARITY-20261119; 500-report CPU/GPU timings 4.080662/.751318 seconds | Reader-A pilot running. Repeat-panel code is built; panel qualification, reader selection and teacher agreement remain unrun. Numerical transport is not teacher accuracy. |
+| SP1 | Environment verified; CPU/GPU parity passes, E-SP1-PARITY-20261119; 500-report CPU/GPU timings 4.080662/.751318 seconds | Reader-A pilot completed: 500/500 valid, 194.966447 seconds per 100. Panel qualification, reader selection and teacher agreement remain unrun. Numerical transport is not teacher accuracy. |
 | TP28 | Table 6/9, including SEEKING and PLAY; joy split 2/4 | Table passes; joy prediction fails, E-TP28-20261119. Full tables below. Word/tag contrasts only; Crowd-enVENT reuses the qualification set. |
 | TP30 | Frozen rung complete; E-TP30-FROZEN-20261119 | Transfer bar passes 6/7; disagreement and pair clauses fail; CARE misses single-label noninferiority. Full tables below. Spark rung unrun. |
 | TP31 | New theory-defined gate specified | Teacher checks, student and by-source acceptance unrun. Old failed gate remains failed. |
@@ -442,3 +442,18 @@ numerical transport on one fixed sample, not general accuracy or teacher quality
 No reader-panel score is available yet. Reader A's pilot is running; its first
 300 outputs will be reused for the panel, with a separate second pass and fixed
 validity/repeatability bars. Reader B is not yet pulled or tested.
+
+Reader A's pilot completed at 17:24:31 Pacific. Exact remote native exit/release
+and all 502 copied artifacts are verified; every ordered response is retained.
+All 500 responses are valid structured ratings. Request time totals 974.832234
+seconds, or 194.966447 seconds per 100, including request loading. Temperatures
+ranged 30-69 C without throttling; observed resident allocation was 5,606,337,412
+bytes, within 64 GiB. E-SP1-READER-A-PILOT-20261119 binds source
+`7da5e4ff68094da30de1091b269e6973fc26021280c4cd4ff3230be703537f79`.
+This timing pilot is not a qualified panel or teacher. The measured time projects
+about 585 seconds for the registered second 300 pass; a one-hour bound leaves
+headroom. The first 300 responses will be reused exactly, with unchanged model,
+prompt, options and inputs. No completed inference or gate is repeated.
+The committed second pass started at 17:27:08 Pacific; exact native identity and
+GPU-lock ownership are verified. At 17:34:07, 220/300 responses were saved and
+valid; temperature was 65 C without throttling. The fixed deadline is 18:27:08.

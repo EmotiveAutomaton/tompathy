@@ -30,7 +30,9 @@ Its 500-report CPU/GPU timings are 4.080662/.751318 seconds excluding loading.
 This is a method check, not teacher accuracy. E-SP1-PARITY-20261119 binds the
 [aggregate](../engine/validation/readers-spark-parity-2026-11.json), source
 `89c9e28bd9184c75a913ead19483719907fb2d180b54e1c033a37c4e437716cc`.
-The reader-A timing pilot is running; panel qualification and other studies remain unrun.
+Reader A completed 500/500 valid structured responses at 194.966447 seconds per100
+including request loading. E-SP1-READER-A-PILOT-20261119 binds its pilot; panel
+qualification and other studies remain unrun.
 Old failed gates and the incomplete MPNet rung remain unchanged.
 
 The owner closed the earlier trigger-reader commission on November 19. All 27 landed
