@@ -58,20 +58,50 @@ def prepare(root, destination):
     return freeze(root, 'workstation', 'g3-budget', spec, destination/'extension')
 
 
-def terminal_source(root):
-    parent = root/'jobs/G3'
+def source_folder(root, after_resume):
+    if after_resume not in (None, 'G3-resume-a', 'G3-resume-b'):
+        raise ValueError('Unknown G3 predecessor')
+    return root/'jobs'/(after_resume or 'G3')
+
+
+def terminal_source(root, after_resume=None):
+    parent = source_folder(root, after_resume)
     receipt = lane.read(parent/'receipt.json')
     terminal = lane.read(parent/'complete.json')
     owner = lane.read(parent/'owner.json')
     if (receipt['status'] != 'complete' or terminal['receiptPin'] != lane.pin(parent/'receipt.json')
-            or owner != receipt['owner'] or owner['job'] != 'G3' or owner['commit'] != ORIGINAL
+            or owner != receipt['owner'] or owner['job'] != (after_resume or 'G3')
             or Path(owner['lock']).resolve() != (root/'gpu.lock').resolve()):
         raise ValueError('Original G3 completion or owner binding differs')
+    if after_resume:
+        from word_table_g3_resume import (
+            FIRST_RETRY_RECEIPT,
+            SECOND,
+            SOURCE_RECEIPT,
+            previous_retry,
+            source,
+        )
+        prior = source(root)
+        execution = lane.read(root/'inputs'/(after_resume+'-execution.json'))
+        chain = receipt['continuation']
+        if (owner['commit'] != execution['commit'] or chain['executionCommit'] != owner['commit']
+                or chain['sourceReceiptPin'] != SOURCE_RECEIPT or receipt['entry'] != prior['entry']
+                or chain['sourceOwner'] != prior['owner'] or chain['attempt'] != after_resume
+                or chain['restoredInventoryPin'] != lane.pin(parent/'restored.json')
+                or set(receipt['roles']) != {f'V{i}' for i in range(6)}
+                or any(v['rows'] != 600 for v in receipt['roles'].values())):
+            raise ValueError('Completed continuation differs from its pinned original')
+        if after_resume == SECOND:
+            previous_retry(root)
+            if chain['priorEngineeringReceiptPin'] != FIRST_RETRY_RECEIPT:
+                raise ValueError('Completed continuation lost the first engineering retry')
+    elif owner['commit'] != ORIGINAL:
+        raise ValueError('Original G3 execution differs')
     return receipt, terminal['receiptPin']
 
 
-def paired_inputs(root, items):
-    receipt, receipt_pin = terminal_source(root)
+def paired_inputs(root, items, after_resume=None):
+    receipt, receipt_pin = terminal_source(root, after_resume)
     plan = lane.read(root/'inputs'/SPEC)
     source = receipt['entry']
     if (source != plan['originalEntry'] or source != lane.read(root/'queue.json')['jobs']['G3']
@@ -81,7 +111,7 @@ def paired_inputs(root, items):
     indices = select(roster)
     if indices != plan['indices'] or items != [roster[i] for i in indices]:
         raise ValueError('Sample differs from the registered hash selection')
-    parent = root/'jobs/G3'
+    parent = source_folder(root, after_resume)
     artifacts = parent/'artifacts.json'
     if lane.pin(artifacts) != receipt['artifactsPin']:
         raise ValueError('Original G3 artifact inventory differs')
@@ -95,11 +125,18 @@ def paired_inputs(root, items):
         pins[name] = lane.pin(parent/name)
         if pins[name] != inventory[name]:
             raise ValueError('Original saved response differs from its terminal inventory')
+        if after_resume and pins[name] != lane.pin(root/'jobs/G3'/name):
+            raise ValueError('Continued V2 response differs from its original bytes')
         saved = lane.read(parent/name)
         if (saved['index'] != i or saved['id'] != roster[i]['id'] or saved['binding'] != baseline['binding']
                 or saved['response']['prompt_eval_count'] + 3072 + 64 > 4096):
             raise ValueError('Original row identity, binding or measured input length differs')
     validator = template(lane.read(root/'inputs/RD2-prompts.json')['V2'])
+    if after_resume:
+        early = root.parent/'g3-budget-registration-a/paired-baseline.json'
+        if (lane.pin(early) != '9d2f10fc976d34f07fd37db1abbcd63b13a57c605b92f6bba26204eb1e3548cb'
+                or pins != {'V2/W/'+name:digest for name,digest in lane.read(early)['originalResponsePins'].items()}):
+            raise ValueError('Preserved twenty baseline answers differ from their pre-recovery record')
     if lane.pin(Path(__file__).with_name('word_table_rd2.py')) != source['codePins']['word_table_rd2.py']:
         raise ValueError('The diagnostic must use the original V2 validator')
     if lane.string_pin(validator[0]) != PROMPT or validator[3] is not True:
@@ -149,8 +186,8 @@ def summarize(rows, cap):
             'wallSecondsInCalls': sum(r['seconds'] for r in rows)}
 
 
-def compare(root, out, items, binding):
-    indices, old, pins, source_pin, definition = paired_inputs(root, items)
+def compare(root, out, items, binding, after_resume=None):
+    indices, old, pins, source_pin, definition = paired_inputs(root, items, after_resume)
     verify_binding(old, 1024)
     base = out/'W'
     protocol = lane.read(base/'protocol.json')
@@ -181,16 +218,20 @@ def compare(root, out, items, binding):
               'modelPin': lane.W[1], 'registered': len(items), 'paired': len(rows),
               'baseline': summarize(arms[0], 1024), 'higher': summarize(arms[1], 3072),
               'pairs': {k: pairs[k] for k in ('bothValid', 'newlyValid', 'lostValidity', 'bothInvalid')}}
+    if after_resume:
+        result['priorAttemptReceiptPin'] = lane.pin(root/'jobs/G3/receipt.json')
+        if after_resume == 'G3-resume-b':
+            result['priorEngineeringReceiptPin'] = lane.pin(root/'jobs/G3-resume-a/receipt.json')
     return result, pins
 
 
-def run(root, out, items, binding, guard, rate):
+def run(root, out, items, binding, guard, rate, after_resume=None):
     from word_table_g3_follow import native_alive
 
     guard.check()
-    if native_alive(lane.read(root/'jobs/G3/owner.json')):
+    if native_alive(lane.read(source_folder(root, after_resume)/'owner.json')):
         raise RuntimeError('Original G3 process still owns its native identity')
-    _, old, before, _, definition = paired_inputs(root, items)
+    _, old, before, _, definition = paired_inputs(root, items, after_resume)
     verify_binding(old, 1024)
     lengths = lane.read(root/'inputs/RD2-lengths.json')['V2']
     if any(lengths[r['id']] + 3072 + 64 > 4096 for r in items):
@@ -204,7 +245,7 @@ def run(root, out, items, binding, guard, rate):
         lane.write(pin_file, before)
     result = rate(root, out, items, 'W', JOB, {**binding, 'variant': 'V2'}, guard,
                   template=definition, token_lengths=lengths)
-    comparison, after = compare(root, out, items, binding)
+    comparison, after = compare(root, out, items, binding, after_resume)
     if comparison['paired'] != 20 or after != before or comparison['higher']['valid'] != result['valid']:
         raise ValueError('Paired coverage, original bytes or saved validity differ')
     lane.write(directory/'aggregate.json', comparison)

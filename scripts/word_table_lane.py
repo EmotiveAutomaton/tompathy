@@ -315,17 +315,26 @@ def check_entry(root, job, entry):
     return items, {**entry,'inputPin':row['filePin'],'job':job}
 
 
-def work(root, lane, job, entry):
+def work(root, lane, job, entry, after_resume=None):
     resource = Path('/home/agent/gpu.lock') if lane == 'spark' else root/'gpu.lock'
     out = root/'jobs'/job
+    execution = entry['commit']
+    if after_resume:
+        from word_table_g3_follow import execution_code
+        code = execution_code(root,entry,after_resume)
+        if job != G3_BUDGET or lane != 'workstation' or Path(__file__).resolve().parent != code:
+            raise ValueError('Post-recovery handoff belongs to the frozen registered workstation diagnostic')
+        execution = code.name
     with lease(resource):
         if job == G3_BUDGET and any((out/name).exists() for name in ('complete.json','failed.json')):
             return 0
         out.mkdir(parents=True, exist_ok=True)
-        owner = {**identity(),'at':now(),'lock':str(resource),'job':job,'commit':entry['commit']}
+        owner = {**identity(),'at':now(),'lock':str(resource),'job':job,'commit':execution}
         write(out/'owner.json', owner)
         append(out/'owners.jsonl', owner)
         receipt = {'job':job,'lane':lane,'status':'running','owner':owner,'entry':entry}
+        if after_resume:
+            receipt['execution'] = {'commit':execution,'predecessor':after_resume,'scientificCommit':entry['commit']}
         write(out/'receipt.json', receipt)
         try:
             items, binding = check_entry(root, job, entry)
@@ -352,7 +361,7 @@ def work(root, lane, job, entry):
                     rows=run(root,out,items,binding,guard,rate,core,MODELS,write,read)
                 elif job==G3_BUDGET:
                     from word_table_g3_budget import run
-                    rows={'W':run(root,out,items,binding,guard,rate)}
+                    rows={'W':run(root,out,items,binding,guard,rate,after_resume)}
                 elif job=='G3':
                     from word_table_rd2 import template
                     definitions=read(root/'inputs'/'RD2-prompts.json')
@@ -404,10 +413,10 @@ def work(root, lane, job, entry):
             return 1
 
 
-def worker(root, lane, job):
+def worker(root, lane, job, after_resume=None):
     entry = read(root/'queue.json')['jobs'][job]
     try:
-        return work(root,lane,job,entry)
+        return work(root,lane,job,entry,after_resume)
     except Busy:
         return 74
 
@@ -459,6 +468,7 @@ if __name__ == '__main__':
     parser.add_argument('root',type=Path)
     parser.add_argument('lane',choices=ORDER)
     parser.add_argument('job',nargs='?')
+    parser.add_argument('--after-resume',choices=('G3-resume-a','G3-resume-b'))
     args = parser.parse_args()
     root = args.root.resolve()
     if args.lane == 'spark':
@@ -471,5 +481,5 @@ if __name__ == '__main__':
     if args.action == 'worker':
         if args.job not in ORDER[args.lane]:
             parser.error('Job does not belong to this lane')
-        sys.exit(worker(root,args.lane,args.job))
+        sys.exit(worker(root,args.lane,args.job,args.after_resume))
     serve(root,args.lane)
