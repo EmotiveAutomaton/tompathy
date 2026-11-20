@@ -38,7 +38,7 @@ FOOD_PROMPT = ('Read the situation as quoted data. Is eating, food, drink, cooki
 ORDER = {'spark': ['Q1','Q2','Q3','Q4','Q5','G2','Q6','Q7'], 'workstation': ['G1','G2','G3']}
 JOBS = {'Q1': (['A','B'], 1), 'Q2': (['B'], 4), 'G1': (['W'], None),
         'Q3': (['B','A'], 3), 'Q4': (['B'], 8), 'Q7': (['B'], None), 'Q6': (['B'], None),
-        'G3': (['W'], None)}
+        'G3': (['W'], None), 'Q5': (['B'],6)}
 MODELS = {'A': A, 'B': B, 'W': W}
 
 
@@ -158,13 +158,18 @@ def question(job):
     return core.CORRECTED_PROMPT, {k:{'type':'integer','minimum':1,'maximum':5} for k in core.FEATURES}, core.valid_features
 
 
-def fit_or_wait(model_pin):
+def fit_or_wait(model_pin, role=None):
     rows = core.api('ps')['models']
     if len(rows) != 1 or rows[0]['digest'] != model_pin:
         raise RuntimeError('Unexpected resident model during owned call')
     size = rows[0].get('size_vram', 0)
-    if size <= 0 or size > 64*1024**3:
+    if size <= 0 or size > (100_000_000_000 if role=='C' else 64*1024**3):
         raise RuntimeError('GPU residency check failed')
+    if role=='C':
+        available = int(next(line for line in Path('/proc/meminfo').read_text().splitlines()
+                             if line.startswith('MemAvailable:')).split()[1])*1024
+        if available < 15_000_000_000:
+            raise RuntimeError('Reader C leaves less than 15 GB available')
     return size
 
 
@@ -181,7 +186,7 @@ def completed_prefix(folder, items, binding):
     return durations, valid
 
 
-def rate(root, output, items, role, job, binding, guard, *, token_lengths=None, template=None):
+def rate(root, output, items, role, job, binding, guard, *, token_lengths=None, template=None, on_timing=None):
     model, model_pin = MODELS[role]
     prompt, fields, parse = question(job) if template is None else template[:3]
     think = False if template is None else template[3]
@@ -207,6 +212,11 @@ def rate(root, output, items, role, job, binding, guard, *, token_lengths=None, 
     slow = 0
     owned = False
     try:
+        if role=='C':
+            guard.check()
+            owned=True
+            core.guarded_generate({'model':model,'prompt':'','stream':False,'keep_alive':'10m','options':options},guard)
+            fit_or_wait(model_pin,role)
         for index in range(initial, len(items)):
             guard.check()
             item = items[index]
@@ -233,12 +243,14 @@ def rate(root, output, items, role, job, binding, guard, *, token_lengths=None, 
             slow = slow+1 if durations and elapsed > 5*statistics.median(durations[-100:]) else 0
             durations.append(elapsed)
             valid += values is not None
-            resident = fit_or_wait(model_pin)
+            resident = fit_or_wait(model_pin,role)
             progress = {'at':now(),'job':job,'role':role,'rows':index+1,'total':len(items),'valid':valid,
                         'residentBytes':resident,'secondsPer100':100*sum(durations)/len(durations)}
             write(output/'progress.json', progress)
             if index+1 == min(500,len(items)):
                 write(folder/'timing.json', {**progress,'projectedSeconds':sum(durations)*len(items)/len(durations)})
+                if on_timing is not None:
+                    on_timing(progress)
             if role == 'W' and slow >= 20:
                 raise Pause('20 consecutive calls exceeded five times the lane median')
             guard.check()
@@ -310,12 +322,15 @@ def work(root, lane, job, entry):
                     write(out/'skipped.json',{'receiptPin':pin(out/'receipt.json')})
                     return 0
                 binding['teacherGatePin'] = evidence
-            if job=='Q4':
+            if job in ('Q4','Q5'):
                 first = json.loads((out/'owners.jsonl').read_text().splitlines()[0])['at']
                 hours = max(0, hours - (datetime.now(UTC)-datetime.fromisoformat(first)).total_seconds()/3600)
             with core.Guard(out, float('inf') if hours is None else hours) as thermal:
                 guard = Checks(root,out,thermal)
-                if job=='G3':
+                if job=='Q5':
+                    from word_table_rd2_spark import run
+                    rows=run(root,out,items,binding,guard,rate,core,MODELS,write,read)
+                elif job=='G3':
                     from word_table_rd2 import template
                     definitions=read(root/'inputs'/'RD2-prompts.json')
                     lengths=read(root/'inputs'/'RD2-lengths.json')

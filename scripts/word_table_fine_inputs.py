@@ -58,8 +58,8 @@ def prepare(destination):
               'protocolPin':pin(ROOT/'docs/TP30_FINE_PROTOCOL_2026-11-20.md'),'files':data,
               'initialMiniLM':{k:encoder[k] for k in ('id','revision','files','license_as_read')},
               'rungs':[{'id':encoder['id'],'seeds':[23]},
-                       {'id':'sentence-transformers/all-mpnet-base-v2','seeds':[11,23,47]},
-                       {'id':'answerdotai/ModernBERT-large','seeds':[11,23,47]}],
+                       {'id':'sentence-transformers/all-mpnet-base-v2','seeds':[23,47,71]},
+                       {'id':'answerdotai/ModernBERT-large','seeds':[23,47,71]}],
               'scope':'Public rater shares. ED research only. Original writer identifiers stay local.'}
     write(destination/'G2-contract.json',manifest)
     return data
