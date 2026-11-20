@@ -136,10 +136,10 @@ def run(root,out,items,binding,guard,rate,core,models,write,read):
             skips['C']=str(exc)
             write(skip_file,skips)
             guard.check()  # STOP or a general heat trip must stop subsequent work.
-    f2=read(root/'inputs/Q5-F2.json')
+    from word_table_release import wait_for_release
+    f2,lens=wait_for_release(root,out,binding,guard)
     if len(f2)!=350 or len({r['id'] for r in f2})!=350 or set(truth)&{r['id'] for r in f2}:
         raise ValueError('Reserved F2 identity mismatch')
-    lens=read(root/'inputs/Q5-F2-lengths.json')
     for winner in sorted(set(selection['winners'].values())):
         perform('F2-'+winner,'B',f2,recipe=template(variants[winner]),token_lengths=lens[winner])
     if c_pass:
