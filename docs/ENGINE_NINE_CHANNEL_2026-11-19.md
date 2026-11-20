@@ -285,3 +285,20 @@ prompt, options and inputs. No completed inference or gate is repeated.
 The committed second pass started at 17:27:08 Pacific; exact native identity and
 GPU-lock ownership are verified. At 17:34:07, 220/300 responses were saved and
 valid; temperature was 65 C without throttling. The fixed deadline is 18:27:08.
+
+## November 19 SP1 aggregation repair
+
+The reader-A repeat pass saved all 300 responses by 17:36:36 Pacific, then
+stopped while importing SciPy for aggregation. SciPy is absent from the owner's
+pinned Spark environment. Native exit and the exact GPU-lock release were
+verified at 18:18:17; the original failure, runner and all 309 saved files are
+preserved. No model output is missing.
+
+The bounded repair uses NumPy average-tie ranks and their Pearson correlation,
+the same Spearman calculation. Constructed ties and the actual eight saved
+feature comparisons match the original SciPy reference within 1e-14. Thirteen
+targeted job/reporting checks pass. The aggregation-only continuation validates
+every preserved file, source exit/release, ordered IDs, raw/parsed responses,
+payload and protocol pins. It makes no model calls, retains both completed
+passes, and clamps its deadline to the original 18:27:08 Pacific. The original
+failed attempt remains unchanged. No scientific gate is rerun or relaxed.

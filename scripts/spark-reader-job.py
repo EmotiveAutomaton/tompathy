@@ -213,9 +213,18 @@ def read_model(name, digest_expected):
     return match[0]
 
 
+def rank_correlation(x, y):
+    """Spearman's rho with average tie ranks, without adding Spark packages."""
+    import numpy as np
+    def ranks(values):
+        _, inverse, counts = np.unique(values, return_inverse=True, return_counts=True)
+        end = np.cumsum(counts)
+        return ((end-counts+1+end)/2)[inverse]
+    return float(np.corrcoef(ranks(x),ranks(y))[0,1])
+
+
 def panel_statistics(first, second, truth, baseline):
     import numpy as np
-    from scipy.stats import spearmanr
     if len(first) != 300 or len(second) != 300:
         raise ValueError('Two fixed 300-report passes required')
     valid_first = np.array([r is not None for r in first])
@@ -228,7 +237,7 @@ def panel_statistics(first, second, truth, baseline):
         rows=[]
         for k in range(8):
             x,y=values[valid_first,k],truth[valid_first,k]
-            rows.append(float(spearmanr(x,y).statistic) if len(x)>=3 and len(set(x))>1 and len(set(y))>1 else None)
+            rows.append(rank_correlation(x,y) if len(x)>=3 and len(set(x))>1 and len(set(y))>1 else None)
         return rows
     scores,control=correlations(predicted),correlations(baseline)
     mean=float(np.mean(scores)) if all(r is not None for r in scores) else None
@@ -347,9 +356,62 @@ def reader_pilot(payload, output, guard, manifest, items, model, pin, *, pilot=N
             'panelCompleted':False,'next':'Review timing and size the registered repeat-panel job; preserve first 300 responses.'}
 
 
+def finalize_repeat(args, guard, items):
+    """Aggregate durable responses after the specifically identified import failure."""
+    import numpy as np
+    source=args.repeat.resolve()
+    if not source.is_relative_to((OPEN_ROOT/'jobs').resolve()) or digest(args.restore_manifest)!=args.restore_pin:
+        raise ValueError('Exact owned repeat source and preservation manifest required')
+    preservation=json.loads(args.restore_manifest.read_text())
+    for name,pin in preservation['files'].items():
+        guard.check()
+        path=(source/name).resolve()
+        if not path.is_relative_to(source) or digest(path)!=pin:
+            raise ValueError('Preserved repeat artifact changed')
+    old=json.loads((source/'receipt.json').read_text())
+    owner=old['owner']
+    proc=Path('/proc')/str(owner['pid'])
+    if proc.exists() and (proc/'stat').read_text().split(') ')[1].split()[19]==owner['startTicks'] and Path('/proc/sys/kernel/random/boot_id').read_text().strip()==owner['bootId']:
+        raise ValueError('Repeat source remains active')
+    release=json.loads((source/'released.json').read_text())
+    if (old['status']!='stopped' or old.get('reason')!="No module named 'scipy'" or
+            release.get('owner')!=owner or not release.get('lockReleased') or
+            old['payloadPin']!=digest(args.payload/'payload.json') or
+            preservation['sourceReceiptPin']!=digest(source/'receipt.json')):
+        raise ValueError('Exact import failure, exit, release and input binding required')
+    previous,first=retained_pilot(args.pilot,args.payload,items,args.model,args.model_pin)
+    if old['protocol']!=previous['protocol']:
+        raise ValueError('Repeat/pilot protocols differ')
+    second,seconds=[],[]
+    for i,item in enumerate(items[:300]):
+        guard.check()
+        name=f'row-{i:04d}.json'
+        if name not in preservation['files']:
+            raise ValueError('Unsaved response; inference is forbidden here')
+        row=json.loads((source/name).read_text())
+        if row['id']!=item['id'] or row['index']!=i or row['modelPin']!=args.model_pin:
+            raise ValueError('Saved response order/model changed')
+        try: parsed=valid_features(json.loads(row['response'].get('response','')))
+        except (ValueError,TypeError): parsed=None
+        if parsed!=row['values']:
+            raise ValueError('Saved parsed response differs from raw response')
+        second.append(parsed);seconds.append(row['seconds'])
+    reference=np.load(args.payload/'reference.npz',allow_pickle=False)
+    panel=panel_statistics(first,second,reference['feature_truth'][:300],reference['feature_baseline'][:300])
+    write(args.output/'source-preservation.json',preservation)
+    np.savez(args.output/'saved-panel.npz',first=np.asarray(first,float),second=np.asarray(second,float))
+    return {'kind':'reader-repeat','model':previous['row']['model'],'texts':300,'valid':sum(r is not None for r in second),
+            'seconds':sum(seconds),'secondsPer100':sum(seconds)/3,'includesRequestLoading':True,'panelCompleted':True,
+            'panel':panel,'readerQualified':all(panel[k] for k in ('correlationPass','repeatabilityPass','validityPass')),
+            'pilotReceiptPin':digest(args.pilot/'receipt.json'),'pilotArtifactManifestPin':previous['artifactsPin'],'firstPassReused':True,
+            'continuation':{'sourceReceiptPin':digest(source/'receipt.json'),'preservationPin':args.restore_pin,
+                            'reason':'Aggregation-only repair for missing SciPy; average-tie ranks match original Spearman calculation.',
+                            'inferenceRepeated':False,'originalDeadline':owner['deadlineAt']}}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--kind',choices=['parity','reader-pilot','reader-repeat'],required=True)
+    parser.add_argument('--kind',choices=['parity','reader-pilot','reader-repeat','reader-finalize'],required=True)
     parser.add_argument('--payload',type=Path,required=True)
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--commit',required=True)
@@ -358,9 +420,14 @@ def main():
     parser.add_argument('--model')
     parser.add_argument('--model-pin')
     parser.add_argument('--pilot',type=Path)
+    parser.add_argument('--repeat',type=Path)
+    parser.add_argument('--restore-manifest',type=Path)
+    parser.add_argument('--restore-pin')
     args = parser.parse_args()
-    if (args.kind=='reader-repeat') != (args.pilot is not None):
+    if (args.kind in ('reader-repeat','reader-finalize')) != (args.pilot is not None):
         raise ValueError('Only a repeat pass takes a completed pilot source')
+    if args.kind=='reader-finalize' and not all((args.repeat,args.restore_manifest,args.restore_pin)):
+        raise ValueError('Pinned preserved repeat required for aggregation-only repair')
     root = Path('/home/agent/tompathy-open/jobs').resolve()
     if (os.name != 'posix' or not args.output.resolve().is_relative_to(root) or
             not args.payload.resolve().is_relative_to(Path('/home/agent/tompathy-open')) or
@@ -375,11 +442,15 @@ def main():
     with Path('/home/agent/gpu.lock').open('a+') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX | fcntl.LOCK_NB)
         args.output.mkdir(parents=True,exist_ok=False)
-        deadline = time.monotonic()+args.hours*3600
+        deadline_at=datetime.now(UTC)+timedelta(hours=args.hours)
+        if args.kind=='reader-finalize':
+            source_deadline=datetime.fromisoformat(json.loads((args.repeat/'owner.json').read_text())['deadlineAt'])
+            deadline_at=min(deadline_at,source_deadline)
+        deadline = time.monotonic()+(deadline_at-datetime.now(UTC)).total_seconds()
         owner = {'pid':os.getpid(),'host':socket.gethostname(),'bootId':Path('/proc/sys/kernel/random/boot_id').read_text().strip(),
                  'startTicks':Path('/proc/self/stat').read_text().split(') ')[1].split()[19],
                  'at':datetime.now(UTC).isoformat(),'commit':args.commit,'scriptPin':args.script_pin,
-                 'deadlineAt':(datetime.now(UTC)+timedelta(hours=args.hours)).isoformat(),
+                 'deadlineAt':deadline_at.isoformat(),
                  'kind':args.kind,'lock':'/home/agent/gpu.lock','cpuNumericalThreads':3,'telemetryThreads':1}
         write(args.output/'owner.json',owner)
         receipt = {'schema':'SP1-stage-1','status':'running','productionAdmission':False,'owner':owner,
@@ -400,12 +471,15 @@ def main():
             if api('ps')['models']:
                 raise RuntimeError('GPU resident model found; leave it unchanged')
             with Guard(args.output,args.hours,deadline=deadline) as guard:
-                row = (parity(args.payload,args.output,guard,manifest,items) if args.kind == 'parity' else
-                       reader_pilot(args.payload,args.output,guard,manifest,items,args.model,args.model_pin,pilot=args.pilot))
+                if args.kind=='reader-finalize':
+                    row=finalize_repeat(args,guard,items)
+                else:
+                    row = (parity(args.payload,args.output,guard,manifest,items) if args.kind == 'parity' else
+                           reader_pilot(args.payload,args.output,guard,manifest,items,args.model,args.model_pin,pilot=args.pilot))
                 guard.check()
             guard.check()
             artifacts = {p.relative_to(args.output).as_posix():digest(p) for p in args.output.rglob('*')
-                         if p.is_file() and (p.suffix == '.npz' or p.name.startswith('row-') or p.name in ('model.json','resident.json'))}
+                         if p.is_file() and (p.suffix == '.npz' or p.name.startswith('row-') or p.name in ('model.json','resident.json','source-preservation.json'))}
             write(args.output/'artifacts.json',{'files':artifacts})
             receipt['artifactsPin'] = digest(args.output/'artifacts.json')
             receipt.update(status='complete',row=row)

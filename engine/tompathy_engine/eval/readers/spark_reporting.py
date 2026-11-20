@@ -40,6 +40,8 @@ def land(job, exit_audit, destination, *, role=None):
         if stage=='panel':
             for key in ('panel','readerQualified','pilotReceiptPin','pilotArtifactManifestPin','firstPassReused'):
                 public_row[key]=row[key]
+            if 'continuation' in row:
+                public_row['continuation']=row['continuation']
     else:
         raise ValueError('Unregistered SP1 stage')
     if destination.name != filename:

@@ -90,6 +90,18 @@ def test_repeat_panel_keeps_invalid_pairs_and_constant_columns_visible():
     assert constant['meanSpearman'] is None and not constant['correlationPass']
 
 
+def test_numpy_tie_ranks_match_scipy_reference():
+    import numpy as np
+    from scipy.stats import spearmanr
+    rng=np.random.default_rng(23)
+    for n in (3,17,300):
+        x=rng.integers(1,6,n)
+        y=rng.normal(size=n)
+        if len(set(x))>1:
+            assert abs(job.rank_correlation(x,y)-spearmanr(x,y).statistic)<1e-14
+    assert job.rank_correlation([1,1,3,4],[4,4,2,1]) == -1
+
+
 def test_repeat_source_reuses_exact_order_and_rejects_changes(tmp_path,monkeypatch):
     monkeypatch.setattr(job,'OPEN_ROOT',tmp_path)
     source=tmp_path/'jobs'/'pilot'
