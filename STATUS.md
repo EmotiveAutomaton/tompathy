@@ -218,6 +218,20 @@ durable timing-pilot continuation and evaluation landing remain to implement.
 No fine-rung research fitting or inference has run. The Gear 2 commission is
 currently in implementation, with no owned research scorer running.
 
+At the November 20 06:23 Pacific checkpoint, TP30 fine implementation advanced
+through 21 constructed checks (four earlier target/loss cases, eight training
+continuation cases, five durable prediction cases and four encoder cases).
+Ruff passes. Both objectives recover bit-identical CPU weights after the exact
+500-example pilot, including dropout and shuffle state; changed source,
+optimizer, model or batch order is rejected. The final short prediction batch
+and exact saved prefix are retained. The MiniLM wrapper fixes cap 128, masked
+normalized pooling and separate encoder/head learning rates. These are tiny
+constructed-model checks, not GPU measurements or research outcomes. The
+source-bound public payload, outer guarded Spark runner, actual GPU runtime
+check and aggregate evaluation/landing remain to build. No fine-rung fitting
+or inference has run, and no new research job was launched. TP31/TP24 remain
+blocked by unqualified SP1; no failed scientific gate was reopened.
+
 ## November 15 trigger-reader packet
 
 **Closed at the owner's request on November 19.** The active MPNet fold stopped

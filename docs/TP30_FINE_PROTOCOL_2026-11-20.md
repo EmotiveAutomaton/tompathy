@@ -44,6 +44,15 @@ ordered batches, with exact model/source identities. No full run is authorized
 by implementation tests alone; the usual environment, commit, input, GPU flock,
 four-thread, thermal/STOP, memory and storage checks still apply.
 
+The fixed ordering rule uses a dedicated seed-23 CPU generator for one shuffle
+per epoch. Batch size is at most 16; epoch ends and cumulative 500-example
+boundaries close a short batch. The same boundaries apply in an uninterrupted
+run and a resumed run. Checkpoints retain model and optimizer state, parameter
+group names/settings, exact ordered-data identity, cursor, shuffle generator,
+CPU/CUDA random state and runtime identity. Keep an immutable pilot and each
+epoch checkpoint alongside the current durable checkpoint. Prediction batches
+use the same 16-row/500-row boundaries and retain the final short batch.
+
 The four completed forecast tables will use the existing TP30 evaluation
 functions and unchanged point-estimate bars. File all per-channel/source AUCs,
 mix checks, within-source PLAY/LUST figures and full co-rise tables. Keep this
@@ -51,7 +60,13 @@ rung separate from the frozen result. Rater shares are readers' guesses and
 stand-in labels, not channel firing, page shares or maker needs. Passing test 1
 alone still cannot enable TS4 without a qualified gate pack.
 
-Current implementation: target/weight construction, loss and restoration of
-constant output columns have constructed checks. Payload preparation, guarded
-Spark training/checkpoint runtime, prediction runner and aggregate landing are
-still pending. No fine-rung research data has been fitted or scored.
+Current implementation: target/weight construction, losses, constant output
+restoration, the original-model encoder wrapper, durable training segments and
+ordered prediction segments have 21 passing constructed checks; Ruff passes.
+Both objectives resume with bit-identical CPU weights and dropout/order state,
+without repeating saved updates. Changed data, model bytes, optimizer settings
+or bindings are rejected; interruption recovery preserves completed batches.
+These checks use tiny constructed models, not the research encoder or corpus.
+The source-bound public payload, outer Spark admission/thermal/resource wrapper,
+actual GPU compatibility check and aggregate evaluation/landing remain pending.
+No fine-rung research data has been fitted or scored, and no fine job is running.

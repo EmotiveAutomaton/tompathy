@@ -7,12 +7,12 @@ protocols, repairs and private execution receipts. The prior queues are closed.
 | Card | Current evidence | Verdict and limit |
 |---|---|---|
 | C0 | Existing development AUC .785861344 frozen / .785652886 fine47; exact original 6,600-by-19 score export | Verified export and private delivery, `E-C0-20261119` / `E-C0-DELIVERY-20261119`. No new accuracy measurement or serving admission. |
-| SP1 | Environment verified; CPU/GPU parity passes, E-SP1-PARITY-20261119; 500-report CPU/GPU timings 4.080662/.751318 seconds | Reader-A pilot completed: 500/500 valid, 194.966447 seconds per 100. Panel qualification, reader selection and teacher agreement remain unrun. Numerical transport is not teacher accuracy. |
+| SP1 | Complete: parity passed; corrected A/B correlations .458263101/.585543323 both below .585755101; repeatability 300/300 and validity 600/600 each | B ranks higher but remains unqualified. E-SP1-V2-READER-COMPARISON-20261120 binds both completed panels; original v1 prompt error and outputs retained. No teacher admission. |
 | TP28 | Table 6/9, including SEEKING and PLAY; joy split 2/4 | Table passes; joy prediction fails, E-TP28-20261119. Full tables below. Word/tag contrasts only; Crowd-enVENT reuses the qualification set. |
 | TP30 | Frozen rung complete; E-TP30-FROZEN-20261119 | Transfer bar passes 6/7; disagreement and pair clauses fail; CARE misses single-label noninferiority. Full tables below. Spark rung unrun. |
-| TP31 | New theory-defined gate specified | Teacher checks, student and by-source acceptance unrun. Old failed gate remains failed. |
+| TP31 | Target/student helpers implemented; research unrun | Teacher/student work blocked by unqualified SP1. Old failed gate remains failed. |
 | TP29 | Complete; E-TP29-20261119 | Readings 1–2 pass, reading 3 fails; independent A/B both no. Reading 4 is separate. Full results and marker lists below. |
-| TP24 | Separate new evaluation authorized by C0 and the packet | Teacher feature pass and three bars unrun; old 1,200 rows remain a separate model view. |
+| TP24 | Separate new evaluation authorized by C0 and the packet | New teacher-feature requests blocked by unqualified SP1; old 1,200 rows remain a separate model view. |
 | TP32 | Opened-menu refusal-direction protocol planned | Both readings unrun; logged option index is not an inserted-text key. |
 | TP33 | Fixed page-median worry-lift rule planned | Acceptance unrun; original worry evidence and limitations unchanged. |
 | TS4 | Default-off nine-channel display planned | Requires TP30 test 1 and a qualified new gate. No shares, counts, badges or maker estimate. |
@@ -675,3 +675,17 @@ constant outputs. Ruff passes. Payload preparation, guarded Spark runtime,
 durable timing-pilot continuation and evaluation landing remain to implement.
 No fine-rung research fitting or inference has run. The Gear 2 commission is
 currently in implementation, with no owned research scorer running.
+
+At the November 20 06:23 Pacific checkpoint, TP30 fine implementation advanced
+through 21 constructed checks (four earlier target/loss cases, eight training
+continuation cases, five durable prediction cases and four encoder cases).
+Ruff passes. Both objectives recover bit-identical CPU weights after the exact
+500-example pilot, including dropout and shuffle state; changed source,
+optimizer, model or batch order is rejected. The final short prediction batch
+and exact saved prefix are retained. The MiniLM wrapper fixes cap 128, masked
+normalized pooling and separate encoder/head learning rates. These are tiny
+constructed-model checks, not GPU measurements or research outcomes. The
+source-bound public payload, outer guarded Spark runner, actual GPU runtime
+check and aggregate evaluation/landing remain to build. No fine-rung fitting
+or inference has run, and no new research job was launched. TP31/TP24 remain
+blocked by unqualified SP1; no failed scientific gate was reopened.
