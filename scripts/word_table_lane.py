@@ -187,7 +187,8 @@ def completed_prefix(folder, items, binding):
     return durations, valid
 
 
-def rate(root, output, items, role, job, binding, guard, *, token_lengths=None, template=None, on_timing=None):
+def rate(root, output, items, role, job, binding, guard, *, token_lengths=None, template=None, on_timing=None,
+         g3_recovery=None):
     model, model_pin = MODELS[role]
     prompt, fields, parse = question(job) if template is None else template[:3]
     think = False if template is None else template[3]
@@ -209,6 +210,9 @@ def rate(root, output, items, role, job, binding, guard, *, token_lengths=None, 
     if token_lengths is None and any(len((prompt+r['text']).encode()) > 4096-768 for r in items):
         raise ValueError('Text exceeds the conservative context guard')
     initial = len(durations)
+    if g3_recovery is not None and (job != 'G3' or role != 'W' or binding.get('variant') != 'V5'
+            or not re.fullmatch('[0-9a-f]{40}', g3_recovery)):
+        raise ValueError('Transport continuation belongs only to the registered G3 V5 repair')
     core.read_model(model, model_pin)
     if core.api('ps')['models']:
         raise Pause('Existing model resident on shared machine')
@@ -234,14 +238,20 @@ def rate(root, output, items, role, job, binding, guard, *, token_lengths=None, 
             core.read_model(model, model_pin)
             started = time.perf_counter()
             owned = True
-            raw = core.guarded_generate({'model':model,'prompt':prompt+item['text'],'format':schema,
-                    'stream':False,'think':think,'keep_alive':'10m','options':options}, guard)
+            request = {'model':model,'prompt':prompt+item['text'],'format':schema,
+                       'stream':False,'think':think,'keep_alive':'10m','options':options}
+            if g3_recovery is None:
+                raw = core.guarded_generate(request, guard)
+            else:
+                raw = core.guarded_request('generate', request, guard, 300)
             elapsed = time.perf_counter()-started
             try:
                 values = parse(json.loads(raw.get('response','')))
             except (TypeError, ValueError):
                 values = None
             row = {'index':index,'id':item['id'],'binding':binding,'response':raw,'values':values,'seconds':elapsed}
+            if g3_recovery is not None:
+                row['execution'] = {'continuationCommit':g3_recovery,'httpTimeoutSeconds':300}
             if job == 'G1':
                 row['wordKey'] = bool(set(re.findall(r"[a-z]+", item['text'].casefold())) & set(FOOD_WORDS))
             write(folder/f'row-{index:06d}.json', row)
