@@ -1,0 +1,54 @@
+{
+  "status": "original bytes preserved",
+  "files": [
+    {
+      "original": "THEORY_HANDOFF_2026-11-19.md",
+      "filed": "docs/exchange/THEORY_HANDOFF_R29.md",
+      "sha256": "a37af4c86810ec2f560539c84f064e2fad37e40b839aa4ee796b75f6edac8955",
+      "bytes": 21374
+    },
+    {
+      "original": "EVIDENCE_LEDGER.jsonl",
+      "filed": "engine/validation/EVIDENCE_LEDGER_SEED_R29.jsonl",
+      "sha256": "276ab9405510ef73d593cb5ee32dba6e955dd7b6660e9e7a0b2eb0e861f31750",
+      "bytes": 183033
+    },
+    {
+      "original": "EVIDENCE_LEDGER.md",
+      "filed": "docs/archive/nine-channel-2026-11-19/EVIDENCE_LEDGER.md",
+      "sha256": "54afd8c801e8fd0f710c4d058081ba7fa361fa57cfc202048c2a94d44432ae3f",
+      "bytes": 135399
+    },
+    {
+      "original": "PREFLIGHT_SUMMARY_2026-11-19.md",
+      "filed": "docs/archive/nine-channel-2026-11-19/PREFLIGHT_SUMMARY_2026-11-19.md",
+      "sha256": "fcf4bed61062904881c9703dbb9fa8c0ef3e25fbe2c5ffddaee301c376962b34",
+      "bytes": 9717
+    },
+    {
+      "original": "THEORY_HANDOFF_2026-11-13.md",
+      "filed": "docs/archive/readers-2026-11-14/THEORY_HANDOFF_2026-11-13.md",
+      "sha256": "6de2d958dbf73dbc9c4efdb72e9d0f92f98cf649faa7d55852fd16180d8a0c82",
+      "bytes": 24704
+    },
+    {
+      "original": "THEORY_HANDOFF_2026-11-14.md",
+      "filed": "docs/archive/readers-2026-11-14/THEORY_HANDOFF_2026-11-14.md",
+      "sha256": "a5e814d26a3cc24680ba48d87ef573aa37e8531ca6b4a3b6ea79779d7ac1a37b",
+      "bytes": 20712
+    },
+    {
+      "original": "THEORY_HANDOFF_2026-11-14_R18.md",
+      "filed": "docs/archive/readers-2026-11-14/THEORY_HANDOFF_2026-11-14_R18.md",
+      "sha256": "61846555f67f08c5ceb94017cf8c883dce6a21b9dbb4610cb70049e720993d69",
+      "bytes": 25654
+    },
+    {
+      "original": "PREFLIGHT_SUMMARY_2026-11-14.md",
+      "filed": "docs/archive/readers-2026-11-14/PREFLIGHT_SUMMARY_2026-11-14.md",
+      "sha256": "7c4e5e78fdf4471cd98bd4d0291e246a0190203f7f1bf857b11be3c61ab95fd3",
+      "bytes": 4993
+    }
+  ],
+  "seedRows": 238
+}

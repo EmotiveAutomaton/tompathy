@@ -3,13 +3,45 @@
 Only measured engine accuracy belongs here. Pending rows are not zero scores.
 Field labels remain off. A passed software test is not a natural-writing result.
 
+The new November 19 commission has completed C0's exact export, not a new
+accuracy test. The existing development rule selects frozen MiniLM overall
+(.785861344 versus fine47 .785652886); seed47 remains the fine-rung winner.
+All 6,600 original transfer forecasts and trained weights are preserved.
+Ledger `E-C0-20261119` binds the [export aggregate](../engine/validation/readers-export-need-2026-11.json);
+`E-C0-DELIVERY-20261119` records its verified private IM2 copy, with no admission.
+TP28 completes its stand-in table at **6/9 rows**, including **2/4** of
+SEEKING/PLAY/CARE/LUST, clearing its fixed table bar. The separate joy split
+matches only **2/4** Go groups and fails. [Aggregate](../engine/validation/readers-stand-in-table-2026-11.json),
+ledger E-TP28-20261119, source `1bd4094c39de11b271796da1a4b4140c491dd86e483c346982327c51ba3dd56f`.
+These are label/tag contrasts, not observed channels or maker needs; Crowd-enVENT
+is qualification-set reuse. TP29 is complete: readings 1–2 pass, added AUC
+.014828 misses .02, and the appeasement ratio's [.6084,6.3822] interval crosses 1.
+Both independent account verdicts fail. Reading 4 is reported separately.
+Ledger E-TP29-20261119 binds source `2a6dc1ea5281fdc8333684eebdfc170d6b5ee21ae6f6ccf149e18a899caf5cf7`.
+This is a label test, not a channel test. TP30's frozen reader-share rung is
+complete from a reviewed 194-file snapshot: transfer passes 6/7, including
+SEEKING; mix correlation .116335 misses .20 and pair comparisons fail. CARE's
+-.013408 AUC difference fails test 4. Exact vector reuse and all 72 artifacts are
+verified. E-TP30-FROZEN-20261119 binds source
+`d04658e1c84ef10e0c95847947359b24da91b3fa22da2d70c3e250`.
+Other new studies remain unrun.
+Old failed gates and the incomplete MPNet rung remain unchanged.
+
+The owner closed the earlier trigger-reader commission on November 19. All 27 landed
+reader aggregates were rechecked against their exact source receipts and remain
+unchanged. Four completed MPNet folds retain 38,455 held-out forecasts; the fifth
+was stopped before a completed epoch or held-out prediction. No final MPNet
+accuracy/transfer result exists. Overall rung selection, need/IM2 export, TP24
+and remaining TS3 acceptance are cancelled and unrun. Prior gate failures and
+dependency blocks remain unchanged; no maker or live-default admission follows.
+
 TP23 frozen MiniLM clears both bars: mean story-held-out tag AUC **.776711539**
 against .76; mean twin-pair transfer gain **.096892812** against .06, with all five
 pairs above .03. Gains for pride/joy, guilt/shame, fear/sadness, anger/disgust and
 trust/joy are .158994021 / .050853357 / .118851596 / .063459785 / .092305304.
 Thirteen-label macro-F1 is .377775213 for ratings, .270293849 for tags alone,
 and .461516370 for both. This qualifies a candidate rung, with final rung
-selection and private export pending; TP25 still blocks serving. No maker claim.
+selection and private export unrun at owner closeout; TP25 still blocks serving. No maker claim.
 [Frozen need aggregate](../engine/validation/readers-need-frozen-2026-11.json), source
 `1d996fdce019a3cbf60bb55ad7cb77fdd0dc6d5481e0f95f8a8c9b4025334bf4`.
 
@@ -31,8 +63,8 @@ Pair gains in the same order are .174059880 / .044975079 / .119689416 /
 .281855489 for tags and .464320731 for both. All 48,065 held-out forecasts
 match the five original saved folds; all 6,600 transfer forecasts are verified.
 Development AUC .785652886 selects seed47 among all three completed fine seeds,
-before applying scientific gates. Final rung selection awaits the optional
-MPNet base comparison; no pack or IM2 export yet.
+before applying scientific gates. Final rung selection was not executed before
+owner closeout of the partial MPNet comparison; no need pack or IM2 export exists.
 TP25 still blocks serving. [Seed-47 aggregate](../engine/validation/readers-need-fine-47-2026-11.json),
 source `264e2acd2f16cc854f64c5cfbb208d30b304c5dc67238f58f94f363154063f0d`.
 
@@ -43,8 +75,11 @@ Pair gains in the same order are .168423780 / .061207312 / .114815797 /
 .287723929 for tags and .472303028 for both. All 48,065 held-out forecasts
 match the five original saved folds; all 6,600 transfer forecasts are verified.
 Its development AUC .777746393 does not replace the selected seed47, regardless
-of the higher transfer gain. The optional base rung's first fold is verified
-complete and its second is running; there is no final base accuracy result.
+of the higher transfer gain. The optional base rung's first four folds are
+verified complete and its final held-out fold was stopped at the owner's request;
+there is no final base accuracy result.
+The second fold's selected development AUC .508666729 is retained unchanged;
+the third and fourth folds' are .803744856 and .826151402. None supplies a final gate conclusion.
 [Seed-71 aggregate](../engine/validation/readers-need-fine-71-2026-11.json),
 source `d8b3d7059f3893bb1f75906bd5e4eae9bad15c4091678f4ba1540b1219f03e54`.
 

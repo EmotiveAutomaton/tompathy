@@ -1,5 +1,64 @@
 # Readers packet — theory return
 
+November 19 owner closeout: the trigger-reader commission is closed pending a
+new specification. MPNet fold4 stopped through its STOP control at 08:42:22 Pacific;
+native exit and exact shared/local releases were verified at 08:42:40. The raw
+requested-stop exception and unchanged partial receipt are retained. Progress
+ended in epoch one at 2,960/34,675 fitting texts; no completed epoch, trained-weight
+checkpoint or held-out forecast was saved. All 227 durable files are inventoried
+and 190 frozen code files match. Stopped source receipt pin:
+`0c6e785015c10a553a466fd41bc9c66629c474b55e05976602d71b7232c882d0`.
+The first four completed base folds retain 38,455 held-out rows and their exact
+receipt/inventory/forecast pins. This is partial MPNet work, not a final gate result.
+All 27 landed reader aggregates retain their verified source bindings and public
+bytes. The checkpoint is deleted and no job or queue remains active.
+
+Final base fitting/transfer, overall rung selection, need/IM2 export, TP24 and
+remaining TS3 acceptance are cancelled and unrun. The three fine seeds and
+development selection of seed47 remain completed results; TP25's failed serving
+gate and dependent counting/TP22 blocks remain unchanged. TP27 is diagnostic-only;
+the completed worry-pack acceptance remains scoped research evidence. No maker,
+ledger or live-default admission follows. Closeout audit:
+`.local/trigger/owner-closeout-20261119/closeout.json`. Earlier progress notes below
+are historical and grant no continuation authority. Round 24 corrections and
+the verified visual refinement remain implemented; no new inference ran at closeout.
+
+November 19, 08:35 Pacific verification: MPNet base fold3 completed at 08:28:24.
+All 619 saved artifacts and 190 frozen files match; its 9,610 held-out rows
+retain original order/truth and finite forecasts, disjoint from folds0–2.
+Native exit and exact releases are verified. Development AUC .826151402 selects
+epoch three under the original rule; this is not a final base gate result.
+Source pin: `bf576f201e35ea7b739a23d36d9aa7c1055974b17f592b55152a6d1948cef01c`.
+The final held-out fold started at 08:36:40 after verified prerequisites,
+LARGE counted admission and exact ownership/snapshot checks. All-five-fold
+coverage verification, the full-data/transfer stage and final selection/export
+remain pending. The weak second fold and TP25 serving/counting block remain
+unchanged; no completed inference was repeated and no maker admission follows.
+
+November 19, 05:28 Pacific verification: MPNet base fold2 completed at 02:39:29.
+All 619 saved artifacts and 190 frozen files match; its 9,615 held-out rows
+retain the original order/truth and finite forecasts, disjoint from folds0/1.
+Native exit and exact releases are verified. Development AUC .803744856 selects
+epoch three under the original rule; no final base gate result follows yet.
+Source pin: `7b62d3e61b5aad33d6395a9b291e37bfd563de3df861fbb3a0c68a351986ba05`.
+Fold3 started at 05:29:32 after verified prerequisites, LARGE counted admission
+and exact ownership/snapshot checks. The weak second fold remains unchanged;
+all results await the full planned base comparison and final selection/export.
+TP25 still blocks serving/counting. No completed inference was repeated,
+and no maker admission or ledger row follows from partial folds.
+
+November 18, 23:28 Pacific verification: MPNet base fold1 completed at 20:48:36.
+All 619 saved artifacts and 190 frozen files match; the 9,615 held-out rows
+retain the original order/truth and finite forecasts, disjoint from fold0.
+Native exit and exact releases are verified. The saved development AUCs
+.508666729 / .502171736 / .480551493 select epoch one under the original rule.
+This weak result remains intact; no tuning or repeat is authorized by it.
+Source pin: `abf8122e4c11486c705bdc2c1f4b508da4c42458e102d4f679cb40211e950370`.
+Fold2 started at 23:29:57 with verified original prerequisites, LARGE counted
+admission, exact ownership and snapshot. The full base comparison and final
+selection/export remain pending. TP25 still blocks serving/counting; no maker
+admission or ledger row follows from these partial fold results.
+
 November 18, 17:36 Pacific verification: MPNet base fold0 completed at 17:32:44.
 All 619 saved artifacts and 190 frozen files match; the 9,615 held-out rows
 retain the original order/truth and finite forecasts. Native exit and exact

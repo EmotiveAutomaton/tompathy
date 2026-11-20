@@ -10,6 +10,47 @@ receipt are in `.local/trigger/intake.json`. The supplied handoff is named
 `docs/archive/trigger-2026-11-15/THEORY_HANDOFF_2026-11-15_R24_OFFICIAL.md`.
 All moved source bytes match their original hashes.
 
+## Owner closeout — November 19
+
+The owner ended this test commission pending a new specification. No further
+study, fitting, export or acceptance job is authorized by its former queue.
+The sole checkpoint was deleted, and the private continuation is closed with
+no active job or queued launch. Earlier dated progress and scheduling notes below
+are historical; they do not authorize continuation.
+
+MPNet base fold4 stopped through the runner's STOP control at 08:42:22 Pacific.
+Host-visible native exit and exact matching shared/local releases were verified
+at 08:42:40. The runner's raw `failed.json` records the requested-stop exception;
+its original receipt still says `running` and is preserved unchanged. Closeout
+classifies this as an owner-requested stop, not a scientific failure or an
+engineering retry. Last saved progress is epoch one, 2,960/34,675 fitting texts,
+287.18 seconds. No epoch, trained-weight checkpoint or held-out forecast was
+saved for this fold; unsaved training state was not recovered. All 227 durable
+files were inventoried and all 190 frozen code files match the original plan.
+Stopped source receipt pin:
+`0c6e785015c10a553a466fd41bc9c66629c474b55e05976602d71b7232c882d0`.
+
+The four completed base-fold receipts, sealed inventories and prediction files
+retain their verified pins, including the weak second fold. They preserve 38,455
+held-out rows, not a complete five-fold result. All 27 landed reader aggregates
+were checked against their original receipts and prior public pins; none changed.
+No new public aggregate is invented for the uncompleted, private fold or final
+base rung. Existing completed inference, source corpora, model bytes, snapshots,
+and the visual refinement are preserved. Private evidence and archived queue:
+`.local/trigger/owner-closeout-20261119/closeout.json` and
+`.local/trigger/owner-closeout-20261119/continuation-before.json`; no ledger row.
+
+The final base full-data fit/transfer, overall rung selection, need/IM2 export,
+TP24 and remaining all-pack/native TS3 acceptance are cancelled and unrun.
+Fine seed47 remains the development-selected fine reader among three completed
+seeds; it is not a completed overall rung selection or exported need pack.
+TP25's failure still blocks new gate/channel/trigger/counting exports and the
+conditional full-grid TP12/TP22 rows. These are dependency blocks, distinct from
+the owner-cancelled work. TP27 remains diagnostic-only. The completed worry-pack
+acceptance and prior software/native checks remain valid within their recorded
+scope. This closeout changes records only; no scientific gate was rerun, no
+runtime was changed, and no maker or live-default admission follows.
+
 ## Current state
 
 TS3's gate, tags, channel, scalar and composite paths are implemented and remain
@@ -25,9 +66,10 @@ exact saved essay packet. The tag-reader BOW run is complete; its packing bar
 fails. The owner ratified the packet's five-pair table scope, and the frozen
 MiniLM rung completed with both bars cleared. All three fine-tuned seeds also
 clear both bars, with their original five-fold forecasts preserved. Development
-scores select seed47 before gates. The optional MPNet base rung's first fold is
-complete and verified; its second fold is running after larger admission.
-Final rung selection and export remain pending.
+scores select seed47 before gates. The optional MPNet base rung's first four folds
+are complete and verified; its final held-out fold was stopped at owner closeout.
+The second fold's weak development result is retained unchanged.
+Final rung selection and need/IM2 export remain unrun under the closed commission.
 TP25 completed with failed gates; TP27 completed as
 a circular diagnostic with no display admission.
 
@@ -37,7 +79,7 @@ scalar pack. Its saved five-fold TP16 benchmark is not rerun. The key README
 confirms a 1–9 scale; the data and original model are verified before fitting.
 Run at CPU Gear 2: one long job, two numerical threads, below-normal priority,
 counted shared/local ownership and the existing 8 GiB ongoing commit floor.
-The owner's new checkpoint cadence is completion or three hours.
+The former three-hour checkpoint is deleted; no automatic continuation remains.
 
 ## Decisions and theory corrections
 
@@ -66,16 +108,87 @@ row; it does not retrospectively rescue the original counting policy.
 
 | Card | Current state | Registered bar / limit |
 |---|---|---|
-| TS3 | Worry acceptance complete on 203 real inputs and native Chrome; final all-existing-pack acceptance remains conditional | Default off; exact pins/spans; maker empty |
+| TS3 | Worry acceptance complete on 203 real inputs and native Chrome; remaining all-pack/native acceptance cancelled and unrun | Default off; exact pins/spans; maker empty |
 | TP26 | Complete; aggregate source-bound; research pack saved | AUC >= .70 on each of three known groups; plain prose descriptive |
 | TP7 | Complete; registered gain fails; aggregate source-bound | Original held-out controls retained |
-| TP23 | BOW fails; frozen MiniLM and all fine seeds clear both bars; fine seed47 selected by development; optional base fold0 verified complete, fold1 running, final selection pending | Encoder story AUC .76; every rung transfer mean gain .06 and >=.03 on four pairs |
+| TP23 | BOW fails; frozen MiniLM and all fine seeds clear both bars; fine seed47 selected by development; optional base folds0–3 complete, fold4 owner-stopped; overall selection/export cancelled and unrun | Encoder story AUC .76; every rung transfer mean gain .06 and >=.03 on four pairs |
 | TP25 | Complete; failed, no gate pack; aggregate source-bound | .80 silence on both neutral sets; .70 sensitivity in each held-out source |
-| TP24 | Runner built; qualified need/gate dependencies pending | Slots within .10 of direct; table accuracy .33; tense AUC .60 |
+| TP24 | Runner built; cancelled and unrun at owner closeout | Slots within .10 of direct; table accuracy .33; tense AUC .60 |
 | TP12 gated | Full-grid runner built; blocked by completed TP25 failure | Original fixed mixture grid, priors/minima unchanged |
 | TP27 / TP18b | Complete; diagnostic-only gain, no display admission | Circular timing comparison; >.02 lower bound is diagnostic only; no display before KP1 |
 
 ### Ratified TP23 scope and completed TP27
+
+MPNet base fold three completed at 08:28:24 Pacific November 19. Native exit
+and exact shared/local releases were verified at 08:35:54. All 619 saved
+artifacts and 190 frozen files match; its finite 9,610-by-19 held-out forecasts
+retain original order/truth and are disjoint from folds zero through two.
+Development AUC .826151402 selects epoch three under the original rule.
+This is a completed fold, not the final all-fold/transfer result. Source pin:
+`bf576f201e35ea7b739a23d36d9aa7c1055974b17f592b55152a6d1948cef01c`.
+Audit: `.local/trigger/tp23-base-fold-3-completion.json`; no ledger row.
+
+The final held-out fold acquired its owned lease at 08:36:40 Pacific after
+verified original prerequisites and LARGE counted admission: 34.66 GiB commit
+headroom against 25.53 GiB required, with one foreign lease left unchanged.
+Exact native/shared/local ownership and all 190 frozen files are verified.
+It retains 34,675 fitting, 3,780 development and 9,610 held-out rows, three
+epochs, cap128, batch16 and seed23. At 08:37:42 the heartbeat was fresh with
+32.14 GiB commit headroom; epoch one had reached 64 fitting rows. Its original
+eight-hour bound ends at 16:36:38 Pacific. The next check is approximately
+11:35 Pacific, with future delivery unverified. Prior folds took about
+179–191 minutes; no whole-rung ETA is established. Startup audit:
+`.local/trigger/tp23-base-fold-4-start.json`.
+The private final-coverage helper is prepared and syntax-checked but has not
+run; it must verify all five original folds before the full-data/transfer job.
+No completed fit or inference is repeated. Weak fold1 and TP25's serving/counting
+block remain unchanged; final rung selection/export are pending.
+
+MPNet base fold two completed at 02:39:29 Pacific November 19. Native exit and
+exact shared/local releases were verified at 05:28:39. All 619 saved artifacts
+and 190 frozen files match; its finite 9,615-by-19 held-out forecasts preserve
+the original fold order/truth and are disjoint from folds zero and one.
+The third epoch's development AUC .803744856 is selected by the original rule;
+this is not the final all-fold/transfer result. Source receipt pin:
+`7b62d3e61b5aad33d6395a9b291e37bfd563de3df861fbb3a0c68a351986ba05`.
+Audit: `.local/trigger/tp23-base-fold-2-completion.json`; no ledger row.
+
+Fold three acquired its owned lease at 05:29:32 Pacific after verified original
+model/source prerequisites and LARGE counted admission: 35.54 GiB commit
+headroom against 25.58 GiB required, with one foreign lease left unchanged.
+Exact native/shared/local ownership and all 190 frozen files are verified.
+The original fold retains 34,675 fitting, 3,780 development and 9,610 held-out
+rows, three epochs, cap128, batch16 and seed23. At 05:30:17 the heartbeat was
+fresh with 34.23 GiB commit headroom during initialization; no receipt, phase,
+fold progress or terminal file existed yet. Its eight-hour bound ends at
+13:29:31 Pacific. The next check is scheduled for approximately 08:28 Pacific;
+delivery is not yet observed. Prior MPNet folds took about 180–191 minutes;
+no whole-rung ETA is established. Startup audit:
+`.local/trigger/tp23-base-fold-3-start.json`. Final selection/export remain
+pending, and the weak second fold and TP25 serving/counting block are retained.
+
+MPNet base fold one completed at 20:48:36 Pacific November 18. Native exit and
+exact shared/local releases were verified at 23:28:35. All 619 saved artifacts
+and 190 frozen files match; its finite 9,615-by-19 held-out forecasts preserve
+the original fold order/truth and are disjoint from fold zero. The three saved
+development AUCs are .508666729 / .502171736 / .480551493; the prescribed rule
+selects epoch one. This weak result stays unchanged, with no repeat or tuning.
+It does not yet supply the final all-fold/transfer gate. Source receipt pin:
+`abf8122e4c11486c705bdc2c1f4b508da4c42458e102d4f679cb40211e950370`.
+Audit: `.local/trigger/tp23-base-fold-1-completion.json`; no ledger row.
+
+Fold two acquired its owned lease at 23:29:57 Pacific after verified original
+model/source prerequisites and LARGE counted admission: 32.02 GiB commit
+headroom against 25.54 GiB required, with one foreign lease left unchanged.
+Exact native/shared/local ownership and all 190 snapshot files are verified.
+The original fold retains 34,705 fitting, 3,745 development and 9,615 held-out
+rows, three epochs, cap128, batch16 and seed23. At 23:31:27 its heartbeat was
+fresh with 29.29 GiB commit headroom and epoch one had reached 176 fitting rows.
+Its eight-hour bound ends at 07:29:55 Pacific November 19. The next scheduled
+check is approximately 02:27 Pacific; delivery is not yet observed. The first
+two folds took about 180/191 minutes, but no whole-rung ETA is established.
+Startup audit: `.local/trigger/tp23-base-fold-2-start.json`. Final selection and
+export remain pending; TP25 still blocks serving/counting.
 
 MPNet base fold zero completed at 17:32:44 Pacific November 18. Native exit and
 exact shared/local releases were verified at 17:36:35. All 619 saved artifacts

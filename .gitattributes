@@ -11,3 +11,12 @@ docs/ghost-v*/** -text whitespace=cr-at-eol
 docs/claims/*.json -text whitespace=cr-at-eol
 # Preserve the received package README's terminal blank line as part of its bytes.
 docs/ghost-v26-20261102/README.md whitespace=cr-at-eol,-blank-at-eof
+# Retain the exact hashes of ingested study specifications and source evidence.
+docs/archive/nine-channel-2026-11-19/** -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+docs/archive/readers-2026-11-14/** -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+docs/archive/trigger-2026-11-15/** -text whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+engine/validation/EVIDENCE_LEDGER_SEED_R29.jsonl -text
+engine/validation/need-export-delivery-2026-11.json -text whitespace=cr-at-eol
+TOMPATHY_0.3_ENGINE_NINE_CHANNEL_PACKET_2026-11-19.md -text whitespace=cr-at-eol
+TOMPATHY_0.3_ENGINE_READERS_PACKET_2026-11-14.md -text whitespace=cr-at-eol
+TOMPATHY_0.3_ENGINE_TRIGGER_READER_PACKET_2026-11-15.md -text whitespace=cr-at-eol

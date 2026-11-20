@@ -49,7 +49,7 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--checks', nargs='+', choices=['pf_a', 'pf_b', 'pf_c', 'pf_c2',
         'pf_d', 'pf_e', 'pf_f', 'pf_g', 'pf_h', 'pf_i'], default=[])
-    parser.add_argument('--card', choices=['TP10', 'TP12', 'TP12-L3', 'TP10-L3', 'TP11', 'TP13', 'TP14', 'TP15', 'TP16', 'TP17', 'TP18', 'TP18-probe', 'TP19', 'TP20', 'TP22', 'TP1c', 'TP4-controls', 'TP26', 'TP7', 'TP23', 'TP24', 'TP25', 'TP27', 'TP12-gated', 'TP22-gated', 'TS3-real', 'TRIGGER-export'])
+    parser.add_argument('--card', choices=['TP10', 'TP12', 'TP12-L3', 'TP10-L3', 'TP11', 'TP13', 'TP14', 'TP15', 'TP16', 'TP17', 'TP18', 'TP18-probe', 'TP19', 'TP20', 'TP22', 'TP1c', 'TP4-controls', 'TP26', 'TP7', 'TP23', 'TP24', 'TP25', 'TP27', 'TP28', 'TP29', 'TP30-frozen', 'TP12-gated', 'TP22-gated', 'TS3-real', 'TRIGGER-export'])
     parser.add_argument('--models', type=Path, default=Path('.local/readers/models'))
     parser.add_argument('--prepared', type=Path, default=Path('.local/bench/two-day-prepared'))
     parser.add_argument('--ladder', type=Path)
@@ -77,6 +77,7 @@ def main():
     parser.add_argument('--attention-source', type=Path, default=Path('.local/bench/two-day-20261113-b'))
     parser.add_argument('--resume', type=Path, help='Verified unfinished TP10, rated or TP19 engineering failure/host restart')
     parser.add_argument('--hours', type=float, default=2)
+    parser.add_argument('--deadline-at', help='Retain an original UTC deadline for a bounded engineering retry')
     parser.add_argument('--rung', choices=['bow', 'frozen', 'fine', 'base'], default='bow')
     parser.add_argument('--seed', type=int, choices=[23,47,71], default=23)
     parser.add_argument('--fold', type=int, choices=range(5))
@@ -87,6 +88,9 @@ def main():
     parser.add_argument('--vector-cache', type=Path)
     parser.add_argument('--vector-source', type=Path)
     parser.add_argument('--export-kind', choices=['worry','need','gate','label','trigger','counting'])
+    parser.add_argument('--tag-map-version', type=int, choices=(1, 2), default=1)
+    parser.add_argument('--ledger-row', help='Preassigned public result ledger ID for the new commission')
+    parser.add_argument('--study-protocol', type=Path, help='Frozen new-card implementation protocol')
     parser.add_argument('--rung-jobs', type=Path, nargs='+', default=[])
     parser.add_argument('--gate-pack', type=Path)
     parser.add_argument('--need-pack', type=Path)
@@ -107,6 +111,13 @@ def main():
         parser.error('A TP23 preflight decision only applies to later need rungs and need selection')
     started = datetime.now(UTC)
     seconds = remaining_seconds(args.hours, args.resume, args.card, started)
+    if args.deadline_at is not None:
+        original_deadline = datetime.fromisoformat(args.deadline_at)
+        if original_deadline.tzinfo is None:
+            parser.error('Retry deadline must include its timezone')
+        seconds = min(seconds, (original_deadline-started).total_seconds())
+        if seconds <= 0:
+            parser.error('Original retry deadline has expired')
     deadline = time.monotonic() + seconds
     output.mkdir(parents=True, exist_ok=False)
     if args.inputs:
@@ -127,6 +138,12 @@ def main():
     scripts = {n: (args.bundle / 'corpus/scripts' / (n + '.py')).resolve() for n in args.checks}
     hashes = {n: hashlib.sha256(p.read_bytes()).hexdigest() for n, p in scripts.items()}
     auxiliary = {}
+    if args.study_protocol is not None:
+        name = 'study-protocol.md'
+        payload = args.study_protocol.read_bytes()
+        (output/name).write_bytes(payload)
+        auxiliary[name] = hashlib.sha256(payload).hexdigest()
+        args.study_protocol = output/name
     if args.preflight_decision is not None:
         name = 'preflight-decision.json'
         payload = args.preflight_decision.read_bytes()
@@ -170,6 +187,26 @@ def main():
                     from tompathy_engine.eval.readers.trigger_export import run_export
                     run_export(args.export_kind,args,output,check)
                     completed.append('TRIGGER export '+args.export_kind)
+                elif args.card == 'TP30-frozen':
+                    from tompathy_engine.eval.readers.tp30 import run
+                    if args.ledger_row is None or args.study_protocol is None or args.vector_source is None:
+                        raise ValueError('TP30 requires protocol, completed vector source and ledger row')
+                    run(args.corpus, args.ed, args.go, args.models, output, check,
+                        source_job=args.vector_source, ledger=args.ledger_row, protocol=args.study_protocol)
+                    completed.append('TP30-frozen')
+                elif args.card == 'TP29':
+                    from tompathy_engine.eval.readers.tp29 import run
+                    if args.ledger_row is None or args.study_protocol is None:
+                        raise ValueError('TP29 requires a frozen protocol and preassigned ledger row')
+                    run(args.corpus, args.ed, args.go, args.models, output, check,
+                        ledger=args.ledger_row, protocol=args.study_protocol)
+                    completed.append('TP29')
+                elif args.card == 'TP28':
+                    from tompathy_engine.eval.readers.tp28 import run
+                    if args.needs_job is None or args.ledger_row is None:
+                        raise ValueError('TP28 requires completed C0 and a preassigned ledger row')
+                    run(args.needs_job, args.ed, args.go, args.corpus, output, check, ledger=args.ledger_row)
+                    completed.append('TP28')
                 elif args.card == 'TP23':
                     from tompathy_engine.eval.readers.tp23 import run
                     run(args.rated_data,args.corpus,args.models,output,check,rung=args.rung,seed=args.seed,bundle=args.bundle,

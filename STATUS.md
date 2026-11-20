@@ -1,9 +1,88 @@
 # ToMpathy status
 
-Updated 18 November 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
+Updated 19 November 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
 based on the merged, owner-approved **0.2.0** frontend milestone.
 
+## November 19 nine-channel packet
+
+**New commission running at Gear 2.** The earlier queues remain closed.
+[Plan and execution record](docs/ENGINE_NINE_CHANNEL_2026-11-19.md),
+[filed sources](docs/SOURCE_DOCUMENTS.md), and
+[theory return](docs/exchange/THEORY_RETURN_NINE_CHANNEL.md).
+
+C0 selected the completed frozen MiniLM rung under the unchanged development
+rule (.785861344 versus selected fine seed47 .785652886). Tag map 2 changes
+tranquility to N6 and preserves all original weights and 6,600-by-19 scores.
+The verified export is landed with `E-C0-20261119`; IM2's exact private delivery
+to Sounding Line is recorded by `E-C0-DELIVERY-20261119`. Receiver acceptance
+and scientific admission do not follow from a copied file. One export-contract
+repair retained the failed attempt, original deadline and all original data.
+
+TP28 completed at 10:18:42 Pacific November 19. Exact native exit/releases,
+622 saved artifacts, 192 snapshot files and all saved arrays/point contrasts are
+verified. Its source-bound aggregate and E-TP28-20261119 record a table pass:
+six of nine rows, including SEEKING and PLAY. CARE and SHAME miss strict
+majorities; unmapped LUST cannot fill a need row. The separate joy split fails
+(two of four splits match). Crowd-enVENT reuses the qualification set; none of
+these word/tag results establishes channel firing or maker needs.
+
+TP29 completed at 10:42:32 Pacific; native exit and exact releases were verified
+at 14:13:30. All 1,343 artifacts, 193 frozen files and 24,850 ordered forecasts
+are verified. Fun-marker ratio 3.0463 and PLAY gap .5932 SD pass readings 1–2.
+Added AUC .014828 misses .02; appeasement ratio 1.6972 has interval [.6084,6.3822].
+Thus A and B both fail their independent rules. Reading 4's positive point
+difference .003396 has interval [-.013750,.021128] and enters neither verdict.
+The source-bound aggregate and E-TP29-20261119 preserve all readings and the
+owner's ruling. This is a label test, not a channel test or proof of absence.
+No fitting, inference or bootstrap was repeated during landing. The pre-lease
+launch failure remains preserved. Spark's dedicated environment matches all 57
+owner-pinned versions and passes dependency checks; no model job has run.
+Research scripts must be committed before Spark execution. One four-hour
+checkpoint is scheduled; no completion-event hook is available/configured.
+TP30's frozen rung started at 14:29:26 Pacific November 19 with its exact native
+identity, shared/local leases and all 194 frozen files verified. The eight-hour
+bound ends at 22:29:25. [Its protocol](docs/TP30_PROTOCOL_2026-11-19.md) keeps
+reader-training and writer-test sources separate, uses author-disjoint Go tests,
+and excludes exact training/test text overlaps. It reuses 85,713 completed
+vectors and encodes only 3,748 new raw Go comments. Original inputs/model bytes
+and all 211,225 Go / 6,000 Crowd rater identities passed prerequisite checks.
+Single-rater Go comments remain in fitting and label tests; disagreement is
+undefined for them. This intake correction preceded inference. Eight constructed
+TP30 checks and Ruff pass, including objective gradients, source separation,
+byte-bound vector reuse and the mocked durable full flow. No TP30 result yet.
+TP30 subsequently completed at 14:32:47 Pacific. At the owner's 16:40 continuation,
+native exit and exact releases were verified. All 72 artifacts, 194 frozen files,
+ordered forecasts and 85,713 reused vectors match. Test 1 passes 6/7 (SEEKING
+included). Profile spread versus rater disagreement is .116335, below .20, and
+the nominated-pair clause fails. CARE loses .013408 AUC to the single-label
+control, so test 4 fails. The source-bound aggregate and E-TP30-FROZEN-20261119
+retain full per-source and 9-by-9 co-rise tables. No training/inference was repeated.
+The Spark parity/pilot implementation has six targeted tests and Ruff passing.
+Its fixed 500 open reports include the original 200 parity and 300 panel subsets;
+saved-feature panel baseline mean rank correlation is .585755. Spark results are
+still pending verified execution. TP31 and other remaining runners are still
+implementation work, not results.
+
+The owner's subsequent [TP29 ruling](docs/TP29_OWNER_RULING_2026-11-19.md)
+makes A (readings 1–3) and B (appeasement contrast) independent; reading 4 enters
+neither verdict. This is a label test. The original packet and running snapshot
+are preserved; the landed reporter binds the ruling and retains the original runner
+verdict while deriving A/B from saved measurements. Twenty targeted cases pass,
+including this source-preserving amendment path. No measurement is restarted.
+
 ## November 15 trigger-reader packet
+
+**Closed at the owner's request on November 19.** The active MPNet fold stopped
+through its STOP control at 08:42:22 Pacific; exact native exit and shared/local
+release were verified at 08:42:40. The queue is empty and its checkpoint is deleted.
+All 27 existing reader aggregates retain their verified source bindings and bytes.
+The four completed base folds retain 38,455 held-out forecasts. The interrupted
+fifth fold has no completed epoch, saved trained weights or held-out forecasts;
+its receipt, progress and frozen snapshot are preserved. This is an owner stop,
+not a failed scientific gate. The final base fit/transfer, overall rung selection,
+need/IM2 export, TP24 and remaining TS3 acceptance are cancelled and unrun.
+TP25's failed gate and its dependent counting/serving blocks remain unchanged.
+Closeout: [implementation record](docs/ENGINE_TRIGGER_READER_2026-11-22.md#owner-closeout--november-19).
 
 The [new implementation](docs/ENGINE_TRIGGER_READER_2026-11-22.md) is a separate
 Gear 2 commission. Default-off gate/tag/channel/scalar and composite contracts
@@ -17,8 +96,8 @@ for the best rarity control, paired gain -.0200 with interval [-.0370, -.0050].
 Its gate fails; observations, native exit, leases and source-bound aggregate are verified. Story Commonsense
 matches the commissioned archive pin; its BOW rung is now measured.
 The owner approved separate component encoders, unassigned label-only tags,
-and the same TP23 transfer bars for every packed rung. Wakes are every three
-hours or on completion, replacing the old frequent checkpoint.
+and the same TP23 transfer bars for every packed rung. Its former three-hour
+checkpoint was deleted at closeout.
 Fifty focused backend checks and all 56 frontend checks pass; Ruff and the
 extension build also pass. Native Chrome verifies constructed
 unassigned tags, table/label disagreements and Stress alongside the passage;
@@ -51,12 +130,18 @@ the 6,600 transfer forecasts, 18 sealed artifacts and 190 frozen files match.
 Native exit, exact releases and the new aggregate's source binding are verified.
 All three fine seeds are now complete; their development scores select seed 47
 (.785652886 versus seed23 .779447851 and seed71 .777746393), before applying gates.
-The optional MPNet base rung's first fold completed at 17:32:44 Pacific November
-18. Its 619 saved artifacts, 190 frozen files and 9,615 held-out rows match their
-pins and original fold order/truth; native exit and exact releases are verified.
-Fold one started at 17:37:30 after larger resource admission and exact
-native/shared/local ownership verification. This is partial rung progress;
-final selection/export await the full comparison. TP25 still blocks serving/counting.
+The optional MPNet base rung's first four folds are complete and verified,
+each retaining 619 saved artifacts and 190 frozen files. Their 9,615 / 9,615 /
+9,615 / 9,610 held-out rows retain original order/truth with no overlap.
+Native exits and exact releases are verified. Selected development AUCs
+.822259845 / .508666729 / .803744856 / .826151402 remain unchanged, including
+the weak second fold; no final base gate conclusion follows. Fold three
+completed at 08:28:24 Pacific November 19. The final held-out fold started at
+08:36:40 after larger resource admission and exact ownership verification, then
+stopped at the owner's request at 08:42:22. Its last saved progress is epoch one,
+2,960 of 34,675 fitting texts. No final base accuracy/transfer result exists;
+overall selection/export remains unrun under the closed commission.
+TP25 still blocks serving/counting.
 TP25 completed and failed: held-out positive detection .3960 / .5732 / .2659
 for Crowd-enVENT / GoEmotions / Story Commonsense. At the fixed .5 diagnostic
 threshold it is silent on 1/40 plain-prose items and 173/191 revision sentences.

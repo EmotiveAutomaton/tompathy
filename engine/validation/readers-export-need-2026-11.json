@@ -1,0 +1,69 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "f60801baea10e761f2b80f993350408fa8439536673ca39c7e96b79654c5c828",
+  "launcherPin": "fbae5a4d67cc65dea383293a2fa85df049bb00c4ab5088a7be43de9b8b8b53cc",
+  "ledger": "E-C0-20261119",
+  "card": "TRIGGER-export-need",
+  "status": "complete",
+  "productionAdmission": false,
+  "scope": "Private opt-in research export; no automatic live attachment or release",
+  "pack": {
+    "name": "rp-need-1",
+    "pin": "rp-need-1@3195a406e777a664845b18e3d647b38f09f232430e0509330ffc2cd2ac49bccf",
+    "encoder": "9419c7186f92042c0c409f00ea7340efa425cc7a5e1cd13096185f022f537e2f",
+    "head": "7f5bfe1ff5ab5e4a0b93072bb7e1f54f73466ab01ade90fc2ad2c4041d12e7ae",
+    "evidencePin": "b4213df667723ab49b8d4819be0b78c2c83e63b7b82a326855f6f07c7f4c35cb",
+    "researchOnly": true
+  },
+  "selection": {
+    "sources": {
+      "TP23-bow": "46348623c7450c9cc903ef3f58a0e67109cc5a6db9e30d2a5d646c66b486fd26",
+      "TP23-frozen": "1d996fdce019a3cbf60bb55ad7cb77fdd0dc6d5481e0f95f8a8c9b4025334bf4",
+      "TP23-fine-23": "e858b23384caef6edec71471e555ed3946a477542552411f9fc57eb90363e982",
+      "TP23-fine-47": "264e2acd2f16cc854f64c5cfbb208d30b304c5dc67238f58f94f363154063f0d",
+      "TP23-fine-71": "d8b3d7059f3893bb1f75906bd5e4eae9bad15c4091678f4ba1540b1219f03e54"
+    },
+    "selectedFineSeed": 47,
+    "selectedCard": "TP23-frozen",
+    "preflightScope": {
+      "scope": "packet-five-pair-table",
+      "decisionPin": "8d89f53a42f80cc7f3f51a2e580e9a80499c38c7bdc35b243c175874220a949c",
+      "sourceReceiptPin": "46348623c7450c9cc903ef3f58a0e67109cc5a6db9e30d2a5d646c66b486fd26",
+      "referencePin": "8507c8b29e095ebcb35e1372a966f3712848780ecd594c273dba1a0dc2eeff35",
+      "originalFullCheckReproduced": false,
+      "absoluteDifferences": {
+        "pride-joy:ratings": 0.006207097458198474,
+        "pride-joy:ratings+needs": 0.01091290336059536,
+        "pride-joy:gain_from_needs": 0.004705805902396859,
+        "pride-joy:needs": 0.00588304370088677,
+        "pride-joy:words": 0.011934465175066022,
+        "guilt-shame:ratings": 0.010048324166103129,
+        "guilt-shame:ratings+needs": 0.0020214747103594055,
+        "guilt-shame:gain_from_needs": 0.012069798876462538,
+        "guilt-shame:needs": 0.0021891786336535324,
+        "guilt-shame:words": 0.01164017714628951,
+        "fear-sadness:ratings": 0.003416069951264533,
+        "fear-sadness:ratings+needs": 3.3353580150108364e-05,
+        "fear-sadness:gain_from_needs": 0.0033827163711144734,
+        "fear-sadness:needs": 0.0015972599362953366,
+        "fear-sadness:words": 0.003988963068303986,
+        "anger-disgust:ratings": 0.0024253758863014285,
+        "anger-disgust:ratings+needs": 0.005516308481230747,
+        "anger-disgust:gain_from_needs": 0.003090932594929284,
+        "anger-disgust:needs": 0.009203514863475704,
+        "anger-disgust:words": 0.007280438164247394,
+        "trust-joy:ratings": 0.0034724830292161,
+        "trust-joy:ratings+needs": 0.001637294102978748,
+        "trust-joy:gain_from_needs": 0.0018351889262374285,
+        "trust-joy:needs": 0.003562714165859626,
+        "trust-joy:words": 0.004659527215770232
+      },
+      "tolerance": 0.02,
+      "reproduced": true,
+      "scientificGatesUnchanged": true
+    },
+    "rule": "Select fine seed by mean inner-development AUC before applying its gates; then best development AUC among qualified rungs. Incomplete three-seed fine rung is not substituted."
+  },
+  "IM2ManifestPin": "86a91a96cd34743cc6d70638e29cbb4c6be950933e5dd7fd77d232508a8d4ebe",
+  "sourceReceiptPin": "85e9b12fb8b8c2318dee928f651a5da80c78f642ca91f17d050d7e47a5d67bd7"
+}

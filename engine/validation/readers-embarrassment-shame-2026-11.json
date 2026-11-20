@@ -1,0 +1,416 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "609647e9d6070b5ee09003e5e03701b14e042081fd49d25ab37494c2fd3e30d8",
+  "launcherPin": "e35e4c9a823845b5129417a312d55360ffc2790e75037085ee86c8018ee08f3a",
+  "ledger": "E-TP29-20261119",
+  "card": "TP29",
+  "status": "complete",
+  "productionAdmission": false,
+  "scope": "Literal markers and source-trained label heads, not channel firing, writer traits or maker needs. ED research-only; source elicitation and reader/writer labels differ.",
+  "protocolPin": "b0c071ecbd0a758a61657196a4956f0ce6ab3187b1a0edc02e2f989917d513d6",
+  "protocol": {
+    "fun": [
+      "laugh",
+      "laughs",
+      "laughed",
+      "laughing",
+      "laughter",
+      "chuckle",
+      "chuckles",
+      "chuckled",
+      "chuckling",
+      "giggle",
+      "giggles",
+      "giggled",
+      "giggling",
+      "joke",
+      "jokes",
+      "joked",
+      "joking",
+      "funny",
+      "funnier",
+      "funniest",
+      "humor",
+      "humour",
+      "humorous",
+      "playful",
+      "playfully"
+    ],
+    "appeasement": [
+      "apology",
+      "apologies",
+      "apologize",
+      "apologizes",
+      "apologized",
+      "apologizing",
+      "apologise",
+      "apologises",
+      "apologised",
+      "apologising",
+      "apologetic",
+      "sorry",
+      "awkward",
+      "awkwardly",
+      "awkwardness",
+      "blush",
+      "blushes",
+      "blushed",
+      "blushing"
+    ],
+    "draws": 2000,
+    "seed": 23,
+    "heads": "Original frozen MiniLM cap128, logistic C3, balanced classes, max_iter2000",
+    "units": "ED writers; Go authors, unknown authors are individual comments",
+    "calibration": "five writer-disjoint folds; fitting-writer scaling; positive coefficients in every fold",
+    "uncertainty": "95% percentile whole-writer resamples of fixed predictions; no refits"
+  },
+  "sources": {
+    "ed": {
+      "intakePin": "dbc8e8faec17897f67b3cef9f26a031786bcc8c78f709475e5f8103f47a3e8ec",
+      "license": "cc-by-nc-4.0",
+      "research_only": true,
+      "counts": {
+        "train": {
+          "utterances": 84169,
+          "situations": 19533,
+          "firstUtterances": 19533,
+          "labels": 32
+        },
+        "valid": {
+          "utterances": 12078,
+          "situations": 2770,
+          "firstUtterances": 2770,
+          "labels": 32
+        },
+        "test": {
+          "utterances": 10973,
+          "situations": 2547,
+          "firstUtterances": 2547,
+          "labels": 32
+        }
+      }
+    },
+    "go": {
+      "intakePin": "7d521e3a7e83ac940cc1f2d94be4c175f65a28389e35a253a34ff33bb0d15f5f",
+      "license": "apache-2.0",
+      "research_only": false,
+      "counts": {
+        "individual_judgments": 211225,
+        "unique_comments": 58011
+      },
+      "published_labelled": 54263,
+      "writer_unknown": 1063,
+      "raw_unlabelled_policy": "Features can be read for every raw comment; label-group tests use released consensus labels only"
+    },
+    "envent": {
+      "reports": 6600,
+      "judgments": 6000,
+      "writers": 2379,
+      "train": 4898,
+      "dev": 502,
+      "test": 1200,
+      "testReportsWithTrainingWriter": 567,
+      "split": "fixed 1200 validation report IDs; lowest SHA-256 tenth of remaining writers for development",
+      "writerDisjointTest": false,
+      "files": {
+        "generation": "3d2536b555ac7005080c2cd35aadb4d570992bca70d2017e4d8939525fa3a86b",
+        "validation": "ab64ebb18368a0342f2e890e9194cd70367387547936d9e343ba7881ec4314e3"
+      }
+    }
+  },
+  "rows": {
+    "ed": {
+      "fun_rate_ratio": {
+        "estimate": 3.046313079003395,
+        "interval": [
+          1.5004801001150971,
+          9.728567425735426
+        ],
+        "finite_draws": 1997
+      },
+      "appeasement_rate_ratio": {
+        "estimate": 1.6972315725876057,
+        "interval": [
+          0.6083759638099608,
+          6.382245415138303
+        ],
+        "finite_draws": 1990
+      },
+      "play_gap_sd": {
+        "estimate": 0.5931746618040776,
+        "interval": [
+          0.4958810175969085,
+          0.6948966484062093
+        ],
+        "finite_draws": 2000
+      },
+      "shame_auc": {
+        "estimate": 0.8554184088692591,
+        "interval": [
+          0.8401164390264324,
+          0.8702315331183285
+        ],
+        "finite_draws": 2000
+      },
+      "combined_auc": {
+        "estimate": 0.8702466174179156,
+        "interval": [
+          0.8552086853010594,
+          0.8850229919820323
+        ],
+        "finite_draws": 2000
+      },
+      "auc_gain": {
+        "estimate": 0.014828208548656518,
+        "interval": [
+          0.008366632467167895,
+          0.02197017893783119
+        ],
+        "finite_draws": 2000
+      }
+    },
+    "coefficients": [
+      {
+        "fold": 0,
+        "train": 20527,
+        "test": 4323,
+        "shame": 0.9367941205759587,
+        "play": 0.4525288195695636,
+        "center": [
+          0.16216820704755644,
+          0.09742421590298105
+        ],
+        "scale": [
+          0.24085642076202052,
+          0.15643043431176915
+        ]
+      },
+      {
+        "fold": 1,
+        "train": 17991,
+        "test": 6859,
+        "shame": 0.9420193369089103,
+        "play": 0.4713327281288369,
+        "center": [
+          0.15685250493525252,
+          0.09930571599340335
+        ],
+        "scale": [
+          0.23692314257789157,
+          0.15837807596817316
+        ]
+      },
+      {
+        "fold": 2,
+        "train": 18904,
+        "test": 5946,
+        "shame": 0.9626043230825228,
+        "play": 0.43836416494722813,
+        "center": [
+          0.16353950369227754,
+          0.09572082372870212
+        ],
+        "scale": [
+          0.24257792384559487,
+          0.15544997459269008
+        ]
+      },
+      {
+        "fold": 3,
+        "train": 20508,
+        "test": 4342,
+        "shame": 0.9242602884711191,
+        "play": 0.47835198961890013,
+        "center": [
+          0.158345294589198,
+          0.09486094490869872
+        ],
+        "scale": [
+          0.23797279456932655,
+          0.15129001798325978
+        ]
+      },
+      {
+        "fold": 4,
+        "train": 21470,
+        "test": 3380,
+        "shame": 0.9421191225386462,
+        "play": 0.4605170383581688,
+        "center": [
+          0.16128032220906846,
+          0.09390859570282009
+        ],
+        "scale": [
+          0.23936689857513593,
+          0.1508306217128915
+        ]
+      }
+    ],
+    "marker_exposure": {
+      "embarrassed": {
+        "situations": 740,
+        "words_fun_appeasement": [
+          15448.0,
+          35.0,
+          13.0
+        ]
+      },
+      "ashamed": {
+        "situations": 628,
+        "words_fun_appeasement": [
+          12101.0,
+          9.0,
+          6.0
+        ]
+      }
+    },
+    "go": {
+      "embarrassment_n": 375,
+      "remorse_n": 669,
+      "amusement_with_embarrassment": 0.021333333333333333,
+      "amusement_with_remorse": 0.017937219730941704,
+      "difference": 0.003396113602391629,
+      "interval": [
+        -0.013749939840295143,
+        0.021127941098540555
+      ],
+      "passes": true,
+      "writers": 47315
+    }
+  },
+  "vectors": {
+    "go": {
+      "n": 54263,
+      "encoder": {
+        "source": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
+        "id": "sentence-transformers/all-MiniLM-L6-v2",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+        "license_as_read": "apache-2.0",
+        "research_only": false,
+        "files": {
+          "config.json": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+          "config_sentence_transformers.json": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+          "data_config.json": "32edcb108fc2516b920734a862ae0692bcae1c5d45d5f8d972cb0d53434a4c54",
+          "model.safetensors": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+          "modules.json": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+          "README.md": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+          "sentence_bert_config.json": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+          "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+          "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+          "tokenizer_config.json": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+          "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+          "1_Pooling/config.json": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23"
+        },
+        "at": "2026-11-15T10:14:13.259141+00:00",
+        "token_cap": 128,
+        "device": "cpu",
+        "threads": 2,
+        "versions": {
+          "torch": "2.9.1+cpu",
+          "transformers": "4.57.6",
+          "model2vec": "0.6.0",
+          "sentence-transformers": "5.1.2",
+          "numpy": "2.5.4"
+        }
+      }
+    },
+    "envent": {
+      "n": 6600,
+      "encoder": {
+        "source": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
+        "id": "sentence-transformers/all-MiniLM-L6-v2",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+        "license_as_read": "apache-2.0",
+        "research_only": false,
+        "files": {
+          "config.json": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+          "config_sentence_transformers.json": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+          "data_config.json": "32edcb108fc2516b920734a862ae0692bcae1c5d45d5f8d972cb0d53434a4c54",
+          "model.safetensors": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+          "modules.json": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+          "README.md": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+          "sentence_bert_config.json": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+          "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+          "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+          "tokenizer_config.json": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+          "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+          "1_Pooling/config.json": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23"
+        },
+        "at": "2026-11-15T10:14:13.259141+00:00",
+        "token_cap": 128,
+        "device": "cpu",
+        "threads": 2,
+        "versions": {
+          "torch": "2.9.1+cpu",
+          "transformers": "4.57.6",
+          "model2vec": "0.6.0",
+          "sentence-transformers": "5.1.2",
+          "numpy": "2.5.4"
+        }
+      }
+    },
+    "ed": {
+      "n": 24850,
+      "encoder": {
+        "source": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
+        "id": "sentence-transformers/all-MiniLM-L6-v2",
+        "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+        "license_as_read": "apache-2.0",
+        "research_only": false,
+        "files": {
+          "config.json": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+          "config_sentence_transformers.json": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+          "data_config.json": "32edcb108fc2516b920734a862ae0692bcae1c5d45d5f8d972cb0d53434a4c54",
+          "model.safetensors": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+          "modules.json": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+          "README.md": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+          "sentence_bert_config.json": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+          "special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+          "tokenizer.json": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+          "tokenizer_config.json": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+          "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+          "1_Pooling/config.json": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23"
+        },
+        "at": "2026-11-15T10:14:13.259141+00:00",
+        "token_cap": 128,
+        "device": "cpu",
+        "threads": 2,
+        "versions": {
+          "torch": "2.9.1+cpu",
+          "transformers": "4.57.6",
+          "model2vec": "0.6.0",
+          "sentence-transformers": "5.1.2",
+          "numpy": "2.5.4"
+        }
+      }
+    }
+  },
+  "verdict": {
+    "read1": true,
+    "read2": true,
+    "read3": false,
+    "read4": true,
+    "A_play_in_embarrassment": false,
+    "B_appeasement": false,
+    "combined": "Neither account is supported in text.",
+    "scope": "Label test (R23), not a channel test"
+  },
+  "artifactsPin": "326a11415b5b18d334a5c109a8f76b8be9577933db4765395d2c16894a7ba334",
+  "sourceReceiptPin": "2a6dc1ea5281fdc8333684eebdfc170d6b5ee21ae6f6ccf149e18a899caf5cf7",
+  "verdictAmendment": {
+    "schema": "TP29-owner-verdict-1",
+    "receivedAt": "2026-11-19",
+    "originalProtocolPin": "b0c071ecbd0a758a61657196a4956f0ce6ab3187b1a0edc02e2f989917d513d6",
+    "rulingPin": "33dacc0fb50aedf58af9090a23561e344efd3ad935100fcbebe1dbf773ea3f32",
+    "rule": "A=read1+read2+read3; B=appeasement-only; read4=reported-only",
+    "receiptPin": "a45ac382cd593ba8a8e194c81a245b68a82af1f8c0d94a4ece5f3141ecc344d4"
+  },
+  "originalRunnerVerdict": {
+    "read1": true,
+    "read2": true,
+    "read3": false,
+    "read4": true,
+    "curator_account": false,
+    "published_account": false
+  }
+}

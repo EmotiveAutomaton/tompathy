@@ -6,7 +6,21 @@
 
 **0.3 beta development · MIT licensed · Engine v1.** The Python engine in [engine/](engine/README.md) provides the decision ledger, source adapters, model/evaluation components, static registry generation and authenticated local companion. Scientific admissions remain separate from software checks: unadmitted modules do not supply maker estimates. The commissioned website demo remains hand-authored, fictional analysis.
 
-The [trigger-reader pass](docs/ENGINE_TRIGGER_READER_2026-11-22.md) adds opt-in
+The new [nine-channel commission](docs/ENGINE_NINE_CHANNEL_2026-11-19.md) is
+running at Gear 2. Its first export selects the completed frozen need reader
+under the existing development rule and preserves all 6,600 saved tag-score
+rows. IM2 is delivered privately. The stand-in table passes six of nine rows,
+while the separate joy-split prediction fails. The embarrassment/shame label test
+is complete: neither account clears its full registered rule. The reader-share
+profile study's frozen rung passes its transfer bar on six of seven channels,
+but fails its mix test and CARE noninferiority check. The full tables are filed.
+Spark access, all 57 owner-pinned packages and dependency checks are verified;
+encoder parity and bounded reader timing pilots are implemented and awaiting
+verified execution. [Source filing](docs/SOURCE_DOCUMENTS.md)
+and the [theory return](docs/exchange/THEORY_RETURN_NINE_CHANNEL.md) distinguish
+implemented, running and unrun work. No new serving or maker admission follows.
+
+The closed [trigger-reader pass](docs/ENGINE_TRIGGER_READER_2026-11-22.md) adds opt-in
 research plumbing. Its worry refit clears three known-group checks, but scores
 plain prose 5.95 of 9 on average; it is not a measure of the author.
 The completed EX5 choice test trails its rarity control; no personal-choice
@@ -15,7 +29,9 @@ The new plain-prose gate also misses its sensitivity/silence requirements;
 gated counting and new channel/trigger serving remain blocked.
 The frozen need-tag reader and all three fine-tuned seeds clear their story and
 transfer bars. Development scores select seed 47 among the fine-tuned readers;
-the optional larger-reader comparison is running before final selection/export.
+the owner closed this test commission on November 19. Four larger-reader folds
+are preserved; the fifth was stopped, and final comparison/export remains unrun.
+No research job or scheduled checkpoint remains active for this commission.
 This does not override the failed serving gate.
 
 The [November readers pass](docs/ENGINE_READERS_2026-11-17.md) adds a default-off

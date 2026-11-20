@@ -7,7 +7,7 @@ from pathlib import Path
 import numpy as np
 
 from ...packs.registry import sha256
-from ...packs.trigger import FEATURES, TAG_MAP, TAGS
+from ...packs.trigger import FEATURES, TAG_MAP, TAG_MAP_V2, TAGS
 from ...packs.v2 import code_pin, load_pack
 from ..back_half.reporting import save_json
 from .artifacts import model_identity, verified
@@ -51,12 +51,14 @@ def finish(root, manifest, evidence):
 
 def base(name, task, labels, encoder_spec, head_spec, training, key, score):
     return {'name': name, 'task': task, 'labels': list(labels), 'encoder': encoder_spec,
-            'head': head_spec, 'token_cap': 128, 'key': key, 'score': score,
+            'head': head_spec, 'token_cap': 128, 'key': key, 'score': {'interval': None, **score},
             'people': {}, 'floor': {}, 'nothing_here': {}, 'training': training,
             'mapping': {'status': 'proposed', 'source': 'November15 trigger reader packet; no maker inference'}}
 
 
-def need_pack(job, models, story, destination, check):
+def need_pack(job, models, story, destination, check, *, tag_map_version=1, ledger='no ledger row'):
+    if tag_map_version not in (1, 2):
+        raise ValueError('Unknown tag map version')
     job, models, story, destination = map(Path, (job, models, story, destination))
     card = json.loads((job/'receipt.json').read_text(encoding='utf8'))['card']
     receipt, _ = verified(job, card, check)
@@ -87,11 +89,14 @@ def need_pack(job, models, story, destination, check):
     m = base('rp-need-1', 'tags', TAGS, enc, linear, training,
              {'corpus': 'Story Commonsense', 'labelled_by': 'two-annotator majority, original story folds', 'n': receipt['source']['rows']},
              {'metric': 'mean story-held-out tag AUC', 'value': receipt['story']['mean_auc']})
-    m.update(thresholds=dict(zip(TAGS, receipt['story']['thresholds'])), tag_map=TAG_MAP)
+    m.update(thresholds=dict(zip(TAGS, receipt['story']['thresholds'])),
+             tag_map=TAG_MAP if tag_map_version == 1 else TAG_MAP_V2)
+    if tag_map_version == 2:
+        m['mapping'] = {'status': 'ruled', 'source': 'November19 R19-R21; tag-map-2; word proxies, no maker inference'}
     m['people'] = receipt['people']['per_tag_f1']
     return finish(destination, m, {'sourceReceiptPin': sha256(job/'receipt.json'), 'artifactsPin': receipt['artifactsPin'],
         'transfer': transfer, 'fullDataHeadIndependentlyScored': False, 'N5': 'computed; hidden in panel',
-        'unmapped': ['romance', 'indep']})
+        'unmapped': ['romance', 'indep'], 'tagMapVersion': tag_map_version, 'ledger': ledger})
 
 
 def gate_pack(job, models, story, destination, check, *, corpus, go):
@@ -209,6 +214,7 @@ def im2(job, pack, destination, check):
     save_json(destination/'manifest.json', {'schema': 'IM2-1', 'files': {'scores.csv': sha256(destination/'scores.csv')},
         'rows': 6600, 'tags': list(TAGS), 'reader': reader.pin, 'encoder': reader.manifest.encoder.sha256,
         'head': reader.manifest.head.sha256, 'sourceReceiptPin': sha256(job/'receipt.json'),
+        'ledger': evidence.get('ledger', 'no ledger row'), 'tagMapVersion': evidence.get('tagMapVersion', 1),
         'scope': 'Private owner-carried exchange; no raw text, writer IDs or cross-chat delivery; no maker admission'})
 
 
@@ -303,7 +309,8 @@ def select_need(jobs, check, preflight_decision=None):
 
 def run_export(kind, args, output, check):
     output = Path(output)
-    receipt = {'card': 'TRIGGER-export-'+kind, 'status': 'running', 'productionAdmission': False, 'ledger': 'no ledger row',
+    receipt = {'card': 'TRIGGER-export-'+kind, 'status': 'running', 'productionAdmission': False,
+               'ledger': getattr(args, 'ledger_row', None) or 'no ledger row',
                'scope': 'Private opt-in research export; no automatic live attachment or release', 'pack': None}
     save_json(output/'receipt.json', receipt)
     destination = output/('rp-'+{'worry': 'worry', 'need': 'need', 'gate': 'gate', 'label': 'label', 'trigger': 'trigger', 'counting': 'label'}[kind]+'-1')
@@ -316,7 +323,8 @@ def run_export(kind, args, output, check):
             receipt.update(status='blocked', reason='No selected need rung clears both unchanged bars')
             save_json(output/'receipt.json', receipt)
             return
-        pack = need_pack(chosen, args.models, args.rated_data, destination, check)
+        pack = need_pack(chosen, args.models, args.rated_data, destination, check,
+                         tag_map_version=getattr(args, 'tag_map_version', 1), ledger=receipt['ledger'])
         im2(chosen, destination, output/'IM2', check)
         receipt['IM2ManifestPin'] = sha256(output/'IM2/manifest.json')
     elif kind == 'gate':

@@ -1,0 +1,13 @@
+{
+  "schema": "TP29-owner-verdict-1",
+  "receivedAt": "2026-11-19",
+  "recordedAt": "2026-11-19T18:40:53.549669+00:00",
+  "originalProtocolPin": "b0c071ecbd0a758a61657196a4956f0ce6ab3187b1a0edc02e2f989917d513d6",
+  "rulingPin": "33dacc0fb50aedf58af9090a23561e344efd3ad935100fcbebe1dbf773ea3f32",
+  "rule": "A=read1+read2+read3; B=appeasement-only; read4=reported-only",
+  "originalPacketPin": "563b377ec16ee0ecb679b19b850723c435c68b01209a1292b34f998b66d8d314",
+  "amendedPacketPin": "2083f70545c05d50460c5d80d34405aa7d7f0103a5b747ec75215941acd98165",
+  "runningSnapshotChanged": false,
+  "measurementsRerun": false,
+  "ledger": "E-TP29-VERDICT-RULING-20261119"
+}

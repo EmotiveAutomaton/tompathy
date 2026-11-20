@@ -12,6 +12,8 @@ TAGS = ('contact', 'order', 'status', 'family', 'approval', 'curiosity', 'tranqu
 TAG_MAP = {'curiosity': 'N1', 'order': 'N2', 'savings': 'N2', 'tranquility': 'N2', 'serenity': 'N2',
                'belonging': 'N3', 'family': 'N3', 'contact': 'N3', 'status': 'N4', 'approval': 'N4',
                'power': 'N4', 'competition': 'N4', 'honor': 'N4', 'idealism': 'N5', 'food': 'N6', 'rest': 'N6', 'health': 'N6'}
+# November 19 owner ruling; version 1 remains available to pinned old studies.
+TAG_MAP_V2 = {**TAG_MAP, 'tranquility': 'N6'}
 # Fixed before TP24: a conservative finite-predicate rule, not a learned parser.
 # First main clause only; later embedded/modal words do not override its tense.
 AHEAD = r"\b(will|shall|would|could|might|may)\b|\b(?:about|going) to\b|\bafraid that\b"

@@ -61,6 +61,15 @@ OUTPUTS['TP24']='readers-trigger-slots-2026-11.json'
 FIELDS['TP27']={'card','status','productionAdmission','ledger','scope','sourceReceiptPin','tablesPin','protocol','row',
     'reader','residual','versus_combined','artifactsPin','baselineForecastPin'}
 OUTPUTS['TP27']='readers-pause-remainder-diagnostic-2026-11.json'
+FIELDS['TP28']={'card','status','productionAdmission','ledger','scope','reader','protocol','sources',
+               'rows','filled','newChannelRowsFilled','tablePassed','artifactsPin'}
+OUTPUTS['TP28']='readers-stand-in-table-2026-11.json'
+FIELDS['TP29']={'card','status','productionAdmission','ledger','scope','protocolPin','protocol',
+               'sources','vectors','rows','verdict','artifactsPin'}
+OUTPUTS['TP29']='readers-embarrassment-shame-2026-11.json'
+FIELDS['TP30-frozen']={'card','status','productionAdmission','ledger','scope','protocolPin','protocol',
+                     'sources','vectors','vectorSourceReceiptPin','map','intake','rows','artifactsPin'}
+OUTPUTS['TP30-frozen']='readers-profile-frozen-2026-11.json'
 FIELDS['TS3-real']={'card','status','productionAdmission','ledger','scope','sources','packs','rows','defaultOffParity','browser','artifactsPin'}
 OUTPUTS['TS3-real']='readers-trigger-wire-2026-11.json'
 for rung in ('bow','frozen','fine-23','fine-47','fine-71','base'):
@@ -74,7 +83,7 @@ for kind in ('worry','need','gate','label','trigger','counting'):
     FIELDS[card]={'card','status','productionAdmission','ledger','scope','pack','reason','selection','IM2ManifestPin'}
 
 
-def land(job, destination):
+def land(job, destination, *, tp29_ruling=None):
     job, destination = Path(job), Path(destination)
     verified = json.loads((job/'exit-verification.json').read_text(encoding='utf8'))
     if not all(verified.get(k) for k in ('nativeExited', 'releaseMatches', 'sharedLeaseAbsent', 'localLeaseAbsent')):
@@ -99,6 +108,28 @@ def land(job, destination):
     if 'sourceReceiptPin' in value:
         public['upstreamSourceReceiptPin'] = value['sourceReceiptPin']
     public['sourceReceiptPin'] = sha256(source)
+    if card == 'TP29':
+        if tp29_ruling is None:
+            raise ValueError('TP29 requires the source-bound owner verdict ruling')
+        ruling = json.loads(Path(tp29_ruling).read_text(encoding='utf8'))
+        ruling_text = Path(__file__).resolve().parents[4]/'docs/TP29_OWNER_RULING_2026-11-19.md'
+        if (ruling.get('schema') != 'TP29-owner-verdict-1'
+                or ruling.get('originalProtocolPin') != value['protocolPin']
+                or ruling.get('rulingPin') != sha256(ruling_text)
+                or ruling.get('rule') != 'A=read1+read2+read3; B=appeasement-only; read4=reported-only'):
+            raise ValueError('TP29 owner ruling binding differs')
+        public['verdictAmendment'] = {key: ruling[key] for key in
+            ('schema','receivedAt','originalProtocolPin','rulingPin','rule')}
+        public['verdictAmendment']['receiptPin'] = sha256(tp29_ruling)
+        public['originalRunnerVerdict'] = public.get('verdict')
+        rows = value.get('rows', {})
+        if all(key in rows for key in ('ed', 'coefficients', 'go')):
+            from .tp29 import conclusions
+            public['verdict'] = conclusions(rows['ed'], rows['coefficients'], rows['go'])
+        else:
+            public['verdict'] = None
+    elif tp29_ruling is not None:
+        raise ValueError('TP29 ruling cannot modify another card')
     if value['status']=='running':
         public.update(status='partial',sourceStatus='running',
                       terminalOutcome='failed' if (job/'failed.json').exists() else 'incomplete-source')

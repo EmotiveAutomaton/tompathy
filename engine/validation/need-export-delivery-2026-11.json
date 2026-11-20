@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-19T18:19:44.469694+00:00",
+  "schema": "IM2-delivery-1",
+  "ledger": "E-C0-DELIVERY-20261119",
+  "exportLedger": "E-C0-20261119",
+  "sourceProject": "ToMpathy",
+  "destination": "SoundingLine/docs/exchange/IM2-20261119",
+  "files": {
+    "manifest.json": "86a91a96cd34743cc6d70638e29cbb4c6be950933e5dd7fd77d232508a8d4ebe",
+    "scores.csv": "dfebb06853cff8a49b86457d9682d1bd0a640557c5e6593882bd88f88d72d2c3"
+  },
+  "rows": 6600,
+  "tags": 19,
+  "reader": "rp-need-1@3195a406e777a664845b18e3d647b38f09f232430e0509330ffc2cd2ac49bccf",
+  "status": "copied and hash verified",
+  "gitIgnoredPerTextFiles": true,
+  "receiverAcceptance": "not yet recorded",
+  "scientificAdmission": false,
+  "scope": "Exact existing forecasts; no new inference. Delivery is not IN13 execution or admission."
+}
