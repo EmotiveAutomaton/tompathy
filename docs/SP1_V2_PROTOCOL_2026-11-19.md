@@ -61,3 +61,9 @@ own original v2 deadline. Failed scientific gates are never rerun.
 The reader-B setup retains all existing model IDs and refuses to refresh an
 already installed candidate. A catalog download is not runtime fit or a panel
 result; those require its own fixed v2 pilot and repeat pass.
+
+The local cross-reader comparison uses only common valid first-pass rows and
+reports the saved comparator on those same rows. An exact mean-score tie selects
+A. Undefined feature correlations leave selection unavailable. The selected
+reader retains its completed standalone qualification; an unqualified winner
+is not silently replaced by the other reader. Comparison does not pool targets.

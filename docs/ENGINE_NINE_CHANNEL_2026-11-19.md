@@ -350,3 +350,46 @@ thermal/STOP/deadline guards; interruption cancels only its own HTTP client,
 retaining any partial download. The script issues no generation during pull and
 never removes a foreign model. Three new constructed tests cover a successful
 pin, existing-tag refusal and foreign-ID change detection. No B pull has run.
+
+SP1-v2 reader A completed its corrected pilot at 18:57:51 Pacific November 19.
+Exact native exit and GPU-lock release were verified at 22:21:16; all 510 copied
+files (502 indexed artifacts) and all 500 ordered raw/parsed responses match.
+Every response is valid. Requests total 1,076.693890 seconds, or 215.338778 per
+100, including loading; temperatures were 29–70 C without throttling. The
+observed resident allocation was 5,606,337,412 bytes. Ledger
+E-SP1-V2-READER-A-PILOT-20261119 binds source
+`bb738c37a3c71a2f5417638f06ceb6af3f21dddb97cbf9501360b393716e4c24`.
+This is a timing/validity pilot, not a qualified panel or teacher. Its own first
+300 corrected responses are retained exactly for the panel; no v1 output is reused.
+The measured pilot projects 646.02 seconds for the second 300 calls, so that
+new registered stage has a one-hour bound. No inference was repeated in landing.
+
+The corrected repeat pass started at 22:23:16 Pacific November 19 under the
+same committed script/model/prompt. Exact native identity and GPU-lock ownership
+were verified at 22:23:49; 13/300 new responses were saved and valid, at 43 C
+without throttling. Only its second pass executes. Deadline: 23:23:16 Pacific.
+
+TP31's separate pre-output protocol and teacher measurement helpers are now
+implemented. They enforce the exact Boolean/whose/when contract, protected-item
+hash exclusions before selection, a fixed source-balanced 2,000-sentence panel,
+Cohen's kappa and known-group rate bounds that retain invalid-response uncertainty.
+Six constructed cases and Ruff pass, including planted kappa, protected aliases,
+row-order-invariant selection, invalid coverage and all-prerequisite gating.
+These are software checks only. Original-source intake, guarded teacher execution,
+student fitting and acceptance remain unrun; no TP31 gate or pack is qualified.
+See `docs/TP31_PROTOCOL_2026-11-19.md`. The existing Spark snapshot is untouched.
+
+TP31's source-fold fitting helpers additionally enforce group-disjoint inner
+development, exact normalized-text overlap removal, both held-source detection
+and silence bars, and the original 40/191 acceptance cardinalities. Five focused
+constructed tests pass, including a mocked full source fold that proves held
+rows never reach fitting. Eleven TP31 helper cases now pass in total; Ruff passes.
+These helpers are not a runnable source-bound study yet. The source intake,
+teacher batch runner, target provenance wrapper and final export remain pending;
+no TP31 inference, fitting on research data, or scientific gate has run.
+
+The local SP1 cross-reader comparison helper is also built: common valid first-pass
+rows, per-feature/mean correlations and the same-row comparator are retained;
+an exact tie selects A. Undefined columns leave selection unavailable, and a
+higher-scoring failed reader is not replaced after looking at its gates. Three
+constructed cases and Ruff pass. No B output or two-reader comparison exists yet.

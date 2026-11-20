@@ -1,0 +1,53 @@
+{
+  "card": "SP1-v2-reader-a-pilot",
+  "payloadPin": "632745f3fd68ca4e605013c037e3ef099c0c6b70ff740db0b2d88eace1da7bbd",
+  "productionAdmission": false,
+  "protocol": {
+    "context": 4096,
+    "features": [
+      "pleasantness",
+      "unpleasantness",
+      "self_responsblt",
+      "goal_support",
+      "social_norms",
+      "other_responsblt",
+      "standards",
+      "suddenness"
+    ],
+    "numericalThreads": 3,
+    "outputTokens": 256,
+    "promptPin": "fdf28ccfbc3f3d047e25e10d3aea79e1afba8b69bd08e2d772c562a7dcdb7114",
+    "seed": 23,
+    "telemetryThreads": 1,
+    "temperature": 0,
+    "thermalStopC": 90,
+    "thinking": false,
+    "version": 2
+  },
+  "row": {
+    "includesRequestLoading": true,
+    "kind": "reader-pilot",
+    "model": {
+      "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+      "name": "qwen3.5:9b",
+      "size": 6550825550
+    },
+    "panelCompleted": false,
+    "seconds": 1076.6938896500214,
+    "secondsPer100": 215.33877793000428,
+    "texts": 500,
+    "valid": 500
+  },
+  "schema": "SP1-aggregate-1",
+  "scope": "Open Crowd-enVENT held-out reports. Numerical parity or timing only; no teacher, serving or maker admission.",
+  "scriptPin": "c39e13f6d77dcfd3250de18234bdf490391979347f77e534d1cc69e6e1d3eb26",
+  "sourceArtifactManifestPin": "bee30acbcbf8470ddcc2021709e0cc705e6b1260d485a51de29c9e60e87d3713",
+  "sourceCommit": "75d28ea92b1365dafc66e17c2cec5b7e9086e807",
+  "sourceReceiptPin": "bb738c37a3c71a2f5417638f06ceb6af3f21dddb97cbf9501360b393716e4c24",
+  "status": "complete",
+  "versions": {
+    "numpy": "2.5.5",
+    "torch": "2.14.1+cu130",
+    "transformers": "5.14.1"
+  }
+}
