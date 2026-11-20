@@ -12,6 +12,7 @@ import urllib.request
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
+OPEN_ROOT = Path('/home/agent/tompathy-open')
 FEATURES = ('pleasantness', 'unpleasantness', 'self_responsblt', 'goal_support',
             'social_norms', 'other_responsblt', 'standards', 'suddenness')
 DEFINITIONS = ('how pleasant it felt', 'how unpleasant it felt', 'how responsible the writer was',
@@ -212,7 +213,80 @@ def read_model(name, digest_expected):
     return match[0]
 
 
-def reader_pilot(payload, output, guard, manifest, items, model, pin):
+def panel_statistics(first, second, truth, baseline):
+    import numpy as np
+    from scipy.stats import spearmanr
+    if len(first) != 300 or len(second) != 300:
+        raise ValueError('Two fixed 300-report passes required')
+    valid_first = np.array([r is not None for r in first])
+    valid_second = np.array([r is not None for r in second])
+    truth, baseline = np.asarray(truth), np.asarray(baseline)
+    if truth.shape != (300,8) or baseline.shape != (300,8) or not np.isfinite(truth).all() or not np.isfinite(baseline).all():
+        raise ValueError('Exact finite writer/comparator tables required')
+    predicted = np.asarray([r if r is not None else [float('nan')]*8 for r in first])
+    def correlations(values):
+        rows=[]
+        for k in range(8):
+            x,y=values[valid_first,k],truth[valid_first,k]
+            rows.append(float(spearmanr(x,y).statistic) if len(x)>=3 and len(set(x))>1 and len(set(y))>1 else None)
+        return rows
+    scores,control=correlations(predicted),correlations(baseline)
+    mean=float(np.mean(scores)) if all(r is not None for r in scores) else None
+    comparator=float(np.mean(control)) if all(r is not None for r in control) else None
+    identical=sum(a is not None and b is not None and a==b for a,b in zip(first,second))
+    valid=int(valid_first.sum()+valid_second.sum())
+    return {'n':300,'validFirstPass':int(valid_first.sum()),'validSecondPass':int(valid_second.sum()),
+            'featureSpearman':scores,'baselineSpearmanSameRows':control,'meanSpearman':mean,
+            'baselineMeanSameRows':comparator,'identicalPairs':identical,'repeatability':identical/300,
+            'structuredValidity':valid/600,'correlationPass':mean is not None and comparator is not None and mean>=comparator,
+            'repeatabilityPass':identical/300>=.99,'validityPass':valid/600>=.995}
+
+
+def retained_pilot(source, payload, items, model, pin):
+    source=source.resolve()
+    if not source.is_relative_to((OPEN_ROOT/'jobs').resolve()):
+        raise ValueError('Owned pilot path required')
+    receipt=json.loads((source/'receipt.json').read_text())
+    owner=receipt['owner']
+    proc=Path('/proc')/str(owner['pid'])
+    if proc.exists() and (proc/'stat').read_text().split(') ')[1].split()[19]==owner['startTicks'] and Path('/proc/sys/kernel/random/boot_id').read_text().strip()==owner['bootId']:
+        raise ValueError('Pilot still running')
+    released=json.loads((source/'released.json').read_text())
+    if released.get('owner')!=owner or not released.get('lockReleased'):
+        raise ValueError('Exact pilot release required')
+    if (receipt['status']!='complete' or receipt['row']['kind']!='reader-pilot' or
+            receipt['row']['texts']!=500 or receipt['row']['model']['name']!=model or receipt['row']['model']['digest']!=pin or
+            receipt['payloadPin']!=digest(payload/'payload.json') or
+            json.loads((source/'complete.json').read_text())['receiptPin']!=digest(source/'receipt.json')):
+        raise ValueError('Exact completed pilot source required')
+    expected={'promptPin':hashlib.sha256(PROMPT.encode()).hexdigest(),'features':list(FEATURES),
+              'temperature':0,'seed':23,'context':4096,'outputTokens':256,'thinking':False}
+    if any(receipt['protocol'].get(k)!=v for k,v in expected.items()):
+        raise ValueError('Pilot prompt/options changed')
+    if digest(source/'artifacts.json')!=receipt['artifactsPin']:
+        raise ValueError('Pilot manifest changed')
+    artifacts=json.loads((source/'artifacts.json').read_text())['files']
+    for name,expected_pin in artifacts.items():
+        path=(source/name).resolve()
+        if not path.is_relative_to(source) or digest(path)!=expected_pin:
+            raise ValueError('Pilot artifact changed')
+    rows=[]
+    for i,item in enumerate(items):
+        name=f'row-{i:04d}.json'
+        if name not in artifacts:
+            raise ValueError('Missing saved pilot row')
+        row=json.loads((source/name).read_text())
+        if row['index']!=i or row['id']!=item['id'] or row['modelPin']!=pin:
+            raise ValueError('Ordered pilot row changed')
+        rows.append(row['values'])
+    return receipt,rows[:300]
+
+
+def reader_pilot(payload, output, guard, manifest, items, model, pin, *, pilot=None):
+    previous,first = retained_pilot(pilot,payload,items,model,pin) if pilot is not None else (None,None)
+    kind='reader-repeat' if pilot is not None else 'reader-pilot'
+    if pilot is not None:
+        items=items[:300]
     if any(len((PROMPT+item['text']).encode('utf8')) > 4096-768 for item in items):
         raise ValueError('Input exceeds conservative byte-token budget; no silent context truncation')
     model_row = read_model(model, pin)
@@ -223,7 +297,7 @@ def reader_pilot(payload, output, guard, manifest, items, model, pin):
     model_show = api('show', {'model':model})
     write(output/'model.json', {'tag':model_row,'show':model_show})
     # Retain every original response. Invalid structured outputs are results, not retries.
-    durations, valid, owned_load = [], 0, False
+    durations, valid, owned_load, saved = [], 0, False, []
     start = time.perf_counter()
     try:
         for i,item in enumerate(items):
@@ -240,6 +314,7 @@ def reader_pilot(payload, output, guard, manifest, items, model, pin):
             except (ValueError, TypeError):
                 values = None
             valid += int(values is not None)
+            saved.append(values)
             durations.append(elapsed)
             write(output/f'row-{i:04d}.json', {'index':i,'id':item['id'],'modelPin':pin,
                 'values':values,'response':result,'seconds':elapsed})
@@ -250,7 +325,7 @@ def reader_pilot(payload, output, guard, manifest, items, model, pin):
             if (len(resident) != 1 or resident[0]['digest'] != pin or
                     resident[0].get('size_vram',float('inf')) > 64*1024**3):
                 raise RuntimeError('Reader did not fit alone inside the 64 GiB GPU budget')
-            write(output/'progress.json', {'phase':'reader-pilot','completed':i+1,'total':500,
+            write(output/'progress.json', {'phase':kind,'completed':i+1,'total':len(items),
                 'valid':valid,'seconds':time.perf_counter()-start,'lastSeconds':elapsed})
         read_model(model,pin)
     finally:
@@ -258,14 +333,23 @@ def reader_pilot(payload, output, guard, manifest, items, model, pin):
         if owned_load:
             read_model(model,pin)
             api('generate', {'model':model,'keep_alive':0}, timeout=120)
-    return {'kind':'reader-pilot','model':model_row,'texts':500,'valid':valid,
-            'seconds':sum(durations),'secondsPer100':sum(durations)/5,'includesRequestLoading':True,
+    if pilot is not None:
+        import numpy as np
+        reference=np.load(payload/'reference.npz',allow_pickle=False)
+        panel=panel_statistics(first,saved,reference['feature_truth'][:300],reference['feature_baseline'][:300])
+        return {'kind':kind,'model':model_row,'texts':300,'valid':valid,'seconds':sum(durations),
+                'secondsPer100':sum(durations)/3,'includesRequestLoading':True,'panelCompleted':True,
+                'panel':panel,'readerQualified':all(panel[k] for k in ('correlationPass','repeatabilityPass','validityPass')),
+                'pilotReceiptPin':digest(pilot/'receipt.json'),'pilotArtifactManifestPin':previous['artifactsPin'],
+                'firstPassReused':True}
+    return {'kind':kind,'model':model_row,'texts':len(items),'valid':valid,
+            'seconds':sum(durations),'secondsPer100':sum(durations)/(len(items)/100),'includesRequestLoading':True,
             'panelCompleted':False,'next':'Review timing and size the registered repeat-panel job; preserve first 300 responses.'}
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--kind',choices=['parity','reader-pilot'],required=True)
+    parser.add_argument('--kind',choices=['parity','reader-pilot','reader-repeat'],required=True)
     parser.add_argument('--payload',type=Path,required=True)
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--commit',required=True)
@@ -273,7 +357,10 @@ def main():
     parser.add_argument('--hours',type=float,default=8)
     parser.add_argument('--model')
     parser.add_argument('--model-pin')
+    parser.add_argument('--pilot',type=Path)
     args = parser.parse_args()
+    if (args.kind=='reader-repeat') != (args.pilot is not None):
+        raise ValueError('Only a repeat pass takes a completed pilot source')
     root = Path('/home/agent/tompathy-open/jobs').resolve()
     if (os.name != 'posix' or not args.output.resolve().is_relative_to(root) or
             not args.payload.resolve().is_relative_to(Path('/home/agent/tompathy-open')) or
@@ -314,7 +401,7 @@ def main():
                 raise RuntimeError('GPU resident model found; leave it unchanged')
             with Guard(args.output,args.hours,deadline=deadline) as guard:
                 row = (parity(args.payload,args.output,guard,manifest,items) if args.kind == 'parity' else
-                       reader_pilot(args.payload,args.output,guard,manifest,items,args.model,args.model_pin))
+                       reader_pilot(args.payload,args.output,guard,manifest,items,args.model,args.model_pin,pilot=args.pilot))
                 guard.check()
             guard.check()
             artifacts = {p.relative_to(args.output).as_posix():digest(p) for p in args.output.rglob('*')

@@ -5,8 +5,8 @@ import { authorNeedSources, bodyChannels, needs, pageNeedActivity, workNeedSourc
 import type { ValuesTab } from "./ValueTabs";
 
 export const needDescriptions: Record<NeedDetailId, string> = {
-  N1: "Knowledge concerns having a useful understanding of the situation and the possibilities within it.",
-  N2: "Nest concerns a workable, dependable surrounding in which to act and return.",
+  N1: "Competence concerns confidence in one's understanding of the situation and in one's plans.",
+  N2: "Meaning names the theory's end output: what is not traded away by choice.",
   N3: "Belonging concerns connection and a place among others.",
   N4: "Visibly respectable concerns being seen as someone worthy of respect.",
   N5: "Visibly compassionate concerns being seen as responsive to the needs of others.",

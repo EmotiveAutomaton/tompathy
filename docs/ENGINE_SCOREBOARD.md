@@ -24,7 +24,13 @@ SEEKING; mix correlation .116335 misses .20 and pair comparisons fail. CARE's
 -.013408 AUC difference fails test 4. Exact vector reuse and all 72 artifacts are
 verified. E-TP30-FROZEN-20261119 binds source
 `d04658e1c84ef10e0c95847947359b24da91b3fa22da2d70c3e250`.
-Other new studies remain unrun.
+SP1's numerical transport check passes on 200 reports: maximum CPU/reference
+.000002885886, GPU/reference .000001912028, CPU/GPU .000003287279, all below .0001.
+Its 500-report CPU/GPU timings are 4.080662/.751318 seconds excluding loading.
+This is a method check, not teacher accuracy. E-SP1-PARITY-20261119 binds the
+[aggregate](../engine/validation/readers-spark-parity-2026-11.json), source
+`89c9e28bd9184c75a913ead19483719907fb2d180b54e1c033a37c4e437716cc`.
+The reader-A timing pilot is running; panel qualification and other studies remain unrun.
 Old failed gates and the incomplete MPNet rung remain unchanged.
 
 The owner closed the earlier trigger-reader commission on November 19. All 27 landed

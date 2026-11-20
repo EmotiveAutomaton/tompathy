@@ -41,7 +41,7 @@ try {
   receipt.vectorEndpoints = vectorOpacity.endpoints.length;
   await panel.getByTestId('needs-landscape').screenshot({ path: 'evidence/readers-v2-fluency-hover.png' });
   await panel.locator('.need-target').first().click();
-  await expect(panel.getByRole('heading', { name: 'Knowledge', exact: true })).toBeVisible();
+  await expect(panel.getByRole('heading', { name: 'Competence', exact: true })).toBeVisible();
   await expect(panel.locator('.need-details')).toContainText('notional illustration');
   await panel.screenshot({ path: 'evidence/readers-v2-need-detail.png' });
   await panel.keyboard.press('Escape');

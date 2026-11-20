@@ -40,8 +40,10 @@ Pilot timing includes request loading and is reported as such. The first 300
 responses are the panel's first pass, not repeated to manufacture a fresh sample.
 The second 300-report pass is separately sized from pilot timing before launch.
 
-Panel mean Spearman correlation is calculated over valid paired rows, with
-the saved readable-feature comparator scored on precisely those same rows.
+Panel mean Spearman correlation pairs valid first-pass predictions with the
+writers' ratings, with the saved readable-feature comparator scored on precisely
+those same rows. Second-pass validity enters repeatability/structured validity;
+it does not select the rows for first-pass correlation.
 Report missing/constant columns. Repeatability means identical canonical eight
 integer values for >=99% of the 300 pairs; invalid pairs are not identical.
 Structured validity must be >=99.5% across all 600 panel calls. Compare readers'

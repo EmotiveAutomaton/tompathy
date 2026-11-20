@@ -14,9 +14,11 @@ while the separate joy-split prediction fails. The embarrassment/shame label tes
 is complete: neither account clears its full registered rule. The reader-share
 profile study's frozen rung passes its transfer bar on six of seven channels,
 but fails its mix test and CARE noninferiority check. The full tables are filed.
-Spark access, all 57 owner-pinned packages and dependency checks are verified;
-encoder parity and bounded reader timing pilots are implemented and awaiting
-verified execution. [Source filing](docs/SOURCE_DOCUMENTS.md)
+Spark's encoder parity check passed and its 500-report CPU/GPU timing is filed.
+The fixed 9B reader pilot is running under the shared GPU lock and thermal guard;
+the repeat-panel continuation is built but has not run. Competence and Meaning
+are wired through the engine and panel and verified in native Chrome.
+[Source filing](docs/SOURCE_DOCUMENTS.md)
 and the [theory return](docs/exchange/THEORY_RETURN_NINE_CHANNEL.md) distinguish
 implemented, running and unrun work. No new serving or maker admission follows.
 

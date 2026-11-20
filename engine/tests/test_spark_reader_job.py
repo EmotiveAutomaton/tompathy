@@ -76,3 +76,44 @@ def test_reader_guard_cancels_only_its_own_client(monkeypatch):
     with pytest.raises(RuntimeError,match='thermal'):
         job.guarded_generate({},Stop())
     assert process.terminated
+
+
+def test_repeat_panel_keeps_invalid_pairs_and_constant_columns_visible():
+    rows=[[1+i%5]*8 for i in range(300)]
+    good=job.panel_statistics(rows,rows,rows,rows)
+    assert good['correlationPass'] and good['repeatabilityPass'] and good['validityPass']
+    broken=rows.copy()
+    broken[:4]=[None]*4
+    partial=job.panel_statistics(rows,broken,rows,rows)
+    assert partial['identicalPairs']==296 and not partial['repeatabilityPass'] and not partial['validityPass']
+    constant=job.panel_statistics([[3]*8]*300,[[3]*8]*300,rows,rows)
+    assert constant['meanSpearman'] is None and not constant['correlationPass']
+
+
+def test_repeat_source_reuses_exact_order_and_rejects_changes(tmp_path,monkeypatch):
+    monkeypatch.setattr(job,'OPEN_ROOT',tmp_path)
+    source=tmp_path/'jobs'/'pilot'
+    source.mkdir(parents=True)
+    payload=tmp_path/'input'
+    payload.mkdir()
+    job.write(payload/'payload.json',{'constructed':True})
+    items=[{'id':str(i)} for i in range(500)]
+    files={}
+    for i,item in enumerate(items):
+        name=f'row-{i:04d}.json'
+        job.write(source/name,{'index':i,'id':item['id'],'modelPin':'pin','values':[1+i%5]*8})
+        files[name]=job.digest(source/name)
+    job.write(source/'artifacts.json',{'files':files})
+    owner={'pid':999999999,'startTicks':'0','bootId':'fixture'}
+    receipt={'owner':owner,'status':'complete','row':{'kind':'reader-pilot','texts':500,'model':{'name':'fixed','digest':'pin'}},
+             'payloadPin':job.digest(payload/'payload.json'),'artifactsPin':job.digest(source/'artifacts.json'),
+             'protocol':{'promptPin':job.hashlib.sha256(job.PROMPT.encode()).hexdigest(),'features':list(job.FEATURES),
+                         'temperature':0,'seed':23,'context':4096,'outputTokens':256,'thinking':False}}
+    job.write(source/'receipt.json',receipt)
+    job.write(source/'complete.json',{'receiptPin':job.digest(source/'receipt.json')})
+    job.write(source/'released.json',{'owner':owner,'lockReleased':True})
+    _,rows=job.retained_pilot(source,payload,items,'fixed','pin')
+    assert rows==[[1+i%5]*8 for i in range(300)]
+    (source/'row-0000.json').write_text('changed')
+    with pytest.raises(ValueError,match='artifact changed'):
+        job.retained_pilot(source,payload,items,'fixed','pin')

@@ -36,8 +36,8 @@ The source-bound aggregate and E-TP29-20261119 preserve all readings and the
 owner's ruling. This is a label test, not a channel test or proof of absence.
 No fitting, inference or bootstrap was repeated during landing. The pre-lease
 launch failure remains preserved. Spark's dedicated environment matches all 57
-owner-pinned versions and passes dependency checks; no model job has run.
-Research scripts must be committed before Spark execution. One four-hour
+owner-pinned versions and passes dependency checks. Research scripts are
+committed before Spark execution. One four-hour
 checkpoint is scheduled; no completion-event hook is available/configured.
 TP30's frozen rung started at 14:29:26 Pacific November 19 with its exact native
 identity, shared/local leases and all 194 frozen files verified. The eight-hour
@@ -49,7 +49,7 @@ and all 211,225 Go / 6,000 Crowd rater identities passed prerequisite checks.
 Single-rater Go comments remain in fitting and label tests; disagreement is
 undefined for them. This intake correction preceded inference. Eight constructed
 TP30 checks and Ruff pass, including objective gradients, source separation,
-byte-bound vector reuse and the mocked durable full flow. No TP30 result yet.
+byte-bound vector reuse and the mocked durable full flow.
 TP30 subsequently completed at 14:32:47 Pacific. At the owner's 16:40 continuation,
 native exit and exact releases were verified. All 72 artifacts, 194 frozen files,
 ordered forecasts and 85,713 reused vectors match. Test 1 passes 6/7 (SEEKING
@@ -57,11 +57,25 @@ included). Profile spread versus rater disagreement is .116335, below .20, and
 the nominated-pair clause fails. CARE loses .013408 AUC to the single-label
 control, so test 4 fails. The source-bound aggregate and E-TP30-FROZEN-20261119
 retain full per-source and 9-by-9 co-rise tables. No training/inference was repeated.
-The Spark parity/pilot implementation has six targeted tests and Ruff passing.
-Its fixed 500 open reports include the original 200 parity and 300 panel subsets;
-saved-feature panel baseline mean rank correlation is .585755. Spark results are
-still pending verified execution. TP31 and other remaining runners are still
-implementation work, not results.
+SP1 parity completed at 17:06:52 Pacific from committed runner `ef1ec7b`.
+Exact remote native exit/GPU-lock release and all 65 copied artifacts are verified.
+The largest CPU/GPU gap is .000003287279, below .0001; CPU/reference and
+GPU/reference gaps also pass. The 500-report timing is 4.080662 seconds CPU and
+.751318 seconds GPU, excluding loading. E-SP1-PARITY-20261119 binds the aggregate.
+The fixed reader-A pilot began at 17:08:07 with a four-hour bound and exact
+native/lock ownership verified. At 17:12:48 it had saved 126/500 responses, all
+valid; temperature was 57 C without thermal throttling. Its panel score and
+repeatability are unmeasured. The repeat-panel continuation is implemented,
+preserves the pilot's first 300 responses and requires the same model/input/
+prompt pins. Twelve targeted Spark job/reporting checks and Ruff pass. The
+saved-feature baseline on all 300 reports is .585755. TP31 and other remaining
+runners are implementation work, not results.
+
+R19's Competence/Meaning names are applied in the engine and panel, with need IDs
+unchanged. Build and engine/frontend vocabulary agreement pass; both details,
+keyboard opening and Escape are visually verified in native Chrome 157.0.8103.79,
+build `bf5643405d6e`. Evidence: `evidence/r19-*-20261119.*`. The disposable browser
+was closed; prior authored text, assets and frozen snapshots are preserved.
 
 The owner's subsequent [TP29 ruling](docs/TP29_OWNER_RULING_2026-11-19.md)
 makes A (readings 1–3) and B (appeasement contrast) independent; reading 4 enters

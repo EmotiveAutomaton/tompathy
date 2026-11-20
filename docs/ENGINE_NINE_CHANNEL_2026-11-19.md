@@ -148,8 +148,8 @@ slowdown; foreign resident models are left unchanged. The exact C0 head/encoder,
 workstation inference occurred. The first 300 reports' saved-feature mean rank
 correlation is .585755101. Reader A retains its installed full ID; the candidate
 B is the largest catalog-listed parameter count below 64 GB, the 35b default,
-subject to actual loading/fit verification. Spark execution remains pending at
-this build checkpoint; software tests are not results.
+subject to actual loading/fit verification. The original implementation-only
+checkpoint is superseded by the verified execution below.
 
 ## Implementation order
 
@@ -237,3 +237,36 @@ automation. Scheduling is not delivery. Healthy/unchanged state stays quiet;
 notify meaningful results, failure or an owner decision. Read the new private
 continuation before each action. Remove the monitor when this queue is terminal
 or no authorized actionable work remains; do not restart older commissions.
+
+## November 19 Spark execution and R19 display names
+
+The exact committed runner `ef1ec7baee01a8bcd425ad35c8cf4ab924397f38` completed
+SP1 parity at 17:06:52 Pacific. All 57 pinned packages were checked by the job.
+Native exit, the exact release and the free shared GPU lock were independently
+verified; all 65 copied artifacts and 1,000 saved prediction rows match. The
+maximum CPU/reference, GPU/reference and CPU/GPU probability gaps are
+.000002885886, .000001912028 and .000003287279, below .0001. The fixed 500-report
+pilots take 4.080662 seconds CPU and .751318 GPU, excluding loading. Recorded
+thermal samples were 29–30 C without throttling. The aggregate is bound to source
+`89c9e28bd9184c75a913ead19483719907fb2d180b54e1c033a37c4e437716cc`
+and ledger `E-SP1-PARITY-20261119`. This is numerical transport, not a teacher gate.
+
+Reader A's separate 500-report pilot began at 17:08:07 Pacific with the original
+installed full model ID, the same committed runner, shared GPU flock, lower
+priority and a four-hour bound. Native identity/lock ownership was verified. At
+17:12:48, 126 responses were durable and valid; temperature was 57 C, with no
+thermal throttle. No panel score or repeatability result exists yet. The new
+repeat-panel continuation verifies the completed pilot's exact source, release,
+500 row pins/order and prompt/options, reuses its first 300 values, and runs only
+the second 300. Invalid pairs stay in the repeatability denominator; constant
+features remain unavailable and fail qualification. Eight job cases plus four
+reporter cases and Ruff pass. The running committed snapshot is unchanged.
+
+R19 display vocabulary is now Competence/Meaning in both engine and frontend;
+need IDs and stored scientific mappings are unchanged. Tooltips follow the
+filed definitions. The existing native-panel regression expectation was updated
+for Competence. Build and the vocabulary agreement test pass. Native Chrome
+157.0.8103.79, build `bf5643405d6e`, verified both visible labels, keyboard opening,
+definition text and Escape, with no page errors. The two evidence screenshots
+were visually inspected and the disposable browser closed. Earlier panel assets,
+authored essays and run snapshots are untouched.
