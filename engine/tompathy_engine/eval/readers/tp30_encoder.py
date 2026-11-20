@@ -32,7 +32,7 @@ def optimizer_for(model):
     ], weight_decay=.01)
 
 
-def load_original(root, specification, device, expected_files, check):
+def load_original(root, specification, device, expected_files, check, *, seed=23):
     """Load only the exact original model files admitted by the outer payload guard.
 
     expected_files must come from the independently verified original-model manifest,
@@ -51,7 +51,7 @@ def load_original(root, specification, device, expected_files, check):
             raise ValueError('Original encoder bytes or path changed')
     check()
     from transformers import AutoModel, AutoTokenizer
-    torch.manual_seed(23)
+    torch.manual_seed(seed)
     tokenizer = AutoTokenizer.from_pretrained(root, local_files_only=True, trust_remote_code=False)
     encoder = AutoModel.from_pretrained(root, local_files_only=True, trust_remote_code=False,
                                        dtype=torch.float32, attn_implementation='eager')

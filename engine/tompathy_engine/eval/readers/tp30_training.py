@@ -43,7 +43,7 @@ def atomic_save(path, state):
     return file_pin(path)
 
 
-def contract(texts, specification, binding, model, optimizer):
+def contract(texts, specification, binding, model, optimizer, seed=23, batch_size=16):
     required = {'payloadPin', 'sourceReceiptPin', 'protocolPin', 'initialEncoderPin', 'implementationPin', 'component'}
     if (set(binding) != required or binding['component'] not in
             {'go_only-profile', 'go_only-control', 'go_plus_envent-profile', 'go_plus_envent-control'} or
@@ -64,20 +64,22 @@ def contract(texts, specification, binding, model, optimizer):
               for group in optimizer.param_groups]
     return {'schema': 'TP30-training-state-1', 'binding': dict(binding),
             'dataPin': hashlib.sha256(json.dumps(identity, sort_keys=True, allow_nan=False).encode()).hexdigest(),
-            'n': len(texts), 'epochs': 3, 'batch': 16, 'seed': 23, 'checkpointEvery': 500,
+            'n': len(texts), 'epochs': 3, 'batch': batch_size, 'seed': seed, 'checkpointEvery': 500,
             'torchVersion': str(torch.__version__), 'device': next(model.parameters()).device.type,
             'optimizer': {'class': type(optimizer).__module__+'.'+type(optimizer).__qualname__,
                           'groups': groups}}
 
 
 def train_segment(model, optimizer, texts, specification, output, check, *, binding,
-                  stop_after, resume=None, resume_pin=None):
+                  stop_after, resume=None, resume_pin=None, seed=23, batch_size=16, oom_resume=False):
     """Resume exact updates at a fixed 500-example boundary; never replays saved updates.
 
     The caller verifies original native exit/leases, guards memory/storage/thermal
     floors, and admits the source payload. This helper cannot launch or qualify a study.
     """
-    identity = contract(texts, specification, binding, model, optimizer)
+    if seed not in (23,47,71) or batch_size not in (8,16) or (oom_resume and (resume is None or batch_size!=8)):
+        raise ValueError('Unregistered seed, batch or OOM continuation')
+    identity = contract(texts, specification, binding, model, optimizer, seed, batch_size)
     n, total = len(texts), 3*len(texts)
     if (type(stop_after) is not int or not 0 < stop_after <= total or
             (stop_after != total and stop_after % 500) or (resume is None) != (resume_pin is None)):
@@ -86,7 +88,7 @@ def train_segment(model, optimizer, texts, specification, output, check, *, bind
     if output.exists():
         raise ValueError('Each training segment requires a fresh output directory')
     check()
-    generator = torch.Generator(device='cpu').manual_seed(23)
+    generator = torch.Generator(device='cpu').manual_seed(seed)
     epoch, cursor, examples, updates, compute_seconds = 0, 0, 0, 0, 0.
     order = torch.randperm(n, generator=generator)
     device = next(model.parameters()).device
@@ -94,7 +96,7 @@ def train_segment(model, optimizer, texts, specification, output, check, *, bind
         if file_pin(resume) != resume_pin:
             raise ValueError('Saved checkpoint bytes changed')
         state = torch.load(resume, map_location='cpu', weights_only=True)
-        if state['contract'] != identity:
+        if state['contract'] != identity and not (oom_resume and state['contract']=={**identity,'batch':16}):
             raise ValueError('Checkpoint data, model, protocol, runtime or component changed')
         epoch, cursor, examples, updates = [state[k] for k in ('epoch', 'cursor', 'examples', 'updates')]
         order = state['order']
@@ -122,7 +124,7 @@ def train_segment(model, optimizer, texts, specification, output, check, *, bind
     while examples < stop_after:
         check()
         # These boundaries are identical with or without a process interruption.
-        count = min(16, n-cursor, 500-examples % 500, stop_after-examples)
+        count = min(batch_size, n-cursor, 500-examples % 500, stop_after-examples)
         indices = order[cursor:cursor+count].tolist()
         if device.type == 'cuda':
             torch.cuda.synchronize(device)

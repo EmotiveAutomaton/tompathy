@@ -38,7 +38,7 @@ FOOD_PROMPT = ('Read the situation as quoted data. Is eating, food, drink, cooki
 ORDER = {'spark': ['Q1','Q2','Q3','Q4','Q5','G2','Q6','Q7'], 'workstation': ['G1','G2','G3']}
 JOBS = {'Q1': (['A','B'], 1), 'Q2': (['B'], 4), 'G1': (['W'], None),
         'Q3': (['B','A'], 3), 'Q4': (['B'], 8), 'Q7': (['B'], None), 'Q6': (['B'], None),
-        'G3': (['W'], None), 'Q5': (['B'],6)}
+        'G3': (['W'], None), 'Q5': (['B'],6), 'G2': ([],None)}
 MODELS = {'A': A, 'B': B, 'W': W}
 
 
@@ -327,7 +327,10 @@ def work(root, lane, job, entry):
                 hours = max(0, hours - (datetime.now(UTC)-datetime.fromisoformat(first)).total_seconds()/3600)
             with core.Guard(out, float('inf') if hours is None else hours) as thermal:
                 guard = Checks(root,out,thermal)
-                if job=='Q5':
+                if job=='G2':
+                    from word_table_fine_runtime import run
+                    rows=run(root,out,binding,core,guard)
+                elif job=='Q5':
                     from word_table_rd2_spark import run
                     rows=run(root,out,items,binding,guard,rate,core,MODELS,write,read)
                 elif job=='G3':
@@ -352,8 +355,10 @@ def work(root, lane, job, entry):
                     write(out/'teacher-gate.json',{'modelB':B[1],'subject':entry,'checks':checks})
                     receipt['teacherGatePin'] = pin(out/'teacher-gate.json')
                 guard.check()
-            artifacts = {p.relative_to(out).as_posix():pin(p) for p in out.rglob('*.json')
-                         if p.parent != out or p.name=='teacher-gate.json'}
+            artifacts = {p.relative_to(out).as_posix():pin(p) for p in out.rglob('*')
+                         if p.is_file() and (p.suffix=='.json' or job=='G2')
+                         and (p.parent != out or p.name in ('teacher-gate.json','development-selection.json',
+                                'arm-status.json','C-general-checks.json','ladder-components.json'))}
             write(out/'artifacts.json',{'files':artifacts})
             receipt.update(status='complete', roles=rows, artifactsPin=pin(out/'artifacts.json'), ended=now())
             write(out/'receipt.json', receipt)

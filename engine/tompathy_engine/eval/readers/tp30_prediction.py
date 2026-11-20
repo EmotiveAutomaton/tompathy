@@ -14,7 +14,7 @@ from .tp30_training import file_pin
 
 
 def predict_segment(model, texts, ids, specification, output, check, *, binding,
-                    stop_after, resume_files=()):
+                    stop_after, resume_files=(), batch_size=16):
     """Copy a verified saved prefix and infer only the unsaved suffix, at most 16 rows per batch.
 
     Each resume entry is an exact (path, SHA-256) pair from an independently verified
@@ -27,7 +27,7 @@ def predict_segment(model, texts, ids, specification, output, check, *, binding,
                 any(c not in '0123456789abcdef' for c in binding[k]) for k in required-{'target'})):
         raise ValueError('Exact input, model, implementation, protocol and target binding required')
     texts, ids = list(texts), np.asarray(ids, str)
-    if (not texts or ids.shape != (len(texts),) or len(set(ids)) != len(ids) or
+    if (batch_size not in (8,16) or not texts or ids.shape != (len(texts),) or len(set(ids)) != len(ids) or
             type(stop_after) is not int or not 0 < stop_after <= len(texts) or
             (stop_after != len(texts) and stop_after % 500)):
         raise ValueError('Unique aligned rows and a fixed pilot boundary or final endpoint required')
@@ -46,8 +46,11 @@ def predict_segment(model, texts, ids, specification, output, check, *, binding,
         source = Path(source)
         if file_pin(source) != pin:
             raise ValueError('Saved prediction bytes changed')
-        end = min(cursor+16, cursor+500-cursor % 500, len(texts))
         with np.load(source, allow_pickle=False) as saved:
+            end = int(saved['end'].item())
+            sizes=(8,16) if batch_size==8 else (16,)
+            if end not in {min(cursor+s,cursor+500-cursor%500,len(texts)) for s in sizes}:
+                raise ValueError('Prediction batch has an unregistered boundary')
             if (str(saved['contract'].item()) != contract or int(saved['start'].item()) != cursor or
                     int(saved['end'].item()) != end or end > stop_after or
                     not np.array_equal(saved['ids'], ids[cursor:end]) or
@@ -75,7 +78,7 @@ def predict_segment(model, texts, ids, specification, output, check, *, binding,
     with torch.inference_mode():
         while cursor < stop_after:
             check()
-            end = min(cursor+16, cursor+500-cursor % 500, stop_after)
+            end = min(cursor+batch_size, cursor+500-cursor % 500, stop_after)
             if device.type == 'cuda':
                 torch.cuda.synchronize(device)
             tick = time.perf_counter()
