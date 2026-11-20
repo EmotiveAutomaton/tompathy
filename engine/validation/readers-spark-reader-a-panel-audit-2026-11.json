@@ -1,0 +1,67 @@
+{
+  "card": "SP1-v1-reader-a-panel-audit",
+  "payloadPin": "632745f3fd68ca4e605013c037e3ef099c0c6b70ff740db0b2d88eace1da7bbd",
+  "postRunAudit": true,
+  "productionAdmission": false,
+  "protocol": {
+    "context": 4096,
+    "features": [
+      "pleasantness",
+      "unpleasantness",
+      "self_responsblt",
+      "goal_support",
+      "social_norms",
+      "other_responsblt",
+      "standards",
+      "suddenness"
+    ],
+    "numericalThreads": 3,
+    "outputTokens": 256,
+    "promptPin": "546d90646023785c673da737b6b0275a7c2909cec4600b162efcf9f7ddbb882e",
+    "seed": 23,
+    "telemetryThreads": 1,
+    "temperature": 0,
+    "thermalStopC": 90,
+    "thinking": false
+  },
+  "readerQualified": false,
+  "row": {
+    "baselineMeanSameRows": 0.5857551008115071,
+    "baselineSpearmanSameRows": [
+      0.6893515264558169,
+      0.6731485225948852,
+      0.5916663959245269,
+      0.5971345434149619,
+      0.5338639859161797,
+      0.5434173057345727,
+      0.5581508868462506,
+      0.4993076396048631
+    ],
+    "correlationPass": false,
+    "featureSpearman": [
+      0.7348734856402326,
+      0.6913492202507756,
+      0.42700645976694485,
+      0.48373353597329066,
+      -0.3724005157022627,
+      0.2669290990730422,
+      -0.48191088143046223,
+      0.46255747535692354
+    ],
+    "identicalPairs": 300,
+    "meanSpearman": 0.27651723486606056,
+    "n": 300,
+    "repeatability": 1.0,
+    "repeatabilityPass": true,
+    "structuredValidity": 1.0,
+    "validFirstPass": 300,
+    "validSecondPass": 300,
+    "validityPass": true
+  },
+  "scope": "Original prompt reversed norms/standards and loosely defined goal support. Raw comparison is not a valid test of correctly specified reader quality. Original runtime stopped after all responses; no runtime continuation completed before its deadline. No score flips, new inference or admission.",
+  "sourceCommit": "0a2905ac822215931b648d6bc8a8f6fc67aa371e",
+  "sourcePreservationPin": "b750fdc548257c1b1dbe9fc5f7c7fe4cb875c2d878331d118dd15c19d209cda7",
+  "sourceReceiptPin": "38ab9a1270d1b26ecdc31fde57b9438c776ce0fee5ae1c3d20a150dd3468aa1c",
+  "sourceScriptPin": "2b307f12eb6fa702f0a64a92566b44e2d0c4d659dddcdb5e2d5cead6888f7155",
+  "status": "stopped"
+}

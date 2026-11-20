@@ -15,8 +15,9 @@ is complete: neither account clears its full registered rule. The reader-share
 profile study's frozen rung passes its transfer bar on six of seven channels,
 but fails its mix test and CARE noninferiority check. The full tables are filed.
 Spark's encoder parity check passed and its 500-report CPU/GPU timing is filed.
-The fixed 9B reader pilot completed with 500 valid responses; its second
-300-report pass is running, preserving the first pass. Panel qualification is pending. Competence and Meaning
+The original 9B panel is preserved but unqualified: its prompt reversed two
+answer-key meanings. The owner approved a separate corrected SP1-v2 panel with
+the original reports and thresholds; fresh execution is being prepared. Competence and Meaning
 are wired through the engine and panel and verified in native Chrome.
 [Source filing](docs/SOURCE_DOCUMENTS.md)
 and the [theory return](docs/exchange/THEORY_RETURN_NINE_CHANNEL.md) distinguish

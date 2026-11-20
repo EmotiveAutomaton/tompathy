@@ -100,6 +100,15 @@ The committed second pass started at 17:27:08 Pacific; exact native identity and
 GPU-lock ownership are verified. At 17:34:07, 220/300 responses were saved and
 valid; temperature was 65 C without throttling. The fixed deadline is 18:27:08.
 
+SP1-v1 is now closed unqualified. All 600 responses were saved, but aggregation
+stopped on missing SciPy. The retry window expired before a runtime repair
+launched. A saved-response audit gives raw mean rho .276517 versus .585755,
+with 300/300 identical pairs and 600/600 valid outputs. The original prompt reversed
+norms/standards; these raw scores are not a valid test of correctly specified
+reader quality. E-SP1-V1-READER-A-AUDIT-20261119 records the stopped source.
+The owner approved a separate corrected SP1-v2 panel, with fixed report selection
+and thresholds. No score flips, old gate rerun or teacher admission.
+
 ## November 15 trigger-reader packet
 
 **Closed at the owner's request on November 19.** The active MPNet fold stopped

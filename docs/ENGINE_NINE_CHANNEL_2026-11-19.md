@@ -302,3 +302,33 @@ every preserved file, source exit/release, ordered IDs, raw/parsed responses,
 payload and protocol pins. It makes no model calls, retains both completed
 passes, and clamps its deadline to the original 18:27:08 Pacific. The original
 failed attempt remains unchanged. No scientific gate is rerun or relaxed.
+
+## SP1-v1 closeout and separately authorized v2
+
+The original repeat saved all 300 responses at 17:36:36 Pacific, then stopped on
+the absent SciPy import. All 309 files and the exact native exit/release are
+preserved. The aggregation-only repair was committed but did not launch: a
+transient SSH name-resolution failure interrupted preparation, and the next
+connection at 18:29 was beyond the original 18:27:08 deadline. No clock was reset.
+
+A post-run audit of the saved responses, with no model calls, finds all 600
+responses valid and all 300 pairs identical. Raw mean Spearman is .276517235
+against .585755101 for the saved comparator. This raw comparison cannot establish
+reader quality: my original prompt asked compatibility for social norms and
+standards, while the answer key rates violation and clash. Goal support also
+needs the expected-favorable-consequence meaning. The source questionnaire
+(section 4.1 and Appendix A3) confirms this implementation error. No inverse
+scoring, corrected gate pass or new teacher admission is claimed.
+
+E-SP1-V1-READER-A-AUDIT-20261119 binds the stopped source receipt
+`38ab9a1270d1b26ecdc31fde57b9438c776ce0fee5ae1c3d20a150dd3468aa1c`.
+The registered public saved-response audit retains runtime status stopped and
+qualification false. The original prompt, model IDs, all responses and failures
+stay immutable.
+
+The owner explicitly authorized a separate corrected panel.
+[SP1-v2](SP1_V2_PROTOCOL_2026-11-19.md) freezes dataset-aligned meanings before
+new model output, with the same reports, comparison rules and thresholds. Both
+readers receive fresh v2 predictions. Original parity stays completed; no new
+encoder run is authorized by this correction. Sixteen targeted job/reporting
+cases and Ruff pass; the original prompt hash is unchanged.

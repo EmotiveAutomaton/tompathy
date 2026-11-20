@@ -27,6 +27,15 @@ def test_structured_values_reject_booleans_missing_and_extra_fields():
     assert job.valid_features({}) is None
 
 
+def test_corrected_protocol_preserves_original_and_opposes_compatibility_direction():
+    assert job.hashlib.sha256(job.ORIGINAL_PROMPT.encode()).hexdigest()=='546d90646023785c673da737b6b0275a7c2909cec4600b162efcf9f7ddbb882e'
+    assert 'broke laws or social norms' in job.CORRECTED_PROMPT
+    assert 'conflict with' in job.CORRECTED_PROMPT
+    assert 'expected favorable consequences' in job.CORRECTED_PROMPT
+    assert 'compatible' not in job.CORRECTED_PROMPT
+    assert job.CORRECTED_PROMPT!=job.ORIGINAL_PROMPT
+
+
 def test_masked_mean_unit_normalization_keeps_padding_out():
     import torch
     torch.set_num_threads(2)

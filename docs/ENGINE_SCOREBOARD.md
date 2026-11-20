@@ -33,6 +33,10 @@ This is a method check, not teacher accuracy. E-SP1-PARITY-20261119 binds the
 Reader A completed 500/500 valid structured responses at 194.966447 seconds per100
 including request loading. E-SP1-READER-A-PILOT-20261119 binds its pilot; panel
 qualification and other studies remain unrun.
+SP1-v1 saved-response audit: raw mean rho .276517235 versus .585755101,
+300/300 identical pairs and 600/600 valid responses. Two reversed prompt meanings
+invalidate the quality comparison; the stopped source remains unqualified.
+E-SP1-V1-READER-A-AUDIT-20261119; separately approved SP1-v2 has not run yet.
 Old failed gates and the incomplete MPNet rung remain unchanged.
 
 The owner closed the earlier trigger-reader commission on November 19. All 27 landed

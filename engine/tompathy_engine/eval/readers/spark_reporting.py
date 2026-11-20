@@ -4,6 +4,45 @@ from pathlib import Path
 
 from ...packs.registry import sha256
 
+INTERRUPTED_PANEL_OUTPUT = 'readers-spark-reader-a-panel-audit-2026-11.json'
+
+
+def land_interrupted_audit(job, exit_audit, preservation, summary, destination):
+    """File a verified saved-response audit without converting failure to completion."""
+    job,destination=Path(job),Path(destination)
+    value=json.loads((job/'receipt.json').read_text())
+    audit=json.loads(Path(exit_audit).read_text())
+    retained=json.loads(Path(preservation).read_text())
+    release=json.loads((job/'released.json').read_text())
+    pin=sha256(job/'receipt.json')
+    if (destination.name!=INTERRUPTED_PANEL_OUTPUT or value['status']!='stopped' or
+            value.get('reason')!="No module named 'scipy'" or
+            audit.get('sameNativeAlive') is not False or not audit.get('gpuLockFree') or
+            audit.get('receiptPin')!=pin or audit.get('owner')!=value['owner'] or
+            release.get('owner')!=value['owner'] or not release.get('lockReleased') or
+            retained['sourceReceiptPin']!=pin):
+        raise ValueError('Exact interrupted source, exit, release and preservation required')
+    for name,expected in retained['files'].items():
+        path=(job/name).resolve()
+        if not path.is_relative_to(job.resolve()) or sha256(path)!=expected:
+            raise ValueError('Preserved source changed')
+    fields={'n','validFirstPass','validSecondPass','featureSpearman','baselineSpearmanSameRows',
+            'meanSpearman','baselineMeanSameRows','identicalPairs','repeatability','structuredValidity',
+            'correlationPass','repeatabilityPass','validityPass'}
+    if set(summary)!=fields:
+        raise ValueError('Only aggregate panel fields are publishable')
+    public={'card':'SP1-v1-reader-a-panel-audit','status':'stopped','postRunAudit':True,
+            'productionAdmission':False,'readerQualified':False,'sourceReceiptPin':pin,
+            'sourcePreservationPin':sha256(preservation),'sourceCommit':value['owner']['commit'],
+            'sourceScriptPin':value['owner']['scriptPin'],'payloadPin':value['payloadPin'],
+            'protocol':value['protocol'],'row':summary,
+            'scope':'Original prompt reversed norms/standards and loosely defined goal support. Raw comparison is not a valid test of correctly specified reader quality. Original runtime stopped after all responses; no runtime continuation completed before its deadline. No score flips, new inference or admission.'}
+    data=(json.dumps(public,sort_keys=True,indent=2,allow_nan=False)+'\n').encode()
+    if destination.exists() and destination.read_bytes()!=data:
+        raise ValueError('Preserve previous audit')
+    destination.write_bytes(data)
+    return {'card':public['card'],'sourceReceiptPin':pin,'publicPin':sha256(destination),'status':'stopped'}
+
 
 def land(job, exit_audit, destination, *, role=None):
     job, destination = Path(job), Path(destination)
@@ -26,6 +65,9 @@ def land(job, exit_audit, destination, *, role=None):
         if not path.is_relative_to(job.resolve()) or sha256(path) != expected:
             raise ValueError('Artifact changed or escaped job')
     row = receipt['row']
+    version=receipt['protocol'].get('version',1)
+    if version not in (1,2):
+        raise ValueError('Unregistered SP1 protocol version')
     if row['kind'] == 'parity' and role is None:
         card, filename = 'SP1-parity', 'readers-spark-parity-2026-11.json'
         allowed = {'kind','n','pilot','maximumProbabilityDifferences','passes','numberFormat','pack'}
@@ -33,7 +75,9 @@ def land(job, exit_audit, destination, *, role=None):
         public_row['encoder'] = {k: row['encoder'][k] for k in ('id','revision')}
     elif row['kind'] in ('reader-pilot','reader-repeat') and role in ('a','b'):
         stage='panel' if row['kind']=='reader-repeat' else 'pilot'
-        card, filename = f'SP1-reader-{role}-{stage}', f'readers-spark-reader-{role}-{stage}-2026-11.json'
+        prefix='SP1-v2' if version==2 else 'SP1'
+        file_prefix='readers-spark-v2' if version==2 else 'readers-spark'
+        card, filename = f'{prefix}-reader-{role}-{stage}', f'{file_prefix}-reader-{role}-{stage}-2026-11.json'
         allowed = {'kind','texts','valid','seconds','secondsPer100','includesRequestLoading','panelCompleted'}
         public_row = {k: row[k] for k in allowed}
         public_row['model'] = {k:row['model'][k] for k in ('name','digest','size')}
@@ -54,6 +98,8 @@ def land(job, exit_audit, destination, *, role=None):
              'payloadPin':receipt['payloadPin'],'versions':receipt['versions'],
              'protocol':{k:receipt['protocol'][k] for k in protocol_keys},'row':public_row,
              'scope':'Open Crowd-enVENT held-out reports. Numerical parity or timing only; no teacher, serving or maker admission.'}
+    if version==2:
+        value['protocol']['version']=2
     if row['kind']=='reader-repeat':
         value['scope']='Fixed open Crowd-enVENT report-held-out repeated panel. Writer ratings are the comparison key; this panel alone establishes no downstream teacher, serving or maker admission.'
     data = (json.dumps(value,indent=2,sort_keys=True,allow_nan=False)+'\n').encode()
