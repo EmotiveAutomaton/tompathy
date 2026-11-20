@@ -198,6 +198,26 @@ scores plus pins only. Five new constructed cases and the three existing
 comparison cases pass; Ruff passes. This reporter has not yet run on the paired
 research outputs. Teacher eligibility still requires the actual panel outcome.
 
+SP1-v2 is complete. B scores .585543323 versus .585755101 for the fixed comparator;
+A scores .458263101. Both correlation gates fail despite 300/300 repeatability
+and 600/600 validity each. B ranks higher on the 300 common valid reports but is
+not a qualified teacher. E-SP1-V2-READER-B-PANEL-20261120 and
+E-SP1-V2-READER-COMPARISON-20261120 bind the full source/table. Exact exits/releases
+and all copied artifacts are verified. No SP1 scorer remains running. TP31 and
+new TP24 teacher requests are dependency-blocked; independent TP30 fine, TP32 and
+TP33 implementation remains authorized. No serving or maker admission follows.
+
+The independent TP30 fine rung now has a pre-output implementation contract in
+`docs/TP30_FINE_PROTOCOL_2026-11-20.md`. It preserves the original source split,
+rater targets and four profile/control fits; uses fresh pretrained MiniLM rather
+than an encoder trained on evaluation writers; and fixes the three-epoch recipe
+before execution. Four constructed cases pass, including equal source weighting,
+finite-difference gradient checks, original category tie behavior and unsupported
+constant outputs. Ruff passes. Payload preparation, guarded Spark runtime,
+durable timing-pilot continuation and evaluation landing remain to implement.
+No fine-rung research fitting or inference has run. The Gear 2 commission is
+currently in implementation, with no owned research scorer running.
+
 ## November 15 trigger-reader packet
 
 **Closed at the owner's request on November 19.** The active MPNet fold stopped

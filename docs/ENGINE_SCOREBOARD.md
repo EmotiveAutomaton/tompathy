@@ -396,3 +396,12 @@ downstream teacher gates remain pending; no serving or maker admission.
 - Reader B's corrected pilot is running from 01:56:49 Pacific November 20; exact process/lock ownership verified. Startup: 103/500 valid, 47 C without throttling. No completed pilot or panel result yet.
 
 - E-SP1-V2-READER-B-PILOT-20261120: corrected B pilot complete, 500/500 valid, 110.961823 seconds per 100; 21,392,869,292 resident bytes. Panel gates pending; exact exit and copied source binding verified.
+
+SP1-v2 is complete. B scores .585543323 versus .585755101 for the fixed comparator;
+A scores .458263101. Both correlation gates fail despite 300/300 repeatability
+and 600/600 validity each. B ranks higher on the 300 common valid reports but is
+not a qualified teacher. E-SP1-V2-READER-B-PANEL-20261120 and
+E-SP1-V2-READER-COMPARISON-20261120 bind the full source/table. Exact exits/releases
+and all copied artifacts are verified. No SP1 scorer remains running. TP31 and
+new TP24 teacher requests are dependency-blocked; independent TP30 fine, TP32 and
+TP33 implementation remains authorized. No serving or maker admission follows.

@@ -624,3 +624,54 @@ It preserves individual gates, refuses an altered source and emits aggregate
 scores plus pins only. Five new constructed cases and the three existing
 comparison cases pass; Ruff passes. This reporter has not yet run on the paired
 research outputs. Teacher eligibility still requires the actual panel outcome.
+
+## SP1-v2 completion, November 20
+
+Reader B finished at 02:26:33 Pacific; exact native exit and GPU-lock release
+were verified at 05:09:57. All 310 copied files, including 302 indexed artifacts,
+and the original ordered raw/parsed responses match. Its pilot's first 300
+responses were reused exactly. The corrected panel **fails**: mean Spearman
+0.585543323, below the fixed comparator 0.585755101
+by 0.000211778. This narrow miss is not rounded into a pass.
+Repeatability is 300/300 and validity is 600/600. The second pass takes
+108.448539 seconds per 100, including request loading; temperature
+was 30–55 C without throttling. E-SP1-V2-READER-B-PANEL-20261120 binds source
+`32e5697cda40701f575bedd94ee43f6aa4755af9e517192fd85d73961dce2f00`. No further B retry is authorized.
+
+The registered comparison uses all 300 common valid first-pass reports.
+B's 0.585543323 exceeds A's 0.458263101; the same-row
+comparator is 0.585755101. B is the higher-scoring reader but retains
+its failed standalone gate. E-SP1-V2-READER-COMPARISON-20261120 binds both exact
+panel sources and the original input. Neither reader qualifies as the teacher.
+TP31's teacher/student runs and TP24's new teacher-feature pass remain blocked;
+TS4 still lacks a qualified gate. Independent TP30 fine, TP32 and TP33 work
+remains commissioned. No owned scorer or GPU job remains active after SP1.
+
+| Corrected feature | Reader A | Reader B | Saved comparator |
+|---|---:|---:|---:|
+| pleasantness | 0.751619550 | 0.796243223 | 0.689351526 |
+| unpleasantness | 0.696888523 | 0.724904750 | 0.673148523 |
+| self_responsblt | 0.679591283 | 0.695316958 | 0.591666396 |
+| goal_support | 0.571256334 | 0.582487478 | 0.597134543 |
+| social_norms | -0.007594990 | 0.430336023 | 0.533863986 |
+| other_responsblt | 0.491773751 | 0.551229191 | 0.543417306 |
+| standards | 0.014275889 | 0.414048061 | 0.558150887 |
+| suddenness | 0.468294464 | 0.489780897 | 0.499307640 |
+
+These are report-held-out writer-rating comparisons, not measured channel
+firing or a maker key. No output or model ID was pooled, no failed gate retried,
+and no winner was substituted after checking qualification. The landing wrapper
+initially retained A's filename; the role/filename guard rejected it before any
+write. Only that wrapper filename was repaired. A's public pin stayed unchanged;
+no model inference or research retry occurred.
+
+The independent TP30 fine rung now has a pre-output implementation contract in
+`docs/TP30_FINE_PROTOCOL_2026-11-20.md`. It preserves the original source split,
+rater targets and four profile/control fits; uses fresh pretrained MiniLM rather
+than an encoder trained on evaluation writers; and fixes the three-epoch recipe
+before execution. Four constructed cases pass, including equal source weighting,
+finite-difference gradient checks, original category tie behavior and unsupported
+constant outputs. Ruff passes. Payload preparation, guarded Spark runtime,
+durable timing-pilot continuation and evaluation landing remain to implement.
+No fine-rung research fitting or inference has run. The Gear 2 commission is
+currently in implementation, with no owned research scorer running.

@@ -1,0 +1,97 @@
+{
+  "card": "SP1-v2-reader-comparison",
+  "payloadPin": "632745f3fd68ca4e605013c037e3ef099c0c6b70ff740db0b2d88eace1da7bbd",
+  "productionAdmission": false,
+  "protocol": {
+    "context": 4096,
+    "features": [
+      "pleasantness",
+      "unpleasantness",
+      "self_responsblt",
+      "goal_support",
+      "social_norms",
+      "other_responsblt",
+      "standards",
+      "suddenness"
+    ],
+    "numericalThreads": 3,
+    "outputTokens": 256,
+    "promptPin": "fdf28ccfbc3f3d047e25e10d3aea79e1afba8b69bd08e2d772c562a7dcdb7114",
+    "seed": 23,
+    "telemetryThreads": 1,
+    "temperature": 0,
+    "thermalStopC": 90,
+    "thinking": false,
+    "version": 2
+  },
+  "row": {
+    "baselineSameRows": {
+      "featureSpearman": [
+        0.6893515264558169,
+        0.6731485225948852,
+        0.5916663959245269,
+        0.5971345434149619,
+        0.5338639859161797,
+        0.5434173057345727,
+        0.5581508868462506,
+        0.4993076396048631
+      ],
+      "meanSpearman": 0.5857551008115071
+    },
+    "commonValid": 300,
+    "n": 300,
+    "productionAdmission": false,
+    "scope": "Common first-pass rows only; completed standalone gates remain unchanged. No model IDs or target tables pooled.",
+    "scores": {
+      "a": {
+        "featureSpearman": [
+          0.75161954972033,
+          0.6968885233644835,
+          0.6795912829546612,
+          0.5712563341939367,
+          -0.0075949895983473915,
+          0.4917737508795549,
+          0.014275889210110063,
+          0.4682944639342431
+        ],
+        "meanSpearman": 0.4582631005823715
+      },
+      "b": {
+        "featureSpearman": [
+          0.7962432228622102,
+          0.7249047501992072,
+          0.6953169581275533,
+          0.5824874779973643,
+          0.4303360234034923,
+          0.5512291906080534,
+          0.4140480609188275,
+          0.48978089708386147
+        ],
+        "meanSpearman": 0.5855433226500713
+      }
+    },
+    "selectedReaderQualified": false,
+    "selectedRole": "b",
+    "standaloneQualification": {
+      "a": false,
+      "b": false
+    }
+  },
+  "schema": "SP1-comparison-1",
+  "scope": "Fixed common valid first-pass reports; standalone gates retained. Higher score alone does not qualify a teacher. No model IDs pooled or post-hoc winner substitution.",
+  "sources": {
+    "a": {
+      "modelDigest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+      "panelAggregatePin": "048c80d1681c9cd1e421b4dab56e4ce5c0de3dcea8e7eba31a58b36e3e450971",
+      "panelReceiptPin": "c08c02613eab1ec49635993325736c900e6c7d47568db9af8c8021fbbb6b0d35",
+      "pilotReceiptPin": "bb738c37a3c71a2f5417638f06ceb6af3f21dddb97cbf9501360b393716e4c24"
+    },
+    "b": {
+      "modelDigest": "72aac7c28be8ff9b81c2a270eb489c88e6d822a76ec0cb7bf34d965768848567",
+      "panelAggregatePin": "f33d572bf4281e98dc4617691cce2ef318f31285e5978b096bdadb5c8553f109",
+      "panelReceiptPin": "32e5697cda40701f575bedd94ee43f6aa4755af9e517192fd85d73961dce2f00",
+      "pilotReceiptPin": "3511182fa3da08e31f9dbb9ae859a143da691231e6ca641937cbd42d8d5a6156"
+    }
+  },
+  "status": "complete"
+}
