@@ -1,0 +1,325 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "dc4fa788b06cc007d91d71d8fa4225aaf8b1801c1833837dfefb52736976a729",
+  "launcherPin": "3f39c9f11b88e46f78263724b30948e4837609a5eeb2afa65813e5e54f5c7b56",
+  "ledger": "E-RD1-20261120",
+  "card": "RD1",
+  "status": "complete",
+  "productionAdmission": false,
+  "protocolPin": "79c73e4d98c99d1ad5b78ca58aefb1061b4ced3168db398ec665360735e00d9e",
+  "readerJobPin": "17813970705a9b72a64e7054f857f3eac8eb3b8f3a65a4b8ff9a63ecde1fa2db",
+  "trainedReceiptPin": "ac5aa48a1e9a83d681969eadf9c7a8268831be97f8fbbc42b259ff72c226b759",
+  "rows": {
+    "pleasantness": {
+      "A": {
+        "reports": 350,
+        "commonValid": 350,
+        "candidateRho": 0.7182758415354427,
+        "trainedRho": 0.6210677698163661,
+        "difference": 0.09720807171907653,
+        "interval": [
+          0.03474823641554074,
+          0.16244767374290875
+        ],
+        "requestedDraws": 2000,
+        "finiteDraws": 2000,
+        "positiveDifferenceInterval": true
+      },
+      "B": {
+        "reports": 350,
+        "commonValid": 350,
+        "candidateRho": 0.757072632135081,
+        "trainedRho": 0.6210677698163661,
+        "difference": 0.1360048623187149,
+        "interval": [
+          0.08037526508906746,
+          0.19704261420488717
+        ],
+        "requestedDraws": 2000,
+        "finiteDraws": 2000,
+        "positiveDifferenceInterval": true
+      }
+    },
+    "unpleasantness": {
+      "A": {
+        "reports": 350,
+        "commonValid": 350,
+        "candidateRho": 0.679833871115421,
+        "trainedRho": 0.5640937928552214,
+        "difference": 0.11574007826019961,
+        "interval": [
+          0.05374561389178238,
+          0.18183783870761933
+        ],
+        "requestedDraws": 2000,
+        "finiteDraws": 2000,
+        "positiveDifferenceInterval": true
+      },
+      "B": {
+        "reports": 350,
+        "commonValid": 350,
+        "candidateRho": 0.6950333348938077,
+        "trainedRho": 0.5640937928552214,
+        "difference": 0.13093954203858627,
+        "interval": [
+          0.06767269048394413,
+          0.19916550561108604
+        ],
+        "requestedDraws": 2000,
+        "finiteDraws": 2000,
+        "positiveDifferenceInterval": true
+      }
+    },
+    "self_responsblt": {
+      "A": {
+        "reports": 350,
+        "commonValid": 350,
+        "candidateRho": 0.5462653648401281,
+        "trainedRho": 0.5425048755616001,
+        "difference": 0.003760489278528012,
+        "interval": [
+          -0.07538108854282898,
+          0.09048842213978263
+        ],
+        "requestedDraws": 2000,
+        "finiteDraws": 2000,
+        "positiveDifferenceInterval": false
+      },
+      "B": {
+        "reports": 350,
+        "commonValid": 350,
+        "candidateRho": 0.5083444132005894,
+        "trainedRho": 0.5425048755616001,
+        "difference": -0.03416046236101067,
+        "interval": [
+          -0.121923149075318,
+          0.05219173156399544
+        ],
+        "requestedDraws": 2000,
+        "finiteDraws": 2000,
+        "positiveDifferenceInterval": false
+      }
+    },
+    "goal_support": {
+      "A": {
+        "reports": 350,
+        "commonValid": 350,
+        "candidateRho": 0.5248097807960664,
+        "trainedRho": 0.5477572781765777,
+        "difference": -0.022947497380511273,
+        "interval": [
+          -0.10036982964752107,
+          0.05726816665305485
+        ],
+        "requestedDraws": 2000,
+        "finiteDraws": 2000,
+        "positiveDifferenceInterval": false
+      },
+      "B": {
+        "reports": 350,
+        "commonValid": 350,
+        "candidateRho": 0.5634390268806188,
+        "trainedRho": 0.5477572781765777,
+        "difference": 0.015681748704041043,
+        "interval": [
+          -0.0569292560794869,
+          0.09000294375156309
+        ],
+        "requestedDraws": 2000,
+        "finiteDraws": 2000,
+        "positiveDifferenceInterval": false
+      }
+    },
+    "social_norms": {
+      "A": {
+        "reports": 350,
+        "commonValid": 350,
+        "candidateRho": 0.04919348134022294,
+        "trainedRho": 0.4225788177464098,
+        "difference": -0.3733853364061869,
+        "interval": [
+          -0.49972648837474376,
+          -0.2464391398644837
+        ],
+        "requestedDraws": 2000,
+        "finiteDraws": 2000,
+        "positiveDifferenceInterval": false
+      },
+      "B": {
+        "reports": 350,
+        "commonValid": 350,
+        "candidateRho": 0.39313400213806415,
+        "trainedRho": 0.4225788177464098,
+        "difference": -0.029444815608345665,
+        "interval": [
+          -0.13489107667783887,
+          0.07173983416246549
+        ],
+        "requestedDraws": 2000,
+        "finiteDraws": 2000,
+        "positiveDifferenceInterval": false
+      }
+    },
+    "other_responsblt": {
+      "A": {
+        "reports": 350,
+        "commonValid": 350,
+        "candidateRho": 0.46760277974974895,
+        "trainedRho": 0.48988092192657207,
+        "difference": -0.022278142176823112,
+        "interval": [
+          -0.12205429300264471,
+          0.08698196979414848
+        ],
+        "requestedDraws": 2000,
+        "finiteDraws": 2000,
+        "positiveDifferenceInterval": false
+      },
+      "B": {
+        "reports": 350,
+        "commonValid": 350,
+        "candidateRho": 0.5182251038988279,
+        "trainedRho": 0.48988092192657207,
+        "difference": 0.028344181972255855,
+        "interval": [
+          -0.06224227438029799,
+          0.11646909393455322
+        ],
+        "requestedDraws": 2000,
+        "finiteDraws": 2000,
+        "positiveDifferenceInterval": false
+      }
+    },
+    "standards": {
+      "A": {
+        "reports": 350,
+        "commonValid": 350,
+        "candidateRho": 0.021345940479057017,
+        "trainedRho": 0.4522497120434134,
+        "difference": -0.4309037715643564,
+        "interval": [
+          -0.5621020954463094,
+          -0.28896435934898507
+        ],
+        "requestedDraws": 2000,
+        "finiteDraws": 2000,
+        "positiveDifferenceInterval": false
+      },
+      "B": {
+        "reports": 350,
+        "commonValid": 350,
+        "candidateRho": 0.37966437679171217,
+        "trainedRho": 0.4522497120434134,
+        "difference": -0.07258533525170124,
+        "interval": [
+          -0.16818766443946676,
+          0.028194782710339303
+        ],
+        "requestedDraws": 2000,
+        "finiteDraws": 2000,
+        "positiveDifferenceInterval": false
+      }
+    },
+    "suddenness": {
+      "A": {
+        "reports": 350,
+        "commonValid": 350,
+        "candidateRho": 0.5105978209404727,
+        "trainedRho": 0.5309916428189717,
+        "difference": -0.02039382187849903,
+        "interval": [
+          -0.11343106151584227,
+          0.07283752371540554
+        ],
+        "requestedDraws": 2000,
+        "finiteDraws": 2000,
+        "positiveDifferenceInterval": false
+      },
+      "B": {
+        "reports": 350,
+        "commonValid": 350,
+        "candidateRho": 0.5514715565243284,
+        "trainedRho": 0.5309916428189717,
+        "difference": 0.020479913705356734,
+        "interval": [
+          -0.06551183852098372,
+          0.10546516804763924
+        ],
+        "requestedDraws": 2000,
+        "finiteDraws": 2000,
+        "positiveDifferenceInterval": false
+      }
+    }
+  },
+  "slots": {
+    "pleasantness": "B",
+    "unpleasantness": "B",
+    "self_responsblt": "trained",
+    "goal_support": "trained",
+    "social_norms": "trained",
+    "other_responsblt": "trained",
+    "standards": "trained",
+    "suddenness": "trained"
+  },
+  "companionPin": "d9191c98961ab62cb44ccde1e0a6e4a3f054cfaf0ebf3b62a59882fb13e178ee",
+  "human": {
+    "pleasantness": {
+      "reports": 350,
+      "rereaders": 968,
+      "estimableRereaders": 364,
+      "singleRereaderMean": 0.7683663109250469,
+      "meanOfFiveRho": 0.7774452831819305
+    },
+    "unpleasantness": {
+      "reports": 350,
+      "rereaders": 968,
+      "estimableRereaders": 390,
+      "singleRereaderMean": 0.6895252101755135,
+      "meanOfFiveRho": 0.7312452221220123
+    },
+    "self_responsblt": {
+      "reports": 350,
+      "rereaders": 968,
+      "estimableRereaders": 366,
+      "singleRereaderMean": 0.5786163258062106,
+      "meanOfFiveRho": 0.6840544261671919
+    },
+    "goal_support": {
+      "reports": 350,
+      "rereaders": 968,
+      "estimableRereaders": 347,
+      "singleRereaderMean": 0.508249653142796,
+      "meanOfFiveRho": 0.5840138083707396
+    },
+    "social_norms": {
+      "reports": 350,
+      "rereaders": 968,
+      "estimableRereaders": 200,
+      "singleRereaderMean": 0.5942232363236097,
+      "meanOfFiveRho": 0.4902797003218512
+    },
+    "other_responsblt": {
+      "reports": 350,
+      "rereaders": 968,
+      "estimableRereaders": 394,
+      "singleRereaderMean": 0.5057802551321606,
+      "meanOfFiveRho": 0.5966579437727195
+    },
+    "standards": {
+      "reports": 350,
+      "rereaders": 968,
+      "estimableRereaders": 328,
+      "singleRereaderMean": 0.4900473177041814,
+      "meanOfFiveRho": 0.5747936115009723
+    },
+    "suddenness": {
+      "reports": 350,
+      "rereaders": 968,
+      "estimableRereaders": 401,
+      "singleRereaderMean": 0.5245587608492003,
+      "meanOfFiveRho": 0.6325500957764589
+    }
+  },
+  "scope": "A panel of 350 places a rank correlation within about 0.05 either way. Writers' ratings are one person's account of an event, so no reader can be expected to match them fully; the human reference says how far a careful stranger gets.",
+  "sourceReceiptPin": "81fa38a6efe31542522b605b2a7935d609a7fde3510e88731b9727e41bc096bb"
+}

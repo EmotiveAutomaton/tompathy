@@ -4,8 +4,8 @@ Opened November 20 when the two GPU queues started. Completed rows will give the
 
 | Card | Current state |
 |---|---|
-| RD1 | Both readers returned 350 valid answers. Q1 and Q2 are verified. The CPU memory reservation deferred the slot comparison at 11:16 Pacific. |
-| TP24 | Reader B's eight features are available for all 6,250 initial reports. The downstream evaluation awaits RD1's assignments and the missing trained forecasts. |
+| RD1 | Complete. B earns pleasantness and unpleasantness. Six slots stay with the trained reader. [Result sheet](result-sheets/RD1-panel.md), E-RD1-20261120. |
+| TP24 | Reader B's eight features are available for all 6,250 initial reports. RD1 fixed the feature assignments. The evaluation awaits the missing trained forecasts. |
 | TP31 | Q3 began on 2,000 sentences from a roster of 288,619. Q4 and Q7 require its agreement and known-group checks to pass. |
 | TP30 / G2 | The workstation training library is CPU-only. The packet assigns training to the Spark between Q5 and Q6. |
 | RD2 | G3 is running W's development prompts. Q5 has development data only. After selection, report the registered 350 and text-fresh 348 with the same rules and flag any conclusion change. Prior TP10-L3 scoring included all 200 proposed F3 reports. Both slots stay with the trained reader pending fresh confirmation. |
@@ -18,6 +18,10 @@ Opened November 20 when the two GPU queues started. Completed rows will give the
 | TS4 | Display awaits a qualified TP31 gate. |
 
 Queue timings and the outcomes of the analyst's registered guesses will be filed as their measurements arrive.
+
+The RD1 prediction named pleasantness and own responsibility for reader B.
+Pleasantness qualified. The gain for own responsibility was −.034, with a
+95% paired interval of [−.122, .052]. Unpleasantness took the second slot.
 
 The analyst expected TP34 to fall short. Its observed top-two count exceeded
 the valence-matched cutoff by one. The expected four quietest words could

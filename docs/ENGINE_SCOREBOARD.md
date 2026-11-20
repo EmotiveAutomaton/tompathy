@@ -3,6 +3,12 @@
 Only measured engine accuracy belongs here. Pending rows are not zero scores.
 Field labels remain off. A passed software test is not a natural-writing result.
 
+**RD1 feature allocation.** On 350 held-out reports, reader B improved rank
+correlation with the writers by .136 for pleasantness (95% paired interval
+[.080, .197]) and .131 for unpleasantness ([.068, .199]). These two gains
+cleared the slot rule. TP24 uses the trained reader for its other six features.
+[Full table and human comparisons, E-RD1-20261120](exchange/result-sheets/RD1-panel.md).
+
 **TP34 word recipes.** Nine of 19 named outputs appeared among their word's
 top two lifts, above the reference cutoff of eight across 17,280 within-valence
 deals. Top-three gave 12 against 10. Across 24,850 situations the mean largest

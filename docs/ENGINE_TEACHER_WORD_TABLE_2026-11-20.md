@@ -193,5 +193,9 @@ thermal guards reported safe readings.
 The private TP24 input combines all 500 original B first passes, the 350 Q1
 answers and the 5,400 Q2 answers. All 6,250 reports have eight valid features
 under the same reader and prompt. The reserved 350 reports are excluded.
-RD1's source prerequisites are satisfied. Its 11:16 CPU admission found
-22.65 GiB available against 23.37 GiB required. Its output is still pending.
+RD1's first CPU admission check at 11:16 found 22.65 GiB available against
+23.37 GiB required. The 11:46 check admitted the comparison. All 350 reports
+had paired forecasts for every feature. Forty independent correlation checks
+matched the saved results. The native process exited and released both leases.
+The completed allocation gives B pleasantness and unpleasantness, with the
+trained reader supplying TP24's six other features. [RD1 result sheet](exchange/result-sheets/RD1-panel.md).

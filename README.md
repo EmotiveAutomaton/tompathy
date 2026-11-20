@@ -14,8 +14,10 @@ comparing prompts. The first
 registered top-two bar and found a tie on quiet share for all 32 words.
 The [food-topic comparison](docs/exchange/result-sheets/TP38-food-topic.md)
 found that removing food situations more than halved the food-tag lift for
-both *ashamed* and *guilty* on the point estimates. The November 21
-[theory return](docs/exchange/THEORY_RETURN_2026-11-21.md) collects the four completed studies.
+both *ashamed* and *guilty* on the point estimates. On 350 held-out reports,
+RD1 assigned pleasantness and unpleasantness to reader B for the TP24 study.
+The trained reader supplies the other six features. [RD1 result sheet](docs/exchange/result-sheets/RD1-panel.md).
+The [November 21 theory return](docs/exchange/THEORY_RETURN_2026-11-21.md) collects the five completed studies.
 Reader clearance now follows each card's registered
 use. The [nine-channel commission](docs/ENGINE_NINE_CHANNEL_2026-11-19.md)
 continues alongside it. Its first export selects the completed frozen need reader
