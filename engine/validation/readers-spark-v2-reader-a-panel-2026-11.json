@@ -1,0 +1,90 @@
+{
+  "card": "SP1-v2-reader-a-panel",
+  "payloadPin": "632745f3fd68ca4e605013c037e3ef099c0c6b70ff740db0b2d88eace1da7bbd",
+  "productionAdmission": false,
+  "protocol": {
+    "context": 4096,
+    "features": [
+      "pleasantness",
+      "unpleasantness",
+      "self_responsblt",
+      "goal_support",
+      "social_norms",
+      "other_responsblt",
+      "standards",
+      "suddenness"
+    ],
+    "numericalThreads": 3,
+    "outputTokens": 256,
+    "promptPin": "fdf28ccfbc3f3d047e25e10d3aea79e1afba8b69bd08e2d772c562a7dcdb7114",
+    "seed": 23,
+    "telemetryThreads": 1,
+    "temperature": 0,
+    "thermalStopC": 90,
+    "thinking": false,
+    "version": 2
+  },
+  "row": {
+    "firstPassReused": true,
+    "includesRequestLoading": true,
+    "kind": "reader-repeat",
+    "model": {
+      "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+      "name": "qwen3.5:9b",
+      "size": 6550825550
+    },
+    "panel": {
+      "baselineMeanSameRows": 0.5857551008115071,
+      "baselineSpearmanSameRows": [
+        0.6893515264558169,
+        0.6731485225948852,
+        0.5916663959245269,
+        0.5971345434149619,
+        0.5338639859161797,
+        0.5434173057345727,
+        0.5581508868462506,
+        0.4993076396048631
+      ],
+      "correlationPass": false,
+      "featureSpearman": [
+        0.75161954972033,
+        0.6968885233644834,
+        0.6795912829546612,
+        0.5712563341939367,
+        -0.0075949895983473915,
+        0.49177375087955494,
+        0.014275889210110063,
+        0.4682944639342431
+      ],
+      "identicalPairs": 300,
+      "meanSpearman": 0.45826310058237146,
+      "n": 300,
+      "repeatability": 1.0,
+      "repeatabilityPass": true,
+      "structuredValidity": 1.0,
+      "validFirstPass": 300,
+      "validSecondPass": 300,
+      "validityPass": true
+    },
+    "panelCompleted": true,
+    "pilotArtifactManifestPin": "bee30acbcbf8470ddcc2021709e0cc705e6b1260d485a51de29c9e60e87d3713",
+    "pilotReceiptPin": "bb738c37a3c71a2f5417638f06ceb6af3f21dddb97cbf9501360b393716e4c24",
+    "readerQualified": false,
+    "seconds": 647.8927902148571,
+    "secondsPer100": 215.96426340495236,
+    "texts": 300,
+    "valid": 300
+  },
+  "schema": "SP1-aggregate-1",
+  "scope": "Fixed open Crowd-enVENT report-held-out repeated panel. Writer ratings are the comparison key; this panel alone establishes no downstream teacher, serving or maker admission.",
+  "scriptPin": "c39e13f6d77dcfd3250de18234bdf490391979347f77e534d1cc69e6e1d3eb26",
+  "sourceArtifactManifestPin": "d8ee84bb35e3f24aa330c06988b14e8738f16a69cd6126fbca4add525cf75861",
+  "sourceCommit": "75d28ea92b1365dafc66e17c2cec5b7e9086e807",
+  "sourceReceiptPin": "c08c02613eab1ec49635993325736c900e6c7d47568db9af8c8021fbbb6b0d35",
+  "status": "complete",
+  "versions": {
+    "numpy": "2.5.5",
+    "torch": "2.14.1+cu130",
+    "transformers": "5.14.1"
+  }
+}

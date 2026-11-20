@@ -41,6 +41,11 @@ def sentences(text):
     return [s.strip() for s in re.split(r'(?<=[.!?])\s+|[\r\n]+', text) if s.strip()]
 
 
+def protected_pins(texts):
+    """Protect whole acceptance items and each constituent sentence."""
+    return {text_pin(part) for text in texts for part in (text, *sentences(text))}
+
+
 def sentence_rows(documents, excluded_text_pins):
     """Acceptance content cannot enter the teacher pool, even under another ID."""
     excluded = set(excluded_text_pins)

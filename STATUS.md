@@ -134,6 +134,21 @@ same committed script/model/prompt. Exact native identity and GPU-lock ownership
 were verified at 22:23:49; 13/300 new responses were saved and valid, at 43 C
 without throttling. Only its second pass executes. Deadline: 23:23:16 Pacific.
 
+Corrected SP1-v2 reader A fails: mean Spearman 0.458263 versus
+0.585755; 300/300 identical pairs and
+600/600 valid outputs. Exact exit/releases and copied artifacts are verified.
+E-SP1-V2-READER-A-PANEL-20261119 binds the full table. Reader B comparison and
+downstream teacher gates remain pending; no serving or maker admission.
+
+Reader B's single catalog download started at 22:36:08 Pacific November 19 from
+committed script `71e6ea8`; exact native identity and GPU-lock ownership were
+verified at 22:36:30. Heartbeat temperature was 40 C without throttling. Its
+one-hour deadline is 23:36:08. The [official catalogue](https://ollama.com/library/qwen3.5/tags)
+was rechecked before launch: 35b is listed at 22 GB, while 122b is 81 GB. The full
+installed digest will be frozen from the completed download. This setup has run
+no inference and does not establish runtime fit, panel success or teacher admission.
+Reader A's completed corrected failure remains fixed; no further A retry is queued.
+
 ## November 15 trigger-reader packet
 
 **Closed at the owner's request on November 19.** The active MPNet fold stopped

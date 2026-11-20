@@ -384,3 +384,9 @@ No values, endorsement, maker or E2 claim. [EX5 aggregate](../engine/validation/
 (source `9338d0ffa9386236c2f20a9fc283ccb908d776b64b5ec2dcfc48adc5a23244e2`).
 
 - SP1-v2 reader-A pilot: 500/500 valid; 215.338778 seconds per100 including loading. Source-bound `readers-spark-v2-reader-a-pilot-2026-11.json`, E-SP1-V2-READER-A-PILOT-20261119. Panel and teacher qualification remain unmeasured; original v1 retained separately.
+
+Corrected SP1-v2 reader A fails: mean Spearman 0.458263 versus
+0.585755; 300/300 identical pairs and
+600/600 valid outputs. Exact exit/releases and copied artifacts are verified.
+E-SP1-V2-READER-A-PANEL-20261119 binds the full table. Reader B comparison and
+downstream teacher gates remain pending; no serving or maker admission.

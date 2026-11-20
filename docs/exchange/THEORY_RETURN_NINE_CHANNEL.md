@@ -537,3 +537,41 @@ rows, per-feature/mean correlations and the same-row comparator are retained;
 an exact tie selects A. Undefined columns leave selection unavailable, and a
 higher-scoring failed reader is not replaced after looking at its gates. Three
 constructed cases and Ruff pass. No B output or two-reader comparison exists yet.
+
+One additional TP31 guard check protects constituent sentences of a multi-sentence
+acceptance item even inside a longer source document. All seven teacher-helper
+cases pass, twelve TP31 helper cases in total; Ruff passes. No teacher request ran.
+
+The corrected SP1-v2 reader-A panel fails the registered conjunction.
+Mean first-pass Spearman is 0.458263101, versus
+0.585755101 for the same-row saved comparator.
+300/300 pairs have identical canonical eight ratings;
+600/600 calls are valid. The second
+pass takes 215.964263 seconds per100 including request loading.
+All 310 copied files, original ordered IDs and raw/parsed values
+are verified; source pin `c08c02613eab1ec49635993325736c900e6c7d47568db9af8c8021fbbb6b0d35` binds
+E-SP1-V2-READER-A-PANEL-20261119. Native exit and exact GPU-lock release are
+verified. Its own pilot's first300 responses were reused without new inference.
+This is report-held-out agreement with writer ratings, not maker or channel
+validation. Reader B and downstream teacher checks remain separate prerequisites.
+Original v1 outputs, failure and prompt error remain unchanged and are not pooled.
+
+| Corrected feature | Reader-A Spearman | Saved comparator, same rows |
+|---|---:|---:|
+| pleasantness | 0.751619550 | 0.689351526 |
+| unpleasantness | 0.696888523 | 0.673148523 |
+| self_responsblt | 0.679591283 | 0.591666396 |
+| goal_support | 0.571256334 | 0.597134543 |
+| social_norms | -0.007594990 | 0.533863986 |
+| other_responsblt | 0.491773751 | 0.543417306 |
+| standards | 0.014275889 | 0.558150887 |
+| suddenness | 0.468294464 | 0.499307640 |
+
+Reader B's single catalog download started at 22:36:08 Pacific November 19 from
+committed script `71e6ea8`; exact native identity and GPU-lock ownership were
+verified at 22:36:30. Heartbeat temperature was 40 C without throttling. Its
+one-hour deadline is 23:36:08. The [official catalogue](https://ollama.com/library/qwen3.5/tags)
+was rechecked before launch: 35b is listed at 22 GB, while 122b is 81 GB. The full
+installed digest will be frozen from the completed download. This setup has run
+no inference and does not establish runtime fit, panel success or teacher admission.
+Reader A's completed corrected failure remains fixed; no further A retry is queued.

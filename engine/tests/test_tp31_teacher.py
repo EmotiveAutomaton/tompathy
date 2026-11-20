@@ -5,6 +5,7 @@ from tompathy_engine.eval.readers.tp31_teacher import (
     agreement_panel,
     binary_kappa,
     known_group,
+    protected_pins,
     sentence_rows,
     teacher_checks,
     text_pin,
@@ -43,6 +44,13 @@ def test_panel_is_fixed_source_balanced_and_independent_of_row_order():
     assert [sum(r['source'] == s for r in selected) for s in SOURCES] == [334,334,333,333,333,333]
     with pytest.raises(ValueError, match='six registered'):
         agreement_panel([r for r in rows if r['source'] != 'go'])
+
+
+def test_multisentence_acceptance_item_is_protected_inside_a_larger_document():
+    docs = [{'source': 'stack', 'group': 'answer', 'id': 'x',
+             'text': 'New introduction. Protected first. Protected second!'}]
+    rows, omitted = sentence_rows(docs, protected_pins(['Protected first. Protected second!']))
+    assert omitted == 2 and [r['text'] for r in rows] == ['New introduction.']
 
 
 def test_kappa_known_cases_and_invalid_coverage():
