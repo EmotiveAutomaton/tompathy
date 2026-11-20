@@ -94,6 +94,8 @@ def identity():
         values = [wintypes.FILETIME() for _ in range(4)]
         kernel = ctypes.windll.kernel32
         kernel.GetCurrentProcess.restype = wintypes.HANDLE
+        kernel.GetProcessTimes.argtypes = [wintypes.HANDLE] + [ctypes.POINTER(wintypes.FILETIME)]*4
+        kernel.GetProcessTimes.restype = wintypes.BOOL
         if not kernel.GetProcessTimes(kernel.GetCurrentProcess(), *[ctypes.byref(v) for v in values]):
             raise OSError('Cannot bind native creation time')
         return {'pid': os.getpid(), 'createdTicks': values[0].dwHighDateTime << 32 | values[0].dwLowDateTime}
