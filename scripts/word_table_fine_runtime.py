@@ -231,7 +231,7 @@ def run_one(root, encdir, source, data, seed, component, jobbind, core, guard, h
     return result
 
 
-def run(root,out,binding,core,guard):
+def run(root,out,binding,core,guard,*,restored_modernbert=None):
     os.environ['TOKENIZERS_PARALLELISM']='false'
     import torch
     if not torch.cuda.is_available() or core.api('ps')['models']:
@@ -248,14 +248,26 @@ def run(root,out,binding,core,guard):
         guard.check()
         if rung['id']!=MODELS[index] or rung['seeds']!=([23] if index==0 else [23,47,71]):
             raise ValueError('Unregistered encoder ladder or seeds')
-        dest=out/f'rung-{index}';dest.mkdir(exist_ok=True)
-        try:
-            encdir,source=encoder_files(rung['id'],cfg['initialMiniLM'],dest,guard.check,core)
-        except (OSError,ValueError) as exc:
-            guard.check()
-            skips[rung['id']]='Fetch or source verification failed: '+str(exc)
-            core.write(dest/'skipped.json',{'reason':skips[rung['id']]})
+        if restored_modernbert is not None and index < 2:
             continue
+        dest=out/f'rung-{index}';dest.mkdir(exist_ok=True)
+        if restored_modernbert is None:
+            try:
+                encdir,source=encoder_files(rung['id'],cfg['initialMiniLM'],dest,guard.check,core)
+            except (OSError,ValueError) as exc:
+                guard.check()
+                skips[rung['id']]='Fetch or source verification failed: '+str(exc)
+                core.write(dest/'skipped.json',{'reason':skips[rung['id']]})
+                continue
+        else:
+            encdir,source=restored_modernbert/'encoder',json.loads((restored_modernbert/'source.json').read_bytes())
+            if index!=2 or source['id']!=rung['id'] or core.digest(restored_modernbert/'source.json')!='51c188e92b3473af802af78fd3ec4b10baceef0b13fc783516c4ef3c445194fe':
+                raise ValueError('Bound ModernBERT source is required')
+            for name,expected in source['files'].items():
+                guard.check()
+                if Path(name).name!=name or core.digest(encdir/name)!=expected:
+                    raise ValueError('Original ModernBERT encoder bytes changed')
+            (dest/'source.json').write_bytes((restored_modernbert/'source.json').read_bytes())
         initial=core.digest(dest/'source.json')
         jobbind={'payloadPin':core.digest(cfgfile),'sourceReceiptPin':cfg['sourceReceiptPin'],'protocolPin':cfg['protocolPin'],
                  'initialEncoderPin':initial,'implementationPin':hashlib.sha256(
