@@ -58,6 +58,10 @@ OUTPUTS['TP25']='readers-stakes-gate-2026-11.json'
 FIELDS['TP24']={'card','status','productionAdmission','ledger','scope','needsReceiptPin','rows','pack','protocol',
     'reason','reader','stakes_qualified','tense','table','ablations','rulesPin','artifactsPin','featureReuse'}
 OUTPUTS['TP24']='readers-trigger-slots-2026-11.json'
+FIELDS['TP24-mixed']={'card','status','ledger','productionAdmission','scope','protocolPin','sources','cohorts','chat','artifactsPin'}
+OUTPUTS['TP24-mixed']='readers-trigger-mixed-reports-2026-11.json'
+OUTPUTS['TP24-chat']='readers-trigger-chat-prefix-2026-11.json'
+FIELDS['TP24-chat']={'card','status','ledger','productionAdmission','scope','protocolPin','sources','row','artifactsPin'}
 FIELDS['TP27']={'card','status','productionAdmission','ledger','scope','sourceReceiptPin','tablesPin','protocol','row',
     'reader','residual','versus_combined','artifactsPin','baselineForecastPin'}
 OUTPUTS['TP27']='readers-pause-remainder-diagnostic-2026-11.json'
@@ -73,6 +77,17 @@ OUTPUTS['TP30-frozen']='readers-profile-frozen-2026-11.json'
 OUTPUTS['TP34']='readers-word-recipes-2026-11.json'
 OUTPUTS['TP35']='readers-suddenness-2026-11.json'
 OUTPUTS['TP37']='readers-rating-dimensions-2026-11.json'
+OUTPUTS['TP32']='readers-refusals-2026-11.json'
+OUTPUTS['G2-first-rungs']='readers-profile-fine-first-rungs-2026-11.json'
+OUTPUTS['G2-modernbert']='readers-profile-modernbert-2026-11.json'
+FIELDS['G2-first-rungs']={'card','status','productionAdmission','ledger','scope','parentReceiptPin','frozenReceiptPin',
+                         'protocolPin','rungs','unmeasured'}
+OUTPUTS['TP33']='readers-worry-lift-2026-11.json'
+FIELDS['TP33']={'card','status','ledger','protocolPin','sourcePins','pack','productionAdmission','scope',
+                'minimumLift','plain','essays','knownGroups','spansPin','researchDisplayPasses'}
+FIELDS['G2-modernbert']=FIELDS['G2-first-rungs']|{'originalReceiptPin','coverage'}
+FIELDS['TP32']={'card','status','ledger','protocolPin','rosterPin','encoderPin','productionAdmission','scope',
+                'eligibleWriters','writerDraws','matching','stability','intake','archivePins'}
 FIELDS['TP37']={'card','status','ledger','productionAdmission','scope','sourcePin','protocolPin','reports',
                 'writers','words','ratings','foldSizes','effectiveRanks','foldLosses','rankMeanLoss',
                 'rankStandardError','oneSE','consecutiveTwoSE','tablesByRank','writerDraws','lossArchivePin','completedFolds','axisArchivePins'}
@@ -85,7 +100,7 @@ OUTPUTS['RD2']='readers-standards-panel-2026-11.json'
 _PANEL_FIELDS={'card','status','productionAdmission','ledger','protocolPin','readerJobPin',
                'companionPin','trainedReceiptPin','scope','rows','human'}
 FIELDS['RD1']=_PANEL_FIELDS|{'slots'}
-FIELDS['RD2']=_PANEL_FIELDS|{'differenceFlags','developmentWinners','trainedArms','researchReaderC',
+FIELDS['RD2']=_PANEL_FIELDS|{'differenceFlags','developmentWinners','trainedArms','researchReaderC','modernbertReceiptPin',
                             'overlapAuditPin','primaryReports','textFreshReports','f3Status','developmentSelectionPin'}
 OUTPUTS['TP36']='readers-need-pairs-2026-11.json'
 FIELDS['TP36']={'card','status','productionAdmission','ledger','scope','sourceReceiptPinTP28','protocolPin',

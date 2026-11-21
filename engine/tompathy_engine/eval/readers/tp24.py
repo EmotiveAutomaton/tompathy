@@ -32,7 +32,7 @@ def forecasts(x, y, groups, check):
     return prediction.astype(str), probabilities, labels
 
 
-def evaluate(x, labels, writers, check):
+def evaluate_with_choices(x, labels, writers, check):
     pred, p, classes = forecasts(x, labels, writers, check)
     result = {'macro_f1': float(f1_score(labels, pred, average='macro')), 'twins': {}}
     for pair in PAIRS:
@@ -44,7 +44,12 @@ def evaluate(x, labels, writers, check):
     chosen, _, _ = forecasts(x[ids], labels[ids], writers[ids], check)
     result['five_way'] = {'n': len(ids), 'accuracy': float(accuracy_score(labels[ids], chosen)),
                           'labels': list(LOSS), 'confusion': confusion_matrix(labels[ids], chosen, labels=list(LOSS)).tolist()}
-    return result, p, classes
+    return result, p, classes, chosen
+
+
+def evaluate(x, labels, writers, check):
+    result, probabilities, classes, _ = evaluate_with_choices(x, labels, writers, check)
+    return result, probabilities, classes
 
 
 def run(corpus, reader_job, needs_job, models, output, check, *, vector_cache=None, vector_source=None):

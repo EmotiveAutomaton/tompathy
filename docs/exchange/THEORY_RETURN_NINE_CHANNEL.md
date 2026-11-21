@@ -12,9 +12,9 @@ protocols, repairs and private execution receipts. The prior queues are closed.
 | TP30 | Frozen rung complete; E-TP30-FROZEN-20261119 | Transfer bar passes 6/7; disagreement and pair clauses fail; CARE misses single-label noninferiority. Full tables below. Spark rung unrun. |
 | TP31 | Target/student helpers implemented; research unrun | Teacher/student work blocked by unqualified SP1. Old failed gate remains failed. |
 | TP29 | Complete; E-TP29-20261119 | Readings 1–2 pass, reading 3 fails; independent A/B both no. Reading 4 is separate. Full results and marker lists below. |
-| TP24 | Separate new evaluation authorized by C0 and the packet | New teacher-feature requests blocked by unqualified SP1; old 1,200 rows remain a separate model view. |
-| TP32 | Opened-menu refusal-direction protocol planned | Both readings unrun; logged option index is not an inserted-text key. |
-| TP33 | Fixed page-median worry-lift rule planned | Acceptance unrun; original worry evidence and limitations unchanged. |
+| TP24 | The November 20 amendment authorized use-specific feature assignments. Recalled-event evaluation complete, E-TP24-RECALLED-20261120. | Fitted slots and the fixed table cleared their thresholds. The tense rule missed. The original TP10 comparison is reported separately. [Estimates and disagreements](result-sheets/TP24-reports.md). |
+| TP32 | [Refusal directions](result-sheets/TP32-refusals.md) | Split-half stability passed. Adding the direction reduced cross-prompt matching accuracy from 7.2% to 5.6%. |
+| TP33 | [Page-relative worry](result-sheets/TP33-worry-lift.md) | Zero of 24 essay windows qualified. Each theme-free control contained one window. The exact one-point display boundary passed native Chrome verification. |
 | TS4 | Default-off nine-channel display planned | Requires TP30 test 1 and a qualified new gate. No shares, counts, badges or maker estimate. |
 
 C0 uses `rp-need-1@3195a406e777a664845b18e3d647b38f09f232430e0509330ffc2cd2ac49bccf`.
@@ -689,3 +689,7 @@ source-bound public payload, outer guarded Spark runner, actual GPU runtime
 check and aggregate evaluation/landing remain to build. No fine-rung fitting
 or inference has run, and no new research job was launched. TP31/TP24 remain
 blocked by unqualified SP1; no failed scientific gate was reopened.
+
+**TP32.** 37 writers met the split-half support rule. Within-writer minus between-writer cosine was 0.047 (95% writer interval [0.016, 0.079]). Stability passed. On 1,100 sessions with different-prompt references, adding refusal direction changed top-one accuracy from 0.072 to 0.056. Gain -0.015 (95% writer interval [-0.033, 0.000]), against .030. Matching missed its bar. [E-TP32-20261120](result-sheets/TP32-refusals.md).
+
+**TP33.** The 1-point page-relative threshold selected 0 of 40 windows across 40 theme-free items. It selected 0 of 24 windows in three public essays. The research-display checks passed. The saved source-level AUCs reproduced at envent 0.700, ed 0.858, go 0.781. [E-TP33-20261120](result-sheets/TP33-worry-lift.md).

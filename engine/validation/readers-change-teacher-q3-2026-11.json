@@ -1,0 +1,92 @@
+{
+  "study": "TP31-Q3",
+  "status": "teacher-checks-complete",
+  "ledger": "E-TP31-Q3-20261120",
+  "sourceReceiptPin": "a5722f1ba6640b06c41a8aa110f10eea79c4f4154400e8fa8fd5148e82e27235",
+  "teacherGatePin": "e2fc8b715d5842619c8922d95ff89dce4ee6a5ce778ba54abf99d567744068a3",
+  "Q4BlockedReceiptPin": "3fb15cce4e95307e13b96a29937c1ec39b15c35a30af68272e96d0d4efda726b",
+  "models": {
+    "A": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+    "B": "72aac7c28be8ff9b81c2a270eb489c88e6d822a76ec0cb7bf34d965768848567"
+  },
+  "checks": {
+    "agreement": {
+      "n": 2000,
+      "validPairs": 2000,
+      "agreement": 0.8595,
+      "kappa": 0.6957425613928712,
+      "passes": true
+    },
+    "knownGroups": {
+      "ed": {
+        "n": 339,
+        "valid": 339,
+        "positive": 233,
+        "missing": 0,
+        "rate": 0.6873156342182891,
+        "lowerRate": 0.6873156342182891,
+        "upperRate": 0.6873156342182891,
+        "passes": false
+      },
+      "envent-feeling": {
+        "n": 297,
+        "valid": 297,
+        "positive": 214,
+        "missing": 0,
+        "rate": 0.7205387205387206,
+        "lowerRate": 0.7205387205387206,
+        "upperRate": 0.7205387205387206,
+        "passes": false
+      },
+      "stack": {
+        "n": 314,
+        "valid": 306,
+        "positive": 38,
+        "missing": 8,
+        "rate": 0.12418300653594772,
+        "lowerRate": 0.12101910828025478,
+        "upperRate": 0.1464968152866242,
+        "passes": true
+      }
+    },
+    "qualifiesForStudent": false,
+    "productionAdmission": false,
+    "scope": "Agreement with a fixed local model definition; not human-labeled change or maker state.",
+    "storyAffected": {
+      "n": 330,
+      "valid": 330,
+      "agreement": 0.706060606060606
+    },
+    "withheldParentCounts": {
+      "ed": 0,
+      "envent-feeling": 0,
+      "stack": 6
+    }
+  },
+  "validity": {
+    "A": {
+      "rows": 2000,
+      "valid": 2000
+    },
+    "B": {
+      "rows": 2000,
+      "valid": 2000
+    },
+    "B-whole": {
+      "rows": 730,
+      "valid": 728
+    }
+  },
+  "descriptiveAgreement": {
+    "whose": {
+      "matched": 1492,
+      "validPairs": 2000
+    },
+    "when": {
+      "matched": 1661,
+      "validPairs": 2000
+    }
+  },
+  "studentFitted": false,
+  "gatePackQualified": false
+}

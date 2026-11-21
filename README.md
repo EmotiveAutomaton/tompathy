@@ -7,9 +7,14 @@
 **0.3 beta development · MIT licensed · Engine v1.** The Python engine in [engine/](engine/README.md) provides the decision ledger, source adapters, model/evaluation components, static registry generation and authenticated local companion. Scientific admissions remain separate from software checks: unadmitted modules do not supply maker estimates. The commissioned website demo remains hand-authored, fictional analysis.
 
 The [November 20 packet](docs/ENGINE_TEACHER_WORD_TABLE_2026-11-20.md) adds
-two GPU queues. The Spark completed the first two reader passes and is checking
-teacher agreement. The workstation completed the food-topic reading and is
-comparing prompts. The first
+two GPU queues. Reader B missed two required change-detection checks. The
+Spark finished the held-out prompt runs, saved the MiniLM and MPNet fits and
+advanced to Q6 after ModernBERT stopped on a compiler dependency. The workstation
+completed its food-topic and G3 studies. Raising the thinking prompt's output
+limit recovered 11 of 15 invalid answers and preserved all five valid answers
+on the same 20 development reports. [Paired result](docs/exchange/result-sheets/G3-thinking-budget.json)
+and [teacher result](docs/exchange/result-sheets/TP31-teacher.md).
+The first
 [word-table result](docs/exchange/result-sheets/TP34-word-lifts.md) cleared its
 registered top-two bar and found a tie on quiet share for all 32 words.
 The [food-topic comparison](docs/exchange/result-sheets/TP38-food-topic.md)
@@ -17,7 +22,11 @@ found that removing food situations more than halved the food-tag lift for
 both *ashamed* and *guilty* on the point estimates. On 350 held-out reports,
 RD1 assigned pleasantness and unpleasantness to reader B for the TP24 study.
 The trained reader supplies the other six features. [RD1 result sheet](docs/exchange/result-sheets/RD1-panel.md).
-The [November 21 theory return](docs/exchange/THEORY_RETURN_2026-11-21.md) collects the five completed studies.
+That combination identified the writer's word in 54.3% of the five-word
+cases, compared with 51.2% for the direct reader. The fixed table reached
+37.1% without the tense term. [TP24 recalled-event results](docs/exchange/result-sheets/TP24-reports.md).
+On the same 6,600 reports, eight dimensions sufficed under the one-standard-error rule. The consecutive-improvement rule selected nine. Both estimates describe how the event ratings distinguish the supplied feeling words. [TP37 dimension tables](docs/exchange/result-sheets/TP37-ratings.md).
+The [November 21 theory return](docs/exchange/THEORY_RETURN_2026-11-21.md) collects the completed studies and outstanding checks.
 Reader clearance now follows each card's registered
 use. The [nine-channel commission](docs/ENGINE_NINE_CHANNEL_2026-11-19.md)
 continues alongside it. Its first export selects the completed frozen need reader
@@ -216,3 +225,7 @@ node scripts/verify-package.mjs
 [MIT](LICENSE), copyright 2026 EmotiveAutomaton. Bundled dependencies retain their own [notices](THIRD_PARTY_NOTICES.txt).
 
 The MIT license covers the software. The essay snapshot remains attributed to its creator; inclusion does not relicense the essay or its references.
+
+**TP32.** 37 writers met the split-half support rule. Within-writer minus between-writer cosine was 0.047 (95% writer interval [0.016, 0.079]). Stability passed. On 1,100 sessions with different-prompt references, adding refusal direction changed top-one accuracy from 0.072 to 0.056. Gain -0.015 (95% writer interval [-0.033, 0.000]), against .030. Matching missed its bar. [E-TP32-20261120](docs/exchange/result-sheets/TP32-refusals.md).
+
+**TP33.** The 1-point page-relative threshold selected 0 of 40 windows across 40 theme-free items. It selected 0 of 24 windows in three public essays. The research-display checks passed. The saved source-level AUCs reproduced at envent 0.700, ed 0.858, go 0.781. [E-TP33-20261120](docs/exchange/result-sheets/TP33-worry-lift.md).

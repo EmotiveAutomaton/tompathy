@@ -1,12 +1,20 @@
 import type { Packet } from "../core/model";
 import { pageStress } from "../core/need-view";
+import { worryLift } from "../core/worry-lift";
 
 /** A page/window model score, never a measured trajectory of the author. */
 export function ResearchStress({ packet, enabled }: { packet: Packet; enabled: boolean }) {
-  const readings = pageStress(packet, enabled);
+  const readings = pageStress(packet, enabled).map(r => ({ r, lifts: worryLift(r) }))
+    .filter(({ lifts }) => lifts === null || lifts.length > 0);
   if (!readings.length) return null;
   return <section aria-label="Research worry reading" data-testid="research-stress">
-    {readings.map(r => {
+    {readings.map(({ r, lifts }) => {
+      if (lifts !== null) return <div key={r.pack}>
+        <p>Worry rose at least one point above this page’s median in {lifts.length} of {r.series.length} text windows.
+          The research reader uses a 1–9 scale learned from writers’ worry ratings in one UK COVID-era corpus.</p>
+        <ul aria-label="Worry above the page median">{lifts.map(s =>
+          <li key={s.from + "-" + s.to}>Characters {s.from}–{s.to} · +{s.lift.toFixed(2)} points</li>)}</ul>
+      </div>;
       const start = Math.min(...r.series.map(s => s.from)), end = Math.max(...r.series.map(s => s.to));
       const points = r.series.map(s => `${10 + 280 * ((s.from + s.to) / 2 - start) / Math.max(1, end - start)},${70 - 60 * s.value}`).join(" ");
       return <div key={r.pack}><p>{r.key.corpus === "constructed" ? "Constructed software fixture, not a measured reading." : "Research reader trained on writers' own worry ratings in one UK COVID-era corpus."}{" "}

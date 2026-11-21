@@ -3,6 +3,27 @@
 Only measured engine accuracy belongs here. Pending rows are not zero scores.
 Field labels remain off. A passed software test is not a natural-writing result.
 
+**November 21 research display.** The one-point worry rule marked 0/24 essay
+windows. All 40 theme-free items had one window, so each equaled its own
+median. The reproduced AUCs measure the original level scores. [TP33 result](exchange/result-sheets/TP33-worry-lift.md).
+
+**TP37.** Across five writer-held-out folds, the one-standard-error rule selected eight rating dimensions and consecutive paired improvements selected nine. The predicted six to eight held under the first rule. These are task-specific counts for 13 prompted words. [E-TP37-20261120, both fitted bases](exchange/result-sheets/TP37-ratings.md).
+
+**TP24 recalled-event reports.** On the extended roster, the fitted RD1
+slots reached .543 five-way accuracy versus .512 for the direct reader.
+The paired gain was .031 (95% writer interval [.009, .054]). The fixed
+table's accuracy was .371 [.352, .390] against .33. Tense AUC reached
+.514 [.491, .538] against .60. The initial and extended rosters both
+cleared the slot and table bars and missed the tense bar. The table and
+the frozen TP30 reader agreed on their first channel for 1,747 of 6,600
+reports. [Result sheet, E-TP24-RECALLED-20261120](exchange/result-sheets/TP24-reports.md).
+
+**TP31 teacher qualification failed.** Cohen's κ was .696 on 2,000 paired
+sentences, above .60. Reader B found change in 214/297 Crowd-enVENT reports
+and 233/339 ED situations. Both fell short of 85%. The Stack Exchange ceiling
+passed even with all eight unknowns counted as changes. The student and its
+gate pack remain blocked. [Ledger evidence and counts](exchange/result-sheets/TP31-teacher.md).
+
 **RD1 feature allocation.** On 350 held-out reports, reader B improved rank
 correlation with the writers by .136 for pleasantness (95% paired interval
 [.080, .197]) and .131 for unpleasantness ([.068, .199]). These two gains
@@ -440,3 +461,7 @@ E-SP1-V2-READER-COMPARISON-20261120 bind the full source/table. Exact exits/rele
 and all copied artifacts are verified. No SP1 scorer remains running. TP31 and
 new TP24 teacher requests are dependency-blocked; independent TP30 fine, TP32 and
 TP33 implementation remains authorized. No serving or maker admission follows.
+
+**TP32.** 37 writers met the split-half support rule. Within-writer minus between-writer cosine was 0.047 (95% writer interval [0.016, 0.079]). Stability passed. On 1,100 sessions with different-prompt references, adding refusal direction changed top-one accuracy from 0.072 to 0.056. Gain -0.015 (95% writer interval [-0.033, 0.000]), against .030. Matching missed its bar. [E-TP32-20261120](exchange/result-sheets/TP32-refusals.md).
+
+**TP33.** The 1-point page-relative threshold selected 0 of 40 windows across 40 theme-free items. It selected 0 of 24 windows in three public essays. The research-display checks passed. The saved source-level AUCs reproduced at envent 0.700, ed 0.858, go 0.781. [E-TP33-20261120](exchange/result-sheets/TP33-worry-lift.md).

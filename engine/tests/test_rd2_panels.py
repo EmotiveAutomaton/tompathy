@@ -17,6 +17,37 @@ from tompathy_engine.eval.readers.reporting import land
 from tompathy_engine.eval.readers.word_panel_sheets import sheet_data
 
 
+def test_q5_root_records_match_only_the_verified_transfer(tmp_path, monkeypatch):
+    def save(name, value):
+        path = tmp_path / name
+        path.write_text(json.dumps(value), encoding='utf8')
+        return word_panels.sha256(path)
+
+    entry = {'commit': 'registered'}
+    owner = {'job': 'Q5', **entry}
+    entry_hash = hashlib.sha256(b'{"commit":"registered"}').hexdigest()
+    monkeypatch.setitem(word_panels.ENTRIES, 'Q5', entry_hash)
+    receipt = {'entry': entry, 'owner': owner, 'job': 'Q5', 'lane': 'spark', 'status': 'complete',
+               'artifactsPin': save('artifacts.json', {'files': {}})}
+    receipt_pin = save('receipt.json', receipt)
+    save('complete.json', {'receiptPin': receipt_pin})
+    save('released.json', {'owner': owner, 'nativeExitCode': 0, 'descriptorClosed': True})
+    name = 'development-selection.json'
+    record_pin = save(name, {'winners': {'standards': 'V4', 'social_norms': 'V0'}})
+    monkeypatch.setitem(word_panels.Q5_TRANSFER_RECORDS, name, record_pin)
+    mirror = word_panels.Mirror(tmp_path, 'Q5')
+    with pytest.raises(ValueError, match='artifact differs'):
+        mirror.artifact(name)
+    monkeypatch.setattr(word_panels, 'Q5_SOURCE', receipt_pin)
+    assert mirror.artifact(name) == tmp_path / name
+    save('unregistered.json', {})
+    with pytest.raises(ValueError, match='artifact differs'):
+        mirror.artifact('unregistered.json')
+    save(name, {'winners': {}})
+    with pytest.raises(ValueError, match='artifact differs'):
+        mirror.artifact(name)
+
+
 def test_paired_ties_and_missing_use_identical_common_rows():
     y = np.tile([2., 1., 3., 4., 4.], 6)
     candidate = y.copy()

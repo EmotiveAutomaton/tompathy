@@ -4,6 +4,16 @@ import { BottomBoxSchema, PageReadingSchema, upgradeBottomBoxPacket } from "../s
 import { pageNeedSources, pageNeedActivity, pageStress, workNeedSources } from "../src/core/need-view";
 import { createExample } from "../src/core/example";
 import { sentences } from "../src/core/sentences";
+import { worryLift } from "../src/core/worry-lift";
+
+test("worry lift is pack-bound and includes a difference of exactly one original point", () => {
+  const r = reading("S1", [], [.25, .5, .625].map((value, i) => ({ from: i*5, to: i*5+8, value })));
+  const pass = { pack: r.pack, sourceReceiptPin: "c".repeat(64) };
+  assert.deepEqual(worryLift(r, pass), [{ from: 10, to: 18, lift: 1 }]);
+  assert.deepEqual(worryLift({ ...r, series: r.series.slice(-1) }, pass), []);
+  assert.equal(worryLift(r, { ...pass, pack: "another" }), null);
+  assert.equal(worryLift(r, { ...pass, sourceReceiptPin: null }), null);
+});
 
 const mapping = { status: "proposed", source: "constructed answer" } as const;
 const event = (span: [number, number], confidence: number, direction: string) => ({

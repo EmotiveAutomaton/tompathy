@@ -1,0 +1,58 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "e5bbe59adc42f7fc69e58ac7a08ccf808e45342fbb8f487990cde2fae0a7cf47",
+  "launcherPin": "2ef04599d0ad1b00edad7b36af38f8370e01f212a2e5934e1f55d9db809368ec",
+  "ledger": "E-TP32-20261120",
+  "card": "TP32",
+  "protocolPin": "7ff6ce2eeda5359b5b9ec1403f0688a3cbb1faa19e1587bdd6996066744854ad",
+  "rosterPin": "b6527b4c90cc830383f6c7562c7e24dd99c327581350603e144c202e9292a8d1",
+  "encoderPin": "e1d74ca91f391fa702a0aa8c395761c260a3fccd928c2855e5cc20c35f8e22b1",
+  "productionAdmission": false,
+  "scope": "Observed suggestions in public CoAuthor sessions. Person identification and channel inference are outside this study.",
+  "eligibleWriters": 37,
+  "writerDraws": 2000,
+  "matching": {
+    "sessions": 1100,
+    "writers": 37,
+    "baseline": 0.07181818181818182,
+    "augmented": 0.056363636363636366,
+    "gain": -0.015454545454545455,
+    "passes": false,
+    "interval": [
+      -0.03284266125235405,
+      0.0
+    ],
+    "finiteDraws": 2000
+  },
+  "stability": {
+    "gain": 0.04732237075563292,
+    "interval": [
+      0.015959067412983006,
+      0.07907030336175157
+    ],
+    "passes": true,
+    "finiteDraws": 2000
+  },
+  "status": "complete",
+  "intake": {
+    "sessions": 1407,
+    "writers": 61,
+    "uniqueSuggestions": 68028,
+    "menus": 16959,
+    "offeredDismissedAccepted": [
+      69569,
+      14997,
+      12750
+    ],
+    "excludedMenus": 34,
+    "emptySessions": 37,
+    "excludedSessions": 1
+  },
+  "archivePins": {
+    "sessions.npz": "d360cb11324a83b4d5f9eb645b6758629f2132780ec99539a35070f0b561a812",
+    "opened.jsonl": "9922249548c3e2d716f67b64fb9d8aa8839e9a8b1794a32e4c6aebe5297a0363",
+    "unique-texts.json": "6e9b20b4a947d0bef77c4c71689b17bd5f618840305dcdd607e801ac6d5a654b",
+    "comparisons.npz": "856e0f5c7c02d09a30f16f8adeea72347b529a8671a0b12f2f5ada99512b7901"
+  },
+  "sourceReceiptPin": "eda0c98a384a0f285d791d512b361470596e901128371fa1b6bfbe9735b190ad"
+}

@@ -1,6 +1,6 @@
 // Native-panel acceptance using an exact saved research packet, no new inference.
 import { expect } from '@playwright/test';
-import { readFile, writeFile, mkdir, mkdtemp } from 'node:fs/promises';
+import { readFile, writeFile, mkdtemp } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { openReview } from './chrome-review.mjs';
@@ -15,8 +15,11 @@ if (result.card !== 'TS3-real' || result.status !== 'complete' ||
 const bytes = await readFile(path.join(job, 'packets/essay-1.json'));
 const packet = JSON.parse(bytes.toString('utf8'));
 if (!packet.bottom_box.on_page.some(r => r.id === 'S1' && r.series.length)) throw Error('Saved essay has no real worry series');
-const target = path.resolve('.local/trigger/ui-' + path.basename(job));
-await mkdir(target, { recursive: true });
+const decision = JSON.parse(await readFile('src/core/worry-lift-decision.json', 'utf8'));
+const scalar = packet.bottom_box.on_page.find(r => r.id === 'S1');
+const lift = decision.pack === scalar.pack && Boolean(decision.sourceReceiptPin);
+const target = lift ? await mkdtemp(path.resolve('.local/word-table/ui-tp33-'))
+  : await mkdtemp(path.resolve('.local/trigger/ui-' + path.basename(job) + '-'));
 const profile = await mkdtemp(path.resolve('.local/trigger-real-chrome-'));
 const escape = s => s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 const receipt = { at: new Date().toISOString(), scope: 'Exact saved real research packet in native panel, private public-corpus replay',
@@ -56,11 +59,38 @@ try {
   const dismiss = panel.getByRole('button', { name: 'Dismiss interaction guide' });
   if (await dismiss.count()) await dismiss.click();
   await panel.getByTestId('needs-landscape').getByRole('button', { name: 'Stress', exact: true }).click();
-  await expect(panel.getByTestId('research-stress')).toContainText('5.95 of 9');
-  await expect(panel.getByTestId('research-stress')).toContainText('not a measure of this writer');
-  await expect(panel.getByTestId('research-stress').locator('circle')).toHaveCount(packet.bottom_box.on_page.find(r => r.id === 'S1').series.length);
-  await panel.screenshot({ path: path.join(target, 'essay-stress.png') });
-  receipt.checks.push('Native side panel beside exact public essay replay; every saved worry window rendered with its benchmark and plain-prose limit');
+  const worry = panel.getByTestId('research-stress');
+  if (lift) {
+    const filed = JSON.parse(await readFile('engine/validation/readers-worry-lift-2026-11.json', 'utf8'));
+    expect(filed.sourceReceiptPin).toEqual(decision.sourceReceiptPin);
+    expect(filed.researchDisplayPasses).toEqual(true);
+    expect(filed.essays[0].shown).toEqual(0);
+    await expect(worry).toHaveCount(0);
+    await panel.screenshot({ path: path.join(target, 'essay-stress.png') });
+    receipt.checks.push('Verified native research view on the exact saved essay with zero qualifying windows.');
+    // Change only the disposable browser fixture. Never modify source packets or research forecasts.
+    const fixture = structuredClone(packet);
+    const windows = fixture.bottom_box.on_page.find(r => r.id === 'S1').series;
+    windows.forEach((s, i) => { s.value = i === 0 ? .625 : .5; });
+    await panel.evaluate(async fixture => {
+      const { reading } = await chrome.storage.session.get('reading');
+      reading.packet = fixture;
+      await chrome.storage.session.set({ reading });
+    }, fixture);
+    await panel.reload();
+    await panel.getByTestId('needs-landscape').getByRole('button', { name: 'Stress', exact: true }).click();
+    await expect(worry.getByRole('listitem')).toHaveCount(1);
+    await expect(worry.getByRole('listitem')).toHaveText(`Characters ${windows[0].from}–${windows[0].to} · +1.00 points`);
+    await worry.screenshot({ path: path.join(target, 'constructed-boundary.png') });
+    receipt.checks.push('Constructed threshold case rendered only the one window exactly 1.00 point above its page median.');
+    receipt.decision = decision;
+  } else {
+    await expect(worry).toContainText('5.95 of 9');
+    await expect(worry).toContainText('not a measure of this writer');
+    await expect(worry.locator('circle')).toHaveCount(scalar.series.length);
+    await panel.screenshot({ path: path.join(target, 'essay-stress.png') });
+    receipt.checks.push('Native side panel beside the original essay replay rendered the saved level series.');
+  }
   await panel.keyboard.press('Escape');
   await panel.evaluate(() => localStorage.setItem('tompathy-research-preview', 'false'));
   await panel.reload();

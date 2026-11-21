@@ -1,0 +1,63 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "3209854f734fed7ca2bdeb5faa8b83907b81fac36d256d9a51aa7d16dfd43392",
+  "launcherPin": "8da020a46e04610bb5f0e4f79f121eae16ac931e24660ab74c7468352f436a6f",
+  "ledger": "E-TP33-20261120",
+  "card": "TP33",
+  "status": "complete",
+  "productionAdmission": false,
+  "scope": "Page-relative research display. Source AUCs use the original levels.",
+  "protocolPin": "38ae52450427647ed89563ccd5d8cd9c9e291e8698d546fef1c5bf377c91602d",
+  "sourcePins": [
+    "6bcd5dae0c463ffb45f1b9b3ac6988d9db745e6943196ca9521544a56152c4d9",
+    "99d507ec9350998b41af76ea95626cd789c78bdc59b607fe24c6ea99dcfb3789"
+  ],
+  "pack": "rp-worry-1@59c6bb3e90fc1723e6ac6682107ea91d118eea63ecf719d25b32764fa9785b3a",
+  "minimumLift": 1.0,
+  "plain": {
+    "pages": 40,
+    "shown": 0,
+    "windows": 40,
+    "fraction": 0.0,
+    "sizes": {
+      "1": 40
+    }
+  },
+  "essays": [
+    {
+      "windows": 8,
+      "shown": 0,
+      "subset": true
+    },
+    {
+      "windows": 11,
+      "shown": 0,
+      "subset": true
+    },
+    {
+      "windows": 5,
+      "shown": 0,
+      "subset": true
+    }
+  ],
+  "knownGroups": {
+    "envent": {
+      "n": 3300,
+      "auc": 0.7001733700642792,
+      "forecastPin": "a119e7e69b8575e51bb19154892d53e5340a160805790c5080db4e54c2f2f4f7"
+    },
+    "ed": {
+      "n": 5283,
+      "auc": 0.8578120504834454,
+      "forecastPin": "5ec5336cdedd16e3f837668b240b6b9472c57aa979b86b212f2ad850d0bf13f6"
+    },
+    "go": {
+      "n": 18627,
+      "auc": 0.7808899328808151,
+      "forecastPin": "40683f2a9121fe281af0f79ecdb55c09b47b4a65a4d9305bfc7902a1af47cc89"
+    }
+  },
+  "spansPin": "61e54d1af85e9d83e3996410d579814cefc972eaea254023904c15ad01509972",
+  "researchDisplayPasses": true,
+  "sourceReceiptPin": "8163192a6b14dd0385366710a3b613eeaf51121fe15cf7100e5e249161be9adf"
+}

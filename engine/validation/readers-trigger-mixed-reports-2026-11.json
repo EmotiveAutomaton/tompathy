@@ -1,0 +1,1369 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "c980410972e50c4540d8a4c1bb51da4564c6c5b803a7c48b54c018aa9f67bfcf",
+  "launcherPin": "855319dd359d9e066d3244e144902007489a31850f994638b391c53f08b5f02b",
+  "ledger": "E-TP24-RECALLED-20261120",
+  "card": "TP24-mixed",
+  "status": "complete",
+  "productionAdmission": false,
+  "scope": "Recalled-event feeling words and text-derived feature forecasts. The downstream folds hold out writers. The five training-report feature folds also hold out writers. The original 1,200-report TP10 test shares writers with its training set. The fixed table was developed with knowledge of this corpus.",
+  "protocolPin": "e6cf0d3f526fa0232d7b7e8b584b02a66921aa696c66e05d412be05e9a2b0640",
+  "sources": {
+    "C0": "85e9b12fb8b8c2318dee928f651a5da80c78f642ca91f17d050d7e47a5d67bd7",
+    "needs": "1d996fdce019a3cbf60bb55ad7cb77fdd0dc6d5481e0f95f8a8c9b4025334bf4",
+    "TP30": "d04658e1c84ef10e0c95847947359b24da91b79368bd91b3fa22da2d70c3e250",
+    "rosters": {
+      "initial": "01fb294b8ca73da019cefa4583cc23043fe261104d187dcec7eaf940f234ab05",
+      "extended": "0fae63302559eaf0a45a6ed588372ab9334bce72872f385a7bbaa3d569886f88"
+    }
+  },
+  "cohorts": {
+    "initial": {
+      "attempted": 6250,
+      "coverage": {
+        "prompted": 6250,
+        "trained": 6250,
+        "mixed": 6250,
+        "common": 6250
+      },
+      "byCohort": {
+        "Q1": {
+          "prompted": 350,
+          "trained": 350,
+          "mixed": 350,
+          "common": 350
+        },
+        "Q2": {
+          "prompted": 5400,
+          "trained": 5400,
+          "mixed": 5400,
+          "common": 5400
+        },
+        "SP1": {
+          "prompted": 500,
+          "trained": 500,
+          "mixed": 500,
+          "common": 500
+        }
+      },
+      "commonReports": 6250,
+      "writers": 2216,
+      "features": [
+        "pleasantness",
+        "unpleasantness",
+        "self_responsblt",
+        "goal_support",
+        "social_norms",
+        "other_responsblt",
+        "standards",
+        "suddenness"
+      ],
+      "featureReaders": {
+        "pleasantness": "B",
+        "unpleasantness": "B",
+        "self_responsblt": "trained",
+        "goal_support": "trained",
+        "social_norms": "trained",
+        "other_responsblt": "trained",
+        "standards": "trained",
+        "suddenness": "trained"
+      },
+      "rows": {
+        "direct": {
+          "macro_f1": 0.4001308654103878,
+          "twins": {
+            "pride-joy": 0.7583565205990327,
+            "guilt-shame": 0.6500382965686275,
+            "fear-sadness": 0.8410557120546465,
+            "anger-disgust": 0.7946508588498881,
+            "trust-joy": 0.8731927223521452
+          },
+          "five_way": {
+            "n": 2338,
+            "accuracy": 0.514114627887083,
+            "labels": [
+              "anger",
+              "fear",
+              "sadness",
+              "shame",
+              "disgust"
+            ],
+            "confusion": [
+              [
+                235,
+                67,
+                70,
+                69,
+                79
+              ],
+              [
+                64,
+                300,
+                67,
+                34,
+                59
+              ],
+              [
+                73,
+                77,
+                286,
+                46,
+                41
+              ],
+              [
+                57,
+                30,
+                42,
+                96,
+                31
+              ],
+              [
+                96,
+                46,
+                43,
+                45,
+                285
+              ]
+            ]
+          }
+        },
+        "mixed-slots": {
+          "macro_f1": 0.44508363691592034,
+          "twins": {
+            "pride-joy": 0.7882881242351845,
+            "guilt-shame": 0.6735983455882354,
+            "fear-sadness": 0.8274159648533856,
+            "anger-disgust": 0.8003659447348769,
+            "trust-joy": 0.9046500169145009
+          },
+          "five_way": {
+            "n": 2338,
+            "accuracy": 0.5389221556886228,
+            "labels": [
+              "anger",
+              "fear",
+              "sadness",
+              "shame",
+              "disgust"
+            ],
+            "confusion": [
+              [
+                263,
+                62,
+                74,
+                29,
+                92
+              ],
+              [
+                51,
+                307,
+                82,
+                31,
+                53
+              ],
+              [
+                88,
+                72,
+                295,
+                22,
+                46
+              ],
+              [
+                56,
+                34,
+                37,
+                93,
+                36
+              ],
+              [
+                83,
+                66,
+                42,
+                22,
+                302
+              ]
+            ]
+          }
+        },
+        "mixed-both": {
+          "macro_f1": 0.4353635725754654,
+          "twins": {
+            "pride-joy": 0.7643384709515763,
+            "guilt-shame": 0.6614200367647058,
+            "fear-sadness": 0.8390706873148162,
+            "anger-disgust": 0.7912845407020164,
+            "trust-joy": 0.8963839738781274
+          },
+          "five_way": {
+            "n": 2338,
+            "accuracy": 0.5145423438836613,
+            "labels": [
+              "anger",
+              "fear",
+              "sadness",
+              "shame",
+              "disgust"
+            ],
+            "confusion": [
+              [
+                238,
+                71,
+                59,
+                65,
+                87
+              ],
+              [
+                70,
+                289,
+                70,
+                37,
+                58
+              ],
+              [
+                68,
+                70,
+                291,
+                52,
+                42
+              ],
+              [
+                61,
+                30,
+                31,
+                99,
+                35
+              ],
+              [
+                96,
+                54,
+                40,
+                39,
+                286
+              ]
+            ]
+          }
+        },
+        "trained-slots": {
+          "macro_f1": 0.39759826788841585,
+          "twins": {
+            "pride-joy": 0.7867730610104307,
+            "guilt-shame": 0.6556142769607842,
+            "fear-sadness": 0.8276239545779633,
+            "anger-disgust": 0.7997684839432412,
+            "trust-joy": 0.8933356866551941
+          },
+          "five_way": {
+            "n": 2338,
+            "accuracy": 0.5367835757057314,
+            "labels": [
+              "anger",
+              "fear",
+              "sadness",
+              "shame",
+              "disgust"
+            ],
+            "confusion": [
+              [
+                250,
+                65,
+                70,
+                32,
+                103
+              ],
+              [
+                48,
+                312,
+                86,
+                25,
+                53
+              ],
+              [
+                85,
+                71,
+                298,
+                23,
+                46
+              ],
+              [
+                49,
+                38,
+                44,
+                94,
+                31
+              ],
+              [
+                93,
+                59,
+                39,
+                23,
+                301
+              ]
+            ]
+          }
+        },
+        "trained-both": {
+          "macro_f1": 0.40481908743007955,
+          "twins": {
+            "pride-joy": 0.7586132801118816,
+            "guilt-shame": 0.6576210171568628,
+            "fear-sadness": 0.8395012625341176,
+            "anger-disgust": 0.7910082150858851,
+            "trust-joy": 0.8788186324258336
+          },
+          "five_way": {
+            "n": 2338,
+            "accuracy": 0.5106928999144568,
+            "labels": [
+              "anger",
+              "fear",
+              "sadness",
+              "shame",
+              "disgust"
+            ],
+            "confusion": [
+              [
+                234,
+                67,
+                66,
+                68,
+                85
+              ],
+              [
+                61,
+                293,
+                73,
+                37,
+                60
+              ],
+              [
+                78,
+                76,
+                283,
+                49,
+                37
+              ],
+              [
+                57,
+                31,
+                36,
+                100,
+                32
+              ],
+              [
+                97,
+                54,
+                39,
+                41,
+                284
+              ]
+            ]
+          }
+        },
+        "prompted-slots": {
+          "macro_f1": 0.4664728177394013,
+          "twins": {
+            "pride-joy": 0.7865163014975818,
+            "guilt-shame": 0.6861443014705881,
+            "fear-sadness": 0.8385233459343482,
+            "anger-disgust": 0.7857823002240478,
+            "trust-joy": 0.9065050964126549
+          },
+          "five_way": {
+            "n": 2338,
+            "accuracy": 0.5705731394354149,
+            "labels": [
+              "anger",
+              "fear",
+              "sadness",
+              "shame",
+              "disgust"
+            ],
+            "confusion": [
+              [
+                295,
+                45,
+                57,
+                23,
+                100
+              ],
+              [
+                55,
+                308,
+                78,
+                33,
+                50
+              ],
+              [
+                74,
+                72,
+                307,
+                30,
+                40
+              ],
+              [
+                24,
+                34,
+                34,
+                140,
+                24
+              ],
+              [
+                109,
+                56,
+                34,
+                32,
+                284
+              ]
+            ]
+          }
+        },
+        "prompted-both": {
+          "macro_f1": 0.4589160638719732,
+          "twins": {
+            "pride-joy": 0.7671300477827633,
+            "guilt-shame": 0.6533930759803922,
+            "fear-sadness": 0.8456132412826763,
+            "anger-disgust": 0.7950765496639284,
+            "trust-joy": 0.907698304137434
+          },
+          "five_way": {
+            "n": 2338,
+            "accuracy": 0.5316509837467921,
+            "labels": [
+              "anger",
+              "fear",
+              "sadness",
+              "shame",
+              "disgust"
+            ],
+            "confusion": [
+              [
+                254,
+                59,
+                71,
+                37,
+                99
+              ],
+              [
+                62,
+                300,
+                71,
+                38,
+                53
+              ],
+              [
+                60,
+                86,
+                284,
+                38,
+                55
+              ],
+              [
+                36,
+                31,
+                39,
+                125,
+                25
+              ],
+              [
+                110,
+                46,
+                44,
+                35,
+                280
+              ]
+            ]
+          }
+        }
+      },
+      "originalTP10Overlap": {
+        "n": 850,
+        "BVersusTrainedSpearman": {
+          "pleasantness": 0.7448803514708978,
+          "unpleasantness": 0.7219150359466383,
+          "self_responsblt": 0.582546882426094,
+          "goal_support": 0.6918179622106295,
+          "social_norms": 0.45135803138755276,
+          "other_responsblt": 0.5663727585807341,
+          "standards": 0.5366090545571774,
+          "suddenness": 0.6007160956549308
+        }
+      },
+      "slotBar": {
+        "thresholdBelowDirect": 0.1,
+        "difference": 0.02480752780153983,
+        "qualified": true
+      },
+      "tense": {
+        "auc": 0.507604396245968,
+        "bar": 0.6,
+        "qualified": false,
+        "n": 1047,
+        "needsPlusTenseAuc": 0.8139331221811918
+      },
+      "table": {
+        "accuracy": 0.37254063301967494,
+        "bar": 0.33,
+        "qualified": true,
+        "labels": [
+          "anger",
+          "fear",
+          "sadness",
+          "shame",
+          "disgust"
+        ],
+        "n": 2338,
+        "chance": 0.2,
+        "tenseIncluded": false,
+        "fixedConfusion": [
+          [
+            113,
+            87,
+            70,
+            134,
+            116
+          ],
+          [
+            61,
+            272,
+            52,
+            113,
+            26
+          ],
+          [
+            45,
+            127,
+            211,
+            78,
+            62
+          ],
+          [
+            25,
+            22,
+            40,
+            137,
+            32
+          ],
+          [
+            94,
+            164,
+            41,
+            78,
+            138
+          ]
+        ],
+        "sameSlotsFittedConfusion": [
+          [
+            263,
+            62,
+            74,
+            29,
+            92
+          ],
+          [
+            51,
+            307,
+            82,
+            31,
+            53
+          ],
+          [
+            88,
+            72,
+            295,
+            22,
+            46
+          ],
+          [
+            56,
+            34,
+            37,
+            93,
+            36
+          ],
+          [
+            83,
+            66,
+            42,
+            22,
+            302
+          ]
+        ],
+        "fittedRightTableWrong": [
+          [
+            0,
+            24,
+            29,
+            73,
+            76
+          ],
+          [
+            22,
+            0,
+            12,
+            56,
+            7
+          ],
+          [
+            14,
+            60,
+            0,
+            19,
+            22
+          ],
+          [
+            2,
+            1,
+            11,
+            0,
+            9
+          ],
+          [
+            59,
+            102,
+            13,
+            27,
+            0
+          ]
+        ]
+      },
+      "profileComparison": {
+        "n": 6250,
+        "channels": [
+          "RAGE",
+          "FEAR",
+          "SADNESS",
+          "SHAME",
+          "DISGUST"
+        ],
+        "tableByTP30": [
+          [
+            126,
+            20,
+            508,
+            0,
+            57
+          ],
+          [
+            122,
+            172,
+            831,
+            0,
+            76
+          ],
+          [
+            106,
+            30,
+            1224,
+            0,
+            86
+          ],
+          [
+            441,
+            83,
+            1153,
+            0,
+            74
+          ],
+          [
+            256,
+            39,
+            708,
+            0,
+            138
+          ]
+        ],
+        "disagreements": 4590,
+        "agreement": 0.2656,
+        "tableTopTies": 0,
+        "TP30TopTies": 0,
+        "tieRule": "First maximum in the displayed channel order.",
+        "perChannelSpearman": {
+          "RAGE": 0.44084054792123095,
+          "FEAR": 0.5761087061446006,
+          "SADNESS": 0.310448551140125,
+          "SHAME": null,
+          "DISGUST": 0.35235187132976054
+        }
+      }
+    },
+    "extended": {
+      "attempted": 6600,
+      "coverage": {
+        "prompted": 6600,
+        "trained": 6600,
+        "mixed": 6600,
+        "common": 6600
+      },
+      "byCohort": {
+        "Q1": {
+          "prompted": 350,
+          "trained": 350,
+          "mixed": 350,
+          "common": 350
+        },
+        "Q2": {
+          "prompted": 5400,
+          "trained": 5400,
+          "mixed": 5400,
+          "common": 5400
+        },
+        "Q5": {
+          "prompted": 350,
+          "trained": 350,
+          "mixed": 350,
+          "common": 350
+        },
+        "SP1": {
+          "prompted": 500,
+          "trained": 500,
+          "mixed": 500,
+          "common": 500
+        }
+      },
+      "commonReports": 6600,
+      "writers": 2379,
+      "features": [
+        "pleasantness",
+        "unpleasantness",
+        "self_responsblt",
+        "goal_support",
+        "social_norms",
+        "other_responsblt",
+        "standards",
+        "suddenness"
+      ],
+      "featureReaders": {
+        "pleasantness": "B",
+        "unpleasantness": "B",
+        "self_responsblt": "trained",
+        "goal_support": "trained",
+        "social_norms": "trained",
+        "other_responsblt": "trained",
+        "standards": "trained",
+        "suddenness": "trained"
+      },
+      "rows": {
+        "direct": {
+          "macro_f1": 0.4013019648541726,
+          "twins": {
+            "pride-joy": 0.7482066115702479,
+            "guilt-shame": 0.6508760330578512,
+            "fear-sadness": 0.843996694214876,
+            "anger-disgust": 0.793813223140496,
+            "trust-joy": 0.8792479338842976
+          },
+          "five_way": {
+            "n": 2475,
+            "accuracy": 0.5119191919191919,
+            "labels": [
+              "anger",
+              "fear",
+              "sadness",
+              "shame",
+              "disgust"
+            ],
+            "confusion": [
+              [
+                251,
+                65,
+                89,
+                61,
+                84
+              ],
+              [
+                62,
+                315,
+                75,
+                48,
+                50
+              ],
+              [
+                79,
+                74,
+                287,
+                52,
+                58
+              ],
+              [
+                57,
+                36,
+                47,
+                96,
+                39
+              ],
+              [
+                87,
+                46,
+                51,
+                48,
+                318
+              ]
+            ]
+          }
+        },
+        "mixed-slots": {
+          "macro_f1": 0.43726370781548535,
+          "twins": {
+            "pride-joy": 0.7868561983471074,
+            "guilt-shame": 0.6747570247933885,
+            "fear-sadness": 0.8361421487603306,
+            "anger-disgust": 0.8042082644628099,
+            "trust-joy": 0.9014380165289255
+          },
+          "five_way": {
+            "n": 2475,
+            "accuracy": 0.5426262626262627,
+            "labels": [
+              "anger",
+              "fear",
+              "sadness",
+              "shame",
+              "disgust"
+            ],
+            "confusion": [
+              [
+                289,
+                61,
+                79,
+                32,
+                89
+              ],
+              [
+                45,
+                333,
+                83,
+                30,
+                59
+              ],
+              [
+                89,
+                80,
+                308,
+                27,
+                46
+              ],
+              [
+                62,
+                39,
+                41,
+                98,
+                35
+              ],
+              [
+                96,
+                69,
+                51,
+                19,
+                315
+              ]
+            ]
+          }
+        },
+        "mixed-both": {
+          "macro_f1": 0.43823097518671467,
+          "twins": {
+            "pride-joy": 0.7448826446280992,
+            "guilt-shame": 0.654604958677686,
+            "fear-sadness": 0.841993388429752,
+            "anger-disgust": 0.7934578512396694,
+            "trust-joy": 0.8942280991735538
+          },
+          "five_way": {
+            "n": 2475,
+            "accuracy": 0.5216161616161616,
+            "labels": [
+              "anger",
+              "fear",
+              "sadness",
+              "shame",
+              "disgust"
+            ],
+            "confusion": [
+              [
+                258,
+                65,
+                84,
+                51,
+                92
+              ],
+              [
+                55,
+                310,
+                75,
+                56,
+                54
+              ],
+              [
+                67,
+                79,
+                299,
+                48,
+                57
+              ],
+              [
+                56,
+                33,
+                46,
+                99,
+                41
+              ],
+              [
+                85,
+                49,
+                41,
+                50,
+                325
+              ]
+            ]
+          }
+        },
+        "trained-slots": {
+          "macro_f1": 0.3934610953446747,
+          "twins": {
+            "pride-joy": 0.787411570247934,
+            "guilt-shame": 0.6773487603305786,
+            "fear-sadness": 0.8327768595041322,
+            "anger-disgust": 0.8066743801652891,
+            "trust-joy": 0.8878413223140496
+          },
+          "five_way": {
+            "n": 2475,
+            "accuracy": 0.534949494949495,
+            "labels": [
+              "anger",
+              "fear",
+              "sadness",
+              "shame",
+              "disgust"
+            ],
+            "confusion": [
+              [
+                266,
+                72,
+                84,
+                33,
+                95
+              ],
+              [
+                48,
+                336,
+                83,
+                27,
+                56
+              ],
+              [
+                91,
+                73,
+                307,
+                32,
+                47
+              ],
+              [
+                58,
+                40,
+                51,
+                95,
+                31
+              ],
+              [
+                94,
+                68,
+                47,
+                21,
+                320
+              ]
+            ]
+          }
+        },
+        "trained-both": {
+          "macro_f1": 0.4067827538684817,
+          "twins": {
+            "pride-joy": 0.7468561983471074,
+            "guilt-shame": 0.6565223140495867,
+            "fear-sadness": 0.8422479338842975,
+            "anger-disgust": 0.7923768595041322,
+            "trust-joy": 0.8844661157024793
+          },
+          "five_way": {
+            "n": 2475,
+            "accuracy": 0.5183838383838384,
+            "labels": [
+              "anger",
+              "fear",
+              "sadness",
+              "shame",
+              "disgust"
+            ],
+            "confusion": [
+              [
+                254,
+                64,
+                84,
+                60,
+                88
+              ],
+              [
+                61,
+                311,
+                76,
+                46,
+                56
+              ],
+              [
+                74,
+                78,
+                293,
+                45,
+                60
+              ],
+              [
+                54,
+                33,
+                48,
+                101,
+                39
+              ],
+              [
+                81,
+                49,
+                46,
+                50,
+                324
+              ]
+            ]
+          }
+        },
+        "prompted-slots": {
+          "macro_f1": 0.46394778747734505,
+          "twins": {
+            "pride-joy": 0.7836710743801654,
+            "guilt-shame": 0.6765818181818182,
+            "fear-sadness": 0.843897520661157,
+            "anger-disgust": 0.7893735537190083,
+            "trust-joy": 0.905500826446281
+          },
+          "five_way": {
+            "n": 2475,
+            "accuracy": 0.5672727272727273,
+            "labels": [
+              "anger",
+              "fear",
+              "sadness",
+              "shame",
+              "disgust"
+            ],
+            "confusion": [
+              [
+                306,
+                52,
+                64,
+                25,
+                103
+              ],
+              [
+                51,
+                323,
+                76,
+                41,
+                59
+              ],
+              [
+                86,
+                76,
+                316,
+                30,
+                42
+              ],
+              [
+                24,
+                36,
+                37,
+                152,
+                26
+              ],
+              [
+                109,
+                58,
+                40,
+                36,
+                307
+              ]
+            ]
+          }
+        },
+        "prompted-both": {
+          "macro_f1": 0.4567124428998719,
+          "twins": {
+            "pride-joy": 0.7569669421487604,
+            "guilt-shame": 0.651299173553719,
+            "fear-sadness": 0.8478677685950413,
+            "anger-disgust": 0.791099173553719,
+            "trust-joy": 0.9048446280991735
+          },
+          "five_way": {
+            "n": 2475,
+            "accuracy": 0.5377777777777778,
+            "labels": [
+              "anger",
+              "fear",
+              "sadness",
+              "shame",
+              "disgust"
+            ],
+            "confusion": [
+              [
+                278,
+                53,
+                93,
+                37,
+                89
+              ],
+              [
+                57,
+                308,
+                73,
+                56,
+                56
+              ],
+              [
+                69,
+                80,
+                299,
+                43,
+                59
+              ],
+              [
+                36,
+                31,
+                48,
+                124,
+                36
+              ],
+              [
+                98,
+                50,
+                41,
+                39,
+                322
+              ]
+            ]
+          }
+        }
+      },
+      "originalTP10Overlap": {
+        "n": 1200,
+        "BVersusTrainedSpearman": {
+          "pleasantness": 0.750519166178215,
+          "unpleasantness": 0.7303719356671577,
+          "self_responsblt": 0.6017505088125917,
+          "goal_support": 0.6987861452637182,
+          "social_norms": 0.4457652982484091,
+          "other_responsblt": 0.566022782250549,
+          "standards": 0.5399770323247035,
+          "suddenness": 0.5961677550009673
+        }
+      },
+      "slotBar": {
+        "thresholdBelowDirect": 0.1,
+        "difference": 0.030707070707070794,
+        "qualified": true
+      },
+      "tense": {
+        "auc": 0.5139702479338843,
+        "bar": 0.6,
+        "qualified": false,
+        "n": 1100,
+        "needsPlusTenseAuc": 0.8183371900826447
+      },
+      "table": {
+        "accuracy": 0.3709090909090909,
+        "bar": 0.33,
+        "qualified": true,
+        "labels": [
+          "anger",
+          "fear",
+          "sadness",
+          "shame",
+          "disgust"
+        ],
+        "n": 2475,
+        "chance": 0.2,
+        "tenseIncluded": false,
+        "fixedConfusion": [
+          [
+            122,
+            89,
+            75,
+            141,
+            123
+          ],
+          [
+            63,
+            289,
+            53,
+            117,
+            28
+          ],
+          [
+            48,
+            135,
+            220,
+            83,
+            64
+          ],
+          [
+            26,
+            22,
+            46,
+            144,
+            37
+          ],
+          [
+            102,
+            176,
+            46,
+            83,
+            143
+          ]
+        ],
+        "sameSlotsFittedConfusion": [
+          [
+            289,
+            61,
+            79,
+            32,
+            89
+          ],
+          [
+            45,
+            333,
+            83,
+            30,
+            59
+          ],
+          [
+            89,
+            80,
+            308,
+            27,
+            46
+          ],
+          [
+            62,
+            39,
+            41,
+            98,
+            35
+          ],
+          [
+            96,
+            69,
+            51,
+            19,
+            315
+          ]
+        ],
+        "fittedRightTableWrong": [
+          [
+            0,
+            30,
+            31,
+            80,
+            77
+          ],
+          [
+            25,
+            0,
+            10,
+            59,
+            9
+          ],
+          [
+            15,
+            66,
+            0,
+            17,
+            21
+          ],
+          [
+            1,
+            0,
+            14,
+            0,
+            9
+          ],
+          [
+            62,
+            110,
+            14,
+            28,
+            0
+          ]
+        ]
+      },
+      "profileComparison": {
+        "n": 6600,
+        "channels": [
+          "RAGE",
+          "FEAR",
+          "SADNESS",
+          "SHAME",
+          "DISGUST"
+        ],
+        "tableByTP30": [
+          [
+            133,
+            22,
+            538,
+            0,
+            61
+          ],
+          [
+            126,
+            180,
+            877,
+            0,
+            87
+          ],
+          [
+            114,
+            34,
+            1289,
+            0,
+            89
+          ],
+          [
+            474,
+            87,
+            1214,
+            0,
+            77
+          ],
+          [
+            268,
+            39,
+            746,
+            0,
+            145
+          ]
+        ],
+        "disagreements": 4853,
+        "agreement": 0.2646969696969697,
+        "tableTopTies": 0,
+        "TP30TopTies": 0,
+        "tieRule": "First maximum in the displayed channel order.",
+        "perChannelSpearman": {
+          "RAGE": 0.4405842033303293,
+          "FEAR": 0.5735287284698123,
+          "SADNESS": 0.3093585983055702,
+          "SHAME": null,
+          "DISGUST": 0.35149993895013004
+        }
+      }
+    }
+  },
+  "chat": "Separate morning prefix, pending.",
+  "artifactsPin": "5a39cd9d6d4dda2431ddf1651356465a1d107144ad2b28e4ab6cf876da3a2061",
+  "sourceReceiptPin": "388b8734e7a9c4513bbd1d37d61e6b0b4f840df6cc6d28ff1ca4f09f579380aa"
+}

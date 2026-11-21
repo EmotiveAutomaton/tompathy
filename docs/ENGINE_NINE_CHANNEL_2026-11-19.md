@@ -551,3 +551,7 @@ that last dependency under approved amendment BA. SP1's original scores stand.
 TP31 now uses its own agreement and known-group checks. TP24 evaluates the
 eight slots selected by RD1. The fine rung and larger encoders are registered
 on the Spark under the workstation fallback.
+
+**TP32.** 37 writers met the split-half support rule. Within-writer minus between-writer cosine was 0.047 (95% writer interval [0.016, 0.079]). Stability passed. On 1,100 sessions with different-prompt references, adding refusal direction changed top-one accuracy from 0.072 to 0.056. Gain -0.015 (95% writer interval [-0.033, 0.000]), against .030. Matching missed its bar. [E-TP32-20261120](exchange/result-sheets/TP32-refusals.md).
+
+**TP33.** The 1-point page-relative threshold selected 0 of 40 windows across 40 theme-free items. It selected 0 of 24 windows in three public essays. The research-display checks passed. The saved source-level AUCs reproduced at envent 0.700, ed 0.858, go 0.781. [E-TP33-20261120](exchange/result-sheets/TP33-worry-lift.md).

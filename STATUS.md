@@ -1,9 +1,49 @@
 # ToMpathy status
 
-Updated 20 November 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
+Updated 21 November 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
 based on the merged, owner-approved **0.2.0** frontend milestone.
 
 ## November 20 teacher and word-table packet
+
+At 03:12 Pacific on November 21, Spark Q6 had saved valid responses for 10,412 of 24,850 situations. The workstation queue had finished. The morning comparisons remain pending.
+
+The workstation finished TP32 and TP33 and released its leases. Refusal direction was stable across split halves for 37 writers. Adding it reduced cross-prompt matching accuracy from 7.2% to 5.6%. The research worry display marked zero of 24 windows on three essays. Each of its 40 theme-free controls had only one window, so none could exceed its own page median. Native Chrome verified the real blank result and the inclusive one-point threshold on a constructed page. [TP32](docs/exchange/result-sheets/TP32-refusals.md) · [TP33](docs/exchange/result-sheets/TP33-worry-lift.md).
+
+G2 saved 16 MiniLM and MPNet fits and ten feature folds. ModernBERT stopped on a missing Python development header. A matching study-local header allowed the original failing compiler command to link. The Spark handed its GPU to Q6 at 23:59 Pacific on November 20. At 01:42 Pacific it held the lock and had saved 5,492 of 24,850 situations. The morning review will use the terminal prefix and the available ladder forecasts.
+
+TP37 completed five writer-held-out folds on 6,600 reports. The one-standard-error rule selected eight dimensions and consecutive paired improvements selected nine. Only the first fell within the predicted range of six to eight. The two rules describe discrimination among the 13 supplied words using 21 event ratings. Each selected basis has its own rotation. [Ratings](docs/exchange/result-sheets/TP37-ratings.md) · [Words](docs/exchange/result-sheets/TP37-words.md).
+
+Q5 finished at 16:01 Pacific on November 20. Reader B's
+three held-out prompts and reader C's standard prompt each returned 350
+valid answers on the same 350 reports. All 5,259 transferred files
+matched. The extended TP24 archive now has eight valid prompted features
+for each of 6,600 reports. RD2's comparisons with writer ratings await
+the morning review.
+
+TP24 finished its recalled-event comparisons at 19:29 Pacific. On 2,475
+five-word cases in the 6,600-report roster, the fitted slots reached 54.3%
+accuracy and the direct reader reached 51.2%. The fixed table reached
+37.1%, clearing its 33% bar. Tense AUC was .514 against .60, so the
+table omitted tense. Both rosters gave the same three decisions.
+The chat comparison awaits the morning prefix. [Result sheet and channel disagreements](docs/exchange/result-sheets/TP24-reports.md).
+
+G3 completed all six prompts on 600 development reports at 19:00 Pacific.
+After two transport timeouts, the workstation resumed with 3,018 saved
+responses intact. The separate thinking-prompt test raised the output
+limit from 1,024 to 3,072 tokens on the same 20 reports. It recovered
+11 of 15 previously invalid answers and kept all five previously valid
+answers valid. The other four exhausted the higher limit with empty final
+answers. Independent replay reproduced all 20 pairs. The workstation
+released its GPU at the end of its registered queue. [Paired result](docs/exchange/result-sheets/G3-thinking-budget.json).
+
+Reader B missed TP31's two positive-group checks. Q4 recorded the block.
+[Teacher result](docs/exchange/result-sheets/TP31-teacher.md).
+
+Spark Q5 froze V4 for own standards and V0 for social norms. Reader C
+produced 600 valid repeat-check responses with 300 identical pairs. At
+15:28 Pacific the workstation and Spark records confirmed delivery of the
+350 held-out report texts against that selection. Writer ratings stayed
+on the workstation. Held-out comparisons are pending.
 
 RD1 completed on 350 held-out reports once CPU admission passed at 11:46
 Pacific. Reader B earned the pleasantness and unpleasantness slots for TP24.
@@ -962,3 +1002,7 @@ Detailed earlier checks remain in [the development archive](docs/archive/0.2-dev
 Local receipts: ignored `evidence/review-validation.json` and
 `evidence/package-verification.json`. The README screenshot shows the built 0.2
 preview with half-width reader, a locked sentence and its evidence card.
+
+**TP32.** 37 writers met the split-half support rule. Within-writer minus between-writer cosine was 0.047 (95% writer interval [0.016, 0.079]). Stability passed. On 1,100 sessions with different-prompt references, adding refusal direction changed top-one accuracy from 0.072 to 0.056. Gain -0.015 (95% writer interval [-0.033, 0.000]), against .030. Matching missed its bar. [E-TP32-20261120](docs/exchange/result-sheets/TP32-refusals.md).
+
+**TP33.** The 1-point page-relative threshold selected 0 of 40 windows across 40 theme-free items. It selected 0 of 24 windows in three public essays. The research-display checks passed. The saved source-level AUCs reproduced at envent 0.700, ed 0.858, go 0.781. [E-TP33-20261120](docs/exchange/result-sheets/TP33-worry-lift.md).

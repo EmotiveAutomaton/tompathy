@@ -49,7 +49,7 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--checks', nargs='+', choices=['pf_a', 'pf_b', 'pf_c', 'pf_c2',
         'pf_d', 'pf_e', 'pf_f', 'pf_g', 'pf_h', 'pf_i'], default=[])
-    parser.add_argument('--card', choices=['TP10', 'TP12', 'TP12-L3', 'TP10-L3', 'TP11', 'TP13', 'TP14', 'TP15', 'TP16', 'TP17', 'TP18', 'TP18-probe', 'TP19', 'TP20', 'TP22', 'TP1c', 'TP4-controls', 'TP26', 'TP7', 'TP23', 'TP24', 'TP25', 'TP27', 'TP28', 'TP29', 'TP30-frozen', 'TP34', 'TP35', 'TP36', 'TP37', 'TP38', 'RD1', 'RD2', 'TP12-gated', 'TP22-gated', 'TS3-real', 'TRIGGER-export'])
+    parser.add_argument('--card', choices=['TP10', 'TP12', 'TP12-L3', 'TP10-L3', 'TP11', 'TP13', 'TP14', 'TP15', 'TP16', 'TP17', 'TP18', 'TP18-probe', 'TP19', 'TP20', 'TP22', 'TP1c', 'TP4-controls', 'TP26', 'TP7', 'TP23', 'TP24', 'TP24-mixed', 'TP24-chat', 'TP25', 'TP27', 'TP28', 'TP29', 'TP30-frozen', 'TP32', 'TP33', 'G2-first-rungs', 'G2-modernbert', 'TP34', 'TP35', 'TP36', 'TP37', 'TP38', 'RD1', 'RD2', 'TP12-gated', 'TP22-gated', 'TS3-real', 'TRIGGER-export'])
     parser.add_argument('--models', type=Path, default=Path('.local/readers/models'))
     parser.add_argument('--prepared', type=Path, default=Path('.local/bench/two-day-prepared'))
     parser.add_argument('--ladder', type=Path)
@@ -199,6 +199,33 @@ def main():
                         raise ValueError('TP35 requires its protocol and ledger identity')
                     run(args.corpus,output,check,args.ledger_row,args.study_protocol)
                     completed.append('TP35')
+                elif args.card == 'TP24-chat':
+                    from tompathy_engine.eval.readers.tp24_chat import run
+                    if not all((args.rated_data,args.primary_job,args.needs_job,args.coverage_job,args.inputs,
+                                args.ledger_row,args.study_protocol)):
+                        raise ValueError('TP24 chat requires the owner boundary, three filed sources and protocol')
+                    run(args.rated_data,args.ed,args.primary_job,args.needs_job,args.coverage_job,args.inputs,
+                        output,check,args.ledger_row,args.study_protocol)
+                    completed.append('TP24-chat')
+                elif args.card in ('G2-first-rungs','G2-modernbert'):
+                    from tompathy_engine.eval.readers.word_ladder import run
+                    if not all((args.primary_job,args.coverage_job,args.rated_data,args.ledger_row,args.study_protocol)):
+                        raise ValueError('G2 ladder needs its frozen job, verified mirror, prepared inputs and protocol')
+                    run(args.primary_job,args.coverage_job,args.rated_data,output,check,args.ledger_row,args.study_protocol,
+                        modernbert=args.card=='G2-modernbert')
+                    completed.append(args.card)
+                elif args.card == 'TP33':
+                    from tompathy_engine.eval.readers.tp33 import run
+                    if not all((args.primary_job,args.rated_data,args.ledger_row,args.study_protocol)):
+                        raise ValueError('TP33 requires both verified source jobs, protocol and ledger identity')
+                    run(args.primary_job,args.rated_data,output,check,args.ledger_row,args.study_protocol)
+                    completed.append('TP33')
+                elif args.card == 'TP32':
+                    from tompathy_engine.eval.readers.tp32 import run
+                    if not args.ledger_row or not args.study_protocol:
+                        raise ValueError('TP32 requires its protocol and ledger identity')
+                    run(args.source_config,args.models,output,check,args.ledger_row,args.study_protocol)
+                    completed.append('TP32')
                 elif args.card == 'TP37':
                     from tompathy_engine.eval.readers.tp37 import run
                     if not args.ledger_row or not args.study_protocol:
@@ -255,6 +282,14 @@ def main():
                     run(args.rated_data,args.corpus,args.go,args.models,args.prepared,output,check,
                         vector_cache=args.vector_cache,vector_source=args.vector_source)
                     completed.append('TP25')
+                elif args.card == 'TP24-mixed':
+                    from tompathy_engine.eval.readers.tp24_mixed import run
+                    if not all((args.primary_job,args.coverage_job,args.reader_job,args.needs_job,
+                                args.vector_source,args.ledger_row,args.study_protocol)):
+                        raise ValueError('Amended TP24 requires both rosters, C0, need logits, TP30, protocol and ledger row')
+                    run(args.corpus,args.primary_job,args.coverage_job,args.reader_job,args.needs_job,
+                        args.vector_source,output,check,args.ledger_row,args.study_protocol)
+                    completed.append('TP24-mixed')
                 elif args.card == 'TP24':
                     from tompathy_engine.eval.readers.tp24 import run
                     run(args.corpus,args.reader_job,args.needs_job,args.models,output,check,

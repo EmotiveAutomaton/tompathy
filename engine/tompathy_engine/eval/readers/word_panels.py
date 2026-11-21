@@ -21,6 +21,14 @@ OVERLAPS = 'b0fe2b9a5953eeadd8a73823171cfd56d063b0add40888676a22a9fcf63ec078'
 PRIOR_USE = '831ddc27a2af2bf4c40687a4833217321dd6eab0f54b9413887d40b6341e7fc3'
 MODEL = 'ac5aa48a1e9a83d681969eadf9c7a8268831be97f8fbbc42b259ff72c226b759'
 Q1_SOURCE = '17813970705a9b72a64e7054f857f3eac8eb3b8f3a65a4b8ff9a63ecde1fa2db'
+# This Q5 worker inventoried the role directories. Its verified all-file transfer
+# also covers the three root records used for the held-out comparison.
+Q5_SOURCE = '8de7fbb932c02e5829b149c5edfeb1ae7f024899fbc1e02bddfeaa8991af5a5a'
+Q5_TRANSFER_RECORDS = {
+    'development-selection.json': '351dfedb1338c3905d18368aac9f2e60dfa210e86ec370289966684936a93c30',
+    'arm-status.json': '6536f4baa52936e5b1a27ea7d5239bd5b5dc52b5c8bdd936d6bb79d9e36f375f',
+    'C-general-checks.json': 'b319c0ad6455d0fcb7f50bcddf90a223ba1ebb7cc72011865bed53b499c643f7',
+}
 # Canonical queue entries include the registered commit, code hashes and input manifest.
 OPENING_ENTRY = '17fa422d6494d19d97a680137d0b7f2d959bd9348941bdd765264f11572edc9a'
 ENTRIES = {
@@ -49,6 +57,12 @@ class Mirror:
 
     def __init__(self, path, job):
         self.path = Path(path)
+        if job == 'G2-modernbert-a':
+            self._modernbert()
+            return
+        if job == 'G2' and (self.path/'failed.json').is_file():
+            self._compiler_stop()
+            return
         receipt_pin = read(self.path/'complete.json')['receiptPin']
         self.receipt = pinned(self.path/'receipt.json',receipt_pin)
         release = read(self.path/'released.json')
@@ -65,9 +79,59 @@ class Mirror:
         self.files = pinned(self.path/'artifacts.json',self.receipt['artifactsPin'])['files']
         self.pin = receipt_pin
 
+    def _modernbert(self):
+        job = 'G2-modernbert-a'
+        base = self.path.parent
+        cfg = pinned(base/'g2-repair-execution-a.json','f187fe3e8a7d18ec5932d02ee829280decf3fd367b310a8d6ca4f92ab22d5f41')
+        audit = read(base/(job+'-transfer-a.json'))
+        self.pin = audit['sourceReceiptPin']
+        self.receipt = pinned(self.path/'receipt.json',self.pin)
+        owner = self.receipt['owner']
+        release = read(self.path/'released.json')
+        parent = Mirror(base/'verified-spark-G2-a','G2')
+        if (audit['terminal']!='complete.json' or self.receipt['status']!='complete'
+                or not audit['nativeExited'] or not audit['priorFlockReleased'] or release!=audit['release']
+                or not release['descriptorClosed'] or release['nativeExitCode']!=0
+                or (audit['launcherExit']['pid'],audit['launcherExit']['code'])!=(owner['pid'],0)
+                or owner!=audit['owner'] or release['owner']!=owner or self.receipt['job']!=job or owner['job']!=job
+                or self.receipt['lane']!='spark' or self.receipt['entry']!=cfg or owner['commit']!=cfg['commit']
+                or self.receipt['parentReceiptPin']!=parent.pin or cfg['originalReceiptPin']!=parent.pin
+                or any(self.receipt['scienceEntry'].get(k)!=v for k,v in parent.receipt['entry'].items())
+                or Path(audit['mirror']).resolve()!=self.path.resolve()
+                or read(self.path/'complete.json')['receiptPin']!=self.pin):
+            raise ValueError('Expected a verified, source-bound, completed ModernBERT repair')
+        self.files = pinned(base/(job+'-transfer-a-pins.json'),audit['inventoryPin'])
+        if len(self.files)!=audit['verifiedFiles'] or self.files.get('receipt.json')!=self.pin:
+            raise ValueError('Incomplete ModernBERT transfer inventory')
+
+    def _compiler_stop(self):
+        # Only this known engineering stop has fully verified MPNet fold seals.
+        self.pin = '91f2681cfc76e8a79116a6d38c32bf68bbec31dcef24dc8eefb0cb447cb82267'
+        self.receipt = pinned(self.path/'receipt.json',self.pin)
+        failure = read(self.path/'failed.json')
+        release = read(self.path/'released.json')
+        transfer = read(self.path.parent/'G2-transfer-a.json')
+        inventory = self.path.parent/'G2-transfer-a-pins.json'
+        owner = self.receipt['owner']
+        if (self.receipt['status']!='failed' or self.receipt['job']!='G2' or self.receipt['lane']!='spark'
+                or failure['receiptPin']!=self.pin or transfer['sourceReceiptPin']!=self.pin
+                or owner!=release['owner'] or owner!=transfer['owner'] or transfer['release']!=release
+                or release['nativeExitCode']!=1 or not release['descriptorClosed']
+                or not transfer['nativeExited'] or not transfer['priorFlockReleased']
+                or Path(transfer['mirror']).resolve()!=self.path.resolve()
+                or transfer['terminal']!='failed.json' or transfer['verifiedFiles']!=26937
+                or transfer['inventoryPin']!='d156ac6a3be107fff57640073b638f62567d6849d24b0ea9207856b7af01d6af'):
+            raise ValueError('G2 compiler-stop transfer and exact release required')
+        self.files = pinned(inventory,transfer['inventoryPin'])
+        if len(self.files)!=transfer['verifiedFiles'] or self.files.get('receipt.json')!=self.pin:
+            raise ValueError('G2 partial inventory differs')
+
     def artifact(self, name):
         path = self.path/name
-        if name not in self.files or sha256(path) != self.files[name]:
+        expected = self.files.get(name)
+        if expected is None and self.pin == Q5_SOURCE:
+            expected = Q5_TRANSFER_RECORDS.get(name)
+        if expected is None or sha256(path) != expected:
             raise ValueError('Saved Spark artifact differs: '+name)
         return path
 
@@ -150,9 +214,11 @@ def human_reference(ratings, truth, keep, features):
     return output
 
 
-def trained_rungs(job, ids, check):
+def trained_rungs(job, ids, check, *, only=None):
     arrays, status = {}, {}
     for index,name in [(1,'mpnet-base'),(2,'ModernBERT-large')]:
+        if only is not None and index!=only:
+            continue
         root = f'rung-{index}/rd2-trained'
         if any(f'{root}/fold-{f}/complete.json' not in job.files for f in range(5)):
             status[name] = 'No complete five-fold trained predictions at this boundary'
@@ -252,6 +318,13 @@ def run(card, corpus, prepared, mirror, trained_job, output, check, ledger, prot
             extra,trained_status = trained_rungs(g2,ids,check)
             candidates.update(extra)
             common['companionPin'] = g2.pin
+            followup = Path(companion).parent/'G2-modernbert-a-transfer-a.json'
+            if followup.exists() and read(followup)['status']=='complete':
+                modern = Mirror(followup.parent/'verified-spark-G2-modernbert-a-a','G2-modernbert-a')
+                extra,late = trained_rungs(modern,ids,check,only=2)
+                candidates.update(extra)
+                trained_status.update(late)
+                common['modernbertReceiptPin'] = modern.pin
         else:
             common['status'] = 'partial'
         # TP10's frozen all-1200 comparison included every proposed F3 report.
