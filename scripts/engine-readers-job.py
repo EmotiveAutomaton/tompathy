@@ -49,7 +49,7 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--checks', nargs='+', choices=['pf_a', 'pf_b', 'pf_c', 'pf_c2',
         'pf_d', 'pf_e', 'pf_f', 'pf_g', 'pf_h', 'pf_i'], default=[])
-    parser.add_argument('--card', choices=['TP10', 'TP12', 'TP12-L3', 'TP10-L3', 'TP11', 'TP13', 'TP14', 'TP15', 'TP16', 'TP17', 'TP18', 'TP18-probe', 'TP19', 'TP20', 'TP22', 'TP1c', 'TP4-controls', 'TP26', 'TP7', 'TP23', 'TP24', 'TP24-mixed', 'TP24-chat', 'TP25', 'TP27', 'TP28', 'TP29', 'TP30-frozen', 'TP32', 'TP33', 'G2-first-rungs', 'G2-modernbert', 'TP34', 'TP35', 'TP36', 'TP37', 'TP38', 'RD1', 'RD2', 'TP12-gated', 'TP22-gated', 'TS3-real', 'TRIGGER-export'])
+    parser.add_argument('--card', choices=['TP10', 'TP12', 'TP12-L3', 'TP10-L3', 'TP11', 'TP13', 'TP14', 'TP15', 'TP16', 'TP17', 'TP18', 'TP18-probe', 'TP19', 'TP20', 'TP22', 'TP1c', 'TP4-controls', 'TP26', 'TP7', 'TP23', 'TP24', 'TP24-mixed', 'TP24-chat', 'TP25', 'TP27', 'TP28', 'TP29', 'TP30-frozen', 'TP32', 'TP33', 'TP33-BK', 'TP34-BK', 'TP39', 'TP40', 'TP39-change', 'G2-first-rungs', 'G2-modernbert', 'TP34', 'TP35', 'TP36', 'TP37', 'TP38', 'RD1', 'RD2', 'TP12-gated', 'TP22-gated', 'TS3-real', 'TRIGGER-export'])
     parser.add_argument('--models', type=Path, default=Path('.local/readers/models'))
     parser.add_argument('--prepared', type=Path, default=Path('.local/bench/two-day-prepared'))
     parser.add_argument('--ladder', type=Path)
@@ -120,7 +120,7 @@ def main():
             parser.error('Original retry deadline has expired')
     deadline = time.monotonic() + seconds
     output.mkdir(parents=True, exist_ok=False)
-    if args.inputs:
+    if args.inputs and args.card != 'TP24-chat':
         if not (args.inputs/'exit-verification.json').exists():
             parser.error('Preceding reproduction needs verified exit')
         for name in ('test_ids.csv', 'tfidf_proba.npy'):
@@ -199,6 +199,25 @@ def main():
                         raise ValueError('TP35 requires its protocol and ledger identity')
                     run(args.corpus,output,check,args.ledger_row,args.study_protocol)
                     completed.append('TP35')
+                elif args.card in ('TP39', 'TP40', 'TP39-change'):
+                    if not args.ledger_row or not args.study_protocol:
+                        raise ValueError('Filed November 21 protocol and ledger identity required')
+                    if args.card == 'TP39':
+                        from tompathy_engine.eval.readers.tp39 import run
+                        run(args.ed, output, check, args.ledger_row, args.study_protocol)
+                    elif args.card == 'TP40':
+                        from tompathy_engine.eval.readers.tp40 import run
+                        run(output, check, args.ledger_row, args.study_protocol)
+                    else:
+                        from tompathy_engine.eval.readers.tp39 import change_addendum
+                        change_addendum(args.ed, args.primary_job, output, check, args.ledger_row, args.study_protocol)
+                    completed.append(args.card)
+                elif args.card in ('TP33-BK','TP34-BK'):
+                    from tompathy_engine.eval.readers.person_repairs import run
+                    if not all((args.primary_job,args.ledger_row,args.study_protocol)):
+                        raise ValueError('A filed parent and registered protocol are required')
+                    run(args.card,args.primary_job,args.ed,output,check,args.ledger_row,args.study_protocol)
+                    completed.append(args.card)
                 elif args.card == 'TP24-chat':
                     from tompathy_engine.eval.readers.tp24_chat import run
                     if not all((args.rated_data,args.primary_job,args.needs_job,args.coverage_job,args.inputs,

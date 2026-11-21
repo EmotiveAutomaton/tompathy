@@ -1,9 +1,11 @@
 # Source document index
 
-The November 19 and 20 packets are the two active specifications at the repository
+The November 19, 20 and 21 packets are the three current specifications at the repository
 root. Earlier specifications are indexed below in the historical archive.
 
 ## Current commission
+
+- [November 21 person and teacher packet](../TOMPATHY_0.3_ENGINE_PERSON_AND_TEACHER_PACKET_2026-11-21.md), [Round 34 handoff](exchange/THEORY_HANDOFF_R34.md), [working record](ENGINE_PERSON_TEACHER_2026-11-21.md) and [November 22 return](exchange/THEORY_RETURN_2026-11-22.md). The original ZIP is filed in `.local/person-teacher/sources/`. Seven preflight files are unpacked beside the previous bundle in `.local/nine-channel/preflight/PREFLIGHT_2026-11-21/`. The private filing record contains the SHA-256 digests of all three deliveries.
 
 - [November 20 teacher and word-table packet](../TOMPATHY_0.3_ENGINE_TEACHER_AND_WORD_TABLE_PACKET_2026-11-20.md).
 - [Round 32 handoff](exchange/THEORY_HANDOFF_R32.md) and [updated November 19 handoff](exchange/THEORY_HANDOFF_R29.md), including its Round 30 and 31 addenda. The updated copy contains the [earlier filed version](archive/teacher-word-table-2026-11-20/THEORY_HANDOFF_R29_ORIGINAL.md) verbatim as its prefix.

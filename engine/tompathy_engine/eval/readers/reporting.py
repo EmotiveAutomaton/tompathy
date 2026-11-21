@@ -60,6 +60,13 @@ FIELDS['TP24']={'card','status','productionAdmission','ledger','scope','needsRec
 OUTPUTS['TP24']='readers-trigger-slots-2026-11.json'
 FIELDS['TP24-mixed']={'card','status','ledger','productionAdmission','scope','protocolPin','sources','cohorts','chat','artifactsPin'}
 OUTPUTS['TP24-mixed']='readers-trigger-mixed-reports-2026-11.json'
+for _card, _name in [('TP33-BK','worry-eligible-pages'),('TP34-BK','quiet-words')]:
+    OUTPUTS[_card]='readers-'+_name+'-2026-11.json'
+    FIELDS[_card]={'card','status','productionAdmission','ledger','protocolPin','parentReceiptPin','question','scope',
+                   'data','estimate','interval','bar','verdict','table'}
+for _card, _name in [('TP39','writer-halves'),('TP40','change-by-word'),('TP39-change','writer-change-halves')]:
+    OUTPUTS[_card] = 'readers-'+_name+'-2026-11.json'
+    FIELDS[_card] = (FIELDS['TP33-BK'] - {'parentReceiptPin'}) | {'sources'}
 OUTPUTS['TP24-chat']='readers-trigger-chat-prefix-2026-11.json'
 FIELDS['TP24-chat']={'card','status','ledger','productionAdmission','scope','protocolPin','sources','row','artifactsPin'}
 FIELDS['TP27']={'card','status','productionAdmission','ledger','scope','sourceReceiptPin','tablesPin','protocol','row',

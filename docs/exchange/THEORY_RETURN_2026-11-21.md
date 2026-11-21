@@ -1,5 +1,7 @@
 # Teacher and word-table return for November 21
 
+**Morning closeout.** [RD2](result-sheets/RD2-panel.md) gave MPNet one own-standards nomination and no independent confirmation. [Available ladder rungs](result-sheets/G2-first-rungs.md) missed the larger-encoder thresholds. [TP24 on chat situations](result-sheets/TP24-chat.md) recovered 29.4% of eligible assigned groups against 37.1% on recalled reports. The earlier pending entries below describe the overnight checkpoint. See the [November 22 return](THEORY_RETURN_2026-11-22.md) for the two corrected checks.
+
 Opened November 20 when the two GPU queues started. Completed rows will give the estimate, interval, registered bar, limit, ledger ID and result sheet.
 
 | Card | Current state |

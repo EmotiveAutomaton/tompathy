@@ -1,0 +1,428 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "a662f5afafdbc5673729cfcadb58ea044d44423be344d52891d583d97f16dc97",
+  "launcherPin": "74f72553e6bc118e4fc43018c2c8407b2ad1e30bb5e968e7d56c311a883b9f08",
+  "ledger": "E-TP34-BK-20261121",
+  "card": "TP34-BK",
+  "status": "complete",
+  "productionAdmission": false,
+  "protocolPin": "f3ab0fa788be37f6cb17ac8dd3434b3d6832b0ca4be5c4f3d010dfee722ecf28",
+  "parentReceiptPin": "d04658e1c84ef10e0c95847947359b24da91b79368bd91b3fa22da2d70c3e250",
+  "question": "Which words most often leave every varying output quiet?",
+  "scope": "Writer-assigned words on one source. All-situations rate directly counts the full cohort.",
+  "data": "We compared 24,850 chat situations with the same nine forecasts, giving each assigned word its own row.",
+  "estimate": {
+    "words": {
+      "afraid": {
+        "n": 797,
+        "quiet": 168,
+        "share": 0.2107904642409034,
+        "interval": [
+          0.17125372706422018,
+          0.253150419765975
+        ],
+        "meanLargestZ": 2.730427327900087
+      },
+      "angry": {
+        "n": 863,
+        "quiet": 255,
+        "share": 0.2954808806488992,
+        "interval": [
+          0.2587662107013301,
+          0.3329563031709203
+        ],
+        "meanLargestZ": 2.2274830863305684
+      },
+      "annoyed": {
+        "n": 876,
+        "quiet": 359,
+        "share": 0.4098173515981735,
+        "interval": [
+          0.36738488835892347,
+          0.45361089837997054
+        ],
+        "meanLargestZ": 1.8182177119887364
+      },
+      "anticipating": {
+        "n": 754,
+        "quiet": 287,
+        "share": 0.3806366047745358,
+        "interval": [
+          0.33229014122439365,
+          0.4311302588441497
+        ],
+        "meanLargestZ": 2.220767424047647
+      },
+      "anxious": {
+        "n": 774,
+        "quiet": 371,
+        "share": 0.479328165374677,
+        "interval": [
+          0.4372026366464228,
+          0.5236144087523278
+        ],
+        "meanLargestZ": 1.5372106364183435
+      },
+      "apprehensive": {
+        "n": 608,
+        "quiet": 309,
+        "share": 0.5082236842105263,
+        "interval": [
+          0.459698776113104,
+          0.5527883910444393
+        ],
+        "meanLargestZ": 1.4369437540200791
+      },
+      "ashamed": {
+        "n": 628,
+        "quiet": 256,
+        "share": 0.40764331210191085,
+        "interval": [
+          0.3585719345698094,
+          0.4565596647211767
+        ],
+        "meanLargestZ": 2.192921330065344
+      },
+      "caring": {
+        "n": 683,
+        "quiet": 351,
+        "share": 0.513909224011713,
+        "interval": [
+          0.4544042767536422,
+          0.5734769607387438
+        ],
+        "meanLargestZ": 1.9821560769048465
+      },
+      "confident": {
+        "n": 785,
+        "quiet": 582,
+        "share": 0.7414012738853503,
+        "interval": [
+          0.6981637943496556,
+          0.7827870343386025
+        ],
+        "meanLargestZ": 0.759464465945318
+      },
+      "content": {
+        "n": 737,
+        "quiet": 480,
+        "share": 0.6512890094979648,
+        "interval": [
+          0.6034395421478772,
+          0.6960229035077825
+        ],
+        "meanLargestZ": 1.1306468299710006
+      },
+      "devastated": {
+        "n": 712,
+        "quiet": 186,
+        "share": 0.2612359550561798,
+        "interval": [
+          0.21587455824030286,
+          0.30809997824194946
+        ],
+        "meanLargestZ": 2.494106568156183
+      },
+      "disappointed": {
+        "n": 770,
+        "quiet": 386,
+        "share": 0.5012987012987012,
+        "interval": [
+          0.4545391589020398,
+          0.5517251521298174
+        ],
+        "meanLargestZ": 1.6150834120496176
+      },
+      "disgusted": {
+        "n": 787,
+        "quiet": 137,
+        "share": 0.17407878017789072,
+        "interval": [
+          0.13899345774345775,
+          0.20941752927905496
+        ],
+        "meanLargestZ": 3.6708655495129316
+      },
+      "embarrassed": {
+        "n": 740,
+        "quiet": 309,
+        "share": 0.4175675675675676,
+        "interval": [
+          0.3773081043284168,
+          0.45770499127696695
+        ],
+        "meanLargestZ": 2.0923358213398626
+      },
+      "excited": {
+        "n": 938,
+        "quiet": 396,
+        "share": 0.42217484008528783,
+        "interval": [
+          0.3735403324774977,
+          0.47105516194331987
+        ],
+        "meanLargestZ": 2.1359996710938973
+      },
+      "faithful": {
+        "n": 478,
+        "quiet": 303,
+        "share": 0.6338912133891214,
+        "interval": [
+          0.5893654039316975,
+          0.6748018292682927
+        ],
+        "meanLargestZ": 1.308283939435426
+      },
+      "furious": {
+        "n": 759,
+        "quiet": 222,
+        "share": 0.2924901185770751,
+        "interval": [
+          0.2510697483837679,
+          0.3381643935402886
+        ],
+        "meanLargestZ": 2.2436207292611217
+      },
+      "grateful": {
+        "n": 815,
+        "quiet": 549,
+        "share": 0.6736196319018405,
+        "interval": [
+          0.6311552690538267,
+          0.7181445963282265
+        ],
+        "meanLargestZ": 0.9783912141071699
+      },
+      "guilty": {
+        "n": 760,
+        "quiet": 325,
+        "share": 0.4276315789473684,
+        "interval": [
+          0.3861250227415149,
+          0.4731944731075012
+        ],
+        "meanLargestZ": 1.9087503881566468
+      },
+      "hopeful": {
+        "n": 781,
+        "quiet": 405,
+        "share": 0.5185659411011524,
+        "interval": [
+          0.46712395912847715,
+          0.5702710174629605
+        ],
+        "meanLargestZ": 1.740366719679181
+      },
+      "impressed": {
+        "n": 805,
+        "quiet": 554,
+        "share": 0.6881987577639752,
+        "interval": [
+          0.6528471131611164,
+          0.7226139903709996
+        ],
+        "meanLargestZ": 0.9780918429706978
+      },
+      "jealous": {
+        "n": 757,
+        "quiet": 466,
+        "share": 0.6155878467635403,
+        "interval": [
+          0.5622155551080513,
+          0.6652996760902183
+        ],
+        "meanLargestZ": 1.3695476113567229
+      },
+      "joyful": {
+        "n": 770,
+        "quiet": 468,
+        "share": 0.6077922077922078,
+        "interval": [
+          0.5690951766355719,
+          0.6496648570085067
+        ],
+        "meanLargestZ": 1.3873576279453805
+      },
+      "lonely": {
+        "n": 814,
+        "quiet": 306,
+        "share": 0.3759213759213759,
+        "interval": [
+          0.3360514987244898,
+          0.42030574701676005
+        ],
+        "meanLargestZ": 1.9158544506390303
+      },
+      "nostalgic": {
+        "n": 759,
+        "quiet": 496,
+        "share": 0.6534914361001317,
+        "interval": [
+          0.6083725473283369,
+          0.7001218832505028
+        ],
+        "meanLargestZ": 1.1278674527689039
+      },
+      "prepared": {
+        "n": 766,
+        "quiet": 503,
+        "share": 0.6566579634464752,
+        "interval": [
+          0.6022574262474426,
+          0.7076185976185976
+        ],
+        "meanLargestZ": 1.0576719797314247
+      },
+      "proud": {
+        "n": 867,
+        "quiet": 700,
+        "share": 0.8073817762399077,
+        "interval": [
+          0.7716117665503861,
+          0.8398832981468448
+        ],
+        "meanLargestZ": 0.5009218353313019
+      },
+      "sad": {
+        "n": 857,
+        "quiet": 222,
+        "share": 0.2590431738623104,
+        "interval": [
+          0.2241514443782285,
+          0.2947673261640703
+        ],
+        "meanLargestZ": 2.4352538827673142
+      },
+      "sentimental": {
+        "n": 698,
+        "quiet": 389,
+        "share": 0.5573065902578797,
+        "interval": [
+          0.5093781218781219,
+          0.6080912652947544
+        ],
+        "meanLargestZ": 1.4134449670225009
+      },
+      "surprised": {
+        "n": 1279,
+        "quiet": 922,
+        "share": 0.7208756841282252,
+        "interval": [
+          0.690406922752216,
+          0.751331734928369
+        ],
+        "meanLargestZ": 0.8595382981346936
+      },
+      "terrified": {
+        "n": 782,
+        "quiet": 113,
+        "share": 0.1445012787723785,
+        "interval": [
+          0.11494771576101787,
+          0.17581350210970462
+        ],
+        "meanLargestZ": 3.0061900772339434
+      },
+      "trusting": {
+        "n": 651,
+        "quiet": 427,
+        "share": 0.6559139784946236,
+        "interval": [
+          0.6090197647584308,
+          0.6969863329238328
+        ],
+        "meanLargestZ": 1.0358609730080857
+      },
+      "all": {
+        "n": 24850,
+        "quiet": 12202,
+        "share": 0.4910261569416499,
+        "interval": [
+          0.4753694603008683,
+          0.5067146862094447
+        ],
+        "meanLargestZ": 1.7197562814881582
+      }
+    },
+    "rank": [
+      "proud",
+      "confident",
+      "surprised",
+      "impressed",
+      "grateful",
+      "prepared",
+      "trusting",
+      "nostalgic",
+      "content",
+      "faithful",
+      "jealous",
+      "joyful",
+      "sentimental",
+      "hopeful",
+      "caring",
+      "apprehensive",
+      "disappointed",
+      "anxious",
+      "guilty",
+      "excited",
+      "embarrassed",
+      "annoyed",
+      "ashamed",
+      "anticipating",
+      "lonely",
+      "angry",
+      "furious",
+      "devastated",
+      "sad",
+      "afraid",
+      "disgusted",
+      "terrified"
+    ],
+    "noSpread": []
+  },
+  "interval": {
+    "draws": 2000,
+    "unit": "writer",
+    "method": "Percentile intervals on fixed standardized forecasts."
+  },
+  "bar": "Descriptive ranking by share with no varying output above one source standard deviation.",
+  "verdict": "Quietest four: proud, confident, surprised, impressed.",
+  "table": [
+    "| Word | Quiet / total | Share (95% interval) | Mean highest z |",
+    "|---|---:|---:|---:|",
+    "| all | 12202/24850 | 0.491 [0.475, 0.507] | 1.720 |",
+    "| proud | 700/867 | 0.807 [0.772, 0.840] | 0.501 |",
+    "| confident | 582/785 | 0.741 [0.698, 0.783] | 0.759 |",
+    "| surprised | 922/1279 | 0.721 [0.690, 0.751] | 0.860 |",
+    "| impressed | 554/805 | 0.688 [0.653, 0.723] | 0.978 |",
+    "| grateful | 549/815 | 0.674 [0.631, 0.718] | 0.978 |",
+    "| prepared | 503/766 | 0.657 [0.602, 0.708] | 1.058 |",
+    "| trusting | 427/651 | 0.656 [0.609, 0.697] | 1.036 |",
+    "| nostalgic | 496/759 | 0.653 [0.608, 0.700] | 1.128 |",
+    "| content | 480/737 | 0.651 [0.603, 0.696] | 1.131 |",
+    "| faithful | 303/478 | 0.634 [0.589, 0.675] | 1.308 |",
+    "| jealous | 466/757 | 0.616 [0.562, 0.665] | 1.370 |",
+    "| joyful | 468/770 | 0.608 [0.569, 0.650] | 1.387 |",
+    "| sentimental | 389/698 | 0.557 [0.509, 0.608] | 1.413 |",
+    "| hopeful | 405/781 | 0.519 [0.467, 0.570] | 1.740 |",
+    "| caring | 351/683 | 0.514 [0.454, 0.573] | 1.982 |",
+    "| apprehensive | 309/608 | 0.508 [0.460, 0.553] | 1.437 |",
+    "| disappointed | 386/770 | 0.501 [0.455, 0.552] | 1.615 |",
+    "| anxious | 371/774 | 0.479 [0.437, 0.524] | 1.537 |",
+    "| guilty | 325/760 | 0.428 [0.386, 0.473] | 1.909 |",
+    "| excited | 396/938 | 0.422 [0.374, 0.471] | 2.136 |",
+    "| embarrassed | 309/740 | 0.418 [0.377, 0.458] | 2.092 |",
+    "| annoyed | 359/876 | 0.410 [0.367, 0.454] | 1.818 |",
+    "| ashamed | 256/628 | 0.408 [0.359, 0.457] | 2.193 |",
+    "| anticipating | 287/754 | 0.381 [0.332, 0.431] | 2.221 |",
+    "| lonely | 306/814 | 0.376 [0.336, 0.420] | 1.916 |",
+    "| angry | 255/863 | 0.295 [0.259, 0.333] | 2.227 |",
+    "| furious | 222/759 | 0.292 [0.251, 0.338] | 2.244 |",
+    "| devastated | 186/712 | 0.261 [0.216, 0.308] | 2.494 |",
+    "| sad | 222/857 | 0.259 [0.224, 0.295] | 2.435 |",
+    "| afraid | 168/797 | 0.211 [0.171, 0.253] | 2.730 |",
+    "| disgusted | 137/787 | 0.174 [0.139, 0.209] | 3.671 |",
+    "| terrified | 113/782 | 0.145 [0.115, 0.176] | 3.006 |"
+  ],
+  "sourceReceiptPin": "3e6c9537e5e065522b4cab2794541ab721c2deee96e9a3eeead939faffb776cd"
+}

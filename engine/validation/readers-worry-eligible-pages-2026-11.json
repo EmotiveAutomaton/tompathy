@@ -1,0 +1,39 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "a662f5afafdbc5673729cfcadb58ea044d44423be344d52891d583d97f16dc97",
+  "launcherPin": "74f72553e6bc118e4fc43018c2c8407b2ad1e30bb5e968e7d56c311a883b9f08",
+  "ledger": "E-TP33-BK-20261121",
+  "card": "TP33-BK",
+  "status": "complete",
+  "productionAdmission": false,
+  "protocolPin": "f3ab0fa788be37f6cb17ac8dd3434b3d6832b0ca4be5c4f3d010dfee722ecf28",
+  "parentReceiptPin": "8163192a6b14dd0385366710a3b613eeaf51121fe15cf7100e5e249161be9adf",
+  "question": "What can the one-point worry lift say on pages with at least five windows?",
+  "scope": "An empty selection satisfies the subset rule. It cannot demonstrate detection sensitivity.",
+  "data": "We reapplied the eligibility rule to 40 theme-free items and three public essays using their saved windows.",
+  "estimate": {
+    "plain": {
+      "eligible": 0,
+      "ineligible": 40,
+      "passes": null
+    },
+    "essays": {
+      "eligible": 3,
+      "windows": 24,
+      "shown": 0,
+      "subsetPasses": true
+    }
+  },
+  "interval": {
+    "method": "Exact fixed acceptance roster."
+  },
+  "bar": "At least five windows on a page. Theme-free share at most .10; essay highlights a subset of original spans.",
+  "verdict": "No eligible theme-free pages, so that set gives no verdict. All three essays qualified; zero of 24 windows were selected.",
+  "table": [
+    "| Set | Eligible pages | Eligible windows | Selected |",
+    "|---|---:|---:|---:|",
+    "| Theme-free | 0/40 | 0 | — |",
+    "| Public essays | 3/3 | 24 | 0 |"
+  ],
+  "sourceReceiptPin": "3497a1be583bc1224fc6cf16b4354db08391a9a40ff3fc3c913ca5ae6bcaf5cc"
+}

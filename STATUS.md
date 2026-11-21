@@ -5,7 +5,9 @@ based on the merged, owner-approved **0.2.0** frontend milestone.
 
 ## November 20 teacher and word-table packet
 
-At 03:12 Pacific on November 21, Spark Q6 had saved valid responses for 10,412 of 24,850 situations. The workstation queue had finished. The morning comparisons remain pending.
+**November 21, 09:34 Pacific.** Seven results are filed. Reader B marked a change in 78.6% of eligible chat situations and 83.2% of eligible recalled events. Both missed the amended 85% bar. TP31 training stays blocked. Both GPUs continued into the 46,543-sentence comparison, with 11,084 valid answers on Spark and 17,326 on the workstation. [Teacher check](docs/exchange/result-sheets/TP40-Q11.md) · [Writer study](docs/exchange/result-sheets/TP39.md) · [Study return](docs/exchange/THEORY_RETURN_2026-11-22.md).
+
+At the earlier 03:12 Pacific checkpoint on November 21, Spark Q6 had saved valid responses for 10,412 of 24,850 situations and the November 20 workstation queue had finished.
 
 The workstation finished TP32 and TP33 and released its leases. Refusal direction was stable across split halves for 37 writers. Adding it reduced cross-prompt matching accuracy from 7.2% to 5.6%. The research worry display marked zero of 24 windows on three essays. Each of its 40 theme-free controls had only one window, so none could exceed its own page median. Native Chrome verified the real blank result and the inclusive one-point threshold on a constructed page. [TP32](docs/exchange/result-sheets/TP32-refusals.md) · [TP33](docs/exchange/result-sheets/TP33-worry-lift.md).
 
@@ -1006,3 +1008,11 @@ preview with half-width reader, a locked sentence and its evidence card.
 **TP32.** 37 writers met the split-half support rule. Within-writer minus between-writer cosine was 0.047 (95% writer interval [0.016, 0.079]). Stability passed. On 1,100 sessions with different-prompt references, adding refusal direction changed top-one accuracy from 0.072 to 0.056. Gain -0.015 (95% writer interval [-0.033, 0.000]), against .030. Matching missed its bar. [E-TP32-20261120](docs/exchange/result-sheets/TP32-refusals.md).
 
 **TP33.** The 1-point page-relative threshold selected 0 of 40 windows across 40 theme-free items. It selected 0 of 24 windows in three public essays. The research-display checks passed. The saved source-level AUCs reproduced at envent 0.700, ed 0.858, go 0.781. [E-TP33-20261120](docs/exchange/result-sheets/TP33-worry-lift.md).
+
+**TP39 completed.** Tag readings repeat. The paired test did not establish extra identification beyond style. [E-TP39-20261121](docs/exchange/result-sheets/TP39.md).
+
+<!-- person-teacher landed E-TP39-20261121 -->
+
+**TP40-Q11 completed.** Miss. ed: 917/1166 (78.6%), envent: 1023/1230 (83.2%). [E-TP40-Q11-20261121](docs/exchange/result-sheets/TP40-Q11.md).
+
+<!-- person-teacher landed E-TP40-Q11-20261121 -->

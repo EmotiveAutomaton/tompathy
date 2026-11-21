@@ -69,6 +69,7 @@ def sheet_data(result):
         human = {'F1': result['human']}
     else:
         text += ['# RD2 standards and social norms', '',
+                 'Writers rated how well an event fit their own standards and social norms. We checked which readers came closest on 350 held-out reports, then checked again after removing two repeated texts.', '',
                  'Both views use the same saved forecasts, paired valid reports and 2,000 paired report draws. '
                  'A nomination requires a 95% interval wholly above zero. ' + result['f3Status'], '',
                  '| Candidate | Feature | Registered 350 difference, 95% interval | Text-fresh 348 difference, 95% interval | F2 nomination (350 / 348) | Changed conclusion |',

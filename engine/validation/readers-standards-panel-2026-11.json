@@ -1,0 +1,399 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "137e335d0a41d8779b6bb876f9cf07ea7464c08719456f19f25420491d7793b2",
+  "launcherPin": "96ec1b10cf4bdba2bf8cfe0214663b77fdfb45e7ef0d42f91a3ed8e3c4b4f43a",
+  "ledger": "E-RD2-20261121",
+  "card": "RD2",
+  "status": "complete",
+  "productionAdmission": false,
+  "protocolPin": "79c73e4d98c99d1ad5b78ca58aefb1061b4ced3168db398ec665360735e00d9e",
+  "readerJobPin": "8de7fbb932c02e5829b149c5edfeb1ae7f024899fbc1e02bddfeaa8991af5a5a",
+  "trainedReceiptPin": "ac5aa48a1e9a83d681969eadf9c7a8268831be97f8fbbc42b259ff72c226b759",
+  "companionPin": "91f2681cfc76e8a79116a6d38c32bf68bbec31dcef24dc8eefb0cb447cb82267",
+  "rows": {
+    "developmentWinnerB": {
+      "standards": {
+        "panels": {
+          "registered350": {
+            "reports": 350,
+            "commonValid": 350,
+            "candidateRho": 0.5183486179946236,
+            "trainedRho": 0.5186912797890229,
+            "difference": -0.00034266179439923494,
+            "interval": [
+              -0.09474969003955593,
+              0.09494812020856397
+            ],
+            "requestedDraws": 2000,
+            "finiteDraws": 2000,
+            "namedOnF2": false,
+            "wouldTakeSlot": false
+          },
+          "textFresh348": {
+            "reports": 348,
+            "commonValid": 348,
+            "candidateRho": 0.5162900134237816,
+            "trainedRho": 0.5167380577826859,
+            "difference": -0.0004480443589043315,
+            "interval": [
+              -0.09611150450133177,
+              0.09266081464677903
+            ],
+            "requestedDraws": 2000,
+            "finiteDraws": 2000,
+            "namedOnF2": false,
+            "wouldTakeSlot": false
+          }
+        },
+        "independentF3": null,
+        "nominationChanges": false,
+        "slotConclusionChanges": false
+      },
+      "social_norms": {
+        "panels": {
+          "registered350": {
+            "reports": 350,
+            "commonValid": 350,
+            "candidateRho": 0.5458159969090234,
+            "trainedRho": 0.47381845602332323,
+            "difference": 0.07199754088570015,
+            "interval": [
+              -0.025968268556755263,
+              0.16016339716193992
+            ],
+            "requestedDraws": 2000,
+            "finiteDraws": 2000,
+            "namedOnF2": false,
+            "wouldTakeSlot": false
+          },
+          "textFresh348": {
+            "reports": 348,
+            "commonValid": 348,
+            "candidateRho": 0.5451155497379437,
+            "trainedRho": 0.4719557491348007,
+            "difference": 0.07315980060314303,
+            "interval": [
+              -0.018060350391309696,
+              0.16110471124358766
+            ],
+            "requestedDraws": 2000,
+            "finiteDraws": 2000,
+            "namedOnF2": false,
+            "wouldTakeSlot": false
+          }
+        },
+        "independentF3": null,
+        "nominationChanges": false,
+        "slotConclusionChanges": false
+      }
+    },
+    "C": {
+      "standards": {
+        "panels": {
+          "registered350": {
+            "reports": 350,
+            "commonValid": 350,
+            "candidateRho": 0.5659573877560936,
+            "trainedRho": 0.5186912797890229,
+            "difference": 0.04726610796707076,
+            "interval": [
+              -0.03681889530002506,
+              0.13021651463038691
+            ],
+            "requestedDraws": 2000,
+            "finiteDraws": 2000,
+            "namedOnF2": false,
+            "wouldTakeSlot": false
+          },
+          "textFresh348": {
+            "reports": 348,
+            "commonValid": 348,
+            "candidateRho": 0.5633718978621081,
+            "trainedRho": 0.5167380577826859,
+            "difference": 0.04663384007942217,
+            "interval": [
+              -0.03959738923763697,
+              0.13290205509807076
+            ],
+            "requestedDraws": 2000,
+            "finiteDraws": 2000,
+            "namedOnF2": false,
+            "wouldTakeSlot": false
+          }
+        },
+        "independentF3": null,
+        "nominationChanges": false,
+        "slotConclusionChanges": false
+      },
+      "social_norms": {
+        "panels": {
+          "registered350": {
+            "reports": 350,
+            "commonValid": 350,
+            "candidateRho": 0.5249166200413795,
+            "trainedRho": 0.47381845602332323,
+            "difference": 0.05109816401805628,
+            "interval": [
+              -0.03718720532651588,
+              0.13392710637304986
+            ],
+            "requestedDraws": 2000,
+            "finiteDraws": 2000,
+            "namedOnF2": false,
+            "wouldTakeSlot": false
+          },
+          "textFresh348": {
+            "reports": 348,
+            "commonValid": 348,
+            "candidateRho": 0.5235675526596573,
+            "trainedRho": 0.4719557491348007,
+            "difference": 0.05161180352485656,
+            "interval": [
+              -0.03554816500503305,
+              0.13585466117221
+            ],
+            "requestedDraws": 2000,
+            "finiteDraws": 2000,
+            "namedOnF2": false,
+            "wouldTakeSlot": false
+          }
+        },
+        "independentF3": null,
+        "nominationChanges": false,
+        "slotConclusionChanges": false
+      }
+    },
+    "mpnet-base": {
+      "standards": {
+        "panels": {
+          "registered350": {
+            "reports": 350,
+            "commonValid": 350,
+            "candidateRho": 0.5819467215095286,
+            "trainedRho": 0.5186912797890229,
+            "difference": 0.06325544172050579,
+            "interval": [
+              0.00908030050773613,
+              0.11590162291050542
+            ],
+            "requestedDraws": 2000,
+            "finiteDraws": 2000,
+            "namedOnF2": true,
+            "wouldTakeSlot": false
+          },
+          "textFresh348": {
+            "reports": 348,
+            "commonValid": 348,
+            "candidateRho": 0.5821590670515795,
+            "trainedRho": 0.5167380577826859,
+            "difference": 0.0654210092688936,
+            "interval": [
+              0.014991273541934252,
+              0.11544279572879487
+            ],
+            "requestedDraws": 2000,
+            "finiteDraws": 2000,
+            "namedOnF2": true,
+            "wouldTakeSlot": false
+          }
+        },
+        "independentF3": null,
+        "nominationChanges": false,
+        "slotConclusionChanges": false
+      },
+      "social_norms": {
+        "panels": {
+          "registered350": {
+            "reports": 350,
+            "commonValid": 350,
+            "candidateRho": 0.4757571336815454,
+            "trainedRho": 0.47381845602332323,
+            "difference": 0.0019386776582221432,
+            "interval": [
+              -0.0594373189901407,
+              0.06462208849356499
+            ],
+            "requestedDraws": 2000,
+            "finiteDraws": 2000,
+            "namedOnF2": false,
+            "wouldTakeSlot": false
+          },
+          "textFresh348": {
+            "reports": 348,
+            "commonValid": 348,
+            "candidateRho": 0.47478193548927405,
+            "trainedRho": 0.4719557491348007,
+            "difference": 0.002826186354473348,
+            "interval": [
+              -0.05856831560599421,
+              0.06350028130008516
+            ],
+            "requestedDraws": 2000,
+            "finiteDraws": 2000,
+            "namedOnF2": false,
+            "wouldTakeSlot": false
+          }
+        },
+        "independentF3": null,
+        "nominationChanges": false,
+        "slotConclusionChanges": false
+      }
+    }
+  },
+  "differenceFlags": [],
+  "developmentWinners": {
+    "social_norms": "V0",
+    "standards": "V4"
+  },
+  "trainedArms": {
+    "mpnet-base": "complete",
+    "ModernBERT-large": "No complete five-fold trained predictions at this boundary"
+  },
+  "researchReaderC": {
+    "panels": {
+      "registered350": {
+        "commonValid": [
+          350,
+          350,
+          350,
+          350,
+          350,
+          350,
+          350,
+          350
+        ],
+        "readerCRho": [
+          0.7474415075587594,
+          0.7672712576509835,
+          0.5748106129674655,
+          0.6473159225039322,
+          0.5249166200413795,
+          0.5472158385346646,
+          0.5659573877560936,
+          0.4134524822991719
+        ],
+        "readerBRho": [
+          0.7632530092920093,
+          0.7496802559157577,
+          0.6484464742214632,
+          0.6250983661369932,
+          0.41901340665336606,
+          0.5466998902120324,
+          0.46798176026829535,
+          0.4644889982400688
+        ],
+        "differences": [
+          -0.015811501733249966,
+          0.017591001735225764,
+          -0.07363586125399768,
+          0.022217556366939006,
+          0.10590321338801345,
+          0.0005159483226322426,
+          0.09797562748779826,
+          -0.051036515940896865
+        ],
+        "atOrAboveB": 5,
+        "candidateResearchReader": false
+      },
+      "textFresh348": {
+        "commonValid": [
+          348,
+          348,
+          348,
+          348,
+          348,
+          348,
+          348,
+          348
+        ],
+        "readerCRho": [
+          0.7462348446296407,
+          0.7665668117334513,
+          0.5731897542061416,
+          0.6452279239506838,
+          0.5235675526596573,
+          0.5459338676440468,
+          0.5633718978621081,
+          0.41592478607212346
+        ],
+        "readerBRho": [
+          0.762150908736264,
+          0.7486756978444922,
+          0.6467220524828812,
+          0.6228549903814746,
+          0.41722631432928464,
+          0.5449434093940818,
+          0.47565537567867233,
+          0.4628866471303005
+        ],
+        "differences": [
+          -0.015916064106623273,
+          0.017891113888959143,
+          -0.07353229827673957,
+          0.02237293356920922,
+          0.10634123833037262,
+          0.0009904582499650205,
+          0.08771652218343573,
+          -0.04696186105817701
+        ],
+        "atOrAboveB": 5,
+        "candidateResearchReader": false
+      }
+    },
+    "conclusionChanges": false,
+    "featureComparisonsChanged": [],
+    "features": [
+      "pleasantness",
+      "unpleasantness",
+      "self_responsblt",
+      "goal_support",
+      "social_norms",
+      "other_responsblt",
+      "standards",
+      "suddenness"
+    ],
+    "featureNamesChanged": [],
+    "modelPin": "8b9d11d807c57feb1e2ecb0d6cbf40334c37dcc3523bed5540af4f927f112a37"
+  },
+  "overlapAuditPin": "b0fe2b9a5953eeadd8a73823171cfd56d063b0add40888676a22a9fcf63ec078",
+  "primaryReports": 350,
+  "textFreshReports": 348,
+  "developmentSelectionPin": "351dfedb1338c3905d18368aac9f2e60dfa210e86ec370289966684936a93c30",
+  "f3Status": "Prior trained-reader comparison against writer ratings included all 200; slot confirmation unavailable.",
+  "human": {
+    "registered350": {
+      "standards": {
+        "reports": 350,
+        "rereaders": 943,
+        "estimableRereaders": 342,
+        "singleRereaderMean": 0.5635890826119109,
+        "meanOfFiveRho": 0.6092904981859407
+      },
+      "social_norms": {
+        "reports": 350,
+        "rereaders": 943,
+        "estimableRereaders": 242,
+        "singleRereaderMean": 0.5975462158221083,
+        "meanOfFiveRho": 0.5034314725977594
+      }
+    },
+    "textFresh348": {
+      "standards": {
+        "reports": 348,
+        "rereaders": 939,
+        "estimableRereaders": 341,
+        "singleRereaderMean": 0.5667081121796876,
+        "meanOfFiveRho": 0.6073073453624135
+      },
+      "social_norms": {
+        "reports": 348,
+        "rereaders": 939,
+        "estimableRereaders": 242,
+        "singleRereaderMean": 0.5975462158221083,
+        "meanOfFiveRho": 0.5025512176151284
+      }
+    }
+  },
+  "scope": "Two features in one source of recalled events written to a feeling word.",
+  "sourceReceiptPin": "ab208f804d875497e03b5e8c164481a7c9568d07eaaecdee000512ead2063cc9"
+}

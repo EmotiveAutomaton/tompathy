@@ -6,6 +6,8 @@
 
 **0.3 beta development · MIT licensed · Engine v1.** The Python engine in [engine/](engine/README.md) provides the decision ledger, source adapters, model/evaluation components, static registry generation and authenticated local companion. Scientific admissions remain separate from software checks: unadmitted modules do not supply maker estimates. The commissioned website demo remains hand-authored, fictional analysis.
 
+In the November 21 studies, the 19 need tags gave repeatable readings across two sets of situations by each writer. Adding tags to writing style moved top-ten matching from 83.6% to 83.9%, with uncertainty spanning zero gain. The comparison of change judgments on sentences and whole reports is running. [Writer study](docs/exchange/result-sheets/TP39.md) · [Results and open questions](docs/exchange/THEORY_RETURN_2026-11-22.md).
+
 The [November 20 packet](docs/ENGINE_TEACHER_WORD_TABLE_2026-11-20.md) adds
 two GPU queues. Reader B missed two required change-detection checks. The
 Spark finished the held-out prompt runs, saved the MiniLM and MPNet fits and

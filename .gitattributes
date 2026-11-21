@@ -23,3 +23,9 @@ TOMPATHY_0.3_ENGINE_TRIGGER_READER_PACKET_2026-11-15.md -text whitespace=cr-at-e
 docs/archive/engine-specifications/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
 docs/archive/teacher-word-table-2026-11-20/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
 TOMPATHY_0.3_ENGINE_TEACHER_AND_WORD_TABLE_PACKET_2026-11-20.md -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+TOMPATHY_0.3_ENGINE_PERSON_AND_TEACHER_PACKET_2026-11-21.md -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+# The November 21 workstation launch registration hashes these working files byte for byte.
+scripts/engine-readers-job.py text eol=crlf
+scripts/person_teacher_land.py text eol=crlf
+engine/tompathy_engine/eval/readers/reporting.py text eol=crlf
+engine/tompathy_engine/eval/readers/tp24_chat.py text eol=crlf

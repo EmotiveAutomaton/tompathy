@@ -1,5 +1,7 @@
 # Teacher and word-table studies, 20 November
 
+The November 21 morning return landed all three outstanding comparisons. The 350-report and 348-report standards verdicts agree. Every MPNet seed misses the ladder requirements. On the preserved 20,052-situation Q6 prefix the fixed table recovered 2,205 of 7,496 eligible groups. [Morning results](exchange/THEORY_RETURN_2026-11-22.md).
+
 ## Overnight checkpoint, November 21
 
 TP32 and TP33 finished on the workstation and both released their leases.

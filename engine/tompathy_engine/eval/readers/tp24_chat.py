@@ -1,6 +1,8 @@
 """TP24's descriptive second source, using the durable Q6 prefix at the owner review."""
 import hashlib
+import io
 import json
+import zipfile
 from datetime import datetime
 from pathlib import Path
 
@@ -49,30 +51,53 @@ def assess(labels, scores):
         'accuracyOnAllEligible':int(right.sum())/total if total else None,'byChannel':rows}
 
 
-def prefix(base, boundary, items, check):
-    stamp = datetime.fromisoformat(boundary['ownerTurnAt'])
-    if stamp.tzinfo is None or stamp < MORNING or boundary['trigger'] != 'owner-turn':
-        raise ValueError('The first eligible owner turn is required')
-    audit = read(base/'Q6-transfer-a.json')
-    mirror = base/'verified-spark-Q6-a'
-    entry = pinned(base/'remaining-extension-a/extension.json',EXTENSION)['entries']['Q6']
-    receipt = pinned(mirror/'receipt.json',audit['sourceReceiptPin'])
-    inventory = pinned(base/'Q6-transfer-a-pins.json', audit['inventoryPin'])
-    release = pinned(mirror/'released.json',inventory['released.json'])
-    terminal = audit['terminal']
-    if (Path(audit['mirror']).resolve()!=mirror.resolve() or not audit['nativeExited']
-            or not audit['priorFlockReleased'] or len(inventory)!=audit['verifiedFiles']
-            or receipt['entry']!=entry or receipt['job']!='Q6' or receipt['lane']!='spark'
-            or receipt['owner']!=boundary['owner'] or release!=audit['release'] or not release['descriptorClosed']
-            or release['owner']!=receipt['owner'] or receipt['owner']!=audit['owner']
-            or terminal not in ('failed.json','complete.json')
-            or pinned(mirror/terminal,inventory[terminal])['receiptPin']!=audit['sourceReceiptPin']):
-        raise ValueError('Q6 terminal, ownership or transfer differs')
-    names = sorted(k for k in inventory if k.startswith('B/row-') and k.endswith('.json'))
-    count = boundary['durableRows']
-    if (type(count) is not int or not 0 <= count <= len(names) <= len(items)
-            or names != [f'B/row-{i:06d}.json' for i in range(len(names))]):
-        raise ValueError('Q6 prefix count, order or coverage differs')
+def prefix(base, boundary, items, check, *, full_terminal=False):
+    if boundary.get('job')=='Q6' and 'archivePin' in boundary:
+        folder = base.parent/'person-teacher/prefix'
+        identity = 'fbd6719f76631b4304a93c34972ead5334a7090b2ed7a3e342dc5d10ccd823a5'
+        if boundary!=pinned(folder/'inventory.json',identity):
+            raise ValueError('Curator-authorized November 21 prefix differs')
+        mirror = folder/'rows'
+        entry = pinned(base/'remaining-extension-a/extension.json',EXTENSION)['entries']['Q6']
+        if boundary['entry']!=entry or boundary['owner']['commit']!=entry['commit']:
+            raise ValueError('Q6 live prefix registration differs')
+        inventory = boundary['files']
+        names = sorted(inventory)
+        count = boundary['durableRows']
+        if names!=[f'B/row-{i:06d}.json' for i in range(count)] or count>len(items):
+            raise ValueError('Live prefix is incomplete')
+        source_pin = identity
+    else:
+        if full_terminal:
+            if boundary.get('terminalStudy') != 'TP39' or boundary['durableRows'] != len(items):
+                raise ValueError('The person study requires the entire Q6 roster')
+        else:
+            stamp = datetime.fromisoformat(boundary['ownerTurnAt'])
+            if stamp.tzinfo is None or stamp < MORNING or boundary['trigger'] != 'owner-turn':
+                raise ValueError('The first eligible owner turn is required')
+        audit = read(base/'Q6-transfer-a.json')
+        mirror = base/'verified-spark-Q6-a'
+        entry = pinned(base/'remaining-extension-a/extension.json',EXTENSION)['entries']['Q6']
+        receipt = pinned(mirror/'receipt.json',audit['sourceReceiptPin'])
+        inventory = pinned(base/'Q6-transfer-a-pins.json', audit['inventoryPin'])
+        release = pinned(mirror/'released.json',inventory['released.json'])
+        terminal = audit['terminal']
+        if full_terminal and (terminal != 'complete.json' or receipt['status'] != 'complete'):
+            raise ValueError('The person study requires a successful terminal receipt')
+        if (Path(audit['mirror']).resolve()!=mirror.resolve() or not audit['nativeExited']
+                or not audit['priorFlockReleased'] or len(inventory)!=audit['verifiedFiles']
+                or receipt['entry']!=entry or receipt['job']!='Q6' or receipt['lane']!='spark'
+                or receipt['owner']!=boundary['owner'] or release!=audit['release'] or not release['descriptorClosed']
+                or release['owner']!=receipt['owner'] or receipt['owner']!=audit['owner']
+                or terminal not in ('failed.json','complete.json')
+                or pinned(mirror/terminal,inventory[terminal])['receiptPin']!=audit['sourceReceiptPin']):
+            raise ValueError('Q6 terminal, ownership or transfer differs')
+        names = sorted(k for k in inventory if k.startswith('B/row-') and k.endswith('.json'))
+        count = boundary['durableRows']
+        if (type(count) is not int or not 0 <= count <= len(names) <= len(items)
+                or names != [f'B/row-{i:06d}.json' for i in range(len(names))]):
+            raise ValueError('Q6 prefix count, order or coverage differs')
+        source_pin = audit['sourceReceiptPin']
     answers = np.full((count,len(FEATURES)),np.nan)
     reference = pinned(base/'verified-spark-Q1-a/B/protocol.json',REFERENCE_PROTOCOL)
     binding = {**entry, 'job':'Q6', 'inputPin':sha256(base/'remaining-extension-a/inputs/Q6.json'),
@@ -94,7 +119,7 @@ def prefix(base, boundary, items, check):
             raise ValueError('Q6 response validity differs from its raw answer')
         if valid:
             answers[i] = values
-    return answers, audit['sourceReceiptPin'], len(names)
+    return answers, source_pin, len(names)
 
 
 def run(base, ed, tp13, tp28, reports, boundary_path, output, check, ledger, protocol):
@@ -126,8 +151,13 @@ def run(base, ed, tp13, tp28, reports, boundary_path, output, check, ledger, pro
             raise ValueError('Incomplete trained features')
         trained = full[np.ix_(np.asarray(indices,dtype=int),[RATINGS.index(k) for k in FEATURES])]
     tag_files = pinned(tp28/'artifact-manifest.json',tag_source['artifactsPin'])['files']
-    with np.load(checked_artifact(tp28,'ed/scores.npz',tag_files),allow_pickle=False) as saved:
-        if (not np.array_equal(saved['ids'],frame.id) or saved['scores'].shape!=(len(frame),len(TAGS))
+    archive = checked_artifact(tp28,'ed/scores.npz',tag_files)
+    with zipfile.ZipFile(archive) as files:
+        expected = io.BytesIO()
+        np.save(expected,frame.id.to_numpy(dtype=object))
+        historical_ids_match = files.read('ids.npy')==expected.getvalue()
+    with np.load(archive,allow_pickle=False) as saved:
+        if ((not historical_ids_match and not np.array_equal(saved['ids'],frame.id)) or saved['scores'].shape!=(len(frame),len(TAGS))
                 or not np.array_equal(saved['truth'],np.column_stack([frame.label==word for word in words['labels']]))):
             raise ValueError('Tag rows and writer words do not match ED')
         probabilities = saved['scores'][indices]
@@ -156,7 +186,7 @@ def run(base, ed, tp13, tp28, reports, boundary_path, output, check, ledger, pro
     calls,row = assess(cohort.label,scores)
     artifact = output/'prefix.npz'
     np.savez_compressed(artifact,ids=cohort.id.to_numpy(str),words=cohort.label.to_numpy(str),scores=scores,calls=calls)
-    row.update(durableAtExit=durable,missingB=int((~np.isfinite(prompted).all(axis=1)).sum()),
+    row.update(**({'durableAtCapture':durable} if 'archivePin' in boundary else {'durableAtExit':durable}),missingB=int((~np.isfinite(prompted).all(axis=1)).sum()),
                missingTrained=int((~np.isfinite(trained).all(axis=1)).sum()),missingNeedLogits=int((~usable_tags).sum()),
                recalledFiveWordAccuracy=report['table']['accuracy'])
     save_json(output/'receipt.json',{'card':'TP24-chat','status':'complete','ledger':ledger,'productionAdmission':False,

@@ -3,6 +3,8 @@
 Only measured engine accuracy belongs here. Pending rows are not zero scores.
 Field labels remain off. A passed software test is not a natural-writing result.
 
+**November 21 morning.** The fixed table recovered 29.4% of eligible chat word groups on the frozen prefix, against 37.1% on recalled reports. All three MPNet seeds missed the ladder requirements. MPNet's own-standards nomination survived both overlap treatments and lacks fresh confirmation. The repaired quiet measure was 49.1% [47.5%, 50.7%] overall, and the five-window worry check had zero eligible theme-free pages. [Five registered rows, thresholds and limits](exchange/THEORY_RETURN_2026-11-22.md).
+
 **November 21 research display.** The one-point worry rule marked 0/24 essay
 windows. All 40 theme-free items had one window, so each equaled its own
 median. The reproduced AUCs measure the original level scores. [TP33 result](exchange/result-sheets/TP33-worry-lift.md).
@@ -465,3 +467,11 @@ TP33 implementation remains authorized. No serving or maker admission follows.
 **TP32.** 37 writers met the split-half support rule. Within-writer minus between-writer cosine was 0.047 (95% writer interval [0.016, 0.079]). Stability passed. On 1,100 sessions with different-prompt references, adding refusal direction changed top-one accuracy from 0.072 to 0.056. Gain -0.015 (95% writer interval [-0.033, 0.000]), against .030. Matching missed its bar. [E-TP32-20261120](exchange/result-sheets/TP32-refusals.md).
 
 **TP33.** The 1-point page-relative threshold selected 0 of 40 windows across 40 theme-free items. It selected 0 of 24 windows in three public essays. The research-display checks passed. The saved source-level AUCs reproduced at envent 0.700, ed 0.858, go 0.781. [E-TP33-20261120](exchange/result-sheets/TP33-worry-lift.md).
+
+**TP39.** Mean tag correlation across halves was .302 [.263, .344] in 336 writers. The stability bar passed. Adding tags moved top-ten matching from 83.63% to 83.93%, a gain of 0.30 percentage points [−1.79, +2.38]. The incremental matching bar was missed. [E-TP39-20261121](exchange/result-sheets/TP39.md).
+
+<!-- person-teacher landed E-TP39-20261121 -->
+
+**TP40-Q11 completed.** Miss. ed: 917/1166 (78.6%), envent: 1023/1230 (83.2%). [E-TP40-Q11-20261121](exchange/result-sheets/TP40-Q11.md).
+
+<!-- person-teacher landed E-TP40-Q11-20261121 -->

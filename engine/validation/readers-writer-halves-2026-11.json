@@ -1,0 +1,1571 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "425e8afb41ccab2d953bb9d59ee7a7fcd1c056d85dc53470fa5007f7372ec578",
+  "launcherPin": "001f5f865955453037b7e384ff21ce86cfcd8b1c63029b277859f59af9f52841",
+  "ledger": "E-TP39-20261121",
+  "card": "TP39",
+  "status": "complete",
+  "productionAdmission": false,
+  "protocolPin": "f3ab0fa788be37f6cb17ac8dd3434b3d6832b0ca4be5c4f3d010dfee722ecf28",
+  "sources": {
+    "support": "d58a7956fbe8979aff4ffe8c93bf894a1bd8ab677dc29d124a23427bc0b38261",
+    "frozen": "d04658e1c84ef10e0c95847947359b24da91b79368bd91b3fa22da2d70c3e250",
+    "tags": "1bd4094c39de11b271796da1a4b4140c491dd86e483c346982327c51ba3dd56f",
+    "Q6": "4e51baa2c9ccbc281b35067dd7cb4ce629293cae21b12874f51d1c2bea0cd89b",
+    "worry": "5ec5336cdedd16e3f837668b240b6b9472c57aa979b86b212f2ad850d0bf13f6"
+  },
+  "question": "Does the same writer leave a recognizable pattern after allowing for her assigned word?",
+  "data": "We split 23,828 short situations from 336 writers in half and tried to match each writer with her other half among 168 candidates.",
+  "estimate": {
+    "readings": {
+      "style/tokens": {
+        "value": 0.9326923616242477,
+        "interval": [
+          0.9038389006258729,
+          0.9561018843595994
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/meanWordLength": {
+        "value": 0.5738026837590846,
+        "interval": [
+          0.4350028820798472,
+          0.6830786444274591
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/i": {
+        "value": 0.6133228404339159,
+        "interval": [
+          0.5115355047996896,
+          0.696123235529984
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/my": {
+        "value": 0.5911828902684194,
+        "interval": [
+          0.49713246357114454,
+          0.6799555141198532
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/a": {
+        "value": 0.4379713371493419,
+        "interval": [
+          0.29834797162446164,
+          0.5624919964977346
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/to": {
+        "value": 0.2185109769489614,
+        "interval": [
+          0.07633577516764989,
+          0.3491887530642601
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/the": {
+        "value": 0.236660342120139,
+        "interval": [
+          0.10506793406512382,
+          0.3657527929926496
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/and": {
+        "value": 0.6726536815807455,
+        "interval": [
+          0.594666247331418,
+          0.746267863140581
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/was": {
+        "value": 0.6432545017418401,
+        "interval": [
+          0.5213437293999463,
+          0.7439026834684697
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/it": {
+        "value": 0.4170739016524377,
+        "interval": [
+          0.3303002698232845,
+          0.5138391285722014
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/in": {
+        "value": 0.21631605056192932,
+        "interval": [
+          0.10129520744238944,
+          0.33415654896902186
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/of": {
+        "value": 0.1560167525159006,
+        "interval": [
+          0.04691864538160916,
+          0.26508323609743895
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/for": {
+        "value": 0.16872835130574182,
+        "interval": [
+          0.008979189373753282,
+          0.33242116561600216
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/me": {
+        "value": 0.2128023166105272,
+        "interval": [
+          0.0957673214067101,
+          0.33002928235515805
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/so": {
+        "value": 0.6569916737380871,
+        "interval": [
+          0.5479932218161292,
+          0.7554491574165231
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/when": {
+        "value": 0.7301343416151832,
+        "interval": [
+          0.5733032992377742,
+          0.8259182878851841
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/on": {
+        "value": 0.10513623923308711,
+        "interval": [
+          -0.02666126570727062,
+          0.2390428075818888
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/that": {
+        "value": 0.3628488875342193,
+        "interval": [
+          0.23942428197296245,
+          0.48466150926024365
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/am": {
+        "value": 0.7186802651601534,
+        "interval": [
+          0.5439037487313556,
+          0.8315306781639086
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/had": {
+        "value": 0.3088575324483914,
+        "interval": [
+          0.19414223571221598,
+          0.4342834577741491
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/have": {
+        "value": 0.5194536779964226,
+        "interval": [
+          0.07616500839469988,
+          0.7735491149808877
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/at": {
+        "value": 0.2515188965701745,
+        "interval": [
+          0.09016415607481554,
+          0.39963903225893865
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/with": {
+        "value": 0.10303043243873322,
+        "interval": [
+          -0.03313708574997513,
+          0.25318966468737575
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/is": {
+        "value": 0.3183158528880641,
+        "interval": [
+          0.1394494402268085,
+          0.49919888015103264
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/out": {
+        "value": 0.2746665379410592,
+        "interval": [
+          0.13973685637364122,
+          0.4048369949167949
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/got": {
+        "value": 0.25093909602173853,
+        "interval": [
+          0.0984984993348597,
+          0.4141151723505967
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/really": {
+        "value": 0.5242797878613925,
+        "interval": [
+          0.3448803019776808,
+          0.6664281691996222
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/he": {
+        "value": 0.33469213111212476,
+        "interval": [
+          0.19922272258707582,
+          0.47936075392685285
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/i'm": {
+        "value": 0.6622144377819887,
+        "interval": [
+          0.5152173988840124,
+          0.780701147243616
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/this": {
+        "value": 0.5418619979590814,
+        "interval": [
+          0.2942038646563407,
+          0.7034208824046337
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/but": {
+        "value": 0.2784760225381007,
+        "interval": [
+          0.13751690555304127,
+          0.41756023239837653
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/just": {
+        "value": 0.317726776068119,
+        "interval": [
+          0.21491981309364158,
+          0.4641380763092561
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/up": {
+        "value": 0.1346798566102466,
+        "interval": [
+          0.008135817122794695,
+          0.26505370004799106
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/get": {
+        "value": 0.11710542758413753,
+        "interval": [
+          -0.0012686874108270981,
+          0.2923925447836707
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/about": {
+        "value": 0.17726191844730324,
+        "interval": [
+          0.06189359746542737,
+          0.30683408138160057
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/her": {
+        "value": 0.30648349637925687,
+        "interval": [
+          0.1917818092804149,
+          0.4207564881142509
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/all": {
+        "value": 0.04082868410178205,
+        "interval": [
+          -0.06428873554316705,
+          0.1486007204345126
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/time": {
+        "value": 0.48495033855752956,
+        "interval": [
+          0.11146879999500962,
+          0.7071564614978761
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/she": {
+        "value": 0.26913618788533705,
+        "interval": [
+          0.12214022354214882,
+          0.43145169784793913
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/not": {
+        "value": 0.3664512895150477,
+        "interval": [
+          0.234445828559454,
+          0.49411157438960085
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/be": {
+        "value": 0.37676331595557216,
+        "interval": [
+          0.11142107960666142,
+          0.5976877190389287
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/work": {
+        "value": 0.28554972201703865,
+        "interval": [
+          0.14617737652733012,
+          0.42806902266543484
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/going": {
+        "value": 0.286464546523601,
+        "interval": [
+          0.10451057175934811,
+          0.46118130725165285
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/day": {
+        "value": 0.41732267023295616,
+        "interval": [
+          0.17299592689324184,
+          0.6348965374193761
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/last": {
+        "value": 0.3265424701188208,
+        "interval": [
+          0.21266572777933565,
+          0.4434687457805439
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/we": {
+        "value": 0.4742958145533516,
+        "interval": [
+          0.3373140113694473,
+          0.5986280627318671
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/been": {
+        "value": 0.7651967462513924,
+        "interval": [
+          0.22921133028309934,
+          0.9102447742348043
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/new": {
+        "value": 0.2517489241571087,
+        "interval": [
+          0.11479060227665216,
+          0.39382002780846914
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/friend": {
+        "value": 0.31340941163754843,
+        "interval": [
+          0.14388151420514328,
+          0.5026998439003982
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/one": {
+        "value": 0.5013621482378587,
+        "interval": [
+          0.0918452444538323,
+          0.749343261941427
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/they": {
+        "value": 0.106890570874713,
+        "interval": [
+          0.0045255765199758245,
+          0.22467288412335767
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/form/from": {
+        "value": 0.05265961418701914,
+        "interval": [
+          -0.068548020616503,
+          0.18989314025307216
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/comma": {
+        "value": 0.7611196460204491,
+        "interval": [
+          0.686068256790968,
+          0.8293802845124474
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/fullStop": {
+        "value": 0.8899080540157238,
+        "interval": [
+          0.8470691544889007,
+          0.9250245241561897
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/exclamation": {
+        "value": 0.7237433275240421,
+        "interval": [
+          0.6564455375035436,
+          0.8003217507206629
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/questionMark": {
+        "value": 0.24004016314409374,
+        "interval": [
+          -0.00473175144450769,
+          0.58557858518646
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/apostrophe": {
+        "value": 0.7183097805157519,
+        "interval": [
+          0.6362829979487366,
+          0.7896377619873143
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "style/capitalizedShare": {
+        "value": 0.8570829819987286,
+        "interval": [
+          0.8005608494731833,
+          0.8997664036506452
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "channels/SEEKING": {
+        "value": 0.40616710734364886,
+        "interval": [
+          0.28538564498035485,
+          0.5505852146674685
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "channels/PLAY": {
+        "value": 0.34839272297863105,
+        "interval": [
+          0.15761575299804167,
+          0.5690582344900615
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "channels/LUST": {
+        "value": 0.35088466566686083,
+        "interval": [
+          0.23866003232236738,
+          0.48338894257227605
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "channels/CARE": {
+        "value": 0.3873062897748207,
+        "interval": [
+          0.2875720788915331,
+          0.5047150438896327
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "channels/SADNESS": {
+        "value": 0.29598297630966,
+        "interval": [
+          0.1785673460139672,
+          0.4144405138999934
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "channels/RAGE": {
+        "value": 0.24334658558177003,
+        "interval": [
+          0.11204905775759282,
+          0.37601654577192817
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "channels/FEAR": {
+        "value": 0.21813176873594087,
+        "interval": [
+          0.06949753029015063,
+          0.3639701007959304
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "channels/DISGUST": {
+        "value": 0.15098898793758686,
+        "interval": [
+          0.04116268198880695,
+          0.2640232175291726
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "channels/SHAME": {
+        "value": 0.20971036251936737,
+        "interval": [
+          0.11336428550231797,
+          0.32350145504976574
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "tags/contact": {
+        "value": 0.24381792634049154,
+        "interval": [
+          0.12285733475378943,
+          0.36352316142971497
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "tags/order": {
+        "value": 0.2912921156760045,
+        "interval": [
+          0.17585802948422205,
+          0.40291216558332615
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "tags/status": {
+        "value": 0.29355915114595166,
+        "interval": [
+          0.176273236584495,
+          0.41351642748878337
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "tags/family": {
+        "value": 0.3999932447819204,
+        "interval": [
+          0.27951997074659046,
+          0.5125166640300443
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "tags/approval": {
+        "value": 0.321417151944982,
+        "interval": [
+          0.22716643652843974,
+          0.41568962959283573
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "tags/curiosity": {
+        "value": 0.1818118867311703,
+        "interval": [
+          0.06522824178774192,
+          0.3046120358142292
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "tags/tranquility": {
+        "value": 0.24596268980876426,
+        "interval": [
+          0.11960194963954639,
+          0.3761660590001012
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "tags/competition": {
+        "value": 0.37409784766095694,
+        "interval": [
+          0.2576787572893807,
+          0.476951899022669
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "tags/savings": {
+        "value": 0.3766925172663084,
+        "interval": [
+          0.25119595838772174,
+          0.4862048956289581
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "tags/indep": {
+        "value": 0.22051186570254833,
+        "interval": [
+          0.07438413280248964,
+          0.35566506021564287
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "tags/food": {
+        "value": 0.4466250845078554,
+        "interval": [
+          0.329691246948135,
+          0.5493973185312772
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "tags/health": {
+        "value": 0.28893630800611403,
+        "interval": [
+          0.1754534754415711,
+          0.4135525476421072
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "tags/power": {
+        "value": 0.16131165162061237,
+        "interval": [
+          0.02324118825397743,
+          0.30247338940208274
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "tags/romance": {
+        "value": 0.45352104049516806,
+        "interval": [
+          0.3238982037028824,
+          0.5709681960735861
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "tags/honor": {
+        "value": 0.3962557671266436,
+        "interval": [
+          0.2942736119196938,
+          0.49502616062777116
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "tags/serenity": {
+        "value": 0.3335342965983803,
+        "interval": [
+          0.22348579382111203,
+          0.44059526395949883
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "tags/idealism": {
+        "value": 0.28747810916451755,
+        "interval": [
+          0.12202499192746791,
+          0.4541044738978066
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "tags/rest": {
+        "value": 0.2581789098285606,
+        "interval": [
+          0.1009594466897777,
+          0.42908735728240677
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "tags/belonging": {
+        "value": 0.1593439566758261,
+        "interval": [
+          0.06599639965116652,
+          0.2774904634994655
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "features/pleasantness": {
+        "value": 0.2432876322738299,
+        "interval": [
+          0.11539135825996734,
+          0.3708212465052179
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "features/unpleasantness": {
+        "value": 0.32327682131390945,
+        "interval": [
+          0.19222789037965393,
+          0.4447548280424762
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "features/self_responsblt": {
+        "value": 0.24160645902975475,
+        "interval": [
+          0.11010612313184401,
+          0.3643117152032559
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "features/goal_support": {
+        "value": 0.25398472568144675,
+        "interval": [
+          0.11418706956821051,
+          0.38408648233759196
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "features/social_norms": {
+        "value": 0.0831017656645374,
+        "interval": [
+          -0.035955140897055045,
+          0.2054919064725492
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "features/other_responsblt": {
+        "value": 0.3514544126025976,
+        "interval": [
+          0.23000899388043922,
+          0.47214331835653583
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "features/standards": {
+        "value": 0.2508047430447234,
+        "interval": [
+          0.12411539741499003,
+          0.3709065716762331
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "features/suddenness": {
+        "value": 0.514114376662233,
+        "interval": [
+          0.4056096240749939,
+          0.6120349879564695
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "need/Competence": {
+        "value": 0.18181188673117035,
+        "interval": [
+          0.065228241787742,
+          0.3046120358142288
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "need/Meaning": {
+        "value": 0.3328902357420023,
+        "interval": [
+          0.2111460456010385,
+          0.4382408959161514
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "need/Belonging (N3)": {
+        "value": 0.2726401507238262,
+        "interval": [
+          0.15333216538565014,
+          0.3869388177181461
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "need/Respect": {
+        "value": 0.307050877532357,
+        "interval": [
+          0.19146904677083013,
+          0.41984709458615427
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "need/Compassion (N5)": {
+        "value": 0.28747810916451766,
+        "interval": [
+          0.12202499192746798,
+          0.45410447389780706
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "need/Body": {
+        "value": 0.4128673655331395,
+        "interval": [
+          0.30648862875323446,
+          0.5216983107916617
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "need/Belonging (N3+N5)": {
+        "value": 0.28208207810156166,
+        "interval": [
+          0.16159608925007438,
+          0.4030912886032569
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "worry": {
+        "value": 0.405319920420396,
+        "interval": [
+          0.2902018023377116,
+          0.5187551084854756
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 278
+      }
+    },
+    "sets": {
+      "style": {
+        "value": 0.406829666934927,
+        "interval": [
+          0.3676072469449939,
+          0.4353792161712325
+        ],
+        "validDraws": 2000,
+        "inverseVariance": {
+          "value": 0.625303778898894,
+          "interval": [
+            0.6034786573877189,
+            0.6463358397553504
+          ],
+          "validDraws": 2000
+        },
+        "used": [
+          "style/tokens",
+          "style/meanWordLength",
+          "style/form/i",
+          "style/form/my",
+          "style/form/a",
+          "style/form/to",
+          "style/form/the",
+          "style/form/and",
+          "style/form/was",
+          "style/form/it",
+          "style/form/in",
+          "style/form/of",
+          "style/form/for",
+          "style/form/me",
+          "style/form/so",
+          "style/form/when",
+          "style/form/on",
+          "style/form/that",
+          "style/form/am",
+          "style/form/had",
+          "style/form/have",
+          "style/form/at",
+          "style/form/with",
+          "style/form/is",
+          "style/form/out",
+          "style/form/got",
+          "style/form/really",
+          "style/form/he",
+          "style/form/i'm",
+          "style/form/this",
+          "style/form/but",
+          "style/form/just",
+          "style/form/up",
+          "style/form/get",
+          "style/form/about",
+          "style/form/her",
+          "style/form/all",
+          "style/form/time",
+          "style/form/she",
+          "style/form/not",
+          "style/form/be",
+          "style/form/work",
+          "style/form/going",
+          "style/form/day",
+          "style/form/last",
+          "style/form/we",
+          "style/form/been",
+          "style/form/new",
+          "style/form/friend",
+          "style/form/one",
+          "style/form/they",
+          "style/form/from",
+          "style/comma",
+          "style/fullStop",
+          "style/exclamation",
+          "style/questionMark",
+          "style/apostrophe",
+          "style/capitalizedShare"
+        ]
+      },
+      "channels": {
+        "value": 0.29010127409425407,
+        "interval": [
+          0.24263567044629478,
+          0.3474011097711743
+        ],
+        "validDraws": 2000,
+        "inverseVariance": {
+          "value": 0.28418029965763714,
+          "interval": [
+            0.23927456286273194,
+            0.3368544647999111
+          ],
+          "validDraws": 2000
+        },
+        "used": [
+          "channels/SEEKING",
+          "channels/PLAY",
+          "channels/LUST",
+          "channels/CARE",
+          "channels/SADNESS",
+          "channels/RAGE",
+          "channels/FEAR",
+          "channels/DISGUST",
+          "channels/SHAME"
+        ]
+      },
+      "tags": {
+        "value": 0.30180744847804086,
+        "interval": [
+          0.2627941267517311,
+          0.34402692003296276
+        ],
+        "validDraws": 2000,
+        "inverseVariance": {
+          "value": 0.3101979227940895,
+          "interval": [
+            0.2726960148367946,
+            0.3520699402713825
+          ],
+          "validDraws": 2000
+        },
+        "used": [
+          "tags/contact",
+          "tags/order",
+          "tags/status",
+          "tags/family",
+          "tags/approval",
+          "tags/curiosity",
+          "tags/tranquility",
+          "tags/competition",
+          "tags/savings",
+          "tags/indep",
+          "tags/food",
+          "tags/health",
+          "tags/power",
+          "tags/romance",
+          "tags/honor",
+          "tags/serenity",
+          "tags/idealism",
+          "tags/rest",
+          "tags/belonging"
+        ]
+      },
+      "features": {
+        "value": 0.28270386703412903,
+        "interval": [
+          0.22443422619426004,
+          0.3469235226075533
+        ],
+        "validDraws": 2000,
+        "inverseVariance": {
+          "value": 0.29553581102211757,
+          "interval": [
+            0.23851665913121636,
+            0.35635887073992
+          ],
+          "validDraws": 2000
+        },
+        "used": [
+          "features/pleasantness",
+          "features/unpleasantness",
+          "features/self_responsblt",
+          "features/goal_support",
+          "features/social_norms",
+          "features/other_responsblt",
+          "features/standards",
+          "features/suddenness"
+        ]
+      }
+    },
+    "matching": {
+      "style": {
+        "likelihood": {
+          "1": {
+            "value": 0.6369047619047619,
+            "interval": [
+              0.5833333333333334,
+              0.6904761904761905
+            ],
+            "validDraws": 2000
+          },
+          "10": {
+            "value": 0.8363095238095238,
+            "interval": [
+              0.7976190476190477,
+              0.8750744047619043
+            ],
+            "validDraws": 2000
+          }
+        },
+        "squaredDistance": {
+          "1": {
+            "value": 0.4375,
+            "interval": [
+              0.3869047619047619,
+              0.49404761904761907
+            ],
+            "validDraws": 2000
+          },
+          "10": {
+            "value": 0.5982142857142857,
+            "interval": [
+              0.5475446428571429,
+              0.6488095238095238
+            ],
+            "validDraws": 2000
+          }
+        }
+      },
+      "channels": {
+        "likelihood": {
+          "1": {
+            "value": 0.050595238095238096,
+            "interval": [
+              0.02976190476190476,
+              0.0744047619047619
+            ],
+            "validDraws": 2000
+          },
+          "10": {
+            "value": 0.34226190476190477,
+            "interval": [
+              0.2916666666666667,
+              0.39285714285714285
+            ],
+            "validDraws": 2000
+          }
+        },
+        "squaredDistance": {
+          "1": {
+            "value": 0.1488095238095238,
+            "interval": [
+              0.1130952380952381,
+              0.1875
+            ],
+            "validDraws": 2000
+          },
+          "10": {
+            "value": 0.3392857142857143,
+            "interval": [
+              0.2916666666666667,
+              0.39285714285714285
+            ],
+            "validDraws": 2000
+          }
+        }
+      },
+      "tags": {
+        "likelihood": {
+          "1": {
+            "value": 0.19047619047619047,
+            "interval": [
+              0.1488095238095238,
+              0.23511904761904762
+            ],
+            "validDraws": 2000
+          },
+          "10": {
+            "value": 0.5357142857142857,
+            "interval": [
+              0.4851190476190476,
+              0.5892857142857143
+            ],
+            "validDraws": 2000
+          }
+        },
+        "squaredDistance": {
+          "1": {
+            "value": 0.23214285714285715,
+            "interval": [
+              0.1875,
+              0.27976190476190477
+            ],
+            "validDraws": 2000
+          },
+          "10": {
+            "value": 0.46130952380952384,
+            "interval": [
+              0.40773809523809523,
+              0.5148809523809523
+            ],
+            "validDraws": 2000
+          }
+        }
+      },
+      "features": {
+        "likelihood": {
+          "1": {
+            "value": 0.044642857142857144,
+            "interval": [
+              0.023809523809523808,
+              0.06547619047619048
+            ],
+            "validDraws": 2000
+          },
+          "10": {
+            "value": 0.25297619047619047,
+            "interval": [
+              0.20833333333333334,
+              0.3005952380952381
+            ],
+            "validDraws": 2000
+          }
+        },
+        "squaredDistance": {
+          "1": {
+            "value": 0.06547619047619048,
+            "interval": [
+              0.041666666666666664,
+              0.09226190476190477
+            ],
+            "validDraws": 2000
+          },
+          "10": {
+            "value": 0.2619047619047619,
+            "interval": [
+              0.21428571428571427,
+              0.3125
+            ],
+            "validDraws": 2000
+          }
+        }
+      },
+      "style+channels": {
+        "likelihood": {
+          "1": {
+            "value": 0.6369047619047619,
+            "interval": [
+              0.5863095238095238,
+              0.6904761904761905
+            ],
+            "validDraws": 2000
+          },
+          "10": {
+            "value": 0.8363095238095238,
+            "interval": [
+              0.7946428571428571,
+              0.8779761904761905
+            ],
+            "validDraws": 2000
+          }
+        },
+        "squaredDistance": {
+          "1": {
+            "value": 0.44047619047619047,
+            "interval": [
+              0.3898809523809524,
+              0.49404761904761907
+            ],
+            "validDraws": 2000
+          },
+          "10": {
+            "value": 0.5922619047619048,
+            "interval": [
+              0.5416666666666666,
+              0.6458333333333334
+            ],
+            "validDraws": 2000
+          }
+        }
+      },
+      "style+tags": {
+        "likelihood": {
+          "1": {
+            "value": 0.6636904761904762,
+            "interval": [
+              0.6130952380952381,
+              0.7142857142857143
+            ],
+            "validDraws": 2000
+          },
+          "10": {
+            "value": 0.8392857142857143,
+            "interval": [
+              0.8005952380952381,
+              0.8779761904761905
+            ],
+            "validDraws": 2000
+          }
+        },
+        "squaredDistance": {
+          "1": {
+            "value": 0.44345238095238093,
+            "interval": [
+              0.39285714285714285,
+              0.49702380952380953
+            ],
+            "validDraws": 2000
+          },
+          "10": {
+            "value": 0.6160714285714286,
+            "interval": [
+              0.5625,
+              0.6666666666666666
+            ],
+            "validDraws": 2000
+          }
+        }
+      },
+      "style+features": {
+        "likelihood": {
+          "1": {
+            "value": 0.6488095238095238,
+            "interval": [
+              0.5981398809523809,
+              0.7023809523809523
+            ],
+            "validDraws": 2000
+          },
+          "10": {
+            "value": 0.8422619047619048,
+            "interval": [
+              0.8035714285714286,
+              0.8809523809523809
+            ],
+            "validDraws": 2000
+          }
+        },
+        "squaredDistance": {
+          "1": {
+            "value": 0.4375,
+            "interval": [
+              0.38392857142857145,
+              0.49107142857142855
+            ],
+            "validDraws": 2000
+          },
+          "10": {
+            "value": 0.625,
+            "interval": [
+              0.5714285714285714,
+              0.6755952380952381
+            ],
+            "validDraws": 2000
+          }
+        }
+      },
+      "all": {
+        "likelihood": {
+          "1": {
+            "value": 0.6547619047619048,
+            "interval": [
+              0.6041666666666666,
+              0.7053571428571429
+            ],
+            "validDraws": 2000
+          },
+          "10": {
+            "value": 0.8452380952380952,
+            "interval": [
+              0.8065476190476191,
+              0.8839285714285714
+            ],
+            "validDraws": 2000
+          }
+        },
+        "squaredDistance": {
+          "1": {
+            "value": 0.44345238095238093,
+            "interval": [
+              0.3898809523809524,
+              0.49702380952380953
+            ],
+            "validDraws": 2000
+          },
+          "10": {
+            "value": 0.6041666666666666,
+            "interval": [
+              0.5535714285714286,
+              0.6577380952380952
+            ],
+            "validDraws": 2000
+          }
+        }
+      }
+    },
+    "tagGain": {
+      "value": 0.002976190476190476,
+      "interval": [
+        -0.017857142857142856,
+        0.023809523809523808
+      ],
+      "validDraws": 2000
+    },
+    "stable": true,
+    "additive": false,
+    "smallGain": true,
+    "zeroSpreadChannels": [],
+    "worrySourceTexts": 5283,
+    "Q6MissingTexts": 0,
+    "eligibleWriters": 336,
+    "eligibleTexts": 23828,
+    "chance": {
+      "first": 0.005952380952380952,
+      "firstTen": 0.05952380952380952
+    }
+  },
+  "interval": {
+    "draws": 2000,
+    "unit": "writer",
+    "paired": true
+  },
+  "scope": "Within-file matching of short assigned situations. Circumstances or a common writing session may explain repetition. Worry covers only seven words.",
+  "bar": "Mean tag correlation ≥.15 with its interval above zero. Paired first-ten gain above zero throughout its interval.",
+  "verdict": "Tag readings repeat. The paired test did not establish extra identification beyond style.",
+  "table": [
+    "| Reading set | Mean split-half correlation (95% interval) |",
+    "|---|---:|",
+    "| style | 0.4068 [0.3676, 0.4354] |",
+    "| channels | 0.2901 [0.2426, 0.3474] |",
+    "| tags | 0.3018 [0.2628, 0.3440] |",
+    "| features | 0.2827 [0.2244, 0.3469] |",
+    "",
+    "| Set | Likelihood first | Likelihood first ten | Distance first | Distance first ten |",
+    "|---|---:|---:|---:|---:|",
+    "| style | 0.6369 [0.5833, 0.6905] | 0.8363 [0.7976, 0.8751] | 0.4375 [0.3869, 0.4940] | 0.5982 [0.5475, 0.6488] |",
+    "| channels | 0.0506 [0.0298, 0.0744] | 0.3423 [0.2917, 0.3929] | 0.1488 [0.1131, 0.1875] | 0.3393 [0.2917, 0.3929] |",
+    "| tags | 0.1905 [0.1488, 0.2351] | 0.5357 [0.4851, 0.5893] | 0.2321 [0.1875, 0.2798] | 0.4613 [0.4077, 0.5149] |",
+    "| features | 0.0446 [0.0238, 0.0655] | 0.2530 [0.2083, 0.3006] | 0.0655 [0.0417, 0.0923] | 0.2619 [0.2143, 0.3125] |",
+    "| style+channels | 0.6369 [0.5863, 0.6905] | 0.8363 [0.7946, 0.8780] | 0.4405 [0.3899, 0.4940] | 0.5923 [0.5417, 0.6458] |",
+    "| style+tags | 0.6637 [0.6131, 0.7143] | 0.8393 [0.8006, 0.8780] | 0.4435 [0.3929, 0.4970] | 0.6161 [0.5625, 0.6667] |",
+    "| style+features | 0.6488 [0.5981, 0.7024] | 0.8423 [0.8036, 0.8810] | 0.4375 [0.3839, 0.4911] | 0.6250 [0.5714, 0.6756] |",
+    "| all | 0.6548 [0.6042, 0.7054] | 0.8452 [0.8065, 0.8839] | 0.4435 [0.3899, 0.4970] | 0.6042 [0.5536, 0.6577] |",
+    "",
+    "First-ten gain adding tags to style: 0.0030 [-0.0179, 0.0238].",
+    "Chance within each 168-writer fold: first 0.0060, first ten 0.0595.",
+    "",
+    "| Single reading | Paired writers | Split-half correlation (95% interval) |",
+    "|---|---:|---:|",
+    "| style/tokens | 336 | 0.9327 [0.9038, 0.9561] |",
+    "| style/meanWordLength | 336 | 0.5738 [0.4350, 0.6831] |",
+    "| style/form/i | 336 | 0.6133 [0.5115, 0.6961] |",
+    "| style/form/my | 336 | 0.5912 [0.4971, 0.6800] |",
+    "| style/form/a | 336 | 0.4380 [0.2983, 0.5625] |",
+    "| style/form/to | 336 | 0.2185 [0.0763, 0.3492] |",
+    "| style/form/the | 336 | 0.2367 [0.1051, 0.3658] |",
+    "| style/form/and | 336 | 0.6727 [0.5947, 0.7463] |",
+    "| style/form/was | 336 | 0.6433 [0.5213, 0.7439] |",
+    "| style/form/it | 336 | 0.4171 [0.3303, 0.5138] |",
+    "| style/form/in | 336 | 0.2163 [0.1013, 0.3342] |",
+    "| style/form/of | 336 | 0.1560 [0.0469, 0.2651] |",
+    "| style/form/for | 336 | 0.1687 [0.0090, 0.3324] |",
+    "| style/form/me | 336 | 0.2128 [0.0958, 0.3300] |",
+    "| style/form/so | 336 | 0.6570 [0.5480, 0.7554] |",
+    "| style/form/when | 336 | 0.7301 [0.5733, 0.8259] |",
+    "| style/form/on | 336 | 0.1051 [-0.0267, 0.2390] |",
+    "| style/form/that | 336 | 0.3628 [0.2394, 0.4847] |",
+    "| style/form/am | 336 | 0.7187 [0.5439, 0.8315] |",
+    "| style/form/had | 336 | 0.3089 [0.1941, 0.4343] |",
+    "| style/form/have | 336 | 0.5195 [0.0762, 0.7735] |",
+    "| style/form/at | 336 | 0.2515 [0.0902, 0.3996] |",
+    "| style/form/with | 336 | 0.1030 [-0.0331, 0.2532] |",
+    "| style/form/is | 336 | 0.3183 [0.1394, 0.4992] |",
+    "| style/form/out | 336 | 0.2747 [0.1397, 0.4048] |",
+    "| style/form/got | 336 | 0.2509 [0.0985, 0.4141] |",
+    "| style/form/really | 336 | 0.5243 [0.3449, 0.6664] |",
+    "| style/form/he | 336 | 0.3347 [0.1992, 0.4794] |",
+    "| style/form/i'm | 336 | 0.6622 [0.5152, 0.7807] |",
+    "| style/form/this | 336 | 0.5419 [0.2942, 0.7034] |",
+    "| style/form/but | 336 | 0.2785 [0.1375, 0.4176] |",
+    "| style/form/just | 336 | 0.3177 [0.2149, 0.4641] |",
+    "| style/form/up | 336 | 0.1347 [0.0081, 0.2651] |",
+    "| style/form/get | 336 | 0.1171 [-0.0013, 0.2924] |",
+    "| style/form/about | 336 | 0.1773 [0.0619, 0.3068] |",
+    "| style/form/her | 336 | 0.3065 [0.1918, 0.4208] |",
+    "| style/form/all | 336 | 0.0408 [-0.0643, 0.1486] |",
+    "| style/form/time | 336 | 0.4850 [0.1115, 0.7072] |",
+    "| style/form/she | 336 | 0.2691 [0.1221, 0.4315] |",
+    "| style/form/not | 336 | 0.3665 [0.2344, 0.4941] |",
+    "| style/form/be | 336 | 0.3768 [0.1114, 0.5977] |",
+    "| style/form/work | 336 | 0.2855 [0.1462, 0.4281] |",
+    "| style/form/going | 336 | 0.2865 [0.1045, 0.4612] |",
+    "| style/form/day | 336 | 0.4173 [0.1730, 0.6349] |",
+    "| style/form/last | 336 | 0.3265 [0.2127, 0.4435] |",
+    "| style/form/we | 336 | 0.4743 [0.3373, 0.5986] |",
+    "| style/form/been | 336 | 0.7652 [0.2292, 0.9102] |",
+    "| style/form/new | 336 | 0.2517 [0.1148, 0.3938] |",
+    "| style/form/friend | 336 | 0.3134 [0.1439, 0.5027] |",
+    "| style/form/one | 336 | 0.5014 [0.0918, 0.7493] |",
+    "| style/form/they | 336 | 0.1069 [0.0045, 0.2247] |",
+    "| style/form/from | 336 | 0.0527 [-0.0685, 0.1899] |",
+    "| style/comma | 336 | 0.7611 [0.6861, 0.8294] |",
+    "| style/fullStop | 336 | 0.8899 [0.8471, 0.9250] |",
+    "| style/exclamation | 336 | 0.7237 [0.6564, 0.8003] |",
+    "| style/questionMark | 336 | 0.2400 [-0.0047, 0.5856] |",
+    "| style/apostrophe | 336 | 0.7183 [0.6363, 0.7896] |",
+    "| style/capitalizedShare | 336 | 0.8571 [0.8006, 0.8998] |",
+    "| channels/SEEKING | 336 | 0.4062 [0.2854, 0.5506] |",
+    "| channels/PLAY | 336 | 0.3484 [0.1576, 0.5691] |",
+    "| channels/LUST | 336 | 0.3509 [0.2387, 0.4834] |",
+    "| channels/CARE | 336 | 0.3873 [0.2876, 0.5047] |",
+    "| channels/SADNESS | 336 | 0.2960 [0.1786, 0.4144] |",
+    "| channels/RAGE | 336 | 0.2433 [0.1120, 0.3760] |",
+    "| channels/FEAR | 336 | 0.2181 [0.0695, 0.3640] |",
+    "| channels/DISGUST | 336 | 0.1510 [0.0412, 0.2640] |",
+    "| channels/SHAME | 336 | 0.2097 [0.1134, 0.3235] |",
+    "| tags/contact | 336 | 0.2438 [0.1229, 0.3635] |",
+    "| tags/order | 336 | 0.2913 [0.1759, 0.4029] |",
+    "| tags/status | 336 | 0.2936 [0.1763, 0.4135] |",
+    "| tags/family | 336 | 0.4000 [0.2795, 0.5125] |",
+    "| tags/approval | 336 | 0.3214 [0.2272, 0.4157] |",
+    "| tags/curiosity | 336 | 0.1818 [0.0652, 0.3046] |",
+    "| tags/tranquility | 336 | 0.2460 [0.1196, 0.3762] |",
+    "| tags/competition | 336 | 0.3741 [0.2577, 0.4770] |",
+    "| tags/savings | 336 | 0.3767 [0.2512, 0.4862] |",
+    "| tags/indep | 336 | 0.2205 [0.0744, 0.3557] |",
+    "| tags/food | 336 | 0.4466 [0.3297, 0.5494] |",
+    "| tags/health | 336 | 0.2889 [0.1755, 0.4136] |",
+    "| tags/power | 336 | 0.1613 [0.0232, 0.3025] |",
+    "| tags/romance | 336 | 0.4535 [0.3239, 0.5710] |",
+    "| tags/honor | 336 | 0.3963 [0.2943, 0.4950] |",
+    "| tags/serenity | 336 | 0.3335 [0.2235, 0.4406] |",
+    "| tags/idealism | 336 | 0.2875 [0.1220, 0.4541] |",
+    "| tags/rest | 336 | 0.2582 [0.1010, 0.4291] |",
+    "| tags/belonging | 336 | 0.1593 [0.0660, 0.2775] |",
+    "| features/pleasantness | 336 | 0.2433 [0.1154, 0.3708] |",
+    "| features/unpleasantness | 336 | 0.3233 [0.1922, 0.4448] |",
+    "| features/self_responsblt | 336 | 0.2416 [0.1101, 0.3643] |",
+    "| features/goal_support | 336 | 0.2540 [0.1142, 0.3841] |",
+    "| features/social_norms | 336 | 0.0831 [-0.0360, 0.2055] |",
+    "| features/other_responsblt | 336 | 0.3515 [0.2300, 0.4721] |",
+    "| features/standards | 336 | 0.2508 [0.1241, 0.3709] |",
+    "| features/suddenness | 336 | 0.5141 [0.4056, 0.6120] |",
+    "| need/Competence | 336 | 0.1818 [0.0652, 0.3046] |",
+    "| need/Meaning | 336 | 0.3329 [0.2111, 0.4382] |",
+    "| need/Belonging (N3) | 336 | 0.2726 [0.1533, 0.3869] |",
+    "| need/Respect | 336 | 0.3071 [0.1915, 0.4198] |",
+    "| need/Compassion (N5) | 336 | 0.2875 [0.1220, 0.4541] |",
+    "| need/Body | 336 | 0.4129 [0.3065, 0.5217] |",
+    "| need/Belonging (N3+N5) | 336 | 0.2821 [0.1616, 0.4031] |",
+    "| worry | 278 | 0.4053 [0.2902, 0.5188] |"
+  ],
+  "sourceReceiptPin": "8de7eec0f2b0f947b097c2c114e4d10fa30f92aa283001abd2cc74690e4bad4c"
+}

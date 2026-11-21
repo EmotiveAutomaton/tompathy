@@ -15,6 +15,38 @@ MODELS = ("sentence-transformers/all-MiniLM-L6-v2", "sentence-transformers/all-m
 LIMIT = "Held-out writers' words and reader votes are stand-ins. Co-rise describes predictions. ED is research-only."
 
 
+class Q13Forecasts:
+    """Read the compact forecast deliverable. The large checkpoints stay on the Spark."""
+    def __init__(self, path):
+        self.path = Path(path)
+        audit = read(self.path.parent/'Q13-modernbert-transfer.json')
+        self.pin = audit['sourceReceiptPin']
+        self.receipt = pinned(self.path/'receipt.json',self.pin)
+        reg = read(self.path.parent/'q13-copy-registration.json')
+        owner = self.receipt['owner']
+        parent = read(Path('.local/word-table/verified-spark-G2-a/receipt.json'))
+        if (not audit['nativeExited'] or not audit['priorFlockReleased'] or audit['owner'] != owner
+                or owner['job'] != 'Q13-modernbert' or owner['commit'] != reg['commit']
+                or self.receipt['status'] != 'complete' or audit['release'] != read(self.path/'released.json')
+                or audit['release']['owner'] != owner or audit['release']['nativeExitCode'] != 0
+                or self.receipt['parentReceiptPin'] != sha256(Path('.local/word-table/verified-spark-G2-a/receipt.json'))
+                or parent['status'] != 'failed' or any(self.receipt['scienceEntry'].get(k)!=v for k,v in parent['entry'].items())
+                or audit['copy']['sourcePin'] != '51c188e92b3473af802af78fd3ec4b10baceef0b13fc783516c4ef3c445194fe'
+                or audit['copy']['status'] != 'verified' or audit['copyExit']['nativeExitCode'] != 0
+                or audit['copyExit']['owner'] != audit['copy']['owner'] or read(self.path/'complete.json')['receiptPin'] != self.pin):
+            raise ValueError('Compact Q13 source, original goal or verified engineering copy differs')
+        self.files = pinned(self.path/'forecast-inventory.json',self.receipt['forecastPin'])
+        all_files = pinned(self.path/'complete-storage-inventory.json',self.receipt['sources'])
+        if any(all_files.get(k)!=v for k,v in self.files.items()):
+            raise ValueError('Forecast differs from complete retained checkpoint inventory')
+
+    def artifact(self,name):
+        path=(self.path/'forecasts'/name).resolve()
+        if not path.is_relative_to((self.path/'forecasts').resolve()) or sha256(path)!=self.files[name]:
+            raise ValueError('Compact prediction artifact differs')
+        return path
+
+
 def collect(job, arm, target, ids, binding, check):
     """The saved batches must tile the expected IDs under one checkpoint contract."""
     seal = read(job.artifact(f"{arm}/prediction-{target}.json"))
@@ -99,7 +131,10 @@ def run(frozen, mirror, base, output, check, ledger, protocol, *, modernbert=Fal
         if sha256(frozen/name)!=files[name]:
             raise ValueError("Frozen evaluation data changed")
         return np.load(frozen/name,allow_pickle=False)
-    g2 = Mirror(mirror,"G2-modernbert-a" if modernbert else "G2")
+    if modernbert and Path(mirror).name == 'verified-spark-Q13-modernbert-a':
+        g2 = Q13Forecasts(mirror)
+    else:
+        g2 = Mirror(mirror,"G2-modernbert-a" if modernbert else "G2")
     cfg = read(base/"remaining-extension-a/inputs/G2-contract.json")
     payload = sha256(base/"remaining-extension-a/inputs/G2-contract.json")
     science_entry = g2.receipt["scienceEntry"] if modernbert else g2.receipt["entry"]

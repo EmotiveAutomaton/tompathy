@@ -1,0 +1,127 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "e1fa9ece452634cc4d526046f7c563756d3177d5c45dbb9f32ccbb8ea71b231f",
+  "launcherPin": "14ac25ff484fbf2c143bfb076c10682fa03147d2434fcde8a1e79791a50a3d8b",
+  "ledger": "E-TP24-CHAT-20261121",
+  "card": "TP24-chat",
+  "status": "complete",
+  "productionAdmission": false,
+  "scope": "Ordered ED prefix, seven writer stand-ins, five emitted channels. Feature validity has no writer rating here. ED research only.",
+  "protocolPin": "e6cf0d3f526fa0232d7b7e8b584b02a66921aa696c66e05d412be05e9a2b0640",
+  "sources": {
+    "Q6": "fbd6719f76631b4304a93c34972ead5334a7090b2ed7a3e342dc5d10ccd823a5",
+    "TP13": "aecfcc8faca2d7eb9411a5de62b6210f5aa62ac3e5d3db93f1c0467dda4c8b59",
+    "TP28": "1bd4094c39de11b271796da1a4b4140c491dd86e483c346982327c51ba3dd56f",
+    "TP24Reports": "388b8734e7a9c4513bbd1d37d61e6b0b4f840df6cc6d28ff1ca4f09f579380aa",
+    "boundary": "fbd6719f76631b4304a93c34972ead5334a7090b2ed7a3e342dc5d10ccd823a5",
+    "trainedFeatureFile": "cc4b5a400a35b9ac3edc67565fbcb33ec274e1b1bc18252ba7b718647359432b"
+  },
+  "row": {
+    "attempted": 20052,
+    "eligibleWriterWords": 7496,
+    "outsideMap": 12556,
+    "eligibleMissingInput": 0,
+    "correct": 2205,
+    "accuracyOnAllEligible": 0.29415688367129134,
+    "byChannel": {
+      "SEEKING": {
+        "eligible": 1970,
+        "withInputs": 1970,
+        "correct": 0,
+        "tableEmitsChannel": false,
+        "calls": {
+          "RAGE": 97,
+          "FEAR": 130,
+          "SADNESS": 639,
+          "SHAME": 769,
+          "DISGUST": 335
+        }
+      },
+      "CARE": {
+        "eligible": 1107,
+        "withInputs": 1107,
+        "correct": 0,
+        "tableEmitsChannel": false,
+        "calls": {
+          "RAGE": 52,
+          "FEAR": 146,
+          "SADNESS": 620,
+          "SHAME": 80,
+          "DISGUST": 209
+        }
+      },
+      "PANIC/GRIEF": {
+        "eligible": 1914,
+        "withInputs": 1914,
+        "correct": 1094,
+        "tableEmitsChannel": true,
+        "calls": {
+          "RAGE": 77,
+          "FEAR": 296,
+          "SADNESS": 1094,
+          "SHAME": 222,
+          "DISGUST": 225
+        }
+      },
+      "RAGE": {
+        "eligible": 712,
+        "withInputs": 712,
+        "correct": 106,
+        "tableEmitsChannel": true,
+        "calls": {
+          "RAGE": 106,
+          "FEAR": 154,
+          "SADNESS": 92,
+          "SHAME": 181,
+          "DISGUST": 179
+        }
+      },
+      "FEAR": {
+        "eligible": 649,
+        "withInputs": 649,
+        "correct": 463,
+        "tableEmitsChannel": true,
+        "calls": {
+          "RAGE": 20,
+          "FEAR": 463,
+          "SADNESS": 45,
+          "SHAME": 82,
+          "DISGUST": 39
+        }
+      },
+      "DISGUST": {
+        "eligible": 640,
+        "withInputs": 640,
+        "correct": 285,
+        "tableEmitsChannel": true,
+        "calls": {
+          "RAGE": 39,
+          "FEAR": 227,
+          "SADNESS": 38,
+          "SHAME": 51,
+          "DISGUST": 285
+        }
+      },
+      "SHAME": {
+        "eligible": 504,
+        "withInputs": 504,
+        "correct": 257,
+        "tableEmitsChannel": true,
+        "calls": {
+          "RAGE": 12,
+          "FEAR": 34,
+          "SADNESS": 94,
+          "SHAME": 257,
+          "DISGUST": 107
+        }
+      }
+    },
+    "durableAtCapture": 20052,
+    "missingB": 0,
+    "missingTrained": 0,
+    "missingNeedLogits": 0,
+    "recalledFiveWordAccuracy": 0.3709090909090909
+  },
+  "artifactsPin": "bf23795c97bf6aaebb151946a2bde8c487c56faa6d89a651e33e9cd319ea7860",
+  "sourceReceiptPin": "43a384c7afe4ea643add05cbd8332a3dcdb60263ba95b9f16abed050d3aacdac"
+}
