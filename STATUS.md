@@ -5,6 +5,8 @@ based on the merged, owner-approved **0.2.0** frontend milestone.
 
 ## November 20 teacher and word-table packet
 
+**November 21 second addendum (CB).** After the optional Q13 rung, Spark runs Q14, Q18 and Q19 in order. A verified reader C pass makes Q15 eligible after 08:00 Pacific on November 22. Workstation G11 provides a descriptive second reading only. TP40 and the TP39 change figures retain readout priority. The local ISEAR copy contains 7,666 reports from 1,096 person keys, including 1,091 with all seven feelings. TP43 selected 2,000 of 5,428 qualifying blog authors and retained 55,023 post openings. These are intake counts. [Registered tests and limits](TOMPATHY_0.3_ENGINE_ADDENDUM_2_2026-11-21.md).
+
 **November 21 afternoon.** TP42’s local census and TP41’s writer comparison are complete. The tag contrast repeated across halves in 270 writers (adjusted covariance .188, 95% interval [.141, .227]). Q12 and G4 continue the earlier comparison. Spark’s verified supervisor will start reader C after the earlier queue releases, including the optional Q13 rung if eligible. G4 has no workstation GPU successor. [Afternoon results and teacher conditions](docs/exchange/THEORY_RETURN_2026-11-22.md).
 
 **November 21, 09:34 Pacific.** Seven results are filed. Reader B marked a change in 78.6% of eligible chat situations and 83.2% of eligible recalled events. Both missed the amended 85% bar. TP31 training stays blocked. Both GPUs continued into the 46,543-sentence comparison, with 11,084 valid answers on Spark and 17,326 on the workstation. [Teacher check](docs/exchange/result-sheets/TP40-Q11.md) · [Writer study](docs/exchange/result-sheets/TP39.md) · [Study return](docs/exchange/THEORY_RETURN_2026-11-22.md).
