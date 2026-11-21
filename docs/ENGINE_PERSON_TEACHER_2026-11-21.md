@@ -39,3 +39,13 @@ The earlier ModernBERT standby was held before it acquired the GPU. The register
 **TP40-Q11 completed.** Miss. ed: 917/1166 (78.6%), envent: 1023/1230 (83.2%). [E-TP40-Q11-20261121](exchange/result-sheets/TP40-Q11.md).
 
 <!-- person-teacher landed E-TP40-Q11-20261121 -->
+
+**TP40 completed.** Reader B misses the amended teaching check. The standing-state contrast does not clear both source thresholds. [E-TP40-20261121](exchange/result-sheets/TP40.md).
+
+<!-- person-teacher landed E-TP40-20261121 -->
+
+**TP39-change completed.** Three split-half estimates filed. [E-TP39-CHANGE-20261121](exchange/result-sheets/TP39-change.md).
+
+<!-- person-teacher landed E-TP39-CHANGE-20261121 -->
+
+The second addendum continues with TP43 and TP44. The curator approved the feature rule in CC and the person, site and rating rules in CD before either readout. [Across-day and recalled-event protocol](ENGINE_ACROSS_DAYS_2026-11-21.md).

@@ -25,3 +25,11 @@ Q6 finished with 24,850 valid answers. Reader B completed all 5,014 Q11 sentence
 **TP40-Q11 completed.** Miss. ed: 917/1166 (78.6%), envent: 1023/1230 (83.2%). [E-TP40-Q11-20261121](result-sheets/TP40-Q11.md).
 
 <!-- person-teacher landed E-TP40-Q11-20261121 -->
+
+**TP40 completed.** Reader B misses the amended teaching check. The standing-state contrast does not clear both source thresholds. [E-TP40-20261121](result-sheets/TP40.md).
+
+<!-- person-teacher landed E-TP40-20261121 -->
+
+**TP39-change completed.** Three split-half estimates filed. [E-TP39-CHANGE-20261121](result-sheets/TP39-change.md).
+
+<!-- person-teacher landed E-TP39-CHANGE-20261121 -->

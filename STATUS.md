@@ -5,6 +5,8 @@ based on the merged, owner-approved **0.2.0** frontend milestone.
 
 ## November 20 teacher and word-table packet
 
+**November 21, second addendum implementation.** TP40 and the TP39 change figures are filed. G11 is running as a descriptive comparison. The first 100 blog openings all gave valid answers, averaging 137.3 seconds per 100. Both frozen readers are scoring locally. TP43 uses author-held-out feature adjustment only with at least 200 whole read authors. TP44 uses person-held-out style adjustment and counts small site cells that fall back to the country mean. [Amendments CC and CD, inputs and reporting rules](docs/ENGINE_ACROSS_DAYS_2026-11-21.md).
+
 **November 21 second addendum (CB).** After the optional Q13 rung, Spark runs Q14, Q18 and Q19 in order. A verified reader C pass makes Q15 eligible after 08:00 Pacific on November 22. Workstation G11 provides a descriptive second reading only. TP40 and the TP39 change figures retain readout priority. The local ISEAR copy contains 7,666 reports from 1,096 person keys, including 1,091 with all seven feelings. TP43 selected 2,000 of 5,428 qualifying blog authors and retained 55,023 post openings. These are intake counts. [Registered tests and limits](TOMPATHY_0.3_ENGINE_ADDENDUM_2_2026-11-21.md).
 
 **November 21 afternoon.** TP42’s local census and TP41’s writer comparison are complete. The tag contrast repeated across halves in 270 writers (adjusted covariance .188, 95% interval [.141, .227]). Q12 and G4 continue the earlier comparison. Spark’s verified supervisor will start reader C after the earlier queue releases, including the optional Q13 rung if eligible. G4 has no workstation GPU successor. [Afternoon results and teacher conditions](docs/exchange/THEORY_RETURN_2026-11-22.md).
@@ -1020,3 +1022,11 @@ preview with half-width reader, a locked sentence and its evidence card.
 **TP40-Q11 completed.** Miss. ed: 917/1166 (78.6%), envent: 1023/1230 (83.2%). [E-TP40-Q11-20261121](docs/exchange/result-sheets/TP40-Q11.md).
 
 <!-- person-teacher landed E-TP40-Q11-20261121 -->
+
+**TP40 completed.** Reader B misses the amended teaching check. The standing-state contrast does not clear both source thresholds. [E-TP40-20261121](docs/exchange/result-sheets/TP40.md).
+
+<!-- person-teacher landed E-TP40-20261121 -->
+
+**TP39-change completed.** Three split-half estimates filed. [E-TP39-CHANGE-20261121](docs/exchange/result-sheets/TP39-change.md).
+
+<!-- person-teacher landed E-TP39-CHANGE-20261121 -->

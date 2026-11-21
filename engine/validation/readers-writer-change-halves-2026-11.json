@@ -1,0 +1,64 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "0a0eece2e5f5de69b36b2c74b257d2724e3d9f19459d67bd0c9098013bcc323a",
+  "launcherPin": "001f5f865955453037b7e384ff21ce86cfcd8b1c63029b277859f59af9f52841",
+  "ledger": "E-TP39-CHANGE-20261121",
+  "card": "TP39-change",
+  "status": "complete",
+  "productionAdmission": false,
+  "protocolPin": "f3ab0fa788be37f6cb17ac8dd3434b3d6832b0ca4be5c4f3d010dfee722ecf28",
+  "sources": {
+    "support": "d58a7956fbe8979aff4ffe8c93bf894a1bd8ab677dc29d124a23427bc0b38261",
+    "TP40": "42f8573f4d71b0d47732512c347ab975728a9b4579f17dc45d9cdf2a3620fd53",
+    "shares": "b2424d14feaa448fc34e0cb72f9ec48fc3f63212f105a1ef5854e651b5fe1e2e"
+  },
+  "question": "Did the same writer repeatedly describe change in similar ways?",
+  "data": "We compared each writer’s two halves after subtracting the average for the same assigned word among other writers.",
+  "estimate": {
+    "readings": {
+      "change": {
+        "value": 0.36152510408032906,
+        "interval": [
+          0.23900506276069072,
+          0.4791390936875563
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "writersOwnChange": {
+        "value": 0.2510271153214194,
+        "interval": [
+          0.11595278035388105,
+          0.3714660910150826
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      },
+      "changeAhead": {
+        "value": 0.2129309880584706,
+        "interval": [
+          0.1013961609213671,
+          0.3284141911081832
+        ],
+        "validDraws": 2000,
+        "pairedWriters": 336
+      }
+    },
+    "missingTexts": 0
+  },
+  "interval": {
+    "draws": 2000,
+    "unit": "writer"
+  },
+  "scope": "One reader’s sentence classifications on a single source.",
+  "bar": "Descriptive single readings, outside the matching sets.",
+  "verdict": "Three split-half estimates filed.",
+  "table": [
+    "| Share of sentences | Paired writers | Correlation (95% interval) |",
+    "|---|---:|---:|",
+    "| change | 336 | 0.3615 [0.2390, 0.4791] |",
+    "| writersOwnChange | 336 | 0.2510 [0.1160, 0.3715] |",
+    "| changeAhead | 336 | 0.2129 [0.1014, 0.3284] |"
+  ],
+  "sourceReceiptPin": "a765dd5c95e6c4bbf76ba63b7a7b1ebc25caf971517e24b9b039d3222d6e8763"
+}

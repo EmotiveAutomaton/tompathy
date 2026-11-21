@@ -1,0 +1,2390 @@
+{
+  "schema": "readers-aggregate-1",
+  "snapshotPin": "0a0eece2e5f5de69b36b2c74b257d2724e3d9f19459d67bd0c9098013bcc323a",
+  "launcherPin": "001f5f865955453037b7e384ff21ce86cfcd8b1c63029b277859f59af9f52841",
+  "ledger": "E-TP40-20261121",
+  "card": "TP40",
+  "status": "complete",
+  "protocolPin": "f3ab0fa788be37f6cb17ac8dd3434b3d6832b0ca4be5c4f3d010dfee722ecf28",
+  "productionAdmission": false,
+  "sources": {
+    "Q11": "eef869091aa69c30cb69a75a7157adae5a5c42239748c15d5d31f8e8a1a82860",
+    "Q12": "2ec944fea9163ab1cdbaa6346bd320046054028d4b3514b13f9268917cdc2b51",
+    "G4": "d2002e174ab203b0e79420fc7a49efb6cf82012cfa03d2ce71cc74d2c381b410",
+    "manifest": "c36d09d12d744fb9822979335fe8d4cc2b98726347b23e730ab2e40cf9869e3d",
+    "privateChangeScoresPin": "b2424d14feaa448fc34e0cb72f9ec48fc3f63212f105a1ef5854e651b5fe1e2e"
+  },
+  "question": "Which feeling words tend to describe a situation that stays the same?",
+  "data": "Two readers judged every sentence in 24,850 chat situations and 6,050 recalled events. One changed sentence counts as a change for the whole report.",
+  "scope": "The benchmark measures a model’s definition of change. The words were fixed after the earlier sentence-level miss and before the word breakdown.",
+  "estimate": {
+    "byWord": {
+      "ed": {
+        "afraid": {
+          "texts": 797,
+          "noChange": 226,
+          "unknownTexts": 0,
+          "sentences": 1319,
+          "negativeSentences": 566,
+          "unknownSentences": 0,
+          "paired": 1319,
+          "changeDisagree": 365,
+          "labelDisagree": 570,
+          "textNoChange": {
+            "value": 0.2835633626097867,
+            "interval": [
+              0.23623334242261648,
+              0.3333333333333333
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.4291129643669447,
+            "interval": [
+              0.38959622963537627,
+              0.46907317627452455
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.2767247915087187,
+            "interval": [
+              0.24659019496603352,
+              0.30651053211926926
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.43214556482183475,
+            "interval": [
+              0.3967316693422045,
+              0.4662098840693517
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.2835633626097867,
+          "sentenceNoChangeUpper": 0.4291129643669447
+        },
+        "angry": {
+          "texts": 863,
+          "noChange": 172,
+          "unknownTexts": 0,
+          "sentences": 1423,
+          "negativeSentences": 526,
+          "unknownSentences": 0,
+          "paired": 1423,
+          "changeDisagree": 293,
+          "labelDisagree": 624,
+          "textNoChange": {
+            "value": 0.1993047508690614,
+            "interval": [
+              0.15796665888577652,
+              0.24464633333651806
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.3696416022487702,
+            "interval": [
+              0.32515211189376153,
+              0.4136362087901605
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.20590302178496134,
+            "interval": [
+              0.17704725785591946,
+              0.23521648225021863
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.43851018973998596,
+            "interval": [
+              0.400341979018324,
+              0.47800014662756596
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.1993047508690614,
+          "sentenceNoChangeUpper": 0.3696416022487702
+        },
+        "annoyed": {
+          "texts": 876,
+          "noChange": 280,
+          "unknownTexts": 0,
+          "sentences": 1447,
+          "negativeSentences": 686,
+          "unknownSentences": 0,
+          "paired": 1447,
+          "changeDisagree": 350,
+          "labelDisagree": 569,
+          "textNoChange": {
+            "value": 0.319634703196347,
+            "interval": [
+              0.27531262522281025,
+              0.3713001776954414
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.47408431237042153,
+            "interval": [
+              0.43433640598643924,
+              0.5141528256059079
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.24187975120939875,
+            "interval": [
+              0.21292430644132654,
+              0.27331229538448465
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.39322736696613686,
+            "interval": [
+              0.3550473103524926,
+              0.43448912892803443
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.319634703196347,
+          "sentenceNoChangeUpper": 0.47408431237042153
+        },
+        "anticipating": {
+          "texts": 754,
+          "noChange": 158,
+          "unknownTexts": 0,
+          "sentences": 1233,
+          "negativeSentences": 428,
+          "unknownSentences": 0,
+          "paired": 1233,
+          "changeDisagree": 268,
+          "labelDisagree": 489,
+          "textNoChange": {
+            "value": 0.20954907161803712,
+            "interval": [
+              0.16234605107291564,
+              0.2632984751699979
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.3471208434712084,
+            "interval": [
+              0.30997931828037756,
+              0.3854963948711941
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.21735604217356042,
+            "interval": [
+              0.18768522036474164,
+              0.2495923610677502
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.39659367396593675,
+            "interval": [
+              0.3625456888044154,
+              0.4341671812590797
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.20954907161803712,
+          "sentenceNoChangeUpper": 0.3471208434712084
+        },
+        "anxious": {
+          "texts": 774,
+          "noChange": 216,
+          "unknownTexts": 0,
+          "sentences": 1286,
+          "negativeSentences": 553,
+          "unknownSentences": 0,
+          "paired": 1286,
+          "changeDisagree": 326,
+          "labelDisagree": 517,
+          "textNoChange": {
+            "value": 0.27906976744186046,
+            "interval": [
+              0.23775047557530415,
+              0.324485294117647
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.43001555209953346,
+            "interval": [
+              0.39613233174208784,
+              0.4644486236036423
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.2534992223950233,
+            "interval": [
+              0.22623391265707843,
+              0.2818119280210944
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.4020217729393468,
+            "interval": [
+              0.3702665886702194,
+              0.4358979947689625
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.27906976744186046,
+          "sentenceNoChangeUpper": 0.43001555209953346
+        },
+        "apprehensive": {
+          "texts": 608,
+          "noChange": 192,
+          "unknownTexts": 0,
+          "sentences": 1043,
+          "negativeSentences": 492,
+          "unknownSentences": 0,
+          "paired": 1043,
+          "changeDisagree": 250,
+          "labelDisagree": 392,
+          "textNoChange": {
+            "value": 0.3157894736842105,
+            "interval": [
+              0.2704059097137088,
+              0.35929203539823007
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.47171620325982744,
+            "interval": [
+              0.4338677354709419,
+              0.5079098370849396
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.23969319271332695,
+            "interval": [
+              0.21456890566692702,
+              0.2655992053140547
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.37583892617449666,
+            "interval": [
+              0.34730449510535244,
+              0.40786531929006453
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.3157894736842105,
+          "sentenceNoChangeUpper": 0.47171620325982744
+        },
+        "ashamed": {
+          "texts": 628,
+          "noChange": 97,
+          "unknownTexts": 0,
+          "sentences": 1076,
+          "negativeSentences": 348,
+          "unknownSentences": 0,
+          "paired": 1076,
+          "changeDisagree": 297,
+          "labelDisagree": 557,
+          "textNoChange": {
+            "value": 0.15445859872611464,
+            "interval": [
+              0.11809116085852758,
+              0.1912376037538691
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.32342007434944237,
+            "interval": [
+              0.2914913196352049,
+              0.35688134454807735
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.2760223048327137,
+            "interval": [
+              0.24621675560072842,
+              0.30608304018761323
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.5176579925650557,
+            "interval": [
+              0.48516850954156904,
+              0.5486908393666616
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.15445859872611464,
+          "sentenceNoChangeUpper": 0.32342007434944237
+        },
+        "caring": {
+          "texts": 683,
+          "noChange": 249,
+          "unknownTexts": 0,
+          "sentences": 1124,
+          "negativeSentences": 515,
+          "unknownSentences": 0,
+          "paired": 1124,
+          "changeDisagree": 157,
+          "labelDisagree": 331,
+          "textNoChange": {
+            "value": 0.3645680819912152,
+            "interval": [
+              0.2845901421650872,
+              0.45076019081546986
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.4581850533807829,
+            "interval": [
+              0.39952497766686046,
+              0.5223787229663998
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.1396797153024911,
+            "interval": [
+              0.11320754716981132,
+              0.1675539761789176
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.2944839857651246,
+            "interval": [
+              0.2599950980392157,
+              0.3317095650219175
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.3645680819912152,
+          "sentenceNoChangeUpper": 0.4581850533807829
+        },
+        "confident": {
+          "texts": 785,
+          "noChange": 191,
+          "unknownTexts": 0,
+          "sentences": 1292,
+          "negativeSentences": 496,
+          "unknownSentences": 0,
+          "paired": 1292,
+          "changeDisagree": 270,
+          "labelDisagree": 489,
+          "textNoChange": {
+            "value": 0.24331210191082803,
+            "interval": [
+              0.2013048128342246,
+              0.2924764890282131
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.38390092879256965,
+            "interval": [
+              0.34909481850271323,
+              0.4228546189929332
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.2089783281733746,
+            "interval": [
+              0.17780655716962437,
+              0.2389257491439242
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.3784829721362229,
+            "interval": [
+              0.34728935358626795,
+              0.41067423171631506
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.24331210191082803,
+          "sentenceNoChangeUpper": 0.38390092879256965
+        },
+        "content": {
+          "texts": 737,
+          "noChange": 282,
+          "unknownTexts": 0,
+          "sentences": 1241,
+          "negativeSentences": 668,
+          "unknownSentences": 0,
+          "paired": 1241,
+          "changeDisagree": 263,
+          "labelDisagree": 389,
+          "textNoChange": {
+            "value": 0.38263229308005425,
+            "interval": [
+              0.3266245361550155,
+              0.4413951677477649
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.5382755842062853,
+            "interval": [
+              0.49920217439051173,
+              0.5789991828145642
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.2119258662369057,
+            "interval": [
+              0.18246767426263005,
+              0.24181251472448076
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.3134568896051571,
+            "interval": [
+              0.27839938813018783,
+              0.34834221349373395
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.38263229308005425,
+          "sentenceNoChangeUpper": 0.5382755842062853
+        },
+        "devastated": {
+          "texts": 712,
+          "noChange": 16,
+          "unknownTexts": 0,
+          "sentences": 1221,
+          "negativeSentences": 244,
+          "unknownSentences": 0,
+          "paired": 1221,
+          "changeDisagree": 184,
+          "labelDisagree": 554,
+          "textNoChange": {
+            "value": 0.02247191011235955,
+            "interval": [
+              0.012534731675986623,
+              0.03479733151757978
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.19983619983619982,
+            "interval": [
+              0.17243888042650418,
+              0.22808326198630138
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.1506961506961507,
+            "interval": [
+              0.1237395813643286,
+              0.17639014864090577
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.4537264537264537,
+            "interval": [
+              0.41802302283845905,
+              0.4895506765809218
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.02247191011235955,
+          "sentenceNoChangeUpper": 0.19983619983619982
+        },
+        "disappointed": {
+          "texts": 770,
+          "noChange": 87,
+          "unknownTexts": 0,
+          "sentences": 1300,
+          "negativeSentences": 372,
+          "unknownSentences": 0,
+          "paired": 1300,
+          "changeDisagree": 333,
+          "labelDisagree": 633,
+          "textNoChange": {
+            "value": 0.11298701298701298,
+            "interval": [
+              0.08261915501428356,
+              0.14705882352941177
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.28615384615384615,
+            "interval": [
+              0.25268164657062614,
+              0.322829174310245
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.2561538461538462,
+            "interval": [
+              0.2265163689403544,
+              0.2864912254068497
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.4869230769230769,
+            "interval": [
+              0.45003412911997226,
+              0.5212697355157468
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.11298701298701298,
+          "sentenceNoChangeUpper": 0.28615384615384615
+        },
+        "disgusted": {
+          "texts": 787,
+          "noChange": 218,
+          "unknownTexts": 0,
+          "sentences": 1335,
+          "negativeSentences": 643,
+          "unknownSentences": 0,
+          "paired": 1335,
+          "changeDisagree": 301,
+          "labelDisagree": 461,
+          "textNoChange": {
+            "value": 0.2770012706480305,
+            "interval": [
+              0.23560676551618484,
+              0.32323511136602623
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.48164794007490636,
+            "interval": [
+              0.4457236842105263,
+              0.5161803958972461
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.2254681647940075,
+            "interval": [
+              0.20183811053416947,
+              0.2511725675998717
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.3453183520599251,
+            "interval": [
+              0.31107759207911273,
+              0.3789476134470254
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.2770012706480305,
+          "sentenceNoChangeUpper": 0.48164794007490636
+        },
+        "embarrassed": {
+          "texts": 740,
+          "noChange": 88,
+          "unknownTexts": 0,
+          "sentences": 1266,
+          "negativeSentences": 404,
+          "unknownSentences": 0,
+          "paired": 1266,
+          "changeDisagree": 368,
+          "labelDisagree": 735,
+          "textNoChange": {
+            "value": 0.11891891891891893,
+            "interval": [
+              0.09529856297256155,
+              0.14614838773556882
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.31911532385466035,
+            "interval": [
+              0.28726416348132466,
+              0.35166128042021244
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.29067930489731436,
+            "interval": [
+              0.2600281084656085,
+              0.3200088170462895
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.580568720379147,
+            "interval": [
+              0.5484540823988787,
+              0.613742705325507
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.11891891891891893,
+          "sentenceNoChangeUpper": 0.31911532385466035
+        },
+        "excited": {
+          "texts": 938,
+          "noChange": 157,
+          "unknownTexts": 0,
+          "sentences": 1510,
+          "negativeSentences": 479,
+          "unknownSentences": 0,
+          "paired": 1510,
+          "changeDisagree": 253,
+          "labelDisagree": 510,
+          "textNoChange": {
+            "value": 0.1673773987206823,
+            "interval": [
+              0.12104661149082135,
+              0.22344533636940103
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.3172185430463576,
+            "interval": [
+              0.27975739196360877,
+              0.3553282506016869
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.1675496688741722,
+            "interval": [
+              0.14352402605566764,
+              0.1962500355182967
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.33774834437086093,
+            "interval": [
+              0.30683766745135227,
+              0.37120849268538847
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.1673773987206823,
+          "sentenceNoChangeUpper": 0.3172185430463576
+        },
+        "faithful": {
+          "texts": 478,
+          "noChange": 244,
+          "unknownTexts": 0,
+          "sentences": 774,
+          "negativeSentences": 461,
+          "unknownSentences": 0,
+          "paired": 774,
+          "changeDisagree": 133,
+          "labelDisagree": 232,
+          "textNoChange": {
+            "value": 0.5104602510460251,
+            "interval": [
+              0.4465284050988658,
+              0.5818593606957583
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.5956072351421189,
+            "interval": [
+              0.5474357707509881,
+              0.6463149826223001
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.17183462532299743,
+            "interval": [
+              0.1434532143380736,
+              0.20069610800579657
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.2997416020671835,
+            "interval": [
+              0.25968124439952056,
+              0.33866000839877863
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.5104602510460251,
+          "sentenceNoChangeUpper": 0.5956072351421189
+        },
+        "furious": {
+          "texts": 759,
+          "noChange": 99,
+          "unknownTexts": 0,
+          "sentences": 1283,
+          "negativeSentences": 413,
+          "unknownSentences": 0,
+          "paired": 1283,
+          "changeDisagree": 236,
+          "labelDisagree": 548,
+          "textNoChange": {
+            "value": 0.13043478260869565,
+            "interval": [
+              0.09948078660769487,
+              0.16899612927589136
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.32190179267342167,
+            "interval": [
+              0.2818507780717083,
+              0.36286092033427675
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.18394388152766952,
+            "interval": [
+              0.15449427513553263,
+              0.2137824985905339
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.4271239282930631,
+            "interval": [
+              0.3861992283317475,
+              0.4724995633229283
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.13043478260869565,
+          "sentenceNoChangeUpper": 0.32190179267342167
+        },
+        "grateful": {
+          "texts": 815,
+          "noChange": 228,
+          "unknownTexts": 0,
+          "sentences": 1372,
+          "negativeSentences": 568,
+          "unknownSentences": 0,
+          "paired": 1372,
+          "changeDisagree": 194,
+          "labelDisagree": 519,
+          "textNoChange": {
+            "value": 0.27975460122699386,
+            "interval": [
+              0.23181044323728547,
+              0.33038499889740075
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.4139941690962099,
+            "interval": [
+              0.3761579312172548,
+              0.4502849931255864
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.141399416909621,
+            "interval": [
+              0.12120334136062613,
+              0.16167018950437315
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.3782798833819242,
+            "interval": [
+              0.3439422137251785,
+              0.41503570195602935
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.27975460122699386,
+          "sentenceNoChangeUpper": 0.4139941690962099
+        },
+        "guilty": {
+          "texts": 760,
+          "noChange": 123,
+          "unknownTexts": 0,
+          "sentences": 1277,
+          "negativeSentences": 428,
+          "unknownSentences": 0,
+          "paired": 1277,
+          "changeDisagree": 319,
+          "labelDisagree": 614,
+          "textNoChange": {
+            "value": 0.1618421052631579,
+            "interval": [
+              0.12882556431663575,
+              0.19712009803921565
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.3351605324980423,
+            "interval": [
+              0.29605074107683,
+              0.37001793534143046
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.24980422866092403,
+            "interval": [
+              0.21909187212656264,
+              0.2827184408776044
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.480814408770556,
+            "interval": [
+              0.4430844132501753,
+              0.5244870630328287
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.1618421052631579,
+          "sentenceNoChangeUpper": 0.3351605324980423
+        },
+        "hopeful": {
+          "texts": 781,
+          "noChange": 161,
+          "unknownTexts": 0,
+          "sentences": 1249,
+          "negativeSentences": 417,
+          "unknownSentences": 0,
+          "paired": 1249,
+          "changeDisagree": 250,
+          "labelDisagree": 532,
+          "textNoChange": {
+            "value": 0.20614596670934698,
+            "interval": [
+              0.1610819728845865,
+              0.25638138803516547
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.33386709367493994,
+            "interval": [
+              0.29893706251978225,
+              0.3675423154414599
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.200160128102482,
+            "interval": [
+              0.17712163426340194,
+              0.22353891058828515
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.42594075260208164,
+            "interval": [
+              0.3935769450005561,
+              0.4602753410749205
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.20614596670934698,
+          "sentenceNoChangeUpper": 0.33386709367493994
+        },
+        "impressed": {
+          "texts": 805,
+          "noChange": 260,
+          "unknownTexts": 0,
+          "sentences": 1302,
+          "negativeSentences": 634,
+          "unknownSentences": 0,
+          "paired": 1302,
+          "changeDisagree": 210,
+          "labelDisagree": 317,
+          "textNoChange": {
+            "value": 0.32298136645962733,
+            "interval": [
+              0.27138520940195027,
+              0.3782873449005069
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.4869431643625192,
+            "interval": [
+              0.4435222429588166,
+              0.5308038398952917
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.16129032258064516,
+            "interval": [
+              0.14075540991379556,
+              0.1830335178351783
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.2434715821812596,
+            "interval": [
+              0.2159073263692829,
+              0.27097391919738567
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.32298136645962733,
+          "sentenceNoChangeUpper": 0.4869431643625192
+        },
+        "jealous": {
+          "texts": 757,
+          "noChange": 248,
+          "unknownTexts": 0,
+          "sentences": 1309,
+          "negativeSentences": 655,
+          "unknownSentences": 0,
+          "paired": 1309,
+          "changeDisagree": 176,
+          "labelDisagree": 262,
+          "textNoChange": {
+            "value": 0.3276089828269485,
+            "interval": [
+              0.2715177697922938,
+              0.3905908072679001
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.5003819709702063,
+            "interval": [
+              0.46249638030888035,
+              0.5387871759642041
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.13445378151260504,
+            "interval": [
+              0.111108701936976,
+              0.15781510031582133
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.2001527883880825,
+            "interval": [
+              0.16954587020978604,
+              0.23149244135610833
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.3276089828269485,
+          "sentenceNoChangeUpper": 0.5003819709702063
+        },
+        "joyful": {
+          "texts": 770,
+          "noChange": 155,
+          "unknownTexts": 0,
+          "sentences": 1211,
+          "negativeSentences": 434,
+          "unknownSentences": 0,
+          "paired": 1211,
+          "changeDisagree": 195,
+          "labelDisagree": 413,
+          "textNoChange": {
+            "value": 0.2012987012987013,
+            "interval": [
+              0.1599940828402367,
+              0.2438357052751275
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.3583815028901734,
+            "interval": [
+              0.3268109822739848,
+              0.3929656922018553
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.1610239471511148,
+            "interval": [
+              0.13556321240774755,
+              0.1844160239084097
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.34104046242774566,
+            "interval": [
+              0.3079964426304462,
+              0.3726178291548569
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.2012987012987013,
+          "sentenceNoChangeUpper": 0.3583815028901734
+        },
+        "lonely": {
+          "texts": 814,
+          "noChange": 159,
+          "unknownTexts": 0,
+          "sentences": 1333,
+          "negativeSentences": 458,
+          "unknownSentences": 0,
+          "paired": 1333,
+          "changeDisagree": 313,
+          "labelDisagree": 600,
+          "textNoChange": {
+            "value": 0.19533169533169534,
+            "interval": [
+              0.15914733205869588,
+              0.23713754087076233
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.3435858964741185,
+            "interval": [
+              0.3055324224166513,
+              0.38584447470924993
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.2348087021755439,
+            "interval": [
+              0.2050632068179969,
+              0.26311908186682503
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.450112528132033,
+            "interval": [
+              0.417936611861421,
+              0.4828357966164714
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.19533169533169534,
+          "sentenceNoChangeUpper": 0.3435858964741185
+        },
+        "nostalgic": {
+          "texts": 759,
+          "noChange": 461,
+          "unknownTexts": 0,
+          "sentences": 1259,
+          "negativeSentences": 892,
+          "unknownSentences": 0,
+          "paired": 1259,
+          "changeDisagree": 236,
+          "labelDisagree": 295,
+          "textNoChange": {
+            "value": 0.6073781291172595,
+            "interval": [
+              0.5586263291700293,
+              0.6568252624865077
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.7084988085782367,
+            "interval": [
+              0.6712540276374479,
+              0.743005067122927
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.187450357426529,
+            "interval": [
+              0.1607417254289455,
+              0.21398140501038615
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.23431294678316125,
+            "interval": [
+              0.20730167078631698,
+              0.26246111943193173
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.6073781291172595,
+          "sentenceNoChangeUpper": 0.7084988085782367
+        },
+        "prepared": {
+          "texts": 766,
+          "noChange": 235,
+          "unknownTexts": 0,
+          "sentences": 1264,
+          "negativeSentences": 531,
+          "unknownSentences": 0,
+          "paired": 1264,
+          "changeDisagree": 325,
+          "labelDisagree": 529,
+          "textNoChange": {
+            "value": 0.30678851174934724,
+            "interval": [
+              0.25068435856150356,
+              0.3650474819931712
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.4200949367088608,
+            "interval": [
+              0.38111643029867326,
+              0.46242475150085965
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.25712025316455694,
+            "interval": [
+              0.2211008206557504,
+              0.2933007804571104
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.4185126582278481,
+            "interval": [
+              0.3851029331113611,
+              0.45204273927545485
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.30678851174934724,
+          "sentenceNoChangeUpper": 0.4200949367088608
+        },
+        "proud": {
+          "texts": 867,
+          "noChange": 120,
+          "unknownTexts": 0,
+          "sentences": 1375,
+          "negativeSentences": 416,
+          "unknownSentences": 0,
+          "paired": 1375,
+          "changeDisagree": 180,
+          "labelDisagree": 421,
+          "textNoChange": {
+            "value": 0.1384083044982699,
+            "interval": [
+              0.10508798281501253,
+              0.17735996061304696
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.30254545454545456,
+            "interval": [
+              0.2672716034672783,
+              0.33891390681511946
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.13090909090909092,
+            "interval": [
+              0.10969053968412208,
+              0.15409010347951868
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.30618181818181817,
+            "interval": [
+              0.27084506724941987,
+              0.34100345113341934
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.1384083044982699,
+          "sentenceNoChangeUpper": 0.30254545454545456
+        },
+        "sad": {
+          "texts": 857,
+          "noChange": 87,
+          "unknownTexts": 0,
+          "sentences": 1410,
+          "negativeSentences": 388,
+          "unknownSentences": 0,
+          "paired": 1410,
+          "changeDisagree": 251,
+          "labelDisagree": 586,
+          "textNoChange": {
+            "value": 0.10151691948658109,
+            "interval": [
+              0.07643714869698517,
+              0.1278822318562037
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.275177304964539,
+            "interval": [
+              0.23753749308638122,
+              0.3115673488908366
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.17801418439716313,
+            "interval": [
+              0.15505936836607476,
+              0.2009783476229881
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.4156028368794326,
+            "interval": [
+              0.38532971190247706,
+              0.4468902998351749
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.10151691948658109,
+          "sentenceNoChangeUpper": 0.275177304964539
+        },
+        "sentimental": {
+          "texts": 698,
+          "noChange": 336,
+          "unknownTexts": 0,
+          "sentences": 1148,
+          "negativeSentences": 704,
+          "unknownSentences": 0,
+          "paired": 1148,
+          "changeDisagree": 203,
+          "labelDisagree": 300,
+          "textNoChange": {
+            "value": 0.4813753581661891,
+            "interval": [
+              0.4266795967006346,
+              0.545074131876707
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.6132404181184669,
+            "interval": [
+              0.575272627461436,
+              0.6551440658254347
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.17682926829268292,
+            "interval": [
+              0.14903044252473535,
+              0.20391409526793017
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.2613240418118467,
+            "interval": [
+              0.23063659487713636,
+              0.29155501354877683
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.4813753581661891,
+          "sentenceNoChangeUpper": 0.6132404181184669
+        },
+        "surprised": {
+          "texts": 1279,
+          "noChange": 129,
+          "unknownTexts": 0,
+          "sentences": 2101,
+          "negativeSentences": 538,
+          "unknownSentences": 0,
+          "paired": 2101,
+          "changeDisagree": 467,
+          "labelDisagree": 1003,
+          "textNoChange": {
+            "value": 0.10086004691164972,
+            "interval": [
+              0.0790712011748588,
+              0.12189662682701577
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.2560685387910519,
+            "interval": [
+              0.2334474537232927,
+              0.27811226639887054
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.22227510709186102,
+            "interval": [
+              0.1960591762054076,
+              0.24493857675509575
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.47739171822941456,
+            "interval": [
+              0.4487528965865703,
+              0.5041608754481058
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.10086004691164972,
+          "sentenceNoChangeUpper": 0.2560685387910519
+        },
+        "terrified": {
+          "texts": 782,
+          "noChange": 208,
+          "unknownTexts": 0,
+          "sentences": 1355,
+          "negativeSentences": 579,
+          "unknownSentences": 0,
+          "paired": 1355,
+          "changeDisagree": 348,
+          "labelDisagree": 595,
+          "textNoChange": {
+            "value": 0.2659846547314578,
+            "interval": [
+              0.21052305888483583,
+              0.3244619068466713
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.4273062730627306,
+            "interval": [
+              0.39067158830275234,
+              0.4630193686242073
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.2568265682656827,
+            "interval": [
+              0.2269014257326183,
+              0.2882576286316699
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.43911439114391143,
+            "interval": [
+              0.40425274239858644,
+              0.47461822015371863
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.2659846547314578,
+          "sentenceNoChangeUpper": 0.4273062730627306
+        },
+        "trusting": {
+          "texts": 651,
+          "noChange": 220,
+          "unknownTexts": 0,
+          "sentences": 1078,
+          "negativeSentences": 516,
+          "unknownSentences": 0,
+          "paired": 1078,
+          "changeDisagree": 234,
+          "labelDisagree": 412,
+          "textNoChange": {
+            "value": 0.3379416282642089,
+            "interval": [
+              0.28335706297574526,
+              0.3987646739530433
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.47866419294990725,
+            "interval": [
+              0.4382600609837589,
+              0.522299724673356
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.21706864564007422,
+            "interval": [
+              0.17805516047978,
+              0.26437503610004043
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.3821892393320965,
+            "interval": [
+              0.33935361216730037,
+              0.42846443280170066
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.3379416282642089,
+          "sentenceNoChangeUpper": 0.47866419294990725
+        },
+        "standing": {
+          "texts": 5688,
+          "noChange": 2128,
+          "unknownTexts": 0,
+          "sentences": 9389,
+          "negativeSentences": 4726,
+          "unknownSentences": 0,
+          "paired": 9389,
+          "changeDisagree": 1977,
+          "labelDisagree": 3246,
+          "textNoChange": {
+            "value": 0.37412095639943743,
+            "interval": [
+              0.34372101374752456,
+              0.4062793988027473
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.5033549898817765,
+            "interval": [
+              0.48291110992088476,
+              0.5245507423055562
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.21056555543721375,
+            "interval": [
+              0.19584529404559287,
+              0.22570933138911173
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.3457237192459261,
+            "interval": [
+              0.3290765021637898,
+              0.3624904186010972
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.37412095639943743,
+          "sentenceNoChangeUpper": 0.5033549898817765
+        },
+        "other": {
+          "texts": 19162,
+          "noChange": 3974,
+          "unknownTexts": 0,
+          "sentences": 31827,
+          "negativeSentences": 11726,
+          "unknownSentences": 0,
+          "paired": 31827,
+          "changeDisagree": 6571,
+          "labelDisagree": 12752,
+          "textNoChange": {
+            "value": 0.20738962530007307,
+            "interval": [
+              0.18401043146623616,
+              0.2331957889653752
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.3684293210167468,
+            "interval": [
+              0.3484838649563624,
+              0.38738829130520147
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.20645992396393,
+            "interval": [
+              0.19593612460849605,
+              0.2179956058978412
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.4006661011091212,
+            "interval": [
+              0.38712002241881927,
+              0.4142634667442602
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.20738962530007307,
+          "sentenceNoChangeUpper": 0.3684293210167468
+        }
+      },
+      "envent": {
+        "anger": {
+          "texts": 550,
+          "noChange": 115,
+          "unknownTexts": 0,
+          "sentences": 872,
+          "negativeSentences": 350,
+          "unknownSentences": 0,
+          "paired": 872,
+          "changeDisagree": 211,
+          "labelDisagree": 373,
+          "textNoChange": {
+            "value": 0.20909090909090908,
+            "interval": [
+              0.1753472222222222,
+              0.24444844124700238
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.4013761467889908,
+            "interval": [
+              0.364128425335114,
+              0.4385386741676561
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.24197247706422018,
+            "interval": [
+              0.21464717186856144,
+              0.2707022688076735
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.42775229357798167,
+            "interval": [
+              0.39419672676647693,
+              0.461543134872418
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.20909090909090908,
+          "sentenceNoChangeUpper": 0.4013761467889908
+        },
+        "boredom": {
+          "texts": 550,
+          "noChange": 286,
+          "unknownTexts": 0,
+          "sentences": 937,
+          "negativeSentences": 612,
+          "unknownSentences": 0,
+          "paired": 937,
+          "changeDisagree": 194,
+          "labelDisagree": 276,
+          "textNoChange": {
+            "value": 0.52,
+            "interval": [
+              0.47775533811203397,
+              0.5639784621109921
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.6531483457844184,
+            "interval": [
+              0.6177420690604416,
+              0.687141854224148
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.20704375667022412,
+            "interval": [
+              0.17993156464512797,
+              0.23608172139121675
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.2945570971184632,
+            "interval": [
+              0.26431405459477136,
+              0.32676887839677926
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.52,
+          "sentenceNoChangeUpper": 0.6531483457844184
+        },
+        "disgust": {
+          "texts": 550,
+          "noChange": 186,
+          "unknownTexts": 0,
+          "sentences": 918,
+          "negativeSentences": 495,
+          "unknownSentences": 0,
+          "paired": 918,
+          "changeDisagree": 200,
+          "labelDisagree": 294,
+          "textNoChange": {
+            "value": 0.3381818181818182,
+            "interval": [
+              0.2963602905173821,
+              0.3805256477591036
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.5392156862745098,
+            "interval": [
+              0.5022020433234479,
+              0.5732158477284622
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.2178649237472767,
+            "interval": [
+              0.19186377125216306,
+              0.24562536960378467
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.3202614379084967,
+            "interval": [
+              0.28757965686274506,
+              0.35419622474080326
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.3381818181818182,
+          "sentenceNoChangeUpper": 0.5392156862745098
+        },
+        "fear": {
+          "texts": 550,
+          "noChange": 123,
+          "unknownTexts": 0,
+          "sentences": 1022,
+          "negativeSentences": 475,
+          "unknownSentences": 0,
+          "paired": 1022,
+          "changeDisagree": 185,
+          "labelDisagree": 413,
+          "textNoChange": {
+            "value": 0.22363636363636363,
+            "interval": [
+              0.18914177440196253,
+              0.2587548638132296
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.46477495107632094,
+            "interval": [
+              0.43000564088692095,
+              0.4994756225313157
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.18101761252446183,
+            "interval": [
+              0.1586951315794397,
+              0.20446127627067245
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.4041095890410959,
+            "interval": [
+              0.3709908406094847,
+              0.4381898963857188
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.22363636363636363,
+          "sentenceNoChangeUpper": 0.46477495107632094
+        },
+        "guilt": {
+          "texts": 275,
+          "noChange": 52,
+          "unknownTexts": 0,
+          "sentences": 468,
+          "negativeSentences": 201,
+          "unknownSentences": 0,
+          "paired": 468,
+          "changeDisagree": 105,
+          "labelDisagree": 201,
+          "textNoChange": {
+            "value": 0.1890909090909091,
+            "interval": [
+              0.14184193364310754,
+              0.235074954176486
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.42948717948717946,
+            "interval": [
+              0.3823469631755141,
+              0.47541730271454163
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.22435897435897437,
+            "interval": [
+              0.1909851736246586,
+              0.2622369688968506
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.42948717948717946,
+            "interval": [
+              0.38240777190417274,
+              0.4769592484044502
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.1890909090909091,
+          "sentenceNoChangeUpper": 0.42948717948717946
+        },
+        "joy": {
+          "texts": 550,
+          "noChange": 126,
+          "unknownTexts": 0,
+          "sentences": 942,
+          "negativeSentences": 448,
+          "unknownSentences": 0,
+          "paired": 942,
+          "changeDisagree": 129,
+          "labelDisagree": 317,
+          "textNoChange": {
+            "value": 0.2290909090909091,
+            "interval": [
+              0.19163202084359204,
+              0.2676868372647507
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.47558386411889597,
+            "interval": [
+              0.43584005164628503,
+              0.5107600477208639
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.13694267515923567,
+            "interval": [
+              0.1164079822616408,
+              0.1590003639417693
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.3365180467091295,
+            "interval": [
+              0.30838797981655125,
+              0.3672526398935728
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.2290909090909091,
+          "sentenceNoChangeUpper": 0.47558386411889597
+        },
+        "pride": {
+          "texts": 550,
+          "noChange": 82,
+          "unknownTexts": 0,
+          "sentences": 890,
+          "negativeSentences": 339,
+          "unknownSentences": 0,
+          "paired": 890,
+          "changeDisagree": 102,
+          "labelDisagree": 323,
+          "textNoChange": {
+            "value": 0.14909090909090908,
+            "interval": [
+              0.1196368603411514,
+              0.18201174946291332
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.3808988764044944,
+            "interval": [
+              0.3407714530554857,
+              0.41621487440073257
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.1146067415730337,
+            "interval": [
+              0.09427093016050071,
+              0.1356930381655118
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.36292134831460676,
+            "interval": [
+              0.3325892213719502,
+              0.39633402280320185
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.14909090909090908,
+          "sentenceNoChangeUpper": 0.3808988764044944
+        },
+        "relief": {
+          "texts": 550,
+          "noChange": 49,
+          "unknownTexts": 0,
+          "sentences": 938,
+          "negativeSentences": 323,
+          "unknownSentences": 0,
+          "paired": 938,
+          "changeDisagree": 128,
+          "labelDisagree": 394,
+          "textNoChange": {
+            "value": 0.0890909090909091,
+            "interval": [
+              0.0653462651165298,
+              0.11388290566273332
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.3443496801705757,
+            "interval": [
+              0.3115565950130802,
+              0.37797862997658077
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.13646055437100213,
+            "interval": [
+              0.11576550685866834,
+              0.15932263984349299
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.4200426439232409,
+            "interval": [
+              0.3900699615038842,
+              0.4519130691166707
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.0890909090909091,
+          "sentenceNoChangeUpper": 0.3443496801705757
+        },
+        "sadness": {
+          "texts": 550,
+          "noChange": 46,
+          "unknownTexts": 0,
+          "sentences": 971,
+          "negativeSentences": 331,
+          "unknownSentences": 0,
+          "paired": 971,
+          "changeDisagree": 135,
+          "labelDisagree": 394,
+          "textNoChange": {
+            "value": 0.08363636363636363,
+            "interval": [
+              0.05956276584337134,
+              0.10761400724241348
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.3408856848609681,
+            "interval": [
+              0.30688897309586965,
+              0.37438987507881255
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.13903192584963955,
+            "interval": [
+              0.11722992303907574,
+              0.16012864876932523
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.4057672502574665,
+            "interval": [
+              0.37693719283579064,
+              0.43479508940727957
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.08363636363636363,
+          "sentenceNoChangeUpper": 0.3408856848609681
+        },
+        "shame": {
+          "texts": 275,
+          "noChange": 44,
+          "unknownTexts": 0,
+          "sentences": 458,
+          "negativeSentences": 186,
+          "unknownSentences": 0,
+          "paired": 458,
+          "changeDisagree": 101,
+          "labelDisagree": 231,
+          "textNoChange": {
+            "value": 0.16,
+            "interval": [
+              0.1169811320754717,
+              0.2041700268817204
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.40611353711790393,
+            "interval": [
+              0.3581693672839506,
+              0.45213005314452687
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.2205240174672489,
+            "interval": [
+              0.18384810466737206,
+              0.2557749188591425
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.5043668122270742,
+            "interval": [
+              0.45610067709572527,
+              0.556359568664359
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.16,
+          "sentenceNoChangeUpper": 0.40611353711790393
+        },
+        "surprise": {
+          "texts": 550,
+          "noChange": 43,
+          "unknownTexts": 0,
+          "sentences": 899,
+          "negativeSentences": 319,
+          "unknownSentences": 0,
+          "paired": 899,
+          "changeDisagree": 108,
+          "labelDisagree": 388,
+          "textNoChange": {
+            "value": 0.07818181818181819,
+            "interval": [
+              0.05578491817852557,
+              0.10219185467816853
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.3548387096774194,
+            "interval": [
+              0.32213925174584634,
+              0.3868586471566848
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.12013348164627363,
+            "interval": [
+              0.09941520467836257,
+              0.14137481532979926
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.43159065628476084,
+            "interval": [
+              0.4013900239609136,
+              0.46296497584541063
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.07818181818181819,
+          "sentenceNoChangeUpper": 0.3548387096774194
+        },
+        "trust": {
+          "texts": 550,
+          "noChange": 177,
+          "unknownTexts": 0,
+          "sentences": 1026,
+          "negativeSentences": 579,
+          "unknownSentences": 0,
+          "paired": 1026,
+          "changeDisagree": 181,
+          "labelDisagree": 358,
+          "textNoChange": {
+            "value": 0.32181818181818184,
+            "interval": [
+              0.2815346593444558,
+              0.364121022858908
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.564327485380117,
+            "interval": [
+              0.5317458252812051,
+              0.5977021480571617
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.17641325536062377,
+            "interval": [
+              0.15437409220909512,
+              0.19855208617920414
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.3489278752436647,
+            "interval": [
+              0.3195642822025565,
+              0.37898174415908564
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.32181818181818184,
+          "sentenceNoChangeUpper": 0.564327485380117
+        },
+        "standing": {
+          "texts": 1100,
+          "noChange": 463,
+          "unknownTexts": 0,
+          "sentences": 1963,
+          "negativeSentences": 1191,
+          "unknownSentences": 0,
+          "paired": 1963,
+          "changeDisagree": 375,
+          "labelDisagree": 634,
+          "textNoChange": {
+            "value": 0.4209090909090909,
+            "interval": [
+              0.39002508105357614,
+              0.45092860886492964
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.6067244014263882,
+            "interval": [
+              0.5827693947442816,
+              0.6310218150144604
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.19103413143148243,
+            "interval": [
+              0.17374245315180575,
+              0.20983708629676223
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.32297503820682627,
+            "interval": [
+              0.3015466313439322,
+              0.3453551912568306
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.4209090909090909,
+          "sentenceNoChangeUpper": 0.6067244014263882
+        },
+        "other": {
+          "texts": 4950,
+          "noChange": 866,
+          "unknownTexts": 0,
+          "sentences": 8378,
+          "negativeSentences": 3467,
+          "unknownSentences": 0,
+          "paired": 8378,
+          "changeDisagree": 1404,
+          "labelDisagree": 3328,
+          "textNoChange": {
+            "value": 0.17494949494949494,
+            "interval": [
+              0.16235642792194382,
+              0.18759908900321806
+            ],
+            "validDraws": 2000
+          },
+          "sentenceNoChange": {
+            "value": 0.41382191453807593,
+            "interval": [
+              0.3985088936896447,
+              0.42914012489766695
+            ],
+            "validDraws": 2000
+          },
+          "WChangeDisagreement": {
+            "value": 0.16758176175698258,
+            "interval": [
+              0.15944047478403559,
+              0.17577487530728067
+            ],
+            "validDraws": 2000
+          },
+          "WFullLabelDisagreement": {
+            "value": 0.39723084268321796,
+            "interval": [
+              0.3858948609313582,
+              0.4093100299856863
+            ],
+            "validDraws": 2000
+          },
+          "textNoChangeUpper": 0.17494949494949494,
+          "sentenceNoChangeUpper": 0.41382191453807593
+        }
+      }
+    },
+    "ratio": {
+      "ed": {
+        "value": 1.8039521304796224,
+        "interval": [
+          1.673424396936895,
+          1.9460438410006276
+        ],
+        "validDraws": 2000,
+        "passes": false
+      },
+      "envent": {
+        "value": 2.405889145496536,
+        "interval": [
+          2.18345165762566,
+          2.6664869060206726
+        ],
+        "validDraws": 2000,
+        "passes": true
+      }
+    },
+    "pooledRatio": {
+      "value": 2.003335580882848,
+      "interval": [
+        1.888145529714224,
+        2.1255530288698936
+      ]
+    },
+    "Q11": {
+      "oldAgreementPassed": true,
+      "oldCeilingPassed": true,
+      "oldGatePin": "e2fc8b715d5842619c8922d95ff89dce4ee6a5ce778ba54abf99d567744068a3",
+      "originalGatePassed": false,
+      "passes": false,
+      "postMissAmendment": "BJ",
+      "table": {
+        "ed": {
+          "all": {
+            "sentence": {
+              "lowerRate": 0.5872,
+              "n": 2500,
+              "positive": 1468,
+              "unknown": 0
+            },
+            "text": {
+              "lowerRate": 0.7506666666666667,
+              "n": 1500,
+              "positive": 1126,
+              "unknown": 0
+            }
+          },
+          "other": {
+            "sentence": {
+              "lowerRate": 0.6204228984012378,
+              "n": 1939,
+              "positive": 1203,
+              "unknown": 0
+            },
+            "text": {
+              "lowerRate": 0.7864493996569468,
+              "n": 1166,
+              "positive": 917,
+              "unknown": 0
+            }
+          },
+          "standing": {
+            "sentence": {
+              "lowerRate": 0.47237076648841353,
+              "n": 561,
+              "positive": 265,
+              "unknown": 0
+            },
+            "text": {
+              "lowerRate": 0.625748502994012,
+              "n": 334,
+              "positive": 209,
+              "unknown": 0
+            }
+          }
+        },
+        "envent": {
+          "all": {
+            "sentence": {
+              "lowerRate": 0.5592680986475735,
+              "n": 2514,
+              "positive": 1406,
+              "unknown": 0
+            },
+            "text": {
+              "lowerRate": 0.7873333333333333,
+              "n": 1500,
+              "positive": 1181,
+              "unknown": 0
+            }
+          },
+          "other": {
+            "sentence": {
+              "lowerRate": 0.593245227606461,
+              "n": 2043,
+              "positive": 1212,
+              "unknown": 0
+            },
+            "text": {
+              "lowerRate": 0.8317073170731707,
+              "n": 1230,
+              "positive": 1023,
+              "unknown": 0
+            }
+          },
+          "standing": {
+            "sentence": {
+              "lowerRate": 0.4118895966029724,
+              "n": 471,
+              "positive": 194,
+              "unknown": 0
+            },
+            "text": {
+              "lowerRate": 0.5851851851851851,
+              "n": 270,
+              "positive": 158,
+              "unknown": 0
+            }
+          }
+        }
+      }
+    },
+    "both": false,
+    "teacher": false
+  },
+  "interval": {
+    "unit": "writer within source",
+    "draws": 2000,
+    "ratio": "conservative lower bound if any unresolved texts"
+  },
+  "bar": "Standing words have at least twice the no-change rate in each source, with the interval above one. Q11 separately requires 85% change on other words in each source.",
+  "verdict": "Reader B misses the amended teaching check. The standing-state contrast does not clear both source thresholds.",
+  "table": [
+    "| Source | Standing / other no-change rate ratio | Both bars met |",
+    "|---|---:|---|",
+    "| ed | 1.804 [1.673, 1.946] | False |",
+    "| envent | 2.406 [2.183, 2.666] | True |",
+    "| Pooled, inverse variance on log rate ratio | 2.003 [1.888, 2.126] | descriptive |",
+    "",
+    "| Q11 source and words | Texts with change / texts | Sentences with change / sentences |",
+    "|---|---:|---:|",
+    "| ed / all | 1126/1500 | 1468/2500 |",
+    "| ed / other | 917/1166 | 1203/1939 |",
+    "| ed / standing | 209/334 | 265/561 |",
+    "| envent / all | 1181/1500 | 1406/2514 |",
+    "| envent / other | 1023/1230 | 1212/2043 |",
+    "| envent / standing | 158/270 | 194/471 |",
+    "",
+    "| Source / feeling word | Texts | No-change texts | No-change sentences | B/W disagree on change |",
+    "|---|---:|---:|---:|---:|",
+    "| ed / afraid | 797 | 0.284 [0.236, 0.333] | 0.429 [0.390, 0.469] | 0.277 [0.247, 0.307] |",
+    "| ed / angry | 863 | 0.199 [0.158, 0.245] | 0.370 [0.325, 0.414] | 0.206 [0.177, 0.235] |",
+    "| ed / annoyed | 876 | 0.320 [0.275, 0.371] | 0.474 [0.434, 0.514] | 0.242 [0.213, 0.273] |",
+    "| ed / anticipating | 754 | 0.210 [0.162, 0.263] | 0.347 [0.310, 0.385] | 0.217 [0.188, 0.250] |",
+    "| ed / anxious | 774 | 0.279 [0.238, 0.324] | 0.430 [0.396, 0.464] | 0.253 [0.226, 0.282] |",
+    "| ed / apprehensive | 608 | 0.316 [0.270, 0.359] | 0.472 [0.434, 0.508] | 0.240 [0.215, 0.266] |",
+    "| ed / ashamed | 628 | 0.154 [0.118, 0.191] | 0.323 [0.291, 0.357] | 0.276 [0.246, 0.306] |",
+    "| ed / caring | 683 | 0.365 [0.285, 0.451] | 0.458 [0.400, 0.522] | 0.140 [0.113, 0.168] |",
+    "| ed / confident | 785 | 0.243 [0.201, 0.292] | 0.384 [0.349, 0.423] | 0.209 [0.178, 0.239] |",
+    "| ed / content | 737 | 0.383 [0.327, 0.441] | 0.538 [0.499, 0.579] | 0.212 [0.182, 0.242] |",
+    "| ed / devastated | 712 | 0.022 [0.013, 0.035] | 0.200 [0.172, 0.228] | 0.151 [0.124, 0.176] |",
+    "| ed / disappointed | 770 | 0.113 [0.083, 0.147] | 0.286 [0.253, 0.323] | 0.256 [0.227, 0.286] |",
+    "| ed / disgusted | 787 | 0.277 [0.236, 0.323] | 0.482 [0.446, 0.516] | 0.225 [0.202, 0.251] |",
+    "| ed / embarrassed | 740 | 0.119 [0.095, 0.146] | 0.319 [0.287, 0.352] | 0.291 [0.260, 0.320] |",
+    "| ed / excited | 938 | 0.167 [0.121, 0.223] | 0.317 [0.280, 0.355] | 0.168 [0.144, 0.196] |",
+    "| ed / faithful | 478 | 0.510 [0.447, 0.582] | 0.596 [0.547, 0.646] | 0.172 [0.143, 0.201] |",
+    "| ed / furious | 759 | 0.130 [0.099, 0.169] | 0.322 [0.282, 0.363] | 0.184 [0.154, 0.214] |",
+    "| ed / grateful | 815 | 0.280 [0.232, 0.330] | 0.414 [0.376, 0.450] | 0.141 [0.121, 0.162] |",
+    "| ed / guilty | 760 | 0.162 [0.129, 0.197] | 0.335 [0.296, 0.370] | 0.250 [0.219, 0.283] |",
+    "| ed / hopeful | 781 | 0.206 [0.161, 0.256] | 0.334 [0.299, 0.368] | 0.200 [0.177, 0.224] |",
+    "| ed / impressed | 805 | 0.323 [0.271, 0.378] | 0.487 [0.444, 0.531] | 0.161 [0.141, 0.183] |",
+    "| ed / jealous | 757 | 0.328 [0.272, 0.391] | 0.500 [0.462, 0.539] | 0.134 [0.111, 0.158] |",
+    "| ed / joyful | 770 | 0.201 [0.160, 0.244] | 0.358 [0.327, 0.393] | 0.161 [0.136, 0.184] |",
+    "| ed / lonely | 814 | 0.195 [0.159, 0.237] | 0.344 [0.306, 0.386] | 0.235 [0.205, 0.263] |",
+    "| ed / nostalgic | 759 | 0.607 [0.559, 0.657] | 0.708 [0.671, 0.743] | 0.187 [0.161, 0.214] |",
+    "| ed / prepared | 766 | 0.307 [0.251, 0.365] | 0.420 [0.381, 0.462] | 0.257 [0.221, 0.293] |",
+    "| ed / proud | 867 | 0.138 [0.105, 0.177] | 0.303 [0.267, 0.339] | 0.131 [0.110, 0.154] |",
+    "| ed / sad | 857 | 0.102 [0.076, 0.128] | 0.275 [0.238, 0.312] | 0.178 [0.155, 0.201] |",
+    "| ed / sentimental | 698 | 0.481 [0.427, 0.545] | 0.613 [0.575, 0.655] | 0.177 [0.149, 0.204] |",
+    "| ed / surprised | 1279 | 0.101 [0.079, 0.122] | 0.256 [0.233, 0.278] | 0.222 [0.196, 0.245] |",
+    "| ed / terrified | 782 | 0.266 [0.211, 0.324] | 0.427 [0.391, 0.463] | 0.257 [0.227, 0.288] |",
+    "| ed / trusting | 651 | 0.338 [0.283, 0.399] | 0.479 [0.438, 0.522] | 0.217 [0.178, 0.264] |",
+    "| ed / standing | 5688 | 0.374 [0.344, 0.406] | 0.503 [0.483, 0.525] | 0.211 [0.196, 0.226] |",
+    "| ed / other | 19162 | 0.207 [0.184, 0.233] | 0.368 [0.348, 0.387] | 0.206 [0.196, 0.218] |",
+    "| envent / anger | 550 | 0.209 [0.175, 0.244] | 0.401 [0.364, 0.439] | 0.242 [0.215, 0.271] |",
+    "| envent / boredom | 550 | 0.520 [0.478, 0.564] | 0.653 [0.618, 0.687] | 0.207 [0.180, 0.236] |",
+    "| envent / disgust | 550 | 0.338 [0.296, 0.381] | 0.539 [0.502, 0.573] | 0.218 [0.192, 0.246] |",
+    "| envent / fear | 550 | 0.224 [0.189, 0.259] | 0.465 [0.430, 0.499] | 0.181 [0.159, 0.204] |",
+    "| envent / guilt | 275 | 0.189 [0.142, 0.235] | 0.429 [0.382, 0.475] | 0.224 [0.191, 0.262] |",
+    "| envent / joy | 550 | 0.229 [0.192, 0.268] | 0.476 [0.436, 0.511] | 0.137 [0.116, 0.159] |",
+    "| envent / pride | 550 | 0.149 [0.120, 0.182] | 0.381 [0.341, 0.416] | 0.115 [0.094, 0.136] |",
+    "| envent / relief | 550 | 0.089 [0.065, 0.114] | 0.344 [0.312, 0.378] | 0.136 [0.116, 0.159] |",
+    "| envent / sadness | 550 | 0.084 [0.060, 0.108] | 0.341 [0.307, 0.374] | 0.139 [0.117, 0.160] |",
+    "| envent / shame | 275 | 0.160 [0.117, 0.204] | 0.406 [0.358, 0.452] | 0.221 [0.184, 0.256] |",
+    "| envent / surprise | 550 | 0.078 [0.056, 0.102] | 0.355 [0.322, 0.387] | 0.120 [0.099, 0.141] |",
+    "| envent / trust | 550 | 0.322 [0.282, 0.364] | 0.564 [0.532, 0.598] | 0.176 [0.154, 0.199] |",
+    "| envent / standing | 1100 | 0.421 [0.390, 0.451] | 0.607 [0.583, 0.631] | 0.191 [0.174, 0.210] |",
+    "| envent / other | 4950 | 0.175 [0.162, 0.188] | 0.414 [0.399, 0.429] | 0.168 [0.159, 0.176] |"
+  ],
+  "sourceReceiptPin": "42f8573f4d71b0d47732512c347ab975728a9b4579f17dc45d9cdf2a3620fd53"
+}
