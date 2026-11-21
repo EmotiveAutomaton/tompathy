@@ -5,6 +5,8 @@ based on the merged, owner-approved **0.2.0** frontend milestone.
 
 ## November 20 teacher and word-table packet
 
+**November 21 afternoon.** TP42’s local census and TP41’s writer comparison are complete. The tag contrast repeated across halves in 270 writers (adjusted covariance .188, 95% interval [.141, .227]). Q12 and G4 continue the earlier comparison. Spark’s verified supervisor will start reader C after the earlier queue releases, including the optional Q13 rung if eligible. G4 has no workstation GPU successor. [Afternoon results and teacher conditions](docs/exchange/THEORY_RETURN_2026-11-22.md).
+
 **November 21, 09:34 Pacific.** Seven results are filed. Reader B marked a change in 78.6% of eligible chat situations and 83.2% of eligible recalled events. Both missed the amended 85% bar. TP31 training stays blocked. Both GPUs continued into the 46,543-sentence comparison, with 11,084 valid answers on Spark and 17,326 on the workstation. [Teacher check](docs/exchange/result-sheets/TP40-Q11.md) · [Writer study](docs/exchange/result-sheets/TP39.md) · [Study return](docs/exchange/THEORY_RETURN_2026-11-22.md).
 
 At the earlier 03:12 Pacific checkpoint on November 21, Spark Q6 had saved valid responses for 10,412 of 24,850 situations and the November 20 workstation queue had finished.

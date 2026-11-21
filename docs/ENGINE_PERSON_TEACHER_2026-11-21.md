@@ -1,5 +1,11 @@
 # Person and teacher studies, November 21
 
+## Afternoon addendum
+
+The curator approved BS at 10:45 Pacific. Q14 is the third teacher attempt and the second reader on the amended check. Reader C takes the original Q11 roster, teacher prompt and 85% threshold in both sources. Its first 100 sentences determine whether 5,014 fit within eight hours. Q15 requires Q14’s recorded pass. A miss ends the search. Only Q14 and Q15 receive the reader C memory allowance. The workstation GPU stops after G4. [Afternoon packet](../TOMPATHY_0.3_ENGINE_ADDENDUM_2026-11-21.md).
+
+TP42 counts authors separately for the 20-text threshold, two-date threshold and their intersection. TP41 uses the same TP39 halves and all other writers’ same-word means. Each supported writer has at least two texts in all four half-by-side cells. The smallest cell count weights that writer. Before estimating outcomes, each reading uses one common scale, the square root of the average within-cell between-writer variance over the four cells. The cross-half adjustment uses the mean of the two kinds as level and the one-level-covariate formula from the supplied preflight. The primary interval uses 2,000 paired writer draws. The forecast was inconclusive.
+
 The person study compares each writer's answers across two sets of situations written to assigned feeling words. The teacher study compares a model's reading of individual sentences with its reading of each whole situation. Both use the two machines' local disks under the curator's storage restriction. The original source files, predictions and November 20 failed teacher check are preserved.
 
 ## What was fixed before measuring

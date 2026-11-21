@@ -1,7 +1,8 @@
 # Source document index
 
-The November 19, 20 and 21 packets are the three current specifications at the repository
-root. Earlier specifications are indexed below in the historical archive.
+The November 19, 20 and 21 packets and the November 21 afternoon addendum are at the repository root. Earlier specifications are indexed below in the historical archive.
+
+- [Afternoon addendum, November 21](../TOMPATHY_0.3_ENGINE_ADDENDUM_2026-11-21.md). Approved BS extends the larger-reader memory rule to Q14 and Q15 only. [Working record](ENGINE_PERSON_TEACHER_2026-11-21.md).
 
 ## Current commission
 

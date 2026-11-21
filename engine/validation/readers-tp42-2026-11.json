@@ -1,0 +1,192 @@
+{
+  "card": "TP42",
+  "ledger": "E-TP42-20261121",
+  "protocolPin": "7832e75039bdb5185b3c9bc57684bc30332df41f64e7cb416773262eae5715dc",
+  "estimate": {
+    "Blog Authorship Corpus": {
+      "unit": "nonempty post; blog ID and published date marker",
+      "writers": 19320,
+      "textsWithWriter": 678203,
+      "atLeast20": {
+        "authors": 6219,
+        "medianTexts": 44,
+        "medianDates": 24
+      },
+      "multipleDates": {
+        "authors": 16660,
+        "medianTexts": 11.0,
+        "medianDates": 8.0
+      },
+      "both": {
+        "authors": 5530,
+        "medianTexts": 44.0,
+        "medianDates": 27.0
+      }
+    },
+    "GoEmotions": {
+      "unit": "unique comment; UTC creation date; unknown authors excluded",
+      "writers": 49177,
+      "textsWithWriter": 56948,
+      "atLeast20": {
+        "authors": 2,
+        "medianTexts": 22.0,
+        "medianDates": 9.0
+      },
+      "multipleDates": {
+        "authors": 4843,
+        "medianTexts": 2,
+        "medianDates": 2
+      },
+      "both": {
+        "authors": 2,
+        "medianTexts": 22.0,
+        "medianDates": 9.0
+      }
+    },
+    "crowd-enVENT": {
+      "unit": "generated report; recorded submission calendar date",
+      "writers": 2379,
+      "textsWithWriter": 6600,
+      "atLeast20": {
+        "authors": 10,
+        "medianTexts": 24.0,
+        "medianDates": 1.0
+      },
+      "multipleDates": {
+        "authors": 69,
+        "medianTexts": 4,
+        "medianDates": 2
+      },
+      "both": {
+        "authors": 1,
+        "medianTexts": 21,
+        "medianDates": 2
+      }
+    },
+    "EmpatheticDialogues": {
+      "unit": "one situation per conversation; no date",
+      "writers": 810,
+      "textsWithWriter": 24850,
+      "atLeast20": {
+        "authors": 233,
+        "medianTexts": 59,
+        "medianDates": null
+      },
+      "multipleDates": null,
+      "both": null
+    },
+    "EmoCause": {
+      "unit": "4,613 unique marked situations joined across original dialogue splits; no dates",
+      "writers": 149,
+      "textsWithWriter": 4613,
+      "atLeast20": {
+        "authors": 85,
+        "medianTexts": 42,
+        "medianDates": null
+      },
+      "multipleDates": null,
+      "both": null
+    },
+    "Empathic Reactions": {
+      "unit": "essay; response ID links the five essays; no date",
+      "writers": 372,
+      "textsWithWriter": 1860,
+      "atLeast20": {
+        "authors": 0,
+        "medianTexts": null,
+        "medianDates": null
+      },
+      "multipleDates": null,
+      "both": null
+    },
+    "Real World Worry phase 1": {
+      "unit": "long and short texts from one dated survey response per participant",
+      "writers": 2500,
+      "textsWithWriter": 5000,
+      "atLeast20": {
+        "authors": 0,
+        "medianTexts": null,
+        "medianDates": null
+      },
+      "multipleDates": {
+        "authors": 0,
+        "medianTexts": null,
+        "medianDates": null
+      },
+      "both": {
+        "authors": 0,
+        "medianTexts": null,
+        "medianDates": null
+      }
+    },
+    "CoAuthor": {
+      "unit": "prepared session text; UTC session date",
+      "writers": 61,
+      "textsWithWriter": 1399,
+      "atLeast20": {
+        "authors": 22,
+        "medianTexts": 51.5,
+        "medianDates": 9.0
+      },
+      "multipleDates": {
+        "authors": 50,
+        "medianTexts": 15.0,
+        "medianDates": 5.0
+      },
+      "both": {
+        "authors": 22,
+        "medianTexts": 51.5,
+        "medianDates": 9.0
+      }
+    },
+    "Proposal documents": {
+      "unit": "document; hashed first author, no calendar date",
+      "writers": 751,
+      "textsWithWriter": 1431,
+      "atLeast20": {
+        "authors": 2,
+        "medianTexts": 30.0,
+        "medianDates": null
+      },
+      "multipleDates": null,
+      "both": null
+    },
+    "CaSiNo": {
+      "unavailable": "dialogue-local roles; no released cross-dialogue author"
+    },
+    "Story Commonsense / ROCStories": {
+      "unavailable": "story IDs and character/annotator fields do not identify authors"
+    },
+    "IteraTeR": {
+      "unavailable": "revision/document IDs do not identify authors"
+    },
+    "Stack Exchange edits": {
+      "unavailable": "user fold is shared by multiple writers; release lacks author ID"
+    },
+    "Stack Exchange questions and answers": {
+      "unavailable": "post IDs and posting order only"
+    },
+    "RAID pilot": {
+      "unavailable": "generation/source IDs without human author or calendar date"
+    },
+    "Non-native essay benchmark": {
+      "unavailable": "source, domain and model labels without stable individual or writing date"
+    },
+    "IteraTeR sentence edits": {
+      "unavailable": "document and revision indices without author or calendar date"
+    },
+    "Art manuscript revisions": {
+      "unavailable": "dated revisions of one work, without a writer field in the local index"
+    },
+    "ToMpathy essay collection": {
+      "unavailable": "authored collection without comparable per-text writing dates"
+    }
+  },
+  "interval": "Exact counts in the named local releases. Missing fields are unavailable.",
+  "bar": "Inventory only. No qualification threshold.",
+  "verdict": "Descriptive count only.",
+  "scope": "Engine study sources on local disks. No cross-source identity linkage; related releases overlap.",
+  "productionAdmission": false,
+  "sourceReceiptPin": "b03bce79c79ae84844405776dd520214f466c0422a2a0cafdaabaa702e615fdf",
+  "data": "We counted writers, texts and distinct dates within each local research release, keeping overlapping sources separate."
+}

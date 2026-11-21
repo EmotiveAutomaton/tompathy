@@ -1,6 +1,6 @@
 # Person and teacher return for November 22
 
-Seven results are filed. The two readers are still scoring the remaining sentences for the full comparison by feeling word.
+Nine results are filed. Both readers are scoring the remaining sentences for the full comparison by feeling word. Reader C’s separate teacher check is queued behind the existing Spark work.
 
 | Card | Verdict and estimate | Interval, threshold and interpretation | Ledger and sheet |
 |---|---|---|---|
@@ -11,6 +11,10 @@ Seven results are filed. The two readers are still scoring the remaining sentenc
 | TP33 BK | No verdict on theme-free pages. All 40 had fewer than five windows. Three eligible essays had 0 of 24 windows marked. | Exact counts. The essay subset check passes with an empty selection. Detection sensitivity remains unknown. | [E-TP33-BK-20261121](result-sheets/TP33-BK.md) |
 | TP39 | Stability passed. Across 336 writers and 23,828 situations, the 19 tags had mean split-half correlation .302 [.263, .344]. Adding them to style moved top-ten writer matching from 83.63% to 83.93%. | Stability cleared .15 with its interval above zero. The paired gain of 0.30 percentage points [−1.79, +2.38] missed the requirement for an interval above zero. The two halves may reflect one writing session or the writer’s circumstances. | [E-TP39-20261121](result-sheets/TP39.md) |
 | TP40 | Reader B missed the amended whole-report check on both sources. Full word comparison pending. | Of reports outside the standing-word group, 917/1,166 chat situations (78.6%) and 1,023/1,230 recalled events (83.2%) had a sentence marked as changed. Each source needed 85%. These are exact panel counts under the amended rule and have no human answer key. The prediction that the teacher would qualify missed. | [E-TP40-Q11-20261121](result-sheets/TP40-Q11.md) |
+| TP42 | Census. The blog corpus had 16,660 authors on multiple dates, including 5,530 with at least 20 posts. Their medians were 44 posts and 27 dates. GoEmotions had 4,843 authors on multiple dates and two with at least 20 comments. | Exact counts within the saved releases. Related sources overlap. The prediction that every source would fall below 200 authors on multiple dates missed. | [E-TP42-20261121](result-sheets/TP42.md) |
+| TP41 | Passed. Across 270 writers and 19,900 eligible situations, the difference in need-tag readings between unpleasant and pleasant assigned words repeated across writing halves after adjusting for each writer’s level. Mean adjusted covariance .188, 95% writer interval [.141, .227]. | The registered lower bound had to exceed zero. It did, contrary to the prediction of an inconclusive result. Both halves may come from one sitting. The word was assigned, and the writer’s felt response was unmeasured. | [E-TP41-20261121](result-sheets/TP41.md) |
+
+**Reader C.** Q14 uses the same 5,014 sentences, prompt and 85% threshold as Q11. It is the third teacher attempt and the second reader on this bar. A pass qualifies C for Q15’s 28,000 sentences. A miss ends the teacher search. The first 100 sentences determine whether Q14 fits its eight-hour bound. The supervisor is waiting for the earlier Spark work to finish.
 
 Q6 finished with 24,850 valid answers. Reader B completed all 5,014 Q11 sentences and released the GPU at 08:16 Pacific. Q4 recorded its blocked receipt. Q7 is also ineligible. At 09:34 Spark had saved 11,084 of the second block’s 46,543 sentences, and the workstation had saved 17,326. Q13 still requires a successful training check on a copy. [Working record](../ENGINE_PERSON_TEACHER_2026-11-21.md).
 

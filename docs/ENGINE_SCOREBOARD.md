@@ -1,5 +1,7 @@
 # Engine scoreboard
 
+**November 21 afternoon.** Across 270 writers, the tag contrast between unpleasant and pleasant assigned words repeated across halves after adjustment for writer level. Mean adjusted covariance .188, 95% writer interval [.141, .227], clearing zero. The separate metadata census found 5,530 blog authors with 20 or more posts across at least two dates. [TP41](exchange/result-sheets/TP41.md) · [TP42](exchange/result-sheets/TP42.md).
+
 Only measured engine accuracy belongs here. Pending rows are not zero scores.
 Field labels remain off. A passed software test is not a natural-writing result.
 
