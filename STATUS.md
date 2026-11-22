@@ -1,7 +1,9 @@
 # ToMpathy status
 
-Updated 21 November 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
+Updated 22 November 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
 based on the merged, owner-approved **0.2.0** frontend milestone.
+
+**Round 35.** TP55’s anxiety comparison is filed. G11 reached its workstation cutoff with 42,705 openings and 1,556 complete authors. The weekly Spark dispatcher waits for the November 21 jobs and their required readouts before Q20, Q21 and Q22. TP45 Table 6 uses all 58 Style readings and 300 Topic readings. Its estimates await Q20. [Week protocol](docs/ENGINE_WEEK_2026-11-22.md) · [TP45 card](docs/exchange/result-sheets/TP45.md) · [Friday return](docs/exchange/THEORY_RETURN_2026-11-27.md).
 
 ## November 20 teacher and word-table packet
 

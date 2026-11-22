@@ -18,7 +18,7 @@ WEEK = ROOT/'.local/week-20261122'
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('card', choices=['TP55', 'Q20-inputs', 'Q21-inputs','Q22-inputs',
-                                         'TP45-profiles','TP45-openings','TP45-table6','TP48'])
+                                         'TP45-profiles','TP45-openings','TP45-table6','TP46','TP48','TP49','TP50','TP53'])
     parser.add_argument('attempt', choices=['a', 'b', 'c'])
     args = parser.parse_args()
     for name in ('OMP_NUM_THREADS', 'MKL_NUM_THREADS', 'OPENBLAS_NUM_THREADS', 'NUMEXPR_NUM_THREADS'):
@@ -51,6 +51,12 @@ def main():
                 import week_news_inputs as study
             elif args.card=='TP48':
                 import week_pride_read as study
+            elif args.card=='TP46':
+                import week_need_losses as study
+            elif args.card=='TP53':
+                import week_teacher_read as study
+            elif args.card in ('TP49','TP50'):
+                import week_display as study
             else:
                 import week_people as study
             source = Path(study.__file__)
@@ -61,6 +67,10 @@ def main():
                 result=study.opening_tables(output,check)
             elif args.card=='TP45-table6':
                 result=study.descriptions(output,check)
+            elif args.card=='TP49':
+                result=study.moves(output,check)
+            elif args.card=='TP50':
+                result=study.word_levels(output,check)
             else:
                 result=study.prepare(output,check)
             if args.card=='TP45-profiles':

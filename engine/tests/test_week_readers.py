@@ -43,6 +43,23 @@ def test_table_six_factor_fit_and_real_style_order():
     np.testing.assert_allclose(inv,np.diag(1/s.diagonal()),atol=1e-12)
 
 
+def test_table_six_retains_signal_in_the_58th_style_reading():
+    from tompathy_engine.eval.readers.week_curve import table_six
+    fold=np.repeat([0,1],8)
+    common=np.tile([-1.,1.],8)
+    capitalization=np.tile([-1.,-1.,1.,1.],4)
+    controls=np.tile(common[:,None],(1,358))
+    controls[:,57]=capitalization
+    tags=np.tile(capitalization[:,None],(1,19))
+    result=table_six((controls,controls),(tags,tags),fold,lambda:None,draws=4)
+    assert result['status']=='descriptive'
+    cross=np.asarray(result['cA'])
+    assert cross.shape==(358,19)
+    np.testing.assert_allclose(cross[57],1.)
+    np.testing.assert_allclose(np.delete(cross,57,axis=0),0.)
+    np.testing.assert_allclose(result['lines']['diagonal']['pooled']['value'],0.,atol=1e-12)
+
+
 def test_nested_date_splits_and_curve_ceiling():
     ids=list('abcdefgh')
     left,right=nested_indices(['1','1','2','2','3','3','4','4'],ids)
@@ -50,3 +67,56 @@ def test_nested_date_splits_and_curve_ceiling():
     assert choose_endpoint({5:{'firstTen':.89,'firstOne':.5},10:{'firstTen':.9,'firstOne':.75}},
                            [5,10])==('firstOne',10)
     np.testing.assert_allclose(fixed_profile(.2,20),.5)
+
+
+def test_teacher_rank_intervals_recompute_discrete_ties(monkeypatch):
+    from scipy.stats import spearmanr
+    import week_teacher_read as teacher
+    x=np.array([0,0,1,2,2,3.]);y=np.array([1,1,1,3,4,2.])
+    owners=np.array([0,1,0,1,0,1])
+    monkeypatch.setattr(teacher,'resamples',lambda n:np.tile([2.,0.],(80,1)))
+    stats=teacher.rank_interval(x,y,owners,lambda:None)
+    np.testing.assert_allclose(stats['value'],spearmanr(x,y).statistic)
+    np.testing.assert_allclose(stats['interval'],spearmanr(x[owners==0],y[owners==0]).statistic)
+
+
+def test_sentence_contrasts_keep_the_tenth_head_and_unavailable_results():
+    from week_display import NAMES,move_table
+    diffs=np.full((3,10),2.)
+    diffs[:,NAMES.index('DISGUST')]=1.
+    table=move_table(diffs,lambda:None)
+    assert table['allTenPositive'] and table['disgustLeast'] and table['disgustBelowMedian']
+    assert table['disgustMinusMedian']['interval']==[-1.,-1.]
+    diffs[:,-1]=np.nan
+    partial=move_table(diffs,lambda:None)
+    assert not partial['allTenPositive'] and partial['outputs']['PRIDE']['validDraws']==0
+    assert move_table(diffs[:0],lambda:None)['disgustMinusMedian']['value'] is None
+
+
+def test_omitted_head_scores_use_the_original_matching_operator():
+    from week_need_losses import omission_hits
+    from tompathy_engine.eval.readers.week_curve import rank_arms
+    rng=np.random.default_rng(64)
+    a=rng.normal(size=(60,377))
+    b=rng.normal(size=a.shape)
+    b[:,358:]=a[:,358:]+rng.normal(size=(60,19))*.3
+    fold=np.arange(len(a))%2
+    omitted=[7,10]
+    hits=omission_hits(a,b,fold,{'pair':omitted},lambda:None)
+    ref=rank_arms(a,b,[slice(0,358),np.delete(np.arange(358,377),omitted)],fold,lambda:None)
+    np.testing.assert_array_equal(hits['baseline'],ref[0]<=10)
+    np.testing.assert_array_equal(hits['pair'],ref[1]<=10)
+
+
+def test_highest_need_uses_author_pairing_and_shared_credit_for_ties():
+    from week_need_losses import highest_need
+    from tompathy_engine.packs.trigger import TAGS
+    x=np.zeros((40,len(TAGS)))
+    x[:20,TAGS.index('curiosity')]=1
+    x[20:,TAGS.index('food')]=1
+    groups={'Competence':['curiosity'],'Body':['food']}
+    weights=np.ones((3,len(x)))
+    paired=highest_need(x,x,groups,weights,lambda:None)
+    assert paired['paired']==1 and .47<paired['dealt']<.53
+    tied=highest_need(x*0,x*0,groups,weights,lambda:None)
+    np.testing.assert_allclose(tied['difference']['value'],0,atol=1e-12)

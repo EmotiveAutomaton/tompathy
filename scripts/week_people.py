@@ -143,6 +143,9 @@ def prepare(out,check):
         values=np.column_stack((a,b,cleared))
         for gap in (False,True):
             order=curve.nested_indices([r['day'] for r in group],[r['id'] for r in group],gap)
+            if not gap and all(len(side)>0 for side in order):
+                containers.setdefault(('every','date','full'),[]).append(
+                    (key,*(values[side].mean(0) for side in order)))
             for k in (5,10,20,40):
                 if min(map(len,order))<k:
                     continue
@@ -157,7 +160,7 @@ def prepare(out,check):
         data.sort(key=lambda r:fold_keys[r[0]])
         owners,left,right=zip(*data)
         np.savez_compressed(out/f'{pop}-{split}-{k}.npz',owners=owners,left=left,right=right,
-                            fold=[folds[pop][a] for a in owners])
+                            fold=[folds['all' if pop=='every' else pop][a] for a in owners])
     return dict(transferPin=audit['sourceReceiptPin'],outsideOpenings=nr,columns=358,
                 lastStyleReading='capitalizedShare',forms=forms,topics=topics,tags=list(TAGS),
                 deepMinimum=deep_min,qualifyingOpenings=study_n)
@@ -173,6 +176,8 @@ def opening_tables(out,check):
     raw_ranks={}
     corr_draws={}
     for name,file_pin in record['profileFiles'].items():
+        if name=='every-date-full.npz':
+            continue  # TP46 uses every opening, outside the fixed-k TP45 tables.
         path=source/name
         if pin(path)!=file_pin:
             raise ValueError('Profile cache differs')
