@@ -5,7 +5,7 @@ from itertools import combinations
 import numpy as np
 import pandas as pd
 
-from cb_features import ridge_predict
+from cb_features import ridge_predict, saved_feature_values
 from cb_inputs import BASE, digest, pin
 from cb_tables import FEATURES, TAGS, design, halves, read, scored_batches, style_forms
 
@@ -150,7 +150,7 @@ def tables(check):
         row=read(folder/'B'/f'row-{i:06d}.json')
         if row['index']!=i or row['id']!=r['id'] or row['binding']['inputPin']!=receipt['inputPin']:
             raise ValueError('ISEAR reader alignment differs')
-        if row['values'] is not None:q[i]=[row['values'][k] for k in FEATURES]
+        q[i]=saved_feature_values(row)
     baseline=Path('engine/validation/readers-feature-slots-2026-11.json')
     if pin(baseline)!='f95cd29d7a7d9059c22b0e62ff6f57bf88eb73cacb8c2bb56a9e5cfe00eec6db':
         raise ValueError('Filed RD1 comparison changed')

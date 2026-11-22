@@ -10,6 +10,16 @@ from cb_inputs import BASE, digest, pin
 def read(path):
     return json.loads(path.read_bytes())
 
+def saved_feature_values(row):
+    """The frozen reader saves its eight scales in validated protocol order."""
+    values = row['values']
+    if values is None:
+        return np.full(8,np.nan)
+    if (not isinstance(values,list) or len(values)!=8 or
+            any(type(v) is not int or not 1<=v<=5 for v in values)):
+        raise ValueError('Malformed saved feature vector')
+    return np.asarray(values,float)
+
 
 def ridge_predict(x, y, test):
     """Standardize from training texts alone. Unit ridge, unpenalized intercept."""
@@ -58,7 +68,6 @@ def crossfit(design, raw, owner, ordered_authors):
 
 
 def verified_q19():
-    from tompathy_engine.packs.trigger import FEATURES
     audit = read(BASE.parent/'Q19-transfer-a.json')
     folder = Path(audit['mirror'])
     receipt = read(folder/'receipt.json')
@@ -86,8 +95,7 @@ def verified_q19():
         if (row['index'] != i or row['id'] != roster[i][0] or
             row['binding']['inputPin'] != receipt['inputPin'] or row['binding']['role'] != 'B'):
             raise ValueError('Q19 row or binding mismatch')
-        if row['values'] is not None:
-            raw[i] = [row['values'][k] for k in FEATURES]
+        raw[i] = saved_feature_values(row)
     owner = np.array([r[1] for r in roster[:stop]])
     labels = dict((digest('TP43:23:'+a), a) for a in read(BASE/'selected.json'))
     order = sorted(set(owner), key=lambda key: digest('TP39:fold:'+labels[key]))

@@ -8,10 +8,20 @@ import pandas as pd
 from scipy.stats import spearmanr
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'scripts'))
-from cb_features import crossfit
+from cb_features import crossfit, saved_feature_values
 from cb_inputs import digest
 from cb_isear_tables import statistic, writer_readings
 from cb_tables import both_profiles, matching
+
+
+def test_saved_reader_scales_keep_protocol_order_and_missingness():
+    from pytest import raises
+    ratings = [1,2,3,4,5,4,3,2]
+    np.testing.assert_array_equal(saved_feature_values({'values':ratings}), ratings)
+    assert np.isnan(saved_feature_values({'values':None})).all()
+    for invalid in (ratings[:-1], ratings[:-1]+[True], [0]*8, {'pleasantness':3}):
+        with raises(ValueError):
+            saved_feature_values({'values':invalid})
 
 
 def test_cc_threshold_and_held_author_isolation():
@@ -63,3 +73,18 @@ def test_gap_drops_middle_dates():
     v=np.arange(6.)[:,None]
     np.testing.assert_allclose(both_profiles(v,owners,dates,['x'],True).ravel(),[.5,4.5])
     assert matching(np.ones((2,1,2)),{'style':[0],'topic':[1]},lambda:None)['pairs']==1
+
+
+def test_partial_first_author_preserves_q19_evidence_without_reference_refit(monkeypatch):
+    import cb_tables
+
+    provenance = {'source': 'test-receipt', 'partialAuthorRows': 3, 'wholeAuthorsWithTexts': 0}
+    monkeypatch.setattr(cb_tables, 'verified_q19',
+                        lambda: (np.empty((0, 8)), np.array([]), [], provenance))
+    def unexpected_read(path):
+        raise AssertionError(f'Unexpected input read after prefix verification: {path}')
+    monkeypatch.setattr(cb_tables, 'read', unexpected_read)
+    result = cb_tables.blog_tables(True, lambda: None)
+    assert result['readerB'] == provenance
+    assert result['passes'] == {} and 'table3' not in result
+    assert result['featureAdjustment']['status'] == 'unavailable: no whole author read'

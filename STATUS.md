@@ -1030,3 +1030,7 @@ preview with half-width reader, a locked sentence and its evidence card.
 **TP39-change completed.** Three split-half estimates filed. [E-TP39-CHANGE-20261121](docs/exchange/result-sheets/TP39-change.md).
 
 <!-- person-teacher landed E-TP39-CHANGE-20261121 -->
+
+**TP43 first pass.** Adjusted tag correlations were 0.340 [0.321, 0.360] across date halves and 0.234 [0.215, 0.253] across the gap. Adding Tags improved top-ten matching by 1.408 [0.553, 2.264] percentage points among 1,988 paired authors. Both checks passed. The movement check awaits Q19. [First-pass support and limits](docs/exchange/result-sheets/TP43-all.md).
+
+<!-- E-TP43-ALL-20261121 -->

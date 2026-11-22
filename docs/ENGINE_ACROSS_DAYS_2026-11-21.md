@@ -28,4 +28,8 @@ Assign people alternately in SHA-256 order of `TP44:fold:` plus the canonical pe
 
 ## Verification and handoff
 
+The frozen readers completed 55,023 selected blog openings, 7,666 ISEAR reports and 198,839 reference openings. The native CPU exit and lease release are verified. [TP43 first-pass estimates and denominators](exchange/result-sheets/TP43-all.md).
+
+At 18:32 Pacific on November 21, G11 exited after its local HTTP client spent 120 seconds waiting for an answer. The final temperature sample was 53.5 °C with no thermal slowdown. The cause of the slow response is unknown. Its first engineering continuation verified the original process exit, reacquired the GPU lock and checked all 9,142 saved rows against the roster, protocol and returned JSON. It resumed from the first unsaved opening in a fresh private directory. The HTTP timeout for this continuation is 300 seconds. Model, input order, prompt, decoding options and the 08:00 Pacific cutoff are unchanged. Five focused checks also cover reading the saved eight-score vectors for Q18 and Q19 in protocol order, including missing values.
+
 Use the active private continuation record and its named native dispatchers. The CPU reader writes ordered batches of 128, with exact IDs and 28 outputs per row. The reference corpus stays on the workstation. The serial readout verifies the frozen worker’s native exit and lease release, then calculates TP43 without Features, TP44 on verified Q18 output, and the separate TP43 with-Features tables at the morning cutoff on verified Q19 output. Only complete Q19 authors with retained texts enter that second pass. The Spark importer verifies every transferred artifact under the existing one-gigabyte cap. Private result receipts precede aggregate filing.

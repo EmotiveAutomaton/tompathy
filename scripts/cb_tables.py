@@ -151,6 +151,11 @@ def movement(tags, raw, owners, dates, roster, check):
 
 
 def blog_tables(with_features, check):
+    check()
+    q19 = verified_q19() if with_features else None
+    if q19 is not None and len(q19[0]) == 0:
+        return {'passes': {}, 'readerB': q19[3], 'status': 'no whole author read',
+                'featureAdjustment': {'status': 'unavailable: no whole author read'}}
     from cb_frozen import reference
     manifest = read(BASE/'inputs.json')['blogs']
     for field,name in [('posts','blogs.json'),('metadata','blog-meta.json'),('chosen','selected.json')]:
@@ -215,19 +220,18 @@ def blog_tables(with_features, check):
     result = {'selected':len(order),'selectedWithOpenings':len(set(owners)),
               'referenceTexts':n,'topicWordListPin':digest(json.dumps(topics)), 'passes':{}}
     features = None
-    if with_features:
-        features, own, order, provenance = verified_q19()
+    if q19 is not None:
+        features, own, order, provenance = q19
         size = len(features)
         if not np.array_equal(own,owners[:size]):
             raise ValueError('Feature prefix differs')
-        if not size:
-            return dict(result,readerB=provenance,status='no whole author read')
         x,raw,residual,owners,dates = (v[:size] for v in (x,raw,residual,owners,dates))
         result['table3'] = movement(residual[:,:19],features,owners,dates,order,check)
         cleared,cc = crossfit(x_selected[:size],features,owners,order)
         features = depart(features,owners)
-        result.update(readerB=provenance, featureAdjustment=cc,
-            limit='The feature fit used about half the read authors. It is noisier than the outside-author tag and channel fits and is not comparable step for step.')
+        result.update(readerB=provenance, featureAdjustment=cc)
+        if cleared is not None:
+            result['limit'] = 'The feature fit used about half the read authors. It is noisier than the outside-author tag and channel fits and is not comparable step for step.'
     for variant,y in [('raw',raw),('adjusted',residual)]:
         names = ['tokens','meanWordLength',*forms,'comma','fullStop','exclamation','questionMark','apostrophe','capitalizedShare',*topics,*TAGS,*CHANNELS]
         blocks = {'style':range(58),'topic':range(58,358),'tags':range(358,377),'channels':range(377,386)}

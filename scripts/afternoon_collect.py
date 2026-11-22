@@ -99,6 +99,16 @@ def main():
                     if b'exit status 255' not in p.stderr:raise RuntimeError(p.stderr.decode(errors='replace')[-1500:])
                 elif json.loads(p.stdout)['verified']:
                     file_job(job)
+                    if job=='Q14':
+                        public=read(Path('engine/validation/readers-q14-bs-2026-11.json'))
+                        source=pin(BASE/'verified-spark-Q14-a/receipt.json')
+                        if public['sourceReceiptPin']!=source:
+                            raise ValueError('Filed teacher result differs from verified receipt')
+                        if public['status']!='complete' or public['decision']['passes'] is not True:
+                            state={'pid':os.getpid(),'status':'terminal; Q15 ineligible under CB',
+                                   'q14Status':public['status'],'sourceReceiptPin':source}
+                            (BASE/'bs-collector.json').write_text(json.dumps(state))
+                            return
                     break
                 time.sleep(300)
             else:return

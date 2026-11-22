@@ -70,8 +70,11 @@ def land(card):
         lines=[f"Adjusted tag stability: date halves {interval(comparisons[0])}; gap {interval(comparisons[1])}.",
                f"Adjusted top-ten gain from adding Tags: {interval(gain)}.",
                f"Adjusted tag covariance for pleasant versus unpleasant posts: {interval(movement)}.",
-               feature.get('featureAdjustment',{}).get('status','No whole-author feature pass')+'.',
-               'Raw B features are reported separately. Where available, feature residuals were fitted using about half the read authors, a noisier basis than outside-author tag or channel adjustments.']
+               feature.get('featureAdjustment',{}).get('status','No whole-author feature pass')+'.']
+        if feature['readerB']['wholeAuthorsWithTexts']:
+            lines.append('Raw B features are reported separately.')
+            if feature.get('limit'):
+                lines.append(feature['limit'])
     h=pins[tasks[-1]]
     name='readers-'+card.lower()+'-2026-11.json'
     ledger='E-TP43-20261122' if card=='TP43' else 'no ledger row'
