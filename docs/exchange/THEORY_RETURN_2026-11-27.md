@@ -13,3 +13,7 @@
 ## Awaiting readings
 
 The author roster contains 5,428 qualifying authors, including 1,460 with at least 80 dated posts. TP45 Table 6 will retain all 358 Style and Topic readings. The supplied simulations used 357. The extra Style reading is the share of word tokens that begin with an uppercase character. The two corrections are descriptive. [TP45 registration](result-sheets/TP45.md).
+
+The news source supplied 1,860 essays and 417 article identifiers. Its public release lacks the articles’ text, so TP56 can estimate how distress and concern vary with closeness within writers while accounting for article identity. The slope for the size of the need drop remains unavailable. The essay comparison awaits reader B’s sentence marks. [TP56 method](../ENGINE_WEEK_2026-11-22.md).
+
+Sounding Line has requested the TMP1 rehearsal. TP58 keeps its place in the build order. Handoff awaits the curator’s notice that the store is back. [TP58 card](result-sheets/TP58.md).

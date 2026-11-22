@@ -10,6 +10,51 @@ from week_blog_inputs import windows
 from tompathy_engine.eval.readers.week_curve import choose_endpoint, factor_inverse, fixed_profile, nested_indices
 
 
+def test_care_article_fallback_removes_both_writer_and_article_levels():
+    from week_care_read import indicators, slopes
+
+    writer=np.repeat(np.arange(6),5)
+    article=np.tile(np.arange(5),6)
+    rng=np.random.default_rng(23)
+    predictors=rng.normal(size=(30,2))
+    weights=np.tile([2,1,0,1,2],6).astype(float)
+    mu=np.average(predictors,weights=weights,axis=0)
+    sd=np.sqrt(np.average((predictors-mu)**2,weights=weights,axis=0))
+    x=((predictors-mu)/sd).mean(axis=1)
+    y=np.column_stack((2*x+writer+5*article,3*x-writer+article))
+    design=indicators(writer,article)
+    np.testing.assert_allclose(slopes(design,predictors,y,weights),[2,3,1],atol=1e-8)
+    assert np.isnan(slopes(design,np.ones_like(predictors),y,weights)).all()
+
+
+def test_release_probe_waits_locally_and_recovers_from_timeout(monkeypatch):
+    from pathlib import Path
+    import week_followthrough as monitor
+    calls=[]
+    accepted=False
+    monkeypatch.setattr(Path,'is_file',lambda p: p.name=='earlier-accepted.json' and accepted)
+    def timeout(*args,**kwargs):
+        calls.append(1)
+        raise monitor.subprocess.TimeoutExpired('ssh',30)
+    monkeypatch.setattr(monitor.subprocess,'run',timeout)
+    assert not monitor.transfer('Q20') and not calls
+    accepted=True
+    assert not monitor.transfer('Q20') and len(calls)==1
+
+
+def test_word_departures_require_two_clean_controls_on_each_side():
+    from week_word_departures import author_cells, matches
+
+    assert matches("unhappy proudly")==0
+    assert matches("Sad sadness; scared!")==5
+    tags=np.arange(20.).reshape(10,2)
+    masks=np.array([matches(s) for s in ["sad","sadness","anger","hello","ok"]*2])
+    cells=author_cells(tags,masks,([0,1,2,3,4],[5,6,7,8,9]))
+    assert list(cells)==["sad"] and cells["sad"][0]==2
+    np.testing.assert_allclose(cells["sad"][1][1],tags[[3,4]].mean(0))
+    assert not author_cells(tags,masks,([0,1,2,3],[5,6,7,8,9]))
+
+
 def test_whole_post_windows():
     words = ['word']*110+['ends.']+['next']*65
     assert [len(w.split()) for w in windows(words)] == [111,65]

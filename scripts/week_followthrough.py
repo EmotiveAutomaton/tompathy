@@ -21,11 +21,17 @@ def check():
 def transfer(job):
     if (LOCAL/(job+'-transfer.json')).is_file():
         return True
-    process=subprocess.run(['ssh','-o','ConnectTimeout=12','-o','BatchMode=yes','spark',
-                            f'test -f {ROOT.as_posix()}/jobs/{job}/released.json'],
-                           capture_output=True,timeout=30)
-    if process.returncode:
+    if not (LOCAL/'earlier-accepted.json').is_file():
         return False
+    try:
+        process=subprocess.run(['ssh','-o','ConnectTimeout=12','-o','BatchMode=yes','spark',
+                                f'test -f {ROOT.as_posix()}/jobs/{job}/released.json'],
+                               capture_output=True,timeout=30)
+    except subprocess.TimeoutExpired:
+        return False
+    if process.returncode in (1,255):
+        return False
+    process.check_returncode()
     result=collect(job)
     if result.get('failed'):
         raise RuntimeError('Review the released Spark failure '+job)
@@ -55,8 +61,12 @@ def serve():
         save(LOCAL/'readout-state.json',dict(pid=os.getpid(),stage='waiting for Q20'))
         while True:
             check()
+            q14=Path('engine/validation/readers-q14-bs-2026-11.json')
+            if q14.exists() and json.loads(q14.read_bytes())['status']=='complete':
+                run('TP53')
             if transfer('Q20') and run('TP45-profiles') and run('TP45-openings'):
-                if transfer('Q21') and run('TP48') and run('TP45-table6') and transfer('Q22'):
+                if (transfer('Q21') and run('TP48') and run('TP46') and run('TP49') and run('TP50')
+                    and transfer('Q22') and run('TP56') and run('TP45-table6')):
                     save(LOCAL/'readout-state.json',dict(stage='opening, PRIDE and covariance readouts verified',
                                                         aggregateReviewRequired=True))
                     return

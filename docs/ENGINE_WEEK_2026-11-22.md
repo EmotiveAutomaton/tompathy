@@ -2,7 +2,9 @@
 
 The [root packet](../TOMPATHY_0.3_ENGINE_WEEK_PACKET_2026-11-22.md) fixes the cards, bars, predictions and Spark order. The [Round 35 handoff](exchange/THEORY_HANDOFF_R35.md) supplies the theory rulings. Packet SHA-256 is `9a02029adc1292fe784160a491f0d2629b5c59bebcb4cfd8afd03e6bc63647b8`. The private November 22 preflight is filed beside the November 21 bundle. Its SHA-256 is `87bdb419bf581e68ca29045e217a57450e4e323df32874f11126dfde22115e1d`.
 
-The November 21 jobs keep their registered order and cutoffs. Q20 prepares the author and window readings. Q21 adds the separate PRIDE head and checks all nine earlier columns against their original forecasts. Q22 reads the news articles and essays. A Q14 pass preserves Q15. A verified Q14 miss opens TP53 as attempt four, with Q23 conditional on qualification. Q25 follows eligible teaching. Q24 runs in gaps and yields at a whole-author boundary. The workstation GPU has no weekly assignment. The bulk store stays offline and the sealed TP58 bundle stays local pending the curator’s notice and Sounding Line’s request.
+The November 21 jobs keep their registered order and cutoffs. Q20 prepares the author and window readings. Q21 adds the separate PRIDE head and checks all nine earlier columns against their original forecasts. Q22 reads the news articles and essays. A Q14 pass preserves Q15. A verified Q14 miss opens TP53 as attempt four, with Q23 conditional on qualification. Q25 follows eligible teaching. Q24 runs in gaps and yields at a whole-author boundary. The workstation GPU has no weekly assignment. Sounding Line requested the TMP1 rehearsal on November 22. Build TP58 locally in section 5 order. Handoff awaits the curator’s explicit notice that the store is back. [TP58 build record](exchange/result-sheets/TP58.md).
+
+The November 22 afternoon checkpoint found that an SSH release probe had timed out while Q20 was still queued. The workstation collector now waits locally for predecessor acceptance and treats a timed-out release probe as a pending check. The restored collector was verified at startup. Q13 continued on Spark throughout this repair.
 
 ## TP55 analysis choices before scoring
 
@@ -18,9 +20,13 @@ Q21 counted positive PRIDE shares before fitting. Of 58,011 comments, 1,128 had 
 
 Q22 found 417 distinct article IDs in 1,860 essays by 372 writers. The source repository at revision `3ddbf6b35c789f99c930a349f3fc26b4b2d9ae2e` supplies responses only. Use the packet’s article-level fallback. The essay roster contains 9,684 sentences. Article unpleasantness and its registered slope require article text and will be marked unavailable.
 
+TP56 joins the verified sentence marks to their original essays. Each essay with complete marks contributes its share of sentences assigned a change in the writer and its rate of “I”, “me” and “my” per word. Standardize each component and average them. Regress concern and distress on that composite with separate writer and article intercepts. Refit the standardization and slopes in 2,000 whole-writer draws and again in 2,000 whole-article draws. For each slope and the paired distress-minus-concern difference, file both intervals and report the wider. Count excluded essays. The article-level fallback allows the distress–closeness prediction to be evaluated; the concern–drop prediction and the breakdown by need remain unavailable.
+
 ## Which needs distinguish authors
 
 TP46 uses every retained opening on each side of the date split and the original TP43 matching folds. For each omission it measures the paired loss in first-ten matching. One seeded permutation assigns the 19 placebo heads to the 19 tag positions before scoring, preserving the size and overlap of every group. The highest-need comparison gives tied leaders equal credit in both the real pairing and the 1,000 random deals. It reports separate and merged Belonging/Compassion comparisons, with the tag named belonging shown individually in both.
+
+TP47 uses all eligible dated openings and the eight word pairs from the packet. An opening that contains several target words can contribute to each corresponding word; the comparison openings contain none of the sixteen forms. TP41’s four-cell minimum supplies the author weight. Each word’s crowd contrast gives equal weight to eligible authors and date halves. A common set of 2,000 author draws preserves overlap when comparing anxious with the four common words. Zero or negative level covariance leaves the variance share unavailable.
 
 ## Teacher check after Q14
 
