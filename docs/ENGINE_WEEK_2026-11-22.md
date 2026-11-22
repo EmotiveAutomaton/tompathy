@@ -10,6 +10,8 @@ Use all 32 assigned words for the reference profile. Standardize each of the 19 
 
 ## Observed queue inputs
 
+**TP45 clarification, November 22 at 10:40 Pacific.** For the real study, every reference to 357 readings in the packet means **358**, comprising 58 Style and 300 Topic readings. The 58th Style reading is `capitalizedShare`, the proportion of word tokens beginning with an uppercase character. TP43 supplies all 358 columns in their original order. The made worlds in `chk_beyond.py` and `chk_beyond2.py` used 57 + 300. Table 6 reports both corrections at 20 posts, beside the placebo results, as descriptions with no bar.
+
 Q20 verified 5,428 qualifying authors, 483,780 dated posts and 372,842 retained openings. There are 1,460 deep-set authors at 80 posts. The input includes 944,074 whole-post windows and 104,400 outside-author openings under the earlier 40-post reference cap. Exact-text reuse leaves 1,001,668 distinct inputs. Each window ends at the last sentence boundary within 150 words where possible. An overlength sentence uses a hard word boundary. Each post contributes at most 20 windows. Private joins retain date, author, word count and first-person counts for the disjoint suffix. Reader B’s Q24 capacity requires its own timing pilot.
 
 Q21 counted positive PRIDE shares before fitting. Of 58,011 comments, 1,128 had a positive share, including 925 in the fit. Of 1,200 reread events, 242 had a positive share, all in the fit. The prepared fit uses the original source partitions, vectors and equal total source weights. Saved nine-column forecasts are copied intact before appending the tenth column. Transfer checks and any display decision await measured forecasts.

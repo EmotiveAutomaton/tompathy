@@ -17,7 +17,8 @@ WEEK = ROOT/'.local/week-20261122'
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('card', choices=['TP55', 'Q20-inputs', 'Q21-inputs','Q22-inputs'])
+    parser.add_argument('card', choices=['TP55', 'Q20-inputs', 'Q21-inputs','Q22-inputs',
+                                         'TP45-profiles','TP45-openings','TP45-table6','TP48'])
     parser.add_argument('attempt', choices=['a', 'b', 'c'])
     args = parser.parse_args()
     for name in ('OMP_NUM_THREADS', 'MKL_NUM_THREADS', 'OPENBLAS_NUM_THREADS', 'NUMEXPR_NUM_THREADS'):
@@ -29,7 +30,7 @@ def main():
         raise ValueError('Registered packet differs')
     output = WEEK/f'{args.card}-{args.attempt}'
     output.mkdir(exist_ok=False)
-    deadline = time.monotonic() + 3600
+    deadline = time.monotonic() + (8*3600 if args.card.startswith('TP45') else 3600)
     def check():
         guard()
         if any((p/'STOP').exists() for p in (output, WEEK, ROOT/'.local/person-teacher')) or time.monotonic() >= deadline:
@@ -46,11 +47,24 @@ def main():
                 import week_blog_inputs as study
             elif args.card == 'Q21-inputs':
                 import week_pride_inputs as study
-            else:
+            elif args.card=='Q22-inputs':
                 import week_news_inputs as study
+            elif args.card=='TP48':
+                import week_pride_read as study
+            else:
+                import week_people as study
             source = Path(study.__file__)
             (output/source.name).write_bytes(source.read_bytes())
-            result = study.run(check) if args.card == 'TP55' else study.prepare(output,check)
+            if args.card=='TP55':
+                result=study.run(check)
+            elif args.card=='TP45-openings':
+                result=study.opening_tables(output,check)
+            elif args.card=='TP45-table6':
+                result=study.descriptions(output,check)
+            else:
+                result=study.prepare(output,check)
+            if args.card=='TP45-profiles':
+                result['profileFiles']={p.name:pin(p) for p in output.glob('*.npz')}
             check()
             save_json(output/'receipt.json', dict(result, status='complete', packetPin=PACKET_PIN,
                       codePin=pin(output/source.name), protocolPin=pin(ROOT/'docs/ENGINE_WEEK_2026-11-22.md')))
