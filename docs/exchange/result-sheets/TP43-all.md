@@ -14,7 +14,7 @@ Both registered checks in the first pass clear their bars. Table 3 awaits reader
 
 Adding Tags to Style and Topic raised top-ten matching from 71.98% to 73.39%. Uncertainty uses 2,000 whole-author resamples. The gap comparison uses only the first and last thirds of dates.
 
-Public blog openings from the early 2000s. Repeated circumstances and topics beyond the 300 measured words can still account for similarity.
+**November 22, amendment CP.** Clearing each post of measured style and topic is partial clearing. Tags repeated across dates and improved within-file matching. In the constructed controls, a second noisy reading of style alone could do both. The measurements stand. How much of the gain reflects the writer’s style and subjects remains open.
 
 The feature-subset pass and the pleasant-versus-unpleasant movement test are pending. [Raw and adjusted tables](../../../engine/validation/readers-tp43-all-2026-11.json).
 

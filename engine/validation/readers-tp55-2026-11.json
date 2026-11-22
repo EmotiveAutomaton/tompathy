@@ -1,0 +1,119 @@
+{
+  "card": "TP55",
+  "estimates": {
+    "sadLikeness": {
+      "value": -0.5795267530569265,
+      "interval": [
+        -0.6704392376078342,
+        -0.4407510058733984
+      ],
+      "validDraws": 2000
+    },
+    "fearLikeness": {
+      "value": 0.43195619352012493,
+      "interval": [
+        0.31046306405470153,
+        0.5385011111991724
+      ],
+      "validDraws": 2000
+    },
+    "profileDifference": {
+      "value": -1.0114829465770514,
+      "interval": [
+        -1.0919743995255218,
+        -0.8771991058059546
+      ],
+      "validDraws": 2000
+    },
+    "anxiousAhead": {
+      "value": 0.2161872305781415,
+      "interval": [
+        0.19208745534272756,
+        0.2409541766651134
+      ],
+      "validDraws": 2000
+    },
+    "sadAhead": {
+      "value": 0.07106234687422537,
+      "interval": [
+        0.05775296903380865,
+        0.0847807250033114
+      ],
+      "validDraws": 2000
+    },
+    "fearAhead": {
+      "value": 0.0784612630053518,
+      "interval": [
+        0.060432197034024894,
+        0.0980096117069002
+      ],
+      "validDraws": 2000
+    },
+    "timeGapDifference": {
+      "value": 0.007398916131126448,
+      "interval": [
+        -0.009621914719537652,
+        0.02462755122922935
+      ],
+      "validDraws": 2000
+    }
+  },
+  "reports": 24850,
+  "writers": 810,
+  "wordCounts": {
+    "anxious": {
+      "reports": 774,
+      "sentences": 1286,
+      "writers": 247
+    },
+    "apprehensive": {
+      "reports": 608,
+      "sentences": 1043,
+      "writers": 273
+    },
+    "sad": {
+      "reports": 857,
+      "sentences": 1410,
+      "writers": 241
+    },
+    "disappointed": {
+      "reports": 770,
+      "sentences": 1300,
+      "writers": 259
+    },
+    "lonely": {
+      "reports": 814,
+      "sentences": 1333,
+      "writers": 251
+    },
+    "afraid": {
+      "reports": 797,
+      "sentences": 1319,
+      "writers": 244
+    },
+    "terrified": {
+      "reports": 782,
+      "sentences": 1355,
+      "writers": 246
+    }
+  },
+  "sources": {
+    "TP28": "1bd4094c39de11b271796da1a4b4140c491dd86e483c346982327c51ba3dd56f",
+    "TP40": "42f8573f4d71b0d47732512c347ab975728a9b4579f17dc45d9cdf2a3620fd53",
+    "manifest": "c36d09d12d744fb9822979335fe8d4cc2b98726347b23e730ab2e40cf9869e3d",
+    "support": "d58a7956fbe8979aff4ffe8c93bf894a1bd8ab677dc29d124a23427bc0b38261",
+    "tags": "61a705817f497ad486c8a2a2cef12370864d880f04ca52e302209af1e57bd85c",
+    "ahead": "b2424d14feaa448fc34e0cb72f9ec48fc3f63212f105a1ef5854e651b5fe1e2e"
+  },
+  "status": "complete",
+  "packetPin": "9a02029adc1292fe784160a491f0d2629b5c59bebcb4cfd8afd03e6bc63647b8",
+  "codePin": "381a42382ca5e477160ee0686a116d1efdf7b2a589e4a1d7f551768858cc6a66",
+  "protocolPin": "49013b58fa0f5f6e7044d880ec1468cc6cf68b1f0287ee7a3c746e05b514c469",
+  "sourceReceiptPin": "5f905a3052d1b8e3507466d6fe898bf5b028f2ac8bf212deef606bc924c670e6",
+  "ledger": "E-TP55-20261122",
+  "productionAdmission": false,
+  "verdict": {
+    "profile": "miss",
+    "timing": "miss"
+  }
+}

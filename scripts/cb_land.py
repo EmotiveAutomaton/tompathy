@@ -64,10 +64,10 @@ def land(card):
         movement=feature.get('table3',{}).get('meanAdjustedCovariance',{})
         supported=[clear(r) for r in comparisons]
         repeat=False if False in supported else True if all(v is True for v in supported) else None
-        verdict={'acrossDatesAndGap':repeat,'beyondStyleTopic':clear(gain),'withinWriterMovement':clear(movement)}
+        verdict={'acrossDatesAndGap':repeat,'incrementalMatching':clear(gain),'withinWriterMovement':clear(movement)}
         data=f"2,000 selected blog authors; {results['TP43-all']['selectedWithOpenings']} supplied retained openings. Q19 completed texts for {feature['readerB']['wholeAuthorsWithTexts']} whole authors."
-        limit='A blog is a public face. Subjects and circumstances can repeat. Topic adjustment captures only 300 words.'
-        lines=[f"Adjusted tag stability: date halves {interval(comparisons[0])}; gap {interval(comparisons[1])}.",
+        limit='A blog is a public face. After partial clearing, tag stability and matching can still reflect the measured style and subjects, as well as repeated circumstances.'
+        lines=[f"Partly cleared tag stability: date halves {interval(comparisons[0])}; gap {interval(comparisons[1])}.",
                f"Adjusted top-ten gain from adding Tags: {interval(gain)}.",
                f"Adjusted tag covariance for pleasant versus unpleasant posts: {interval(movement)}.",
                feature.get('featureAdjustment',{}).get('status','No whole-author feature pass')+'.']

@@ -489,3 +489,5 @@ TP33 implementation remains authorized. No serving or maker admission follows.
 **TP43 first pass.** Adjusted tag correlations were 0.340 [0.321, 0.360] across date halves and 0.234 [0.215, 0.253] across the gap. Adding Tags improved top-ten matching by 1.408 [0.553, 2.264] percentage points among 1,988 paired authors. Both checks passed. The movement check awaits Q19. [First-pass support and limits](exchange/result-sheets/TP43-all.md).
 
 <!-- E-TP43-ALL-20261121 -->
+
+**November 22.** Under CP, TP43 establishes repetition and incremental within-file matching after partial clearing. Whether either is independent of style and subject remains open. TP55 missed both registered bars. The need profile for anxiety was closer to fear than sadness (difference -1.011, 95% writer interval [-1.092, -0.877]). The time contrast was unresolved. [Week return](exchange/THEORY_RETURN_2026-11-27.md).
