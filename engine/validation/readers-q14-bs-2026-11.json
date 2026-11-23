@@ -1,0 +1,116 @@
+{
+  "card": "Q14",
+  "ledger": "E-Q14-20261121",
+  "status": "complete",
+  "sourceReceiptPin": "d10d2054065940ec834a06985ef92525fab645bda2cb6319abbcd6444bbfcc94",
+  "packetPin": "7832e75039bdb5185b3c9bc57684bc30332df41f64e7cb416773262eae5715dc",
+  "productionAdmission": false,
+  "decision": {
+    "amendment": "BS",
+    "attempt": 3,
+    "oldAgreementPassed": true,
+    "oldCeilingPassed": true,
+    "oldGatePin": "e2fc8b715d5842619c8922d95ff89dce4ee6a5ce778ba54abf99d567744068a3",
+    "originalGatePassed": false,
+    "passes": false,
+    "postMissAmendment": "BJ",
+    "reader": "C",
+    "readersOnAmendedCheck": 2,
+    "table": {
+      "ed": {
+        "all": {
+          "sentence": {
+            "lowerRate": 0.4796,
+            "n": 2500,
+            "positive": 1199,
+            "unknown": 0
+          },
+          "text": {
+            "lowerRate": 0.6626666666666666,
+            "n": 1500,
+            "positive": 994,
+            "unknown": 0
+          }
+        },
+        "other": {
+          "sentence": {
+            "lowerRate": 0.518308406395049,
+            "n": 1939,
+            "positive": 1005,
+            "unknown": 0
+          },
+          "text": {
+            "lowerRate": 0.7144082332761578,
+            "n": 1166,
+            "positive": 833,
+            "unknown": 0
+          }
+        },
+        "standing": {
+          "sentence": {
+            "lowerRate": 0.34581105169340465,
+            "n": 561,
+            "positive": 194,
+            "unknown": 0
+          },
+          "text": {
+            "lowerRate": 0.4820359281437126,
+            "n": 334,
+            "positive": 161,
+            "unknown": 0
+          }
+        }
+      },
+      "envent": {
+        "all": {
+          "sentence": {
+            "lowerRate": 0.5147175815433572,
+            "n": 2514,
+            "positive": 1294,
+            "unknown": 0
+          },
+          "text": {
+            "lowerRate": 0.7513333333333333,
+            "n": 1500,
+            "positive": 1127,
+            "unknown": 0
+          }
+        },
+        "other": {
+          "sentence": {
+            "lowerRate": 0.5545766030347529,
+            "n": 2043,
+            "positive": 1133,
+            "unknown": 0
+          },
+          "text": {
+            "lowerRate": 0.8016260162601626,
+            "n": 1230,
+            "positive": 986,
+            "unknown": 0
+          }
+        },
+        "standing": {
+          "sentence": {
+            "lowerRate": 0.34182590233545646,
+            "n": 471,
+            "positive": 161,
+            "unknown": 0
+          },
+          "text": {
+            "lowerRate": 0.5222222222222223,
+            "n": 270,
+            "positive": 141,
+            "unknown": 0
+          }
+        }
+      }
+    }
+  },
+  "timing": {
+    "rows": 100,
+    "total": 5014,
+    "valid": 100,
+    "projectedSeconds": 8168.917025693695
+  }
+}

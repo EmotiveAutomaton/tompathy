@@ -6,6 +6,8 @@
 
 ## Results
 
+**TP53 · Miss.** On held-out writers, reader B reached 0.127 [0.091, 0.163] and C reached 0.216 [0.147, 0.286] against the 0.26 suddenness bar. Neither qualifies for teaching. [Fourth-attempt result and coverage](result-sheets/TP53.md).
+
 **Earlier queue · Q13.** ModernBERT-large missed both thresholds on all three seeds. Mean AUC was 0.736–0.762 against the frozen reader’s 0.805. CARE AUC was 0.635–0.677 against the 0.70 bar. These ranges describe repeated fits on the same reports. The comparison uses assigned words and reader votes as proxies. [All three seed results](result-sheets/G2-modernbert.md).
 
 **TP55.** Among 24,850 assigned-word situations from 810 writers, both registered checks missed. For future placement, the difference in distances was +0.0074 [−0.0096, +0.0246]. Both bars required an interval above zero. The analyst predicted the time miss and missed the profile reversal. The assigned words constrain the interpretation. [Result sheet, denominators and method](result-sheets/TP55.md).

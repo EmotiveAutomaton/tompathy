@@ -1,0 +1,472 @@
+{
+  "card": "TP53",
+  "q14Source": "d10d2054065940ec834a06985ef92525fab645bda2cb6319abbcd6444bbfcc94",
+  "q14Passed": false,
+  "descriptionOnly": false,
+  "attempt": 4,
+  "writerCriterion": 0.26,
+  "humanSuddenness": 0.525,
+  "roles": {
+    "B": {
+      "selection": [
+        0.13432762893690706,
+        0.17335566067518135,
+        0.15236484909943482
+      ],
+      "chosen": "anyChange",
+      "heldOut": {
+        "value": 0.12699285098139976,
+        "interval": [
+          0.09075226708175461,
+          0.16287397609456172
+        ],
+        "validDraws": 2000,
+        "reports": 3023,
+        "writers": 1130
+      },
+      "qualified": false
+    },
+    "C": {
+      "selection": [
+        0.1729963428332257,
+        0.24422333359344744,
+        0.1700205220314254
+      ],
+      "chosen": "anyChange",
+      "heldOut": {
+        "value": 0.2161139038432641,
+        "interval": [
+          0.14719147431199736,
+          0.28635913160657406
+        ],
+        "validDraws": 2000,
+        "reports": 762,
+        "writers": 501
+      },
+      "qualified": false
+    },
+    "W": {
+      "selection": [
+        0.1561836949059362,
+        0.1723660075309009,
+        0.1557260901011994
+      ],
+      "chosen": "anyChange",
+      "heldOut": {
+        "value": 0.15115322847284715,
+        "interval": [
+          0.11748887796989857,
+          0.18610780023320045
+        ],
+        "validDraws": 2000,
+        "reports": 3023,
+        "writers": 1130
+      },
+      "qualified": false
+    }
+  },
+  "tables": {
+    "B": {
+      "changeShare": {
+        "suddenness": {
+          "value": 0.12544241296275294,
+          "interval": [
+            0.0993776760134662,
+            0.15168914865856425
+          ],
+          "validDraws": 2000,
+          "reports": 6050,
+          "writers": 2261
+        },
+        "event_duration": {
+          "value": -0.003792310356459338,
+          "interval": [
+            -0.030869063181792854,
+            0.023658658966863845
+          ],
+          "validDraws": 2000,
+          "reports": 6050,
+          "writers": 2261
+        },
+        "emotion_duration": {
+          "value": 0.1361097866571859,
+          "interval": [
+            0.10704734802889004,
+            0.16493386199584997
+          ],
+          "validDraws": 2000,
+          "reports": 6050,
+          "writers": 2261
+        }
+      },
+      "anyChange": {
+        "suddenness": {
+          "value": 0.1501992633153301,
+          "interval": [
+            0.12451118593956059,
+            0.17524609263742977
+          ],
+          "validDraws": 2000,
+          "reports": 6050,
+          "writers": 2261
+        },
+        "event_duration": {
+          "value": 0.02329015511758315,
+          "interval": [
+            -0.0018168305445077839,
+            0.04774173051191054
+          ],
+          "validDraws": 2000,
+          "reports": 6050,
+          "writers": 2261
+        },
+        "emotion_duration": {
+          "value": 0.17118945046823428,
+          "interval": [
+            0.14503503544640284,
+            0.19699651697103376
+          ],
+          "validDraws": 2000,
+          "reports": 6050,
+          "writers": 2261
+        }
+      },
+      "alreadyShare": {
+        "suddenness": {
+          "value": 0.14119141754878303,
+          "interval": [
+            0.11476900267025783,
+            0.16668078826052213
+          ],
+          "validDraws": 2000,
+          "reports": 6050,
+          "writers": 2261
+        },
+        "event_duration": {
+          "value": -0.03435634975308898,
+          "interval": [
+            -0.06142907848940226,
+            -0.008014984340662052
+          ],
+          "validDraws": 2000,
+          "reports": 6050,
+          "writers": 2261
+        },
+        "emotion_duration": {
+          "value": 0.13222970042454807,
+          "interval": [
+            0.1037581332562664,
+            0.16131357714370967
+          ],
+          "validDraws": 2000,
+          "reports": 6050,
+          "writers": 2261
+        }
+      }
+    },
+    "C": {
+      "changeShare": {
+        "suddenness": {
+          "value": 0.17067523760331782,
+          "interval": [
+            0.11766621425975894,
+            0.22164959523762773
+          ],
+          "validDraws": 2000,
+          "reports": 1500,
+          "writers": 993
+        },
+        "event_duration": {
+          "value": -0.050294702486900406,
+          "interval": [
+            -0.10114792070923052,
+            0.0005213933723566192
+          ],
+          "validDraws": 2000,
+          "reports": 1500,
+          "writers": 993
+        },
+        "emotion_duration": {
+          "value": 0.1365713313423906,
+          "interval": [
+            0.0843871574970683,
+            0.1872125921840074
+          ],
+          "validDraws": 2000,
+          "reports": 1500,
+          "writers": 993
+        }
+      },
+      "anyChange": {
+        "suddenness": {
+          "value": 0.2300259706319884,
+          "interval": [
+            0.18226475389441937,
+            0.2778595005623891
+          ],
+          "validDraws": 2000,
+          "reports": 1500,
+          "writers": 993
+        },
+        "event_duration": {
+          "value": -0.009394902886537267,
+          "interval": [
+            -0.05904249357926239,
+            0.041755874759961654
+          ],
+          "validDraws": 2000,
+          "reports": 1500,
+          "writers": 993
+        },
+        "emotion_duration": {
+          "value": 0.18997405471694306,
+          "interval": [
+            0.14014182862478522,
+            0.23999321936864065
+          ],
+          "validDraws": 2000,
+          "reports": 1500,
+          "writers": 993
+        }
+      },
+      "alreadyShare": {
+        "suddenness": {
+          "value": 0.16842392557182512,
+          "interval": [
+            0.1162575014610854,
+            0.2198182636118127
+          ],
+          "validDraws": 2000,
+          "reports": 1500,
+          "writers": 993
+        },
+        "event_duration": {
+          "value": -0.06657287312681763,
+          "interval": [
+            -0.11781317598362556,
+            -0.018298243904448345
+          ],
+          "validDraws": 2000,
+          "reports": 1500,
+          "writers": 993
+        },
+        "emotion_duration": {
+          "value": 0.12819527570883613,
+          "interval": [
+            0.07774749573835155,
+            0.17880875205921373
+          ],
+          "validDraws": 2000,
+          "reports": 1500,
+          "writers": 993
+        }
+      }
+    },
+    "W": {
+      "changeShare": {
+        "suddenness": {
+          "value": 0.14996947546616501,
+          "interval": [
+            0.12405985972170541,
+            0.1750420097539099
+          ],
+          "validDraws": 2000,
+          "reports": 6050,
+          "writers": 2261
+        },
+        "event_duration": {
+          "value": 0.023610747588558436,
+          "interval": [
+            -0.0019460441176395952,
+            0.04966215634470898
+          ],
+          "validDraws": 2000,
+          "reports": 6050,
+          "writers": 2261
+        },
+        "emotion_duration": {
+          "value": 0.19890460644964758,
+          "interval": [
+            0.1716379796684246,
+            0.22509417335263457
+          ],
+          "validDraws": 2000,
+          "reports": 6050,
+          "writers": 2261
+        }
+      },
+      "anyChange": {
+        "suddenness": {
+          "value": 0.16203974773272112,
+          "interval": [
+            0.13603677667774997,
+            0.18669126771299469
+          ],
+          "validDraws": 2000,
+          "reports": 6050,
+          "writers": 2261
+        },
+        "event_duration": {
+          "value": 0.0466009923921802,
+          "interval": [
+            0.022031756127541314,
+            0.07245098263349728
+          ],
+          "validDraws": 2000,
+          "reports": 6050,
+          "writers": 2261
+        },
+        "emotion_duration": {
+          "value": 0.21759626043520536,
+          "interval": [
+            0.1914359617257384,
+            0.24261198352380828
+          ],
+          "validDraws": 2000,
+          "reports": 6050,
+          "writers": 2261
+        }
+      },
+      "alreadyShare": {
+        "suddenness": {
+          "value": 0.14557652276692978,
+          "interval": [
+            0.120108061371964,
+            0.17041872921198617
+          ],
+          "validDraws": 2000,
+          "reports": 6050,
+          "writers": 2261
+        },
+        "event_duration": {
+          "value": 0.013747270210102929,
+          "interval": [
+            -0.011974195708156606,
+            0.040204934355952876
+          ],
+          "validDraws": 2000,
+          "reports": 6050,
+          "writers": 2261
+        },
+        "emotion_duration": {
+          "value": 0.18707436391341245,
+          "interval": [
+            0.16112359512051114,
+            0.21181495763677807
+          ],
+          "validDraws": 2000,
+          "reports": 6050,
+          "writers": 2261
+        }
+      }
+    }
+  },
+  "agreement": {
+    "B-C": {
+      "changeShare": {
+        "value": 0.7399870499178434,
+        "interval": [
+          0.7025809785849052,
+          0.7753269710735805
+        ],
+        "validDraws": 2000,
+        "reports": 1500,
+        "writers": 993
+      },
+      "anyChange": {
+        "value": 0.6395482366492932,
+        "interval": [
+          0.5952757972939551,
+          0.6826577513771198
+        ],
+        "validDraws": 2000,
+        "reports": 1500,
+        "writers": 993
+      },
+      "alreadyShare": {
+        "value": 0.7532564792752853,
+        "interval": [
+          0.7166031374057639,
+          0.788727970815621
+        ],
+        "validDraws": 2000,
+        "reports": 1500,
+        "writers": 993
+      }
+    },
+    "B-W": {
+      "changeShare": {
+        "value": 0.6457141504905677,
+        "interval": [
+          0.624691633884607,
+          0.6659110565558155
+        ],
+        "validDraws": 2000,
+        "reports": 6050,
+        "writers": 2261
+      },
+      "anyChange": {
+        "value": 0.5718327006785123,
+        "interval": [
+          0.5507898275078326,
+          0.5920703417005051
+        ],
+        "validDraws": 2000,
+        "reports": 6050,
+        "writers": 2261
+      },
+      "alreadyShare": {
+        "value": 0.643557095139469,
+        "interval": [
+          0.6225533112868789,
+          0.6632469520207133
+        ],
+        "validDraws": 2000,
+        "reports": 6050,
+        "writers": 2261
+      }
+    },
+    "C-W": {
+      "changeShare": {
+        "value": 0.6852780958228466,
+        "interval": [
+          0.6454534094993485,
+          0.7232031121591153
+        ],
+        "validDraws": 2000,
+        "reports": 1500,
+        "writers": 993
+      },
+      "anyChange": {
+        "value": 0.5992594714463425,
+        "interval": [
+          0.5601593840663938,
+          0.6412380293219796
+        ],
+        "validDraws": 2000,
+        "reports": 1500,
+        "writers": 993
+      },
+      "alreadyShare": {
+        "value": 0.6605575715290399,
+        "interval": [
+          0.6213980714499706,
+          0.6969069796723639
+        ],
+        "validDraws": 2000,
+        "reports": 1500,
+        "writers": 993
+      }
+    }
+  },
+  "source": "3d2536b555ac7005080c2cd35aadb4d570992bca70d2017e4d8939525fa3a86b",
+  "noProductionAdmission": true,
+  "status": "complete",
+  "packetPin": "9a02029adc1292fe784160a491f0d2629b5c59bebcb4cfd8afd03e6bc63647b8",
+  "codePin": "b0ed010eeab1fede7da21e9c51dc24bc53daf237b0b132b22f55275974319529",
+  "protocolPin": "17ed64174a6bf33f9e4b39fe5f8bbf5d5b48159c73059f7dcc451f93e9536d45",
+  "sourceReceiptPin": "89db700cd27965d7c45ff412f6d72a4e355a3472fdfeb0c6a081f88bd9f644b0",
+  "ledger": "E-TP53-20261123",
+  "productionAdmission": false,
+  "verdict": "No local teacher qualifies."
+}

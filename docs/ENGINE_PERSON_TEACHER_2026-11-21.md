@@ -53,3 +53,7 @@ The second addendum continues with TP43 and TP44. The curator approved the featu
 **G2-modernbert completed.** The larger encoder missed the all-seeds rule. [E-G2-MODERNBERT-20261121](exchange/result-sheets/G2-modernbert.md).
 
 <!-- person-teacher landed E-G2-MODERNBERT-20261121 -->
+
+**Q14.** Miss. Chat 833/1166 (71.4%), recalled events 986/1230 (80.2%). TP31 stays blocked; no further reader will be tried. [E-Q14-20261121](exchange/result-sheets/Q14-BS.md).
+
+<!-- landed E-Q14-20261121 -->
