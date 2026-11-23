@@ -10,6 +10,58 @@ from week_blog_inputs import windows
 from tompathy_engine.eval.readers.week_curve import choose_endpoint, factor_inverse, fixed_profile, nested_indices
 
 
+def test_worry_language_uses_long_posts_and_requires_variable_within_author():
+    from week_worry_language import author_slope,post_status
+
+    row={"qualifies":True,"words":300,"opening":"digest","suffixWords":150,"suffixFirstPerson":3}
+    assert post_status(row)=="eligible"
+    assert post_status(dict(row,words=299))=="outside"
+    assert post_status(dict(row,opening=None))=="noOpening"
+    w=np.arange(10.)
+    np.testing.assert_allclose(author_slope(w,1-.01*w),-1.)
+    assert author_slope(w[:9],w[:9]) is None and author_slope(w,np.ones(10)) is None
+
+
+def test_stability_compares_the_paired_median_tag_in_every_draw(monkeypatch):
+    import week_worry_language as study
+
+    x=np.tile(np.arange(9.)[:,None],(1,20))
+    y=x.copy();y[:,1:]*=-1
+    monkeypatch.setattr(study,"resamples",lambda n:np.ones((79,n)))
+    row=study.stability(x,y,lambda:None)
+    np.testing.assert_allclose(row["worryMinusMedianTag"]["interval"],[2.,2.])
+
+
+def test_competence_separates_opposite_within_and_between_effects(monkeypatch):
+    import week_competence as study
+
+    n=7
+    writers=np.repeat(np.arange(n,dtype=float),6)
+    occasion=np.tile([-1,0,1,-1,0,1],n)
+    values=np.tile((writers+occasion)[:,None],(1,len(study.NAMES)))
+    values[:,study.NAMES.index("competence")]=writers-occasion
+    groups=np.arange(6*n).reshape(n,6)
+    halves=np.tile([0,0,0,1,1,1],(n,1))
+    monkeypatch.setattr(study,"resamples",lambda n:np.ones((63,n)))
+    rows=study.paired_measures(values,groups,halves,lambda:None)
+    np.testing.assert_allclose(rows["readings"]["within"]["curiosity"]["competence"]["interval"],[-1,-1])
+    np.testing.assert_allclose(rows["readings"]["between"]["curiosity"]["competence"]["interval"],[1,1])
+    assert rows["perLineVerdicts"]["curiosityBetweenAtLeastPointThree"]
+
+
+def test_competence_keeps_empty_q19_prefix_and_rejects_misaligned_features():
+    import pytest
+    from week_competence import FEATURES, TAGS, source_table
+
+    tags = np.empty((0, len(TAGS)))
+    features = np.empty((0, len(FEATURES)))
+    result = source_table(tags, features, [], [], [], lambda: None)
+    assert result["status"] == "insufficient writers"
+    assert result["support"]["sourceRows"] == 0
+    with pytest.raises(ValueError, match="Misaligned"):
+        source_table(tags, features[:, :-1], [], [], [], lambda: None)
+
+
 def test_care_article_fallback_removes_both_writer_and_article_levels():
     from week_care_read import indicators, slopes
 

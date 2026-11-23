@@ -16,4 +16,6 @@ The author roster contains 5,428 qualifying authors, including 1,460 with at lea
 
 The news source supplied 1,860 essays and 417 article identifiers. Its public release lacks the articles’ text, so TP56 can estimate how distress and concern vary with closeness within writers while accounting for article identity. The slope for the size of the need drop remains unavailable. The essay comparison awaits reader B’s sentence marks. [TP56 method](../ENGINE_WEEK_2026-11-22.md).
 
-Sounding Line has requested the TMP1 rehearsal. TP58 keeps its place in the build order. Handoff awaits the curator’s notice that the store is back. [TP58 card](result-sheets/TP58.md).
+Sounding Line has requested the TMP1 rehearsal. TP58 keeps its place in the build order. The curator confirmed the store is back. Handoff is authorized once the bundle is built and verified. [TP58 card](result-sheets/TP58.md).
+
+TP54 can use the enVent writer’s rating of control. The ISEAR questionnaire records a choice among coping responses and supplies no ordered rating of control over the event. Its arm is void under the registered rule. The enVent comparison remains pending. [Questionnaire checks](../ENGINE_WEEK_2026-11-22.md#tp54-control-ratings).
