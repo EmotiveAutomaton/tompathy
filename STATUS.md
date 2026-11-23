@@ -1038,3 +1038,7 @@ preview with half-width reader, a locked sentence and its evidence card.
 <!-- E-TP43-ALL-20261121 -->
 
 **November 22.** Under CP, TP43 establishes repetition and incremental within-file matching after partial clearing. Whether either is independent of style and subject remains open. TP55 missed both registered bars. The need profile for anxiety was closer to fear than sadness (difference -1.011, 95% writer interval [-1.092, -0.877]). The time contrast was unresolved. [Week return](docs/exchange/THEORY_RETURN_2026-11-27.md).
+
+**G2-modernbert completed.** The larger encoder missed the all-seeds rule. [E-G2-MODERNBERT-20261121](docs/exchange/result-sheets/G2-modernbert.md).
+
+<!-- person-teacher landed E-G2-MODERNBERT-20261121 -->

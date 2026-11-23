@@ -26,8 +26,9 @@ def landing():
         if sha256(JOB/k)!=v:
             raise ValueError('Frozen protocol changed')
     public=Path('engine/validation')/OUTPUTS['G2-modernbert']
-    r=land(JOB,public)
-    if r['sourceReceiptPin']!=sha256(JOB/'receipt.json'):
+    binding=land(JOB,public)
+    r=export.read(public)
+    if r['sourceReceiptPin']!=binding['sourceReceiptPin'] or r['sourceReceiptPin']!=sha256(JOB/'receipt.json'):
         raise ValueError('Wrong public source')
     c=next(iter(r['rungs'].values()))['comparison']
     verdict=('Every larger-encoder threshold passed.' if c['passesAllThree'] else

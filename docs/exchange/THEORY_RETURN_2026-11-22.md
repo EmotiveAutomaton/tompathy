@@ -37,3 +37,7 @@ Q6 finished with 24,850 valid answers. Reader B completed all 5,014 Q11 sentence
 **TP43 first pass.** Adjusted tag correlations were 0.340 [0.321, 0.360] across date halves and 0.234 [0.215, 0.253] across the gap. Adding Tags improved top-ten matching by 1.408 [0.553, 2.264] percentage points among 1,988 paired authors. Both checks passed. The movement check awaits Q19. [First-pass support and limits](result-sheets/TP43-all.md).
 
 <!-- E-TP43-ALL-20261121 -->
+
+**G2-modernbert completed.** The larger encoder missed the all-seeds rule. [E-G2-MODERNBERT-20261121](result-sheets/G2-modernbert.md).
+
+<!-- person-teacher landed E-G2-MODERNBERT-20261121 -->

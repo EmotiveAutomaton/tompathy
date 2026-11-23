@@ -6,6 +6,8 @@
 
 ## Results
 
+**Earlier queue · Q13.** ModernBERT-large missed both thresholds on all three seeds. Mean AUC was 0.736–0.762 against the frozen reader’s 0.805. CARE AUC was 0.635–0.677 against the 0.70 bar. These ranges describe repeated fits on the same reports. The comparison uses assigned words and reader votes as proxies. [All three seed results](result-sheets/G2-modernbert.md).
+
 **TP55.** Among 24,850 assigned-word situations from 810 writers, both registered checks missed. For future placement, the difference in distances was +0.0074 [−0.0096, +0.0246]. Both bars required an interval above zero. The analyst predicted the time miss and missed the profile reversal. The assigned words constrain the interpretation. [Result sheet, denominators and method](result-sheets/TP55.md).
 
 **TP43 interpretation under CP.** Tags repeated across dates and added to within-file matching after partial clearing. A noisy second measure of writing style can produce both results. The matching gain alone cannot separate need from style or subject. [Original estimates and amended interpretation](result-sheets/TP43-all.md).

@@ -49,3 +49,7 @@ The earlier ModernBERT standby was held before it acquired the GPU. The register
 <!-- person-teacher landed E-TP39-CHANGE-20261121 -->
 
 The second addendum continues with TP43 and TP44. The curator approved the feature rule in CC and the person, site and rating rules in CD before either readout. [Across-day and recalled-event protocol](ENGINE_ACROSS_DAYS_2026-11-21.md).
+
+**G2-modernbert completed.** The larger encoder missed the all-seeds rule. [E-G2-MODERNBERT-20261121](exchange/result-sheets/G2-modernbert.md).
+
+<!-- person-teacher landed E-G2-MODERNBERT-20261121 -->
