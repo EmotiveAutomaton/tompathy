@@ -18,7 +18,7 @@ WEEK = ROOT/'.local/week-20261122'
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('card', choices=['TP55', 'Q20-inputs', 'Q21-inputs','Q22-inputs',
-                                         'TP45-profiles','TP45-openings','TP45-table6','TP46','TP47','TP48','TP49','TP50','TP51','TP52','TP53','TP56'])
+                                         'TP45-profiles','TP45-openings','TP45-table6','TP46','TP47','TP48','TP49','TP50','TP51','TP52','TP53','TP54','TP56','TP57'])
     parser.add_argument('attempt', choices=['a', 'b', 'c'])
     args = parser.parse_args()
     for name in ('OMP_NUM_THREADS', 'MKL_NUM_THREADS', 'OPENBLAS_NUM_THREADS', 'NUMEXPR_NUM_THREADS'):
@@ -61,6 +61,10 @@ def main():
                 import week_worry_language as study
             elif args.card=='TP51':
                 import week_competence as study
+            elif args.card=='TP57':
+                import week_drift as study
+            elif args.card=='TP54':
+                import week_control as study
             elif args.card=='TP56':
                 import week_care_read as study
             elif args.card in ('TP49','TP50'):

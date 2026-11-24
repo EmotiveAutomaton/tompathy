@@ -1,0 +1,201 @@
+{
+  "card": "TP52",
+  "source": "d7520ece843c5805b26be7b746c452eedc09b71940b263ed241251bed33bcaef",
+  "inputSource": "84894f9adaa02ad4b51c6078573c6633d8d73be85e91965b5e1644ee646fbb54",
+  "postCounts": {
+    "eligible": 95862,
+    "noOpening": 870
+  },
+  "tenPostAuthors": 2537,
+  "tenPostCohortPosts": 85601,
+  "slopeAuthors": 2536,
+  "slopePosts": 85591,
+  "standardizedSlope": {
+    "value": 0.12711219968914428,
+    "interval": [
+      0.11757525675622778,
+      0.1363544549043409
+    ],
+    "validDraws": 2000
+  },
+  "stability": {
+    "authors": 2527,
+    "worryMinusMedianTag": {
+      "value": 0.2468579382157161,
+      "interval": [
+        0.2221481909846134,
+        0.27390268162016823
+      ],
+      "validDraws": 2000
+    },
+    "readings": {
+      "worry": {
+        "value": 0.7156357618231602,
+        "interval": [
+          0.6952400629731902,
+          0.7349027583618936
+        ],
+        "validDraws": 2000
+      },
+      "contact": {
+        "value": 0.6100348456406163,
+        "interval": [
+          0.5818959575109403,
+          0.6350463638065924
+        ],
+        "validDraws": 2000
+      },
+      "order": {
+        "value": 0.4129472212781759,
+        "interval": [
+          0.37388520034508765,
+          0.4508166410908377
+        ],
+        "validDraws": 2000
+      },
+      "status": {
+        "value": 0.49047847680410644,
+        "interval": [
+          0.45597145606704337,
+          0.5272966151784263
+        ],
+        "validDraws": 2000
+      },
+      "family": {
+        "value": 0.5329771392723974,
+        "interval": [
+          0.5000875145224354,
+          0.5644866477354806
+        ],
+        "validDraws": 2000
+      },
+      "approval": {
+        "value": 0.38857727784332513,
+        "interval": [
+          0.3520194094540003,
+          0.42583705067967836
+        ],
+        "validDraws": 2000
+      },
+      "curiosity": {
+        "value": 0.4704859713077839,
+        "interval": [
+          0.4354712256679392,
+          0.502782538022574
+        ],
+        "validDraws": 2000
+      },
+      "tranquility": {
+        "value": 0.47396557876458134,
+        "interval": [
+          0.4418198155892461,
+          0.5047714988744619
+        ],
+        "validDraws": 2000
+      },
+      "competition": {
+        "value": 0.49022436637938976,
+        "interval": [
+          0.44603289714662153,
+          0.5339888872523425
+        ],
+        "validDraws": 2000
+      },
+      "savings": {
+        "value": 0.48175450286509713,
+        "interval": [
+          0.443264710610573,
+          0.519069427400759
+        ],
+        "validDraws": 2000
+      },
+      "indep": {
+        "value": 0.37835467332839373,
+        "interval": [
+          0.3375657786021271,
+          0.41795022937084314
+        ],
+        "validDraws": 2000
+      },
+      "food": {
+        "value": 0.452007502394886,
+        "interval": [
+          0.38093150372839857,
+          0.5224530581097985
+        ],
+        "validDraws": 2000
+      },
+      "health": {
+        "value": 0.46877782360744413,
+        "interval": [
+          0.4174985547664212,
+          0.5174822984288986
+        ],
+        "validDraws": 2000
+      },
+      "power": {
+        "value": 0.45406147924480816,
+        "interval": [
+          0.41169385096036826,
+          0.4930475079827847
+        ],
+        "validDraws": 2000
+      },
+      "romance": {
+        "value": 0.5966755313168571,
+        "interval": [
+          0.5666417478645488,
+          0.624615825775219
+        ],
+        "validDraws": 2000
+      },
+      "honor": {
+        "value": 0.37631560087854804,
+        "interval": [
+          0.3311561462576089,
+          0.4202866517073068
+        ],
+        "validDraws": 2000
+      },
+      "serenity": {
+        "value": 0.4666691265760563,
+        "interval": [
+          0.43138781713911784,
+          0.4992459513696993
+        ],
+        "validDraws": 2000
+      },
+      "idealism": {
+        "value": 0.49690790799308093,
+        "interval": [
+          0.4585531363766622,
+          0.5347787549524429
+        ],
+        "validDraws": 2000
+      },
+      "rest": {
+        "value": 0.45411991191941575,
+        "interval": [
+          0.4154863913782867,
+          0.4921104213244462
+        ],
+        "validDraws": 2000
+      },
+      "belonging": {
+        "value": 0.17352481843567186,
+        "interval": [
+          0.1125370702604816,
+          0.23486829552988567
+        ],
+        "validDraws": 2000
+      }
+    }
+  },
+  "status": "complete",
+  "packetPin": "9a02029adc1292fe784160a491f0d2629b5c59bebcb4cfd8afd03e6bc63647b8",
+  "codePin": "eb1f74cf0a2f83d84e1eca6db79e119aea205808d1de6e1e4c07ddc6f1fd7897",
+  "protocolPin": "524d3dbbfbc8330cbf9bdc075830ab6c29f0475511e848410dc915a0ebab11f7",
+  "ledger": "E-TP52-20261123",
+  "productionAdmission": false,
+  "sourceReceiptPin": "2f7236ded4408f4da09edcbcca63f57f9419aa4cd27f034064d49c4edf97577b"
+}

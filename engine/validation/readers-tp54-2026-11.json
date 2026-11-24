@@ -1,0 +1,87 @@
+{
+  "card": "TP54",
+  "writers": 1154,
+  "reports": 1650,
+  "source": "3d2536b555ac7005080c2cd35aadb4d570992bca70d2017e4d8939525fa3a86b",
+  "tagSource": "1bd4094c39de11b271796da1a4b4140c491dd86e483c346982327c51ba3dd56f",
+  "isear": "void: no ordered control rating",
+  "responsibility": {
+    "sadness": {
+      "value": -0.37331508071344155,
+      "interval": [
+        -0.5202950078320185,
+        -0.21961346769443119
+      ],
+      "validDraws": 2000,
+      "estimableStrata": [
+        "chance_responsblt",
+        "other_responsblt",
+        "other_responsblt+chance_responsblt",
+        "self_responsblt",
+        "self_responsblt+chance_responsblt",
+        "self_responsblt+other_responsblt",
+        "self_responsblt+other_responsblt+chance_responsblt"
+      ]
+    },
+    "fear": {
+      "value": -0.1528127521626329,
+      "interval": [
+        -0.2819777301764155,
+        -0.016921571097026945
+      ],
+      "validDraws": 2000,
+      "estimableStrata": [
+        "chance_responsblt",
+        "other_responsblt",
+        "other_responsblt+chance_responsblt",
+        "self_responsblt",
+        "self_responsblt+chance_responsblt",
+        "self_responsblt+other_responsblt",
+        "self_responsblt+other_responsblt+chance_responsblt"
+      ]
+    }
+  },
+  "highestNeed": {
+    "sadness": {
+      "value": -0.22052935531660126,
+      "interval": [
+        -0.35028719298083755,
+        -0.09379381621761367
+      ],
+      "validDraws": 2000,
+      "estimableStrata": [
+        "Body",
+        "Compassion",
+        "Competence",
+        "Meaning",
+        "Respect",
+        "belongingTag",
+        "familyAndContact"
+      ]
+    },
+    "fear": {
+      "value": -0.05036486120213818,
+      "interval": [
+        -0.1695121428907884,
+        0.07213222103569823
+      ],
+      "validDraws": 2000,
+      "estimableStrata": [
+        "Body",
+        "Compassion",
+        "Competence",
+        "Meaning",
+        "Respect",
+        "belongingTag",
+        "familyAndContact"
+      ]
+    }
+  },
+  "status": "complete",
+  "packetPin": "9a02029adc1292fe784160a491f0d2629b5c59bebcb4cfd8afd03e6bc63647b8",
+  "codePin": "c54e6c29df730dcdd3253beaf5f99806008f9c635d9a9de7ebaec3f6abea87e0",
+  "protocolPin": "524d3dbbfbc8330cbf9bdc075830ab6c29f0475511e848410dc915a0ebab11f7",
+  "ledger": "E-TP54-20261123",
+  "productionAdmission": false,
+  "sourceReceiptPin": "ea3519c4a499eda18909d317a1524a5d97ce159088deacfb29d9514a5fd3013e"
+}
