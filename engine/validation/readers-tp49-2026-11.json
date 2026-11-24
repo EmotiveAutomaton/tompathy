@@ -1,0 +1,627 @@
+{
+  "card": "TP49",
+  "source": "574e724abfdeafbe0ce067a495f21142cc0a557f9a560a1cf796ae816f1e8695",
+  "coverage": {
+    "ed": {
+      "reports": 4942,
+      "sentences": 41216
+    },
+    "envent": {
+      "reports": 1150,
+      "sentences": 10341
+    }
+  },
+  "tables": {
+    "ed": {
+      "raw": {
+        "outputs": {
+          "SEEKING": {
+            "value": -0.22347045107076735,
+            "interval": [
+              -0.2582895137285467,
+              -0.18643671456163502
+            ],
+            "validDraws": 2000
+          },
+          "PLAY": {
+            "value": -0.17058033686128124,
+            "interval": [
+              -0.21635400639838817,
+              -0.1296544448144189
+            ],
+            "validDraws": 2000
+          },
+          "LUST": {
+            "value": -0.3422608496780276,
+            "interval": [
+              -0.3892186953594987,
+              -0.29854505062768305
+            ],
+            "validDraws": 2000
+          },
+          "CARE": {
+            "value": -0.4415891763535355,
+            "interval": [
+              -0.4792322142307269,
+              -0.40751417383779026
+            ],
+            "validDraws": 2000
+          },
+          "PANIC/GRIEF": {
+            "value": -0.03292167063147488,
+            "interval": [
+              -0.06700221124309545,
+              0.0024609755026284317
+            ],
+            "validDraws": 2000
+          },
+          "RAGE": {
+            "value": 0.3040689607575073,
+            "interval": [
+              0.2703616622331022,
+              0.33804429556561116
+            ],
+            "validDraws": 2000
+          },
+          "FEAR": {
+            "value": -0.07640114610054562,
+            "interval": [
+              -0.10768644304990968,
+              -0.046195619450407406
+            ],
+            "validDraws": 2000
+          },
+          "DISGUST": {
+            "value": -0.018134732004002875,
+            "interval": [
+              -0.050209392262602466,
+              0.013270772897190013
+            ],
+            "validDraws": 2000
+          },
+          "SHAME": {
+            "value": 0.0364605666347637,
+            "interval": [
+              0.0024778367700308483,
+              0.06862627451442449
+            ],
+            "validDraws": 2000
+          },
+          "PRIDE": {
+            "value": 0.12728401472249481,
+            "interval": [
+              0.09381861276640094,
+              0.1606313530773994
+            ],
+            "validDraws": 2000
+          }
+        },
+        "disgustMinusMedian": {
+          "value": 0.03652667636200737,
+          "interval": [
+            0.008340098458260333,
+            0.07612129058705182
+          ],
+          "validDraws": 2000
+        },
+        "positiveIntervals": [
+          "RAGE",
+          "SHAME",
+          "PRIDE"
+        ],
+        "allTenPositive": false,
+        "disgustLeast": false,
+        "disgustBelowMedian": false
+      },
+      "adjusted": {
+        "outputs": {
+          "SEEKING": {
+            "value": -0.10010840748942439,
+            "interval": [
+              -0.13486073662050185,
+              -0.06335447291417831
+            ],
+            "validDraws": 2000
+          },
+          "PLAY": {
+            "value": -0.10801300808298728,
+            "interval": [
+              -0.15315043532933395,
+              -0.06691217385155696
+            ],
+            "validDraws": 2000
+          },
+          "LUST": {
+            "value": -0.19451723981861657,
+            "interval": [
+              -0.2403806595017566,
+              -0.15092042926195093
+            ],
+            "validDraws": 2000
+          },
+          "CARE": {
+            "value": -0.2959005771254525,
+            "interval": [
+              -0.3329345553907303,
+              -0.2618999776926012
+            ],
+            "validDraws": 2000
+          },
+          "PANIC/GRIEF": {
+            "value": 0.00529421626931667,
+            "interval": [
+              -0.029125775249053173,
+              0.0399418089995747
+            ],
+            "validDraws": 2000
+          },
+          "RAGE": {
+            "value": 0.1655691512029043,
+            "interval": [
+              0.1324469730541812,
+              0.19878519085576796
+            ],
+            "validDraws": 2000
+          },
+          "FEAR": {
+            "value": -0.08914037596678771,
+            "interval": [
+              -0.12066112508587643,
+              -0.058813745771704236
+            ],
+            "validDraws": 2000
+          },
+          "DISGUST": {
+            "value": -0.04109182746370102,
+            "interval": [
+              -0.07319505811791353,
+              -0.009659363066243995
+            ],
+            "validDraws": 2000
+          },
+          "SHAME": {
+            "value": 0.00815574333154983,
+            "interval": [
+              -0.025831913278361485,
+              0.040344351391678454
+            ],
+            "validDraws": 2000
+          },
+          "PRIDE": {
+            "value": 0.03155152907184427,
+            "interval": [
+              -0.0013962067835571082,
+              0.0652771592665268
+            ],
+            "validDraws": 2000
+          }
+        },
+        "disgustMinusMedian": {
+          "value": 0.024024274251543354,
+          "interval": [
+            -0.0004512419197195978,
+            0.041724334953415765
+          ],
+          "validDraws": 2000
+        },
+        "positiveIntervals": [
+          "RAGE"
+        ],
+        "allTenPositive": false,
+        "disgustLeast": false,
+        "disgustBelowMedian": false
+      }
+    },
+    "envent": {
+      "raw": {
+        "outputs": {
+          "SEEKING": {
+            "value": 0.05837192834232506,
+            "interval": [
+              -0.0022560626564766197,
+              0.11294456711084987
+            ],
+            "validDraws": 2000
+          },
+          "PLAY": {
+            "value": 0.05117847940201321,
+            "interval": [
+              -0.06546113951518406,
+              0.16027264740285854
+            ],
+            "validDraws": 2000
+          },
+          "LUST": {
+            "value": -0.04478911332303666,
+            "interval": [
+              -0.13248440590801536,
+              0.021737747816027542
+            ],
+            "validDraws": 2000
+          },
+          "CARE": {
+            "value": 0.025331996833461806,
+            "interval": [
+              -0.022698963060833032,
+              0.07246099293400783
+            ],
+            "validDraws": 2000
+          },
+          "PANIC/GRIEF": {
+            "value": -0.03264278389451325,
+            "interval": [
+              -0.10158200155284744,
+              0.037695096401182855
+            ],
+            "validDraws": 2000
+          },
+          "RAGE": {
+            "value": 0.2160939823365744,
+            "interval": [
+              0.15817722122792505,
+              0.276198845335597
+            ],
+            "validDraws": 2000
+          },
+          "FEAR": {
+            "value": -0.35786104254273177,
+            "interval": [
+              -0.4236155066473947,
+              -0.29065189208307274
+            ],
+            "validDraws": 2000
+          },
+          "DISGUST": {
+            "value": 0.0706119567934477,
+            "interval": [
+              0.0311184347413937,
+              0.11055054166509724
+            ],
+            "validDraws": 2000
+          },
+          "SHAME": {
+            "value": 0.017343750943346784,
+            "interval": [
+              -0.02929820427857046,
+              0.06825014070080758
+            ],
+            "validDraws": 2000
+          },
+          "PRIDE": {
+            "value": 0.5452106398770662,
+            "interval": [
+              0.47871966047381836,
+              0.6130903068927395
+            ],
+            "validDraws": 2000
+          }
+        },
+        "disgustMinusMedian": {
+          "value": 0.03235671867571019,
+          "interval": [
+            -0.0047053403136644864,
+            0.0841097735646526
+          ],
+          "validDraws": 2000
+        },
+        "positiveIntervals": [
+          "RAGE",
+          "DISGUST",
+          "PRIDE"
+        ],
+        "allTenPositive": false,
+        "disgustLeast": false,
+        "disgustBelowMedian": false
+      },
+      "adjusted": {
+        "outputs": {
+          "SEEKING": {
+            "value": -0.20670572285630012,
+            "interval": [
+              -0.26569991167722945,
+              -0.15574841906651982
+            ],
+            "validDraws": 2000
+          },
+          "PLAY": {
+            "value": -0.09258751007613795,
+            "interval": [
+              -0.2075055463435302,
+              0.016832328022725437
+            ],
+            "validDraws": 2000
+          },
+          "LUST": {
+            "value": -0.18582906636053703,
+            "interval": [
+              -0.2757674531706129,
+              -0.11917511915728086
+            ],
+            "validDraws": 2000
+          },
+          "CARE": {
+            "value": -0.1592873720885654,
+            "interval": [
+              -0.20748509307548252,
+              -0.11323286210531636
+            ],
+            "validDraws": 2000
+          },
+          "PANIC/GRIEF": {
+            "value": 0.19608788847709843,
+            "interval": [
+              0.12784578197429403,
+              0.26641023156236676
+            ],
+            "validDraws": 2000
+          },
+          "RAGE": {
+            "value": 0.08821686396864473,
+            "interval": [
+              0.03170668777502913,
+              0.1486396266406269
+            ],
+            "validDraws": 2000
+          },
+          "FEAR": {
+            "value": -0.13611107784585388,
+            "interval": [
+              -0.19735566018688006,
+              -0.07106224345897251
+            ],
+            "validDraws": 2000
+          },
+          "DISGUST": {
+            "value": -0.056787714303087,
+            "interval": [
+              -0.09691739500398308,
+              -0.017649951455154626
+            ],
+            "validDraws": 2000
+          },
+          "SHAME": {
+            "value": 0.03850504112130799,
+            "interval": [
+              -0.007365853922787014,
+              0.08957793854169056
+            ],
+            "validDraws": 2000
+          },
+          "PRIDE": {
+            "value": 0.38716326516595045,
+            "interval": [
+              0.3200869471808164,
+              0.45488317188962063
+            ],
+            "validDraws": 2000
+          }
+        },
+        "disgustMinusMedian": {
+          "value": 0.017899897886525476,
+          "interval": [
+            -0.03788895959400795,
+            0.05301824410316365
+          ],
+          "validDraws": 2000
+        },
+        "positiveIntervals": [
+          "PANIC/GRIEF",
+          "RAGE",
+          "PRIDE"
+        ],
+        "allTenPositive": false,
+        "disgustLeast": false,
+        "disgustBelowMedian": false
+      }
+    },
+    "pooled": {
+      "raw": {
+        "outputs": {
+          "SEEKING": {
+            "value": -0.1702664562701999,
+            "interval": [
+              -0.20239614578636472,
+              -0.13806673443531392
+            ],
+            "validDraws": 2000
+          },
+          "PLAY": {
+            "value": -0.12871844606962193,
+            "interval": [
+              -0.1719724161535546,
+              -0.08953830511764525
+            ],
+            "validDraws": 2000
+          },
+          "LUST": {
+            "value": -0.2861064674048432,
+            "interval": [
+              -0.32319790769324186,
+              -0.24835240929176752
+            ],
+            "validDraws": 2000
+          },
+          "CARE": {
+            "value": -0.35344745784318615,
+            "interval": [
+              -0.38680362758614595,
+              -0.32329270096292173
+            ],
+            "validDraws": 2000
+          },
+          "PANIC/GRIEF": {
+            "value": -0.03286902457968466,
+            "interval": [
+              -0.06458122523164028,
+              -0.002412553547164179
+            ],
+            "validDraws": 2000
+          },
+          "RAGE": {
+            "value": 0.28746173403655007,
+            "interval": [
+              0.25688282742992646,
+              0.31541200709130557
+            ],
+            "validDraws": 2000
+          },
+          "FEAR": {
+            "value": -0.12953293876445132,
+            "interval": [
+              -0.15696782740104842,
+              -0.10097401334324277
+            ],
+            "validDraws": 2000
+          },
+          "DISGUST": {
+            "value": -0.001381827848213608,
+            "interval": [
+              -0.027808968877776792,
+              0.025667901033504595
+            ],
+            "validDraws": 2000
+          },
+          "SHAME": {
+            "value": 0.032851844040356314,
+            "interval": [
+              0.004659061779211419,
+              0.061098843926419365
+            ],
+            "validDraws": 2000
+          },
+          "PRIDE": {
+            "value": 0.20617692656224498,
+            "interval": [
+              0.17797373718148848,
+              0.2372851414952414
+            ],
+            "validDraws": 2000
+          }
+        },
+        "disgustMinusMedian": {
+          "value": 0.07941190747643968,
+          "interval": [
+            0.04422326372681715,
+            0.10850943644379273
+          ],
+          "validDraws": 2000
+        },
+        "positiveIntervals": [
+          "RAGE",
+          "SHAME",
+          "PRIDE"
+        ],
+        "allTenPositive": false,
+        "disgustLeast": false,
+        "disgustBelowMedian": false
+      },
+      "adjusted": {
+        "outputs": {
+          "SEEKING": {
+            "value": -0.12023101298382823,
+            "interval": [
+              -0.1516256087302789,
+              -0.08925981405470781
+            ],
+            "validDraws": 2000
+          },
+          "PLAY": {
+            "value": -0.10510110350191754,
+            "interval": [
+              -0.14839203452598732,
+              -0.06579887229589682
+            ],
+            "validDraws": 2000
+          },
+          "LUST": {
+            "value": -0.19287715454665538,
+            "interval": [
+              -0.22956707639490817,
+              -0.154867729941329
+            ],
+            "validDraws": 2000
+          },
+          "CARE": {
+            "value": -0.2701118072974119,
+            "interval": [
+              -0.30189847279910137,
+              -0.24056186432714838
+            ],
+            "validDraws": 2000
+          },
+          "PANIC/GRIEF": {
+            "value": 0.04131074992639956,
+            "interval": [
+              0.009337782560444837,
+              0.07184035923135962
+            ],
+            "validDraws": 2000
+          },
+          "RAGE": {
+            "value": 0.15096719284450016,
+            "interval": [
+              0.12032119628542155,
+              0.1787866566146576
+            ],
+            "validDraws": 2000
+          },
+          "FEAR": {
+            "value": -0.09800713682708403,
+            "interval": [
+              -0.12544151240735624,
+              -0.06907914676625593
+            ],
+            "validDraws": 2000
+          },
+          "DISGUST": {
+            "value": -0.04405477392878533,
+            "interval": [
+              -0.07035836045839765,
+              -0.01709159355753642
+            ],
+            "validDraws": 2000
+          },
+          "SHAME": {
+            "value": 0.01388484583618243,
+            "interval": [
+              -0.014225203375958123,
+              0.042281030587344066
+            ],
+            "validDraws": 2000
+          },
+          "PRIDE": {
+            "value": 0.0986811246903969,
+            "interval": [
+              0.0706599011367951,
+              0.12935069860647433
+            ],
+            "validDraws": 2000
+          }
+        },
+        "disgustMinusMedian": {
+          "value": 0.02697618144914936,
+          "interval": [
+            0.004568732109254694,
+            0.04134897900965338
+          ],
+          "validDraws": 2000
+        },
+        "positiveIntervals": [
+          "PANIC/GRIEF",
+          "RAGE",
+          "PRIDE"
+        ],
+        "allTenPositive": false,
+        "disgustLeast": false,
+        "disgustBelowMedian": false
+      }
+    }
+  },
+  "status": "complete",
+  "packetPin": "9a02029adc1292fe784160a491f0d2629b5c59bebcb4cfd8afd03e6bc63647b8",
+  "codePin": "0e19ef4107c329693c7e7dfcf48ed7b3ba35aa7fb0f822f7484d55b7b031e1fc",
+  "protocolPin": "524d3dbbfbc8330cbf9bdc075830ab6c29f0475511e848410dc915a0ebab11f7",
+  "ledger": "E-TP49-20261123",
+  "sourceReceiptPin": "d32bb9aadbbcde70257d848922e7f27e683eac4efbe9d3fc68db45435c7e7d86",
+  "productionAdmission": false
+}

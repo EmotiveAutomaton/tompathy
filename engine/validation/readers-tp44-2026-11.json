@@ -1,0 +1,1396 @@
+{
+  "card": "TP44",
+  "estimate": {
+    "TP44": {
+      "correlation": "Spearman with ties recomputed per person resample. Pearson beside it.",
+      "rd1Comparison": {
+        "goal_support": 0.5634390268806188,
+        "other_responsblt": 0.5182251038988279,
+        "pleasantness": 0.757072632135081,
+        "self_responsblt": 0.5083444132005894,
+        "social_norms": 0.39313400213806415,
+        "standards": 0.37966437679171217,
+        "suddenness": 0.5514715565243284,
+        "unpleasantness": 0.6950333348938077
+      },
+      "sourceReceiptPin": "5088ab24bee1b6746705a85b6ec128297e7e4dec3905fcd5ef1931cfcdcd9aaa",
+      "table1": {
+        "1": {
+          "pleasantness": {
+            "interval": [
+              -0.0572456154784707,
+              0.0619150392607446
+            ],
+            "pearson": {
+              "interval": [
+                -0.048167270022223624,
+                0.13861775145719704
+              ],
+              "validDraws": 2000,
+              "value": 0.030630522803752825
+            },
+            "people": 1080,
+            "reports": 1080,
+            "validDraws": 2000,
+            "value": -0.004115725250785837
+          },
+          "responsibilityMeans": {
+            "close person": {
+              "other_responsblt": {
+                "interval": [
+                  2.8695581131003123,
+                  3.1605181998172402
+                ],
+                "people": 302,
+                "reports": 302,
+                "validDraws": 2000,
+                "value": 3.0099337748344372
+              },
+              "self_responsblt": {
+                "interval": [
+                  2.4459005951759423,
+                  2.7074854490532676
+                ],
+                "people": 302,
+                "reports": 302,
+                "validDraws": 2000,
+                "value": 2.576158940397351
+              }
+            },
+            "impersonal agency": {
+              "other_responsblt": {
+                "interval": [
+                  2.180115500034894,
+                  2.52904174573055
+                ],
+                "people": 158,
+                "reports": 158,
+                "validDraws": 2000,
+                "value": 2.3544303797468356
+              },
+              "self_responsblt": {
+                "interval": [
+                  2.7554338051298095,
+                  3.115121372289923
+                ],
+                "people": 158,
+                "reports": 158,
+                "validDraws": 2000,
+                "value": 2.930379746835443
+              }
+            },
+            "other person": {
+              "other_responsblt": {
+                "interval": [
+                  2.3176006191950465,
+                  2.918918918918919
+                ],
+                "people": 76,
+                "reports": 76,
+                "validDraws": 2000,
+                "value": 2.6052631578947367
+              },
+              "self_responsblt": {
+                "interval": [
+                  2.4210526315789473,
+                  3.0156442110655735
+                ],
+                "people": 76,
+                "reports": 76,
+                "validDraws": 2000,
+                "value": 2.736842105263158
+              }
+            },
+            "self": {
+              "other_responsblt": {
+                "interval": [
+                  1.7985781990521328,
+                  1.9561886948253426
+                ],
+                "people": 421,
+                "reports": 421,
+                "validDraws": 2000,
+                "value": 1.8717339667458432
+              },
+              "self_responsblt": {
+                "interval": [
+                  3.5746794364654333,
+                  3.740140632819253
+                ],
+                "people": 421,
+                "reports": 421,
+                "validDraws": 2000,
+                "value": 3.660332541567696
+              }
+            }
+          },
+          "suddennessVsReversedExpectedness": {
+            "interval": [
+              0.16678950111761065,
+              0.27950609588081854
+            ],
+            "pearson": {
+              "interval": [
+                0.1754788297897823,
+                0.2853856415670134
+              ],
+              "validDraws": 2000,
+              "value": 0.22981631803447103
+            },
+            "people": 1053,
+            "reports": 1053,
+            "validDraws": 2000,
+            "value": 0.22297432495794697
+          }
+        },
+        "2": {
+          "pleasantness": {
+            "interval": [
+              0.12255102260299841,
+              0.2771670663429175
+            ],
+            "pearson": {
+              "interval": [
+                0.11463038993185584,
+                0.27913341223913607
+              ],
+              "validDraws": 2000,
+              "value": 0.19761605454823236
+            },
+            "people": 1046,
+            "reports": 1046,
+            "validDraws": 2000,
+            "value": 0.20280128767791877
+          },
+          "responsibilityMeans": {
+            "close person": {
+              "other_responsblt": {
+                "interval": [
+                  3.068371212121212,
+                  3.556630986937591
+                ],
+                "people": 128,
+                "reports": 128,
+                "validDraws": 2000,
+                "value": 3.3203125
+              },
+              "self_responsblt": {
+                "interval": [
+                  1.875,
+                  2.2983926971326163
+                ],
+                "people": 128,
+                "reports": 128,
+                "validDraws": 2000,
+                "value": 2.078125
+              }
+            },
+            "impersonal agency": {
+              "other_responsblt": {
+                "interval": [
+                  2.7442606516290726,
+                  3.1018749577559985
+                ],
+                "people": 272,
+                "reports": 272,
+                "validDraws": 2000,
+                "value": 2.926470588235294
+              },
+              "self_responsblt": {
+                "interval": [
+                  1.7822428224282243,
+                  2.0500181159420285
+                ],
+                "people": 272,
+                "reports": 272,
+                "validDraws": 2000,
+                "value": 1.911764705882353
+              }
+            },
+            "other person": {
+              "other_responsblt": {
+                "interval": [
+                  3.6210391363022945,
+                  4.037682248952069
+                ],
+                "people": 195,
+                "reports": 195,
+                "validDraws": 2000,
+                "value": 3.830769230769231
+              },
+              "self_responsblt": {
+                "interval": [
+                  1.5355149859248218,
+                  1.8325984574032954
+                ],
+                "people": 195,
+                "reports": 195,
+                "validDraws": 2000,
+                "value": 1.682051282051282
+              }
+            },
+            "self": {
+              "other_responsblt": {
+                "interval": [
+                  1.9491160365058668,
+                  2.256975020421335
+                ],
+                "people": 330,
+                "reports": 330,
+                "validDraws": 2000,
+                "value": 2.096969696969697
+              },
+              "self_responsblt": {
+                "interval": [
+                  2.754166364361895,
+                  3.0491106223714164
+                ],
+                "people": 330,
+                "reports": 330,
+                "validDraws": 2000,
+                "value": 2.9
+              }
+            }
+          },
+          "suddennessVsReversedExpectedness": {
+            "interval": [
+              0.3683728110192677,
+              0.4693209361707217
+            ],
+            "pearson": {
+              "interval": [
+                0.3684719276145002,
+                0.4669562101901072
+              ],
+              "validDraws": 2000,
+              "value": 0.41970410740665876
+            },
+            "people": 1039,
+            "reports": 1039,
+            "validDraws": 2000,
+            "value": 0.41985113265829904
+          }
+        },
+        "3": {
+          "pleasantness": {
+            "interval": [
+              -0.03472743197690243,
+              0.09339296379363825
+            ],
+            "pearson": {
+              "interval": [
+                -0.04664896852107156,
+                0.03894232124427396
+              ],
+              "validDraws": 2000,
+              "value": -0.008521087402655196
+            },
+            "people": 1060,
+            "reports": 1060,
+            "validDraws": 2000,
+            "value": 0.024438941735166555
+          },
+          "responsibilityMeans": {
+            "close person": {
+              "other_responsblt": {
+                "interval": [
+                  4.298141252955083,
+                  4.440235022537616
+                ],
+                "people": 522,
+                "reports": 522,
+                "validDraws": 2000,
+                "value": 4.369731800766283
+              },
+              "self_responsblt": {
+                "interval": [
+                  1.6113279407429246,
+                  1.773832959865916
+                ],
+                "people": 522,
+                "reports": 522,
+                "validDraws": 2000,
+                "value": 1.6934865900383143
+              }
+            },
+            "impersonal agency": {
+              "other_responsblt": {
+                "interval": [
+                  3.383496412263536,
+                  4.044134108867428
+                ],
+                "people": 73,
+                "reports": 73,
+                "validDraws": 2000,
+                "value": 3.712328767123288
+              },
+              "self_responsblt": {
+                "interval": [
+                  1.6749353448275863,
+                  2.2195121951219514
+                ],
+                "people": 73,
+                "reports": 73,
+                "validDraws": 2000,
+                "value": 1.9452054794520548
+              }
+            },
+            "other person": {
+              "other_responsblt": {
+                "interval": [
+                  4.259856352164541,
+                  4.466666666666667
+                ],
+                "people": 304,
+                "reports": 304,
+                "validDraws": 2000,
+                "value": 4.365131578947368
+              },
+              "self_responsblt": {
+                "interval": [
+                  1.5083570919458305,
+                  1.7348337364267017
+                ],
+                "people": 304,
+                "reports": 304,
+                "validDraws": 2000,
+                "value": 1.618421052631579
+              }
+            },
+            "self": {
+              "other_responsblt": {
+                "interval": [
+                  2.8032417663565203,
+                  3.376146788990826
+                ],
+                "people": 105,
+                "reports": 105,
+                "validDraws": 2000,
+                "value": 3.085714285714286
+              },
+              "self_responsblt": {
+                "interval": [
+                  2.5257129781289143,
+                  3.0329761904761905
+                ],
+                "people": 105,
+                "reports": 105,
+                "validDraws": 2000,
+                "value": 2.7904761904761903
+              }
+            }
+          },
+          "suddennessVsReversedExpectedness": {
+            "interval": [
+              0.14576843451742527,
+              0.2659884457582688
+            ],
+            "pearson": {
+              "interval": [
+                0.14346283510938662,
+                0.2656108689779992
+              ],
+              "validDraws": 2000,
+              "value": 0.20416491549307544
+            },
+            "people": 1053,
+            "reports": 1053,
+            "validDraws": 2000,
+            "value": 0.20571710151373135
+          }
+        },
+        "4": {
+          "pleasantness": {
+            "interval": [
+              0.07322960569299809,
+              0.2231995575718902
+            ],
+            "pearson": {
+              "interval": [
+                0.0992006376010315,
+                0.3045623363953292
+              ],
+              "validDraws": 2000,
+              "value": 0.1991590671585532
+            },
+            "people": 1046,
+            "reports": 1046,
+            "validDraws": 2000,
+            "value": 0.14768657804315857
+          },
+          "responsibilityMeans": {
+            "close person": {
+              "other_responsblt": {
+                "interval": [
+                  3.3027492757122165,
+                  3.6401673640167362
+                ],
+                "people": 230,
+                "reports": 230,
+                "validDraws": 2000,
+                "value": 3.4782608695652173
+              },
+              "self_responsblt": {
+                "interval": [
+                  1.84,
+                  2.131225074775673
+                ],
+                "people": 230,
+                "reports": 230,
+                "validDraws": 2000,
+                "value": 1.9782608695652173
+              }
+            },
+            "impersonal agency": {
+              "other_responsblt": {
+                "interval": [
+                  2.403990024937656,
+                  2.7005478454007865
+                ],
+                "people": 394,
+                "reports": 394,
+                "validDraws": 2000,
+                "value": 2.553299492385787
+              },
+              "self_responsblt": {
+                "interval": [
+                  1.4498712911293636,
+                  1.6329984111633047
+                ],
+                "people": 394,
+                "reports": 394,
+                "validDraws": 2000,
+                "value": 1.5380710659898478
+              }
+            },
+            "other person": {
+              "other_responsblt": {
+                "interval": [
+                  2.8947135537959947,
+                  3.4174980186249253
+                ],
+                "people": 109,
+                "reports": 109,
+                "validDraws": 2000,
+                "value": 3.165137614678899
+              },
+              "self_responsblt": {
+                "interval": [
+                  1.7154181184668988,
+                  2.1470588235294117
+                ],
+                "people": 109,
+                "reports": 109,
+                "validDraws": 2000,
+                "value": 1.9174311926605505
+              }
+            },
+            "self": {
+              "other_responsblt": {
+                "interval": [
+                  1.9289940828402368,
+                  2.3491809116809113
+                ],
+                "people": 165,
+                "reports": 165,
+                "validDraws": 2000,
+                "value": 2.1454545454545455
+              },
+              "self_responsblt": {
+                "interval": [
+                  2.721511315688531,
+                  3.11586827597728
+                ],
+                "people": 165,
+                "reports": 165,
+                "validDraws": 2000,
+                "value": 2.915151515151515
+              }
+            }
+          },
+          "suddennessVsReversedExpectedness": {
+            "interval": [
+              0.26831047715269535,
+              0.37682359724479125
+            ],
+            "pearson": {
+              "interval": [
+                0.26579584222462677,
+                0.3666971459977513
+              ],
+              "validDraws": 2000,
+              "value": 0.31732923067916574
+            },
+            "people": 1045,
+            "reports": 1045,
+            "validDraws": 2000,
+            "value": 0.3242578243870021
+          }
+        },
+        "5": {
+          "pleasantness": {
+            "interval": [
+              0.058215457852159036,
+              0.19986463083845413
+            ],
+            "pearson": {
+              "interval": [
+                0.012876095692357694,
+                0.1603291721131522
+              ],
+              "validDraws": 2000,
+              "value": 0.08417454855692755
+            },
+            "people": 1033,
+            "reports": 1033,
+            "validDraws": 2000,
+            "value": 0.12964781481306475
+          },
+          "responsibilityMeans": {
+            "close person": {
+              "other_responsblt": {
+                "interval": [
+                  4.352773760330579,
+                  4.53144619904517
+                ],
+                "people": 368,
+                "reports": 368,
+                "validDraws": 2000,
+                "value": 4.445652173913044
+              },
+              "self_responsblt": {
+                "interval": [
+                  1.3896772066840786,
+                  1.5733401015228425
+                ],
+                "people": 368,
+                "reports": 368,
+                "validDraws": 2000,
+                "value": 1.4755434782608696
+              }
+            },
+            "impersonal agency": {
+              "other_responsblt": {
+                "interval": [
+                  3.368233082706767,
+                  3.936078260869565
+                ],
+                "people": 122,
+                "reports": 122,
+                "validDraws": 2000,
+                "value": 3.6639344262295084
+              },
+              "self_responsblt": {
+                "interval": [
+                  1.353435598377282,
+                  1.7031316207627119
+                ],
+                "people": 122,
+                "reports": 122,
+                "validDraws": 2000,
+                "value": 1.5163934426229508
+              }
+            },
+            "other person": {
+              "other_responsblt": {
+                "interval": [
+                  4.115604300999702,
+                  4.35202492211838
+                ],
+                "people": 331,
+                "reports": 331,
+                "validDraws": 2000,
+                "value": 4.232628398791541
+              },
+              "self_responsblt": {
+                "interval": [
+                  1.3065002996105064,
+                  1.4984811450939362
+                ],
+                "people": 331,
+                "reports": 331,
+                "validDraws": 2000,
+                "value": 1.4018126888217524
+              }
+            },
+            "self": {
+              "other_responsblt": {
+                "interval": [
+                  2.686831801157644,
+                  3.2935097254004577
+                ],
+                "people": 98,
+                "reports": 98,
+                "validDraws": 2000,
+                "value": 2.989795918367347
+              },
+              "self_responsblt": {
+                "interval": [
+                  2.1515063424947143,
+                  2.7653061224489797
+                ],
+                "people": 98,
+                "reports": 98,
+                "validDraws": 2000,
+                "value": 2.4591836734693877
+              }
+            }
+          },
+          "suddennessVsReversedExpectedness": {
+            "interval": [
+              0.19456816548685651,
+              0.31152117429536297
+            ],
+            "pearson": {
+              "interval": [
+                0.1763312638628589,
+                0.29245161365677375
+              ],
+              "validDraws": 2000,
+              "value": 0.23407219572388974
+            },
+            "people": 1012,
+            "reports": 1012,
+            "validDraws": 2000,
+            "value": 0.25146203446406723
+          }
+        },
+        "6": {
+          "pleasantness": {
+            "interval": [
+              0.08248143146980375,
+              0.22006599268149418
+            ],
+            "pearson": {
+              "interval": [
+                0.10029100823430874,
+                0.2557586721336102
+              ],
+              "validDraws": 2000,
+              "value": 0.17341794547293474
+            },
+            "people": 1028,
+            "reports": 1028,
+            "validDraws": 2000,
+            "value": 0.1487336316949205
+          },
+          "responsibilityMeans": {
+            "close person": {
+              "other_responsblt": {
+                "interval": [
+                  2.853387081232133,
+                  3.2793463687150837
+                ],
+                "people": 190,
+                "reports": 190,
+                "validDraws": 2000,
+                "value": 3.068421052631579
+              },
+              "self_responsblt": {
+                "interval": [
+                  2.8483308581038287,
+                  3.2698487925976076
+                ],
+                "people": 190,
+                "reports": 190,
+                "validDraws": 2000,
+                "value": 3.0526315789473686
+              }
+            },
+            "impersonal agency": {
+              "other_responsblt": {
+                "interval": [
+                  2.0428495440729484,
+                  2.6400493827160494
+                ],
+                "people": 86,
+                "reports": 86,
+                "validDraws": 2000,
+                "value": 2.3255813953488373
+              },
+              "self_responsblt": {
+                "interval": [
+                  3.20246835443038,
+                  3.7500644329896904
+                ],
+                "people": 86,
+                "reports": 86,
+                "validDraws": 2000,
+                "value": 3.4767441860465116
+              }
+            },
+            "other person": {
+              "other_responsblt": {
+                "interval": [
+                  2.5652046035805625,
+                  3.141624525916561
+                ],
+                "people": 96,
+                "reports": 96,
+                "validDraws": 2000,
+                "value": 2.8541666666666665
+              },
+              "self_responsblt": {
+                "interval": [
+                  2.6326386214863304,
+                  3.220782996073694
+                ],
+                "people": 96,
+                "reports": 96,
+                "validDraws": 2000,
+                "value": 2.9270833333333335
+              }
+            },
+            "self": {
+              "other_responsblt": {
+                "interval": [
+                  1.655873142422617,
+                  1.8229533478816264
+                ],
+                "people": 599,
+                "reports": 599,
+                "validDraws": 2000,
+                "value": 1.7378964941569282
+              },
+              "self_responsblt": {
+                "interval": [
+                  4.1097780888853075,
+                  4.258653454792131
+                ],
+                "people": 599,
+                "reports": 599,
+                "validDraws": 2000,
+                "value": 4.185308848080133
+              }
+            }
+          },
+          "suddennessVsReversedExpectedness": {
+            "interval": [
+              0.1467357525785077,
+              0.26363026318015204
+            ],
+            "pearson": {
+              "interval": [
+                0.13522809269406372,
+                0.2522404664950771
+              ],
+              "validDraws": 2000,
+              "value": 0.1950460658939519
+            },
+            "people": 1006,
+            "reports": 1006,
+            "validDraws": 2000,
+            "value": 0.20674422366445308
+          }
+        },
+        "7": {
+          "pleasantness": {
+            "interval": [
+              0.08376265860409603,
+              0.2174167672153073
+            ],
+            "pearson": {
+              "interval": [
+                0.09051873108292079,
+                0.2577049295324117
+              ],
+              "validDraws": 2000,
+              "value": 0.17439233087441416
+            },
+            "people": 1021,
+            "reports": 1021,
+            "validDraws": 2000,
+            "value": 0.1505858364409589
+          },
+          "responsibilityMeans": {
+            "close person": {
+              "other_responsblt": {
+                "interval": [
+                  2.036563588850174,
+                  2.445287609603819
+                ],
+                "people": 162,
+                "reports": 162,
+                "validDraws": 2000,
+                "value": 2.228395061728395
+              },
+              "self_responsblt": {
+                "interval": [
+                  3.8407574928685864,
+                  4.191489361702128
+                ],
+                "people": 162,
+                "reports": 162,
+                "validDraws": 2000,
+                "value": 4.0246913580246915
+              }
+            },
+            "impersonal agency": {
+              "other_responsblt": {
+                "interval": [
+                  2.0142664092664093,
+                  2.573170731707317
+                ],
+                "people": 78,
+                "reports": 78,
+                "validDraws": 2000,
+                "value": 2.282051282051282
+              },
+              "self_responsblt": {
+                "interval": [
+                  3.6103642451298703,
+                  4.144971014492753
+                ],
+                "people": 78,
+                "reports": 78,
+                "validDraws": 2000,
+                "value": 3.8846153846153846
+              }
+            },
+            "other person": {
+              "other_responsblt": {
+                "interval": [
+                  2.119012605042017,
+                  2.8800238095238093
+                ],
+                "people": 44,
+                "reports": 44,
+                "validDraws": 2000,
+                "value": 2.477272727272727
+              },
+              "self_responsblt": {
+                "interval": [
+                  3.230714285714286,
+                  4.0256410256410255
+                ],
+                "people": 44,
+                "reports": 44,
+                "validDraws": 2000,
+                "value": 3.6363636363636362
+              }
+            },
+            "self": {
+              "other_responsblt": {
+                "interval": [
+                  1.5390956449047832,
+                  1.6851934865900382
+                ],
+                "people": 701,
+                "reports": 701,
+                "validDraws": 2000,
+                "value": 1.6119828815977175
+              },
+              "self_responsblt": {
+                "interval": [
+                  4.362981041196967,
+                  4.482324351239789
+                ],
+                "people": 701,
+                "reports": 701,
+                "validDraws": 2000,
+                "value": 4.420827389443652
+              }
+            }
+          },
+          "suddennessVsReversedExpectedness": {
+            "interval": [
+              0.21470067474731025,
+              0.3310123563444101
+            ],
+            "pearson": {
+              "interval": [
+                0.212300403844752,
+                0.32975285249919106
+              ],
+              "validDraws": 2000,
+              "value": 0.2720554846336441
+            },
+            "people": 1009,
+            "reports": 1009,
+            "validDraws": 2000,
+            "value": 0.273239025942525
+          }
+        },
+        "all": {
+          "pleasantness": {
+            "interval": [
+              0.618451547696368,
+              0.6515359723073298
+            ],
+            "pearson": {
+              "interval": [
+                0.7620411961642221,
+                0.7932284783959713
+              ],
+              "validDraws": 2000,
+              "value": 0.7777874003545632
+            },
+            "people": 1096,
+            "reports": 7314,
+            "validDraws": 2000,
+            "value": 0.635313061195156
+          },
+          "responsibilityMeans": {
+            "close person": {
+              "other_responsblt": {
+                "interval": [
+                  3.612544022476699,
+                  3.7397566368671784
+                ],
+                "people": 899,
+                "reports": 1902,
+                "validDraws": 2000,
+                "value": 3.677707676130389
+              },
+              "self_responsblt": {
+                "interval": [
+                  2.1251330783469897,
+                  2.2443984153321317
+                ],
+                "people": 899,
+                "reports": 1902,
+                "validDraws": 2000,
+                "value": 2.186119873817035
+              }
+            },
+            "impersonal agency": {
+              "other_responsblt": {
+                "interval": [
+                  2.6740917863988884,
+                  2.848226873281797
+                ],
+                "people": 706,
+                "reports": 1183,
+                "validDraws": 2000,
+                "value": 2.7641589180050716
+              },
+              "self_responsblt": {
+                "interval": [
+                  2.0569941374941534,
+                  2.2071857354228945
+                ],
+                "people": 706,
+                "reports": 1183,
+                "validDraws": 2000,
+                "value": 2.128486897717667
+              }
+            },
+            "other person": {
+              "other_responsblt": {
+                "interval": [
+                  3.735580230601443,
+                  3.8870160259927573
+                ],
+                "people": 705,
+                "reports": 1155,
+                "validDraws": 2000,
+                "value": 3.81038961038961
+              },
+              "self_responsblt": {
+                "interval": [
+                  1.7856380671808147,
+                  1.9255447313023428
+                ],
+                "people": 705,
+                "reports": 1155,
+                "validDraws": 2000,
+                "value": 1.8545454545454545
+              }
+            },
+            "self": {
+              "other_responsblt": {
+                "interval": [
+                  1.8580791289543594,
+                  1.9642901416765053
+                ],
+                "people": 1003,
+                "reports": 2419,
+                "validDraws": 2000,
+                "value": 1.9107069036792064
+              },
+              "self_responsblt": {
+                "interval": [
+                  3.7196856137442946,
+                  3.818409601547885
+                ],
+                "people": 1003,
+                "reports": 2419,
+                "validDraws": 2000,
+                "value": 3.769739561802398
+              }
+            }
+          },
+          "suddennessVsReversedExpectedness": {
+            "interval": [
+              0.28792282085336884,
+              0.33029481096267477
+            ],
+            "pearson": {
+              "interval": [
+                0.278306102068657,
+                0.32027762268221494
+              ],
+              "validDraws": 2000,
+              "value": 0.30021425874832486
+            },
+            "people": 1096,
+            "reports": 7217,
+            "validDraws": 2000,
+            "value": 0.3095506075178419
+          }
+        }
+      },
+      "table2": {
+        "completePeople": 1091,
+        "countryCityFeelingCells": 119,
+        "fallbackCells": 0,
+        "fallbackReports": 0,
+        "foldPeople": [
+          546,
+          545
+        ],
+        "incompletePeople": 5,
+        "styleCleared": {
+          "mean": {
+            "interval": [
+              0.07455521022300046,
+              0.10191268685004595
+            ],
+            "validDraws": 2000,
+            "value": 0.08829945090683418
+          },
+          "tags": {
+            "approval": {
+              "interval": [
+                0.057115534436139336,
+                0.15180493270378967
+              ],
+              "validDraws": 2000,
+              "value": 0.10414837063772026
+            },
+            "belonging": {
+              "interval": [
+                -0.01917334236218482,
+                0.07957823246353309
+              ],
+              "validDraws": 2000,
+              "value": 0.027459062307184763
+            },
+            "competition": {
+              "interval": [
+                0.006984460333608974,
+                0.0953252741854504
+              ],
+              "validDraws": 2000,
+              "value": 0.05197481370920425
+            },
+            "contact": {
+              "interval": [
+                0.10202077804931896,
+                0.1923772646869579
+              ],
+              "validDraws": 2000,
+              "value": 0.1461561749771907
+            },
+            "curiosity": {
+              "interval": [
+                0.015088242268746827,
+                0.1120838580732298
+              ],
+              "validDraws": 2000,
+              "value": 0.06362263376057722
+            },
+            "family": {
+              "interval": [
+                0.04058847878660503,
+                0.13949243411479767
+              ],
+              "validDraws": 2000,
+              "value": 0.08974525127194186
+            },
+            "food": {
+              "interval": [
+                0.02275129095501128,
+                0.12112431575167486
+              ],
+              "validDraws": 2000,
+              "value": 0.07333475542661608
+            },
+            "health": {
+              "interval": [
+                0.0721785457897563,
+                0.1713182027064263
+              ],
+              "validDraws": 2000,
+              "value": 0.12060748974294828
+            },
+            "honor": {
+              "interval": [
+                0.04100760414284566,
+                0.1250891153138834
+              ],
+              "validDraws": 2000,
+              "value": 0.08504204630091317
+            },
+            "idealism": {
+              "interval": [
+                0.06854665916531405,
+                0.15873318558869517
+              ],
+              "validDraws": 2000,
+              "value": 0.11589469196693855
+            },
+            "indep": {
+              "interval": [
+                0.018593984103128406,
+                0.10888233859058724
+              ],
+              "validDraws": 2000,
+              "value": 0.06337115419863977
+            },
+            "order": {
+              "interval": [
+                0.03377119338603814,
+                0.12506712496841327
+              ],
+              "validDraws": 2000,
+              "value": 0.0796832548105872
+            },
+            "power": {
+              "interval": [
+                0.03458599136632745,
+                0.12326688238830703
+              ],
+              "validDraws": 2000,
+              "value": 0.07859768618027674
+            },
+            "rest": {
+              "interval": [
+                -0.028159139479681967,
+                0.07055876262694048
+              ],
+              "validDraws": 2000,
+              "value": 0.02063116003043877
+            },
+            "romance": {
+              "interval": [
+                0.09785221517245193,
+                0.19883388663665272
+              ],
+              "validDraws": 2000,
+              "value": 0.14957730530349184
+            },
+            "savings": {
+              "interval": [
+                0.03600107456831023,
+                0.12912486918833838
+              ],
+              "validDraws": 2000,
+              "value": 0.08231228252831815
+            },
+            "serenity": {
+              "interval": [
+                0.04213359681636244,
+                0.1486210383719286
+              ],
+              "validDraws": 2000,
+              "value": 0.09503957874852768
+            },
+            "status": {
+              "interval": [
+                0.08310421190676609,
+                0.17732642810533994
+              ],
+              "validDraws": 2000,
+              "value": 0.13129934398333268
+            },
+            "tranquility": {
+              "interval": [
+                0.050748211504631664,
+                0.14828808225802953
+              ],
+              "validDraws": 2000,
+              "value": 0.09919251134500155
+            }
+          }
+        },
+        "uncleared": {
+          "mean": {
+            "interval": [
+              0.09721455798280121,
+              0.1260386041490605
+            ],
+            "validDraws": 2000,
+            "value": 0.11194876649291464
+          },
+          "tags": {
+            "approval": {
+              "interval": [
+                0.07397264037029733,
+                0.166634182905185
+              ],
+              "validDraws": 2000,
+              "value": 0.12096824788287844
+            },
+            "belonging": {
+              "interval": [
+                -0.0010120718288284087,
+                0.10056091707133902
+              ],
+              "validDraws": 2000,
+              "value": 0.04601858354881113
+            },
+            "competition": {
+              "interval": [
+                0.04121832361942195,
+                0.1295097033397829
+              ],
+              "validDraws": 2000,
+              "value": 0.08586992166819123
+            },
+            "contact": {
+              "interval": [
+                0.15284955123761867,
+                0.2436893101503061
+              ],
+              "validDraws": 2000,
+              "value": 0.19825689229906854
+            },
+            "curiosity": {
+              "interval": [
+                0.046001203364667134,
+                0.1418931730208396
+              ],
+              "validDraws": 2000,
+              "value": 0.09454295041577813
+            },
+            "family": {
+              "interval": [
+                0.08843440855720835,
+                0.18704579338899835
+              ],
+              "validDraws": 2000,
+              "value": 0.1393843907893153
+            },
+            "food": {
+              "interval": [
+                0.053150646036055835,
+                0.15088793861896274
+              ],
+              "validDraws": 2000,
+              "value": 0.10152748240710058
+            },
+            "health": {
+              "interval": [
+                0.08532726243286734,
+                0.18495162839792104
+              ],
+              "validDraws": 2000,
+              "value": 0.13504229577383967
+            },
+            "honor": {
+              "interval": [
+                0.05033283964118594,
+                0.13630449685280818
+              ],
+              "validDraws": 2000,
+              "value": 0.09568848579850266
+            },
+            "idealism": {
+              "interval": [
+                0.07501183457270838,
+                0.16900771894122005
+              ],
+              "validDraws": 2000,
+              "value": 0.12272690627185877
+            },
+            "indep": {
+              "interval": [
+                0.029786427925302148,
+                0.11885545831642307
+              ],
+              "validDraws": 2000,
+              "value": 0.0739691907945715
+            },
+            "order": {
+              "interval": [
+                0.054429623511446645,
+                0.14882135953324843
+              ],
+              "validDraws": 2000,
+              "value": 0.10259679368480291
+            },
+            "power": {
+              "interval": [
+                0.05947057398319793,
+                0.14420485625140253
+              ],
+              "validDraws": 2000,
+              "value": 0.10143514380170846
+            },
+            "rest": {
+              "interval": [
+                -0.02932198661773622,
+                0.07707489230130776
+              ],
+              "validDraws": 2000,
+              "value": 0.022534747342831396
+            },
+            "romance": {
+              "interval": [
+                0.12157182561703893,
+                0.2203760157838638
+              ],
+              "validDraws": 2000,
+              "value": 0.17091373789572056
+            },
+            "savings": {
+              "interval": [
+                0.03906914299454682,
+                0.13163911985720614
+              ],
+              "validDraws": 2000,
+              "value": 0.08467764880211523
+            },
+            "serenity": {
+              "interval": [
+                0.09482066848609756,
+                0.20630284684985695
+              ],
+              "validDraws": 2000,
+              "value": 0.1487752356688577
+            },
+            "status": {
+              "interval": [
+                0.08555243948244502,
+                0.18113157783650646
+              ],
+              "validDraws": 2000,
+              "value": 0.13418199961175928
+            },
+            "tranquility": {
+              "interval": [
+                0.10168339810398568,
+                0.19388557404543377
+              ],
+              "validDraws": 2000,
+              "value": 0.1479159089076667
+            }
+          }
+        }
+      }
+    }
+  },
+  "ledger": "no ledger row",
+  "productionAdmission": false,
+  "scope": "One questionnaire sitting, translated reports and limited within-feeling variation.",
+  "sourceReceiptPin": "4cb861d5aa0443b06afa3d4668a5f6a24849c678a652cae4d2070a0f31de90a4",
+  "sourceReceipts": {
+    "TP44": "4cb861d5aa0443b06afa3d4668a5f6a24849c678a652cae4d2070a0f31de90a4"
+  },
+  "status": "complete",
+  "verdict": {
+    "agreement": true,
+    "personAcrossFeelings": true
+  }
+}

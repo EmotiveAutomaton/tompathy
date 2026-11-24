@@ -1,0 +1,983 @@
+{
+  "card": "TP50",
+  "source": "574e724abfdeafbe0ce067a495f21142cc0a557f9a560a1cf796ae816f1e8695",
+  "writers": 810,
+  "words": [
+    "afraid",
+    "angry",
+    "annoyed",
+    "anticipating",
+    "anxious",
+    "apprehensive",
+    "ashamed",
+    "caring",
+    "confident",
+    "content",
+    "devastated",
+    "disappointed",
+    "disgusted",
+    "embarrassed",
+    "excited",
+    "faithful",
+    "furious",
+    "grateful",
+    "guilty",
+    "hopeful",
+    "impressed",
+    "jealous",
+    "joyful",
+    "lonely",
+    "nostalgic",
+    "prepared",
+    "proud",
+    "sad",
+    "sentimental",
+    "surprised",
+    "terrified",
+    "trusting"
+  ],
+  "chosen": {
+    "0/0": [
+      "tranquility",
+      "order",
+      "order",
+      "curiosity",
+      "approval",
+      "curiosity",
+      "food",
+      "family",
+      "status",
+      "serenity",
+      "family",
+      "savings",
+      "food",
+      "health",
+      "curiosity",
+      "romance",
+      "order",
+      "idealism",
+      "food",
+      "status",
+      "status",
+      "contact",
+      "family",
+      "contact",
+      "curiosity",
+      "curiosity",
+      "status",
+      "family",
+      "family",
+      "contact",
+      "tranquility",
+      "contact"
+    ],
+    "0/1": [
+      "FEAR",
+      "RAGE",
+      "RAGE",
+      "SEEKING",
+      "FEAR",
+      "FEAR",
+      "SHAME",
+      "CARE",
+      "PRIDE",
+      "CARE",
+      "PANIC/GRIEF",
+      "SHAME",
+      "DISGUST",
+      "SHAME",
+      "SEEKING",
+      "CARE",
+      "RAGE",
+      "CARE",
+      "SHAME",
+      "LUST",
+      "PRIDE",
+      "LUST",
+      "SEEKING",
+      "PANIC/GRIEF",
+      "PLAY",
+      "SEEKING",
+      "PRIDE",
+      "PANIC/GRIEF",
+      "PANIC/GRIEF",
+      "PLAY",
+      "FEAR",
+      "RAGE"
+    ],
+    "1/0": [
+      "tranquility",
+      "order",
+      "order",
+      "serenity",
+      "status",
+      "curiosity",
+      "food",
+      "family",
+      "competition",
+      "serenity",
+      "family",
+      "savings",
+      "food",
+      "health",
+      "curiosity",
+      "romance",
+      "order",
+      "idealism",
+      "food",
+      "status",
+      "competition",
+      "contact",
+      "family",
+      "rest",
+      "curiosity",
+      "curiosity",
+      "status",
+      "family",
+      "family",
+      "contact",
+      "tranquility",
+      "contact"
+    ],
+    "1/1": [
+      "FEAR",
+      "RAGE",
+      "RAGE",
+      "SEEKING",
+      "FEAR",
+      "FEAR",
+      "SHAME",
+      "CARE",
+      "PRIDE",
+      "CARE",
+      "PANIC/GRIEF",
+      "SHAME",
+      "DISGUST",
+      "SHAME",
+      "SEEKING",
+      "CARE",
+      "RAGE",
+      "PRIDE",
+      "SHAME",
+      "LUST",
+      "PRIDE",
+      "LUST",
+      "SEEKING",
+      "PANIC/GRIEF",
+      "CARE",
+      "PRIDE",
+      "PRIDE",
+      "PANIC/GRIEF",
+      "PANIC/GRIEF",
+      "PLAY",
+      "FEAR",
+      "RAGE"
+    ]
+  },
+  "checks": {
+    "standingTags": {
+      "value": 0.8889894663290985,
+      "interval": [
+        0.7901564301381722,
+        0.9522171509154954
+      ],
+      "validDraws": 2000
+    },
+    "channelDifference": {
+      "value": -0.8649095050627973,
+      "interval": [
+        -0.9787718045942568,
+        -0.7799515798625678
+      ],
+      "validDraws": 2000
+    },
+    "channelLessTagDifference": {
+      "value": -0.9875307372017063,
+      "interval": [
+        -1.1220832944037622,
+        -0.8878864376088568
+      ],
+      "validDraws": 2000
+    }
+  },
+  "proposed": true,
+  "states": {
+    "afraid": {
+      "bothLow": 0.13801756587202008,
+      "needInBand": 0.1355081555834379,
+      "bothHigh": 0.4454203262233375,
+      "channelOnlyUnassigned": 0.2810539523212045
+    },
+    "angry": {
+      "bothLow": 0.1993047508690614,
+      "needInBand": 0.18771726535341832,
+      "bothHigh": 0.3128621089223638,
+      "channelOnlyUnassigned": 0.30011587485515645
+    },
+    "annoyed": {
+      "bothLow": 0.2465753424657534,
+      "needInBand": 0.2522831050228311,
+      "bothHigh": 0.2728310502283105,
+      "channelOnlyUnassigned": 0.228310502283105
+    },
+    "anticipating": {
+      "bothLow": 0.2440318302387268,
+      "needInBand": 0.20557029177718833,
+      "bothHigh": 0.2427055702917772,
+      "channelOnlyUnassigned": 0.3076923076923077
+    },
+    "anxious": {
+      "bothLow": 0.2558139534883721,
+      "needInBand": 0.28811369509043927,
+      "bothHigh": 0.2248062015503876,
+      "channelOnlyUnassigned": 0.23126614987080105
+    },
+    "apprehensive": {
+      "bothLow": 0.2993421052631579,
+      "needInBand": 0.2631578947368421,
+      "bothHigh": 0.22861842105263158,
+      "channelOnlyUnassigned": 0.20888157894736842
+    },
+    "ashamed": {
+      "bothLow": 0.20222929936305734,
+      "needInBand": 0.267515923566879,
+      "bothHigh": 0.26910828025477707,
+      "channelOnlyUnassigned": 0.2611464968152866
+    },
+    "caring": {
+      "bothLow": 0.2664714494875549,
+      "needInBand": 0.2635431918008785,
+      "bothHigh": 0.20644216691068815,
+      "channelOnlyUnassigned": 0.2635431918008785
+    },
+    "confident": {
+      "bothLow": 0.1821656050955414,
+      "needInBand": 0.34267515923566877,
+      "bothHigh": 0.3579617834394904,
+      "channelOnlyUnassigned": 0.11719745222929936
+    },
+    "content": {
+      "bothLow": 0.2265943012211669,
+      "needInBand": 0.4206241519674355,
+      "bothHigh": 0.208955223880597,
+      "channelOnlyUnassigned": 0.14382632293080055
+    },
+    "devastated": {
+      "bothLow": 0.19382022471910113,
+      "needInBand": 0.12921348314606743,
+      "bothHigh": 0.21207865168539325,
+      "channelOnlyUnassigned": 0.4648876404494382
+    },
+    "disappointed": {
+      "bothLow": 0.2675324675324675,
+      "needInBand": 0.2974025974025974,
+      "bothHigh": 0.22077922077922077,
+      "channelOnlyUnassigned": 0.21428571428571427
+    },
+    "disgusted": {
+      "bothLow": 0.10419313850063533,
+      "needInBand": 0.12833545108005082,
+      "bothHigh": 0.37229987293519695,
+      "channelOnlyUnassigned": 0.3951715374841169
+    },
+    "embarrassed": {
+      "bothLow": 0.3162162162162162,
+      "needInBand": 0.19324324324324324,
+      "bothHigh": 0.15945945945945947,
+      "channelOnlyUnassigned": 0.3310810810810811
+    },
+    "excited": {
+      "bothLow": 0.22388059701492538,
+      "needInBand": 0.21641791044776118,
+      "bothHigh": 0.2420042643923241,
+      "channelOnlyUnassigned": 0.31769722814498935
+    },
+    "faithful": {
+      "bothLow": 0.17364016736401675,
+      "needInBand": 0.46443514644351463,
+      "bothHigh": 0.25523012552301255,
+      "channelOnlyUnassigned": 0.10669456066945607
+    },
+    "furious": {
+      "bothLow": 0.20553359683794467,
+      "needInBand": 0.1686429512516469,
+      "bothHigh": 0.2898550724637681,
+      "channelOnlyUnassigned": 0.3359683794466403
+    },
+    "grateful": {
+      "bothLow": 0.3312883435582822,
+      "needInBand": 0.2920245398773006,
+      "bothHigh": 0.1901840490797546,
+      "channelOnlyUnassigned": 0.18650306748466258
+    },
+    "guilty": {
+      "bothLow": 0.22236842105263158,
+      "needInBand": 0.29342105263157897,
+      "bothHigh": 0.27631578947368424,
+      "channelOnlyUnassigned": 0.20789473684210527
+    },
+    "hopeful": {
+      "bothLow": 0.22535211267605634,
+      "needInBand": 0.3175416133162612,
+      "bothHigh": 0.2740076824583867,
+      "channelOnlyUnassigned": 0.18309859154929578
+    },
+    "impressed": {
+      "bothLow": 0.2819875776397516,
+      "needInBand": 0.2645962732919255,
+      "bothHigh": 0.2360248447204969,
+      "channelOnlyUnassigned": 0.21739130434782608
+    },
+    "jealous": {
+      "bothLow": 0.34214002642007924,
+      "needInBand": 0.2985468956406869,
+      "bothHigh": 0.21003963011889035,
+      "channelOnlyUnassigned": 0.14927344782034346
+    },
+    "joyful": {
+      "bothLow": 0.3220779220779221,
+      "needInBand": 0.2532467532467532,
+      "bothHigh": 0.19220779220779222,
+      "channelOnlyUnassigned": 0.23246753246753246
+    },
+    "lonely": {
+      "bothLow": 0.16953316953316952,
+      "needInBand": 0.28746928746928746,
+      "bothHigh": 0.32678132678132676,
+      "channelOnlyUnassigned": 0.21621621621621623
+    },
+    "nostalgic": {
+      "bothLow": 0.463768115942029,
+      "needInBand": 0.230566534914361,
+      "bothHigh": 0.11989459815546773,
+      "channelOnlyUnassigned": 0.1857707509881423
+    },
+    "prepared": {
+      "bothLow": 0.2859007832898172,
+      "needInBand": 0.3093994778067885,
+      "bothHigh": 0.24281984334203655,
+      "channelOnlyUnassigned": 0.1618798955613577
+    },
+    "proud": {
+      "bothLow": 0.15455594002306805,
+      "needInBand": 0.1695501730103806,
+      "bothHigh": 0.3748558246828143,
+      "channelOnlyUnassigned": 0.30103806228373703
+    },
+    "sad": {
+      "bothLow": 0.1750291715285881,
+      "needInBand": 0.15985997666277713,
+      "bothHigh": 0.21586931155192532,
+      "channelOnlyUnassigned": 0.4492415402567094
+    },
+    "sentimental": {
+      "bothLow": 0.41117478510028654,
+      "needInBand": 0.17191977077363896,
+      "bothHigh": 0.12177650429799428,
+      "channelOnlyUnassigned": 0.29512893982808025
+    },
+    "surprised": {
+      "bothLow": 0.4300234558248632,
+      "needInBand": 0.3127443315089914,
+      "bothHigh": 0.10633307271305707,
+      "channelOnlyUnassigned": 0.15089913995308835
+    },
+    "terrified": {
+      "bothLow": 0.1329923273657289,
+      "needInBand": 0.06777493606138107,
+      "bothHigh": 0.4744245524296675,
+      "channelOnlyUnassigned": 0.3248081841432225
+    },
+    "trusting": {
+      "bothLow": 0.2764976958525346,
+      "needInBand": 0.3870967741935484,
+      "bothHigh": 0.1935483870967742,
+      "channelOnlyUnassigned": 0.14285714285714285
+    }
+  },
+  "byWord": {
+    "afraid": [
+      {
+        "value": 1.5679903368761852,
+        "interval": [
+          1.4445254247782155,
+          1.6878480266767084
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 2.2192667478201553,
+        "interval": [
+          2.02956438421306,
+          2.4170993959345424
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "angry": [
+      {
+        "value": 0.775517073436979,
+        "interval": [
+          0.5899495078133674,
+          0.8528849567527765
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 1.5392893806354908,
+        "interval": [
+          1.3811293652728578,
+          1.7031934433144917
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "annoyed": [
+      {
+        "value": 0.8403510229877408,
+        "interval": [
+          0.6588496818144485,
+          0.9203875400515946
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 0.8283716162316795,
+        "interval": [
+          0.37583972741011407,
+          0.9347514936960631
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "anticipating": [
+      {
+        "value": 0.5328677088726601,
+        "interval": [
+          0.4179210889029672,
+          0.6295058940722792
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 1.6427381882197398,
+        "interval": [
+          1.4592296343186844,
+          1.8442020519584612
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "anxious": [
+      {
+        "value": 0.30884354743679504,
+        "interval": [
+          0.08916982943304166,
+          0.4283133249781441
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 0.6463524816941981,
+        "interval": [
+          0.24009829457511073,
+          0.7863788031971226
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "apprehensive": [
+      {
+        "value": 0.46352336115159665,
+        "interval": [
+          0.16524357800449063,
+          0.570445990522755
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 0.69453752668229,
+        "interval": [
+          0.5669092238738704,
+          0.8441369365884438
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "ashamed": [
+      {
+        "value": 0.6170426355184835,
+        "interval": [
+          0.4370571601908756,
+          0.7803442793471662
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 1.2921906423090639,
+        "interval": [
+          1.0998333382018777,
+          1.5075423494872249
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "caring": [
+      {
+        "value": 1.0017671102375374,
+        "interval": [
+          0.6522525058312336,
+          1.1174866605617462
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 1.1896835135503103,
+        "interval": [
+          0.8910351150264829,
+          1.4998672437399196
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "confident": [
+      {
+        "value": 1.3500228608490947,
+        "interval": [
+          1.243465730875957,
+          1.5225186386331662
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 1.0348727826068873,
+        "interval": [
+          0.9156073077892782,
+          1.1827540485304173
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "content": [
+      {
+        "value": 0.7437867613885789,
+        "interval": [
+          0.5761831834852468,
+          0.884047051740809
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 0.5000427641540313,
+        "interval": [
+          0.34257679724474244,
+          0.6489764962864747
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "devastated": [
+      {
+        "value": 0.25181741128963553,
+        "interval": [
+          -0.038195548462320934,
+          0.40605100761698815
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 1.7147888633180275,
+        "interval": [
+          1.458294030001167,
+          1.9718057991250078
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "disappointed": [
+      {
+        "value": 0.32380156763398604,
+        "interval": [
+          0.09064214544565334,
+          0.4292682603433823
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 0.4881661913071439,
+        "interval": [
+          0.2593878489763617,
+          0.618089165888364
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "disgusted": [
+      {
+        "value": 1.1437182337268492,
+        "interval": [
+          0.9459218169796666,
+          1.2858241197497435
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 3.334924484503552,
+        "interval": [
+          3.0975438111838014,
+          3.610564620588409
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "embarrassed": [
+      {
+        "value": 0.36985262342317077,
+        "interval": [
+          0.16452484363213768,
+          0.459913331080941
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 0.9726611226962947,
+        "interval": [
+          0.8001339823229211,
+          1.1604360219250158
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "excited": [
+      {
+        "value": 0.656464063754626,
+        "interval": [
+          0.5269405841942905,
+          0.7432230433658713
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 1.714001643214344,
+        "interval": [
+          1.5475696996445991,
+          1.9087789677701597
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "faithful": [
+      {
+        "value": 1.074722347562975,
+        "interval": [
+          0.7444383851742856,
+          1.2567842923912498
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 0.416930576039364,
+        "interval": [
+          0.11668990889811452,
+          0.5940347823455717
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "furious": [
+      {
+        "value": 0.862960125657233,
+        "interval": [
+          0.5852986951701924,
+          0.9540323757555345
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 1.6899517096817611,
+        "interval": [
+          1.5069639808845134,
+          1.8940046771603973
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "grateful": [
+      {
+        "value": 0.6428207321534307,
+        "interval": [
+          0.37851704295035277,
+          0.7427433882816609
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 0.20430222466354286,
+        "interval": [
+          0.09925713444155686,
+          0.4465247923544062
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "guilty": [
+      {
+        "value": 0.9537667093468679,
+        "interval": [
+          0.7681214612287155,
+          1.1523125361906668
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 0.9051043589059117,
+        "interval": [
+          0.7459823582447358,
+          1.0757506700139268
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "hopeful": [
+      {
+        "value": 0.8466513650349724,
+        "interval": [
+          0.7504925251953861,
+          0.9460072620616523
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 1.3306365743009811,
+        "interval": [
+          1.0332298975944638,
+          1.737847481115035
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "impressed": [
+      {
+        "value": 0.7725799429093161,
+        "interval": [
+          0.6395675393105205,
+          0.912397591213205
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 0.8568344648009327,
+        "interval": [
+          0.7094744627697204,
+          1.0114631758863624
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "jealous": [
+      {
+        "value": 0.7070354539088635,
+        "interval": [
+          0.4991567482395775,
+          0.8168980709315131
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 0.6289200297984844,
+        "interval": [
+          0.05218125872296921,
+          1.4283430570700015
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "joyful": [
+      {
+        "value": 0.5361554062148941,
+        "interval": [
+          0.41537285417953423,
+          0.6438434178715822
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 0.6160591710167437,
+        "interval": [
+          0.30427992281254995,
+          0.7360305623814724
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "lonely": [
+      {
+        "value": 0.9692615567113956,
+        "interval": [
+          0.819400191488451,
+          1.1140090629295558
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 1.5082493103630463,
+        "interval": [
+          1.377435541361095,
+          1.6571618661272693
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "nostalgic": [
+      {
+        "value": 0.8123645219804141,
+        "interval": [
+          0.6548601396736204,
+          0.9065629650251127
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 0.21332660694231198,
+        "interval": [
+          0.07744792757555857,
+          0.3319970894365716
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "prepared": [
+      {
+        "value": 0.7670996316379735,
+        "interval": [
+          0.5290724381043548,
+          0.8554232210489102
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 0.37817802797264677,
+        "interval": [
+          0.23708458288754583,
+          0.5309659163207584
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "proud": [
+      {
+        "value": 1.0403141235431184,
+        "interval": [
+          0.8051674462476707,
+          1.159407888475209
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 2.1433131914314645,
+        "interval": [
+          1.966694143338025,
+          2.3381283652861904
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "sad": [
+      {
+        "value": 0.3573566326109081,
+        "interval": [
+          0.1339336912656334,
+          0.4293507010060097
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 1.8902472517532907,
+        "interval": [
+          1.7460794536497897,
+          2.0494045542190245
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "sentimental": [
+      {
+        "value": 1.00695896279567,
+        "interval": [
+          0.8973542144150366,
+          1.1159678692188506
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 0.6866837766156026,
+        "interval": [
+          0.5438788013402693,
+          0.834698657673641
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "surprised": [
+      {
+        "value": 0.3216450213531415,
+        "interval": [
+          0.11004110482067195,
+          0.4220312801803735
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 0.07088467294433903,
+        "interval": [
+          -0.1153420137534947,
+          0.18449495942026028
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "terrified": [
+      {
+        "value": 1.7107160648576645,
+        "interval": [
+          1.5979315259132318,
+          1.8141489124337835
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 2.554065814553117,
+        "interval": [
+          2.4031072091092027,
+          2.716633630393445
+        ],
+        "validDraws": 2000
+      }
+    ],
+    "trusting": [
+      {
+        "value": 0.8071147379178545,
+        "interval": [
+          0.5991856086206222,
+          0.9137034353475845
+        ],
+        "validDraws": 2000
+      },
+      {
+        "value": 0.1711709707449704,
+        "interval": [
+          -0.06230267563531466,
+          0.2641241590356973
+        ],
+        "validDraws": 2000
+      }
+    ]
+  },
+  "status": "complete",
+  "packetPin": "9a02029adc1292fe784160a491f0d2629b5c59bebcb4cfd8afd03e6bc63647b8",
+  "codePin": "0e19ef4107c329693c7e7dfcf48ed7b3ba35aa7fb0f822f7484d55b7b031e1fc",
+  "protocolPin": "524d3dbbfbc8330cbf9bdc075830ab6c29f0475511e848410dc915a0ebab11f7",
+  "ledger": "E-TP50-20261123",
+  "sourceReceiptPin": "29c0892fea2fb70fd4b8d7b160068b9854bdc469e7f5e10bef577d65cca2f7e3",
+  "productionAdmission": false
+}

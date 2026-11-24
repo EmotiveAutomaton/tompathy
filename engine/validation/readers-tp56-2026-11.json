@@ -1,0 +1,91 @@
+{
+  "card": "TP56",
+  "source": "888c362a8912061adacb3f86fb5a6f9ab8ff3d0cca948f6198644f63a070d075",
+  "essaySource": "380d2670254565629f81616df57cc0729de96ac87c056d05e39c370624ae8f64",
+  "articleDropSlope": null,
+  "dropByNeed": null,
+  "essays": 1860,
+  "excludedEssays": 0,
+  "validSentences": 9684,
+  "articleTexts": 0,
+  "closeness": {
+    "concern": {
+      "writers": {
+        "value": -0.03404245300248319,
+        "interval": [
+          -0.15426932619234734,
+          0.07628188466615622
+        ],
+        "validDraws": 2000
+      },
+      "articles": {
+        "value": -0.03404245300248319,
+        "interval": [
+          -0.13768097104693577,
+          0.07634777446271836
+        ],
+        "validDraws": 2000
+      },
+      "reportedUnit": "writers",
+      "reportedInterval": [
+        -0.15426932619234734,
+        0.07628188466615622
+      ]
+    },
+    "distress": {
+      "writers": {
+        "value": -0.07996267079881009,
+        "interval": [
+          -0.17923395935479544,
+          0.027426833012427532
+        ],
+        "validDraws": 2000
+      },
+      "articles": {
+        "value": -0.07996267079881009,
+        "interval": [
+          -0.1779523724917472,
+          0.018599919115624326
+        ],
+        "validDraws": 2000
+      },
+      "reportedUnit": "writers",
+      "reportedInterval": [
+        -0.17923395935479544,
+        0.027426833012427532
+      ]
+    },
+    "distressMinusConcern": {
+      "writers": {
+        "value": -0.0459202177963269,
+        "interval": [
+          -0.18199365730335662,
+          0.10534516249938002
+        ],
+        "validDraws": 2000
+      },
+      "articles": {
+        "value": -0.0459202177963269,
+        "interval": [
+          -0.17657841565852012,
+          0.08168038660863425
+        ],
+        "validDraws": 2000
+      },
+      "reportedUnit": "writers",
+      "reportedInterval": [
+        -0.18199365730335662,
+        0.10534516249938002
+      ]
+    }
+  },
+  "writers": 372,
+  "articles": 417,
+  "status": "complete",
+  "packetPin": "9a02029adc1292fe784160a491f0d2629b5c59bebcb4cfd8afd03e6bc63647b8",
+  "codePin": "f23cf7d8e318d6583b461705b62875366ed1913159e2e486b7ef770bde5d3932",
+  "protocolPin": "524d3dbbfbc8330cbf9bdc075830ab6c29f0475511e848410dc915a0ebab11f7",
+  "ledger": "E-TP56-20261123",
+  "sourceReceiptPin": "5cbd36a0e8ab907ca566393e30db0e95a1ffda2befadcb1905ac310b3fe2f4ce",
+  "productionAdmission": false
+}

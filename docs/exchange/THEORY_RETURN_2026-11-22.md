@@ -45,3 +45,11 @@ Q6 finished with 24,850 valid answers. Reader B completed all 5,014 Q11 sentence
 **Q14.** Miss. Chat 833/1166 (71.4%), recalled events 986/1230 (80.2%). TP31 stays blocked; no further reader will be tried. [E-Q14-20261121](result-sheets/Q14-BS.md).
 
 <!-- landed E-Q14-20261121 -->
+
+**TP44.** 7,666 reports available in Table 1. Table 2 uses 1,091 complete respondents; five excluded. agreement pass, personAcrossFeelings pass. Pleasantness across 7314 reports: 0.635 [0.618, 0.652]. Style-cleared tags across 35 feeling splits: 0.088 [0.075, 0.102]. Uncleared: 0.112 [0.097, 0.126]. One questionnaire sitting, translated reports and limited within-feeling variation. [Full results](result-sheets/TP44.md).
+
+<!-- CB TP44 4cb861d5aa0443b06afa3d4668a5f6a24849c678a652cae4d2070a0f31de90a4 -->
+
+**TP43.** 2,000 selected blog authors; 1997 supplied retained openings. Q19 completed texts for 0 whole authors. acrossDatesAndGap pass, incrementalMatching pass, withinWriterMovement unavailable. Partly cleared tag stability: date halves 0.340 [0.321, 0.360]; gap 0.234 [0.215, 0.253]. Adjusted top-ten gain from adding Tags: 0.014 [0.006, 0.023]. A blog is a public face. After partial clearing, tag stability and matching can still reflect the measured style and subjects, as well as repeated circumstances. [Full results](result-sheets/TP43.md).
+
+<!-- CB TP43 a6acb1bc6a7a2669c3835925592caaa122a9f096b3e7ff7f7b2172a7acd6e658 -->

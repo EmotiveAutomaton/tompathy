@@ -31,11 +31,11 @@ FORMS = dict(
     )
 )
 FORMS.update({word: i for i, word in enumerate(WORDS)})
-PATTERN = re.compile(r"\b(?:" + "|".join(FORMS) + r")\b", re.IGNORECASE)
+PATTERN = re.compile(r"\b(?:" + "|".join(FORMS) + r")\b")
 
 
 def matches(text):
-    return sum(1 << j for j in {FORMS[m.casefold()] for m in PATTERN.findall(text)})
+    return sum(1 << j for j in {FORMS[m] for m in PATTERN.findall(text.casefold())})
 
 
 def author_cells(tags, masks, halves):
