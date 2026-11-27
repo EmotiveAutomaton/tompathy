@@ -1,4 +1,4 @@
-November 27 at 13:46 PT, Spark was scoring Q28 (140/6,600) and the workstation GPU was scoring G14 (60/6,600). The CPU card queue was waiting for TP72 rehearsal admission, with 13.56 GiB of available commit against 18.11 GiB required. The workstation can read both held corpora. The last Spark source check found no in-place route to the talk pages or recalled stories.
+Nov 27 at 14:04 PT, Spark is running Q28 (1,140/6,600), the workstation GPU has no verified active ToMpathy GPU worker (stopped, last G14), and the card queue is between registered stages. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
 
 # Two-day engine return · November 27–29
 
@@ -38,7 +38,7 @@ The table covers 35 registered predictions. TP62 met both directional criteria o
 | TP69 · Competence and Respect | Across 24,850 chat situations, Competence and Respect lifts differed by at least half a standard deviation for 11 of 32 words. Respect and acceptance differed by that much for 6. | [TP69 · E-TP69-20261127](result-sheets/TP69.md) |
 | TP66 · Order during loss | After matching sentence counts, the SADNESS-minus-FEAR timing difference between loss and other texts was -0.014 [-0.058, 0.032] in chat and 0.268 [0.184, 0.352] in recalled events. | [TP66 · E-TP66-SHORT-20261127](result-sheets/TP66.md) |
 | TP67 · Whose rise | Own minus other responsibility in mean PRIDE was grateful -0.004 [-0.032, 0.025], impressed 0.021 [-0.025, 0.068], proud -0.040 [-0.091, 0.009]. The direct comparison of own, close and other is specified and implemented. Its estimates await the two standing panels and TP77’s agreement check. | [TP67 · E-TP67-ORIGINAL-20261127](result-sheets/TP67.md) |
-| TP72 · Sealed bundle v2 | Candidate assembled. Both invented-data rehearsals are registered behind counted resource admission. Delivery awaits their result. | [TP72](result-sheets/TP72.md) |
+| TP72 · Sealed bundle v2 | Sounding Line received 27 verified payload files. Invented histories exercised all nine tables. The two-speaker fixture produced zero releasable rows, and a larger invented group exercised both conversation tables. | [TP72 · E-TP72-PRODUCER-20261127](result-sheets/TP72.md) |
 | TP73 · Whole authors | Q24 returned 2,993 whole authors. Both curiosity predictions missed. The comparison of B with random heads on the same 10 and 20 posts per date half is prepared. Its estimates are pending. | [TP73](result-sheets/TP73.md) |
 | TP74 · Earned standing | Depends on Q27 and the agreement of the relevant fields. | Section 4 |
 | TP75 · Worry and time direction | Depends on Q31’s blog sentence sample. | Section 4 |

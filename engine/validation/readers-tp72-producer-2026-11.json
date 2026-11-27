@@ -1,0 +1,62 @@
+{
+  "manifestSha256": "80de29a3fc19d6fcb52b6e2fa38bae2bc186aba9c5ebc69fa531008e192ec80a",
+  "payloadFiles": 27,
+  "payloadBytes": 196128053,
+  "priorTP58Manifest": "f2a7a8eb109f9691394305b2409ceede434d0761bc97e328c41d04c677868752",
+  "inventedOnly": true,
+  "setsPerFamily": 200,
+  "draws": 2000,
+  "historyAuthors": 48,
+  "deepAuthors": 32,
+  "twoSpeakerRowsReleased": 0,
+  "speechPeopleForDisclosureCheck": 12,
+  "missingTraitN": 11,
+  "largestSpeakerMeanDifference": 1.7396133034086603e-08,
+  "matchingRanksExact": true,
+  "receiverFiltersExercised": true,
+  "rotatedGramMatched": true,
+  "receiverChecks": {
+    "finiteSchemaAndSize": true,
+    "gatePin": "9c5e8ff380cc28eb36a180e8f97c37428491665429e72c9eb4aa3723a650f5a6",
+    "originalFormatSyntheticConversation": true,
+    "speakerAdapterPin": "8798c105db4f02803a27579fb35913640eca6638260ace023955000fea14934f"
+  },
+  "tables": {
+    "conversation": {
+      "conversation_affect.csv": 12,
+      "conversation_traits.csv": 190
+    },
+    "history": {
+      "channels.csv": 2,
+      "contrast.csv": 1,
+      "curve_check.csv": 4,
+      "fixed_profile.csv": 320,
+      "growth.csv": 4,
+      "matching.csv": 96,
+      "posts_needed.csv": 152,
+      "stability.csv": 320,
+      "traits.csv": 170
+    }
+  },
+  "size": {
+    "conversation": {
+      "bytes": 30367,
+      "rows": 202,
+      "rowsWithPartlyUndefinedNulls": 0
+    },
+    "history": {
+      "bytes": 139045,
+      "rows": 1069,
+      "rowsWithPartlyUndefinedNulls": 0
+    }
+  },
+  "elapsedSeconds": 17.17242079996504,
+  "tokenizers": "0.22.2",
+  "sourceReceiptPin": "7da01857f976519fbf584c62aa68a534a08c128400e47f75ce94e04e05a42a68",
+  "ledger": "E-TP72-PRODUCER-20261127",
+  "recipientCopyVerified": true,
+  "certificateSha256": "f1e0f34a84e608d12b2bd0412df81bce5de47ad67ce99592171aefdda7f59597",
+  "recipientComplementFixtureVerified": true,
+  "recipientComplementGatePin": "5200f59ea31136c3157906ec0b4c8ee7adb1a43ec1892033c4c4adf2e79dfab5",
+  "scope": "Invented producer rehearsal and byte-verified handover. Sealed acceptance and human results are separate."
+}

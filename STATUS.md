@@ -1,5 +1,7 @@
 # ToMpathy status
 
+**November 27 · TP72.** Sounding Line received 27 verified payload files. Invented histories exercised all nine tables. The two-speaker fixture produced zero releasable rows, and a larger invented group exercised both conversation tables. [E-TP72-PRODUCER-20261127](docs/exchange/result-sheets/TP72.md)
+
 **November 27 · Standing marks.** Spark completed Q27 with 38,202 valid responses on 43,021 texts. G12 stopped at the workstation memory floor with 27,214 response files saved. Full standing agreement remains unmeasured. Q28 and G14 are running the event-feature panels. [GPU return and coverage](docs/exchange/THEORY_RETURN_2026-11-29.md)
 
 **November 27 · R48.** The historical reporting pass restores the CoAuthor rehearsal counts and four completed base-encoder folds from saved receipts. The engine also records the receiver's PANDORA source-binding failure. Q30 has no recalled-story estimate. Those figures will be published under amendment DC when measured. [Study reports and intervals](docs/exchange/HELD_RESULTS_DIGEST.md) · [Inventory](docs/exchange/HELD_RESULTS_INVENTORY.md)
