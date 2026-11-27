@@ -1,5 +1,7 @@
 # Engine scoreboard
 
+**November 27 · TP70.** Against rotated heads, the component floor was 2 on chat texts and 3 on blog author means. The map’s margins above the rotated bands were 0.187 [0.174, 0.196], 0.129 [0.119, 0.137] in chat and blogs, respectively. [E-TP70-20261127](exchange/result-sheets/TP70.md)
+
 **November 21 afternoon.** Across 270 writers, the tag contrast between unpleasant and pleasant assigned words repeated across halves after adjustment for writer level. Mean adjusted covariance .188, 95% writer interval [.141, .227], clearing zero. The separate metadata census found 5,530 blog authors with 20 or more posts across at least two dates. [TP41](exchange/result-sheets/TP41.md) · [TP42](exchange/result-sheets/TP42.md).
 
 Only measured engine accuracy belongs here. Pending rows are not zero scores.
