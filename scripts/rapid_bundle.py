@@ -35,6 +35,25 @@ def prepare(out, check):
     from run72 import offline
 
     sys.addaudithook(offline)
+    if sys.platform == "win32":
+        # On Windows, NumPy's architecture check otherwise asks for the host name.
+        # Fill Python's platform cache with an empty node, under the same socket guard.
+        import platform
+        from unittest.mock import patch
+
+        with patch.object(platform, "_node", return_value=""):
+            platform.machine()
+    if "retryDeadlineUTC" in plan:
+        from datetime import datetime
+
+        original_check = check
+        deadline = datetime.fromisoformat(plan["retryDeadlineUTC"]).timestamp()
+
+        def check():
+            original_check()
+            if time.time() >= deadline or (ROOT / "TP72-rehearsal-a/STOP").exists():
+                raise RuntimeError("Original rehearsal deadline or STOP")
+
     check()
     import tokenizers
     from conversation import conversation, speaker_vectors

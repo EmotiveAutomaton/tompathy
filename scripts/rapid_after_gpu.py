@@ -52,7 +52,13 @@ def wait_predecessor(owner, check):
         os.close(fd)
 
 
-def run(root, prepare_only=False, blog_registration=None, filler_registration=None):
+def run(
+    root,
+    prepare_only=False,
+    blog_registration=None,
+    filler_registration=None,
+    released_workstation=False,
+):
     import hashlib
     import json
 
@@ -162,13 +168,20 @@ def run(root, prepare_only=False, blog_registration=None, filler_registration=No
         if blog_registration
         else "-sentence-follow"
     )
-    ctl = root / (machine + suffix)
+    if released_workstation and not win:
+        raise ValueError("Release-only continuation belongs to the workstation")
+    ctl = root / (
+        machine + suffix + ("-after-G12-stop" if released_workstation else "")
+    )
     ctl.mkdir(exist_ok=True)
     with lane.lease(ctl / "dispatcher.lock"):
         target = root / "jobs" / job
         if target.exists():
             raise FileExistsError("Preserve the existing sentence job")
-        if blog_registration or filler_registration:
+        if released_workstation:
+            previous = root / "jobs" / prior
+            predecessor = lane.read(previous / "released.json")["owner"]
+        elif blog_registration or filler_registration:
             previous_ctl = "-blog-follow" if filler_registration else "-sentence-follow"
             proof = lane.read(root / (machine + previous_ctl) / "armed.json")
             if (
@@ -346,6 +359,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("root", type=Path)
     parser.add_argument("--verify-only", action="store_true")
+    parser.add_argument("--released-workstation", action="store_true")
     registrations = parser.add_mutually_exclusive_group()
     registrations.add_argument("--blog-registration")
     registrations.add_argument("--filler-registration")
@@ -355,6 +369,7 @@ if __name__ == "__main__":
         args.verify_only,
         args.blog_registration,
         args.filler_registration,
+        args.released_workstation,
     )
     if proof:
         print(proof)

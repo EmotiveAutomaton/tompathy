@@ -63,7 +63,7 @@ class Process:
             check()
 
 
-def run(root):
+def run(root, *, after_memory_stop=False):
     if os.name != "nt":
         raise RuntimeError("The follow-up requires native Windows process handles")
     code = root / "code" / COMMIT
@@ -75,7 +75,9 @@ def run(root):
     worker.require_pin(root / "registration.json", REG)
     for name, expected in lane.read(root / "registration.json")["code"].items():
         worker.require_pin(code / name, expected)
-    control = root / "workstation-follow"
+    control = root / (
+        "workstation-G14-after-stop" if after_memory_stop else "workstation-follow"
+    )
     control.mkdir(exist_ok=True)
 
     def check():
@@ -138,7 +140,22 @@ def run(root):
             dispatcher["registration"],
         ) != (225660, 134402653573201159, "G12", REG):
             raise ValueError("Unexpected original worker")
-        if not (g12 / "released.json").exists():
+        if after_memory_stop:
+            worker.require_pin(
+                g12 / "failed.json",
+                "e9ac71cfc42a7c2c4ba4dc6089de6e9ed88dee3615e466c18efa4997be35a55c",
+            )
+            worker.require_pin(
+                g12 / "released.json",
+                "3c9a076db208904301a3165b2184b296acdf85cc3aadca6bb4f90a72474785b6",
+            )
+            failure = lane.read(g12 / "failed.json")
+            if (
+                failure["owner"] != owner
+                or failure["error"] != "Available commit reached the 8 GiB floor"
+            ):
+                raise ValueError("Expected the reviewed memory stop")
+        elif not (g12 / "released.json").exists():
             with contextlib.ExitStack() as handles:
 
                 def hold(pid, ticks=None):
@@ -174,7 +191,8 @@ def run(root):
         prior = lane.read(g12 / "released.json")
         if (
             prior["owner"] != owner
-            or prior["exitCode"]
+            or prior["exitCode"] != (1 if after_memory_stop else 0)
+            or not prior["childWaited"]
             or not prior["sharedLeaseReacquired"]
         ):
             raise ValueError("Cannot advance beyond G12")
@@ -213,4 +231,10 @@ def run(root):
 
 
 if __name__ == "__main__":
-    run(Path(sys.argv[1]).resolve())
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("root", type=Path)
+    parser.add_argument("--after-memory-stop", action="store_true")
+    args = parser.parse_args()
+    run(args.root.resolve(), after_memory_stop=args.after_memory_stop)
