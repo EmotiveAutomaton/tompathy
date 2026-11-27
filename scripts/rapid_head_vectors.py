@@ -89,14 +89,28 @@ def masks(text):
 def run():
     import fcntl
 
-    from threadpoolctl import threadpool_limits
-
     os.setpriority(os.PRIO_PROCESS, 0, 15)
-    out = ROOT / "TP61-vectors-a"
-    with (
-        (ROOT / "TP61-vector-cpu.lock").open("ab") as lock,
-        threadpool_limits(limits=1),
-    ):
+    limits = (
+        "OPENBLAS_NUM_THREADS",
+        "OMP_NUM_THREADS",
+        "NUMEXPR_NUM_THREADS",
+        "MKL_NUM_THREADS",
+    )
+    if any(os.environ.get(name) != "1" for name in limits):
+        raise ValueError("Launch with one numerical thread before NumPy loads")
+    os.sched_setaffinity(0, {max(os.sched_getaffinity(0))})
+    probe = np.eye(32) @ np.ones((32, 1))
+    if not np.all(probe == 1) or len(list(Path("/proc/self/task").iterdir())) != 1:
+        raise RuntimeError("The numerical process did not start with one thread")
+    prior_log = ROOT / "TP61-vectors-a.log"
+    if (
+        ROOT / "TP61-vectors-a"
+    ).exists() or "No module named 'threadpoolctl'" not in prior_log.read_text():
+        raise ValueError(
+            "The retry requires the preserved pre-computation import failure"
+        )
+    out = ROOT / "TP61-vectors-b"
+    with (ROOT / "TP61-vector-cpu.lock").open("ab") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         check(out)
         if shutil.disk_usage(ROOT).free < 4_000_000_000:
@@ -112,6 +126,8 @@ def run():
             .split()[19],
             "job": "TP61-vectors",
             "codePin": pin(Path(__file__)),
+            "initialFailurePin": pin(prior_log),
+            "threadsObserved": 1,
         }
         dump(out / "owner.json", owner)
         try:
