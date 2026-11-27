@@ -1,5 +1,5 @@
 import type { Packet } from "../core/model";
-import { readerNames } from "../core/bottom-box";
+import { readerNames, researchGroup, shameScope, tagLabel, type PageReading } from "../core/bottom-box";
 
 export function passageAt(packet: Packet, span: [number, number]) {
   return packet.artifact.regions.flatMap(region => {
@@ -12,16 +12,32 @@ export function passageAt(packet: Packet, span: [number, number]) {
 /** Inspection only. Unassigned labels never acquire a need or a level. */
 export function ResearchReadings({ packet, enabled, need }: { packet: Packet; enabled: boolean; need?: string }) {
   if (!enabled) return null;
-  const readings = (packet.bottom_box?.on_page ?? []).filter(r => r.status === "research" && r.id !== "N5" && r.events.length && (!need || r.id === need || r.events.some(e => e.stake?.need === need)));
+  const sections = new Map<string, PageReading>();
+  for (const r of packet.bottom_box?.on_page ?? []) {
+    if (r.status !== "research") continue;
+    for (const event of r.events) {
+      const id = researchGroup(r.id, event.label);
+      if (id === "N2" || id === "N5" || (need && id !== need && event.stake?.need !== need)) continue;
+      const key = `${r.pack}:${id ?? "unassigned"}`;
+      let section = sections.get(key);
+      if (!section) {
+        section = { ...r, id, events: [] };
+        sections.set(key, section);
+      }
+      section.events.push(event);
+    }
+  }
+  const readings = [...sections.values()];
   if (!readings.length) return null;
   return <details data-testid="research-readings"><summary>Research passage readings</summary>
     <p>Proposed readings of these sentences. They do not establish this writer’s needs, preferences or endorsement.</p>
     {readings.map(r => <details key={`${r.pack}:${r.id ?? "unassigned"}`}><summary>{r.id ? readerNames[r.id] : "Unassigned labels"} · {r.events.length} events</summary>
       <p>{r.key.corpus}. {r.score.metric}: {r.score.value.toFixed(3)}.</p>
+      {r.id === "C9" && <p>{shameScope}</p>}
       {r.events.filter(e => !need || r.id === need || e.stake?.need === need).map((e, i) => <div key={i}>
         <blockquote>{passageAt(packet, e.span) || `No matching passage for span ${e.span.join("–")}.`}</blockquote>
-        <p>{e.label} · score {e.confidence.toFixed(3)}{r.id === null ? " · no assigned need or channel" : ""}
-          {e.stake && e.stake.need !== "N5" && ` · ${readerNames[e.stake.need]}, ${e.stake.direction}, ${e.stake.by}, ${e.stake.when}`}
+        <p>{r.id === null || r.id.startsWith("N") ? tagLabel(e.label) : e.label} · score {e.confidence.toFixed(3)}{r.id === null ? " · no assigned need or channel" : ""}
+          {e.stake && e.stake.need !== "N5" && e.stake.need !== "N2" && ` · ${readerNames[e.stake.need]}, ${e.stake.direction}, ${e.stake.by}, ${e.stake.when}`}
           {e.channel_by_table && ` · ${e.channel_by_table.version}: ${readerNames[e.channel_by_table.channel]}${e.channel_by_table.channel !== r.id ? " (disagrees with the label reader)" : ""}`}</p>
       </div>)}
     </details>)}

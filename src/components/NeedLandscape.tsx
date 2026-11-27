@@ -115,22 +115,23 @@ export function NeedLandscape({ packet, nodes, values, tab, context, onSources, 
           onMouseEnter={() => setActive(source.id)} onMouseLeave={() => setActive(null)}
           onFocus={() => setActive(source.id)} onBlur={() => setActive(null)}
           onClick={() => source.hypothesis ? inspect(source.hypothesis) : tab === "creator" && !source.current ? onSources() : setActive(source.id)}
-          title={`${source.label}. ${source.confidence === null ? "Reliability not supplied." : "Opacity and weight reflect supplied support, not calibrated confidence."}`}
+          title={`${source.label}. ${source.scope ? source.scope + " " : ""}${source.confidence === null ? "Reliability not supplied." : "Opacity and weight reflect supplied support, not calibrated confidence."}`}
           style={{ fontWeight: source.confidence === null ? 400 : 350 + 350 * source.confidence }}>
           <svg className="need-drop" viewBox="0 0 200 64" preserveAspectRatio="none" aria-hidden="true" style={{ opacity: source.confidence === null ? .14 : .08 + .28 * source.confidence }}>
             <path d={source.type === "action" ? "M5 32 C5 4 65 0 107 14 C146 28 171 32 198 32 C171 32 146 36 107 50 C65 64 5 60 5 32Z" : tipPath} />
           </svg>
           <span style={{ opacity: source.confidence === null ? .78 : .5 + .5 * source.confidence }}>{source.label}</span>
+          {source.scope && <small>{source.scope}</small>}
           {source.type === "action" && <small>{source.current ? "Current artifact" : source.date}</small>}
         </button>)}
       </div>
-      <div className="need-targets" aria-label="Five needs, bodily needs and stress">
-        {needs.map((need, i) => <div key={need.id} className={i === 5 ? "body-channels" : ""}><button data-need={need.id} data-outlet={need.id} aria-label={need.label}
-          className={`need-target ${i === 5 ? "body-need" : ""} ${active === need.id || selectedNeeds.has(need.id) ? "connected" : ""}`}
+      <div className="need-targets" aria-label="Needs, bodily needs and stress">
+        {needs.filter(need => need.id !== "N2").map(need => <div key={need.id} className={need.id === "N6" ? "body-channels" : ""}><button data-need={need.id} data-outlet={need.id} aria-label={need.label}
+          className={`need-target ${need.id === "N6" ? "body-need" : ""} ${active === need.id || selectedNeeds.has(need.id) ? "connected" : ""}`}
           onMouseEnter={() => setActive(need.id)} onMouseLeave={() => setActive(null)}
           onFocus={() => setActive(need.id)} onBlur={() => setActive(null)} onClick={() => onNeed(need.id)}>
           <span>{need.label}{activity?.[need.id]?.length ? ` · ${activity[need.id].length}` : ""}</span><NeedGraph /></button>
-          {i === 5 && <div className="body-subchannels">{bodyChannels.map(channel => <button key={channel.id} data-outlet={channel.id} className="body-subchannel" aria-label={channel.label}
+          {need.id === "N6" && <div className="body-subchannels">{bodyChannels.map(channel => <button key={channel.id} data-outlet={channel.id} className="body-subchannel" aria-label={channel.label}
             onMouseEnter={() => setActive("N6")} onMouseLeave={() => setActive(null)} onFocus={() => setActive("N6")} onBlur={() => setActive(null)} onClick={() => onNeed(channel.id)}>
             <NeedGraph /><span>{channel.label}</span></button>)}</div>}
           </div>)}

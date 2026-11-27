@@ -7,6 +7,7 @@ from pathlib import Path
 import numpy as np
 
 from ...packs.registry import sha256
+from ...packet.research_labels import tag_keys, tag_label
 from ...packs.trigger import FEATURES, TAG_MAP, TAG_MAP_V2, TAGS
 from ...packs.v2 import code_pin, load_pack
 from ..back_half.reporting import save_json
@@ -86,14 +87,15 @@ def need_pack(job, models, story, destination, check, *, tag_map_version=1, ledg
     with np.load(weights, allow_pickle=False) as d:
         linear = head(destination, d['weights'], d['bias'])
     training = [license_file(destination, story/'README.txt', 'DATA_README.md', 'Story Commonsense archive; license unstated')]
-    m = base('rp-need-1', 'tags', TAGS, enc, linear, training,
+    public_tags = [tag_label(t) for t in TAGS]
+    m = base('rp-need-1', 'tags', public_tags, enc, linear, training,
              {'corpus': 'Story Commonsense', 'labelled_by': 'two-annotator majority, original story folds', 'n': receipt['source']['rows']},
              {'metric': 'mean story-held-out tag AUC', 'value': receipt['story']['mean_auc']})
-    m.update(thresholds=dict(zip(TAGS, receipt['story']['thresholds'])),
-             tag_map=TAG_MAP if tag_map_version == 1 else TAG_MAP_V2)
+    m.update(thresholds=dict(zip(public_tags, receipt['story']['thresholds'], strict=True)),
+             tag_map=tag_keys(TAG_MAP if tag_map_version == 1 else TAG_MAP_V2))
     if tag_map_version == 2:
         m['mapping'] = {'status': 'ruled', 'source': 'November19 R19-R21; tag-map-2; word proxies, no maker inference'}
-    m['people'] = receipt['people']['per_tag_f1']
+    m['people'] = tag_keys(receipt['people']['per_tag_f1'])
     return finish(destination, m, {'sourceReceiptPin': sha256(job/'receipt.json'), 'artifactsPin': receipt['artifactsPin'],
         'transfer': transfer, 'fullDataHeadIndependentlyScored': False, 'N5': 'computed; hidden in panel',
         'unmapped': ['romance', 'indep'], 'tagMapVersion': tag_map_version, 'ledger': ledger})
@@ -207,12 +209,13 @@ def im2(job, pack, destination, check):
         if d['scores'].shape != (6600, 19) or not np.isfinite(d['scores']).all():
             raise ValueError('IM2 needs all 6600 finite tag-score rows')
         import pandas as pd
-        frame = pd.DataFrame(d['scores'], columns=TAGS)
+        public_tags = [tag_label(t) for t in TAGS]
+        frame = pd.DataFrame(d['scores'], columns=public_tags)
         frame.insert(0, 'text_id', d['text_id'])
     destination.mkdir(parents=True, exist_ok=False)
     frame.to_csv(destination/'scores.csv', index=False, float_format='%.17g')
     save_json(destination/'manifest.json', {'schema': 'IM2-1', 'files': {'scores.csv': sha256(destination/'scores.csv')},
-        'rows': 6600, 'tags': list(TAGS), 'reader': reader.pin, 'encoder': reader.manifest.encoder.sha256,
+        'rows': 6600, 'tags': public_tags, 'reader': reader.pin, 'encoder': reader.manifest.encoder.sha256,
         'head': reader.manifest.head.sha256, 'sourceReceiptPin': sha256(job/'receipt.json'),
         'ledger': evidence.get('ledger', 'no ledger row'), 'tagMapVersion': evidence.get('tagMapVersion', 1),
         'scope': 'Private owner-carried exchange; no raw text, writer IDs or cross-chat delivery; no maker admission'})

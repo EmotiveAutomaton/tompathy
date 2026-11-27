@@ -1,5 +1,7 @@
 # ToMpathy
 
+The November 27–29 [engine return](docs/exchange/THEORY_RETURN_2026-11-29.md) tracks the two GPU queues, the reliability of their marks and the evidence for each proposed display change. The first change names the legacy belonging tag **acceptance**. [TP71](docs/exchange/result-sheets/TP71.md)
+
 ![0.2 reader preview: locked sentence, evidence tooltip, attention, hierarchy and core values](docs/assets/reader.png)
 
 **What’s on the creator’s mind?** ToMpathy is a Chrome side-panel reader for exploring a creator’s current attention, expertise, habits, process and core values alongside a text.

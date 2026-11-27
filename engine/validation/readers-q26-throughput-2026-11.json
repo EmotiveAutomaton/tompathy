@@ -1,0 +1,40 @@
+{
+  "job": "Q26",
+  "texts": 200,
+  "modelPin": "72aac7c28be8ff9b81c2a270eb489c88e6d822a76ec0cb7bf34d965768848567",
+  "promptPin": "20e484074555a9eb43afb41cee83d3fffcb2d5613158d12ef62e2c5d05ca17db",
+  "first100Seconds": {
+    "1": 53.00905322202016,
+    "2": 52.980480516911484,
+    "4": 53.27680617105216
+  },
+  "result": {
+    "arms": {
+      "1": {
+        "seconds": 106.57768213900272,
+        "textsPerMinute": 112.59392922759511,
+        "identicalValid": 173,
+        "literalIdenticalValid": 173,
+        "eligible": false
+      },
+      "2": {
+        "seconds": 106.58644457999617,
+        "textsPerMinute": 112.58467291301436,
+        "identicalValid": 173,
+        "literalIdenticalValid": 173,
+        "eligible": false
+      },
+      "4": {
+        "seconds": 105.75206724007148,
+        "textsPerMinute": 113.4729590936353,
+        "identicalValid": 173,
+        "literalIdenticalValid": 173,
+        "eligible": false
+      }
+    },
+    "selectedWidth": 1
+  },
+  "sourceReceiptPin": "3d8813a933033506d9c9d2ff8f1bb2e550b42a2e658530363be177c7c49e3132",
+  "verifiedFiles": 366,
+  "scope": "Local structured output throughput and agreement. Invalid serial outputs cannot qualify a width."
+}

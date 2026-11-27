@@ -1,6 +1,6 @@
 import type { ContextItem, Hypothesis, Packet } from "./model";
 import { goalGraph, type GoalNode } from "./hierarchy";
-import { readerNames } from "./bottom-box";
+import { readerNames, researchGroup, shameScope, tagLabel } from "./bottom-box";
 
 export const needs = (["N1", "N2", "N3", "N4", "N5", "N6"] as const).map(id => ({ id, label: readerNames[id] }));
 export type NeedId = typeof needs[number]["id"];
@@ -10,7 +10,7 @@ export const bodyChannels = [
 export const needDetails = [...needs, ...bodyChannels, { id: "S1", label: "Stress" }] as const;
 export type NeedDetailId = typeof needDetails[number]["id"];
 export type NeedSource = { id: string; label: string; type: "fluency" | "channel" | "action";
-  confidence: number | null; regions: string[]; nodes: string[]; hypothesis?: Hypothesis;
+  confidence: number | null; scope?: string; regions: string[]; nodes: string[]; hypothesis?: Hypothesis;
   date?: string; current?: boolean; needs: { id: NeedId; direction: -1 | 1; illustration: boolean }[] };
 
 /** Only actual packet spans are joined. This is not a label-to-need inference. */
@@ -24,6 +24,7 @@ export function pageNeedSources(packet: Packet): NeedSource[] {
       links.set(`${stake.need}:${direction}`, { id: stake.need, direction, illustration: false });
     }
     return { id: `page:${r.pack}:${r.id}`, label: readerNames[r.id!] ?? r.id!, type: "channel",
+      ...(r.id === "C9" ? { scope: shameScope } : {}),
       confidence: r.events.length ? r.events.reduce((s, e) => s + e.confidence, 0) / r.events.length : null,
       regions: packet.artifact.regions.filter(region => r.events.some(e =>
         e.span[0] < region.anchor.start + region.anchor.exact.length && region.anchor.start < e.span[1])).map(r => r.id),
@@ -33,8 +34,8 @@ export function pageNeedSources(packet: Packet): NeedSource[] {
 
 export function pageNeedActivity(packet: Packet) {
   return Object.fromEntries(needs.map(n => [n.id, (packet.bottom_box?.on_page ?? [])
-    .filter(r => r.id === n.id && n.id !== "N5")
-    .flatMap(r => r.events.map(e => ({ span: e.span, tag: e.label, pack: r.pack })))])) as
+    .flatMap(r => r.events.filter(e => researchGroup(r.id, e.label) === n.id && n.id !== "N5" && n.id !== "N2")
+      .map(e => ({ span: e.span, tag: tagLabel(e.label), pack: r.pack })))])) as
     Record<NeedId, { span: [number, number]; tag: string; pack: string }[]>;
 }
 

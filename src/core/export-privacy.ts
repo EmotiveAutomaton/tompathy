@@ -1,3 +1,5 @@
+import { exportReadingNames } from "./bottom-box";
+
 /** Usernames are local UI metadata, never part of a portable reading. */
 export function exportSafe<T>(value: T): T {
   const names = new Map<string, string>();
@@ -24,7 +26,7 @@ export function exportSafe<T>(value: T): T {
       return text;
     }
     if (Array.isArray(node)) return node.map(item => redact(item, field));
-    if (node && typeof node === "object") return Object.fromEntries(Object.entries(node).filter(([key]) => key !== "localLabel").map(([key, item]) => [key, redact(item, key)]));
+    if (node && typeof node === "object") return exportReadingNames(Object.fromEntries(Object.entries(node).filter(([key]) => key !== "localLabel").map(([key, item]) => [key, redact(item, key)])));
     return node;
   };
   return redact(value) as T;

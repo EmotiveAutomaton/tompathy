@@ -1,7 +1,27 @@
 import { z } from "zod";
 import names from "./reader-names.json";
 
-export const readerNames = names;
+export const readerNames = { ...names, N4: "Respect", C4: "wanting", C6: "SADNESS", C7: "amusement" };
+export const shameScope = "SHAME is silent outside chat in the saved readings.";
+export const tagLabel = (name: string) => name === "belonging" ? "acceptance" : name;
+export function researchGroup(id: PageReading["id"], label: string) {
+  return (id === "N3" || id === "N4") && tagLabel(label) === "acceptance" ? "N4" : id;
+}
+
+/** Apply R47 to reader fields only. Source passages, theory IDs and pack pins are provenance. */
+export function exportReadingNames<T>(input: T): T {
+  if (!input || typeof input !== "object" || !("version" in input)
+    || !["bottom-box-1", "bottom-box-2"].includes(String(input.version))
+    || !("on_page" in input) || !Array.isArray(input.on_page)) return input;
+  const keyed = (record: Record<string, unknown>) => {
+    const renamed = Object.fromEntries(Object.entries(record).map(([k, v]) => [tagLabel(k), v]));
+    if (Object.keys(renamed).length !== Object.keys(record).length) throw Error("Conflicting acceptance tag aliases");
+    return renamed;
+  };
+  return { ...input, on_page: input.on_page.map((r: PageReading) =>
+    r.id === null || r.id.startsWith("N") ? { ...r, events: r.events.map(e => ({ ...e, label: tagLabel(e.label) })),
+      people: keyed(r.people), floor: keyed(r.floor), nothing_here: keyed(r.nothing_here) } : r) };
+}
 const unit = z.number().finite().min(0).max(1);
 const span = z.tuple([z.number().int().nonnegative(), z.number().int().positive()])
   .refine(([a, b]) => a < b, "Invalid span");

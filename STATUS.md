@@ -1,5 +1,7 @@
 # ToMpathy status
 
+**November 27 · Round 37.** Spark completed its throughput trial and all 58,157 frozen worry scores. Spark Q27 and workstation G12 are reading the same 43,021 texts for standing. The first card landed the public acceptance tag and revised display labels. Q24 retains its original cutoff. [Two-day return, queue and timing](docs/exchange/THEORY_RETURN_2026-11-29.md)
+
 Updated 22 November 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
 based on the merged, owner-approved **0.2.0** frontend milestone.
 

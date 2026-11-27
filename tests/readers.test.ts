@@ -2,9 +2,24 @@ import assert from "node:assert/strict";
 import { mkdtemp, mkdir, writeFile, rm } from "node:fs/promises";
 import { join } from "node:path";
 import { test } from "node:test";
-import { BottomBoxSchema, PageReadingSchema, upgradeBottomBoxPacket } from "../src/core/bottom-box";
+import { BottomBoxSchema, PageReadingSchema, readerNames, researchGroup, shameScope, upgradeBottomBoxPacket } from "../src/core/bottom-box";
+import { exportSafe } from "../src/core/export-privacy";
 import { authorNeedSources, workNeedSources } from "../src/core/need-view";
 import { createExample } from "../src/core/example";
+
+test("Round 37 shows acceptance with Respect and exports the legacy tag without rewriting a passage", () => {
+  const old = { id: "N3", events: [{ label: "belonging" }], people: { belonging: 0.5 }, floor: {}, nothing_here: {} };
+  const packet = { artifact: { exact: "belonging" }, bottom_box: { version: "bottom-box-2", on_page: [old] } };
+  const saved = exportSafe(packet);
+  assert.equal(saved.artifact.exact, "belonging");
+  assert.equal(saved.bottom_box.on_page[0].events[0].label, "acceptance");
+  assert.deepEqual(saved.bottom_box.on_page[0].people, { acceptance: 0.5 });
+  assert.equal(old.events[0].label, "belonging");
+  assert.equal(researchGroup("N3", "belonging"), "N4");
+  assert.equal(researchGroup("N3", "contact"), "N3");
+  assert.deepEqual([readerNames.C4, readerNames.C7], ["wanting", "amusement"]);
+  assert.match(shameScope, /outside chat/);
+});
 
 test("reader contract upgrades only valid legacy empties and keeps maker readings closed", () => {
   const empty = { value: null, evidence: [], status: "unvalidated", ledgerRows: [] };
