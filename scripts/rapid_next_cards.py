@@ -36,6 +36,8 @@ WORD_STAGES = {
     "TP67-original": ("rapid_word_contrasts.py",),
 }
 
+SCALE_STAGES = {"TP67-scale": ("rapid_pride_scale.py", "rapid_word_contrasts.py")}
+
 
 def configuration(queue):
     if queue == "sentence":
@@ -48,6 +50,13 @@ def configuration(queue):
             ROOT / "word-card-queue",
             set(OUTSIDE_STAGES),
             WORD_STAGES,
+        )
+    if queue == "scale":
+        return (
+            ROOT / "word-card-queue",
+            ROOT / "pride-scale-queue",
+            set(WORD_STAGES),
+            SCALE_STAGES,
         )
     raise ValueError("Unknown packet queue")
 
@@ -140,7 +149,7 @@ if __name__ == "__main__":
     p = argparse.ArgumentParser()
     p.add_argument("--registration")
     p.add_argument(
-        "--queue", choices=("sentence", "outside", "words"), default="sentence"
+        "--queue", choices=("sentence", "outside", "words", "scale"), default="sentence"
     )
     args = p.parse_args()
     if args.registration:

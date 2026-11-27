@@ -111,6 +111,10 @@ def run(card, attempt):
                 import rapid_short_order as study
 
                 result = study.prepare(out, check)
+            elif card == "TP67-scale":
+                import rapid_pride_scale as study
+
+                result = study.prepare(out, check)
             elif card.startswith("TP68-"):
                 import rapid_blend as study
 

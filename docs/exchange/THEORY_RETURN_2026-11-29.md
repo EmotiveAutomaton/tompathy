@@ -1,4 +1,4 @@
-Nov 27 at 10:03 PT, Spark is running Q27 (18,240/43,021), the workstation GPU is running G12 (16,340/43,021), and the card queue is running TP77-original. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
+Nov 27 at 10:04 PT, Spark is running Q27 (18,300/43,021), the workstation GPU is running G12 (16,400/43,021), and the card queue is running Q31-inputs. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
 
 # Two-day engine return · November 27–29
 
@@ -27,7 +27,7 @@ The table covers 35 registered predictions. TP62 met both directional criteria o
 | TP68 · Embarrassment | The fifteen comparison words and the five writer-held-out folds are fixed. The fits are queued behind the outside-score table. | [TP68](result-sheets/TP68.md) |
 | TP69 · Competence and Respect | The three word profiles, the goal-support column and the Respect controls are queued. | [TP69](result-sheets/TP69.md) |
 | TP66 · Order during loss | The short loss comparison is queued. The blog and story comparisons await their sources. | [TP66](result-sheets/TP66.md) |
-| TP67 · Whose rise | The own-versus-other responsibility comparison is queued. The three-way comparison needs Q27. | [TP67](result-sheets/TP67.md) |
+| TP67 · Whose rise | The own-versus-other responsibility comparison is queued. For the analyst’s one-fifth-SD prediction, each writer draw recalculates the within-word scale among eligible reports. The three-way comparison needs Q27. | [TP67](result-sheets/TP67.md) |
 | TP72 · Sealed bundle v2 | Pending its place in the section 6 queue, two invented-data rehearsals and a verified manifest. Sounding Line retains the TP58 rehearsal bundle. | Section 4 |
 | TP73 · Whole authors | Q24 returned 2,993 whole authors. The registered competence arm is complete. Its curiosity contrasts miss both bars. Other arms remain open. | [TP73](result-sheets/TP73.md) |
 | TP74 · Earned standing | Depends on Q27 and the agreement of the relevant fields. | Section 4 |
