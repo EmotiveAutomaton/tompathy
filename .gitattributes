@@ -30,3 +30,11 @@ scripts/engine-readers-job.py text eol=crlf
 scripts/person_teacher_land.py text eol=crlf
 engine/tompathy_engine/eval/readers/reporting.py text eol=crlf
 engine/tompathy_engine/eval/readers/tp24_chat.py text eol=crlf
+
+# Preserve the November 22 packet aggregate, runner and bundle byte identities.
+engine/validation/readers-tp45-whole-2026-11.json -text whitespace=cr-at-eol
+engine/validation/readers-tp57-2026-11.json -text whitespace=cr-at-eol
+engine/validation/readers-tp60-2026-11.json -text whitespace=cr-at-eol
+scripts/week_drift_secondary.py -text whitespace=cr-at-eol
+scripts/tmp1/README.md -text whitespace=cr-at-eol
+scripts/tmp1/*.py -text whitespace=-blank-at-eof,cr-at-eol

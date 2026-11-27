@@ -3,6 +3,7 @@ import gzip
 import itertools
 import json
 import zipfile
+from contextlib import ExitStack
 from collections import Counter
 from pathlib import Path
 
@@ -23,10 +24,12 @@ def rows(path):
             yield json.loads(ln)
 
 
-def prepare(out,check):
+def prepare(out,check,whole=False):
     audit=json.loads((WEEK/'Q20-transfer.json').read_bytes())
     root=Path(audit['mirror'])
     src=WEEK/'Q20-inputs-a'
+    if whole and pin(src/'receipt.json')!='84894f9adaa02ad4b51c6078573c6633d8d73be85e91965b5e1644ee646fbb54':
+        raise ValueError('Q20 roster receipt differs')
     cfg=json.loads((src/'receipt.json').read_bytes())
     join=src/'local-joins.jsonl.gz'
     if (not audit['nativeExited'] or not audit['priorFlockReleased'] or
@@ -40,10 +43,12 @@ def prepare(out,check):
         key=r['opening']
         if r['qualifies']:
             dated[r['author']]+=1
-        if key is not None:
-            index.setdefault(key,len(index))
-            if not r['qualifies']:
-                references[key]+=1
+        keys=r['windows'] if whole and r['qualifies'] else [key]
+        for window in keys:
+            if window is not None:
+                index.setdefault(window,len(index))
+        if key is not None and not r['qualifies']:
+            references[key]+=1
     count=len(index)
     def matrix(name,cols):
         return np.lib.format.open_memmap(out/(name+'.npy'),mode='w+',dtype='float64',shape=(count,cols))
@@ -85,12 +90,45 @@ def prepare(out,check):
             seen[ix]=True
     if not seen.all() or len(topics)!=300:
         raise ValueError('Incomplete design')
+    if whole:
+        # Outside authors have only registered reference openings. In the study
+        # each dated post contributes once, regardless of its number of windows.
+        post_index={}
+        # Keep the input and output mappings out of memory at the same time.
+        # At most 512 posts x 20 windows are gathered in a batch. Even mapped
+        # in full, the Q20 window arrays here occupy less than 3 GiB.
+        post_files=[out/'post-style.f64',out/'post-readings.f64']
+        with ExitStack() as stack:
+            streams=[stack.enter_context(path.open('xb')) for path in post_files]
+            for batch in itertools.batched(rows(join),512):
+                check()
+                indices=[]; lengths=[]
+                for r in batch:
+                    keys=r['windows'] if r['qualifies'] else [r['opening']]
+                    if not keys:
+                        continue
+                    if r['id'] in post_index or len(keys)>20 or None in keys:
+                        raise ValueError('Invalid post/window binding')
+                    post_index[r['id']]=len(post_index)
+                    lengths.append(len(keys))
+                    indices.extend(index[key] for key in keys)
+                if indices:
+                    starts=np.cumsum([0,*lengths[:-1]])
+                    for stream,data in zip(streams,(x,y),strict=True):
+                        means=np.add.reduceat(data[indices],starts,axis=0)/np.asarray(lengths)[:,None]
+                        stream.write(means.tobytes())
+        del x,y,data,index
+        x,y=(np.memmap(path,dtype='float64',mode='r',shape=(len(post_index),width))
+             for path,width in zip(post_files,(358,38),strict=True))
     def authors():
         for key,grp in itertools.groupby(rows(join),key=lambda r:r['author']):
             allrows=list(grp)
-            valid=[r for r in allrows if r['opening'] is not None]
+            valid=([r for r in allrows if r['id'] in post_index] if whole else
+                   [r for r in allrows if r['opening'] is not None])
             if valid:
-                yield key,allrows,valid,np.array([index[r['opening']] for r in valid])
+                indices=([post_index[r['id']] for r in valid] if whole else
+                         [index[r['opening']] for r in valid])
+                yield key,allrows,valid,np.array(indices)
     total=np.zeros(396); n=0; study_n=0; sums=np.zeros(19); squares=np.zeros(19)
     for key,allrows,group,ix in authors():
         check()
@@ -143,14 +181,14 @@ def prepare(out,check):
         values=np.column_stack((a,b,cleared))
         for gap in (False,True):
             order=curve.nested_indices([r['day'] for r in group],[r['id'] for r in group],gap)
-            if not gap and all(len(side)>0 for side in order):
+            if not whole and not gap and all(len(side)>0 for side in order):
                 containers.setdefault(('every','date','full'),[]).append(
                     (key,*(values[side].mean(0) for side in order)))
-            for k in (5,10,20,40):
+            for k in ((20,) if whole else (5,10,20,40)):
                 if min(map(len,order))<k:
                     continue
                 for population,keep in [('deep',len(allrows)>=deep_min and (deep_min==80 or k<=20)),
-                                        ('all',k==10)]:
+                                        ('all',not whole and k==10)]:
                     if keep:
                         slot=(population,'gap' if gap else 'date',k)
                         containers.setdefault(slot,[]).append((key,*(values[o[:k]].mean(0) for o in order)))
@@ -161,9 +199,43 @@ def prepare(out,check):
         owners,left,right=zip(*data)
         np.savez_compressed(out/f'{pop}-{split}-{k}.npz',owners=owners,left=left,right=right,
                             fold=[folds['all' if pop=='every' else pop][a] for a in owners])
+    if whole:
+        return whole_tables(out,check,audit['sourceReceiptPin'],nr,study_n,deep_min)
     return dict(transferPin=audit['sourceReceiptPin'],outsideOpenings=nr,columns=358,
                 lastStyleReading='capitalizedShare',forms=forms,topics=topics,tags=list(TAGS),
                 deepMinimum=deep_min,qualifyingOpenings=study_n)
+
+
+def whole_tables(out,check,source,outside,study_posts,minimum):
+    """TP45 Table 5, using fixed forecasts and the original held-out candidate folds."""
+    results={}
+    for split in ('date','gap'):
+        path=out/f'deep-{split}-20.npz'
+        with np.load(path,allow_pickle=False) as d:
+            left,right,fold=(d[name] for name in ('left','right','fold'))
+        n=len(left)
+        w=halves.resamples(n)
+        arms={}
+        for arm,start in [('tagsRaw',358),('placeboRaw',377),('tagsPartial',396),('placeboPartial',415)]:
+            check()
+            columns=slice(start,start+19)
+            c=np.vstack([halves.correlations(left[:,columns],right[:,columns],batch)
+                         for batch in np.array_split(np.vstack((np.ones(n),w)),40)])
+            ranks=curve.rank_arms(left,right,[slice(0,358),columns],fold,check)
+            cell={'correlations':{t:halves.summary(v[0],v[1:]) for t,v in zip(TAGS,c.T,strict=True)},
+                  'meanCorrelation':halves.summary(c[0].mean(),c[1:].mean(1))}
+            for label,cut in [('firstTen',10),('firstOne',1)]:
+                base,plus=((r<=cut).astype(float) for r in ranks)
+                cell[label]={k:halves.summary(values.mean(),w@values/n)
+                             for k,values in [('baseline',base),('plus',plus),('step',plus-base)]}
+            endpoint=next((k for k in ('firstTen','firstOne') if cell[k]['baseline']['value']<.90),None)
+            cell['endpoint']=endpoint
+            cell['stepVerdict']=('blind' if endpoint is None else
+                                 'pass' if cell[endpoint]['step']['interval'][0]>0 else 'miss')
+            arms[arm]=cell
+        results[split]=dict(authors=n,profilePin=pin(path),arms=arms)
+    return dict(card='TP45-whole',transferPin=source,deepMinimum=minimum,posts=study_posts,
+                outsideOpenings=outside,k=20,windowCap=20,draws=2000,tables=results)
 
 
 def opening_tables(out,check):

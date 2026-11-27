@@ -18,9 +18,16 @@ WEEK = ROOT/'.local/week-20261122'
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('card', choices=['TP55', 'Q20-inputs', 'Q21-inputs','Q22-inputs',
-                                         'TP45-profiles','TP45-openings','TP45-table6','TP46','TP47','TP48','TP49','TP50','TP51','TP52','TP53','TP54','TP56','TP57'])
+                                         'TP45-profiles','TP45-openings','TP45-table6','TP45-whole','TP46','TP47','TP48','TP49','TP50','TP51','TP51-Q24','TP52','TP53','TP54','TP56','TP57','TP57-secondary','TP59-inputs','TP59','TP60'])
     parser.add_argument('attempt', choices=['a', 'b', 'c'])
+    parser.add_argument('--q24-return', type=Path)
+    parser.add_argument('--q24-receipt-pin')
     args = parser.parse_args()
+    if args.card == 'TP51-Q24':
+        if not args.q24_return or not args.q24_receipt_pin:
+            parser.error('TP51-Q24 needs the verified terminal return and its Spark receipt pin')
+    elif args.q24_return or args.q24_receipt_pin:
+        parser.error('Q24 return arguments apply only to TP51-Q24')
     for name in ('OMP_NUM_THREADS', 'MKL_NUM_THREADS', 'OPENBLAS_NUM_THREADS', 'NUMEXPR_NUM_THREADS'):
         os.environ[name] = '2'
     from tompathy_engine.eval.back_half.reporting import save_json
@@ -61,6 +68,16 @@ def main():
                 import week_worry_language as study
             elif args.card=='TP51':
                 import week_competence as study
+            elif args.card=='TP51-Q24':
+                import week_competence_q24 as study
+            elif args.card=='TP57-secondary':
+                import week_drift_secondary as study
+            elif args.card=='TP59-inputs':
+                import week_pooled_inputs as study
+            elif args.card=='TP59':
+                import week_word_profiles as study
+            elif args.card=='TP60':
+                import week_display_contract as study
             elif args.card=='TP57':
                 import week_drift as study
             elif args.card=='TP54':
@@ -79,10 +96,14 @@ def main():
                 result=study.opening_tables(output,check)
             elif args.card=='TP45-table6':
                 result=study.descriptions(output,check)
+            elif args.card=='TP45-whole':
+                result=study.prepare(output,check,whole=True)
             elif args.card=='TP49':
                 result=study.moves(output,check)
             elif args.card=='TP50':
                 result=study.word_levels(output,check)
+            elif args.card=='TP51-Q24':
+                result=study.prepare(args.q24_return,args.q24_receipt_pin,check)
             else:
                 result=study.prepare(output,check)
             if args.card=='TP45-profiles':

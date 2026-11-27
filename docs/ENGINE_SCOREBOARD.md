@@ -531,3 +531,11 @@ TP33 implementation remains authorized. No serving or maker admission follows.
 **TP52.** Both checks passed. Across 2,536 authors, opening worry predicted more first-person language in the disjoint suffix, standardized slope 0.127 [0.118, 0.136]. Worry stability exceeded median tag stability by 0.247 [0.222, 0.274]. First-person language can also reflect narrative style. [Result sheet](exchange/result-sheets/TP52.md).
 
 **TP54.** Among 1,650 recalled events from 1,154 writers, control predicted less sadness relative to anger, slope -0.373 [-0.520, -0.220]. Fear relative to anger also declined, -0.153 [-0.282, -0.017]. Its interval exceeded the equivalence margin of +/-0.187. The sadness prediction held; the fear equivalence check missed. The ISEAR questionnaire has no ordered event-control rating. [Result sheet](exchange/result-sheets/TP54.md).
+
+**TP57.** All 54,263 comments date to 2019. Five of the ten common labels met the stability rule before community reweighting and three after it. The registered common-label claim missed. Seven of eight descriptive blog/chat word profiles were comparable. The chat source had zero assigned “happy” situations. [Full tables](exchange/result-sheets/TP57.md).
+
+**TP58.** Sounding Line received the manifest-verified CPU bundle after the producer rehearsal on 48 invented authors. Its Spark rehearsal on invented histories returned all nine expected tables. The real TMP1 study awaits PANDORA documentation for the author join, five trait fields and units, and community exclusions. [Delivery record](exchange/result-sheets/TP58.md).
+
+**TP45 Table 5.** At 20 whole posts per half, partly cleared tags raised top-ten author matching from 63.91% to 66.74% across 1,413 authors. The paired gain of 2.83 percentage points (95% interval 1.77 to 4.03) passed the whole-post bar. Partly cleared placebo heads gained 3.89 points (2.62 to 5.17). [Results](exchange/result-sheets/TP45-whole.md).
+
+**Phase two.** TP59 filed 73 source-specific feeling-word profiles across 29 outputs, including PRIDE and the separate belonging tag. All 20 human-reference words have exact chat labels. Theory owns pooling. TP44 was already filed. TP60 filed the proposed display contract from three verified aggregates. [TP59 tables](exchange/result-sheets/TP59.md) · [TP60 contract](exchange/result-sheets/TP60.md).
