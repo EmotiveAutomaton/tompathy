@@ -1,10 +1,12 @@
-November 27 at 13:36 PT, Spark was scoring Q27 (42,240/43,021). The workstation GPU was idle after G12 hit its 8 GiB available-commit floor, with the last progress receipt at 27,200/43,021. The CPU card queue was between stages after TP72's offline rehearsal stopped on its network refusal. The workstation can read both held corpora. The last Spark source check found no in-place route to the talk pages or recalled stories.
+November 27 at 13:46 PT, Spark was scoring Q28 (140/6,600) and the workstation GPU was scoring G14 (60/6,600). The CPU card queue was waiting for TP72 rehearsal admission, with 13.56 GiB of available commit against 18.11 GiB required. The workstation can read both held corpora. The last Spark source check found no in-place route to the talk pages or recalled stories.
 
 # Two-day engine return · November 27–29
 
 **Amendment DC.** R48 supersedes CY's restriction on reporting figures. TP66's long-story arm and TP76 will publish all registered recalled-story statistics. Stories stay in place and unquoted, and imagined accounts are excluded. The November 27 pass gives the saved figures and intervals, including contrasts against prediction and reasons some arms have no figures. The first digest missed its six-hour deadline. [Ruling](RULING_R48.md) · [Held-results digest](HELD_RESULTS_DIGEST.md) · [Inventory and source conditions](HELD_RESULTS_INVENTORY.md)
 
 **November 27 engineering record.** The first digest was pushed at 13:40 PT, about fifteen minutes after the deadline. The outgoing-commit check reproduced all 25 reports. G12's native worker and shared lease released after the memory stop. Its partial response files stay intact. The independent G14 job takes its original inputs, model, guards and registration. For TP72 the Windows SciPy import asked Python for the CPU architecture, which in turn requested the host name. An import-only reproduction stopped at that call. The bounded rehearsal repair supplies an empty node name for that platform query, with the socket guard active throughout. The original candidate, inputs and failed attempt are preserved.
+
+G12's last progress receipt contained 27,200 of 43,021 texts, with 24,347 valid. The registered full-panel agreement is pending a complete paired panel. G14's first 100 responses were all valid in 120.60 seconds after loading. That projects to 2.21 hours against the packet's one-hour estimate. G13 and G15 are registered behind G14, with exact release checks at each transition.
 
 ## Against, and clear
 
