@@ -99,6 +99,18 @@ def run(card, attempt):
                 import rapid_outside as study
 
                 result = study.prepare(out, check)
+            elif card in ("TP69", "TP67-original"):
+                import rapid_word_contrasts as study
+
+                result = (
+                    study.respect(out, check)
+                    if card == "TP69"
+                    else study.standing(out, check)
+                )
+            elif card == "TP66-short":
+                import rapid_short_order as study
+
+                result = study.prepare(out, check)
             elif card.startswith("TP68-"):
                 import rapid_blend as study
 
@@ -184,6 +196,9 @@ if __name__ == "__main__":
             "TP65",
             "TP77-original",
             "TP63-original",
+            "TP69",
+            "TP66-short",
+            "TP67-original",
             "TP68-design",
             *(f"TP68-fold-{i}" for i in range(5)),
             "TP68-return",

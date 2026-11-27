@@ -25,9 +25,9 @@ The table covers 35 registered predictions. TP62 met both directional criteria o
 | TP77 · Reader agreement | Original sentence comparisons precede new marks. The standing-mark comparison needs matched B and W responses. | [TP77](result-sheets/TP77.md) |
 | TP63 · Outside scores | The five trait keys are filed. The reader study on 6,600 events is queued. The held news-reaction essays have no trait fields. | [TP63](result-sheets/TP63.md) |
 | TP68 · Embarrassment | The fifteen comparison words and the five writer-held-out folds are fixed. The fits are queued behind the outside-score table. | [TP68](result-sheets/TP68.md) |
-| TP69 · Competence and Respect | Registered on the saved profiles. | Section 4 |
-| TP66 · Order during loss | The short arm precedes the blog and story arms. | Section 4 |
-| TP67 · Whose rise | The first comparison uses saved inputs. The three-way comparison needs Q27. | Section 4 |
+| TP69 · Competence and Respect | The three word profiles, the goal-support column and the Respect controls are queued. | [TP69](result-sheets/TP69.md) |
+| TP66 · Order during loss | The short loss comparison is queued. The blog and story comparisons await their sources. | [TP66](result-sheets/TP66.md) |
+| TP67 · Whose rise | The own-versus-other responsibility comparison is queued. The three-way comparison needs Q27. | [TP67](result-sheets/TP67.md) |
 | TP72 · Sealed bundle v2 | Pending its place in the section 6 queue, two invented-data rehearsals and a verified manifest. Sounding Line retains the TP58 rehearsal bundle. | Section 4 |
 | TP73 · Whole authors | Q24 returned 2,993 whole authors. The registered competence arm is complete. Its curiosity contrasts miss both bars. Other arms remain open. | [TP73](result-sheets/TP73.md) |
 | TP74 · Earned standing | Depends on Q27 and the agreement of the relevant fields. | Section 4 |

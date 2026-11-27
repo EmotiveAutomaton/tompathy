@@ -30,12 +30,25 @@ OUTSIDE_STAGES = {
     "TP68-return": BLEND_FILES,
 }
 
+WORD_STAGES = {
+    "TP69": ("rapid_word_contrasts.py", "rapid_nulls.py"),
+    "TP66-short": ("rapid_short_order.py", "rapid_word_contrasts.py"),
+    "TP67-original": ("rapid_word_contrasts.py",),
+}
+
 
 def configuration(queue):
     if queue == "sentence":
         return PREVIOUS, OUT, {"TP70-return", "TP64"}, STAGES
     if queue == "outside":
         return OUT, ROOT / "outside-card-queue", set(STAGES), OUTSIDE_STAGES
+    if queue == "words":
+        return (
+            ROOT / "outside-card-queue",
+            ROOT / "word-card-queue",
+            set(OUTSIDE_STAGES),
+            WORD_STAGES,
+        )
     raise ValueError("Unknown packet queue")
 
 
@@ -52,10 +65,12 @@ def registration(queue="sentence"):
         "stages": list(stages),
         "code": code,
     }
-    if queue == "outside":
+    if queue in ("outside", "words"):
         result["protocols"] = {
             k: pin(Path(f"docs/exchange/result-sheets/{k}.md"))
-            for k in ("TP63", "TP68")
+            for k in (
+                ("TP63", "TP68") if queue == "outside" else ("TP69", "TP66", "TP67")
+            )
         }
     return result
 
@@ -94,7 +109,13 @@ def run(h, queue="sentence"):
                 )
             for card, files in stages.items():
                 check()
-                if card in ("TP63-original", "TP68-design"):
+                if card in (
+                    "TP63-original",
+                    "TP68-design",
+                    "TP69",
+                    "TP66-short",
+                    "TP67-original",
+                ):
                     key = card.split("-")[0]
                     bound(
                         Path(f"docs/exchange/result-sheets/{key}.md"),
@@ -118,7 +139,9 @@ def run(h, queue="sentence"):
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
     p.add_argument("--registration")
-    p.add_argument("--queue", choices=("sentence", "outside"), default="sentence")
+    p.add_argument(
+        "--queue", choices=("sentence", "outside", "words"), default="sentence"
+    )
     args = p.parse_args()
     if args.registration:
         run(args.registration, args.queue)
