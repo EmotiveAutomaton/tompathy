@@ -63,6 +63,30 @@ def run(card, attempt):
                 import rapid_content as study
 
                 result = study.run(out, check, [("trained", 0), ("iso", 0), ("rot", 0)])
+            elif card.startswith("TP62-block-"):
+                import rapid_content as study
+                import rapid_nulls
+
+                first = LOCAL / "TP62-first-a"
+                if (
+                    pin(first / "receipt.json")
+                    != "3f48e3ff2698f1d106259c8496da5e012bd83aa25e8582ff46af57bb2ab0e637"
+                ):
+                    raise ValueError("The registered first block differs")
+                if (
+                    pin(Path(study.__file__))
+                    != "8e26f964a48326dd07cae0acaee17a6aaa69e7c0fb0b904d3beef5f29af355ba"
+                    or pin(Path(rapid_nulls.__file__))
+                    != "f33f6b66e9d4d53604fc41b4a5f5c401ee9345144433f3b3aa16d6f1f068f8ff"
+                ):
+                    raise ValueError("The inspected science implementation differs")
+                block = int(card.rsplit("-", 1)[-1])
+                indices = range(1 + 20 * block, min(21 + 20 * block, 200))
+                result = study.run(
+                    out, check, [(k, i) for i in indices for k in ("iso", "rot")]
+                )
+                if result["meta"] != study.read(first / "design.json"):
+                    raise ValueError("The fixed chat roster or design differs")
             elif card == "TP73-TP51":
                 import week_competence_q24 as study
                 from rapid_collect import read
@@ -94,7 +118,14 @@ def run(card, attempt):
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
     p.add_argument(
-        "card", choices=["TP61-chat-check", "TP61-roster", "TP62-first", "TP73-TP51"]
+        "card",
+        choices=[
+            "TP61-chat-check",
+            "TP61-roster",
+            "TP62-first",
+            "TP73-TP51",
+            *(f"TP62-block-{i:02d}" for i in range(10)),
+        ],
     )
     p.add_argument("attempt", choices=["a", "b", "c"])
     args = p.parse_args()

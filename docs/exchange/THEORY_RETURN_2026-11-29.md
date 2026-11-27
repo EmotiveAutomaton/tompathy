@@ -1,4 +1,4 @@
-Both GPUs are running the same standing-mark study, Q27 on Spark and G12 on the workstation. The card queue has landed TP71 and moved to TP61. Spark lacks an in-place route to the talk-page and long-story files for Q33 and Q30. The workstation can open both at their held locations.
+Both GPUs are running the same standing-mark study, Q27 on Spark and G12 on the workstation. The card queue has verified TP61’s author vectors and measured TP62’s trained estimates. Spark lacks an in-place route to the talk-page and long-story files for Q33 and Q30. The workstation can open both at their held locations.
 
 # Two-day engine return · November 27–29
 
@@ -16,7 +16,7 @@ The table covers the curator’s, theory thread’s, published accounts’ and a
 |---|---|---|
 | TP71 · Display and exports | Landed. Acceptance is shown beside Respect. Wanting and amusement are the reader labels. SHAME carries its scope flag. The Meaning row is hidden. | [TP71 change list](result-sheets/TP71.md) |
 | TP61 · Random-head controls | Both required score checks passed. The largest absolute tag difference was 0.00000226512 on 24,850 chat texts and zero on the first 8,192 blog openings. The blog placebo difference was zero. The tolerance was 0.00001. Author comparisons remain pending. | [TP61](result-sheets/TP61.md) |
-| TP62 · Content and style | The word and writer contrasts are specified. The full comparison requires 200 isotropic sets and 200 rotated sets. | [TP62](result-sheets/TP62.md) |
+| TP62 · Content and style | Trained word accuracy was 35.21% and trained writer accuracy was 1.76%. The comparison with 200 isotropic and 200 rotated sets is pending. | [TP62](result-sheets/TP62.md) |
 | TP70 · Blind grouping | Word profiles are available. The blog arm needs TP61’s author vectors. | Section 4 |
 | TP64 · Channel checks | Saved forecasts are available. SHAME’s scope flag remains in force. | Section 4 |
 | TP65 · Coming or landed | Original sentence readings and Q34 worry scores are available. Further sources depend on Q29–Q31. | Section 4 |
