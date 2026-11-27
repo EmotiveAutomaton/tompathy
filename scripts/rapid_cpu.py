@@ -55,6 +55,10 @@ def run(card, attempt):
                 import rapid_head_check as study
 
                 result = study.chat()
+            elif card == "TP61-roster":
+                import rapid_head_roster as study
+
+                result = study.prepare(out, check)
             elif card == "TP73-TP51":
                 import week_competence_q24 as study
                 from rapid_collect import read
@@ -85,7 +89,7 @@ def run(card, attempt):
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
-    p.add_argument("card", choices=["TP61-chat-check", "TP73-TP51"])
+    p.add_argument("card", choices=["TP61-chat-check", "TP61-roster", "TP73-TP51"])
     p.add_argument("attempt", choices=["a", "b", "c"])
     args = p.parse_args()
     run(args.card, args.attempt)

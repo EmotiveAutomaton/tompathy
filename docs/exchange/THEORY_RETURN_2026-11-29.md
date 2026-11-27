@@ -15,7 +15,7 @@ The table covers the curator’s, theory thread’s, published accounts’ and a
 | Card | Recorded state | Sheet or registered protocol |
 |---|---|---|
 | TP71 · Display and exports | Landed. Acceptance is shown beside Respect. Wanting and amusement are the reader labels. SHAME carries its scope flag. The Meaning row is hidden. | [TP71 change list](result-sheets/TP71.md) |
-| TP61 · Random-head controls | First step compares saved scores with reconstructed scores on chat and the first original Q20 blog shard. | [TP61](../../TOMPATHY_0.3_ENGINE_TWO_DAY_PACKET_2026-11-27.md#tp61-random-heads-beside-every-person-check-the-handoffs-e1-claims-p2-p3-p5) |
+| TP61 · Random-head controls | Both required score checks passed. The largest absolute tag difference was 0.00000226512 on 24,850 chat texts and zero on the first 8,192 blog openings. The blog placebo difference was zero. The tolerance was 0.00001. Author comparisons remain pending. | [TP61](result-sheets/TP61.md) |
 | TP62 · Content and style | Next after TP61 begins. | [Section 4](../../TOMPATHY_0.3_ENGINE_TWO_DAY_PACKET_2026-11-27.md#4-cards) |
 | TP70 · Blind grouping | Word profiles are available. The blog arm needs TP61’s author vectors. | Section 4 |
 | TP64 · Channel checks | Saved forecasts are available. SHAME’s scope flag remains in force. | Section 4 |
