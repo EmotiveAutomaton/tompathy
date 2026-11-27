@@ -1,4 +1,4 @@
-Both GPUs are running the standing-mark study, Q27 on Spark and G12 on the workstation. The card queue finished TP62 and TP61’s worry-repeat comparison and is running the word-specific controls. Spark lacks an in-place route to the talk-page and long-story files for Q33 and Q30. The workstation can open both at their held locations.
+Both GPUs are running the standing-mark study, Q27 on Spark and G12 on the workstation. The card queue is running TP70’s blind grouping study after verifying TP62 and three TP61 comparisons. Spark lacks an in-place route to the talk-page and long-story files for Q33 and Q30. The workstation can open both at their held locations.
 
 # Two-day engine return · November 27–29
 
@@ -15,9 +15,9 @@ The table covers 35 registered predictions. TP62 met both directional criteria o
 | Card | Recorded state | Sheet or registered protocol |
 |---|---|---|
 | TP71 · Display and exports | Landed. Acceptance is shown beside Respect. Wanting and amusement are the reader labels. SHAME carries its scope flag. The Meaning row is hidden. | [TP71 change list](result-sheets/TP71.md) |
-| TP61 · Random-head controls | Worry minus median tag repeat was 0.218, below the 0.229–0.299 rotated band. Worry’s slope of 0.12711 exceeded both 99.5th percentiles. Seven of 7,600 heads reached it. | [TP61](result-sheets/TP61.md) |
+| TP61 · Random-head controls | Worry minus median tag repeat was 0.218, below the 0.229–0.299 rotated band. The word-specific estimates fell inside the rotated band for all eight words. Three met the 200-author minimum. Worry’s slope of 0.12711 exceeded both 99.5th percentiles, and seven of 7,600 individual heads reached it. | [TP61](result-sheets/TP61.md) |
 | TP62 · Content and style | Trained word accuracy was 35.21%, above every rotated set. Writer accuracy was 1.76%, below the rotated median of 2.43%. Both findings persisted after removing assigned stems. | [TP62](result-sheets/TP62.md) |
-| TP70 · Blind grouping | Both the saved chat vectors and 5,426 usable blog author means are available. | Section 4 |
+| TP70 · Blind grouping | Running on 24,850 chat texts and 5,426 usable blog author means. Each control repeats the comparison in 100 whole-writer or whole-author resamples. | [TP70](result-sheets/TP70.md) |
 | TP64 · Channel checks | Saved forecasts are available. SHAME’s scope flag remains in force. | Section 4 |
 | TP65 · Coming or landed | Original sentence readings and Q34 worry scores are available. Further sources depend on Q29–Q31. | Section 4 |
 | TP77 · Reader agreement | Original sentence comparisons precede new marks. The standing-mark comparison needs matched B and W responses. | Section 4 |

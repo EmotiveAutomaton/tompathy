@@ -1,0 +1,470 @@
+{
+  "anxiousMinusCommon": {
+    "iso": {
+      "high": 0.19751948994361382,
+      "low": -1.3887721426238644,
+      "median": 0.02774397868325406,
+      "position": "inside",
+      "trainedPercentile": 11.700000000000001
+    },
+    "rot": {
+      "high": 0.1999755759963608,
+      "low": -0.9080752555066032,
+      "median": 0.03449569188402864,
+      "position": "inside",
+      "trainedPercentile": 11.600000000000001
+    },
+    "trained": {
+      "interval": [
+        -2.223773850983756,
+        0.1738407214679754
+      ],
+      "validDraws": 2000,
+      "value": -0.23002332544928925
+    }
+  },
+  "card": "TP61(c)",
+  "originalReceiptPin": "148073beb4ad1beb82335d57bdafef31effe60870b3f0e0e69a49b4835ddb5bd",
+  "pairedAuthors": 5409,
+  "setsPerFamily": 1000,
+  "tagHeadPin": "7f5bfe1ff5ab5e4a0b93072bb7e1f54f73466ab01ade90fc2ad2c4041d12e7ae",
+  "vectorReceiptPin": "258d14c8405973cb7db874895a18a46e054241c3638e89d39bf73aef7941f02d",
+  "words": {
+    "afraid": {
+      "authors": 237,
+      "iso": {
+        "positiveLevelSets": 1000,
+        "share": {
+          "high": 0.21702700818006224,
+          "low": -0.08525764755199639,
+          "median": 0.07386242774797791,
+          "position": "inside",
+          "trainedPercentile": 49.4
+        },
+        "variance": {
+          "high": 0.060234259193186125,
+          "low": -0.02195567650849135,
+          "median": 0.020088180228249986,
+          "position": "inside",
+          "trainedPercentile": 52.800000000000004
+        }
+      },
+      "registered": true,
+      "rot": {
+        "positiveLevelSets": 1000,
+        "share": {
+          "high": 0.22818128233119217,
+          "low": -0.10429842611266235,
+          "median": 0.0717832600394912,
+          "position": "inside",
+          "trainedPercentile": 50.1
+        },
+        "variance": {
+          "high": 0.06329255017842078,
+          "low": -0.02730507781887311,
+          "median": 0.02027246313719841,
+          "position": "inside",
+          "trainedPercentile": 51.4
+        }
+      },
+      "share": {
+        "interval": [
+          -0.15442797754610205,
+          0.19185495459157195
+        ],
+        "validDraws": 2000,
+        "value": 0.07190776792816225
+      },
+      "variance": {
+        "interval": [
+          -0.041862680425411525,
+          0.05776195426196365
+        ],
+        "validDraws": 2000,
+        "value": 0.02127731953257033
+      }
+    },
+    "angry": {
+      "authors": 107,
+      "iso": {
+        "positiveLevelSets": 1000,
+        "share": {
+          "high": 0.23814431560968666,
+          "low": -0.26280544552467494,
+          "median": 0.02886720268595727,
+          "position": "inside",
+          "trainedPercentile": 52.5
+        },
+        "variance": {
+          "high": 0.06523780128846011,
+          "low": -0.06651210386172063,
+          "median": 0.00758304982749321,
+          "position": "inside",
+          "trainedPercentile": 53.7
+        }
+      },
+      "registered": false,
+      "rot": {
+        "positiveLevelSets": 1000,
+        "share": {
+          "high": 0.23750671123490139,
+          "low": -0.2865241648209991,
+          "median": 0.034729892566019466,
+          "position": "inside",
+          "trainedPercentile": 50.2
+        },
+        "variance": {
+          "high": 0.0649169827870376,
+          "low": -0.06960598171841476,
+          "median": 0.009508037744275858,
+          "position": "inside",
+          "trainedPercentile": 52.300000000000004
+        }
+      },
+      "share": {
+        "interval": [
+          -0.37207571632850106,
+          0.1812651830022877
+        ],
+        "validDraws": 2000,
+        "value": 0.034817412030544066
+      },
+      "variance": {
+        "interval": [
+          -0.11092936803704254,
+          0.059219990001490266
+        ],
+        "validDraws": 2000,
+        "value": 0.010903703837281844
+      }
+    },
+    "anxious": {
+      "authors": 22,
+      "iso": {
+        "positiveLevelSets": 1000,
+        "share": {
+          "high": 0.6973834606453353,
+          "low": -4.891552500286579,
+          "median": 0.15505795561322538,
+          "position": "inside",
+          "trainedPercentile": 13.0
+        },
+        "variance": {
+          "high": 0.21098271252299217,
+          "low": -1.3563545798994863,
+          "median": 0.046878509532855904,
+          "position": "inside",
+          "trainedPercentile": 12.1
+        }
+      },
+      "registered": false,
+      "rot": {
+        "positiveLevelSets": 1000,
+        "share": {
+          "high": 0.6935879316630282,
+          "low": -3.3364273595649885,
+          "median": 0.1833403870180316,
+          "position": "inside",
+          "trainedPercentile": 13.200000000000001
+        },
+        "variance": {
+          "high": 0.22571456582291763,
+          "low": -0.8839533133667753,
+          "median": 0.05455786100229303,
+          "position": "inside",
+          "trainedPercentile": 11.600000000000001
+        }
+      },
+      "share": {
+        "interval": [
+          -9.032330674633156,
+          0.6931657448969488
+        ],
+        "validDraws": 2000,
+        "value": -0.6772512883418921
+      },
+      "variance": {
+        "interval": [
+          -2.2277993037478683,
+          0.18280565895485462
+        ],
+        "validDraws": 2000,
+        "value": -0.2065500929892228
+      }
+    },
+    "ashamed": {
+      "authors": 35,
+      "iso": {
+        "positiveLevelSets": 1000,
+        "share": {
+          "high": 0.3418328965817408,
+          "low": -6.279865378283457,
+          "median": -0.343171993648836,
+          "position": "inside",
+          "trainedPercentile": 85.6
+        },
+        "variance": {
+          "high": 0.07800541772741615,
+          "low": -1.2328847316850569,
+          "median": -0.07485760141375575,
+          "position": "inside",
+          "trainedPercentile": 87.4
+        }
+      },
+      "registered": false,
+      "rot": {
+        "positiveLevelSets": 1000,
+        "share": {
+          "high": 0.3325929293802189,
+          "low": -5.763230388035935,
+          "median": -0.35045879690853476,
+          "position": "inside",
+          "trainedPercentile": 85.8
+        },
+        "variance": {
+          "high": 0.08473487630247395,
+          "low": -1.078359073889083,
+          "median": -0.07600113288928981,
+          "position": "inside",
+          "trainedPercentile": 88.1
+        }
+      },
+      "share": {
+        "interval": [
+          -3.66157741456217,
+          0.3128096964198012
+        ],
+        "validDraws": 2000,
+        "value": 0.08133604884200395
+      },
+      "variance": {
+        "interval": [
+          -1.0280646106111684,
+          0.09578464485157465
+        ],
+        "validDraws": 2000,
+        "value": 0.02533787717594004
+      }
+    },
+    "happy": {
+      "authors": 1188,
+      "iso": {
+        "positiveLevelSets": 1000,
+        "share": {
+          "high": 0.1588476373448749,
+          "low": 0.0714510661256037,
+          "median": 0.11177438895235234,
+          "position": "inside",
+          "trainedPercentile": 26.6
+        },
+        "variance": {
+          "high": 0.044908013986903826,
+          "low": 0.020314872633282036,
+          "median": 0.03224569278239181,
+          "position": "inside",
+          "trainedPercentile": 36.9
+        }
+      },
+      "registered": true,
+      "rot": {
+        "positiveLevelSets": 1000,
+        "share": {
+          "high": 0.15894063476408057,
+          "low": 0.06416679170116969,
+          "median": 0.11306495247969822,
+          "position": "inside",
+          "trainedPercentile": 28.299999999999997
+        },
+        "variance": {
+          "high": 0.04502441977343382,
+          "low": 0.018411639898459852,
+          "median": 0.0324710123513681,
+          "position": "inside",
+          "trainedPercentile": 36.7
+        }
+      },
+      "share": {
+        "interval": [
+          0.05281261904270847,
+          0.13866261383677958
+        ],
+        "validDraws": 2000,
+        "value": 0.09863848772967951
+      },
+      "variance": {
+        "interval": [
+          0.016034967512738255,
+          0.04315709554560433
+        ],
+        "validDraws": 2000,
+        "value": 0.030287942776910944
+      }
+    },
+    "lonely": {
+      "authors": 50,
+      "iso": {
+        "positiveLevelSets": 1000,
+        "share": {
+          "high": 0.5369613555711261,
+          "low": -11.57680081461955,
+          "median": -0.39987956404964253,
+          "position": "inside",
+          "trainedPercentile": 76.4
+        },
+        "variance": {
+          "high": 0.10569007477593986,
+          "low": -1.9076080475091706,
+          "median": -0.06811862808956289,
+          "position": "inside",
+          "trainedPercentile": 76.8
+        }
+      },
+      "registered": false,
+      "rot": {
+        "positiveLevelSets": 1000,
+        "share": {
+          "high": 0.5390122965916561,
+          "low": -9.849851510877034,
+          "median": -0.39380220027347035,
+          "position": "inside",
+          "trainedPercentile": 72.3
+        },
+        "variance": {
+          "high": 0.11363359987985366,
+          "low": -1.6465499218732589,
+          "median": -0.0663077300590488,
+          "position": "inside",
+          "trainedPercentile": 72.5
+        }
+      },
+      "share": {
+        "interval": [
+          -4.754207821114877,
+          0.4938593352270792
+        ],
+        "validDraws": 2000,
+        "value": 0.038649554459074996
+      },
+      "variance": {
+        "interval": [
+          -0.8982249863224133,
+          0.11353180969963862
+        ],
+        "validDraws": 2000,
+        "value": 0.00866803496697689
+      }
+    },
+    "proud": {
+      "authors": 145,
+      "iso": {
+        "positiveLevelSets": 1000,
+        "share": {
+          "high": 0.2901183239228167,
+          "low": -0.407831630632151,
+          "median": 0.04847708940399979,
+          "position": "inside",
+          "trainedPercentile": 75.3
+        },
+        "variance": {
+          "high": 0.07572595972740352,
+          "low": -0.09282853108293389,
+          "median": 0.01186706604987988,
+          "position": "inside",
+          "trainedPercentile": 73.4
+        }
+      },
+      "registered": false,
+      "rot": {
+        "positiveLevelSets": 1000,
+        "share": {
+          "high": 0.29590335651995897,
+          "low": -0.3652679644221901,
+          "median": 0.04746096272289381,
+          "position": "inside",
+          "trainedPercentile": 72.39999999999999
+        },
+        "variance": {
+          "high": 0.0741070496887625,
+          "low": -0.08273334554566393,
+          "median": 0.011770014026071477,
+          "position": "inside",
+          "trainedPercentile": 70.89999999999999
+        }
+      },
+      "share": {
+        "interval": [
+          -2.094691892727892,
+          0.3608665926266832
+        ],
+        "validDraws": 2000,
+        "value": 0.13653708896339525
+      },
+      "variance": {
+        "interval": [
+          -0.43991634429858567,
+          0.09045936613763568
+        ],
+        "validDraws": 2000,
+        "value": 0.033098993060890224
+      }
+    },
+    "sad": {
+      "authors": 490,
+      "iso": {
+        "positiveLevelSets": 1000,
+        "share": {
+          "high": 0.1675879492820621,
+          "low": 0.003994081862367002,
+          "median": 0.08948768930952138,
+          "position": "inside",
+          "trainedPercentile": 60.6
+        },
+        "variance": {
+          "high": 0.04929764857807934,
+          "low": 0.0012532721002679926,
+          "median": 0.026252744564609756,
+          "position": "inside",
+          "trainedPercentile": 65.7
+        }
+      },
+      "registered": true,
+      "rot": {
+        "positiveLevelSets": 1000,
+        "share": {
+          "high": 0.1651922301862177,
+          "low": 0.0010424079426013578,
+          "median": 0.08454097870375443,
+          "position": "inside",
+          "trainedPercentile": 64.7
+        },
+        "variance": {
+          "high": 0.04893010429307602,
+          "low": 0.0002828326761674276,
+          "median": 0.025051500004102285,
+          "position": "inside",
+          "trainedPercentile": 71.3
+        }
+      },
+      "share": {
+        "interval": [
+          0.0005602040233210173,
+          0.17419553061014148
+        ],
+        "validDraws": 2000,
+        "value": 0.09972042740475114
+      },
+      "variance": {
+        "interval": [
+          0.00016534769327724325,
+          0.054789982420877736
+        ],
+        "validDraws": 2000,
+        "value": 0.031423963693502664
+      }
+    }
+  },
+  "sourceReceiptPin": "6fe678e425766f6ef3fea480353d5db7d5cfda707f397cfe0f073de3adeda4fd",
+  "verifiedShards": 80,
+  "ledger": "E-TP61-C-20261127",
+  "productionAdmission": false
+}

@@ -67,6 +67,14 @@ def run(card, attempt):
                 import rapid_word_repeat as study
 
                 result = study.prepare(out, check)
+            elif card == "TP70-design":
+                import rapid_blind_groups as study
+
+                result = study.prepare(out, check)
+            elif card.startswith("TP70-block-"):
+                import rapid_blind_groups as study
+
+                result = study.block(out, check, int(card.rsplit("-", 1)[-1]))
             elif card == "TP62-first":
                 import rapid_content as study
 
@@ -132,6 +140,8 @@ if __name__ == "__main__":
             "TP61-roster",
             "TP61-repeat",
             "TP61-words",
+            "TP70-design",
+            *(f"TP70-block-{i:02d}" for i in range(40)),
             "TP62-first",
             "TP73-TP51",
             *(f"TP62-block-{i:02d}" for i in range(10)),
