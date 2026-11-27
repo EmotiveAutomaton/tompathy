@@ -89,6 +89,8 @@ def windows():
         "TP77-original-?",
         "Q31-inputs-?",
         "TP63-*-?",
+        "G15-inputs-?",
+        "TP72-rehearsal-?",
     ):
         for f in root.glob(pat):
             if (f / "released.json").exists() or not (f / "owner.json").exists():
@@ -115,6 +117,15 @@ def windows():
                 root / "outside-card-queue/armed.json"
             ).exists():
                 reason = "waiting for the next prepared card after the sentence studies"
+    if (
+        not active
+        and (root / "TP72-counted-wait/awaiting-prior.json").is_file()
+        and not any(
+            (root / "TP72-counted-wait" / name).is_file()
+            for name in ("complete.json", "stopped.json")
+        )
+    ):
+        reason = "waiting for counted CPU and memory admission for the sealed-bundle rehearsal"
     return {
         "gpu": gpu(root, ("G12", "G14", "G13-Q29", "G13-Q31", "G15")),
         "card": active[0] if active else None,

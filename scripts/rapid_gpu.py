@@ -30,6 +30,7 @@ HOURS = {
     "G13-Q29": None,
     "Q31": 9.8,
     "G13-Q31": None,
+    "G15": 21.6,
 }
 write, read, pin = lane.write, lane.read, lane.pin
 
@@ -151,17 +152,19 @@ def reader_arm(out, items, role, kind, width, guard, job, arm, measured=None):
                 "seconds": 0,
                 "reason": "Empty text or full context uncertified",
             }
-        raw = lane.core.guarded_generate(
-            {
-                "model": model,
-                "prompt": prompt + item["text"],
-                "format": schema,
-                "stream": False,
-                "think": False,
-                "keep_alive": "10m",
-                "options": options,
-            },
-            guard,
+        request = {
+            "model": model,
+            "prompt": prompt + item["text"],
+            "format": schema,
+            "stream": False,
+            "think": False,
+            "keep_alive": "10m",
+            "options": options,
+        }
+        raw = (
+            lane.core.guarded_request("generate", request, guard, 300)
+            if job == "G15"
+            else lane.core.guarded_generate(request, guard)
         )
         response = raw.get("response", "")
         try:
@@ -266,11 +269,13 @@ def reader_arm(out, items, role, kind, width, guard, job, arm, measured=None):
 def run_job(root, job, registration):
     sentence_job = job in ("Q29", "G13-Q29")
     blog_job = job in ("Q31", "G13-Q31")
+    filler_job = job == "G15" and os.name == "nt"
     configs = {
         "Q29": "Q29-registration.json",
         "G13-Q29": "Q29-registration.json",
         "Q31": "Q31-registration.json",
         "G13-Q31": "Q31-registration.json",
+        "G15": "G15-registration.json",
     }
     registration_path = root / configs.get(job, "registration.json")
     require_pin(registration_path, registration)
@@ -282,6 +287,7 @@ def run_job(root, job, registration):
         *QUEUE["workstation" if os.name == "nt" else "spark"],
         "G13-Q29" if os.name == "nt" else "Q29",
         "G13-Q31" if os.name == "nt" else "Q31",
+        *(("G15",) if os.name == "nt" else ()),
     ):
         raise ValueError("Snapshot or machine binding differs")
     check_stop(root)
@@ -311,9 +317,13 @@ def run_job(root, job, registration):
 
                 guard = Guard()
                 guard.check()
-                if not (sentence_job or blog_job):
+                if not (sentence_job or blog_job or filler_job):
                     items = roster(root, read(root / "inputs/inputs.json"), job)
-                if blog_job:
+                if filler_job:
+                    from rapid_filler_gpu import run
+
+                    result = run(root, out, cfg, guard)
+                elif blog_job:
                     from rapid_blog_gpu import run
 
                     result = run(root, out, job, cfg, guard)
@@ -388,7 +398,8 @@ def run_job(root, job, registration):
                         role,
                     )
                     result = read(out / role / "complete.json")
-                guard.check()
+                if not (filler_job and result.get("status") == "cutoff"):
+                    guard.check()
             files = {
                 p.relative_to(out).as_posix(): pin(p)
                 for p in sorted(out.rglob("*"))

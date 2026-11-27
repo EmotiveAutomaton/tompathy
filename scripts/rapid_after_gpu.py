@@ -52,14 +52,19 @@ def wait_predecessor(owner, check):
         os.close(fd)
 
 
-def run(root, prepare_only=False, blog_registration=None):
+def run(root, prepare_only=False, blog_registration=None, filler_registration=None):
     import hashlib
     import json
 
-    cfgpath = root / (
-        "Q31-registration.json" if blog_registration else "Q29-registration.json"
-    )
-    expected = blog_registration or REG
+    if filler_registration and (blog_registration or os.name != "nt"):
+        raise ValueError("G15 is a separate workstation registration")
+    if filler_registration:
+        cfgpath = root / "G15-registration.json"
+    else:
+        cfgpath = root / (
+            "Q31-registration.json" if blog_registration else "Q29-registration.json"
+        )
+    expected = filler_registration or blog_registration or REG
     raw = cfgpath.read_bytes()
     if (
         not re.fullmatch("[0-9a-f]{64}", expected)
@@ -67,11 +72,17 @@ def run(root, prepare_only=False, blog_registration=None):
     ):
         raise ValueError("The staged GPU registration differs")
     cfg = json.loads(raw)
-    frozen = cfg["commit"] if blog_registration else FROZEN
+    frozen = cfg["commit"] if blog_registration or filler_registration else FROZEN
+    predecessor_registration = REG if blog_registration else PRIOR
+    if filler_registration:
+        predecessor_registration = hashlib.sha256(
+            (root / "Q31-registration.json").read_bytes()
+        ).hexdigest()
     if (
         not re.fullmatch("[0-9a-f]{40}", frozen)
         or cfg["commit"] != frozen
-        or cfg["parentRegistration"] != PRIOR
+        or cfg["parentRegistration"]
+        != (predecessor_registration if filler_registration else PRIOR)
     ):
         raise ValueError("Invalid registered code revision or parent")
     code = root / "code" / frozen
@@ -90,7 +101,24 @@ def run(root, prepare_only=False, blog_registration=None):
     machine, prior, job = (
         ("workstation", "G14", "G13-Q29") if win else ("spark", "Q32", "Q29")
     )
-    if blog_registration:
+    if filler_registration:
+        prior, job = "G13-Q31", "G15"
+        folder = root / cfg["inputStage"]
+        worker.require_pin(folder / "receipt.json", cfg["inputReceiptPin"])
+        worker.require_pin(folder / "selection.json", cfg["selectionPin"])
+        intake = lane.read(folder / "selection.json")
+        if (
+            intake != lane.read(folder / "receipt.json")["result"]
+            or intake["sameReaderSettings"]["promptPin"]
+            != worker.marks.protocol("features")["promptPin"]
+        ):
+            raise ValueError("G15 source or original prompt differs")
+        roster = {
+            "authors": intake["eligibleAuthors"],
+            "posts": intake["posts"],
+            "reuse": intake["reuse"],
+        }
+    elif blog_registration:
         from rapid_blog_gpu import calendar
 
         prior, job = ("G13-Q29", "G13-Q31") if win else ("Q29", "Q31")
@@ -127,17 +155,26 @@ def run(root, prepare_only=False, blog_registration=None):
             "roster": roster,
             "registration": expected,
         }
-    ctl = root / (
-        machine + ("-blog-follow" if blog_registration else "-sentence-follow")
+    suffix = (
+        "-filler-follow"
+        if filler_registration
+        else "-blog-follow"
+        if blog_registration
+        else "-sentence-follow"
     )
+    ctl = root / (machine + suffix)
     ctl.mkdir(exist_ok=True)
     with lane.lease(ctl / "dispatcher.lock"):
         target = root / "jobs" / job
         if target.exists():
             raise FileExistsError("Preserve the existing sentence job")
-        if blog_registration:
-            proof = lane.read(root / (machine + "-sentence-follow") / "armed.json")
-            if proof["job"] != prior or proof["registration"] != REG:
+        if blog_registration or filler_registration:
+            previous_ctl = "-blog-follow" if filler_registration else "-sentence-follow"
+            proof = lane.read(root / (machine + previous_ctl) / "armed.json")
+            if (
+                proof["job"] != prior
+                or proof["registration"] != predecessor_registration
+            ):
                 raise ValueError("Unknown preceding sentence supervisor")
             predecessor = proof["owner"]
         elif win:
@@ -180,7 +217,7 @@ def run(root, prepare_only=False, blog_registration=None):
                 or release["exitCode"] != 0
                 or not release["sharedLeaseReacquired"]
                 or old_owner["job"] != prior
-                or old_owner["registration"] != (REG if blog_registration else PRIOR)
+                or old_owner["registration"] != predecessor_registration
                 or not release["childWaited"]
             ):
                 raise ValueError("Cannot advance beyond an unverified predecessor")
@@ -240,7 +277,11 @@ def run(root, prepare_only=False, blog_registration=None):
                             ctl / "watching.json",
                             {"at": lane.now(), "owner": owner, "wrapperPid": p.pid},
                         )
-                        status = native.wait(check)
+                        # The final filler may be writing its cutoff receipt after its last call.
+                        # Observing this child's exit never extends its scoring clock.
+                        status = native.wait(
+                            (lambda: None) if filler_registration else check
+                        )
                         if p.wait() != status:
                             raise ValueError(
                                 "Native worker and venv launcher exits differ"
@@ -278,7 +319,8 @@ def run(root, prepare_only=False, blog_registration=None):
                             )
                         break
                     except lane.Busy:
-                        check()
+                        if not filler_registration:
+                            check()
                         time.sleep(5)
                 if status:
                     raise RuntimeError(
@@ -304,8 +346,15 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("root", type=Path)
     parser.add_argument("--verify-only", action="store_true")
-    parser.add_argument("--blog-registration")
+    registrations = parser.add_mutually_exclusive_group()
+    registrations.add_argument("--blog-registration")
+    registrations.add_argument("--filler-registration")
     args = parser.parse_args()
-    proof = run(args.root.resolve(), args.verify_only, args.blog_registration)
+    proof = run(
+        args.root.resolve(),
+        args.verify_only,
+        args.blog_registration,
+        args.filler_registration,
+    )
     if proof:
         print(proof)

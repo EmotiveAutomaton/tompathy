@@ -55,6 +55,10 @@ def run(card, attempt):
                 import rapid_head_check as study
 
                 result = study.chat()
+            elif card == "TP72-rehearsal":
+                import rapid_bundle as study
+
+                result = study.prepare(out, check)
             elif card == "TP61-roster":
                 import rapid_head_roster as study
 
@@ -128,6 +132,10 @@ def run(card, attempt):
                 import rapid_blog_selection as study
 
                 result = study.prepare(out, check)
+            elif card == "G15-inputs":
+                import rapid_filler_inputs as study
+
+                result = study.prepare(out, check)
             elif card == "TP62-first":
                 import rapid_content as study
 
@@ -190,6 +198,7 @@ if __name__ == "__main__":
         "card",
         choices=[
             "TP61-chat-check",
+            "TP72-rehearsal",
             "TP61-roster",
             "TP61-repeat",
             "TP61-words",
@@ -203,10 +212,12 @@ if __name__ == "__main__":
             "TP69",
             "TP66-short",
             "TP67-original",
+            "TP67-scale",
             "TP68-design",
             *(f"TP68-fold-{i}" for i in range(5)),
             "TP68-return",
             "Q31-inputs",
+            "G15-inputs",
             *(f"TP70-block-{i:02d}" for i in range(40)),
             "TP62-first",
             "TP73-TP51",

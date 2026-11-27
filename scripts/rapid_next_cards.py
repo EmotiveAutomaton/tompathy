@@ -37,6 +37,7 @@ WORD_STAGES = {
 }
 
 SCALE_STAGES = {"TP67-scale": ("rapid_pride_scale.py", "rapid_word_contrasts.py")}
+FILLER_INPUTS = {"G15-inputs": ("rapid_filler_inputs.py",)}
 
 
 def configuration(queue):
@@ -57,6 +58,13 @@ def configuration(queue):
             ROOT / "pride-scale-queue",
             set(WORD_STAGES),
             SCALE_STAGES,
+        )
+    if queue == "filler":
+        return (
+            ROOT / "pride-scale-queue",
+            ROOT / "filler-input-queue",
+            set(SCALE_STAGES),
+            FILLER_INPUTS,
         )
     raise ValueError("Unknown packet queue")
 
@@ -149,7 +157,9 @@ if __name__ == "__main__":
     p = argparse.ArgumentParser()
     p.add_argument("--registration")
     p.add_argument(
-        "--queue", choices=("sentence", "outside", "words", "scale"), default="sentence"
+        "--queue",
+        choices=("sentence", "outside", "words", "scale", "filler"),
+        default="sentence",
     )
     args = p.parse_args()
     if args.registration:

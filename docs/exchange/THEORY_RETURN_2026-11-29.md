@@ -1,4 +1,4 @@
-Nov 27 at 10:11 PT, Spark is running Q27 (19,160/43,021), the workstation GPU is running G12 (17,100/43,021), and the card queue is between registered stages. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
+Nov 27 at 10:35 PT, Spark is running Q27 (21,720/43,021), the workstation GPU is running G12 (19,320/43,021), and the card queue is waiting for counted CPU and memory admission for the sealed-bundle rehearsal. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
 
 # Two-day engine return · November 27–29
 
@@ -32,7 +32,7 @@ The table covers 35 registered predictions. TP62 met both directional criteria o
 | TP69 · Competence and Respect | Across 24,850 chat situations, Competence and Respect lifts differed by at least half a standard deviation for 11 of 32 words. Respect and acceptance differed by that much for 6. | [TP69 · E-TP69-20261127](result-sheets/TP69.md) |
 | TP66 · Order during loss | After matching sentence counts, the SADNESS-minus-FEAR timing difference between loss and other texts was -0.014 [-0.058, 0.032] in chat and 0.268 [0.184, 0.352] in recalled events. | [TP66 · E-TP66-SHORT-20261127](result-sheets/TP66.md) |
 | TP67 · Whose rise | Own minus other responsibility in mean PRIDE was grateful -0.004 [-0.032, 0.025], impressed 0.021 [-0.025, 0.068], proud -0.040 [-0.091, 0.009]. | [TP67 · E-TP67-ORIGINAL-20261127](result-sheets/TP67.md) |
-| TP72 · Sealed bundle v2 | Pending its place in the section 6 queue, two invented-data rehearsals and a verified manifest. Sounding Line retains the TP58 rehearsal bundle. | Section 4 |
+| TP72 · Sealed bundle v2 | Candidate assembled. Both invented-data rehearsals are registered behind counted resource admission. Delivery awaits their result. | [TP72](result-sheets/TP72.md) |
 | TP73 · Whole authors | Q24 returned 2,993 whole authors. The registered competence arm is complete. Its curiosity contrasts miss both bars. Other arms remain open. | [TP73](result-sheets/TP73.md) |
 | TP74 · Earned standing | Depends on Q27 and the agreement of the relevant fields. | Section 4 |
 | TP75 · Worry and time direction | Depends on Q31’s blog sentence sample. | Section 4 |
@@ -52,13 +52,13 @@ Pilot times are wall seconds after loading. Observed totals include job startup 
 | Q28 · Event features | 2.0 | — | — | Registered behind Q27. |
 | Q32 · Third reader and rewordings | 2.0 | — | — | Registered behind Q28. The extended memory rule applies only to C on this job. |
 | Q29 · Sentences | 3.0 | — | — | Both machines verified the same 17,755 held-out forum sentences and 21,247 ISEAR sentences. Spark’s native listener is waiting for Q32’s release. |
-| Q31 · Blog loss and timing | 9.8 | — | — | Roster preparation ranks posts with at least six windows by mean SADNESS. A separate seeded sample takes 20 openings from each of 500 authors with at least 80 posts. Sizing awaits the actual sentence census and timed pilot. |
+| Q31 · Blog loss and timing | 9.8 | — | — | Both machines verified 1,054 loss candidates and 82,548 sentences from the 10,000 sampled openings. Spark’s listener waits for Q29’s exact release. |
 | Q30 · Long stories | 9.9 | — | — | In-place Spark source unavailable. |
 | Q33 · Talk pages | First 1,000 to size | — | — | In-place Spark source unavailable. |
 | G12 · Standing | 4–6 | 66.58 | 7.96 | Running. |
 | G14 · Event features | <1 | — | — | Follows G12. |
-| G13 · Sentence and loss comparisons | First 100 to size | — | — | The workstation’s sentence listener is waiting for G14’s release. The other comparisons depend on their own inputs. |
-| G15 · Workstation filler | Up to 21.6 | — | — | Whole-author selection and exact G11 reuse required. |
+| G13 · Sentence and loss comparisons | First 100 to size | — | — | The original-sentence arm follows G14. The verified blog arm follows the original-sentence arm. |
+| G15 · Workstation filler | Up to 21.6 | — | — | Input preparation waits for reserved CPU memory. Exact historical W responses, including missing values, retain their original positions. |
 | Q24b · Spark filler | Time remaining | — | — | Native dispatcher verified at offset 207,795. Parked while Q27 owns the GPU. |
 
 **Q26.** The three widths completed the same 200 texts at 112.59, 112.58 and 113.47 texts per minute. All 173 valid serial answers matched literally at both higher widths. The other 27 violated the earned-rise field rule. A width needed 200 valid matches and higher throughput. Further concurrency work would require a separately approved server trial or a separately registered prompt; neither change was made. [Verified Q26 aggregate](../../engine/validation/readers-q26-throughput-2026-11.json)
