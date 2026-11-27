@@ -8,6 +8,7 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
 from rapid_blend import auc_draws, train
+from rapid_blog_handoff import selection
 from rapid_outside import (
     KEYS,
     controls,
@@ -77,3 +78,21 @@ def test_paired_auc_recomputes_tied_scores_under_whole_writer_multiplicities():
         assert np.isclose(result[i], roc_auc_score(y, x, sample_weight=w[owner]))
     coef, _ = train(x[:, None], y.astype(float), lambda: None)
     assert np.isfinite(coef).all() and coef[0] > 0
+
+
+def test_blog_transfer_allows_only_opaque_keys_and_original_shard_hashes():
+    import json
+
+    import pytest
+
+    sample = [[f"{i:064x}", "f" * 64] for i in range(10000)]
+    plan = {
+        "sample": sample,
+        "loss": [["a" * 64, "c" * 64]],
+        "shards": {"shard-0001.jsonl.gz": "e" * 64},
+    }
+    selection(json.dumps(plan))
+    with pytest.raises(ValueError):
+        selection(json.dumps({**plan, "authors": ["private"]}))
+    with pytest.raises(ValueError):
+        selection(json.dumps({**plan, "loss": [["a" * 64, "an opening"]]}))
