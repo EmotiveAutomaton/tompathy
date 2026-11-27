@@ -1,4 +1,4 @@
-Nov 27 at 11:08 PT, Spark is running Q27 (25,460/43,021), the workstation GPU is running G12 (22,520/43,021), and the card queue is waiting for counted CPU and memory admission for the sealed-bundle rehearsal. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
+Nov 27 at 11:17 PT, Spark is running Q27 (26,400/43,021), the workstation GPU is running G12 (23,300/43,021), and the card queue is waiting for counted CPU and memory admission for the sealed-bundle rehearsal. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
 
 # Two-day engine return · November 27–29
 
@@ -31,7 +31,7 @@ The table covers 35 registered predictions. TP62 met both directional criteria o
 | TP68 · Embarrassment | SHAME plus PLAY ranked 2 of 45 pairs for embarrassed. The dedicated head’s gain over its strongest covered-word comparator was -0.015 [-0.030, -0.006] AUC. | [TP68 · E-TP68-20261127](result-sheets/TP68.md) |
 | TP69 · Competence and Respect | Across 24,850 chat situations, Competence and Respect lifts differed by at least half a standard deviation for 11 of 32 words. Respect and acceptance differed by that much for 6. | [TP69 · E-TP69-20261127](result-sheets/TP69.md) |
 | TP66 · Order during loss | After matching sentence counts, the SADNESS-minus-FEAR timing difference between loss and other texts was -0.014 [-0.058, 0.032] in chat and 0.268 [0.184, 0.352] in recalled events. | [TP66 · E-TP66-SHORT-20261127](result-sheets/TP66.md) |
-| TP67 · Whose rise | Own minus other responsibility in mean PRIDE was grateful -0.004 [-0.032, 0.025], impressed 0.021 [-0.025, 0.068], proud -0.040 [-0.091, 0.009]. | [TP67 · E-TP67-ORIGINAL-20261127](result-sheets/TP67.md) |
+| TP67 · Whose rise | Own minus other responsibility in mean PRIDE was grateful -0.004 [-0.032, 0.025], impressed 0.021 [-0.025, 0.068], proud -0.040 [-0.091, 0.009]. The direct comparison of own, close and other is specified and implemented. Its estimates await the two standing panels and TP77’s agreement check. | [TP67 · E-TP67-ORIGINAL-20261127](result-sheets/TP67.md) |
 | TP72 · Sealed bundle v2 | Candidate assembled. Both invented-data rehearsals are registered behind counted resource admission. Delivery awaits their result. | [TP72](result-sheets/TP72.md) |
 | TP73 · Whole authors | Q24 returned 2,993 whole authors. Both curiosity predictions missed. The comparison of B with random heads on the same 10 and 20 posts per date half is prepared. Its estimates are pending. | [TP73](result-sheets/TP73.md) |
 | TP74 · Earned standing | Depends on Q27 and the agreement of the relevant fields. | Section 4 |
