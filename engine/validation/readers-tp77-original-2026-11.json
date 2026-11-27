@@ -1,0 +1,1013 @@
+{
+  "alignedReceiptPin": "2785c2963d8abe38f2b9ea1002fa7084f92baf70714f559d56222e6ad3ea6dc1",
+  "card": "TP77-original",
+  "limits": "B/W defines mark usability on the common original roster. The B/C and W/C checks use the Q11 subset.",
+  "modelReceiptPins": {
+    "G4": "d2002e174ab203b0e79420fc7a49efb6cf82012cfa03d2ce71cc74d2c381b410",
+    "Q11": "eef869091aa69c30cb69a75a7157adae5a5c42239748c15d5d31f8e8a1a82860",
+    "Q12": "2ec944fea9163ab1cdbaa6346bd320046054028d4b3514b13f9268917cdc2b51",
+    "Q14": "d10d2054065940ec834a06985ef92525fab645bda2cb6319abbcd6444bbfcc94"
+  },
+  "sources": {
+    "all": {
+      "B/C": {
+        "change": {
+          "bothMissing": 0,
+          "interval": [
+            0.7044007665431833,
+            0.749118111491968
+          ],
+          "jointlyValid": 5014,
+          "levels": [
+            "no",
+            "yes"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 5014,
+          "table": [
+            [
+              1988,
+              152
+            ],
+            [
+              533,
+              2341
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.7269882437517359
+        },
+        "when": {
+          "bothMissing": 0,
+          "interval": [
+            0.7069772063996987,
+            0.7456563504721148
+          ],
+          "jointlyValid": 5014,
+          "levels": [
+            "none",
+            "ahead",
+            "already",
+            "ongoing"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 5014,
+          "table": [
+            [
+              1988,
+              10,
+              139,
+              3
+            ],
+            [
+              100,
+              190,
+              21,
+              4
+            ],
+            [
+              335,
+              16,
+              1999,
+              2
+            ],
+            [
+              98,
+              10,
+              49,
+              50
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.7272709239992682
+        },
+        "whose": {
+          "bothMissing": 0,
+          "interval": [
+            0.5503387832390721,
+            0.5857880983034924
+          ],
+          "jointlyValid": 5014,
+          "levels": [
+            "nobody",
+            "writer",
+            "someone_else"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 5014,
+          "table": [
+            [
+              1988,
+              76,
+              76
+            ],
+            [
+              157,
+              458,
+              37
+            ],
+            [
+              376,
+              662,
+              1184
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.5685414831196883
+        }
+      },
+      "B/W": {
+        "change": {
+          "CW": "usable",
+          "bothMissing": 0,
+          "interval": [
+            0.5907766799709007,
+            0.6240211455161359
+          ],
+          "jointlyValid": 51557,
+          "levels": [
+            "no",
+            "yes"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 51557,
+          "table": [
+            [
+              19998,
+              1112
+            ],
+            [
+              9215,
+              21232
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.6088330144435258
+        },
+        "when": {
+          "CW": "usable",
+          "bothMissing": 0,
+          "interval": [
+            0.60037810100572,
+            0.6261579228669225
+          ],
+          "jointlyValid": 51557,
+          "levels": [
+            "none",
+            "ahead",
+            "already",
+            "ongoing"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 51557,
+          "table": [
+            [
+              19998,
+              461,
+              634,
+              17
+            ],
+            [
+              1173,
+              3280,
+              85,
+              13
+            ],
+            [
+              6528,
+              757,
+              15684,
+              24
+            ],
+            [
+              1514,
+              308,
+              648,
+              433
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.6143921738744026
+        },
+        "whose": {
+          "CW": "weak",
+          "bothMissing": 0,
+          "interval": [
+            0.4294799516429787,
+            0.45527849434121387
+          ],
+          "jointlyValid": 51557,
+          "levels": [
+            "nobody",
+            "writer",
+            "someone_else"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 51557,
+          "table": [
+            [
+              19998,
+              676,
+              436
+            ],
+            [
+              2863,
+              5074,
+              48
+            ],
+            [
+              6352,
+              8463,
+              7647
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.4435191426318918
+        }
+      },
+      "W/C": {
+        "change": {
+          "bothMissing": 0,
+          "interval": [
+            0.6909774365613042,
+            0.727698613278047
+          ],
+          "jointlyValid": 5014,
+          "levels": [
+            "no",
+            "yes"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 5014,
+          "table": [
+            [
+              2335,
+              541
+            ],
+            [
+              186,
+              1952
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.7097734145683925
+        },
+        "when": {
+          "bothMissing": 0,
+          "interval": [
+            0.673355537135478,
+            0.7097135619167245
+          ],
+          "jointlyValid": 5014,
+          "levels": [
+            "none",
+            "ahead",
+            "already",
+            "ongoing"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 5014,
+          "table": [
+            [
+              2335,
+              30,
+              497,
+              14
+            ],
+            [
+              68,
+              186,
+              86,
+              9
+            ],
+            [
+              109,
+              8,
+              1620,
+              20
+            ],
+            [
+              9,
+              2,
+              5,
+              16
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.6915199609004778
+        },
+        "whose": {
+          "bothMissing": 0,
+          "interval": [
+            0.6003603462181378,
+            0.6373520857431068
+          ],
+          "jointlyValid": 5014,
+          "levels": [
+            "nobody",
+            "writer",
+            "someone_else"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 5014,
+          "table": [
+            [
+              2335,
+              306,
+              235
+            ],
+            [
+              121,
+              858,
+              399
+            ],
+            [
+              65,
+              32,
+              663
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.619414325859636
+        }
+      }
+    },
+    "ed": {
+      "B/C": {
+        "change": {
+          "bothMissing": 0,
+          "interval": [
+            0.6665502851971848,
+            0.731984662065834
+          ],
+          "jointlyValid": 2500,
+          "levels": [
+            "no",
+            "yes"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 2500,
+          "table": [
+            [
+              977,
+              55
+            ],
+            [
+              324,
+              1144
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.698942182918599
+        },
+        "when": {
+          "bothMissing": 0,
+          "interval": [
+            0.6852605160436392,
+            0.7388390062745211
+          ],
+          "jointlyValid": 2500,
+          "levels": [
+            "none",
+            "ahead",
+            "already",
+            "ongoing"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 2500,
+          "table": [
+            [
+              977,
+              8,
+              45,
+              2
+            ],
+            [
+              74,
+              165,
+              14,
+              3
+            ],
+            [
+              177,
+              8,
+              879,
+              0
+            ],
+            [
+              73,
+              9,
+              28,
+              38
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.7117300381222317
+        },
+        "whose": {
+          "bothMissing": 0,
+          "interval": [
+            0.545802953877929,
+            0.5968276490199926
+          ],
+          "jointlyValid": 2500,
+          "levels": [
+            "nobody",
+            "writer",
+            "someone_else"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 2500,
+          "table": [
+            [
+              977,
+              29,
+              26
+            ],
+            [
+              121,
+              275,
+              22
+            ],
+            [
+              203,
+              290,
+              557
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.5706822312893252
+        }
+      },
+      "B/W": {
+        "change": {
+          "CW": "weak",
+          "bothMissing": 0,
+          "interval": [
+            0.5760075462232315,
+            0.6133549961016931
+          ],
+          "jointlyValid": 41216,
+          "levels": [
+            "no",
+            "yes"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 41216,
+          "table": [
+            [
+              15554,
+              898
+            ],
+            [
+              7650,
+              17114
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.5954860518531977
+        },
+        "when": {
+          "CW": "usable",
+          "bothMissing": 0,
+          "interval": [
+            0.5930695259019065,
+            0.6226200559765531
+          ],
+          "jointlyValid": 41216,
+          "levels": [
+            "none",
+            "ahead",
+            "already",
+            "ongoing"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 41216,
+          "table": [
+            [
+              15554,
+              420,
+              465,
+              13
+            ],
+            [
+              1082,
+              3144,
+              72,
+              10
+            ],
+            [
+              5216,
+              596,
+              12013,
+              18
+            ],
+            [
+              1352,
+              292,
+              564,
+              405
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.6082677626012996
+        },
+        "whose": {
+          "CW": "weak",
+          "bothMissing": 0,
+          "interval": [
+            0.43191358683271813,
+            0.4622061075673978
+          ],
+          "jointlyValid": 41216,
+          "levels": [
+            "nobody",
+            "writer",
+            "someone_else"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 41216,
+          "table": [
+            [
+              15554,
+              554,
+              344
+            ],
+            [
+              2599,
+              4407,
+              45
+            ],
+            [
+              5051,
+              6426,
+              6236
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.44698878613553755
+        }
+      },
+      "W/C": {
+        "change": {
+          "bothMissing": 0,
+          "interval": [
+            0.691451619320448,
+            0.7429574188098146
+          ],
+          "jointlyValid": 2500,
+          "levels": [
+            "no",
+            "yes"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 2500,
+          "table": [
+            [
+              1197,
+              247
+            ],
+            [
+              104,
+              952
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.7174105986966429
+        },
+        "when": {
+          "bothMissing": 0,
+          "interval": [
+            0.6811278845705954,
+            0.7270152519761229
+          ],
+          "jointlyValid": 2500,
+          "levels": [
+            "none",
+            "ahead",
+            "already",
+            "ongoing"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 2500,
+          "table": [
+            [
+              1197,
+              24,
+              214,
+              9
+            ],
+            [
+              49,
+              161,
+              45,
+              6
+            ],
+            [
+              48,
+              4,
+              705,
+              14
+            ],
+            [
+              7,
+              1,
+              2,
+              14
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.7042742232269597
+        },
+        "whose": {
+          "bothMissing": 0,
+          "interval": [
+            0.6123146231580134,
+            0.6663297526391414
+          ],
+          "jointlyValid": 2500,
+          "levels": [
+            "nobody",
+            "writer",
+            "someone_else"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 2500,
+          "table": [
+            [
+              1197,
+              149,
+              98
+            ],
+            [
+              71,
+              422,
+              165
+            ],
+            [
+              33,
+              23,
+              342
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.6396783283427556
+        }
+      }
+    },
+    "envent": {
+      "B/C": {
+        "change": {
+          "bothMissing": 0,
+          "interval": [
+            0.7285096237047235,
+            0.7820297931457093
+          ],
+          "jointlyValid": 2514,
+          "levels": [
+            "no",
+            "yes"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 2514,
+          "table": [
+            [
+              1011,
+              97
+            ],
+            [
+              209,
+              1197
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.7557108887951752
+        },
+        "when": {
+          "bothMissing": 0,
+          "interval": [
+            0.714449199221695,
+            0.7672564076025203
+          ],
+          "jointlyValid": 2514,
+          "levels": [
+            "none",
+            "ahead",
+            "already",
+            "ongoing"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 2514,
+          "table": [
+            [
+              1011,
+              2,
+              94,
+              1
+            ],
+            [
+              26,
+              25,
+              7,
+              1
+            ],
+            [
+              158,
+              8,
+              1120,
+              2
+            ],
+            [
+              25,
+              1,
+              21,
+              12
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.7415541383711782
+        },
+        "whose": {
+          "bothMissing": 0,
+          "interval": [
+            0.5417800456298464,
+            0.5890504069824081
+          ],
+          "jointlyValid": 2514,
+          "levels": [
+            "nobody",
+            "writer",
+            "someone_else"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 2514,
+          "table": [
+            [
+              1011,
+              47,
+              50
+            ],
+            [
+              36,
+              183,
+              15
+            ],
+            [
+              173,
+              372,
+              627
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.5662435168144554
+        }
+      },
+      "B/W": {
+        "change": {
+          "CW": "usable",
+          "bothMissing": 0,
+          "interval": [
+            0.6469138617863636,
+            0.6750199752825491
+          ],
+          "jointlyValid": 10341,
+          "levels": [
+            "no",
+            "yes"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 10341,
+          "table": [
+            [
+              4444,
+              214
+            ],
+            [
+              1565,
+              4118
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.6613758387241933
+        },
+        "when": {
+          "CW": "usable",
+          "bothMissing": 0,
+          "interval": [
+            0.6223385679396909,
+            0.6493807244820546
+          ],
+          "jointlyValid": 10341,
+          "levels": [
+            "none",
+            "ahead",
+            "already",
+            "ongoing"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 10341,
+          "table": [
+            [
+              4444,
+              41,
+              169,
+              4
+            ],
+            [
+              91,
+              136,
+              13,
+              3
+            ],
+            [
+              1312,
+              161,
+              3671,
+              6
+            ],
+            [
+              162,
+              16,
+              84,
+              28
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.6359554829599772
+        },
+        "whose": {
+          "CW": "weak",
+          "bothMissing": 0,
+          "interval": [
+            0.41637321702513597,
+            0.4407835932572558
+          ],
+          "jointlyValid": 10341,
+          "levels": [
+            "nobody",
+            "writer",
+            "someone_else"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 10341,
+          "table": [
+            [
+              4444,
+              122,
+              92
+            ],
+            [
+              264,
+              667,
+              3
+            ],
+            [
+              1301,
+              2037,
+              1411
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.42892998398768123
+        }
+      },
+      "W/C": {
+        "change": {
+          "bothMissing": 0,
+          "interval": [
+            0.6757823814366178,
+            0.7285325947351213
+          ],
+          "jointlyValid": 2514,
+          "levels": [
+            "no",
+            "yes"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 2514,
+          "table": [
+            [
+              1138,
+              294
+            ],
+            [
+              82,
+              1000
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.7020959027408347
+        },
+        "when": {
+          "bothMissing": 0,
+          "interval": [
+            0.647490902262291,
+            0.6989290241598275
+          ],
+          "jointlyValid": 2514,
+          "levels": [
+            "none",
+            "ahead",
+            "already",
+            "ongoing"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 2514,
+          "table": [
+            [
+              1138,
+              6,
+              283,
+              5
+            ],
+            [
+              19,
+              25,
+              41,
+              3
+            ],
+            [
+              61,
+              4,
+              915,
+              6
+            ],
+            [
+              2,
+              1,
+              3,
+              2
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.6738430155253063
+        },
+        "whose": {
+          "bothMissing": 0,
+          "interval": [
+            0.5739061621308037,
+            0.6257744668301664
+          ],
+          "jointlyValid": 2514,
+          "levels": [
+            "nobody",
+            "writer",
+            "someone_else"
+          ],
+          "reader1Only": 0,
+          "reader2Only": 0,
+          "roster": 2514,
+          "table": [
+            [
+              1138,
+              157,
+              137
+            ],
+            [
+              50,
+              436,
+              234
+            ],
+            [
+              32,
+              9,
+              321
+            ]
+          ],
+          "validDraws": 2000,
+          "value": 0.5998762731370776
+        }
+      }
+    }
+  },
+  "ledger": "E-TP77-ORIGINAL-20261127",
+  "sourceReceiptPin": "373f0af21389523c78ed7f30cc3d82cbc72d13cdf43da8a5cee2e6e93e46ce3e",
+  "productionAdmission": false,
+  "license": "EmpatheticDialogues data used for research under CC BY-NC 4.0."
+}

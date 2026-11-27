@@ -1,5 +1,7 @@
 # ToMpathy status
 
+**November 27 · TP77.** On the original sentences, B/W kappa was 0.609 for change (usable), 0.614 for when (usable), 0.444 for whose (weak). [E-TP77-ORIGINAL-20261127](docs/exchange/result-sheets/TP77.md)
+
 **November 27 · TP65.** The original sentence timing comparisons are eligible for the registered comparisons. [E-TP65-20261127](docs/exchange/result-sheets/TP65.md)
 
 **November 27 · TP64.** Forum desire versus optimism and excitement had AUC 0.712 [0.652, 0.767], 0.843 [0.802, 0.884]. [E-TP64-20261127](docs/exchange/result-sheets/TP64.md)
