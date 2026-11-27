@@ -95,6 +95,19 @@ def run(card, attempt):
                 import rapid_agreement as study
 
                 result = study.prepare(out, check)
+            elif card == "TP63-original":
+                import rapid_outside as study
+
+                result = study.prepare(out, check)
+            elif card.startswith("TP68-"):
+                import rapid_blend as study
+
+                if card == "TP68-design":
+                    result = study.design(out, check)
+                elif card == "TP68-return":
+                    result = study.returns(out, check)
+                else:
+                    result = study.fit_fold(out, int(card.rsplit("-", 1)[-1]), check)
             elif card == "Q31-inputs":
                 import rapid_blog_selection as study
 
@@ -170,6 +183,10 @@ if __name__ == "__main__":
             "TP65-inputs",
             "TP65",
             "TP77-original",
+            "TP63-original",
+            "TP68-design",
+            *(f"TP68-fold-{i}" for i in range(5)),
+            "TP68-return",
             "Q31-inputs",
             *(f"TP70-block-{i:02d}" for i in range(40)),
             "TP62-first",

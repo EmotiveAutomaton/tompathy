@@ -22,30 +22,55 @@ STAGES = {
 }
 
 
-def registration():
-    previous = read(PREVIOUS / "armed.json")
-    bound(PREVIOUS / "registration.json", previous["registration"])
+BLEND_FILES = ("rapid_blend.py", "rapid_content.py")
+OUTSIDE_STAGES = {
+    "TP63-original": ("rapid_outside.py", "rapid_nulls.py"),
+    "TP68-design": BLEND_FILES,
+    **{f"TP68-fold-{i}": BLEND_FILES for i in range(5)},
+    "TP68-return": BLEND_FILES,
+}
+
+
+def configuration(queue):
+    if queue == "sentence":
+        return PREVIOUS, OUT, {"TP70-return", "TP64"}, STAGES
+    if queue == "outside":
+        return OUT, ROOT / "outside-card-queue", set(STAGES), OUTSIDE_STAGES
+    raise ValueError("Unknown packet queue")
+
+
+def registration(queue="sentence"):
+    earlier, _, _, stages = configuration(queue)
+    previous = read(earlier / "armed.json")
+    bound(earlier / "registration.json", previous["registration"])
     code = {
-        n: pin(Path(__file__).with_name(n)) for files in STAGES.values() for n in files
+        n: pin(Path(__file__).with_name(n)) for files in stages.values() for n in files
     }
-    return {
+    result = {
         "priorRegistration": previous["registration"],
         "priorOwner": previous["owner"],
-        "stages": list(STAGES),
+        "stages": list(stages),
         "code": code,
     }
+    if queue == "outside":
+        result["protocols"] = {
+            k: pin(Path(f"docs/exchange/result-sheets/{k}.md"))
+            for k in ("TP63", "TP68")
+        }
+    return result
 
 
-def run(h):
-    plan = read(bound(OUT / "registration.json", h))
-    if plan != registration():
-        raise ValueError("The registered sentence and blog plans differ")
-    with lease(OUT / "dispatch.lock"):
+def run(h, queue="sentence"):
+    earlier, out, required, stages = configuration(queue)
+    plan = read(bound(out / "registration.json", h))
+    if plan != registration(queue):
+        raise ValueError("The registered study plans differ")
+    with lease(out / "dispatch.lock"):
         owner = identity()
         done = {}
         try:
             write(
-                OUT / "armed.json",
+                out / "armed.json",
                 {
                     "owner": owner,
                     "at": now(),
@@ -53,12 +78,12 @@ def run(h):
                     "predecessor": plan["priorOwner"],
                 },
             )
-            if not (PREVIOUS / "complete.json").exists():
+            if not (earlier / "complete.json").exists():
                 wait_predecessor(plan["priorOwner"], check)
-            prior = read(PREVIOUS / "complete.json")
+            prior = read(earlier / "complete.json")
             if (
                 prior["owner"] != plan["priorOwner"]
-                or set(prior["verified"]) != {"TP70-return", "TP64"}
+                or set(prior["verified"]) != required
                 or any(
                     confirmed(ROOT / (k + "-a")) != v
                     for k, v in prior["verified"].items()
@@ -67,18 +92,24 @@ def run(h):
                 raise ValueError(
                     "Preceding research stages have not released and verified"
                 )
-            for card, files in STAGES.items():
+            for card, files in stages.items():
                 check()
+                if card in ("TP63-original", "TP68-design"):
+                    key = card.split("-")[0]
+                    bound(
+                        Path(f"docs/exchange/result-sheets/{key}.md"),
+                        plan["protocols"][key],
+                    )
                 for n in files:
                     bound(Path(__file__).with_name(n), plan["code"][n])
                 done[card] = execute(card)
-                write(OUT / "progress.json", {"at": now(), "verified": done})
+                write(out / "progress.json", {"at": now(), "verified": done})
             write(
-                OUT / "complete.json", {"at": now(), "owner": owner, "verified": done}
+                out / "complete.json", {"at": now(), "owner": owner, "verified": done}
             )
         except Exception as exc:
             write(
-                OUT / "stopped.json",
+                out / "stopped.json",
                 {"at": now(), "owner": owner, "reason": str(exc), "verified": done},
             )
             raise
@@ -87,12 +118,13 @@ def run(h):
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
     p.add_argument("--registration")
+    p.add_argument("--queue", choices=("sentence", "outside"), default="sentence")
     args = p.parse_args()
     if args.registration:
-        run(args.registration)
+        run(args.registration, args.queue)
     else:
         from rapid_land import put
 
-        f = OUT / "registration.json"
-        put(f, registration())
+        f = configuration(args.queue)[1] / "registration.json"
+        put(f, registration(args.queue))
         print(pin(f))

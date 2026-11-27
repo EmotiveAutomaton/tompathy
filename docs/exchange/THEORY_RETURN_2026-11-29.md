@@ -1,4 +1,4 @@
-Nov 27 at 09:20 PT, Spark is running Q27 (13,580/43,021), the workstation GPU is running G12 (12,560/43,021), and the card queue is running TP70 grouping block 26 of 40. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
+Nov 27 at 09:37 PT, Spark is running Q27 (15,420/43,021), the workstation GPU is running G12 (14,080/43,021), and the card queue is running TP70 grouping block 35 of 40. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
 
 # Two-day engine return · November 27–29
 
@@ -21,8 +21,8 @@ The table covers 35 registered predictions. TP62 met both directional criteria o
 | TP64 · Channel checks | The three source tables and research SHAME rescore are registered behind TP70. | [TP64](result-sheets/TP64.md) |
 | TP65 · Coming or landed | The original within-report comparison and its two writer-rating fields are registered. Further sources depend on Q29–Q31. | [TP65](result-sheets/TP65.md) |
 | TP77 · Reader agreement | Original sentence comparisons precede new marks. The standing-mark comparison needs matched B and W responses. | [TP77](result-sheets/TP77.md) |
-| TP63 · Outside scores | The event header contains all ten inventory items. The held essay header has empathy and distress and contains no trait columns. The essay arm is unavailable. | Section 4 |
-| TP68 · Embarrassment | Registered on the original sources. | Section 4 |
+| TP63 · Outside scores | The five trait keys are filed. The reader study on 6,600 events is queued. The held news-reaction essays have no trait fields. | [TP63](result-sheets/TP63.md) |
+| TP68 · Embarrassment | The fifteen comparison words and the five writer-held-out folds are fixed. The fits are queued behind the outside-score table. | [TP68](result-sheets/TP68.md) |
 | TP69 · Competence and Respect | Registered on the saved profiles. | Section 4 |
 | TP66 · Order during loss | The short arm precedes the blog and story arms. | Section 4 |
 | TP67 · Whose rise | The first comparison uses saved inputs. The three-way comparison needs Q27. | Section 4 |
