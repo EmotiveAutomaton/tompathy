@@ -1,6 +1,8 @@
-Nov 27 at 11:17 PT, Spark is running Q27 (26,400/43,021), the workstation GPU is running G12 (23,300/43,021), and the card queue is waiting for counted CPU and memory admission for the sealed-bundle rehearsal. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
+November 27 at 13:36 PT, Spark was scoring Q27 (42,240/43,021). The workstation GPU was idle after G12 hit its 8 GiB available-commit floor, with the last progress receipt at 27,200/43,021. The CPU card queue was between stages after TP72's offline rehearsal stopped on its network refusal. The workstation can read both held corpora. The last Spark source check found no in-place route to the talk pages or recalled stories.
 
 # Two-day engine return · November 27–29
+
+**Amendment DC.** R48 supersedes CY's restriction on reporting figures. TP66's long-story arm and TP76 will publish all registered recalled-story statistics. Stories stay in place and unquoted, and imagined accounts are excluded. The November 27 pass gives the saved figures and intervals, including contrasts against prediction and reasons some arms have no figures. The first digest missed its six-hour deadline. [Ruling](RULING_R48.md) · [Held-results digest](HELD_RESULTS_DIGEST.md) · [Inventory and source conditions](HELD_RESULTS_INVENTORY.md)
 
 ## Against, and clear
 

@@ -1,0 +1,43 @@
+{
+  "heldAccess": {
+    "sparkInPlace": false,
+    "sourceRowsRead": 0,
+    "rawCopies": 0,
+    "receiptPin": "173e927781aa768f752bcbbe34ce101d7c69dce8fdd71a5eb393ec6f055661b3"
+  },
+  "coauthor": {
+    "sessions": 1,
+    "writers": 1,
+    "decisions": 12,
+    "corrections": 1,
+    "fittedChoices": 5,
+    "readingReceiptPin": "72fed9120020c7b1263467560206587da157d99447500040527ff7c017051828",
+    "fitReceiptPin": "9623a7fed9645098f0c3880811cc4560b9bb0d9daa55a1e1479a214f0dad2cd5"
+  },
+  "baseFolds": [
+    {
+      "fold": 0,
+      "heldOutLines": 9615,
+      "developmentAuc": 0.8222598448441408,
+      "sourceReceiptPin": "de90341eaf701df1185995fc5d25bf2623ecd0ea30ecc1cd73de8a2a734ab1da"
+    },
+    {
+      "fold": 1,
+      "heldOutLines": 9615,
+      "developmentAuc": 0.5086667293592241,
+      "sourceReceiptPin": "abf8122e4c11486c705bdc2c1f4b508da4c42458e102d4f679cb40211e950370"
+    },
+    {
+      "fold": 2,
+      "heldOutLines": 9615,
+      "developmentAuc": 0.8037448558728146,
+      "sourceReceiptPin": "7b62d3e61b5aad33d6395a9b291e37bfd563de3df861fbb3a0c68a351986ba05"
+    },
+    {
+      "fold": 3,
+      "heldOutLines": 9610,
+      "developmentAuc": 0.8261514018669305,
+      "sourceReceiptPin": "bf576f201e35ea7b739a23d36d9aa7c1055974b17f592b55152a6d1948cef01c"
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 # ToMpathy status
 
+**November 27 · R48.** The historical reporting pass restores the CoAuthor rehearsal counts and four completed base-encoder folds from saved receipts. The engine also records the receiver's PANDORA source-binding failure. Q30 has no recalled-story estimate. Those figures will be published under amendment DC when measured. [Study reports and intervals](docs/exchange/HELD_RESULTS_DIGEST.md) · [Inventory](docs/exchange/HELD_RESULTS_INVENTORY.md)
+
 **November 27 · TP67.** Own minus other responsibility in mean PRIDE was grateful -0.004 [-0.032, 0.025], impressed 0.021 [-0.025, 0.068], proud -0.040 [-0.091, 0.009]. [E-TP67-ORIGINAL-20261127](docs/exchange/result-sheets/TP67.md)
 
 **November 27 · TP66.** After matching sentence counts, the SADNESS-minus-FEAR timing difference between loss and other texts was -0.014 [-0.058, 0.032] in chat and 0.268 [0.184, 0.352] in recalled events. [E-TP66-SHORT-20261127](docs/exchange/result-sheets/TP66.md)

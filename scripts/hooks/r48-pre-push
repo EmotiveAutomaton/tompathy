@@ -1,0 +1,13 @@
+#!/bin/sh
+# Verify the reports in each outgoing study commit. Do not read private study files.
+set -eu
+python=python
+if test -x .local/readers-venv/Scripts/python.exe; then
+    python=.local/readers-venv/Scripts/python.exe
+fi
+while read -r local_ref local_oid remote_ref remote_oid; do
+    case "$local_oid" in 0000000000000000000000000000000000000000) continue ;; esac
+    if git cat-file -e "$local_oid:docs/exchange/RULING_R48.md" 2>/dev/null; then
+        "$python" -B scripts/r48_reports.py --check --revision "$local_oid"
+    fi
+done

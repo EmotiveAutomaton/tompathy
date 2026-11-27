@@ -1,0 +1,11 @@
+{
+  "revision": "18708a8f11e17e33bcd8717a21e330a8257bb2cd",
+  "table": "docs/exchange/r48/TMP2-source.csv",
+  "receipt": "results/phase_2_4_stage_15/WEEK8/TMP2_DJ_SOURCE_AND_FALLBACK_REHEARSAL.json",
+  "tableSha256": "e746c6cdf5656d7f4390095af836f7dd37677c03dc865bd3ec6597fc2b180021",
+  "receiptSha256": "14265539ae08ee664b5f212c095eb5b71e61b481948bbf7f155d72761b89860a",
+  "nativeExit": 22,
+  "launcherExit": 4,
+  "gate": "skipped",
+  "rows": []
+}
