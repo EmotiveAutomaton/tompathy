@@ -1,23 +1,23 @@
-Both GPUs are running the standing-mark study, Q27 on Spark and G12 on the workstation. The card queue is running TP62 controls after TP73’s first result. Spark lacks an in-place route to the talk-page and long-story files for Q33 and Q30. The workstation can open both at their held locations.
+Both GPUs are running the standing-mark study, Q27 on Spark and G12 on the workstation. The card queue finished TP62 and TP61’s worry-repeat comparison and is running the word-specific controls. Spark lacks an in-place route to the talk-page and long-story files for Q33 and Q30. The workstation can open both at their held locations.
 
 # Two-day engine return · November 27–29
 
 ## Against, and clear
 
-Worry’s within-author slope exceeded the 99.5th percentile of both control families. Four isotropic and three rotated heads equaled or exceeded it, so the prediction that none would do so failed. In the whole-author blog return, curiosity’s correlation with competence fell below 0.30 between authors and was positive within authors. Both of those predictions missed.
+Worry’s within-author slope exceeded the 99.5th percentile of both control families. Four isotropic and three rotated heads equaled or exceeded it, so the prediction that none would do so failed. In a separate repeatability test, the difference between worry and median tag repeat was smaller than predicted, at percentile 0.8 of rotated sets. In the whole-author blog return, curiosity’s correlation with competence fell below 0.30 between authors and was positive within authors. Both of those predictions missed.
 
 ## Registered predictions
 
-The table covers 35 registered predictions. It includes the measured TP61 slope and TP62 trained estimates. Their full multi-part tests still have outstanding components. [TP78 family table](result-sheets/TP78.md)
+The table covers 35 registered predictions. TP62 met both directional criteria on the fixed texts, including after assigned stems were excluded. The whole-writer sampling interval is unavailable. TP61 still has outstanding components. [TP78 family table](result-sheets/TP78.md)
 
 ## Readouts
 
 | Card | Recorded state | Sheet or registered protocol |
 |---|---|---|
 | TP71 · Display and exports | Landed. Acceptance is shown beside Respect. Wanting and amusement are the reader labels. SHAME carries its scope flag. The Meaning row is hidden. | [TP71 change list](result-sheets/TP71.md) |
-| TP61 · Random-head controls | Score reconstruction passed. The slope of 0.12711 exceeded both 99.5th percentiles. Seven of 7,600 heads reached it. Other comparisons remain open. | [TP61](result-sheets/TP61.md) |
-| TP62 · Content and style | Trained word accuracy was 35.21% and trained writer accuracy was 1.76%. The comparison with 200 isotropic and 200 rotated sets is pending. | [TP62](result-sheets/TP62.md) |
-| TP70 · Blind grouping | Word profiles are available. The blog arm needs TP61’s author vectors. | Section 4 |
+| TP61 · Random-head controls | Worry minus median tag repeat was 0.218, below the 0.229–0.299 rotated band. Worry’s slope of 0.12711 exceeded both 99.5th percentiles. Seven of 7,600 heads reached it. | [TP61](result-sheets/TP61.md) |
+| TP62 · Content and style | Trained word accuracy was 35.21%, above every rotated set. Writer accuracy was 1.76%, below the rotated median of 2.43%. Both findings persisted after removing assigned stems. | [TP62](result-sheets/TP62.md) |
+| TP70 · Blind grouping | Both the saved chat vectors and 5,426 usable blog author means are available. | Section 4 |
 | TP64 · Channel checks | Saved forecasts are available. SHAME’s scope flag remains in force. | Section 4 |
 | TP65 · Coming or landed | Original sentence readings and Q34 worry scores are available. Further sources depend on Q29–Q31. | Section 4 |
 | TP77 · Reader agreement | Original sentence comparisons precede new marks. The standing-mark comparison needs matched B and W responses. | Section 4 |
@@ -45,7 +45,7 @@ Pilot times are wall seconds after loading. Observed totals include job startup 
 | Q27 · Standing | 10.8 | 53.74 | 6.42 | Running serially. |
 | Q28 · Event features | 2.0 | — | — | Registered behind Q27. |
 | Q32 · Third reader and rewordings | 2.0 | — | — | Registered behind Q28. The extended memory rule applies only to C on this job. |
-| Q29 · Sentences | 3.0 | — | — | Pending. |
+| Q29 · Sentences | 3.0 | — | — | The bound roster has 17,755 held-out forum sentences and 21,247 ISEAR sentences. Both sources were verified at their existing Spark locations. |
 | Q31 · Blog loss and timing | 9.8 | — | — | Pending. |
 | Q30 · Long stories | 9.9 | — | — | In-place Spark source unavailable. |
 | Q33 · Talk pages | First 1,000 to size | — | — | In-place Spark source unavailable. |

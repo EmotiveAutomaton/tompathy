@@ -59,6 +59,14 @@ def run(card, attempt):
                 import rapid_head_roster as study
 
                 result = study.prepare(out, check)
+            elif card == "TP61-repeat":
+                import rapid_worry_repeat as study
+
+                result = study.prepare(out, check)
+            elif card == "TP61-words":
+                import rapid_word_repeat as study
+
+                result = study.prepare(out, check)
             elif card == "TP62-first":
                 import rapid_content as study
 
@@ -122,6 +130,8 @@ if __name__ == "__main__":
         choices=[
             "TP61-chat-check",
             "TP61-roster",
+            "TP61-repeat",
+            "TP61-words",
             "TP62-first",
             "TP73-TP51",
             *(f"TP62-block-{i:02d}" for i in range(10)),

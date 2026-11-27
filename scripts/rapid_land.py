@@ -295,9 +295,197 @@ def whole_author_competence():
     return {"public": public.as_posix(), "sourceReceiptPin": h, "sha256": pin(public)}
 
 
+def content():
+    import rapid_content_return as study
+
+    result = study.prepare()
+    receipt = ROOT / "TP62-return-a/receipt.json"
+    put(
+        receipt,
+        {
+            "card": "TP62",
+            "status": "complete",
+            "codePin": pin(Path(study.__file__)),
+            "result": result,
+        },
+    )
+    source = pin(receipt)
+    public = PUBLIC / "readers-tp62-content-2026-11.json"
+    ledger = "E-TP62-20261127"
+    put(
+        public,
+        {
+            "card": "TP62",
+            "sourceReceiptPin": source,
+            **result,
+            "ledger": ledger,
+            "license": "EmpatheticDialogues, CC BY-NC 4.0. Research use.",
+            "productionAdmission": False,
+        },
+    )
+    summary = {}
+    verdicts = []
+    for population, entry in result["comparison"].items():
+        summary[population] = {
+            k: {
+                "trained": v["trained"],
+                "rotMedian": v["rot"]["median"],
+                "rotPercentile": v["rot"]["trainedPercentile"],
+            }
+            for k, v in entry["rows"].items()
+        }
+        verdicts.append(
+            f"{population}: WORD {'above' if entry['wordAboveRotBand'] else 'did not exceed'} the upper ROT limit; "
+            f"WRITER {'below' if entry['writerBelowRotMedian'] else 'at or above'} the ROT median."
+        )
+    append(
+        PUBLIC / "EVIDENCE_LEDGER.jsonl",
+        {
+            "id": ledger,
+            "date": "2026-11-27",
+            "family": "Round 37 content and style",
+            "claims": ["P5"],
+            "question": "Do the trained outputs predict the assigned word better, and the writer less well, than rotated heads?",
+            "data": public.as_posix(),
+            "estimate": summary,
+            "interval": "2.5th and 97.5th percentiles of 200 sets per family, reported for every arm in the aggregate.",
+            "bar": "WORD above the ROT band and WRITER below the ROT median, repeated after removing assigned stems.",
+            "verdict": " ".join(verdicts),
+            "limit": result["uncertainty"],
+        },
+    )
+    return {
+        "public": public.as_posix(),
+        "sourceReceiptPin": source,
+        "sha256": pin(public),
+    }
+
+
+def person_control(card):
+    import numpy as np
+    from rapid_cpu_dispatch import confirmed
+    from rapid_worry_repeat import distribution
+
+    worry = card == "TP61-b"
+    name = "repeat" if worry else "words"
+    out = ROOT / f"TP61-{name}-a"
+    source = confirmed(out)
+    record = read(out / "receipt.json")["result"]
+    if record["card"] != ("TP61(b)" if worry else "TP61(c)"):
+        raise ValueError("Wrong control source")
+    table = dict(record)
+    files = table.pop("privateShards")
+    size = 50 if worry else 25
+    expected = {
+        f"{k}-{i:04d}.npy" for i in range(0, 1000, size) for k in ("iso", "rot")
+    }
+    if set(files) != expected:
+        raise ValueError("Control shard inventory differs")
+    for family in ("iso", "rot"):
+        shards = []
+        for i in range(0, 1000, size):
+            filename = f"{family}-{i:04d}.npy"
+            file = out / filename
+            if pin(file) != files[filename]:
+                raise ValueError("Private control shard changed")
+            a = np.load(file, allow_pickle=False)
+            if (
+                a.shape != ((size, 19) if worry else (size, 8, 2))
+                or not np.isfinite(a).all()
+            ):
+                raise ValueError("Wrong shape or nonfinite control shard")
+            shards.append(a)
+        arr = np.concatenate(shards)
+        if worry:
+            trained = record["trained"]
+            want = distribution(
+                trained["worry"]["value"] - np.median(arr, axis=1),
+                trained["worryMinusMedianLinearTag"]["value"],
+            )
+            if want != record["nulls"][family]["fixedWorryMinusMedian"]:
+                raise ValueError("Saved worry control band differs")
+        else:
+            from week_word_departures import WORDS
+
+            for i, word in enumerate(WORDS):
+                value = record["words"][word]["variance"]["value"]
+                if (
+                    distribution(arr[:, i, 0], value)
+                    != record["words"][word][family]["variance"]
+                ):
+                    raise ValueError("Saved word control band differs")
+    public = PUBLIC / f"readers-tp61-{name}-2026-11.json"
+    ledger = "E-TP61-" + ("B" if worry else "C") + "-20261127"
+    put(
+        public,
+        {
+            **table,
+            "sourceReceiptPin": source,
+            "verifiedShards": len(files),
+            "ledger": ledger,
+            "productionAdmission": False,
+        },
+    )
+    if worry:
+        value = record["trained"]["worryMinusMedianLinearTag"]
+        estimate = {
+            "trainedDifference": value["value"],
+            "rot": record["nulls"]["rot"]["fixedWorryMinusMedian"],
+        }
+        interval = value["interval"]
+        verdict = (
+            "The trained difference is "
+            + estimate["rot"]["position"]
+            + " the ROT band."
+        )
+    else:
+        estimate = {
+            k: {
+                "authors": v["authors"],
+                "trained": v["variance"]["value"],
+                "rotPosition": v["rot"]["variance"]["position"],
+            }
+            for k, v in record["words"].items()
+        }
+        interval = {k: v["variance"]["interval"] for k, v in record["words"].items()}
+        verdict = ", ".join(
+            f"{k} {v['rotPosition']}"
+            for k, v in estimate.items()
+            if v["authors"] >= 200
+        )
+    append(
+        PUBLIC / "EVIDENCE_LEDGER.jsonl",
+        {
+            "id": ledger,
+            "date": "2026-11-27",
+            "family": "Round 37 random-head controls",
+            "claims": ["P2", "P3", "P5"],
+            "question": (
+                "Where does worry repeat minus median linear tag repeat fall among random directions?"
+                if worry
+                else "Do the trained word-specific departures repeat differently from the random heads?"
+            ),
+            "data": public.as_posix(),
+            "estimate": estimate,
+            "interval": interval,
+            "bar": "Trained within the 2.5th–97.5th percentile ROT band.",
+            "verdict": verdict,
+            "limit": "Differences between writers on this blogging sample can include writing style and recurring situations.",
+        },
+    )
+    return {
+        "public": public.as_posix(),
+        "sourceReceiptPin": source,
+        "sha256": pin(public),
+    }
+
+
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
-    p.add_argument("result", choices=["TP71", "Q26", "TP61-d", "TP73-TP51"])
+    p.add_argument(
+        "result",
+        choices=["TP71", "Q26", "TP61-b", "TP61-c", "TP61-d", "TP62", "TP73-TP51"],
+    )
     choice = p.parse_args().result
     print(
         json.dumps(
@@ -305,6 +493,9 @@ if __name__ == "__main__":
                 "TP71": display,
                 "Q26": throughput,
                 "TP61-d": slope,
+                "TP61-b": lambda: person_control("TP61-b"),
+                "TP61-c": lambda: person_control("TP61-c"),
+                "TP62": content,
                 "TP73-TP51": whole_author_competence,
             }[choice]()
         )

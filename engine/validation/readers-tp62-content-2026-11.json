@@ -1,0 +1,247 @@
+{
+  "card": "TP62",
+  "sourceReceiptPin": "8d73e89e59a6afad269926580e4e6ad21344e611d60b67e3746a66b9623c1572",
+  "blockReceipts": {
+    "TP62-first": "3f48e3ff2698f1d106259c8496da5e012bd83aa25e8582ff46af57bb2ab0e637",
+    "TP62-block-00": "7ad4270443ce21bfd8fea25c7b3e5615d64c05dc2a1dc802eaba46520279eb89",
+    "TP62-block-01": "1adbeaea7ed6f8b413b34e3c6a627e8ee7179f8da4166a43a2b6684bf92b120c",
+    "TP62-block-02": "5222a7729af09bab44d137bd853e759f0f2092149b726d710c4be723898df7ff",
+    "TP62-block-03": "9d13d2bb27e66a2530cf0191e7848c982457a9102a8a5235867c153a7d019af0",
+    "TP62-block-04": "4d17d13c65b511f827552a8db43df94395287d6ca890168bbb9ebe1305f91758",
+    "TP62-block-05": "fc6a19ff50e79eded3ab9e91978e72f665efd703dbc01f9e8286f250a85fd352",
+    "TP62-block-06": "b065d07a8f9ac106abd3c7f9d1e556092fea551efcde00135709cb74da518e52",
+    "TP62-block-07": "f236256ad075b576d0701a1050c9b9eed8cefe920965ec20b1e7e08bd47d748f",
+    "TP62-block-08": "5ccaceee9b6f1b14982539a1e0fdb5afba386b603329d9c974294f3600d397e2",
+    "TP62-block-09": "08ee66f562772ee6b7b2b55b6a5972b12da37f85cd9a74cd4e9120534094ccaa"
+  },
+  "design": {
+    "active": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28
+    ],
+    "eligibleWriters": 336,
+    "headPins": [
+      "7f5bfe1ff5ab5e4a0b93072bb7e1f54f73466ab01ade90fc2ad2c4041d12e7ae",
+      "0280d3b4739466b020e91ab0f21ce2c7ad17435ff8cbfe000c8f497d32b0c9a1",
+      "b28a4354eb385122d2733087318b814271d52af29db976b06a321114fca1973b"
+    ],
+    "maxTenProbabilityGap": 2.831068712794149e-15,
+    "profileWords": [
+      "afraid",
+      "anticipating",
+      "anxious",
+      "ashamed",
+      "disappointed",
+      "embarrassed",
+      "excited",
+      "furious",
+      "hopeful",
+      "impressed",
+      "joyful",
+      "nostalgic",
+      "prepared",
+      "surprised",
+      "terrified",
+      "trusting"
+    ],
+    "source": "d04658e1c84ef10e0c95847947359b24da91b79368bd91b3fa22da2d70c3e250",
+    "sourceIntake": "dbc8e8faec17897f67b3cef9f26a031786bcc8c78f709475e5f8103f47a3e8ec",
+    "tenSource": "574e724abfdeafbe0ce067a495f21142cc0a557f9a560a1cf796ae816f1e8695",
+    "texts": 24850,
+    "wordFreeTexts": 22803,
+    "words": 32,
+    "writers": 810
+  },
+  "trained": {
+    "all": {
+      "wordAccuracy": 0.3521478708725736,
+      "wordFoldAccuracy": [
+        0.35061826884722774,
+        0.3771701388888889,
+        0.34371088861076343,
+        0.35880527540729246,
+        0.33043478260869563
+      ],
+      "wordFoldRows": [
+        5014,
+        4608,
+        6392,
+        5156,
+        3680
+      ],
+      "writerAccuracy": 0.017595307917888565,
+      "writerCandidates": 336,
+      "writerHits": 204,
+      "writerTexts": 11594
+    },
+    "withoutAssignedStem": {
+      "wordAccuracy": 0.33091852928704635,
+      "wordFoldAccuracy": [
+        0.34311465101655836,
+        0.340080971659919,
+        0.3110031239153072,
+        0.3462007314099959,
+        0.31419316843345113
+      ],
+      "wordFoldRows": [
+        4771,
+        3952,
+        5762,
+        4922,
+        3396
+      ],
+      "writerAccuracy": 0.019472008987081072,
+      "writerCandidates": 334,
+      "writerHits": 208,
+      "writerTexts": 10682
+    }
+  },
+  "comparison": {
+    "all": {
+      "rows": {
+        "wordAccuracy": {
+          "trained": 0.3521478708725736,
+          "iso": {
+            "sets": 200,
+            "low": 0.2651651396218806,
+            "median": 0.2807494124163409,
+            "high": 0.29491607693249794,
+            "trainedPercentile": 100.0,
+            "tied": 0,
+            "tailCountIncludingTies": 0,
+            "orientationP": 0.004975124378109453,
+            "position": "above"
+          },
+          "rot": {
+            "sets": 200,
+            "low": 0.2673952376680393,
+            "median": 0.2804507796665987,
+            "high": 0.2970903708708634,
+            "trainedPercentile": 100.0,
+            "tied": 0,
+            "tailCountIncludingTies": 0,
+            "orientationP": 0.004975124378109453,
+            "position": "above"
+          }
+        },
+        "writerAccuracy": {
+          "trained": 0.017595307917888565,
+          "iso": {
+            "sets": 200,
+            "low": 0.02094402277039848,
+            "median": 0.025271692254614456,
+            "high": 0.03055028462998103,
+            "trainedPercentile": 0.0,
+            "tied": 0,
+            "tailCountIncludingTies": 0,
+            "orientationP": 0.004975124378109453,
+            "position": "below"
+          },
+          "rot": {
+            "sets": 200,
+            "low": 0.01922977402104537,
+            "median": 0.024322925651198896,
+            "high": 0.02907538381921684,
+            "trainedPercentile": 0.5,
+            "tied": 0,
+            "tailCountIncludingTies": 1,
+            "orientationP": 0.009950248756218905,
+            "position": "below"
+          }
+        }
+      },
+      "wordAboveRotBand": true,
+      "writerBelowRotMedian": true,
+      "jointOrientationP": 0.009950248756218905
+    },
+    "withoutAssignedStem": {
+      "rows": {
+        "wordAccuracy": {
+          "trained": 0.33091852928704635,
+          "iso": {
+            "sets": 200,
+            "low": 0.25041313333007886,
+            "median": 0.2643141280945244,
+            "high": 0.2779985304962746,
+            "trainedPercentile": 100.0,
+            "tied": 0,
+            "tailCountIncludingTies": 0,
+            "orientationP": 0.004975124378109453,
+            "position": "above"
+          },
+          "rot": {
+            "sets": 200,
+            "low": 0.25185757675934345,
+            "median": 0.26429009459737496,
+            "high": 0.27956708396695984,
+            "trainedPercentile": 100.0,
+            "tied": 0,
+            "tailCountIncludingTies": 0,
+            "orientationP": 0.004975124378109453,
+            "position": "above"
+          }
+        },
+        "writerAccuracy": {
+          "trained": 0.019472008987081072,
+          "iso": {
+            "sets": 200,
+            "low": 0.021344317543531173,
+            "median": 0.02583785807901142,
+            "high": 0.03136116832053922,
+            "trainedPercentile": 0.0,
+            "tied": 0,
+            "tailCountIncludingTies": 0,
+            "orientationP": 0.004975124378109453,
+            "position": "below"
+          },
+          "rot": {
+            "sets": 200,
+            "low": 0.019937745740498034,
+            "median": 0.025135742370342634,
+            "high": 0.030991387380640334,
+            "trainedPercentile": 1.25,
+            "tied": 1,
+            "tailCountIncludingTies": 3,
+            "orientationP": 0.01990049751243781,
+            "position": "below"
+          }
+        }
+      },
+      "wordAboveRotBand": true,
+      "writerBelowRotMedian": true,
+      "jointOrientationP": 0.01990049751243781
+    }
+  },
+  "randomization": "One-sided ranks against 200 independent seeded orientations, with ties included and the observed orientation added. The joint p is the largest component p. The analyst prediction includes both text populations.",
+  "uncertainty": "Bands describe variation across control sets on the fixed texts. The saved fits retained fold accuracies and total writer hits. Writer-cluster sampling intervals and their one-standard-error boundary check are unavailable.",
+  "ledger": "E-TP62-20261127",
+  "license": "EmpatheticDialogues, CC BY-NC 4.0. Research use.",
+  "productionAdmission": false
+}

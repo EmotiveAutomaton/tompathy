@@ -18,7 +18,17 @@ END = 1795968000
 WEEK = Path("/home/agent/tompathy-open/week-20261122")
 C = ("qwen3.5:122b", "8b9d11d807c57feb1e2ecb0d6cbf40334c37dcc3523bed5540af4f927f112a37")
 QUEUE = {"workstation": ("G12", "G14"), "spark": ("Q26", "Q34", "Q27", "Q28", "Q32")}
-HOURS = {"Q26": 1, "Q34": 1, "Q27": 10.8, "Q28": 2, "Q32": 2, "G12": 6, "G14": 1}
+HOURS = {
+    "Q26": 1,
+    "Q34": 1,
+    "Q27": 10.8,
+    "Q28": 2,
+    "Q32": 2,
+    "G12": 6,
+    "G14": 1,
+    "Q29": 3,
+    "G13-Q29": None,
+}
 write, read, pin = lane.write, lane.read, lane.pin
 
 
@@ -224,7 +234,9 @@ def reader_arm(out, items, role, kind, width, guard, job, arm, measured=None):
                             **progress,
                             projectedHours=projected,
                             packetHours=HOURS[job],
-                            overThreeTimes=projected > 3 * HOURS[job],
+                            overThreeTimes=projected > 3 * HOURS[job]
+                            if HOURS[job] is not None
+                            else None,
                         ),
                     )
                 if len(rows) % 20 == 0 or len(rows) == len(items):
@@ -250,14 +262,18 @@ def reader_arm(out, items, role, kind, width, guard, job, arm, measured=None):
 
 
 def run_job(root, job, registration):
-    cfg = read(root / "registration.json")
-    require_pin(root / "registration.json", registration)
+    sentence_job = job in ("Q29", "G13-Q29")
+    registration_path = root / (
+        "Q29-registration.json" if sentence_job else "registration.json"
+    )
+    require_pin(registration_path, registration)
+    cfg = read(registration_path)
     script_dir = Path(__file__).resolve().parent
     for name, h in cfg["code"].items():
         require_pin(script_dir / name, h)
-    if (
-        script_dir.name != cfg["commit"]
-        or job not in QUEUE["workstation" if os.name == "nt" else "spark"]
+    if script_dir.name != cfg["commit"] or job not in (
+        *QUEUE["workstation" if os.name == "nt" else "spark"],
+        "G13-Q29" if os.name == "nt" else "Q29",
     ):
         raise ValueError("Snapshot or machine binding differs")
     check_stop(root)
@@ -287,8 +303,13 @@ def run_job(root, job, registration):
 
                 guard = Guard()
                 guard.check()
-                items = roster(root, read(root / "inputs/inputs.json"), job)
-                if job == "Q26":
+                if not sentence_job:
+                    items = roster(root, read(root / "inputs/inputs.json"), job)
+                if sentence_job:
+                    from rapid_sentence_gpu import run
+
+                    result = run(root, out, job, cfg, guard)
+                elif job == "Q26":
                     widths = {
                         w: reader_arm(
                             out,

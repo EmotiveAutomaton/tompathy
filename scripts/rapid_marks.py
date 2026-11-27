@@ -52,6 +52,12 @@ def standing(value):
 
 
 def template(kind):
+    if kind == "sentence":
+        try:
+            import tp31_teacher as teacher
+        except ModuleNotFoundError:
+            from tompathy_engine.eval.readers import tp31_teacher as teacher
+        return teacher.PROMPT, teacher.SCHEMA, teacher.valid_label
     if kind == "features":
         prompt = core.CORRECTED_PROMPT
         fields = {

@@ -1,0 +1,98 @@
+{
+  "authors": 2527,
+  "card": "TP61(b)",
+  "interpretation": "Compare the same worry reading minus the median of 19 trained or random linear heads. Individual random repeats are also shown relative to worry. Heads within a set share one orientation.",
+  "nulls": {
+    "iso": {
+      "fixedWorryMinusMedian": {
+        "high": 0.2970568154645526,
+        "low": 0.22735016029291788,
+        "median": 0.26355862720815537,
+        "position": "below",
+        "trainedPercentile": 0.6
+      },
+      "headsPerSet": 19,
+      "individualHeadRepeatAgainstWorry": {
+        "high": 0.6041988786892677,
+        "low": 0.3484932783068703,
+        "median": 0.4515937030573405,
+        "position": "above",
+        "trainedPercentile": 99.98421052631579
+      },
+      "medianHeadRepeat": {
+        "high": 0.488285601530452,
+        "low": 0.41857894635881726,
+        "median": 0.4520771346152145,
+        "position": "above",
+        "trainedPercentile": 99.4
+      },
+      "sets": 1000
+    },
+    "rot": {
+      "fixedWorryMinusMedian": {
+        "high": 0.2993396129542832,
+        "low": 0.22885126749531723,
+        "median": 0.2635769715198299,
+        "position": "below",
+        "trainedPercentile": 0.8
+      },
+      "headsPerSet": 19,
+      "individualHeadRepeatAgainstWorry": {
+        "high": 0.6043013681778194,
+        "low": 0.34970486775696696,
+        "median": 0.4519107771869457,
+        "position": "above",
+        "trainedPercentile": 99.98947368421052
+      },
+      "medianHeadRepeat": {
+        "high": 0.48678449432805265,
+        "low": 0.41629614886908667,
+        "median": 0.45205879030353996,
+        "position": "above",
+        "trainedPercentile": 99.2
+      },
+      "sets": 1000
+    }
+  },
+  "tagHeadPin": "7f5bfe1ff5ab5e4a0b93072bb7e1f54f73466ab01ade90fc2ad2c4041d12e7ae",
+  "trained": {
+    "medianLinearTag": {
+      "interval": [
+        0.47447030580668553,
+        0.5149355050428844
+      ],
+      "validDraws": 2000,
+      "value": 0.497714684524787
+    },
+    "originalWorryMinusMedianSquashedTag": {
+      "interval": [
+        0.2221481909846134,
+        0.27390268162016823
+      ],
+      "validDraws": 2000,
+      "value": 0.2468579382157161
+    },
+    "worry": {
+      "interval": [
+        0.6952400629731902,
+        0.7349027583618936
+      ],
+      "validDraws": 2000,
+      "value": 0.7156357618233699
+    },
+    "worryMinusMedianLinearTag": {
+      "interval": [
+        0.19428645164258032,
+        0.2472939938071838
+      ],
+      "validDraws": 2000,
+      "value": 0.21792107729858284
+    }
+  },
+  "vectorReceiptPin": "258d14c8405973cb7db874895a18a46e054241c3638e89d39bf73aef7941f02d",
+  "worryReceiptPin": "2f7236ded4408f4da09edcbcca63f57f9419aa4cd27f034064d49c4edf97577b",
+  "sourceReceiptPin": "0963b971bdb0945401065af6af1d5fed494b7ca7a063b366c88e6979768b526c",
+  "verifiedShards": 40,
+  "ledger": "E-TP61-B-20261127",
+  "productionAdmission": false
+}

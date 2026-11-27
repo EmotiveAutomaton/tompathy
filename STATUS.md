@@ -1,6 +1,6 @@
 # ToMpathy status
 
-**November 27 · Round 37.** Spark completed the throughput trial and 58,157 worry scores. Q27 and G12 are reading the same 43,021 texts for standing. Q24 returned 2,993 complete authors at cutoff. TP73’s first competence comparison missed both curiosity predictions. TP61’s worry slope exceeded both 99.5th percentiles, with seven individual control heads reaching it. TP62’s full random controls are in progress. Q24b is parked behind the Spark priorities. [Two-day return, source-bound results and timing](docs/exchange/THEORY_RETURN_2026-11-29.md)
+**November 27 · Round 37.** Q27 and G12 are reading the same 43,021 texts for standing. TP62 completed both 200-set control families. On held-out writers, the trained heads identified the assigned emotion in 35.21% of cases, above every rotated control. Their 1.76% writer identification rate fell below the rotated median. Both directions held after removing assigned stems. Q24 returned 2,993 complete authors, and TP73 missed both curiosity predictions. TP61’s worry slope exceeded both 99.5th percentiles, with seven individual heads reaching it. Worry minus median tag repeat was 0.218, below the rotated control band. The word-specific controls are running. Q24b is parked behind the Spark priorities. [Two-day return, source-bound results and timing](docs/exchange/THEORY_RETURN_2026-11-29.md)
 
 Updated 22 November 2026. **0.3.0-beta.1** development is on `codex/0.3-engine`,
 based on the merged, owner-approved **0.2.0** frontend milestone.
