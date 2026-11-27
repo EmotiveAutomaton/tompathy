@@ -1,4 +1,4 @@
-Nov 27 at 09:51 PT, Spark is running Q27 (16,900/43,021), the workstation GPU is running G12 (15,240/43,021), and the card queue is running TP64. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
+Nov 27 at 09:51 PT, Spark is running Q27 (16,920/43,021), the workstation GPU is running G12 (15,240/43,021), and the card queue is running TP65-inputs. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
 
 # Two-day engine return · November 27–29
 
@@ -20,7 +20,7 @@ The table covers 35 registered predictions. TP62 met both directional criteria o
 | TP61 · Random-head controls | Worry minus median tag repeat was 0.218, below the 0.229–0.299 rotated band. The word-specific estimates fell inside the rotated band for all eight words. Three met the 200-author minimum. Worry’s slope of 0.12711 exceeded both 99.5th percentiles, and seven of 7,600 individual heads reached it. | [TP61](result-sheets/TP61.md) |
 | TP62 · Content and style | Trained word accuracy was 35.21%, above every rotated set. Writer accuracy was 1.76%, below the rotated median of 2.43%. Both findings persisted after removing assigned stems. | [TP62](result-sheets/TP62.md) |
 | TP70 · Blind grouping | Against rotated heads, the component floor was 2 on chat texts and 3 on blog author means. The map’s margins above the rotated bands were 0.187 [0.174, 0.196], 0.129 [0.119, 0.137] in chat and blogs, respectively. | [TP70 · E-TP70-20261127](result-sheets/TP70.md) |
-| TP64 · Channel checks | The three source tables and research SHAME rescore are registered behind TP70. | [TP64](result-sheets/TP64.md) |
+| TP64 · Channel checks | Forum desire versus optimism and excitement had AUC 0.712 [0.652, 0.767], 0.843 [0.802, 0.884]. | [TP64 · E-TP64-20261127](result-sheets/TP64.md) |
 | TP65 · Coming or landed | The original within-report comparison and its two writer-rating fields are registered. Further sources depend on Q29–Q31. | [TP65](result-sheets/TP65.md) |
 | TP77 · Reader agreement | Original sentence comparisons precede new marks. The standing-mark comparison needs matched B and W responses. | [TP77](result-sheets/TP77.md) |
 | TP63 · Outside scores | The five trait keys are filed. The reader study on 6,600 events is queued. The held news-reaction essays have no trait fields. | [TP63](result-sheets/TP63.md) |

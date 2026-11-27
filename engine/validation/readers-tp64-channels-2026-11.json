@@ -1,0 +1,2614 @@
+{
+  "card": "TP64",
+  "inputReceiptPin": "3363ef0882b8fa35f4a28fd9000fe439eea61aa778c56bd5fed02169e78831ce",
+  "readings": {
+    "DISGUST": {
+      "ed": {
+        "all": {
+          "comparisons": 2,
+          "jointP": 0.0004997501249375312,
+          "nearBar": false,
+          "verdict": "All observed intervals clear the bar in the registered direction."
+        },
+        "withoutWord": {
+          "comparisons": 2,
+          "jointP": 0.0004997501249375312,
+          "nearBar": false,
+          "verdict": "All observed intervals clear the bar in the registered direction."
+        }
+      },
+      "envent": {
+        "all": {
+          "comparisons": 2,
+          "jointP": 0.07746126936531735,
+          "nearBar": true,
+          "verdict": "Unresolved under the one-standard-error rule."
+        },
+        "withoutWord": {
+          "comparisons": 2,
+          "jointP": 0.07746126936531735,
+          "nearBar": true,
+          "verdict": "Unresolved under the one-standard-error rule."
+        }
+      },
+      "go": {
+        "all": {
+          "comparisons": 2,
+          "jointP": 0.10294852573713144,
+          "nearBar": true,
+          "verdict": "Unresolved under the one-standard-error rule."
+        },
+        "withoutWord": {
+          "comparisons": 2,
+          "jointP": 0.1454272863568216,
+          "nearBar": true,
+          "verdict": "Unresolved under the one-standard-error rule."
+        }
+      }
+    },
+    "FEAR": {
+      "ed": {
+        "all": {
+          "comparisons": 2,
+          "jointP": 0.011494252873563218,
+          "nearBar": true,
+          "verdict": "Unresolved under the one-standard-error rule."
+        },
+        "withoutWord": {
+          "comparisons": 2,
+          "jointP": 0.03798100949525238,
+          "nearBar": true,
+          "verdict": "Unresolved under the one-standard-error rule."
+        }
+      },
+      "envent": {
+        "all": {
+          "comparisons": 2,
+          "jointP": 1.0,
+          "nearBar": false,
+          "verdict": "At least one observed interval is clear in the opposite direction."
+        },
+        "withoutWord": {
+          "comparisons": 2,
+          "jointP": 1.0,
+          "nearBar": false,
+          "verdict": "At least one observed interval is clear in the opposite direction."
+        }
+      },
+      "go": {
+        "all": {
+          "comparisons": 2,
+          "jointP": 0.5342328835582209,
+          "nearBar": false,
+          "verdict": "Unresolved at the registered bar."
+        },
+        "withoutWord": {
+          "comparisons": 2,
+          "jointP": 0.6251874062968515,
+          "nearBar": false,
+          "verdict": "Unresolved at the registered bar."
+        }
+      }
+    },
+    "PRIDE": {
+      "ed": {
+        "all": {
+          "comparisons": 2,
+          "jointP": 0.8120939530234883,
+          "nearBar": false,
+          "verdict": "Unresolved at the registered bar."
+        },
+        "withoutWord": {
+          "comparisons": 2,
+          "jointP": 0.9495252373813093,
+          "nearBar": true,
+          "verdict": "Unresolved under the one-standard-error rule."
+        }
+      },
+      "envent": {
+        "all": {
+          "comparisons": 2,
+          "jointP": 0.40429785107446276,
+          "nearBar": false,
+          "verdict": "Unresolved at the registered bar."
+        },
+        "withoutWord": {
+          "comparisons": 2,
+          "jointP": 0.42128935532233885,
+          "nearBar": false,
+          "verdict": "Unresolved at the registered bar."
+        }
+      },
+      "go": {
+        "all": {
+          "comparisons": 2,
+          "jointP": 0.08245877061469266,
+          "nearBar": true,
+          "verdict": "Unresolved under the one-standard-error rule."
+        },
+        "withoutWord": {
+          "comparisons": 2,
+          "jointP": 0.08245877061469266,
+          "nearBar": true,
+          "verdict": "Unresolved under the one-standard-error rule."
+        }
+      }
+    },
+    "RAGE": {
+      "ed": {
+        "all": {
+          "comparisons": 2,
+          "jointP": 0.9940029985007496,
+          "nearBar": true,
+          "verdict": "Unresolved under the one-standard-error rule."
+        },
+        "withoutWord": {
+          "comparisons": 2,
+          "jointP": 0.9905047476261869,
+          "nearBar": true,
+          "verdict": "Unresolved under the one-standard-error rule."
+        }
+      },
+      "envent": {
+        "all": {
+          "comparisons": 2,
+          "jointP": 1.0,
+          "nearBar": false,
+          "verdict": "At least one observed interval is clear in the opposite direction."
+        },
+        "withoutWord": {
+          "comparisons": 2,
+          "jointP": 1.0,
+          "nearBar": false,
+          "verdict": "At least one observed interval is clear in the opposite direction."
+        }
+      },
+      "go": {
+        "all": {
+          "comparisons": 2,
+          "jointP": 0.6326836581709145,
+          "nearBar": false,
+          "verdict": "Unresolved at the registered bar."
+        },
+        "withoutWord": {
+          "comparisons": 2,
+          "jointP": 0.6786606696651675,
+          "nearBar": false,
+          "verdict": "Unresolved at the registered bar."
+        }
+      }
+    },
+    "SADNESS": {
+      "ed": {
+        "all": {
+          "comparisons": 2,
+          "jointP": 0.8925537231384307,
+          "nearBar": true,
+          "verdict": "Unresolved under the one-standard-error rule."
+        },
+        "withoutWord": {
+          "comparisons": 2,
+          "jointP": 0.9265367316341829,
+          "nearBar": true,
+          "verdict": "Unresolved under the one-standard-error rule."
+        }
+      },
+      "envent": {
+        "all": {
+          "comparisons": 2,
+          "jointP": 0.9025487256371814,
+          "nearBar": true,
+          "verdict": "Unresolved under the one-standard-error rule."
+        },
+        "withoutWord": {
+          "comparisons": 2,
+          "jointP": 0.9025487256371814,
+          "nearBar": true,
+          "verdict": "Unresolved under the one-standard-error rule."
+        }
+      },
+      "go": {
+        "all": {
+          "comparisons": 2,
+          "jointP": 0.8885557221389305,
+          "nearBar": true,
+          "verdict": "Unresolved under the one-standard-error rule."
+        },
+        "withoutWord": {
+          "comparisons": 2,
+          "jointP": 0.8845577211394303,
+          "nearBar": true,
+          "verdict": "Unresolved under the one-standard-error rule."
+        }
+      }
+    },
+    "SEEKING": {
+      "ed": {
+        "all": {
+          "comparisons": 2,
+          "jointP": 1.0,
+          "nearBar": false,
+          "verdict": "At least one observed interval is clear in the opposite direction."
+        },
+        "withoutWord": {
+          "comparisons": 2,
+          "jointP": 1.0,
+          "nearBar": false,
+          "verdict": "At least one observed interval is clear in the opposite direction."
+        }
+      },
+      "go": {
+        "all": {
+          "comparisons": 2,
+          "jointP": 0.8705647176411794,
+          "nearBar": true,
+          "verdict": "Unresolved under the one-standard-error rule."
+        },
+        "withoutWord": {
+          "comparisons": 2,
+          "jointP": 0.8915542228885557,
+          "nearBar": true,
+          "verdict": "Unresolved under the one-standard-error rule."
+        }
+      }
+    },
+    "forumWanting": {
+      "all": {
+        "comparisons": 2,
+        "jointP": 1.0,
+        "nearBar": false,
+        "verdict": "At least one observed interval is clear in the opposite direction."
+      },
+      "withoutWord": {
+        "comparisons": 2,
+        "jointP": 1.0,
+        "nearBar": false,
+        "verdict": "At least one observed interval is clear in the opposite direction."
+      }
+    },
+    "playOutsideForumAmusement": {
+      "verdict": "Unresolved. Other source vocabularies lack a registered PLAY word and no equivalence margin was specified."
+    }
+  },
+  "scope": "Within-source assigned labels. Model readings on forum desire describe wanting or wishing.",
+  "sources": {
+    "ed": {
+      "census": {
+        "assessedReports": 24850,
+        "assessedWriters": 810,
+        "fitReports": 0,
+        "tenSourceRows": 24850,
+        "unknownWriter": 0,
+        "withReleasedLabels": 24850
+      },
+      "heads": {
+        "CARE": {
+          "availableWriters": 810,
+          "fixed": {},
+          "fixedUnavailable": "No pair specified or selectable for this source and output.",
+          "ownLabels": [
+            "caring",
+            "sentimental"
+          ],
+          "selected": {
+            "content": {
+              "all": {
+                "interval": [
+                  0.4229976032465311,
+                  0.5248647179510877
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 349,
+                "pAbovePoint70": 1.0,
+                "pBelowPoint70": 0.0004997501249375312,
+                "positive": 651,
+                "standardError": 0.026252951306069826,
+                "validDraws": 2000,
+                "value": 0.4766262175449716,
+                "writers": 189
+              },
+              "withoutWord": {
+                "interval": [
+                  0.40986772013537526,
+                  0.5150879962534172
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 329,
+                "pAbovePoint70": 1.0,
+                "pBelowPoint70": 0.0004997501249375312,
+                "positive": 625,
+                "standardError": 0.02723540320398616,
+                "validDraws": 2000,
+                "value": 0.46372279635258357,
+                "writers": 184
+              }
+            },
+            "joyful": {
+              "all": {
+                "interval": [
+                  0.4856094949517079,
+                  0.5640001543486184
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 348,
+                "pAbovePoint70": 1.0,
+                "pBelowPoint70": 0.0004997501249375312,
+                "positive": 651,
+                "standardError": 0.01997301584681439,
+                "validDraws": 2000,
+                "value": 0.5261445698041916,
+                "writers": 195
+              },
+              "withoutWord": {
+                "interval": [
+                  0.47574419462365947,
+                  0.5535526429986775
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 337,
+                "pAbovePoint70": 1.0,
+                "pBelowPoint70": 0.0004997501249375312,
+                "positive": 625,
+                "standardError": 0.019558860135023615,
+                "validDraws": 2000,
+                "value": 0.5137566765578635,
+                "writers": 192
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "content",
+            "joyful"
+          ]
+        },
+        "DISGUST": {
+          "availableWriters": 810,
+          "fixed": {},
+          "fixedUnavailable": "No pair specified or selectable for this source and output.",
+          "ownLabels": [
+            "disgusted"
+          ],
+          "selected": {
+            "annoyed": {
+              "all": {
+                "interval": [
+                  0.8491972457120798,
+                  0.9078579102626955
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 381,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 355,
+                "standardError": 0.014976238273360611,
+                "validDraws": 2000,
+                "value": 0.8795534361021774,
+                "writers": 157
+              },
+              "withoutWord": {
+                "interval": [
+                  0.8453994225720098,
+                  0.9074214411616155
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 357,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 340,
+                "standardError": 0.015483617112889985,
+                "validDraws": 2000,
+                "value": 0.8790327895864228,
+                "writers": 156
+              }
+            },
+            "furious": {
+              "all": {
+                "interval": [
+                  0.863433922622025,
+                  0.919469229608434
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 324,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 355,
+                "standardError": 0.014349666473943342,
+                "validDraws": 2000,
+                "value": 0.8921231090245175,
+                "writers": 154
+              },
+              "withoutWord": {
+                "interval": [
+                  0.8626768924071444,
+                  0.9188562559845819
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 311,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 340,
+                "standardError": 0.014732406757105507,
+                "validDraws": 2000,
+                "value": 0.8926801588802724,
+                "writers": 153
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "annoyed",
+            "furious"
+          ]
+        },
+        "FEAR": {
+          "availableWriters": 810,
+          "fixed": {},
+          "fixedUnavailable": "No pair specified or selectable for this source and output.",
+          "ownLabels": [
+            "afraid",
+            "terrified"
+          ],
+          "selected": {
+            "anxious": {
+              "all": {
+                "interval": [
+                  0.7144294850541019,
+                  0.780176649255342
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": true,
+                "negative": 371,
+                "pAbovePoint70": 0.005997001499250375,
+                "pBelowPoint70": 0.9945027486256871,
+                "positive": 713,
+                "standardError": 0.01705122647011548,
+                "validDraws": 2000,
+                "value": 0.7447858976346102,
+                "writers": 176
+              },
+              "withoutWord": {
+                "interval": [
+                  0.7007923233752483,
+                  0.7724151837727063
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": true,
+                "negative": 345,
+                "pAbovePoint70": 0.03248375812093953,
+                "pBelowPoint70": 0.968015992003998,
+                "positive": 666,
+                "standardError": 0.018135112907529533,
+                "validDraws": 2000,
+                "value": 0.7353048700874788,
+                "writers": 170
+              }
+            },
+            "apprehensive": {
+              "all": {
+                "interval": [
+                  0.7019628309649475,
+                  0.7849578965832892
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": true,
+                "negative": 305,
+                "pAbovePoint70": 0.011494252873563218,
+                "pBelowPoint70": 0.9890054972513743,
+                "positive": 713,
+                "standardError": 0.020909184768126043,
+                "validDraws": 2000,
+                "value": 0.7458947416825696,
+                "writers": 198
+              },
+              "withoutWord": {
+                "interval": [
+                  0.6942030728463205,
+                  0.7763911552942458
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 296,
+                "pAbovePoint70": 0.03798100949525238,
+                "pBelowPoint70": 0.9625187406296851,
+                "positive": 666,
+                "standardError": 0.020962527962094375,
+                "validDraws": 2000,
+                "value": 0.7361872007142277,
+                "writers": 190
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "apprehensive",
+            "anxious"
+          ]
+        },
+        "PRIDE": {
+          "availableWriters": 810,
+          "fixed": {
+            "excited": {
+              "all": {
+                "interval": [
+                  0.8565513681826196,
+                  0.8970896404534309
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 938,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 867,
+                "standardError": 0.010509799664229701,
+                "validDraws": 2000,
+                "value": 0.8771847632819589,
+                "writers": 324
+              },
+              "withoutWord": {
+                "interval": [
+                  0.8451533209622555,
+                  0.8879814271279525
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 847,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 779,
+                "standardError": 0.010973171904675246,
+                "validDraws": 2000,
+                "value": 0.8670441473569026,
+                "writers": 309
+              }
+            },
+            "joyful": {
+              "all": {
+                "interval": [
+                  0.7883392911385372,
+                  0.8415342214397318
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 770,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 867,
+                "standardError": 0.013503440021756028,
+                "validDraws": 2000,
+                "value": 0.8153447475246783,
+                "writers": 321
+              },
+              "withoutWord": {
+                "interval": [
+                  0.7693468639489048,
+                  0.826531768394263
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 755,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 779,
+                "standardError": 0.014721255643341079,
+                "validDraws": 2000,
+                "value": 0.7977828596689592,
+                "writers": 314
+              }
+            }
+          },
+          "ownLabels": [
+            "proud"
+          ],
+          "selected": {
+            "confident": {
+              "all": {
+                "interval": [
+                  0.6374125421509925,
+                  0.7233460387070499
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 370,
+                "pAbovePoint70": 0.8120939530234883,
+                "pBelowPoint70": 0.18840579710144928,
+                "positive": 407,
+                "standardError": 0.02178639330853412,
+                "validDraws": 2000,
+                "value": 0.6812736569493326,
+                "writers": 162
+              },
+              "withoutWord": {
+                "interval": [
+                  0.610222597842267,
+                  0.702274275151409
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 339,
+                "pAbovePoint70": 0.9495252373813093,
+                "pBelowPoint70": 0.050974512743628186,
+                "positive": 356,
+                "standardError": 0.02285302644722709,
+                "validDraws": 2000,
+                "value": 0.6602615093964402,
+                "writers": 158
+              }
+            },
+            "impressed": {
+              "all": {
+                "interval": [
+                  0.6786490016284115,
+                  0.7557496835420722
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 355,
+                "pAbovePoint70": 0.1904047976011994,
+                "pBelowPoint70": 0.8100949525237381,
+                "positive": 407,
+                "standardError": 0.019860713858747988,
+                "validDraws": 2000,
+                "value": 0.717385887808423,
+                "writers": 156
+              },
+              "withoutWord": {
+                "interval": [
+                  0.670546620733133,
+                  0.7574262106102149
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 323,
+                "pAbovePoint70": 0.28535732133933034,
+                "pBelowPoint70": 0.7151424287856072,
+                "positive": 356,
+                "standardError": 0.02143737462679828,
+                "validDraws": 2000,
+                "value": 0.7124786934288795,
+                "writers": 152
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "confident",
+            "impressed"
+          ]
+        },
+        "RAGE": {
+          "availableWriters": 810,
+          "fixed": {},
+          "fixedUnavailable": "No pair specified or selectable for this source and output.",
+          "ownLabels": [
+            "angry",
+            "furious"
+          ],
+          "selected": {
+            "annoyed": {
+              "all": {
+                "interval": [
+                  0.5968331581975711,
+                  0.6857904099669644
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 381,
+                "pAbovePoint70": 0.9940029985007496,
+                "pBelowPoint70": 0.006496751624187906,
+                "positive": 666,
+                "standardError": 0.023207319450429607,
+                "validDraws": 2000,
+                "value": 0.6428140739164361,
+                "writers": 177
+              },
+              "withoutWord": {
+                "interval": [
+                  0.59482195621956,
+                  0.688300555057597
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 357,
+                "pAbovePoint70": 0.9905047476261869,
+                "pBelowPoint70": 0.009995002498750625,
+                "positive": 635,
+                "standardError": 0.023901237301783906,
+                "validDraws": 2000,
+                "value": 0.6419307880632568,
+                "writers": 175
+              }
+            },
+            "guilty": {
+              "all": {
+                "interval": [
+                  0.639629374223294,
+                  0.7239754077161761
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 349,
+                "pAbovePoint70": 0.8030984507746127,
+                "pBelowPoint70": 0.19740129935032483,
+                "positive": 666,
+                "standardError": 0.021763633114539722,
+                "validDraws": 2000,
+                "value": 0.6821205159314042,
+                "writers": 180
+              },
+              "withoutWord": {
+                "interval": [
+                  0.6335737696506019,
+                  0.7150273470077121
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 326,
+                "pAbovePoint70": 0.8770614692653673,
+                "pBelowPoint70": 0.12343828085957022,
+                "positive": 635,
+                "standardError": 0.021295569125858282,
+                "validDraws": 2000,
+                "value": 0.67405439350756,
+                "writers": 177
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "annoyed",
+            "guilty"
+          ]
+        },
+        "SADNESS": {
+          "availableWriters": 810,
+          "fixed": {},
+          "fixedUnavailable": "No pair specified or selectable for this source and output.",
+          "ownLabels": [
+            "devastated",
+            "lonely",
+            "sad"
+          ],
+          "selected": {
+            "disappointed": {
+              "all": {
+                "interval": [
+                  0.7240143437964957,
+                  0.7984591075323659
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 354,
+                "pAbovePoint70": 0.0009995002498750624,
+                "pBelowPoint70": 0.9995002498750625,
+                "positive": 1094,
+                "standardError": 0.019350789968203327,
+                "validDraws": 2000,
+                "value": 0.7611858209648933,
+                "writers": 205
+              },
+              "withoutWord": {
+                "interval": [
+                  0.708269912612776,
+                  0.7894311479204468
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": true,
+                "negative": 326,
+                "pAbovePoint70": 0.009995002498750625,
+                "pBelowPoint70": 0.9905047476261869,
+                "positive": 995,
+                "standardError": 0.020978206242570338,
+                "validDraws": 2000,
+                "value": 0.7499368005672534,
+                "writers": 204
+              }
+            },
+            "sentimental": {
+              "all": {
+                "interval": [
+                  0.6329684328974252,
+                  0.7123757293682385
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 346,
+                "pAbovePoint70": 0.8925537231384307,
+                "pBelowPoint70": 0.10794602698650675,
+                "positive": 1094,
+                "standardError": 0.020196668810664183,
+                "validDraws": 2000,
+                "value": 0.6746362185753083,
+                "writers": 211
+              },
+              "withoutWord": {
+                "interval": [
+                  0.6173043212506921,
+                  0.7046971173361903
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 323,
+                "pAbovePoint70": 0.9265367316341829,
+                "pBelowPoint70": 0.07396301849075462,
+                "positive": 995,
+                "standardError": 0.022259295799862598,
+                "validDraws": 2000,
+                "value": 0.6650652644025079,
+                "writers": 208
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "sentimental",
+            "disappointed"
+          ]
+        },
+        "SEEKING": {
+          "availableWriters": 810,
+          "fixed": {},
+          "fixedUnavailable": "No pair specified or selectable for this source and output.",
+          "ownLabels": [
+            "anticipating",
+            "excited",
+            "hopeful"
+          ],
+          "selected": {
+            "joyful": {
+              "all": {
+                "interval": [
+                  0.5784138862653345,
+                  0.648295567678853
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 348,
+                "pAbovePoint70": 1.0,
+                "pBelowPoint70": 0.0004997501249375312,
+                "positive": 1163,
+                "standardError": 0.017694403581257935,
+                "validDraws": 2000,
+                "value": 0.6138615451517577,
+                "writers": 208
+              },
+              "withoutWord": {
+                "interval": [
+                  0.5649439824754039,
+                  0.6363324547731485
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 337,
+                "pAbovePoint70": 1.0,
+                "pBelowPoint70": 0.0004997501249375312,
+                "positive": 1087,
+                "standardError": 0.018482173595829012,
+                "validDraws": 2000,
+                "value": 0.6002241215989342,
+                "writers": 202
+              }
+            },
+            "prepared": {
+              "all": {
+                "interval": [
+                  0.5787908665298548,
+                  0.6738142307828122
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 374,
+                "pAbovePoint70": 0.999000499750125,
+                "pBelowPoint70": 0.0014992503748125937,
+                "positive": 1163,
+                "standardError": 0.024353140681375517,
+                "validDraws": 2000,
+                "value": 0.6254236002225482,
+                "writers": 208
+              },
+              "withoutWord": {
+                "interval": [
+                  0.5592264643857515,
+                  0.6611798954484626
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 346,
+                "pAbovePoint70": 1.0,
+                "pBelowPoint70": 0.0004997501249375312,
+                "positive": 1087,
+                "standardError": 0.02570134516590036,
+                "validDraws": 2000,
+                "value": 0.6096630701245939,
+                "writers": 200
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "joyful",
+            "prepared"
+          ]
+        },
+        "SHAME": {
+          "availableWriters": 810,
+          "fixed": {},
+          "fixedUnavailable": "No pair specified or selectable for this source and output.",
+          "ownLabels": [
+            "ashamed"
+          ],
+          "selected": {
+            "embarrassed": {
+              "all": {
+                "interval": [
+                  0.5087851632461217,
+                  0.616783063002035
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 356,
+                "pAbovePoint70": 1.0,
+                "pBelowPoint70": 0.0004997501249375312,
+                "positive": 301,
+                "standardError": 0.027706308258547297,
+                "validDraws": 2000,
+                "value": 0.5630389338907761,
+                "writers": 186
+              },
+              "withoutWord": {
+                "interval": [
+                  0.5184686155029773,
+                  0.618768346296259
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 342,
+                "pAbovePoint70": 1.0,
+                "pBelowPoint70": 0.0004997501249375312,
+                "positive": 282,
+                "standardError": 0.026167884889524977,
+                "validDraws": 2000,
+                "value": 0.5681120650325577,
+                "writers": 179
+              }
+            },
+            "guilty": {
+              "all": {
+                "interval": [
+                  0.5157364958769025,
+                  0.6197083654187913
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 349,
+                "pAbovePoint70": 1.0,
+                "pBelowPoint70": 0.0004997501249375312,
+                "positive": 301,
+                "standardError": 0.026886663140376122,
+                "validDraws": 2000,
+                "value": 0.5663880665213377,
+                "writers": 187
+              },
+              "withoutWord": {
+                "interval": [
+                  0.5200975643057295,
+                  0.6233416326532778
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 326,
+                "pAbovePoint70": 1.0,
+                "pBelowPoint70": 0.0004997501249375312,
+                "positive": 282,
+                "standardError": 0.02657268233212002,
+                "validDraws": 2000,
+                "value": 0.5723088804768742,
+                "writers": 180
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "embarrassed",
+            "guilty"
+          ]
+        },
+        "amusement": {
+          "ownLabels": [],
+          "unavailable": "No registered own word in this source."
+        },
+        "wanting": {
+          "ownLabels": [],
+          "unavailable": "No registered own word in this source."
+        }
+      },
+      "tp59Loudest": [
+        {
+          "peak": 0.5125908208986001,
+          "word": "terrified"
+        },
+        {
+          "peak": 0.45605640126345715,
+          "word": "afraid"
+        },
+        {
+          "peak": 0.4405654040546268,
+          "word": "sad"
+        }
+      ],
+      "tp59Quietest": [
+        {
+          "peak": 0.056335649060399784,
+          "word": "surprised"
+        },
+        {
+          "peak": 0.0692769396353842,
+          "word": "faithful"
+        },
+        {
+          "peak": 0.0695074407512933,
+          "word": "jealous"
+        }
+      ]
+    },
+    "envent": {
+      "census": {
+        "assessedReports": 5401,
+        "assessedWriters": 1807,
+        "fitReports": 1199,
+        "tenSourceRows": 6600,
+        "unknownWriter": 0,
+        "withReleasedLabels": 6600
+      },
+      "heads": {
+        "CARE": {
+          "ownLabels": [],
+          "unavailable": "No registered own word in this source."
+        },
+        "DISGUST": {
+          "availableWriters": 1807,
+          "fixed": {},
+          "fixedUnavailable": "No pair specified or selectable for this source and output.",
+          "ownLabels": [
+            "disgust"
+          ],
+          "selected": {
+            "anger": {
+              "all": {
+                "interval": [
+                  0.6868216789273963,
+                  0.7778637865678205
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 231,
+                "pAbovePoint70": 0.07746126936531735,
+                "pBelowPoint70": 0.9230384807596201,
+                "positive": 219,
+                "standardError": 0.023066434390825185,
+                "validDraws": 2000,
+                "value": 0.7319180058906086,
+                "writers": 340
+              },
+              "withoutWord": {
+                "interval": [
+                  0.6868216789273963,
+                  0.7778637865678205
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 231,
+                "pAbovePoint70": 0.07746126936531735,
+                "pBelowPoint70": 0.9230384807596201,
+                "positive": 219,
+                "standardError": 0.023066434390825185,
+                "validDraws": 2000,
+                "value": 0.7319180058906086,
+                "writers": 340
+              }
+            },
+            "shame": {
+              "all": {
+                "interval": [
+                  0.6862873716457399,
+                  0.7965827777437459
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 114,
+                "pAbovePoint70": 0.07196401799100449,
+                "pBelowPoint70": 0.928535732133933,
+                "positive": 219,
+                "standardError": 0.027985410584389428,
+                "validDraws": 2000,
+                "value": 0.7419290234719218,
+                "writers": 252
+              },
+              "withoutWord": {
+                "interval": [
+                  0.6862873716457399,
+                  0.7965827777437459
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 114,
+                "pAbovePoint70": 0.07196401799100449,
+                "pBelowPoint70": 0.928535732133933,
+                "positive": 219,
+                "standardError": 0.027985410584389428,
+                "validDraws": 2000,
+                "value": 0.7419290234719218,
+                "writers": 252
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "anger",
+            "shame"
+          ]
+        },
+        "FEAR": {
+          "availableWriters": 1807,
+          "fixed": {},
+          "fixedUnavailable": "No pair specified or selectable for this source and output.",
+          "ownLabels": [
+            "fear"
+          ],
+          "selected": {
+            "disgust": {
+              "all": {
+                "interval": [
+                  0.5323769515817344,
+                  0.6351191392531249
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 219,
+                "pAbovePoint70": 1.0,
+                "pBelowPoint70": 0.0004997501249375312,
+                "positive": 224,
+                "standardError": 0.026723697067046106,
+                "validDraws": 2000,
+                "value": 0.581763698630137,
+                "writers": 287
+              },
+              "withoutWord": {
+                "interval": [
+                  0.5323769515817344,
+                  0.6351191392531249
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 219,
+                "pAbovePoint70": 1.0,
+                "pBelowPoint70": 0.0004997501249375312,
+                "positive": 224,
+                "standardError": 0.026723697067046106,
+                "validDraws": 2000,
+                "value": 0.581763698630137,
+                "writers": 287
+              }
+            },
+            "relief": {
+              "all": {
+                "interval": [
+                  0.6569657789124618,
+                  0.755776279039778
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 218,
+                "pAbovePoint70": 0.37031484257871067,
+                "pBelowPoint70": 0.6301849075462269,
+                "positive": 224,
+                "standardError": 0.02501885572533218,
+                "validDraws": 2000,
+                "value": 0.707384501965924,
+                "writers": 336
+              },
+              "withoutWord": {
+                "interval": [
+                  0.6569657789124618,
+                  0.755776279039778
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 218,
+                "pAbovePoint70": 0.37031484257871067,
+                "pBelowPoint70": 0.6301849075462269,
+                "positive": 224,
+                "standardError": 0.02501885572533218,
+                "validDraws": 2000,
+                "value": 0.707384501965924,
+                "writers": 336
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "disgust",
+            "relief"
+          ]
+        },
+        "PRIDE": {
+          "availableWriters": 1180,
+          "fixed": {},
+          "fixedUnavailable": "No pair specified or selectable for this source and output.",
+          "ownLabels": [
+            "pride"
+          ],
+          "selected": {
+            "joy": {
+              "all": {
+                "interval": [
+                  0.6487907334309997,
+                  0.7650335392416188
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 140,
+                "pAbovePoint70": 0.40429785107446276,
+                "pBelowPoint70": 0.5962018990504747,
+                "positive": 135,
+                "standardError": 0.030155304413345272,
+                "validDraws": 2000,
+                "value": 0.7085714285714285,
+                "writers": 203
+              },
+              "withoutWord": {
+                "interval": [
+                  0.646817869255077,
+                  0.7641989993820703
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 139,
+                "pAbovePoint70": 0.42128935532233885,
+                "pBelowPoint70": 0.5792103948025987,
+                "positive": 133,
+                "standardError": 0.030524116186561912,
+                "validDraws": 2000,
+                "value": 0.706766917293233,
+                "writers": 200
+              }
+            },
+            "trust": {
+              "all": {
+                "interval": [
+                  0.7508679850269395,
+                  0.8522486604107168
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 136,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 135,
+                "standardError": 0.026304486001891027,
+                "validDraws": 2000,
+                "value": 0.8017429193899782,
+                "writers": 193
+              },
+              "withoutWord": {
+                "interval": [
+                  0.7452114665751126,
+                  0.8501978514983229
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 136,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 133,
+                "standardError": 0.026402158870785883,
+                "validDraws": 2000,
+                "value": 0.8008624502432552,
+                "writers": 191
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "joy",
+            "trust"
+          ]
+        },
+        "RAGE": {
+          "availableWriters": 1807,
+          "fixed": {},
+          "fixedUnavailable": "No pair specified or selectable for this source and output.",
+          "ownLabels": [
+            "anger"
+          ],
+          "selected": {
+            "disgust": {
+              "all": {
+                "interval": [
+                  0.515931970585147,
+                  0.6237148569651456
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 219,
+                "pAbovePoint70": 1.0,
+                "pBelowPoint70": 0.0004997501249375312,
+                "positive": 231,
+                "standardError": 0.02784213492064549,
+                "validDraws": 2000,
+                "value": 0.5680088556800885,
+                "writers": 340
+              },
+              "withoutWord": {
+                "interval": [
+                  0.515931970585147,
+                  0.6237148569651456
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 219,
+                "pAbovePoint70": 1.0,
+                "pBelowPoint70": 0.0004997501249375312,
+                "positive": 231,
+                "standardError": 0.02784213492064549,
+                "validDraws": 2000,
+                "value": 0.5680088556800885,
+                "writers": 340
+              }
+            },
+            "shame": {
+              "all": {
+                "interval": [
+                  0.5244120044482203,
+                  0.6606592771578316
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 114,
+                "pAbovePoint70": 0.9995002498750625,
+                "pBelowPoint70": 0.0009995002498750624,
+                "positive": 231,
+                "standardError": 0.033888211224436963,
+                "validDraws": 2000,
+                "value": 0.5921242500189868,
+                "writers": 282
+              },
+              "withoutWord": {
+                "interval": [
+                  0.5244120044482203,
+                  0.6606592771578316
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 114,
+                "pAbovePoint70": 0.9995002498750625,
+                "pBelowPoint70": 0.0009995002498750624,
+                "positive": 231,
+                "standardError": 0.033888211224436963,
+                "validDraws": 2000,
+                "value": 0.5921242500189868,
+                "writers": 282
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "disgust",
+            "shame"
+          ]
+        },
+        "SADNESS": {
+          "availableWriters": 1807,
+          "fixed": {},
+          "fixedUnavailable": "No pair specified or selectable for this source and output.",
+          "ownLabels": [
+            "sadness"
+          ],
+          "selected": {
+            "guilt": {
+              "all": {
+                "interval": [
+                  0.5984969845327832,
+                  0.716847170190567
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 117,
+                "pAbovePoint70": 0.9025487256371814,
+                "pBelowPoint70": 0.09795102448775612,
+                "positive": 234,
+                "standardError": 0.030525014565815727,
+                "validDraws": 2000,
+                "value": 0.6595806852217109,
+                "writers": 280
+              },
+              "withoutWord": {
+                "interval": [
+                  0.5984969845327832,
+                  0.716847170190567
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 117,
+                "pAbovePoint70": 0.9025487256371814,
+                "pBelowPoint70": 0.09795102448775612,
+                "positive": 234,
+                "standardError": 0.030525014565815727,
+                "validDraws": 2000,
+                "value": 0.6595806852217109,
+                "writers": 280
+              }
+            },
+            "shame": {
+              "all": {
+                "interval": [
+                  0.6254882938206163,
+                  0.7420727985986829
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 114,
+                "pAbovePoint70": 0.6991504247876063,
+                "pBelowPoint70": 0.30134932533733133,
+                "positive": 234,
+                "standardError": 0.02953572643909292,
+                "validDraws": 2000,
+                "value": 0.685672514619883,
+                "writers": 262
+              },
+              "withoutWord": {
+                "interval": [
+                  0.6254882938206163,
+                  0.7420727985986829
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 114,
+                "pAbovePoint70": 0.6991504247876063,
+                "pBelowPoint70": 0.30134932533733133,
+                "positive": 234,
+                "standardError": 0.02953572643909292,
+                "validDraws": 2000,
+                "value": 0.685672514619883,
+                "writers": 262
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "guilt",
+            "shame"
+          ]
+        },
+        "SEEKING": {
+          "ownLabels": [],
+          "unavailable": "No registered own word in this source."
+        },
+        "SHAME": {
+          "availableWriters": 1807,
+          "fixed": {},
+          "fixedUnavailable": "No pair specified or selectable for this source and output.",
+          "ownLabels": [
+            "shame"
+          ],
+          "selected": {
+            "anger": {
+              "all": {
+                "interval": [
+                  0.5,
+                  0.5
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 231,
+                "pAbovePoint70": 1.0,
+                "pBelowPoint70": 0.0004997501249375312,
+                "positive": 114,
+                "standardError": 0.0,
+                "validDraws": 2000,
+                "value": 0.5,
+                "writers": 282
+              },
+              "withoutWord": {
+                "interval": [
+                  0.5,
+                  0.5
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 231,
+                "pAbovePoint70": 1.0,
+                "pBelowPoint70": 0.0004997501249375312,
+                "positive": 114,
+                "standardError": 0.0,
+                "validDraws": 2000,
+                "value": 0.5,
+                "writers": 282
+              }
+            },
+            "boredom": {
+              "all": {
+                "interval": [
+                  0.5,
+                  0.5
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 224,
+                "pAbovePoint70": 1.0,
+                "pBelowPoint70": 0.0004997501249375312,
+                "positive": 114,
+                "standardError": 0.0,
+                "validDraws": 2000,
+                "value": 0.5,
+                "writers": 264
+              },
+              "withoutWord": {
+                "interval": [
+                  0.5,
+                  0.5
+                ],
+                "intervalBelowPoint70": true,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 224,
+                "pAbovePoint70": 1.0,
+                "pBelowPoint70": 0.0004997501249375312,
+                "positive": 114,
+                "standardError": 0.0,
+                "validDraws": 2000,
+                "value": 0.5,
+                "writers": 264
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "anger",
+            "boredom"
+          ]
+        },
+        "amusement": {
+          "ownLabels": [],
+          "unavailable": "No registered own word in this source."
+        },
+        "wanting": {
+          "ownLabels": [],
+          "unavailable": "No registered own word in this source."
+        }
+      },
+      "jointShame": {
+        "maximum": 0.8813254886467825,
+        "median": 0.012387217004116737,
+        "minimum": 3.632226657085939e-06,
+        "reportHeldOut": {
+          "interval": [
+            0.7025352258511939,
+            0.7514527980049706
+          ],
+          "intervalBelowPoint70": false,
+          "intervalClearsPoint70": true,
+          "nearPoint70": true,
+          "negative": 4951,
+          "pAbovePoint70": 0.013493253373313344,
+          "pBelowPoint70": 0.9870064967516242,
+          "positive": 450,
+          "standardError": 0.012333658696500466,
+          "validDraws": 2000,
+          "value": 0.7270279853677147,
+          "writers": 1807
+        },
+        "rows": 5401,
+        "varying": true,
+        "withLabelsAndWriter": 5401,
+        "writerHeldOut": {
+          "interval": [
+            0.6818237287996283,
+            0.7480968689336627
+          ],
+          "intervalBelowPoint70": false,
+          "intervalClearsPoint70": false,
+          "nearPoint70": false,
+          "negative": 2903,
+          "pAbovePoint70": 0.17491254372813594,
+          "pBelowPoint70": 0.8255872063968016,
+          "positive": 251,
+          "standardError": 0.016613012585088995,
+          "validDraws": 2000,
+          "value": 0.7157865266457422,
+          "writers": 1180
+        }
+      },
+      "tp59Loudest": [
+        {
+          "peak": 0.3767165258530484,
+          "word": "pride"
+        },
+        {
+          "peak": 0.23179709441631915,
+          "word": "sadness"
+        },
+        {
+          "peak": 0.19334581954652488,
+          "word": "joy"
+        }
+      ],
+      "tp59Quietest": [
+        {
+          "peak": 0.07968825568216198,
+          "word": "anger"
+        },
+        {
+          "peak": 0.08356093665743719,
+          "word": "disgust"
+        },
+        {
+          "peak": 0.08489970230212418,
+          "word": "relief"
+        }
+      ]
+    },
+    "go": {
+      "census": {
+        "assessedReports": 10624,
+        "assessedWriters": 9284,
+        "fitReports": 0,
+        "tenSourceRows": 11571,
+        "unknownWriter": 207,
+        "withReleasedLabels": 10831
+      },
+      "heads": {
+        "CARE": {
+          "availableWriters": 9284,
+          "fixed": {},
+          "fixedUnavailable": "No pair specified or selectable for this source and output.",
+          "ownLabels": [
+            "caring",
+            "love"
+          ],
+          "selected": {
+            "desire": {
+              "all": {
+                "interval": [
+                  0.7617827314140702,
+                  0.8575667146031763
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 68,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 375,
+                "standardError": 0.024083079304882113,
+                "validDraws": 2000,
+                "value": 0.8119607843137255,
+                "writers": 438
+              },
+              "withoutWord": {
+                "interval": [
+                  0.639188244122692,
+                  0.7772118608558628
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 68,
+                "pAbovePoint70": 0.39780109945027486,
+                "pBelowPoint70": 0.6026986506746627,
+                "positive": 199,
+                "standardError": 0.03534679521829649,
+                "validDraws": 2000,
+                "value": 0.7082471179426545,
+                "writers": 265
+              }
+            },
+            "pride": {
+              "all": {
+                "interval": [
+                  0.7875692947336003,
+                  0.9090985654416505
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 15,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 378,
+                "standardError": 0.031276998904699094,
+                "validDraws": 2000,
+                "value": 0.8534391534391534,
+                "writers": 389
+              },
+              "withoutWord": {
+                "interval": [
+                  0.6657720773759461,
+                  0.8574361861081066
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 15,
+                "pAbovePoint70": 0.08345827086456771,
+                "pBelowPoint70": 0.9170414792603698,
+                "positive": 201,
+                "standardError": 0.04866134009891694,
+                "validDraws": 2000,
+                "value": 0.7648424543946932,
+                "writers": 215
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "pride",
+            "desire"
+          ]
+        },
+        "DISGUST": {
+          "availableWriters": 9284,
+          "fixed": {},
+          "fixedUnavailable": "No pair specified or selectable for this source and output.",
+          "ownLabels": [
+            "disgust"
+          ],
+          "selected": {
+            "anger": {
+              "all": {
+                "interval": [
+                  0.7135760851710304,
+                  0.8331817712343429
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": true,
+                "negative": 190,
+                "pAbovePoint70": 0.00399800099950025,
+                "pBelowPoint70": 0.9965017491254373,
+                "positive": 100,
+                "standardError": 0.030418604841933494,
+                "validDraws": 2000,
+                "value": 0.7743684210526316,
+                "writers": 286
+              },
+              "withoutWord": {
+                "interval": [
+                  0.7116037298737402,
+                  0.8310530940612508
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": true,
+                "negative": 189,
+                "pAbovePoint70": 0.006496751624187906,
+                "pBelowPoint70": 0.9940029985007496,
+                "positive": 99,
+                "standardError": 0.030661134597141388,
+                "validDraws": 2000,
+                "value": 0.7736625514403292,
+                "writers": 284
+              }
+            },
+            "fear": {
+              "all": {
+                "interval": [
+                  0.6693025009876964,
+                  0.8211952458903787
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 73,
+                "pAbovePoint70": 0.10294852573713144,
+                "pBelowPoint70": 0.8975512243878061,
+                "positive": 103,
+                "standardError": 0.03862476500615348,
+                "validDraws": 2000,
+                "value": 0.7478388083521745,
+                "writers": 174
+              },
+              "withoutWord": {
+                "interval": [
+                  0.6589155563650388,
+                  0.8117398907209704
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 69,
+                "pAbovePoint70": 0.1454272863568216,
+                "pBelowPoint70": 0.855072463768116,
+                "positive": 103,
+                "standardError": 0.03910549776022123,
+                "validDraws": 2000,
+                "value": 0.740115379203602,
+                "writers": 170
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "fear",
+            "anger"
+          ]
+        },
+        "FEAR": {
+          "availableWriters": 9284,
+          "fixed": {},
+          "fixedUnavailable": "No pair specified or selectable for this source and output.",
+          "ownLabels": [
+            "fear"
+          ],
+          "selected": {
+            "disgust": {
+              "all": {
+                "interval": [
+                  0.784233463076627,
+                  0.8993010750499393
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 103,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 73,
+                "standardError": 0.02978969106378206,
+                "validDraws": 2000,
+                "value": 0.8431972336746908,
+                "writers": 174
+              },
+              "withoutWord": {
+                "interval": [
+                  0.7703550779286074,
+                  0.8902904845323709
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 103,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 69,
+                "standardError": 0.03110660895429526,
+                "validDraws": 2000,
+                "value": 0.8342479245813986,
+                "writers": 170
+              }
+            },
+            "nervousness": {
+              "all": {
+                "interval": [
+                  0.5552712477396022,
+                  0.8251631596251846
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 17,
+                "pAbovePoint70": 0.5342328835582209,
+                "pBelowPoint70": 0.4662668665667166,
+                "positive": 76,
+                "standardError": 0.0676842541474735,
+                "validDraws": 2000,
+                "value": 0.6965944272445821,
+                "writers": 92
+              },
+              "withoutWord": {
+                "interval": [
+                  0.5356868131868132,
+                  0.8087518382352941
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 17,
+                "pAbovePoint70": 0.6251874062968515,
+                "pBelowPoint70": 0.375312343828086,
+                "positive": 72,
+                "standardError": 0.069348346542791,
+                "validDraws": 2000,
+                "value": 0.6813725490196079,
+                "writers": 88
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "nervousness",
+            "disgust"
+          ]
+        },
+        "PRIDE": {
+          "availableWriters": 9284,
+          "fixed": {},
+          "fixedUnavailable": "No pair specified or selectable for this source and output.",
+          "ownLabels": [
+            "pride"
+          ],
+          "selected": {
+            "admiration": {
+              "all": {
+                "interval": [
+                  0.6495653680378927,
+                  0.8808162628440337
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 510,
+                "pAbovePoint70": 0.08245877061469266,
+                "pBelowPoint70": 0.9180409795102449,
+                "positive": 12,
+                "standardError": 0.05924924841771817,
+                "validDraws": 2000,
+                "value": 0.7781045751633987,
+                "writers": 518
+              },
+              "withoutWord": {
+                "interval": [
+                  0.6495653680378927,
+                  0.8808162628440337
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 510,
+                "pAbovePoint70": 0.08245877061469266,
+                "pBelowPoint70": 0.9180409795102449,
+                "positive": 12,
+                "standardError": 0.05924924841771817,
+                "validDraws": 2000,
+                "value": 0.7781045751633987,
+                "writers": 518
+              }
+            },
+            "relief": {
+              "all": {
+                "interval": [
+                  0.902834008097166,
+                  1.0
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 17,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 15,
+                "standardError": 0.026923087785312654,
+                "validDraws": 2000,
+                "value": 0.9686274509803922,
+                "writers": 32
+              },
+              "withoutWord": {
+                "interval": [
+                  0.902834008097166,
+                  1.0
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 17,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 15,
+                "standardError": 0.026923087785312654,
+                "validDraws": 2000,
+                "value": 0.9686274509803922,
+                "writers": 32
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "admiration",
+            "relief"
+          ]
+        },
+        "RAGE": {
+          "availableWriters": 9284,
+          "fixed": {},
+          "fixedUnavailable": "No pair specified or selectable for this source and output.",
+          "ownLabels": [
+            "anger"
+          ],
+          "selected": {
+            "annoyance": {
+              "all": {
+                "interval": [
+                  0.6704072683567113,
+                  0.7686920785058386
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 297,
+                "pAbovePoint70": 0.1969015492253873,
+                "pBelowPoint70": 0.8035982008995503,
+                "positive": 173,
+                "standardError": 0.02472414548452254,
+                "validDraws": 2000,
+                "value": 0.7209474319300909,
+                "writers": 462
+              },
+              "withoutWord": {
+                "interval": [
+                  0.6713560715534527,
+                  0.7671267167039285
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 296,
+                "pAbovePoint70": 0.20439780109945027,
+                "pBelowPoint70": 0.7961019490254873,
+                "positive": 172,
+                "standardError": 0.024850187635522086,
+                "validDraws": 2000,
+                "value": 0.7196338780641106,
+                "writers": 460
+              }
+            },
+            "disgust": {
+              "all": {
+                "interval": [
+                  0.6225110049254208,
+                  0.7465862726744216
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 100,
+                "pAbovePoint70": 0.6326836581709145,
+                "pBelowPoint70": 0.367816091954023,
+                "positive": 190,
+                "standardError": 0.03188067668150367,
+                "validDraws": 2000,
+                "value": 0.6885263157894737,
+                "writers": 286
+              },
+              "withoutWord": {
+                "interval": [
+                  0.6225994872311814,
+                  0.7446659011205637
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 99,
+                "pAbovePoint70": 0.6786606696651675,
+                "pBelowPoint70": 0.3218390804597701,
+                "positive": 189,
+                "standardError": 0.030930310462219456,
+                "validDraws": 2000,
+                "value": 0.6849981294425739,
+                "writers": 284
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "annoyance",
+            "disgust"
+          ]
+        },
+        "SADNESS": {
+          "availableWriters": 9284,
+          "fixed": {},
+          "fixedUnavailable": "No pair specified or selectable for this source and output.",
+          "ownLabels": [
+            "grief",
+            "sadness"
+          ],
+          "selected": {
+            "disappointment": {
+              "all": {
+                "interval": [
+                  0.7355731072462375,
+                  0.8401317503513925
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 135,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 149,
+                "standardError": 0.026696051575563845,
+                "validDraws": 2000,
+                "value": 0.7914491672880934,
+                "writers": 283
+              },
+              "withoutWord": {
+                "interval": [
+                  0.7361061161868049,
+                  0.8430446510030408
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 134,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 147,
+                "standardError": 0.027032594965961394,
+                "validDraws": 2000,
+                "value": 0.7912478424205504,
+                "writers": 280
+              }
+            },
+            "remorse": {
+              "all": {
+                "interval": [
+                  0.5673652539170377,
+                  0.7295969627966014
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 63,
+                "pAbovePoint70": 0.8885557221389305,
+                "pBelowPoint70": 0.111944027986007,
+                "positive": 157,
+                "standardError": 0.04130646187723715,
+                "validDraws": 2000,
+                "value": 0.6511980588413709,
+                "writers": 220
+              },
+              "withoutWord": {
+                "interval": [
+                  0.5691984665661136,
+                  0.7339656938044034
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 63,
+                "pAbovePoint70": 0.8845577211394303,
+                "pBelowPoint70": 0.11594202898550725,
+                "positive": 155,
+                "standardError": 0.04221232326930441,
+                "validDraws": 2000,
+                "value": 0.6493599590373784,
+                "writers": 218
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "remorse",
+            "disappointment"
+          ]
+        },
+        "SEEKING": {
+          "availableWriters": 9284,
+          "fixed": {},
+          "fixedUnavailable": "No pair specified or selectable for this source and output.",
+          "ownLabels": [
+            "curiosity",
+            "excitement"
+          ],
+          "selected": {
+            "confusion": {
+              "all": {
+                "interval": [
+                  0.6151896160579575,
+                  0.7257152837846829
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 130,
+                "pAbovePoint70": 0.8385807096451774,
+                "pBelowPoint70": 0.1619190404797601,
+                "positive": 320,
+                "standardError": 0.028083139260523172,
+                "validDraws": 2000,
+                "value": 0.6714903846153846,
+                "writers": 439
+              },
+              "withoutWord": {
+                "interval": [
+                  0.619087538186862,
+                  0.7248357685416509
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 129,
+                "pAbovePoint70": 0.8470764617691154,
+                "pBelowPoint70": 0.15342328835582209,
+                "positive": 319,
+                "standardError": 0.027345054301757574,
+                "validDraws": 2000,
+                "value": 0.6715268158732474,
+                "writers": 437
+              }
+            },
+            "surprise": {
+              "all": {
+                "interval": [
+                  0.6185322600585073,
+                  0.7228544329846693
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 125,
+                "pAbovePoint70": 0.8705647176411794,
+                "pBelowPoint70": 0.12993503248375812,
+                "positive": 334,
+                "standardError": 0.0268016808157198,
+                "validDraws": 2000,
+                "value": 0.6696526946107785,
+                "writers": 445
+              },
+              "withoutWord": {
+                "interval": [
+                  0.615205260073998,
+                  0.7187306546506985
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": true,
+                "negative": 124,
+                "pAbovePoint70": 0.8915542228885557,
+                "pBelowPoint70": 0.1089455272363818,
+                "positive": 333,
+                "standardError": 0.027111045054182714,
+                "validDraws": 2000,
+                "value": 0.6668604087958927,
+                "writers": 443
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "confusion",
+            "surprise"
+          ]
+        },
+        "SHAME": {
+          "ownLabels": [],
+          "unavailable": "No registered own word in this source."
+        },
+        "amusement": {
+          "availableWriters": 9284,
+          "fixed": {},
+          "fixedUnavailable": "No pair specified or selectable for this source and output.",
+          "ownLabels": [
+            "amusement"
+          ],
+          "selected": {
+            "joy": {
+              "all": {
+                "interval": [
+                  0.8627767671348501,
+                  0.9286013661482936
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 166,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 274,
+                "standardError": 0.016544374375468664,
+                "validDraws": 2000,
+                "value": 0.8970407176149855,
+                "writers": 435
+              },
+              "withoutWord": {
+                "interval": [
+                  0.8609274034134509,
+                  0.9277131100012271
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 164,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 274,
+                "standardError": 0.01688221098829652,
+                "validDraws": 2000,
+                "value": 0.8961189246928966,
+                "writers": 433
+              }
+            },
+            "surprise": {
+              "all": {
+                "interval": [
+                  0.9258479431301908,
+                  0.9668910263934066
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 131,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 286,
+                "standardError": 0.01072545878205858,
+                "validDraws": 2000,
+                "value": 0.9476859018843752,
+                "writers": 409
+              },
+              "withoutWord": {
+                "interval": [
+                  0.9240704738388846,
+                  0.9671139808405271
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 130,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 286,
+                "standardError": 0.011058164479072765,
+                "validDraws": 2000,
+                "value": 0.9473910704679935,
+                "writers": 408
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "joy",
+            "surprise"
+          ]
+        },
+        "wanting": {
+          "availableWriters": 9284,
+          "fixed": {
+            "excitement": {
+              "all": {
+                "interval": [
+                  0.8018193270261585,
+                  0.8839137114015619
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 199,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 138,
+                "standardError": 0.021770525750750367,
+                "validDraws": 2000,
+                "value": 0.8430558590051708,
+                "writers": 335
+              },
+              "withoutWord": {
+                "interval": [
+                  0.7984055555555556,
+                  0.8823365122057532
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 198,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 138,
+                "standardError": 0.021471246413947827,
+                "validDraws": 2000,
+                "value": 0.842519396867223,
+                "writers": 334
+              }
+            },
+            "optimism": {
+              "all": {
+                "interval": [
+                  0.6515352694324608,
+                  0.7671855480707951
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 379,
+                "pAbovePoint70": 0.3353323338330835,
+                "pBelowPoint70": 0.665167416291854,
+                "positive": 121,
+                "standardError": 0.029318865502828712,
+                "validDraws": 2000,
+                "value": 0.7121611897337491,
+                "writers": 494
+              },
+              "withoutWord": {
+                "interval": [
+                  0.6515406152438458,
+                  0.767107896600311
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 378,
+                "pAbovePoint70": 0.33483258370814595,
+                "pBelowPoint70": 0.6656671664167916,
+                "positive": 121,
+                "standardError": 0.029299580425391363,
+                "validDraws": 2000,
+                "value": 0.712186803095894,
+                "writers": 494
+              }
+            }
+          },
+          "ownLabels": [
+            "desire"
+          ],
+          "selected": {
+            "caring": {
+              "all": {
+                "interval": [
+                  0.7657933793305931,
+                  0.8874123072108112
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 133,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 70,
+                "standardError": 0.031919840154574955,
+                "validDraws": 2000,
+                "value": 0.8297529538131042,
+                "writers": 203
+              },
+              "withoutWord": {
+                "interval": [
+                  0.7601463119666594,
+                  0.8868089104705654
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": true,
+                "nearPoint70": false,
+                "negative": 132,
+                "pAbovePoint70": 0.0004997501249375312,
+                "pBelowPoint70": 1.0,
+                "positive": 70,
+                "standardError": 0.03247313490275065,
+                "validDraws": 2000,
+                "value": 0.8288961038961039,
+                "writers": 202
+              }
+            },
+            "optimism": {
+              "all": {
+                "interval": [
+                  0.6024856373052112,
+                  0.7710530582166544
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 179,
+                "pAbovePoint70": 0.6366816591704147,
+                "pBelowPoint70": 0.3638180909545227,
+                "positive": 62,
+                "standardError": 0.04220052573867544,
+                "validDraws": 2000,
+                "value": 0.6885024328707875,
+                "writers": 238
+              },
+              "withoutWord": {
+                "interval": [
+                  0.6024856373052112,
+                  0.7710530582166544
+                ],
+                "intervalBelowPoint70": false,
+                "intervalClearsPoint70": false,
+                "nearPoint70": false,
+                "negative": 179,
+                "pAbovePoint70": 0.6366816591704147,
+                "pBelowPoint70": 0.3638180909545227,
+                "positive": 62,
+                "standardError": 0.04220052573867544,
+                "validDraws": 2000,
+                "value": 0.6885024328707875,
+                "writers": 238
+              }
+            }
+          },
+          "selectedNeighbors": [
+            "optimism",
+            "caring"
+          ]
+        }
+      },
+      "jointShame": {
+        "maximum": 0.647075890340475,
+        "median": 0.0005125671846518745,
+        "minimum": 3.329113160724602e-07,
+        "rows": 11571,
+        "unavailable": "The released forum vocabulary has no shame or guilt gold label.",
+        "varying": true,
+        "withLabelsAndWriter": 10624
+      },
+      "tp59Loudest": [
+        {
+          "peak": 0.3893200948879654,
+          "word": "amusement"
+        },
+        {
+          "peak": 0.38921221663233113,
+          "word": "love"
+        },
+        {
+          "peak": 0.2975175515168175,
+          "word": "grief"
+        }
+      ],
+      "tp59Quietest": [
+        {
+          "peak": 0.05544954277964892,
+          "word": "embarrassment"
+        },
+        {
+          "peak": 0.05830229184083598,
+          "word": "disapproval"
+        },
+        {
+          "peak": 0.06482978425258022,
+          "word": "realization"
+        }
+      ]
+    }
+  },
+  "tp30GoTrainingRows": 46290,
+  "tp30ReceiptPin": "d04658e1c84ef10e0c95847947359b24da91b79368bd91b3fa22da2d70c3e250",
+  "tp59Pin": "634f626d8c949bcfe836b035ac0a2291529b2e28f1fd15d17cd559bb094396df",
+  "sourceReceiptPin": "68d59e6d606acf95349c97808b6dd297a5a01982de33bff3b7fdd7e396064fdf",
+  "ledger": "E-TP64-20261127",
+  "productionAdmission": false,
+  "license": "EmpatheticDialogues data used for research under CC BY-NC 4.0."
+}

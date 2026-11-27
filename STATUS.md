@@ -1,5 +1,7 @@
 # ToMpathy status
 
+**November 27 · TP64.** Forum desire versus optimism and excitement had AUC 0.712 [0.652, 0.767], 0.843 [0.802, 0.884]. [E-TP64-20261127](docs/exchange/result-sheets/TP64.md)
+
 **November 27 · TP70.** Against rotated heads, the component floor was 2 on chat texts and 3 on blog author means. The map’s margins above the rotated bands were 0.187 [0.174, 0.196], 0.129 [0.119, 0.137] in chat and blogs, respectively. [E-TP70-20261127](docs/exchange/result-sheets/TP70.md)
 
 **November 27 · Round 37.** Q27 and G12 are reading the same 43,021 texts for standing. TP62 completed both 200-set control families. On held-out writers, the trained heads identified the assigned emotion in 35.21% of cases, above every rotated control. Their 1.76% writer identification rate fell below the rotated median. Both directions held after removing assigned stems. Q24 returned 2,993 complete authors, and TP73 missed both curiosity predictions. TP61’s worry slope exceeded both 99.5th percentiles, with seven individual heads reaching it. Worry minus median tag repeat was 0.218, below the rotated control band. All eight word-specific estimates fell inside their rotated bands. Q24b is parked behind the Spark priorities. [Two-day return, source-bound results and timing](docs/exchange/THEORY_RETURN_2026-11-29.md)
