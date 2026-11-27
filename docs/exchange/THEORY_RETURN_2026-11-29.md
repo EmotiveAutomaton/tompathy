@@ -1,4 +1,4 @@
-Nov 27 at 10:10 PT, Spark is running Q27 (19,000/43,021), the workstation GPU is running G12 (16,960/43,021), and the card queue is paused after pride-scale-queue reported a stop. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
+Nov 27 at 10:11 PT, Spark is running Q27 (19,160/43,021), the workstation GPU is running G12 (17,100/43,021), and the card queue is between registered stages. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
 
 # Two-day engine return · November 27–29
 
@@ -31,7 +31,7 @@ The table covers 35 registered predictions. TP62 met both directional criteria o
 | TP68 · Embarrassment | SHAME plus PLAY ranked 2 of 45 pairs for embarrassed. The dedicated head’s gain over its strongest covered-word comparator was -0.015 [-0.030, -0.006] AUC. | [TP68 · E-TP68-20261127](result-sheets/TP68.md) |
 | TP69 · Competence and Respect | Across 24,850 chat situations, Competence and Respect lifts differed by at least half a standard deviation for 11 of 32 words. Respect and acceptance differed by that much for 6. | [TP69 · E-TP69-20261127](result-sheets/TP69.md) |
 | TP66 · Order during loss | After matching sentence counts, the SADNESS-minus-FEAR timing difference between loss and other texts was -0.014 [-0.058, 0.032] in chat and 0.268 [0.184, 0.352] in recalled events. | [TP66 · E-TP66-SHORT-20261127](result-sheets/TP66.md) |
-| TP67 · Whose rise | The own-versus-other responsibility comparison is queued. For the analyst’s one-fifth-SD prediction, each writer draw recalculates the within-word scale among eligible reports. The three-way comparison needs Q27. | [TP67](result-sheets/TP67.md) |
+| TP67 · Whose rise | Own minus other responsibility in mean PRIDE was grateful -0.004 [-0.032, 0.025], impressed 0.021 [-0.025, 0.068], proud -0.040 [-0.091, 0.009]. | [TP67 · E-TP67-ORIGINAL-20261127](result-sheets/TP67.md) |
 | TP72 · Sealed bundle v2 | Pending its place in the section 6 queue, two invented-data rehearsals and a verified manifest. Sounding Line retains the TP58 rehearsal bundle. | Section 4 |
 | TP73 · Whole authors | Q24 returned 2,993 whole authors. The registered competence arm is complete. Its curiosity contrasts miss both bars. Other arms remain open. | [TP73](result-sheets/TP73.md) |
 | TP74 · Earned standing | Depends on Q27 and the agreement of the relevant fields. | Section 4 |

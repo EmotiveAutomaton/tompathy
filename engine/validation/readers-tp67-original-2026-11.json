@@ -1,0 +1,228 @@
+{
+  "reports": {
+    "confident": {
+      "invalid": 0,
+      "other": 33,
+      "own": 732,
+      "reason": "Fewer than 50 reports on at least one side.",
+      "ties": 20,
+      "total": 785
+    },
+    "grateful": {
+      "difference": {
+        "interval": [
+          -0.03162911667749615,
+          0.025378575029244805
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.6201899050474763,
+        "standardError": 0.014634573911873333,
+        "validDraws": 2000,
+        "value": -0.0037166698419354854
+      },
+      "invalid": 0,
+      "other": 452,
+      "otherMean": {
+        "interval": [
+          0.09710204441890914,
+          0.14495780359499177
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.012076488234478372,
+        "validDraws": 2000,
+        "value": 0.11998826978405812
+      },
+      "own": 326,
+      "ownMean": {
+        "interval": [
+          0.09749303791769424,
+          0.13911009318572454
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.010376348136219534,
+        "validDraws": 2000,
+        "value": 0.11627159994212263
+      },
+      "ties": 37,
+      "total": 815,
+      "writers": 240
+    },
+    "impressed": {
+      "difference": {
+        "interval": [
+          -0.02474515609697755,
+          0.06826206073564643
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.1839080459770115,
+        "standardError": 0.024062101132709904,
+        "validDraws": 2000,
+        "value": 0.020928624198864154
+      },
+      "invalid": 0,
+      "other": 624,
+      "otherMean": {
+        "interval": [
+          0.1732608662665586,
+          0.22058702900105182
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.012491997906443715,
+        "validDraws": 2000,
+        "value": 0.19530126254170282
+      },
+      "own": 160,
+      "ownMean": {
+        "interval": [
+          0.16938973844829303,
+          0.2643946351026727
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.02475246145078663,
+        "validDraws": 2000,
+        "value": 0.21622988674056698
+      },
+      "ties": 21,
+      "total": 805,
+      "writers": 250
+    },
+    "proud": {
+      "difference": {
+        "interval": [
+          -0.09078681709318309,
+          0.009460043223508808
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.9395302348825587,
+        "standardError": 0.02540683342865858,
+        "validDraws": 2000,
+        "value": -0.04021974283828883
+      },
+      "invalid": 0,
+      "other": 393,
+      "otherMean": {
+        "interval": [
+          0.3583273282908511,
+          0.46065255487229095
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.026029813644813538,
+        "validDraws": 2000,
+        "value": 0.4099604969226339
+      },
+      "own": 465,
+      "ownMean": {
+        "interval": [
+          0.3360672882281337,
+          0.40313153807811697
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.017163385168922546,
+        "validDraws": 2000,
+        "value": 0.3697407540843451
+      },
+      "ties": 9,
+      "total": 867,
+      "writers": 253
+    }
+  },
+  "draws": 2000,
+  "scope": "B’s original responsibility ratings; the direct standing-mark comparison is pending.",
+  "inputReceiptPin": "33b33438c2bf95017dc3fcb8b58183011c14f09427c71a0a1e93e0a579a0e525",
+  "scaleReceiptPin": "72d78fac206a38dbc25d6b97c25e073ddd55135ce9131de8f752460ed5adc8f5",
+  "standardized": {
+    "scale": "PRIDE standard deviation among eligible own and other reports within each word, recomputed in each whole-writer draw.",
+    "draws": 2000,
+    "words": {
+      "confident": {
+        "reason": "Fewer than 50 reports on at least one side."
+      },
+      "grateful": {
+        "distanceBelowOneFifth": {
+          "interval": [
+            0.02871613955524383,
+            0.40015932652051756
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.0069965017491254375,
+          "standardError": 0.09486957014445555,
+          "validDraws": 2000,
+          "value": 0.2241094117751054
+        },
+        "ownMinusOtherInSD": {
+          "interval": [
+            -0.20015932652051763,
+            0.17128386044475616
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.6196901549225388,
+          "standardError": 0.09486957014445555,
+          "validDraws": 2000,
+          "value": -0.024109411775105394
+        },
+        "withinWordSD": 0.15415846212279635
+      },
+      "impressed": {
+        "distanceBelowOneFifth": {
+          "interval": [
+            -0.07581051981289315,
+            0.3041209788008931
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.1359320339830085,
+          "standardError": 0.09853501965646538,
+          "validDraws": 2000,
+          "value": 0.11352694842858449
+        },
+        "ownMinusOtherInSD": {
+          "interval": [
+            -0.10412097880089333,
+            0.2758105198128932
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.18140929535232383,
+          "standardError": 0.09853501965646538,
+          "validDraws": 2000,
+          "value": 0.08647305157141552
+        },
+        "withinWordSD": 0.2420248137256938
+      },
+      "proud": {
+        "distanceBelowOneFifth": {
+          "interval": [
+            0.16700919075310086,
+            0.5047315218390535
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.08602414585595525,
+          "validDraws": 2000,
+          "value": 0.3371424285051521
+        },
+        "ownMinusOtherInSD": {
+          "interval": [
+            -0.3047315218390535,
+            0.03299080924689912
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.9420289855072463,
+          "standardError": 0.08602414585595525,
+          "validDraws": 2000,
+          "value": -0.13714242850515207
+        },
+        "withinWordSD": 0.29326987480594224
+      }
+    }
+  },
+  "card": "TP67-original",
+  "sourceReceiptPin": "5052d0057a5a0bb3b0e2cc32ead33f4baa8139de9415a864fc7572bc8001656b",
+  "productionAdmission": false,
+  "license": "EmpatheticDialogues used for research under CC BY-NC 4.0.",
+  "ledger": "E-TP67-ORIGINAL-20261127"
+}

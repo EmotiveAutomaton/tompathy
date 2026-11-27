@@ -1,5 +1,7 @@
 # ToMpathy status
 
+**November 27 · TP67.** Own minus other responsibility in mean PRIDE was grateful -0.004 [-0.032, 0.025], impressed 0.021 [-0.025, 0.068], proud -0.040 [-0.091, 0.009]. [E-TP67-ORIGINAL-20261127](docs/exchange/result-sheets/TP67.md)
+
 **November 27 · TP66.** After matching sentence counts, the SADNESS-minus-FEAR timing difference between loss and other texts was -0.014 [-0.058, 0.032] in chat and 0.268 [0.184, 0.352] in recalled events. [E-TP66-SHORT-20261127](docs/exchange/result-sheets/TP66.md)
 
 **November 27 · TP69.** Across 24,850 chat situations, Competence and Respect lifts differed by at least half a standard deviation for 11 of 32 words. Respect and acceptance differed by that much for 6. [E-TP69-20261127](docs/exchange/result-sheets/TP69.md)
