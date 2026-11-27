@@ -1,5 +1,7 @@
 # Engine scoreboard
 
+**November 27 · TP65.** The original sentence timing comparisons are eligible for the registered comparisons. [E-TP65-20261127](exchange/result-sheets/TP65.md)
+
 **November 27 · TP64.** Forum desire versus optimism and excitement had AUC 0.712 [0.652, 0.767], 0.843 [0.802, 0.884]. [E-TP64-20261127](exchange/result-sheets/TP64.md)
 
 **November 27 · TP70.** Against rotated heads, the component floor was 2 on chat texts and 3 on blog author means. The map’s margins above the rotated bands were 0.187 [0.174, 0.196], 0.129 [0.119, 0.137] in chat and blogs, respectively. [E-TP70-20261127](exchange/result-sheets/TP70.md)
