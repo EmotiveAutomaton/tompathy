@@ -1,5 +1,7 @@
 # ToMpathy status
 
+**November 27 · TP73.** B fell below the rotated individual-head band in 2 of 16 feature-by-size comparisons. [E-TP73-B-REPEAT-20261127](docs/exchange/result-sheets/TP73.md)
+
 **November 27 · TP72.** Sounding Line received 27 verified payload files. Invented histories exercised all nine tables. The two-speaker fixture produced zero releasable rows, and a larger invented group exercised both conversation tables. [E-TP72-PRODUCER-20261127](docs/exchange/result-sheets/TP72.md)
 
 **November 27 · Standing marks.** Spark completed Q27 with 38,202 valid responses on 43,021 texts. G12 stopped at the workstation memory floor with 27,214 response files saved. Full standing agreement remains unmeasured. Q28 and G14 are running the event-feature panels. [GPU return and coverage](docs/exchange/THEORY_RETURN_2026-11-29.md)

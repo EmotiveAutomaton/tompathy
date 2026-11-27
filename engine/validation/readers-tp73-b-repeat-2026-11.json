@@ -1,0 +1,875 @@
+{
+  "card": "TP73-B-repeat",
+  "wholeAuthors": 2993,
+  "draws": 2000,
+  "setsPerFamily": 1000,
+  "headsPerSet": 19,
+  "sourceB": "9403c28730500a1e9a1f5597b4d1c19423774464ffb4d10c1c24de6b2148fcd2",
+  "q20Inputs": "84894f9adaa02ad4b51c6078573c6633d8d73be85e91965b5e1644ee646fbb54",
+  "vectorReturn": "258d14c8405973cb7db874895a18a46e054241c3638e89d39bf73aef7941f02d",
+  "roster": "325e50a56fd4d84da7d58321c39a88567e5907770bdaaa1b7ba064442710eff2",
+  "tagHeads": "7f5bfe1ff5ab5e4a0b93072bb7e1f54f73466ab01ade90fc2ad2c4041d12e7ae",
+  "k": {
+    "10": {
+      "authors": 2271,
+      "excluded": {
+        "missingBAnswer": 2,
+        "tooShort": 720
+      },
+      "features": {
+        "goal_support": {
+          "B": {
+            "interval": [
+              0.41892608096548173,
+              0.48688312769029896
+            ],
+            "validDraws": 2000,
+            "value": 0.4546364683644379
+          },
+          "BMinusRandomRotatedHead": {
+            "interval": [
+              -0.15264217619937012,
+              0.11716092788585115
+            ],
+            "spread": 0.06910322568335514,
+            "upperTail": 0.47626186906546725,
+            "validDraws": 2000,
+            "value": -0.002998276608632222
+          },
+          "iso": {
+            "individual": {
+              "high": 0.6046965305020233,
+              "low": 0.35488152172344684,
+              "median": 0.45696281085792556,
+              "position": "inside",
+              "trainedPercentile": 48.55263157894737
+            },
+            "setMedian": {
+              "high": 0.49525702999380966,
+              "low": 0.42418784557378336,
+              "median": 0.4563155879193667,
+              "position": "inside",
+              "trainedPercentile": 46.800000000000004
+            }
+          },
+          "rot": {
+            "individual": {
+              "high": 0.6059138935817923,
+              "low": 0.3526967993351036,
+              "median": 0.4576347449730701,
+              "position": "inside",
+              "trainedPercentile": 48.11578947368421
+            },
+            "setMedian": {
+              "high": 0.4954127115445967,
+              "low": 0.42264024866910826,
+              "median": 0.45692659141291897,
+              "position": "inside",
+              "trainedPercentile": 44.3
+            }
+          }
+        },
+        "other_responsblt": {
+          "B": {
+            "interval": [
+              0.4101597930610289,
+              0.48589478972378797
+            ],
+            "validDraws": 2000,
+            "value": 0.44842107391930125
+          },
+          "BMinusRandomRotatedHead": {
+            "interval": [
+              -0.16076490181631561,
+              0.11242751744541993
+            ],
+            "spread": 0.06948069430399316,
+            "upperTail": 0.43278360819590206,
+            "validDraws": 2000,
+            "value": -0.009213671053768857
+          },
+          "iso": {
+            "individual": {
+              "high": 0.6046965305020233,
+              "low": 0.35488152172344684,
+              "median": 0.45696281085792556,
+              "position": "inside",
+              "trainedPercentile": 44.38421052631579
+            },
+            "setMedian": {
+              "high": 0.49525702999380966,
+              "low": 0.42418784557378336,
+              "median": 0.4563155879193667,
+              "position": "inside",
+              "trainedPercentile": 32.300000000000004
+            }
+          },
+          "rot": {
+            "individual": {
+              "high": 0.6059138935817923,
+              "low": 0.3526967993351036,
+              "median": 0.4576347449730701,
+              "position": "inside",
+              "trainedPercentile": 44.22105263157895
+            },
+            "setMedian": {
+              "high": 0.4954127115445967,
+              "low": 0.42264024866910826,
+              "median": 0.45692659141291897,
+              "position": "inside",
+              "trainedPercentile": 31.2
+            }
+          }
+        },
+        "pleasantness": {
+          "B": {
+            "interval": [
+              0.45852242937877774,
+              0.5221822690556535
+            ],
+            "validDraws": 2000,
+            "value": 0.4911088878217967
+          },
+          "BMinusRandomRotatedHead": {
+            "interval": [
+              -0.11469878454498904,
+              0.15367562973921192
+            ],
+            "spread": 0.0685511488315801,
+            "upperTail": 0.6831584207896052,
+            "validDraws": 2000,
+            "value": 0.033474142848726574
+          },
+          "iso": {
+            "individual": {
+              "high": 0.6046965305020233,
+              "low": 0.35488152172344684,
+              "median": 0.45696281085792556,
+              "position": "inside",
+              "trainedPercentile": 69.73157894736842
+            },
+            "setMedian": {
+              "high": 0.49525702999380966,
+              "low": 0.42418784557378336,
+              "median": 0.4563155879193667,
+              "position": "inside",
+              "trainedPercentile": 96.7
+            }
+          },
+          "rot": {
+            "individual": {
+              "high": 0.6059138935817923,
+              "low": 0.3526967993351036,
+              "median": 0.4576347449730701,
+              "position": "inside",
+              "trainedPercentile": 69.90526315789474
+            },
+            "setMedian": {
+              "high": 0.4954127115445967,
+              "low": 0.42264024866910826,
+              "median": 0.45692659141291897,
+              "position": "inside",
+              "trainedPercentile": 96.1
+            }
+          }
+        },
+        "self_responsblt": {
+          "B": {
+            "interval": [
+              0.45455379853434164,
+              0.5233098778085982
+            ],
+            "validDraws": 2000,
+            "value": 0.48849897647789464
+          },
+          "BMinusRandomRotatedHead": {
+            "interval": [
+              -0.11390917854708836,
+              0.15388666991381256
+            ],
+            "spread": 0.06911002578845797,
+            "upperTail": 0.6681659170414792,
+            "validDraws": 2000,
+            "value": 0.030864231504824535
+          },
+          "iso": {
+            "individual": {
+              "high": 0.6046965305020233,
+              "low": 0.35488152172344684,
+              "median": 0.45696281085792556,
+              "position": "inside",
+              "trainedPercentile": 68.57894736842105
+            },
+            "setMedian": {
+              "high": 0.49525702999380966,
+              "low": 0.42418784557378336,
+              "median": 0.4563155879193667,
+              "position": "inside",
+              "trainedPercentile": 95.8
+            }
+          },
+          "rot": {
+            "individual": {
+              "high": 0.6059138935817923,
+              "low": 0.3526967993351036,
+              "median": 0.4576347449730701,
+              "position": "inside",
+              "trainedPercentile": 68.53157894736842
+            },
+            "setMedian": {
+              "high": 0.4954127115445967,
+              "low": 0.42264024866910826,
+              "median": 0.45692659141291897,
+              "position": "inside",
+              "trainedPercentile": 95.7
+            }
+          }
+        },
+        "social_norms": {
+          "B": {
+            "interval": [
+              0.10752007140806867,
+              0.19385729458674522
+            ],
+            "validDraws": 2000,
+            "value": 0.1503297405790609
+          },
+          "BMinusRandomRotatedHead": {
+            "interval": [
+              -0.4568599487834188,
+              -0.18338914880908744
+            ],
+            "spread": 0.06971362838142087,
+            "upperTail": 0.0004997501249375312,
+            "validDraws": 2000,
+            "value": -0.3073050043940092
+          },
+          "iso": {
+            "individual": {
+              "high": 0.6046965305020233,
+              "low": 0.35488152172344684,
+              "median": 0.45696281085792556,
+              "position": "below",
+              "trainedPercentile": 0.0
+            },
+            "setMedian": {
+              "high": 0.49525702999380966,
+              "low": 0.42418784557378336,
+              "median": 0.4563155879193667,
+              "position": "below",
+              "trainedPercentile": 0.0
+            }
+          },
+          "rot": {
+            "individual": {
+              "high": 0.6059138935817923,
+              "low": 0.3526967993351036,
+              "median": 0.4576347449730701,
+              "position": "below",
+              "trainedPercentile": 0.0
+            },
+            "setMedian": {
+              "high": 0.4954127115445967,
+              "low": 0.42264024866910826,
+              "median": 0.45692659141291897,
+              "position": "below",
+              "trainedPercentile": 0.0
+            }
+          }
+        },
+        "standards": {
+          "B": {
+            "interval": [
+              0.43819814445968125,
+              0.5121237894840149
+            ],
+            "validDraws": 2000,
+            "value": 0.476384055109964
+          },
+          "BMinusRandomRotatedHead": {
+            "interval": [
+              -0.13160445428493026,
+              0.14156637730144117
+            ],
+            "spread": 0.06920368139728175,
+            "upperTail": 0.6011994002998501,
+            "validDraws": 2000,
+            "value": 0.018749310136893904
+          },
+          "iso": {
+            "individual": {
+              "high": 0.6046965305020233,
+              "low": 0.35488152172344684,
+              "median": 0.45696281085792556,
+              "position": "inside",
+              "trainedPercentile": 61.75263157894737
+            },
+            "setMedian": {
+              "high": 0.49525702999380966,
+              "low": 0.42418784557378336,
+              "median": 0.4563155879193667,
+              "position": "inside",
+              "trainedPercentile": 84.89999999999999
+            }
+          },
+          "rot": {
+            "individual": {
+              "high": 0.6059138935817923,
+              "low": 0.3526967993351036,
+              "median": 0.4576347449730701,
+              "position": "inside",
+              "trainedPercentile": 61.72105263157894
+            },
+            "setMedian": {
+              "high": 0.4954127115445967,
+              "low": 0.42264024866910826,
+              "median": 0.45692659141291897,
+              "position": "inside",
+              "trainedPercentile": 84.2
+            }
+          }
+        },
+        "suddenness": {
+          "B": {
+            "interval": [
+              0.3520760482972057,
+              0.4315103463781132
+            ],
+            "validDraws": 2000,
+            "value": 0.39162958737443054
+          },
+          "BMinusRandomRotatedHead": {
+            "interval": [
+              -0.2153762886430109,
+              0.05354802629642978
+            ],
+            "spread": 0.0698913712699385,
+            "upperTail": 0.15892053973013492,
+            "validDraws": 2000,
+            "value": -0.06600515759863956
+          },
+          "iso": {
+            "individual": {
+              "high": 0.6046965305020233,
+              "low": 0.35488152172344684,
+              "median": 0.45696281085792556,
+              "position": "inside",
+              "trainedPercentile": 12.4
+            },
+            "setMedian": {
+              "high": 0.49525702999380966,
+              "low": 0.42418784557378336,
+              "median": 0.4563155879193667,
+              "position": "below",
+              "trainedPercentile": 0.0
+            }
+          },
+          "rot": {
+            "individual": {
+              "high": 0.6059138935817923,
+              "low": 0.3526967993351036,
+              "median": 0.4576347449730701,
+              "position": "inside",
+              "trainedPercentile": 11.989473684210527
+            },
+            "setMedian": {
+              "high": 0.4954127115445967,
+              "low": 0.42264024866910826,
+              "median": 0.45692659141291897,
+              "position": "below",
+              "trainedPercentile": 0.0
+            }
+          }
+        },
+        "unpleasantness": {
+          "B": {
+            "interval": [
+              0.4669385175957486,
+              0.5312470865706653
+            ],
+            "validDraws": 2000,
+            "value": 0.4999690477690868
+          },
+          "BMinusRandomRotatedHead": {
+            "interval": [
+              -0.10491097933427584,
+              0.16014926239180305
+            ],
+            "spread": 0.06853523726379188,
+            "upperTail": 0.7231384307846077,
+            "validDraws": 2000,
+            "value": 0.04233430279601669
+          },
+          "iso": {
+            "individual": {
+              "high": 0.6046965305020233,
+              "low": 0.35488152172344684,
+              "median": 0.45696281085792556,
+              "position": "inside",
+              "trainedPercentile": 73.61052631578947
+            },
+            "setMedian": {
+              "high": 0.49525702999380966,
+              "low": 0.42418784557378336,
+              "median": 0.4563155879193667,
+              "position": "above",
+              "trainedPercentile": 98.3
+            }
+          },
+          "rot": {
+            "individual": {
+              "high": 0.6059138935817923,
+              "low": 0.3526967993351036,
+              "median": 0.4576347449730701,
+              "position": "inside",
+              "trainedPercentile": 73.92631578947369
+            },
+            "setMedian": {
+              "high": 0.4954127115445967,
+              "low": 0.42264024866910826,
+              "median": 0.45692659141291897,
+              "position": "above",
+              "trainedPercentile": 98.7
+            }
+          }
+        }
+      },
+      "trainedMedianLinearTagRepeat": 0.49959373081831415
+    },
+    "20": {
+      "authors": 1161,
+      "excluded": {
+        "missingBAnswer": 0,
+        "tooShort": 1832
+      },
+      "features": {
+        "goal_support": {
+          "B": {
+            "interval": [
+              0.5198070383744302,
+              0.6046384240622964
+            ],
+            "validDraws": 2000,
+            "value": 0.5631714098239518
+          },
+          "BMinusRandomRotatedHead": {
+            "interval": [
+              -0.17264267798789049,
+              0.1152114129911235
+            ],
+            "spread": 0.0733007666199863,
+            "upperTail": 0.40229885057471265,
+            "validDraws": 2000,
+            "value": -0.017540134890346115
+          },
+          "iso": {
+            "individual": {
+              "high": 0.7259972792690623,
+              "low": 0.4687980558324415,
+              "median": 0.5805105567248352,
+              "position": "inside",
+              "trainedPercentile": 39.5
+            },
+            "setMedian": {
+              "high": 0.6195417989920293,
+              "low": 0.5463283262573225,
+              "median": 0.5797759909821258,
+              "position": "inside",
+              "trainedPercentile": 15.4
+            }
+          },
+          "rot": {
+            "individual": {
+              "high": 0.7255188023820621,
+              "low": 0.46688789384967205,
+              "median": 0.5807115447142979,
+              "position": "inside",
+              "trainedPercentile": 39.078947368421055
+            },
+            "setMedian": {
+              "high": 0.6176733542827871,
+              "low": 0.5450378995487036,
+              "median": 0.5805367107575292,
+              "position": "inside",
+              "trainedPercentile": 18.8
+            }
+          }
+        },
+        "other_responsblt": {
+          "B": {
+            "interval": [
+              0.5576436766517278,
+              0.6461683049415905
+            ],
+            "validDraws": 2000,
+            "value": 0.6047774157357738
+          },
+          "BMinusRandomRotatedHead": {
+            "interval": [
+              -0.13090294367953006,
+              0.15354196857893135
+            ],
+            "spread": 0.07273710479224736,
+            "upperTail": 0.6151924037981009,
+            "validDraws": 2000,
+            "value": 0.02406587102147595
+          },
+          "iso": {
+            "individual": {
+              "high": 0.7259972792690623,
+              "low": 0.4687980558324415,
+              "median": 0.5805105567248352,
+              "position": "inside",
+              "trainedPercentile": 64.05263157894737
+            },
+            "setMedian": {
+              "high": 0.6195417989920293,
+              "low": 0.5463283262573225,
+              "median": 0.5797759909821258,
+              "position": "inside",
+              "trainedPercentile": 89.2
+            }
+          },
+          "rot": {
+            "individual": {
+              "high": 0.7255188023820621,
+              "low": 0.46688789384967205,
+              "median": 0.5807115447142979,
+              "position": "inside",
+              "trainedPercentile": 64.27894736842106
+            },
+            "setMedian": {
+              "high": 0.6176733542827871,
+              "low": 0.5450378995487036,
+              "median": 0.5805367107575292,
+              "position": "inside",
+              "trainedPercentile": 89.5
+            }
+          }
+        },
+        "pleasantness": {
+          "B": {
+            "interval": [
+              0.5371190703385075,
+              0.6183283682134325
+            ],
+            "validDraws": 2000,
+            "value": 0.5799207779755601
+          },
+          "BMinusRandomRotatedHead": {
+            "interval": [
+              -0.15649386257797007,
+              0.13177319153181605
+            ],
+            "spread": 0.07292030916481278,
+            "upperTail": 0.49075462268865566,
+            "validDraws": 2000,
+            "value": -0.0007907667387377915
+          },
+          "iso": {
+            "individual": {
+              "high": 0.7259972792690623,
+              "low": 0.4687980558324415,
+              "median": 0.5805105567248352,
+              "position": "inside",
+              "trainedPercentile": 49.65263157894737
+            },
+            "setMedian": {
+              "high": 0.6195417989920293,
+              "low": 0.5463283262573225,
+              "median": 0.5797759909821258,
+              "position": "inside",
+              "trainedPercentile": 50.3
+            }
+          },
+          "rot": {
+            "individual": {
+              "high": 0.7255188023820621,
+              "low": 0.46688789384967205,
+              "median": 0.5807115447142979,
+              "position": "inside",
+              "trainedPercentile": 49.47894736842105
+            },
+            "setMedian": {
+              "high": 0.6176733542827871,
+              "low": 0.5450378995487036,
+              "median": 0.5805367107575292,
+              "position": "inside",
+              "trainedPercentile": 48.699999999999996
+            }
+          }
+        },
+        "self_responsblt": {
+          "B": {
+            "interval": [
+              0.6106080896143783,
+              0.6926944635986454
+            ],
+            "validDraws": 2000,
+            "value": 0.6520875850519281
+          },
+          "BMinusRandomRotatedHead": {
+            "interval": [
+              -0.07649459162047724,
+              0.1997689895250184
+            ],
+            "spread": 0.07214157778656981,
+            "upperTail": 0.8235882058970515,
+            "validDraws": 2000,
+            "value": 0.07137604033763023
+          },
+          "iso": {
+            "individual": {
+              "high": 0.7259972792690623,
+              "low": 0.4687980558324415,
+              "median": 0.5805105567248352,
+              "position": "inside",
+              "trainedPercentile": 84.4421052631579
+            },
+            "setMedian": {
+              "high": 0.6195417989920293,
+              "low": 0.5463283262573225,
+              "median": 0.5797759909821258,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "rot": {
+            "individual": {
+              "high": 0.7255188023820621,
+              "low": 0.46688789384967205,
+              "median": 0.5807115447142979,
+              "position": "inside",
+              "trainedPercentile": 84.17894736842105
+            },
+            "setMedian": {
+              "high": 0.6176733542827871,
+              "low": 0.5450378995487036,
+              "median": 0.5805367107575292,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "social_norms": {
+          "B": {
+            "interval": [
+              0.1542686713064127,
+              0.26848981564653496
+            ],
+            "validDraws": 2000,
+            "value": 0.2115067451785007
+          },
+          "BMinusRandomRotatedHead": {
+            "interval": [
+              -0.5259329599557543,
+              -0.23043039484893765
+            ],
+            "spread": 0.07466603269975962,
+            "upperTail": 0.0004997501249375312,
+            "validDraws": 2000,
+            "value": -0.36920479953579716
+          },
+          "iso": {
+            "individual": {
+              "high": 0.7259972792690623,
+              "low": 0.4687980558324415,
+              "median": 0.5805105567248352,
+              "position": "below",
+              "trainedPercentile": 0.0
+            },
+            "setMedian": {
+              "high": 0.6195417989920293,
+              "low": 0.5463283262573225,
+              "median": 0.5797759909821258,
+              "position": "below",
+              "trainedPercentile": 0.0
+            }
+          },
+          "rot": {
+            "individual": {
+              "high": 0.7255188023820621,
+              "low": 0.46688789384967205,
+              "median": 0.5807115447142979,
+              "position": "below",
+              "trainedPercentile": 0.0
+            },
+            "setMedian": {
+              "high": 0.6176733542827871,
+              "low": 0.5450378995487036,
+              "median": 0.5805367107575292,
+              "position": "below",
+              "trainedPercentile": 0.0
+            }
+          }
+        },
+        "standards": {
+          "B": {
+            "interval": [
+              0.5752290191735474,
+              0.6580300102490634
+            ],
+            "validDraws": 2000,
+            "value": 0.6181874752110693
+          },
+          "BMinusRandomRotatedHead": {
+            "interval": [
+              -0.11540905790273881,
+              0.1698256724506358
+            ],
+            "spread": 0.07272904391022798,
+            "upperTail": 0.6826586706646677,
+            "validDraws": 2000,
+            "value": 0.03747593049677145
+          },
+          "iso": {
+            "individual": {
+              "high": 0.7259972792690623,
+              "low": 0.4687980558324415,
+              "median": 0.5805105567248352,
+              "position": "inside",
+              "trainedPercentile": 70.94736842105263
+            },
+            "setMedian": {
+              "high": 0.6195417989920293,
+              "low": 0.5463283262573225,
+              "median": 0.5797759909821258,
+              "position": "inside",
+              "trainedPercentile": 96.89999999999999
+            }
+          },
+          "rot": {
+            "individual": {
+              "high": 0.7255188023820621,
+              "low": 0.46688789384967205,
+              "median": 0.5807115447142979,
+              "position": "inside",
+              "trainedPercentile": 71.0842105263158
+            },
+            "setMedian": {
+              "high": 0.6176733542827871,
+              "low": 0.5450378995487036,
+              "median": 0.5805367107575292,
+              "position": "above",
+              "trainedPercentile": 97.6
+            }
+          }
+        },
+        "suddenness": {
+          "B": {
+            "interval": [
+              0.49104472404755145,
+              0.5797525018306824
+            ],
+            "validDraws": 2000,
+            "value": 0.5374281080307448
+          },
+          "BMinusRandomRotatedHead": {
+            "interval": [
+              -0.20298375304884303,
+              0.0852054799725157
+            ],
+            "spread": 0.07355446146221895,
+            "upperTail": 0.2673663168415792,
+            "validDraws": 2000,
+            "value": -0.043283436683553056
+          },
+          "iso": {
+            "individual": {
+              "high": 0.7259972792690623,
+              "low": 0.4687980558324415,
+              "median": 0.5805105567248352,
+              "position": "inside",
+              "trainedPercentile": 24.563157894736843
+            },
+            "setMedian": {
+              "high": 0.6195417989920293,
+              "low": 0.5463283262573225,
+              "median": 0.5797759909821258,
+              "position": "below",
+              "trainedPercentile": 0.8
+            }
+          },
+          "rot": {
+            "individual": {
+              "high": 0.7255188023820621,
+              "low": 0.46688789384967205,
+              "median": 0.5807115447142979,
+              "position": "inside",
+              "trainedPercentile": 23.978947368421053
+            },
+            "setMedian": {
+              "high": 0.6176733542827871,
+              "low": 0.5450378995487036,
+              "median": 0.5805367107575292,
+              "position": "below",
+              "trainedPercentile": 1.2
+            }
+          }
+        },
+        "unpleasantness": {
+          "B": {
+            "interval": [
+              0.5432173109474101,
+              0.6241541185031717
+            ],
+            "validDraws": 2000,
+            "value": 0.5863239057888521
+          },
+          "BMinusRandomRotatedHead": {
+            "interval": [
+              -0.14983013768257614,
+              0.13651411401867683
+            ],
+            "spread": 0.07270521316688627,
+            "upperTail": 0.5217391304347826,
+            "validDraws": 2000,
+            "value": 0.005612361074554206
+          },
+          "iso": {
+            "individual": {
+              "high": 0.7259972792690623,
+              "low": 0.4687980558324415,
+              "median": 0.5805105567248352,
+              "position": "inside",
+              "trainedPercentile": 53.56315789473685
+            },
+            "setMedian": {
+              "high": 0.6195417989920293,
+              "low": 0.5463283262573225,
+              "median": 0.5797759909821258,
+              "position": "inside",
+              "trainedPercentile": 62.7
+            }
+          },
+          "rot": {
+            "individual": {
+              "high": 0.7255188023820621,
+              "low": 0.46688789384967205,
+              "median": 0.5807115447142979,
+              "position": "inside",
+              "trainedPercentile": 53.531578947368416
+            },
+            "setMedian": {
+              "high": 0.6176733542827871,
+              "low": 0.5450378995487036,
+              "median": 0.5805367107575292,
+              "position": "inside",
+              "trainedPercentile": 63.6
+            }
+          }
+        }
+      },
+      "trainedMedianLinearTagRepeat": 0.6048499139984853
+    }
+  },
+  "sourceReceiptPin": "a78352beff151631594cfb5c089b436a85e003841971977622a5a85c1b52671e",
+  "ledger": "E-TP73-B-REPEAT-20261127",
+  "registeredPrediction": {
+    "p": 0.8235882058970515,
+    "estimate": "B fell below the rotated individual-head band in 2 of 16 feature-by-size comparisons.",
+    "verdict": "Unresolved under CX.",
+    "against": false
+  },
+  "scope": "One fixed B reader, whole blog authors with enough dated posts, and the same selected openings for every control."
+}

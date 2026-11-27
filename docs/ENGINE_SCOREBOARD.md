@@ -1,5 +1,7 @@
 # Engine scoreboard
 
+**November 27 · TP73.** B fell below the rotated individual-head band in 2 of 16 feature-by-size comparisons. [E-TP73-B-REPEAT-20261127](exchange/result-sheets/TP73.md)
+
 **November 27 · TP72.** Sounding Line received 27 verified payload files. Invented histories exercised all nine tables. The two-speaker fixture produced zero releasable rows, and a larger invented group exercised both conversation tables. [E-TP72-PRODUCER-20261127](exchange/result-sheets/TP72.md)
 
 **November 27 · TP67.** Own minus other responsibility in mean PRIDE was grateful -0.004 [-0.032, 0.025], impressed 0.021 [-0.025, 0.068], proud -0.040 [-0.091, 0.009]. [E-TP67-ORIGINAL-20261127](exchange/result-sheets/TP67.md)

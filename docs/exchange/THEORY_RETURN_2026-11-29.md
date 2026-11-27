@@ -1,4 +1,4 @@
-Nov 27 at 14:04 PT, Spark is running Q28 (1,140/6,600), the workstation GPU has no verified active ToMpathy GPU worker (stopped, last G14), and the card queue is between registered stages. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
+Nov 27 at 14:05 PT, Spark is running Q28 (1,160/6,600), the workstation GPU has no verified active ToMpathy GPU worker (stopped, last G14), and the card queue is between registered stages. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
 
 # Two-day engine return · November 27–29
 
@@ -39,7 +39,7 @@ The table covers 35 registered predictions. TP62 met both directional criteria o
 | TP66 · Order during loss | After matching sentence counts, the SADNESS-minus-FEAR timing difference between loss and other texts was -0.014 [-0.058, 0.032] in chat and 0.268 [0.184, 0.352] in recalled events. | [TP66 · E-TP66-SHORT-20261127](result-sheets/TP66.md) |
 | TP67 · Whose rise | Own minus other responsibility in mean PRIDE was grateful -0.004 [-0.032, 0.025], impressed 0.021 [-0.025, 0.068], proud -0.040 [-0.091, 0.009]. The direct comparison of own, close and other is specified and implemented. Its estimates await the two standing panels and TP77’s agreement check. | [TP67 · E-TP67-ORIGINAL-20261127](result-sheets/TP67.md) |
 | TP72 · Sealed bundle v2 | Sounding Line received 27 verified payload files. Invented histories exercised all nine tables. The two-speaker fixture produced zero releasable rows, and a larger invented group exercised both conversation tables. | [TP72 · E-TP72-PRODUCER-20261127](result-sheets/TP72.md) |
-| TP73 · Whole authors | Q24 returned 2,993 whole authors. Both curiosity predictions missed. The comparison of B with random heads on the same 10 and 20 posts per date half is prepared. Its estimates are pending. | [TP73](result-sheets/TP73.md) |
+| TP73 · Whole authors | Q24 returned 2,993 whole authors. Both curiosity predictions missed. B fell below the rotated individual-head band in 2 of 16 feature-by-size comparisons. | [TP73 · E-TP73-B-REPEAT-20261127](result-sheets/TP73.md) |
 | TP74 · Earned standing | Depends on Q27 and the agreement of the relevant fields. | Section 4 |
 | TP75 · Worry and time direction | Depends on Q31’s blog sentence sample. | Section 4 |
 | TP76 · Long recalled stories | The V3 header is readable on the workstation. Spark cannot read the table at its held location. No story has entered this job. | Section 4 |
