@@ -1,4 +1,4 @@
-Nov 27 at 10:05 PT, Spark is running Q27 (18,520/43,021), the workstation GPU is running G12 (16,560/43,021), and the card queue is between registered stages. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
+Nov 27 at 10:06 PT, Spark is running Q27 (18,640/43,021), the workstation GPU is running G12 (16,660/43,021), and the card queue is running TP69. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
 
 # Two-day engine return · November 27–29
 
@@ -24,7 +24,7 @@ The table covers 35 registered predictions. TP62 met both directional criteria o
 | TP65 · Coming or landed | The original sentence timing comparisons are eligible for the registered comparisons. | [TP65 · E-TP65-20261127](result-sheets/TP65.md) |
 | TP77 · Reader agreement | On the original sentences, B/W kappa was 0.609 for change (usable), 0.614 for when (usable), 0.444 for whose (weak). | [TP77 · E-TP77-ORIGINAL-20261127](result-sheets/TP77.md) |
 | TP63 · Outside scores | Across 2,379 writers, 0 of 145 correlations exceeded the rotated family bar of 0.088 in absolute value. Worry and emotional stability correlated -0.065 [-0.105, -0.025]. | [TP63 · E-TP63-ORIGINAL-20261127](result-sheets/TP63.md) |
-| TP68 · Embarrassment | The fifteen comparison words and the five writer-held-out folds are fixed. The fits are queued behind the outside-score table. | [TP68](result-sheets/TP68.md) |
+| TP68 · Embarrassment | SHAME plus PLAY ranked 2 of 45 pairs for embarrassed. The dedicated head’s gain over its strongest covered-word comparator was -0.015 [-0.030, -0.006] AUC. | [TP68 · E-TP68-20261127](result-sheets/TP68.md) |
 | TP69 · Competence and Respect | The three word profiles, the goal-support column and the Respect controls are queued. | [TP69](result-sheets/TP69.md) |
 | TP66 · Order during loss | The short loss comparison is queued. The blog and story comparisons await their sources. | [TP66](result-sheets/TP66.md) |
 | TP67 · Whose rise | The own-versus-other responsibility comparison is queued. For the analyst’s one-fifth-SD prediction, each writer draw recalculates the within-word scale among eligible reports. The three-way comparison needs Q27. | [TP67](result-sheets/TP67.md) |

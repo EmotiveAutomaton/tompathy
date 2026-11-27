@@ -1,0 +1,1198 @@
+{
+  "designReceiptPin": "89043eba5fe42f1526ab4a5b190f59e97a4e4178d9b207d33b1efaea4fbf0e46",
+  "foldReceiptPins": [
+    "cb262570ee098999561595727d4d4c02a392fb7b82cead641e902fdedddbac43",
+    "6e7eb864b4cf55e0bb30ce24c459c5ad7e7ddcfd8e147ca212cb22f84ad82b48",
+    "9a3a6ab7458b24c752271fe6f1272ffd245196b90f03758502fd3f3772df7e19",
+    "97bc7411dfccbeb530edeb87c368d01845bb5cc5f72aa8b1889b99341f1e0b7b",
+    "75f377937c178b6913229884562f43e1ebb0ad22bdc8a42a1a03b0e59ee3975b"
+  ],
+  "covered": [
+    "afraid",
+    "angry",
+    "anticipating",
+    "ashamed",
+    "caring",
+    "devastated",
+    "disgusted",
+    "excited",
+    "furious",
+    "hopeful",
+    "lonely",
+    "proud",
+    "sad",
+    "sentimental",
+    "terrified"
+  ],
+  "firstLastPlay": {
+    "ashamed": {
+      "interval": [
+        -0.0028452719201524632,
+        0.002444347019760374
+      ],
+      "nearBar": false,
+      "pAboveBar": 0.5712143928035982,
+      "reports": 335,
+      "standardError": 0.0013402795980240433,
+      "validDraws": 2000,
+      "value": -0.00015490387506389221,
+      "writers": 173
+    },
+    "embarrassed": {
+      "interval": [
+        0.010614002397477243,
+        0.02823120702088198
+      ],
+      "nearBar": false,
+      "pAboveBar": 0.0014992503748125937,
+      "reports": 393,
+      "standardError": 0.004494926639180016,
+      "validDraws": 2000,
+      "value": 0.01860278196056222,
+      "writers": 175
+    },
+    "guilty": {
+      "interval": [
+        -0.00021096938011288087,
+        0.00831834681948049
+      ],
+      "nearBar": true,
+      "pAboveBar": 0.09545227386306847,
+      "reports": 410,
+      "standardError": 0.0022260406263711636,
+      "validDraws": 2000,
+      "value": 0.003040548542172295,
+      "writers": 153
+    }
+  },
+  "unfittedBlend": {
+    "againstBestOtherPair": {
+      "interval": [
+        -0.025160896601941873,
+        0.00999217045142843
+      ],
+      "nearBar": false,
+      "pAboveBar": 0.7786106946526736,
+      "standardError": 0.00897161366583623,
+      "validDraws": 2000,
+      "value": -0.006857701749862666
+    },
+    "againstBetterSingle": {
+      "interval": [
+        0.008347746259120223,
+        0.043047026456437244
+      ],
+      "nearBar": true,
+      "pAboveBar": 0.0029985007496251873,
+      "standardError": 0.008732482040192497,
+      "validDraws": 2000,
+      "value": 0.025669229993162013
+    },
+    "pairs": {
+      "CARE + DISGUST": {
+        "interval": [
+          0.4779081057399663,
+          0.5323881656252659
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.3983008495752124,
+        "standardError": 0.013938175838238769,
+        "validDraws": 2000,
+        "value": 0.5041915432645421
+      },
+      "CARE + FEAR": {
+        "interval": [
+          0.40284763541704155,
+          0.4496524438919449
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "standardError": 0.012067751167541276,
+        "validDraws": 2000,
+        "value": 0.4252789579293105
+      },
+      "CARE + PANIC/GRIEF": {
+        "interval": [
+          0.27439072553468596,
+          0.3141010701319088
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "standardError": 0.01023210963309429,
+        "validDraws": 2000,
+        "value": 0.29414334076922216
+      },
+      "CARE + PRIDE": {
+        "interval": [
+          0.23597400918815123,
+          0.2756409042250018
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "standardError": 0.01012893383987188,
+        "validDraws": 2000,
+        "value": 0.2556498368962077
+      },
+      "CARE + RAGE": {
+        "interval": [
+          0.3505865989612679,
+          0.3930469154664831
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "standardError": 0.01088074500235808,
+        "validDraws": 2000,
+        "value": 0.3715609761565796
+      },
+      "CARE + SHAME": {
+        "interval": [
+          0.5465501292407715,
+          0.5946829117239247
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.012309243406860949,
+        "validDraws": 2000,
+        "value": 0.5696566412949656
+      },
+      "DISGUST + PRIDE": {
+        "interval": [
+          0.6211858711111703,
+          0.671866766906221
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.013037614384873627,
+        "validDraws": 2000,
+        "value": 0.6461219971526898
+      },
+      "DISGUST + SHAME": {
+        "interval": [
+          0.8117785314646683,
+          0.8439077389550951
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.008133191232734191,
+        "validDraws": 2000,
+        "value": 0.8272471330725167
+      },
+      "FEAR + DISGUST": {
+        "interval": [
+          0.7506498540311701,
+          0.784221254040536
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.008491216498058183,
+        "validDraws": 2000,
+        "value": 0.7675818041185108
+      },
+      "FEAR + PRIDE": {
+        "interval": [
+          0.5348851427866653,
+          0.580193097939138
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.011803496416508177,
+        "validDraws": 2000,
+        "value": 0.5577441792684431
+      },
+      "FEAR + SHAME": {
+        "interval": [
+          0.7700907705903407,
+          0.8074526259727465
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.009589139694025755,
+        "validDraws": 2000,
+        "value": 0.7884132971627787
+      },
+      "LUST + CARE": {
+        "interval": [
+          0.19578676001024853,
+          0.23008954900382614
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "standardError": 0.008796277121117952,
+        "validDraws": 2000,
+        "value": 0.2121781922943267
+      },
+      "LUST + DISGUST": {
+        "interval": [
+          0.45205785298617834,
+          0.5018186032600983
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.9695152423788106,
+        "standardError": 0.012772073065970375,
+        "validDraws": 2000,
+        "value": 0.4765165850213548
+      },
+      "LUST + FEAR": {
+        "interval": [
+          0.38504425183365837,
+          0.42673718403913374
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "standardError": 0.010708084450281303,
+        "validDraws": 2000,
+        "value": 0.4051192731512101
+      },
+      "LUST + PANIC/GRIEF": {
+        "interval": [
+          0.23660630675772312,
+          0.27441804109672674
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "standardError": 0.009557321041458951,
+        "validDraws": 2000,
+        "value": 0.2556752272803704
+      },
+      "LUST + PRIDE": {
+        "interval": [
+          0.22303832525178988,
+          0.26059163798073176
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "standardError": 0.00972589077518504,
+        "validDraws": 2000,
+        "value": 0.2415888327149215
+      },
+      "LUST + RAGE": {
+        "interval": [
+          0.3149252126823755,
+          0.36037359876072383
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "standardError": 0.01129161369000992,
+        "validDraws": 2000,
+        "value": 0.33798648088154515
+      },
+      "LUST + SHAME": {
+        "interval": [
+          0.5167513684666367,
+          0.5621998617302433
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.011707237693890349,
+        "validDraws": 2000,
+        "value": 0.5387305368412793
+      },
+      "PANIC/GRIEF + DISGUST": {
+        "interval": [
+          0.6305266922917533,
+          0.6690824101662695
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.009878369624059594,
+        "validDraws": 2000,
+        "value": 0.6509980719001872
+      },
+      "PANIC/GRIEF + FEAR": {
+        "interval": [
+          0.5665377970563845,
+          0.6126963164653844
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.012009353067079736,
+        "validDraws": 2000,
+        "value": 0.5903272725234566
+      },
+      "PANIC/GRIEF + PRIDE": {
+        "interval": [
+          0.37213208459044644,
+          0.4173625934626177
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "standardError": 0.011588312213370878,
+        "validDraws": 2000,
+        "value": 0.3948340376876254
+      },
+      "PANIC/GRIEF + RAGE": {
+        "interval": [
+          0.52720371169311,
+          0.5660666441802199
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.009992483316629034,
+        "validDraws": 2000,
+        "value": 0.5472096920645241
+      },
+      "PANIC/GRIEF + SHAME": {
+        "interval": [
+          0.6580262918719008,
+          0.6986825040470656
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.01019674515832018,
+        "validDraws": 2000,
+        "value": 0.6784938962189065
+      },
+      "PLAY + CARE": {
+        "interval": [
+          0.38934474810734626,
+          0.4422869917263862
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "standardError": 0.013341415716945708,
+        "validDraws": 2000,
+        "value": 0.41497505801114265
+      },
+      "PLAY + DISGUST": {
+        "interval": [
+          0.7189882730829094,
+          0.7604297023157557
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.010451387262516612,
+        "validDraws": 2000,
+        "value": 0.7388561435761768
+      },
+      "PLAY + FEAR": {
+        "interval": [
+          0.6860167742314315,
+          0.7271146697558863
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.010316751601474494,
+        "validDraws": 2000,
+        "value": 0.705924254823052
+      },
+      "PLAY + LUST": {
+        "interval": [
+          0.37434587634668104,
+          0.4229746091351035
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "standardError": 0.01242569640848281,
+        "validDraws": 2000,
+        "value": 0.3980755433990606
+      },
+      "PLAY + PANIC/GRIEF": {
+        "interval": [
+          0.5357802217651008,
+          0.5887112468554649
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.01364122941886654,
+        "validDraws": 2000,
+        "value": 0.5609349042115529
+      },
+      "PLAY + PRIDE": {
+        "interval": [
+          0.49265485137418397,
+          0.5458618195335465
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.08095952023988005,
+        "standardError": 0.013273722112580587,
+        "validDraws": 2000,
+        "value": 0.5188754245743047
+      },
+      "PLAY + RAGE": {
+        "interval": [
+          0.6406980263661324,
+          0.6848165116615123
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.01126070048091232,
+        "validDraws": 2000,
+        "value": 0.6627468696402748
+      },
+      "PLAY + SHAME": {
+        "interval": [
+          0.8019848337432237,
+          0.8403816454721696
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.00980623022381482,
+        "validDraws": 2000,
+        "value": 0.8203894313226541
+      },
+      "RAGE + DISGUST": {
+        "interval": [
+          0.6959516373086925,
+          0.7284240116747636
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.008350000041609426,
+        "validDraws": 2000,
+        "value": 0.7121530261078166
+      },
+      "RAGE + FEAR": {
+        "interval": [
+          0.6607947092088495,
+          0.6989407520967216
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.00981158177333986,
+        "validDraws": 2000,
+        "value": 0.6803385384555024
+      },
+      "RAGE + PRIDE": {
+        "interval": [
+          0.4884840033106164,
+          0.5368726057131115
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.13093453273363317,
+        "standardError": 0.012266945910265677,
+        "validDraws": 2000,
+        "value": 0.5137081170760142
+      },
+      "RAGE + SHAME": {
+        "interval": [
+          0.7355719914501189,
+          0.7685368468899672
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.008437809641266598,
+        "validDraws": 2000,
+        "value": 0.7522307105944601
+      },
+      "SEEKING + CARE": {
+        "interval": [
+          0.20307081358916956,
+          0.241965321574224
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "standardError": 0.009959604049920887,
+        "validDraws": 2000,
+        "value": 0.22132769849899672
+      },
+      "SEEKING + DISGUST": {
+        "interval": [
+          0.5061955628765861,
+          0.5535884588355809
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.01199400299850075,
+        "standardError": 0.012018748111395002,
+        "validDraws": 2000,
+        "value": 0.5287489210487967
+      },
+      "SEEKING + FEAR": {
+        "interval": [
+          0.4372389646781595,
+          0.47706532964488074
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "standardError": 0.010283602790344688,
+        "validDraws": 2000,
+        "value": 0.4570951831134328
+      },
+      "SEEKING + LUST": {
+        "interval": [
+          0.20167531593357926,
+          0.24050015687800572
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "standardError": 0.009943353494242562,
+        "validDraws": 2000,
+        "value": 0.21980690977165468
+      },
+      "SEEKING + PANIC/GRIEF": {
+        "interval": [
+          0.24736501246550222,
+          0.2850455453263062
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "standardError": 0.00965727581361499,
+        "validDraws": 2000,
+        "value": 0.2661773739728945
+      },
+      "SEEKING + PLAY": {
+        "interval": [
+          0.4177796516681935,
+          0.4699150895486932
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "standardError": 0.013224279918935414,
+        "validDraws": 2000,
+        "value": 0.4426540518120775
+      },
+      "SEEKING + PRIDE": {
+        "interval": [
+          0.26193300029220673,
+          0.3050027322238008
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "standardError": 0.010959912428992675,
+        "validDraws": 2000,
+        "value": 0.2829392312262491
+      },
+      "SEEKING + RAGE": {
+        "interval": [
+          0.36269422779788024,
+          0.4085373964405361
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "standardError": 0.011627826381991146,
+        "validDraws": 2000,
+        "value": 0.3852715033573598
+      },
+      "SEEKING + SHAME": {
+        "interval": [
+          0.5699911439280535,
+          0.6149499536768296
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.01175823960961299,
+        "validDraws": 2000,
+        "value": 0.5917474525541717
+      },
+      "SHAME + PRIDE": {
+        "interval": [
+          0.6447087139027516,
+          0.6900249057014026
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.011452595419766523,
+        "validDraws": 2000,
+        "value": 0.6672011165043102
+      }
+    },
+    "rank": 2,
+    "tiedAtPoint": 1
+  },
+  "wordYardstick": {
+    "afraid": {
+      "gain": {
+        "interval": [
+          0.010429402401844637,
+          0.02442075904374639
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.003601763695330864,
+        "validDraws": 2000,
+        "value": 0.016890397987171957
+      },
+      "outputsAUC": {
+        "interval": [
+          0.8900983795252279,
+          0.9223868124015069
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.008234885371660844,
+        "validDraws": 2000,
+        "value": 0.9065858379140878
+      },
+      "vectorAUC": {
+        "interval": [
+          0.9096614949339978,
+          0.9367405965198112
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.006782296427698093,
+        "validDraws": 2000,
+        "value": 0.9234762359012597
+      }
+    },
+    "angry": {
+      "gain": {
+        "interval": [
+          0.018233933019532352,
+          0.03408459016405392
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.004112659968021952,
+        "validDraws": 2000,
+        "value": 0.026089353826795225
+      },
+      "outputsAUC": {
+        "interval": [
+          0.8654102382355643,
+          0.8948372222666595
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.007515455797992181,
+        "validDraws": 2000,
+        "value": 0.8812991645097835
+      },
+      "vectorAUC": {
+        "interval": [
+          0.8932003802158217,
+          0.9192236928334067
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.00664502271286257,
+        "validDraws": 2000,
+        "value": 0.9073885183365787
+      }
+    },
+    "anticipating": {
+      "gain": {
+        "interval": [
+          0.032409080648742185,
+          0.05044575772903816
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.0046517232404593425,
+        "validDraws": 2000,
+        "value": 0.04092620455402085
+      },
+      "outputsAUC": {
+        "interval": [
+          0.866295244321723,
+          0.8956951095867812
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.00768170061274967,
+        "validDraws": 2000,
+        "value": 0.8813684805429035
+      },
+      "vectorAUC": {
+        "interval": [
+          0.9079677988101897,
+          0.9362127282848846
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.00740317706020122,
+        "validDraws": 2000,
+        "value": 0.9222946850969244
+      }
+    },
+    "ashamed": {
+      "gain": {
+        "interval": [
+          0.02762088134882867,
+          0.05193255456471073
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.006296850326001198,
+        "validDraws": 2000,
+        "value": 0.040004691213493815
+      },
+      "outputsAUC": {
+        "interval": [
+          0.8375275940501921,
+          0.8715989310912362
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.008643263117302383,
+        "validDraws": 2000,
+        "value": 0.8549310596725512
+      },
+      "vectorAUC": {
+        "interval": [
+          0.8782304431251591,
+          0.9094193881305279
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.007994571171137173,
+        "validDraws": 2000,
+        "value": 0.894935750886045
+      }
+    },
+    "caring": {
+      "gain": {
+        "interval": [
+          0.028835250754341655,
+          0.045270022656759994
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.004256090684964368,
+        "validDraws": 2000,
+        "value": 0.036946549512933524
+      },
+      "outputsAUC": {
+        "interval": [
+          0.8982521159308847,
+          0.929165853995115
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.00794549579413077,
+        "validDraws": 2000,
+        "value": 0.914325561985988
+      },
+      "vectorAUC": {
+        "interval": [
+          0.9383830136348108,
+          0.9625017580052755
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.006099719677058776,
+        "validDraws": 2000,
+        "value": 0.9512721114989215
+      }
+    },
+    "devastated": {
+      "gain": {
+        "interval": [
+          0.032635741334517666,
+          0.057769743975646284
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.0064727302425189245,
+        "validDraws": 2000,
+        "value": 0.04488441228851703
+      },
+      "outputsAUC": {
+        "interval": [
+          0.8532267480072531,
+          0.8946590614424695
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.01061869372684547,
+        "validDraws": 2000,
+        "value": 0.8751741798795503
+      },
+      "vectorAUC": {
+        "interval": [
+          0.9044926223703568,
+          0.9335395702618456
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.007380845326107662,
+        "validDraws": 2000,
+        "value": 0.9200585921680673
+      }
+    },
+    "disgusted": {
+      "gain": {
+        "interval": [
+          0.009537199853304743,
+          0.020551655598414015
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.002834447066413334,
+        "validDraws": 2000,
+        "value": 0.015044160075143753
+      },
+      "outputsAUC": {
+        "interval": [
+          0.9375704566364039,
+          0.9561811727496393
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.004718100164257203,
+        "validDraws": 2000,
+        "value": 0.9467023533787129
+      },
+      "vectorAUC": {
+        "interval": [
+          0.9533425239737016,
+          0.9692617415332122
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.004090935515832115,
+        "validDraws": 2000,
+        "value": 0.9617465134538566
+      }
+    },
+    "embarrassed": {
+      "gain": {
+        "interval": [
+          0.03396741517795975,
+          0.05254233239700484
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.004761082030970338,
+        "validDraws": 2000,
+        "value": 0.043549553286177156
+      },
+      "outputsAUC": {
+        "interval": [
+          0.8995906544614026,
+          0.9250430938724982
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.00669549430737899,
+        "validDraws": 2000,
+        "value": 0.9117117490779871
+      },
+      "vectorAUC": {
+        "interval": [
+          0.9461054891076707,
+          0.9640942459708792
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.004744246006818745,
+        "validDraws": 2000,
+        "value": 0.9552613023641643
+      }
+    },
+    "excited": {
+      "gain": {
+        "interval": [
+          0.0413035412167997,
+          0.06621239964582994
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.006339956654763462,
+        "validDraws": 2000,
+        "value": 0.053346545720948324
+      },
+      "outputsAUC": {
+        "interval": [
+          0.8423953279720318,
+          0.8782156603345179
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.00906804131561575,
+        "validDraws": 2000,
+        "value": 0.8602568203169975
+      },
+      "vectorAUC": {
+        "interval": [
+          0.9010289994012566,
+          0.9258371775815228
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.0063237343312302656,
+        "validDraws": 2000,
+        "value": 0.9136033660379458
+      }
+    },
+    "furious": {
+      "gain": {
+        "interval": [
+          0.02481931672287294,
+          0.04589444711007957
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.005406649380308254,
+        "validDraws": 2000,
+        "value": 0.035312253948836636
+      },
+      "outputsAUC": {
+        "interval": [
+          0.8759712198807809,
+          0.9080695871463318
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.008109170746939232,
+        "validDraws": 2000,
+        "value": 0.893198762334449
+      },
+      "vectorAUC": {
+        "interval": [
+          0.9155183625806506,
+          0.9393178791045977
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.006095630218131633,
+        "validDraws": 2000,
+        "value": 0.9285110162832856
+      }
+    },
+    "hopeful": {
+      "gain": {
+        "interval": [
+          0.04019632940166167,
+          0.0609920830342718
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.005348584248234425,
+        "validDraws": 2000,
+        "value": 0.05013179937385526
+      },
+      "outputsAUC": {
+        "interval": [
+          0.8497302919391112,
+          0.8894510429837367
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.010086020526233926,
+        "validDraws": 2000,
+        "value": 0.870306953083934
+      },
+      "vectorAUC": {
+        "interval": [
+          0.900861353784019,
+          0.9364935172116102
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.009019600513998312,
+        "validDraws": 2000,
+        "value": 0.9204387524577893
+      }
+    },
+    "lonely": {
+      "gain": {
+        "interval": [
+          0.028804543228467972,
+          0.045352702013168676
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.004290891555107858,
+        "validDraws": 2000,
+        "value": 0.03663362450182228
+      },
+      "outputsAUC": {
+        "interval": [
+          0.9377742379741629,
+          0.9577590745323199
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.005159613356150381,
+        "validDraws": 2000,
+        "value": 0.9479667425561085
+      },
+      "vectorAUC": {
+        "interval": [
+          0.9803416587449252,
+          0.988246968736791
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.00203582343528797,
+        "validDraws": 2000,
+        "value": 0.9846003670579307
+      }
+    },
+    "proud": {
+      "gain": {
+        "interval": [
+          0.019290921252918446,
+          0.033313508746681306
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.003648746196733191,
+        "validDraws": 2000,
+        "value": 0.02616612180263589
+      },
+      "outputsAUC": {
+        "interval": [
+          0.89674191666339,
+          0.9280334624641268
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.007985134679068709,
+        "validDraws": 2000,
+        "value": 0.9130293223366936
+      },
+      "vectorAUC": {
+        "interval": [
+          0.927199813291057,
+          0.9501841615118763
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.005914883184096043,
+        "validDraws": 2000,
+        "value": 0.9391954441393295
+      }
+    },
+    "sad": {
+      "gain": {
+        "interval": [
+          0.01329905039483569,
+          0.030616116669447108
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.004449219191716136,
+        "validDraws": 2000,
+        "value": 0.021673231121815406
+      },
+      "outputsAUC": {
+        "interval": [
+          0.8710449425164829,
+          0.9004169766129615
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.007528131376341113,
+        "validDraws": 2000,
+        "value": 0.8857513672915394
+      },
+      "vectorAUC": {
+        "interval": [
+          0.8948638452864892,
+          0.9199886896353462
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.0065310648650980935,
+        "validDraws": 2000,
+        "value": 0.9074245984133548
+      }
+    },
+    "sentimental": {
+      "gain": {
+        "interval": [
+          0.04723671902909242,
+          0.07124104346484372
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.006304396541153111,
+        "validDraws": 2000,
+        "value": 0.05903175542481198
+      },
+      "outputsAUC": {
+        "interval": [
+          0.8583978234115424,
+          0.8918425540840595
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.008699164740564817,
+        "validDraws": 2000,
+        "value": 0.8752519264334477
+      },
+      "vectorAUC": {
+        "interval": [
+          0.9242435347885116,
+          0.9447505904054605
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.005242477577307384,
+        "validDraws": 2000,
+        "value": 0.9342836818582597
+      }
+    },
+    "terrified": {
+      "gain": {
+        "interval": [
+          0.002442669428194058,
+          0.012734613535521029
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.005497251374312844,
+        "standardError": 0.0026541114765511404,
+        "validDraws": 2000,
+        "value": 0.007608929431402234
+      },
+      "outputsAUC": {
+        "interval": [
+          0.9283204147827264,
+          0.9487816860339728
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.00528171752268992,
+        "validDraws": 2000,
+        "value": 0.9395210745598468
+      },
+      "vectorAUC": {
+        "interval": [
+          0.9368046496745637,
+          0.955535167347824
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "standardError": 0.004872743442253748,
+        "validDraws": 2000,
+        "value": 0.947130003991249
+      }
+    }
+  },
+  "leadOverCovered": {
+    "interval": [
+      -0.030366663567906394,
+      -0.00556517139906638
+    ],
+    "nearBar": true,
+    "pAboveBar": 0.9785107446276862,
+    "standardError": 0.0064346483208301145,
+    "validDraws": 2000,
+    "value": -0.015482202138634826
+  },
+  "dedicatedVsFittedPair": {
+    "dedicatedMinusPair": {
+      "interval": [
+        0.10350476083929781,
+        0.13362450292262373
+      ],
+      "nearBar": false,
+      "pAboveBar": 0.0004997501249375312,
+      "standardError": 0.0076766089535634735,
+      "validDraws": 2000,
+      "value": 0.11849518535540937
+    },
+    "fittedPairAUC": {
+      "interval": [
+        0.8202146245344208,
+        0.8547596979992496
+      ],
+      "nearBar": false,
+      "pAboveBar": 0.0004997501249375312,
+      "standardError": 0.008778374362765434,
+      "validDraws": 2000,
+      "value": 0.8367661170087549
+    }
+  },
+  "reports": 24850,
+  "writers": 810,
+  "draws": 2000,
+  "playCheck": "Chat has no mapped PLAY word with which to qualify the PLAY discrimination check.",
+  "scope": "Assigned words and their subject matter. Where the blend ranks below first, an additional role for PLAY remains open.",
+  "card": "TP68",
+  "sourceReceiptPin": "fe8e33e4613b59e9ca2df8c1b5cf06570860c314b0657865b89a3b57ae3ee6d6",
+  "productionAdmission": false,
+  "license": "EmpatheticDialogues used for research under CC BY-NC 4.0.",
+  "ledger": "E-TP68-20261127"
+}

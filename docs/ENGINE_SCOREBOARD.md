@@ -1,5 +1,7 @@
 # Engine scoreboard
 
+**November 27 · TP68.** SHAME plus PLAY ranked 2 of 45 pairs for embarrassed. The dedicated head’s gain over its strongest covered-word comparator was -0.015 [-0.030, -0.006] AUC. [E-TP68-20261127](exchange/result-sheets/TP68.md)
+
 **November 27 · TP63.** Across 2,379 writers, 0 of 145 correlations exceeded the rotated family bar of 0.088 in absolute value. Worry and emotional stability correlated -0.065 [-0.105, -0.025]. [E-TP63-ORIGINAL-20261127](exchange/result-sheets/TP63.md)
 
 **November 27 · TP77.** On the original sentences, B/W kappa was 0.609 for change (usable), 0.614 for when (usable), 0.444 for whose (weak). [E-TP77-ORIGINAL-20261127](exchange/result-sheets/TP77.md)
