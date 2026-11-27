@@ -126,8 +126,101 @@ def throughput():
     return {"public": public.as_posix(), "sourceReceiptPin": h, "sha256": pin(public)}
 
 
+def slope():
+    import numpy as np
+    from rapid_slope_return import PREP, SOURCE
+
+    source = ROOT / ("verified-TP61-slopes-" + SOURCE[:12])
+    r = read(source / "receipt.json")
+    verified = read(source / "transfer.json")
+    if (
+        pin(source / "receipt.json") != SOURCE
+        or r["sourceReceiptPin"] != PREP
+        or verified["sourceReceiptPin"] != SOURCE
+        or verified["setsVerified"] != 400
+        or not verified["nativeExited"]
+        or not verified["cpuLeaseReacquired"]
+    ):
+        raise ValueError("Verified two-family slope return required")
+    old = Path(".local/week-20261122/TP52-a/receipt.json")
+    if pin(old) != "2f7236ded4408f4da09edcbcca63f57f9419aa4cd27f034064d49c4edf97577b":
+        raise ValueError("Original worry result differs")
+    trained = read(old)["standardizedSlope"]
+    target = trained["value"]
+    if target != r["registeredTrainedSlope"]:
+        raise ValueError("Trained slope differs from the registered source")
+    comparison = {}
+    for kind in ("iso", "rot"):
+        x = np.asarray(r["nullSlopes"][kind], dtype=float)
+        if x.shape != (3800,) or not np.isfinite(x).all():
+            raise ValueError("All 200 sets of 19 finite slopes are required")
+        comparison[kind] = {
+            "sets": 200,
+            "headsPerSet": 19,
+            "band": np.quantile(x, [0.025, 0.975]).tolist(),
+            "median": float(np.median(x)),
+            "p995": float(np.quantile(x, 0.995)),
+            "maximum": float(x.max()),
+            "atLeastTrained": int(np.sum(x >= target)),
+            "percentile": float(
+                (np.sum(x < target) + 0.5 * np.sum(x == target)) / len(x)
+            ),
+        }
+    public = PUBLIC / "readers-tp61-slope-2026-11.json"
+    ledger = "E-TP61-D-20261127"
+    put(
+        public,
+        {
+            "card": "TP61(d)",
+            "sourceReceiptPin": SOURCE,
+            "vectorReceiptPin": PREP,
+            "trainedReceiptPin": pin(old),
+            "trained": trained,
+            "cohort": r["data"],
+            "comparison": comparison,
+            "ledger": ledger,
+            "scope": r["scope"],
+            "productionAdmission": False,
+        },
+    )
+    complete = all(
+        v["atLeastTrained"] == 0 and target > v["p995"] for v in comparison.values()
+    )
+    append(
+        PUBLIC / "EVIDENCE_LEDGER.jsonl",
+        {
+            "id": ledger,
+            "date": "2026-11-27",
+            "family": "Round 37 random-head controls",
+            "claims": ["P2", "P3", "P5"],
+            "question": "Does the original opening-worry slope exceed every random base-vector head on the same disjoint suffixes?",
+            "data": public.as_posix(),
+            "estimate": {
+                "standardizedSlope": target,
+                "nulls": comparison,
+                "sourceReceiptPin": SOURCE,
+            },
+            "interval": {
+                "trainedWriterInterval": trained["interval"],
+                "nullBandPercentiles": [2.5, 97.5],
+            },
+            "bar": "Above percentile 99.5 in both families, with zero null heads reaching the trained slope.",
+            "verdict": "Both clauses met."
+            if complete
+            else "The registered joint condition misses.",
+            "limit": "The trained and null heads use different encoders. This contrast cannot isolate the trained direction or establish an inference about a person.",
+        },
+    )
+    return {
+        "public": public.as_posix(),
+        "sourceReceiptPin": SOURCE,
+        "sha256": pin(public),
+        "comparison": comparison,
+    }
+
+
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
-    p.add_argument("result", choices=["TP71", "Q26"])
+    p.add_argument("result", choices=["TP71", "Q26", "TP61-d"])
     choice = p.parse_args().result
-    print(json.dumps((display if choice == "TP71" else throughput)()))
+    print(json.dumps({"TP71": display, "Q26": throughput, "TP61-d": slope}[choice]()))
