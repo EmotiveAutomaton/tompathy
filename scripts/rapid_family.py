@@ -58,7 +58,7 @@ def render(measured):
         "",
         "Each row retains its claimant and registered prediction. The section 7 reference to TP73–TP75 points to their existing analyst rows. Each multi-part prediction requires all of its clauses; its joint test uses the largest component p value. Individual contrasts stay on their card sheets. A tie requires a registered equivalence criterion for a positive equivalence verdict.",
         "",
-        "The false discovery rate is 0.10. Pending predictions count in the family size and have no measured p value. Adjusted p values remain conservative upper bounds while the family is open. An interval endpoint within one standard error of its bar leaves the verdict unresolved.",
+        "A ring (○) marks a registered prediction. A cross (×) marks a recorded departure on at least one clause. The false discovery rate is 0.10. Pending predictions count in the family size and have no measured p value. Adjusted p values remain conservative upper bounds while the family is open. An interval endpoint within one standard error of its bar leaves the verdict unresolved.",
         "",
         "| ID | Claimant | Prediction | Estimate and interval | p | BH rank / adjusted p | Verdict |",
         "|---|---|---|---|---:|---|---|",
@@ -67,14 +67,26 @@ def render(measured):
         result = measured.get(key, {})
         rank = bh.get(key)
         place = f"{rank[0]} / {rank[1]:.5g}" if rank else "—"
+        verdict = result.get("verdict", "Pending")
+        against = result.get(
+            "against",
+            any(
+                v in verdict.lower()
+                for v in (
+                    "registered direction missed",
+                    "registered conjunction missed",
+                    "tie prediction misses",
+                )
+            ),
+        )
         values = [
             key,
             who,
-            question,
+            "○ " + question,
             result.get("estimate", "—"),
             result["p"] if result.get("p") is not None else "—",
             place,
-            result.get("verdict", "Pending"),
+            ("× " if against else "") + verdict,
         ]
         lines.append(
             "| " + " | ".join(str(v).replace("|", "\\|") for v in values) + " |"

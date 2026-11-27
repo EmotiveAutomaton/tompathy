@@ -3,6 +3,7 @@
 import argparse
 import contextlib
 import os
+import re
 import select
 import subprocess
 import sys
@@ -51,8 +52,29 @@ def wait_predecessor(owner, check):
         os.close(fd)
 
 
-def run(root, prepare_only=False):
-    code = root / "code" / FROZEN
+def run(root, prepare_only=False, blog_registration=None):
+    import hashlib
+    import json
+
+    cfgpath = root / (
+        "Q31-registration.json" if blog_registration else "Q29-registration.json"
+    )
+    expected = blog_registration or REG
+    raw = cfgpath.read_bytes()
+    if (
+        not re.fullmatch("[0-9a-f]{64}", expected)
+        or hashlib.sha256(raw).hexdigest() != expected
+    ):
+        raise ValueError("The staged GPU registration differs")
+    cfg = json.loads(raw)
+    frozen = cfg["commit"] if blog_registration else FROZEN
+    if (
+        not re.fullmatch("[0-9a-f]{40}", frozen)
+        or cfg["commit"] != frozen
+        or cfg["parentRegistration"] != PRIOR
+    ):
+        raise ValueError("Invalid registered code revision or parent")
+    code = root / "code" / frozen
     sys.path.insert(0, str(code))
     import rapid_gpu as worker
     import rapid_sentences
@@ -60,33 +82,65 @@ def run(root, prepare_only=False):
 
     lane = worker.lane
     lane.settings()
-    cfg = lane.read(root / "Q29-registration.json")
-    worker.require_pin(root / "Q29-registration.json", REG)
     for name, h in cfg["code"].items():
+        if Path(name).name != name:
+            raise ValueError("A code file is outside the frozen snapshot")
         worker.require_pin(code / name, h)
     win = os.name == "nt"
     machine, prior, job = (
         ("workstation", "G14", "G13-Q29") if win else ("spark", "Q32", "Q29")
     )
-    isear = (
-        root.parent / ("person-teacher" if win else "person-teacher-20261121")
-    ) / "cb/isear.json"
-    _, _, roster = rapid_sentences.prepare(root, isear, tp31_teacher.sentences)
-    if roster != cfg["sentences"] or worker.marks.protocol("sentence") != cfg["prompt"]:
-        raise ValueError("Staged sentence order, content or prompt differs")
+    if blog_registration:
+        from rapid_blog_gpu import calendar
+
+        prior, job = ("G13-Q29", "G13-Q31") if win else ("Q29", "Q31")
+        selection = root / "Q31-selection.json"
+        worker.require_pin(selection, cfg["selectionPin"])
+        directory = (
+            root.parent / "week-20261122/Q20-inputs-a/spark-inputs"
+            if win
+            else worker.WEEK / "Q20-inputs"
+        )
+        _, _, roster = calendar(
+            lane.read(selection),
+            directory,
+            tp31_teacher.sentences,
+            lambda: worker.check_stop(root),
+        )
+        if roster != cfg["roster"] or cfg["prompts"] != {
+            k: worker.marks.protocol(k) for k in ("loss", "sentence")
+        }:
+            raise ValueError("The blog roster or prompt differs")
+    else:
+        isear = (
+            root.parent / ("person-teacher" if win else "person-teacher-20261121")
+        ) / "cb/isear.json"
+        _, _, roster = rapid_sentences.prepare(root, isear, tp31_teacher.sentences)
+        if (
+            roster != cfg["sentences"]
+            or worker.marks.protocol("sentence") != cfg["prompt"]
+        ):
+            raise ValueError("Staged sentence order, content or prompt differs")
     if prepare_only:
         return {
             "verifiedFiles": len(cfg["code"]),
             "roster": roster,
-            "registration": REG,
+            "registration": expected,
         }
-    ctl = root / (machine + "-sentence-follow")
+    ctl = root / (
+        machine + ("-blog-follow" if blog_registration else "-sentence-follow")
+    )
     ctl.mkdir(exist_ok=True)
     with lane.lease(ctl / "dispatcher.lock"):
         target = root / "jobs" / job
         if target.exists():
             raise FileExistsError("Preserve the existing sentence job")
-        if win:
+        if blog_registration:
+            proof = lane.read(root / (machine + "-sentence-follow") / "armed.json")
+            if proof["job"] != prior or proof["registration"] != REG:
+                raise ValueError("Unknown preceding sentence supervisor")
+            predecessor = proof["owner"]
+        elif win:
             proof = lane.read(root / "workstation-follow/watching.json")
             worker.require_pin(
                 Path(__file__).with_name("rapid_windows_follow.py"),
@@ -111,7 +165,7 @@ def run(root, prepare_only=False):
                 "predecessor": predecessor,
                 "predecessorJob": prior,
                 "job": job,
-                "registration": REG,
+                "registration": expected,
                 "codePin": lane.pin(Path(__file__)),
             },
         )
@@ -126,13 +180,16 @@ def run(root, prepare_only=False):
                 or release["exitCode"] != 0
                 or not release["sharedLeaseReacquired"]
                 or old_owner["job"] != prior
-                or old_owner["registration"] != PRIOR
+                or old_owner["registration"] != (REG if blog_registration else PRIOR)
+                or not release["childWaited"]
             ):
                 raise ValueError("Cannot advance beyond an unverified predecessor")
             worker.require_pin(
                 previous / "receipt.json",
                 lane.read(previous / "complete.json")["sourceReceiptPin"],
             )
+            if lane.read(previous / "receipt.json")["owner"] != old_owner:
+                raise ValueError("Predecessor source and native owner differ")
             if not win and linux_live(old_owner):
                 raise ValueError("Predecessor worker is still running")
             with lane.lease(root / (machine + "-dispatch.lock")):
@@ -146,7 +203,7 @@ def run(root, prepare_only=False):
                             sys.executable,
                             str(code / "rapid_gpu.py"),
                             str(root),
-                            REG,
+                            expected,
                             job,
                         ],
                         env=env,
@@ -163,8 +220,8 @@ def run(root, prepare_only=False):
                 owner = lane.read(target / "owner.json")
                 if (owner["job"], owner["registration"], owner["commit"]) != (
                     job,
-                    REG,
-                    FROZEN,
+                    expected,
+                    frozen,
                 ):
                     raise ValueError("Sentence worker registration differs")
                 if win:
@@ -247,7 +304,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("root", type=Path)
     parser.add_argument("--verify-only", action="store_true")
+    parser.add_argument("--blog-registration")
     args = parser.parse_args()
-    proof = run(args.root.resolve(), args.verify_only)
+    proof = run(args.root.resolve(), args.verify_only, args.blog_registration)
     if proof:
         print(proof)

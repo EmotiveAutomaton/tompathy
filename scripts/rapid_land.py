@@ -480,6 +480,76 @@ def person_control(card):
     }
 
 
+def sentence_results(card):
+    from rapid_cpu_dispatch import confirmed
+
+    folder = ROOT / (card + "-a")
+    h = confirmed(folder)
+    r = read(folder / "receipt.json")["result"]
+    if r["card"] != card:
+        raise ValueError("Registered sentence card differs")
+    if card == "TP65":
+        for name, v in r["sources"].items():
+            if read(folder / (name + ".json")) != v:
+                raise ValueError("Private timing source table differs")
+        title = "when a change is reported"
+        question = "Within one report and holding sentence position fixed, which outputs differ on upcoming and completed changes?"
+        summary = r["CW"]
+        verdict = (
+            r["interpretation"]
+            + ". Additional sentence sources await their registered returns."
+        )
+        claims = ["A1", "T2", "T3"]
+        bar = "Registered directions within both original sources, conditional on the B/W mark."
+        limit = "The classes are reader judgments of a reported change. Only within-report variation identifies the contrasts."
+        base = "readers-tp65-original-2026-11.json"
+    elif card == "TP77-original":
+        if r["sources"] != read(folder / "tables.json"):
+            raise ValueError("Private agreement source table differs")
+        title = "original sentence reader agreement"
+        question = "How often do the original readers agree on change, timing and whose situation changed?"
+        summary = {
+            k: {"kappa": v["value"], "interval": v["interval"], "status": v["CW"]}
+            for k, v in r["sources"]["all"]["B/W"].items()
+        }
+        verdict = ", ".join(f"{k} {v['status']}" for k, v in summary.items()) + "."
+        claims = ["A1", "T2", "T3"]
+        bar = "B/W kappa >=0.60 is usable. Values from 0.40 to below 0.60 are weak. Lower or undefined values are excluded."
+        limit = "Readers can agree and both be mistaken. C read only the Q11 subset."
+        base = "readers-tp77-original-2026-11.json"
+    else:
+        raise ValueError("Unregistered sentence return")
+    ledger = "E-" + card.upper() + "-20261127"
+    public = PUBLIC / base
+    put(
+        public,
+        {
+            **r,
+            "ledger": ledger,
+            "sourceReceiptPin": h,
+            "productionAdmission": False,
+            "license": "EmpatheticDialogues data used for research under CC BY-NC 4.0.",
+        },
+    )
+    append(
+        PUBLIC / "EVIDENCE_LEDGER.jsonl",
+        {
+            "id": ledger,
+            "date": "2026-11-27",
+            "family": "Round 37 " + title,
+            "claims": claims,
+            "question": question,
+            "data": public.as_posix(),
+            "estimate": summary,
+            "interval": "2,000 whole-writer draws.",
+            "bar": bar,
+            "verdict": verdict,
+            "limit": limit,
+        },
+    )
+    return {"public": public.as_posix(), "sourceReceiptPin": h, "sha256": pin(public)}
+
+
 def registered_card(card):
     from rapid_cpu_dispatch import confirmed
 

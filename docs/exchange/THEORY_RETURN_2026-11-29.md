@@ -1,4 +1,4 @@
-Both GPUs are running the standing-mark study, Q27 on Spark and G12 on the workstation. The card queue is running TP70’s blind grouping study after verifying TP62 and three TP61 comparisons. Spark lacks an in-place route to the talk-page and long-story files for Q33 and Q30. The workstation can open both at their held locations.
+Nov 27 at 09:20 PT, Spark is running Q27 (13,580/43,021), the workstation GPU is running G12 (12,560/43,021), and the card queue is running TP70 grouping block 26 of 40. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
 
 # Two-day engine return · November 27–29
 
@@ -19,8 +19,8 @@ The table covers 35 registered predictions. TP62 met both directional criteria o
 | TP62 · Content and style | Trained word accuracy was 35.21%, above every rotated set. Writer accuracy was 1.76%, below the rotated median of 2.43%. Both findings persisted after removing assigned stems. | [TP62](result-sheets/TP62.md) |
 | TP70 · Blind grouping | Running on 24,850 chat texts and 5,426 usable blog author means. Each control repeats the comparison in 100 whole-writer or whole-author resamples. | [TP70](result-sheets/TP70.md) |
 | TP64 · Channel checks | The three source tables and research SHAME rescore are registered behind TP70. | [TP64](result-sheets/TP64.md) |
-| TP65 · Coming or landed | Original sentence readings and Q34 worry scores are available. Further sources depend on Q29–Q31. | Section 4 |
-| TP77 · Reader agreement | Original sentence comparisons precede new marks. The standing-mark comparison needs matched B and W responses. | Section 4 |
+| TP65 · Coming or landed | The original within-report comparison and its two writer-rating fields are registered. Further sources depend on Q29–Q31. | [TP65](result-sheets/TP65.md) |
+| TP77 · Reader agreement | Original sentence comparisons precede new marks. The standing-mark comparison needs matched B and W responses. | [TP77](result-sheets/TP77.md) |
 | TP63 · Outside scores | The event header contains all ten inventory items. The held essay header has empathy and distress and contains no trait columns. The essay arm is unavailable. | Section 4 |
 | TP68 · Embarrassment | Registered on the original sources. | Section 4 |
 | TP69 · Competence and Respect | Registered on the saved profiles. | Section 4 |
@@ -46,7 +46,7 @@ Pilot times are wall seconds after loading. Observed totals include job startup 
 | Q28 · Event features | 2.0 | — | — | Registered behind Q27. |
 | Q32 · Third reader and rewordings | 2.0 | — | — | Registered behind Q28. The extended memory rule applies only to C on this job. |
 | Q29 · Sentences | 3.0 | — | — | Both machines verified the same 17,755 held-out forum sentences and 21,247 ISEAR sentences. Spark’s native listener is waiting for Q32’s release. |
-| Q31 · Blog loss and timing | 9.8 | — | — | Pending. |
+| Q31 · Blog loss and timing | 9.8 | — | — | Roster preparation ranks posts with at least six windows by mean SADNESS. A separate seeded sample takes 20 openings from each of 500 authors with at least 80 posts. Sizing awaits the actual sentence census and timed pilot. |
 | Q30 · Long stories | 9.9 | — | — | In-place Spark source unavailable. |
 | Q33 · Talk pages | First 1,000 to size | — | — | In-place Spark source unavailable. |
 | G12 · Standing | 4–6 | 66.58 | 7.96 | Running. |

@@ -13,6 +13,11 @@ from pathlib import Path
 LOCAL = Path(".local/rapid-20261127")
 REMOTE = Path("/home/agent/tompathy-open/rapid-20261127")
 CAP = 1_000_000_000
+REGISTRATIONS = {
+    **dict.fromkeys(("Q26", "Q34", "Q34-b", "Q27", "Q28", "Q32"), "registration.json"),
+    "Q29": "Q29-registration.json",
+    "Q31": "Q31-registration.json",
+}
 
 
 def digest(path):
@@ -57,7 +62,7 @@ def archive(job, registration):
     owner = read(source / "owner.json")
     release = read(source / "released.json")
     if (
-        digest(REMOTE / "registration.json") != registration
+        digest(REMOTE / REGISTRATIONS[job]) != registration
         or owner["registration"] != registration
         or owner["job"] != job.removesuffix("-b")
         or release["owner"] != owner
@@ -115,7 +120,7 @@ def collect(job, remote_script):
         remote_script,
     ):
         raise ValueError("Committed remote tool required")
-    registration = digest(LOCAL / "registration.json")
+    registration = digest(LOCAL / REGISTRATIONS[job])
     response = subprocess.check_output(
         [
             "ssh",
@@ -185,7 +190,7 @@ def collect(job, remote_script):
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
     p.add_argument("action", choices=["archive", "collect"])
-    p.add_argument("job", choices=["Q26", "Q34", "Q34-b", "Q27", "Q28", "Q32"])
+    p.add_argument("job", choices=tuple(REGISTRATIONS))
     p.add_argument("binding")
     a = p.parse_args()
     print(json.dumps((archive if a.action == "archive" else collect)(a.job, a.binding)))

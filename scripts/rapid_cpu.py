@@ -83,6 +83,22 @@ def run(card, attempt):
                 import rapid_channel_words as study
 
                 result = study.prepare(out, check)
+            elif card == "TP65-inputs":
+                import rapid_sentence_data as study
+
+                result = study.prepare(out, check)
+            elif card == "TP65":
+                import rapid_sentence_contrasts as study
+
+                result = study.prepare(out, check)
+            elif card == "TP77-original":
+                import rapid_agreement as study
+
+                result = study.prepare(out, check)
+            elif card == "Q31-inputs":
+                import rapid_blog_selection as study
+
+                result = study.prepare(out, check)
             elif card == "TP62-first":
                 import rapid_content as study
 
@@ -151,6 +167,10 @@ if __name__ == "__main__":
             "TP70-design",
             "TP70-return",
             "TP64",
+            "TP65-inputs",
+            "TP65",
+            "TP77-original",
+            "Q31-inputs",
             *(f"TP70-block-{i:02d}" for i in range(40)),
             "TP62-first",
             "TP73-TP51",

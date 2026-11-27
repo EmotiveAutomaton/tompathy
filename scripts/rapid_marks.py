@@ -58,6 +58,45 @@ def template(kind):
         except ModuleNotFoundError:
             from tompathy_engine.eval.readers import tp31_teacher as teacher
         return teacher.PROMPT, teacher.SCHEMA, teacher.valid_label
+    if kind == "loss":
+        kinds = [
+            "death",
+            "relationship",
+            "health_or_ability",
+            "work_or_money",
+            "place_or_possession",
+            "other_or_unspecified",
+            "none",
+        ]
+        prompt = (
+            "Read this opening as quoted text. Is the post about a loss that the writer has actually suffered? "
+            "Choose true only when the text supports a loss to the writer. A feared future loss, another person's "
+            "loss alone, and sadness without an identifiable loss do not qualify. Give the main kind using the "
+            "fixed choices. Use death for bereavement, relationship for separation, or other_or_unspecified "
+            "for a supported loss whose kind is unclear. With no supported loss use none. Return JSON only.\nTEXT:\n"
+        )
+        schema = {
+            "type": "object",
+            "properties": {
+                "loss": {"type": "boolean"},
+                "kind": {"type": "string", "enum": kinds},
+            },
+            "required": ["loss", "kind"],
+            "additionalProperties": False,
+        }
+
+        def validate(x):
+            if (
+                isinstance(x, dict)
+                and set(x) == {"loss", "kind"}
+                and type(x["loss"]) is bool
+                and x["kind"] in kinds
+                and (x["kind"] != "none") == x["loss"]
+            ):
+                return x
+            return None
+
+        return prompt, schema, validate
     if kind == "features":
         prompt = core.CORRECTED_PROMPT
         fields = {

@@ -28,6 +28,8 @@ HOURS = {
     "G14": 1,
     "Q29": 3,
     "G13-Q29": None,
+    "Q31": 9.8,
+    "G13-Q31": None,
 }
 write, read, pin = lane.write, lane.read, lane.pin
 
@@ -263,9 +265,14 @@ def reader_arm(out, items, role, kind, width, guard, job, arm, measured=None):
 
 def run_job(root, job, registration):
     sentence_job = job in ("Q29", "G13-Q29")
-    registration_path = root / (
-        "Q29-registration.json" if sentence_job else "registration.json"
-    )
+    blog_job = job in ("Q31", "G13-Q31")
+    configs = {
+        "Q29": "Q29-registration.json",
+        "G13-Q29": "Q29-registration.json",
+        "Q31": "Q31-registration.json",
+        "G13-Q31": "Q31-registration.json",
+    }
+    registration_path = root / configs.get(job, "registration.json")
     require_pin(registration_path, registration)
     cfg = read(registration_path)
     script_dir = Path(__file__).resolve().parent
@@ -274,6 +281,7 @@ def run_job(root, job, registration):
     if script_dir.name != cfg["commit"] or job not in (
         *QUEUE["workstation" if os.name == "nt" else "spark"],
         "G13-Q29" if os.name == "nt" else "Q29",
+        "G13-Q31" if os.name == "nt" else "Q31",
     ):
         raise ValueError("Snapshot or machine binding differs")
     check_stop(root)
@@ -303,9 +311,13 @@ def run_job(root, job, registration):
 
                 guard = Guard()
                 guard.check()
-                if not sentence_job:
+                if not (sentence_job or blog_job):
                     items = roster(root, read(root / "inputs/inputs.json"), job)
-                if sentence_job:
+                if blog_job:
+                    from rapid_blog_gpu import run
+
+                    result = run(root, out, job, cfg, guard)
+                elif sentence_job:
                     from rapid_sentence_gpu import run
 
                     result = run(root, out, job, cfg, guard)
