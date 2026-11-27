@@ -18,7 +18,7 @@ The table covers 35 registered predictions. TP62 met both directional criteria o
 | TP61 · Random-head controls | Worry minus median tag repeat was 0.218, below the 0.229–0.299 rotated band. The word-specific estimates fell inside the rotated band for all eight words. Three met the 200-author minimum. Worry’s slope of 0.12711 exceeded both 99.5th percentiles, and seven of 7,600 individual heads reached it. | [TP61](result-sheets/TP61.md) |
 | TP62 · Content and style | Trained word accuracy was 35.21%, above every rotated set. Writer accuracy was 1.76%, below the rotated median of 2.43%. Both findings persisted after removing assigned stems. | [TP62](result-sheets/TP62.md) |
 | TP70 · Blind grouping | Running on 24,850 chat texts and 5,426 usable blog author means. Each control repeats the comparison in 100 whole-writer or whole-author resamples. | [TP70](result-sheets/TP70.md) |
-| TP64 · Channel checks | Saved forecasts are available. SHAME’s scope flag remains in force. | Section 4 |
+| TP64 · Channel checks | The three source tables and research SHAME rescore are registered behind TP70. | [TP64](result-sheets/TP64.md) |
 | TP65 · Coming or landed | Original sentence readings and Q34 worry scores are available. Further sources depend on Q29–Q31. | Section 4 |
 | TP77 · Reader agreement | Original sentence comparisons precede new marks. The standing-mark comparison needs matched B and W responses. | Section 4 |
 | TP63 · Outside scores | The event header contains all ten inventory items. The held essay header has empathy and distress and contains no trait columns. The essay arm is unavailable. | Section 4 |
@@ -45,13 +45,13 @@ Pilot times are wall seconds after loading. Observed totals include job startup 
 | Q27 · Standing | 10.8 | 53.74 | 6.42 | Running serially. |
 | Q28 · Event features | 2.0 | — | — | Registered behind Q27. |
 | Q32 · Third reader and rewordings | 2.0 | — | — | Registered behind Q28. The extended memory rule applies only to C on this job. |
-| Q29 · Sentences | 3.0 | — | — | The bound roster has 17,755 held-out forum sentences and 21,247 ISEAR sentences. Both sources were verified at their existing Spark locations. |
+| Q29 · Sentences | 3.0 | — | — | Both machines verified the same 17,755 held-out forum sentences and 21,247 ISEAR sentences. Spark’s native listener is waiting for Q32’s release. |
 | Q31 · Blog loss and timing | 9.8 | — | — | Pending. |
 | Q30 · Long stories | 9.9 | — | — | In-place Spark source unavailable. |
 | Q33 · Talk pages | First 1,000 to size | — | — | In-place Spark source unavailable. |
 | G12 · Standing | 4–6 | 66.58 | 7.96 | Running. |
 | G14 · Event features | <1 | — | — | Follows G12. |
-| G13 · Sentence and loss comparisons | First 100 to size | — | — | Depends on source-specific inputs. |
+| G13 · Sentence and loss comparisons | First 100 to size | — | — | The workstation’s sentence listener is waiting for G14’s release. The other comparisons depend on their own inputs. |
 | G15 · Workstation filler | Up to 21.6 | — | — | Whole-author selection and exact G11 reuse required. |
 | Q24b · Spark filler | Time remaining | — | — | Native dispatcher verified at offset 207,795. Parked while Q27 owns the GPU. |
 

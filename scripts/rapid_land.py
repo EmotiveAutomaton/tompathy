@@ -480,11 +480,106 @@ def person_control(card):
     }
 
 
+def registered_card(card):
+    from rapid_cpu_dispatch import confirmed
+
+    if card not in {"TP70", "TP64"}:
+        raise ValueError("Unregistered landing")
+    out = ROOT / ("TP70-return-a" if card == "TP70" else "TP64-a")
+    source = confirmed(out)
+    result = read(out / "receipt.json")["result"]
+    if result["card"] != card:
+        raise ValueError("Private receipt identifies a different card")
+    if card == "TP70":
+        for key, table in result["sources"].items():
+            if read(out / (key + ".json")) != table:
+                raise ValueError("Public grouping table differs from its saved source")
+        family = "Round 37 grouping of trained need tags"
+        claims = ["N1", "N4"]
+        question = "Which groupings and leading components exceed their orientation controls in both populations?"
+        estimate = {
+            src: {
+                "rotFloor": cells["full"]["floors"]["rot"]["count"],
+                "rotAbove": {
+                    g: r["rot"]["aboveBand"] for g, r in cells["full"]["groups"].items()
+                },
+                "meanExcess": {
+                    g: r["excess"]["value"] for g, r in cells["full"]["groups"].items()
+                },
+            }
+            for src, cells in result["sources"].items()
+        }
+        bar = "Above each grouping's own ROT band in both files. A better grouping has greater standardized excess in both."
+        verdict = (
+            "Descriptive component floor: "
+            + ", ".join(f"{s} {v['rotFloor']}" for s, v in estimate.items())
+            + "."
+        )
+        interval = "100 common whole-person draws and 1,000 sets per control family, separately in each corpus."
+        limit = "Similar training words can align tag heads. A partly mismatched grouping can exceed its control band."
+    else:
+        for key, table in result["sources"].items():
+            if read(out / (key + ".json")) != table:
+                raise ValueError("Public channel table differs from its saved source")
+        family = "Round 37 assigned words within sources"
+        claims = ["W1"]
+        question = "How well do the fixed outputs separate their own assigned words from their nearest alternatives?"
+        estimate = result["readings"]
+        bar = "0.70 AUC in the direction stated for each preregistered comparison."
+        verdict = result["readings"]["forumWanting"]["all"]["verdict"]
+        interval = "95% percentile intervals from 2,000 whole-writer resamples."
+        limit = "Own words and contributing sources vary. The event and forum joint SHAME reader is a separate saved head."
+    name = "groups" if card == "TP70" else "channels"
+    public = PUBLIC / f"readers-{card.lower()}-{name}-2026-11.json"
+    ledger = f"E-{card}-20261127"
+    put(
+        public,
+        {
+            **result,
+            "sourceReceiptPin": source,
+            "ledger": ledger,
+            "productionAdmission": False,
+            "license": "EmpatheticDialogues data used for research under CC BY-NC 4.0.",
+        },
+    )
+    append(
+        PUBLIC / "EVIDENCE_LEDGER.jsonl",
+        {
+            "id": ledger,
+            "date": "2026-11-27",
+            "family": family,
+            "claims": claims,
+            "question": question,
+            "data": public.as_posix(),
+            "estimate": estimate,
+            "bar": bar,
+            "verdict": verdict,
+            "interval": interval,
+            "limit": limit,
+        },
+    )
+    return {
+        "public": public.as_posix(),
+        "sourceReceiptPin": source,
+        "sha256": pin(public),
+    }
+
+
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
     p.add_argument(
         "result",
-        choices=["TP71", "Q26", "TP61-b", "TP61-c", "TP61-d", "TP62", "TP73-TP51"],
+        choices=[
+            "TP71",
+            "Q26",
+            "TP61-b",
+            "TP61-c",
+            "TP61-d",
+            "TP62",
+            "TP73-TP51",
+            "TP64",
+            "TP70",
+        ],
     )
     choice = p.parse_args().result
     print(
@@ -497,6 +592,8 @@ if __name__ == "__main__":
                 "TP61-c": lambda: person_control("TP61-c"),
                 "TP62": content,
                 "TP73-TP51": whole_author_competence,
+                "TP64": lambda: registered_card("TP64"),
+                "TP70": lambda: registered_card("TP70"),
             }[choice]()
         )
     )
