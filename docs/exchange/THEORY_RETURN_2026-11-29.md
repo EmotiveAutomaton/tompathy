@@ -1,4 +1,4 @@
-Nov 27 at 10:05 PT, Spark is running Q27 (18,440/43,021), the workstation GPU is running G12 (16,500/43,021), and the card queue is between registered stages. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
+Nov 27 at 10:05 PT, Spark is running Q27 (18,520/43,021), the workstation GPU is running G12 (16,560/43,021), and the card queue is between registered stages. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
 
 # Two-day engine return · November 27–29
 
@@ -23,7 +23,7 @@ The table covers 35 registered predictions. TP62 met both directional criteria o
 | TP64 · Channel checks | Forum desire versus optimism and excitement had AUC 0.712 [0.652, 0.767], 0.843 [0.802, 0.884]. | [TP64 · E-TP64-20261127](result-sheets/TP64.md) |
 | TP65 · Coming or landed | The original sentence timing comparisons are eligible for the registered comparisons. | [TP65 · E-TP65-20261127](result-sheets/TP65.md) |
 | TP77 · Reader agreement | On the original sentences, B/W kappa was 0.609 for change (usable), 0.614 for when (usable), 0.444 for whose (weak). | [TP77 · E-TP77-ORIGINAL-20261127](result-sheets/TP77.md) |
-| TP63 · Outside scores | The five trait keys are filed. The reader study on 6,600 events is queued. The held news-reaction essays have no trait fields. | [TP63](result-sheets/TP63.md) |
+| TP63 · Outside scores | Across 2,379 writers, 0 of 145 correlations exceeded the rotated family bar of 0.088 in absolute value. Worry and emotional stability correlated -0.065 [-0.105, -0.025]. | [TP63 · E-TP63-ORIGINAL-20261127](result-sheets/TP63.md) |
 | TP68 · Embarrassment | The fifteen comparison words and the five writer-held-out folds are fixed. The fits are queued behind the outside-score table. | [TP68](result-sheets/TP68.md) |
 | TP69 · Competence and Respect | The three word profiles, the goal-support column and the Respect controls are queued. | [TP69](result-sheets/TP69.md) |
 | TP66 · Order during loss | The short loss comparison is queued. The blog and story comparisons await their sources. | [TP66](result-sheets/TP66.md) |
