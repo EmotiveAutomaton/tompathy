@@ -219,8 +219,93 @@ def slope():
     }
 
 
+def whole_author_competence():
+    from tompathy_engine.packet.research_labels import tag_keys
+
+    out = ROOT / "TP73-TP51-a"
+    h = pin(out / "receipt.json")
+    if h != "2026a5d89fa3182c1cf9e63c9bf95ce55bfae330bed5fe3c95cbd9f042be3c1c" or read(
+        out / "complete.json"
+    ) != {"sourceReceiptPin": h}:
+        raise ValueError("TP73 source differs")
+    proof = read(out / "exit-verification.json")
+    if not all(
+        proof.get(k)
+        for k in (
+            "nativeExited",
+            "releaseMatches",
+            "sharedLeaseAbsent",
+            "localLeaseAbsent",
+        )
+    ):
+        raise ValueError("TP73 release differs")
+    raw = read(out / "receipt.json")["result"]
+    q24 = raw["q24"]
+    if (
+        q24["receiptPin"] != read(ROOT / "Q24-transfer.json")["receiptPin"]
+        or q24["wholeAuthors"] != 2993
+    ):
+        raise ValueError("TP73 is not bound to the original Q24 export")
+    blog = raw["blog"]
+    blog["readings"] = {k: tag_keys(table) for k, table in blog["readings"].items()}
+    if (blog["support"]["sourceAuthors"], blog["support"]["sourceRows"]) != (
+        q24["wholeAuthors"],
+        q24["rows"],
+    ):
+        raise ValueError("Source cohort differs")
+    public = PUBLIC / "readers-tp73-competence-2026-11.json"
+    ledger = "E-TP73-TP51-20261127"
+    put(
+        public,
+        {
+            "card": "TP73",
+            "arm": "TP51 blog extension",
+            "sourceReceiptPin": h,
+            "q24ReceiptPin": q24["receiptPin"],
+            "q20ReceiptPin": raw["q20"],
+            "originalExport": {
+                "rows": q24["rows"],
+                "valid": q24["valid"],
+                "wholeAuthors": q24["wholeAuthors"],
+            },
+            "ledger": ledger,
+            "blog": blog,
+            "productionAdmission": False,
+        },
+    )
+    curiosity = {
+        k: blog["readings"][k]["curiosity"]["competence"] for k in ("between", "within")
+    }
+    append(
+        PUBLIC / "EVIDENCE_LEDGER.jsonl",
+        {
+            "id": ledger,
+            "date": "2026-11-27",
+            "family": "Round 37 whole-author panel",
+            "claims": ["N1"],
+            "question": "How do the prespecified tag and competence contrasts behave across and within blog authors?",
+            "data": public.as_posix(),
+            "estimate": {k: v["value"] for k, v in curiosity.items()},
+            "interval": {k: v["interval"] for k, v in curiosity.items()},
+            "bar": "Curiosity–competence correlation at least 0.30 between authors and negative within authors.",
+            "verdict": "Both registered curiosity contrasts miss.",
+            "limit": "One reader and a selected set of authors with enough openings. Matched CU controls are pending.",
+        },
+    )
+    return {"public": public.as_posix(), "sourceReceiptPin": h, "sha256": pin(public)}
+
+
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
-    p.add_argument("result", choices=["TP71", "Q26", "TP61-d"])
+    p.add_argument("result", choices=["TP71", "Q26", "TP61-d", "TP73-TP51"])
     choice = p.parse_args().result
-    print(json.dumps({"TP71": display, "Q26": throughput, "TP61-d": slope}[choice]()))
+    print(
+        json.dumps(
+            {
+                "TP71": display,
+                "Q26": throughput,
+                "TP61-d": slope,
+                "TP73-TP51": whole_author_competence,
+            }[choice]()
+        )
+    )

@@ -72,7 +72,7 @@ def render(measured):
             who,
             question,
             result.get("estimate", "—"),
-            result.get("p", "—"),
+            result["p"] if result.get("p") is not None else "—",
             place,
             result.get("verdict", "Pending"),
         ]

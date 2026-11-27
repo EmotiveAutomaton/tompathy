@@ -1,21 +1,21 @@
-Both GPUs are running the same standing-mark study, Q27 on Spark and G12 on the workstation. The card queue has verified TP61’s author vectors and measured TP62’s trained estimates. Spark lacks an in-place route to the talk-page and long-story files for Q33 and Q30. The workstation can open both at their held locations.
+Both GPUs are running the standing-mark study, Q27 on Spark and G12 on the workstation. The card queue is running TP62 controls after TP73’s first result. Spark lacks an in-place route to the talk-page and long-story files for Q33 and Q30. The workstation can open both at their held locations.
 
 # Two-day engine return · November 27–29
 
 ## Against, and clear
 
-The first landing changes display and export wording. The scientific contrasts in the family table are pending.
+Worry’s within-author slope exceeded the 99.5th percentile of both control families. Four isotropic and three rotated heads equaled or exceeded it, so the prediction that none would do so failed. In the whole-author blog return, curiosity’s correlation with competence fell below 0.30 between authors and was positive within authors. Both of those predictions missed.
 
 ## Registered predictions
 
-The table covers the curator’s, theory thread’s, published accounts’ and analyst’s predictions in sections 4 and 7. All 35 entries currently await a test. [TP78 family table](result-sheets/TP78.md)
+The table covers 35 registered predictions. It includes the measured TP61 slope and TP62 trained estimates. Their full multi-part tests still have outstanding components. [TP78 family table](result-sheets/TP78.md)
 
 ## Readouts
 
 | Card | Recorded state | Sheet or registered protocol |
 |---|---|---|
 | TP71 · Display and exports | Landed. Acceptance is shown beside Respect. Wanting and amusement are the reader labels. SHAME carries its scope flag. The Meaning row is hidden. | [TP71 change list](result-sheets/TP71.md) |
-| TP61 · Random-head controls | Both required score checks passed. The largest absolute tag difference was 0.00000226512 on 24,850 chat texts and zero on the first 8,192 blog openings. The blog placebo difference was zero. The tolerance was 0.00001. Author comparisons remain pending. | [TP61](result-sheets/TP61.md) |
+| TP61 · Random-head controls | Score reconstruction passed. The slope of 0.12711 exceeded both 99.5th percentiles. Seven of 7,600 heads reached it. Other comparisons remain open. | [TP61](result-sheets/TP61.md) |
 | TP62 · Content and style | Trained word accuracy was 35.21% and trained writer accuracy was 1.76%. The comparison with 200 isotropic and 200 rotated sets is pending. | [TP62](result-sheets/TP62.md) |
 | TP70 · Blind grouping | Word profiles are available. The blog arm needs TP61’s author vectors. | Section 4 |
 | TP64 · Channel checks | Saved forecasts are available. SHAME’s scope flag remains in force. | Section 4 |
@@ -27,7 +27,7 @@ The table covers the curator’s, theory thread’s, published accounts’ and a
 | TP66 · Order during loss | The short arm precedes the blog and story arms. | Section 4 |
 | TP67 · Whose rise | The first comparison uses saved inputs. The three-way comparison needs Q27. | Section 4 |
 | TP72 · Sealed bundle v2 | Pending its place in the section 6 queue, two invented-data rehearsals and a verified manifest. Sounding Line retains the TP58 rehearsal bundle. | Section 4 |
-| TP73 · Whole authors | Awaits Q24’s registered 08:00 Pacific exit and verified whole-author export. | Section 4 |
+| TP73 · Whole authors | Q24 returned 2,993 whole authors. The registered competence arm is complete. Its curiosity contrasts miss both bars. Other arms remain open. | [TP73](result-sheets/TP73.md) |
 | TP74 · Earned standing | Depends on Q27 and the agreement of the relevant fields. | Section 4 |
 | TP75 · Worry and time direction | Depends on Q31’s blog sentence sample. | Section 4 |
 | TP76 · Long recalled stories | The V3 header is readable on the workstation. Spark cannot read the table at its held location. No story has entered this job. | Section 4 |
@@ -53,7 +53,7 @@ Pilot times are wall seconds after loading. Observed totals include job startup 
 | G14 · Event features | <1 | — | — | Follows G12. |
 | G13 · Sentence and loss comparisons | First 100 to size | — | — | Depends on source-specific inputs. |
 | G15 · Workstation filler | Up to 21.6 | — | — | Whole-author selection and exact G11 reuse required. |
-| Q24b · Spark filler | Time remaining | — | — | Starts from the terminal Q24 prefix behind the priority jobs. |
+| Q24b · Spark filler | Time remaining | — | — | Native dispatcher verified at offset 207,795. Parked while Q27 owns the GPU. |
 
 **Q26.** The three widths completed the same 200 texts at 112.59, 112.58 and 113.47 texts per minute. All 173 valid serial answers matched literally at both higher widths. The other 27 violated the earned-rise field rule. A width needed 200 valid matches and higher throughput. Further concurrency work would require a separately approved server trial or a separately registered prompt; neither change was made. [Verified Q26 aggregate](../../engine/validation/readers-q26-throughput-2026-11.json)
 
