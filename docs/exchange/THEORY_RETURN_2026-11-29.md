@@ -1,4 +1,4 @@
-Nov 27 at 10:06 PT, Spark is running Q27 (18,640/43,021), the workstation GPU is running G12 (16,660/43,021), and the card queue is running TP69. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
+Nov 27 at 10:10 PT, Spark is running Q27 (18,980/43,021), the workstation GPU is running G12 (16,960/43,021), and the card queue is between registered stages. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
 
 # Two-day engine return · November 27–29
 
@@ -7,6 +7,8 @@ Nov 27 at 10:06 PT, Spark is running Q27 (18,640/43,021), the workstation GPU is
 Worry’s within-author slope exceeded the 99.5th percentile of both control families. Four isotropic and three rotated heads equaled or exceeded it, so the prediction that none would do so failed. In a separate repeatability test, the difference between worry and median tag repeat was smaller than predicted, at percentile 0.8 of rotated sets. In the whole-author blog return, curiosity’s correlation with competence fell below 0.30 between authors and was positive within authors. Both of those predictions missed.
 
 **TP70 · TP70.1, TP70.3.** Against rotated heads, the component floor was 2 on chat texts and 3 on blog author means. The map’s margins above the rotated bands were 0.187 [0.174, 0.196], 0.129 [0.119, 0.137] in chat and blogs, respectively. [TP70 tables](result-sheets/TP70.md)
+
+**TP69 · TP69.1.** Across 24,850 chat situations, Competence and Respect lifts differed by at least half a standard deviation for 11 of 32 words. Respect and acceptance differed by that much for 6. [Tables](result-sheets/TP69.md)
 
 ## Registered predictions
 
@@ -25,7 +27,7 @@ The table covers 35 registered predictions. TP62 met both directional criteria o
 | TP77 · Reader agreement | On the original sentences, B/W kappa was 0.609 for change (usable), 0.614 for when (usable), 0.444 for whose (weak). | [TP77 · E-TP77-ORIGINAL-20261127](result-sheets/TP77.md) |
 | TP63 · Outside scores | Across 2,379 writers, 0 of 145 correlations exceeded the rotated family bar of 0.088 in absolute value. Worry and emotional stability correlated -0.065 [-0.105, -0.025]. | [TP63 · E-TP63-ORIGINAL-20261127](result-sheets/TP63.md) |
 | TP68 · Embarrassment | SHAME plus PLAY ranked 2 of 45 pairs for embarrassed. The dedicated head’s gain over its strongest covered-word comparator was -0.015 [-0.030, -0.006] AUC. | [TP68 · E-TP68-20261127](result-sheets/TP68.md) |
-| TP69 · Competence and Respect | The three word profiles, the goal-support column and the Respect controls are queued. | [TP69](result-sheets/TP69.md) |
+| TP69 · Competence and Respect | Across 24,850 chat situations, Competence and Respect lifts differed by at least half a standard deviation for 11 of 32 words. Respect and acceptance differed by that much for 6. | [TP69 · E-TP69-20261127](result-sheets/TP69.md) |
 | TP66 · Order during loss | The short loss comparison is queued. The blog and story comparisons await their sources. | [TP66](result-sheets/TP66.md) |
 | TP67 · Whose rise | The own-versus-other responsibility comparison is queued. For the analyst’s one-fifth-SD prediction, each writer draw recalculates the within-word scale among eligible reports. The three-way comparison needs Q27. | [TP67](result-sheets/TP67.md) |
 | TP72 · Sealed bundle v2 | Pending its place in the section 6 queue, two invented-data rehearsals and a verified manifest. Sounding Line retains the TP58 rehearsal bundle. | Section 4 |

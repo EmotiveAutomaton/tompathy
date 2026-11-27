@@ -1,0 +1,4598 @@
+{
+  "sourceDesignPin": "89043eba5fe42f1526ab4a5b190f59e97a4e4178d9b207d33b1efaea4fbf0e46",
+  "sourcePins": {
+    "Q21": "574e724abfdeafbe0ce067a495f21142cc0a557f9a560a1cf796ae816f1e8695",
+    "Q6": "4e51baa2c9ccbc281b35067dd7cb4ce629293cae21b12874f51d1c2bea0cd89b",
+    "TP28": "1bd4094c39de11b271796da1a4b4140c491dd86e483c346982327c51ba3dd56f"
+  },
+  "sourceReports": 24850,
+  "reports": 24850,
+  "writers": 810,
+  "profiles": {
+    "afraid": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            -0.7418662000899723,
+            -0.580986904739887
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.041241326773882606,
+          "validDraws": 2000,
+          "value": -0.6671724872691823
+        },
+        "mean": {
+          "interval": [
+            -0.38383483694169507,
+            -0.28840725122081484
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.023754427323707437,
+          "validDraws": 2000,
+          "value": -0.3393008178425985
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          -0.25827030342871904,
+          -0.09479129187636823
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.04074968563502794,
+        "validDraws": 2000,
+        "value": -0.1792823334518468
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            -0.5519847843830157,
+            -0.41518952523771774
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.035596043170426604,
+          "validDraws": 2000,
+          "value": -0.4878901538173355
+        },
+        "mean": {
+          "interval": [
+            0.15758446844643872,
+            0.1870861866704703
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.0076070268975345565,
+          "validDraws": 2000,
+          "value": 0.17203443896023818
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.38733356011515396,
+          -0.2458510474415246
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.035805893514588266,
+        "validDraws": 2000,
+        "value": -0.3190430711057418
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.19151667028623232,
+            -0.13581794092858188
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.01424530548631444,
+          "validDraws": 2000,
+          "value": -0.1688470827115937
+        },
+        "mean": {
+          "interval": [
+            0.0016623572037064976,
+            0.006553095928177348
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.010994502748625687,
+          "standardError": 0.001282320129113785,
+          "validDraws": 2000,
+          "value": 0.003610107877576138
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            -0.8663289824521083,
+            -0.7632677921889547
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.026415389686370448,
+          "validDraws": 2000,
+          "value": -0.8183618595846361
+        },
+        "mean": {
+          "interval": [
+            1.372228932556279,
+            1.551820951422662
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.047052087129164026,
+          "validDraws": 2000,
+          "value": 1.4554579673776662
+        }
+      },
+      "texts": 797,
+      "writers": 244
+    },
+    "angry": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            -0.5972391776042512,
+            -0.4988517783537763
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.02523559904153898,
+          "validDraws": 2000,
+          "value": -0.5482566121493716
+        },
+        "mean": {
+          "interval": [
+            -0.30457747261067647,
+            -0.2520282903188029
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.013344514007567731,
+          "validDraws": 2000,
+          "value": -0.2780592453628403
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          -0.5418745596029558,
+          -0.3987146931708377
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.2013993003498251,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.036798949203071016,
+        "validDraws": 2000,
+        "value": -0.46925952325336107
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            -0.1429035532304665,
+            -0.008221695969831109
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.9890054972513743,
+          "standardError": 0.03502099165096726,
+          "validDraws": 2000,
+          "value": -0.07899708889601054
+        },
+        "mean": {
+          "interval": [
+            0.24307386505418344,
+            0.27566770205880453
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.008365355525076815,
+          "validDraws": 2000,
+          "value": 0.25865553220169885
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.03241236102572102,
+          0.11470972674320057
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.03811403805861482,
+        "validDraws": 2000,
+        "value": 0.03949313570253811
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.1564038574529811,
+            -0.07466870682418587
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.02158646464632977,
+          "validDraws": 2000,
+          "value": -0.11849022459854865
+        },
+        "mean": {
+          "interval": [
+            0.004762998772428,
+            0.012547989483436973
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.001999000499750125,
+          "standardError": 0.0020571732161445678,
+          "validDraws": 2000,
+          "value": 0.00843395273678466
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            -1.0663719305159025,
+            -1.000681551351174
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.016783467439123553,
+          "validDraws": 2000,
+          "value": -1.0334844864766517
+        },
+        "mean": {
+          "interval": [
+            1.066664532650448,
+            1.1310482587464934
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.01632359965711712,
+          "validDraws": 2000,
+          "value": 1.097334878331402
+        }
+      },
+      "texts": 863,
+      "writers": 246
+    },
+    "annoyed": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            -0.7709706873717793,
+            -0.6921649675577053
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.020254018279235193,
+          "validDraws": 2000,
+          "value": -0.730444236275389
+        },
+        "mean": {
+          "interval": [
+            -0.39171828312883356,
+            -0.34928254255782454
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.010957100799173398,
+          "validDraws": 2000,
+          "value": -0.37025854832719174
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          -0.4821636313394577,
+          -0.3334810031344008
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.004997501249375313,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.03733605769484823,
+        "validDraws": 2000,
+        "value": -0.4074911289102567
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            -0.3825798441911035,
+            -0.26253199078051986
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.03003189385899192,
+          "validDraws": 2000,
+          "value": -0.32295310736513233
+        },
+        "mean": {
+          "interval": [
+            0.19478963461330384,
+            0.21979174338642787
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.006410333187098153,
+          "validDraws": 2000,
+          "value": 0.20718125354066155
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.241740850952435,
+          -0.1142952314396418
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.032277113385886305,
+        "validDraws": 2000,
+        "value": -0.17784157763133598
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.1810246791051972,
+            -0.09874583945527331
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.021055396537371138,
+          "validDraws": 2000,
+          "value": -0.14511152973379635
+        },
+        "mean": {
+          "interval": [
+            0.0026116119332177242,
+            0.01035525019527632
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0079960019990005,
+          "standardError": 0.0019971406212125364,
+          "validDraws": 2000,
+          "value": 0.005914589292624872
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            -0.9872079762580155,
+            -0.9247551951320875
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.016157500895019345,
+          "validDraws": 2000,
+          "value": -0.9561498389209724
+        },
+        "mean": {
+          "interval": [
+            1.1829488833374289,
+            1.279202515657464
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.02400771786913726,
+          "validDraws": 2000,
+          "value": 1.2283105022831051
+        }
+      },
+      "texts": 876,
+      "writers": 246
+    },
+    "anticipating": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            0.06671014258777003,
+            0.23689401910267321
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.04252392977703014,
+          "validDraws": 2000,
+          "value": 0.15063948705192665
+        },
+        "mean": {
+          "interval": [
+            0.03273154646602881,
+            0.12166094772629366
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.022642617166764283,
+          "validDraws": 2000,
+          "value": 0.0767469825220233
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          -0.04409606485369148,
+          0.17969548573764685
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.057909961150575076,
+        "validDraws": 2000,
+        "value": 0.06481168109450317
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            0.005533240459750776,
+            0.1675721968468543
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.01999000499750125,
+          "standardError": 0.041045155960914764,
+          "validDraws": 2000,
+          "value": 0.08582780595742348
+        },
+        "mean": {
+          "interval": [
+            0.27419702346334884,
+            0.3127502874719358
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.009773098700361157,
+          "validDraws": 2000,
+          "value": 0.29354060735378
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          0.1503093307783534,
+          0.30659808008893985
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.03984814441035951,
+        "validDraws": 2000,
+        "value": 0.22762042736823462
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.1674777970771666,
+            -0.11200871683994032
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.0142045323194887,
+          "validDraws": 2000,
+          "value": -0.14179262141081114
+        },
+        "mean": {
+          "interval": [
+            0.0038612022089142863,
+            0.008840183759554194
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.0012874596562257978,
+          "validDraws": 2000,
+          "value": 0.0061609894559246925
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            0.8489753204784632,
+            0.9950261248488922
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.0368823662697547,
+          "validDraws": 2000,
+          "value": 0.9226126714165855
+        },
+        "mean": {
+          "interval": [
+            4.265877032818369,
+            4.515079240826807
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.06353888041060349,
+          "validDraws": 2000,
+          "value": 4.395225464190982
+        }
+      },
+      "texts": 754,
+      "writers": 256
+    },
+    "anxious": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            -0.02328367599891992,
+            0.1371168270796338
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.0814592703648176,
+          "standardError": 0.04142567266383625,
+          "validDraws": 2000,
+          "value": 0.05728949164886592
+        },
+        "mean": {
+          "interval": [
+            -0.01089331309645276,
+            0.07141376579586345
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.09395302348825588,
+          "standardError": 0.021518401966268506,
+          "validDraws": 2000,
+          "value": 0.029163311038137987
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          -0.3543975697385203,
+          -0.14022682025343225
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.054915067206729506,
+        "validDraws": 2000,
+        "value": -0.24454666107253842
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            0.19327114496365913,
+            0.4166687413719555
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.05770189884457104,
+          "validDraws": 2000,
+          "value": 0.30183615272140435
+        },
+        "mean": {
+          "interval": [
+            0.3119026465996137,
+            0.3685131221407948
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.01450513034961191,
+          "validDraws": 2000,
+          "value": 0.3393048198912457
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          0.277220571681106,
+          0.5213829241030569
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.9565217391304348,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.06292938887748643,
+        "validDraws": 2000,
+        "value": 0.39461611183113593
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.14470594792994007,
+            -0.03432178810423955
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.02891111501932897,
+          "validDraws": 2000,
+          "value": -0.09277995910973157
+        },
+        "mean": {
+          "interval": [
+            0.00594569656304631,
+            0.01621824762726749
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0009995002498750624,
+          "standardError": 0.0027503524779536924,
+          "validDraws": 2000,
+          "value": 0.01084163239019187
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            -0.2683053925627661,
+            0.00884775093510052
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.9820089955022488,
+          "standardError": 0.07145250754378367,
+          "validDraws": 2000,
+          "value": -0.13778171317616378
+        },
+        "mean": {
+          "interval": [
+            2.386357211044206,
+            2.8391701379848993
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.11793372690449125,
+          "validDraws": 2000,
+          "value": 2.603359173126615
+        }
+      },
+      "texts": 774,
+      "writers": 247
+    },
+    "apprehensive": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            0.006148555769239994,
+            0.1775599830915679
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.013493253373313344,
+          "standardError": 0.043457581293210916,
+          "validDraws": 2000,
+          "value": 0.09433736867368002
+        },
+        "mean": {
+          "interval": [
+            0.004414503013805622,
+            0.0924929552984313
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.015992003998001,
+          "standardError": 0.02218137978646966,
+          "validDraws": 2000,
+          "value": 0.04835370224582207
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          -0.02277712776919177,
+          0.18448676380730805
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.05252386145785463,
+        "validDraws": 2000,
+        "value": 0.08172908857346065
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            -0.08566565327078404,
+            0.10835551027761152
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.3938030984507746,
+          "standardError": 0.04902706641263767,
+          "validDraws": 2000,
+          "value": 0.012608280100219376
+        },
+        "mean": {
+          "interval": [
+            0.25681717510388935,
+            0.3003460581138852
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.011178962992436701,
+          "validDraws": 2000,
+          "value": 0.27802627830113613
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.029327231660580627,
+          0.1699253252826399
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.05164309440981088,
+        "validDraws": 2000,
+        "value": 0.06972387543626475
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.11678109301218566,
+            0.01043693163927224
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.9705147426286856,
+          "standardError": 0.0323942638494513,
+          "validDraws": 2000,
+          "value": -0.05711559533604537
+        },
+        "mean": {
+          "interval": [
+            0.008637718199173888,
+            0.020235843240244425
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.0030144003330760346,
+          "validDraws": 2000,
+          "value": 0.01420184798017645
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            -0.3957719755838333,
+            -0.24349709975234698
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.037478660793633066,
+          "validDraws": 2000,
+          "value": -0.3204840665063218
+        },
+        "mean": {
+          "interval": [
+            2.1713793596340767,
+            2.420376343204675
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.06253777205174055,
+          "validDraws": 2000,
+          "value": 2.2911184210526314
+        }
+      },
+      "texts": 608,
+      "writers": 273
+    },
+    "ashamed": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            0.7119204905027722,
+            0.9255514293702712
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.05367837688436003,
+          "validDraws": 2000,
+          "value": 0.8270391970684887
+        },
+        "mean": {
+          "interval": [
+            0.3667396592582987,
+            0.4717318198027433
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.02596523183616301,
+          "validDraws": 2000,
+          "value": 0.4235587125148243
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          0.5362591564999579,
+          0.8419091488028484
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.00849575212393803,
+        "pointAtLeastHalfSD": true,
+        "standardError": 0.07757649702088792,
+        "validDraws": 2000,
+        "value": 0.6927960595660361
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            0.0357273458357675,
+            0.23162407062969836
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.005997001499250375,
+          "standardError": 0.04933477613883755,
+          "validDraws": 2000,
+          "value": 0.13424313750245265
+        },
+        "mean": {
+          "interval": [
+            0.2818389904669614,
+            0.328692369082435
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.011595942831857978,
+          "validDraws": 2000,
+          "value": 0.30395883727483064
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.06463080570860215,
+          0.15408421332522867
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.0562491662394719,
+        "validDraws": 2000,
+        "value": 0.048676094018691426
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            0.0010006036913961693,
+            0.18216420930209468
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.04397801099450275,
+          "standardError": 0.04607917947827712,
+          "validDraws": 2000,
+          "value": 0.08556704348376122
+        },
+        "mean": {
+          "interval": [
+            0.019277498334217928,
+            0.03739269859986902
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.0045950655528599876,
+          "validDraws": 2000,
+          "value": 0.027882131264353495
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            -0.9073288868999476,
+            -0.7390040620449012
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.0435907048307653,
+          "validDraws": 2000,
+          "value": -0.8267377953387941
+        },
+        "mean": {
+          "interval": [
+            1.3049785489301617,
+            1.58241984912777
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.07137435042179666,
+          "validDraws": 2000,
+          "value": 1.4315286624203822
+        }
+      },
+      "texts": 628,
+      "writers": 287
+    },
+    "caring": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            0.4126634226706821,
+            0.6789698001907218
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.06685396961919755,
+          "validDraws": 2000,
+          "value": 0.5514353983222269
+        },
+        "mean": {
+          "interval": [
+            0.2146830617748539,
+            0.34451371032002925
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.03268050808127243,
+          "validDraws": 2000,
+          "value": 0.28177010250054846
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          0.9440748069343567,
+          1.2679734725892569
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "pointAtLeastHalfSD": true,
+        "standardError": 0.08267999000207348,
+        "validDraws": 2000,
+        "value": 1.1087525180597404
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            -0.6420770312718453,
+            -0.47891530809776856
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.04261462070148772,
+          "validDraws": 2000,
+          "value": -0.5573171197375136
+        },
+        "mean": {
+          "interval": [
+            0.13924596693020228,
+            0.17256897171034993
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.00875244070683277,
+          "validDraws": 2000,
+          "value": 0.15677535149548544
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.5371005053201269,
+          -0.36430003035489084
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.12243878060969515,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.04462191695555429,
+        "validDraws": 2000,
+        "value": -0.44719998015510853
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.1551324723180154,
+            -0.05511289887459374
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.025473018323771704,
+          "validDraws": 2000,
+          "value": -0.11011713958240509
+        },
+        "mean": {
+          "interval": [
+            0.005001448176575334,
+            0.01422834619837561
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0009995002498750624,
+          "standardError": 0.002363677628911417,
+          "validDraws": 2000,
+          "value": 0.009150272356079845
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            0.5192296817721376,
+            0.7251160316681164
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.05272398647934057,
+          "validDraws": 2000,
+          "value": 0.6210777721956234
+        },
+        "mean": {
+          "interval": [
+            3.72739808730499,
+            4.048727386280836
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.08101319954365457,
+          "validDraws": 2000,
+          "value": 3.888726207906296
+        }
+      },
+      "texts": 683,
+      "writers": 276
+    },
+    "confident": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            1.0334276800405169,
+            1.1935375149390257
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.04013918650502748,
+          "validDraws": 2000,
+          "value": 1.108743024756928
+        },
+        "mean": {
+          "interval": [
+            0.527031953086554,
+            0.6074724314369507
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.02069576993961071,
+          "validDraws": 2000,
+          "value": 0.5641496112288313
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          -0.42823053175936315,
+          -0.1856128331206337
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0024987506246876563,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.0608520164374117,
+        "validDraws": 2000,
+        "value": -0.31104230844138225
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            1.3135655559729813,
+            1.5140888113611561
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.05176990130340524,
+          "validDraws": 2000,
+          "value": 1.4197853331983104
+        },
+        "mean": {
+          "interval": [
+            0.5505644920968503,
+            0.600830740507446
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.01320152817238255,
+          "validDraws": 2000,
+          "value": 0.5760978004647072
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          0.6006409190144697,
+          0.9633614260943173
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "pointAtLeastHalfSD": true,
+        "standardError": 0.09089942737680812,
+        "validDraws": 2000,
+        "value": 0.7862194476638471
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            0.48540936885952607,
+            0.7899487003630784
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.07788016001481987,
+          "validDraws": 2000,
+          "value": 0.6335658855344632
+        },
+        "mean": {
+          "interval": [
+            0.0642591918146403,
+            0.09672576775324099
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.008316776104359838,
+          "validDraws": 2000,
+          "value": 0.08001280144410591
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            1.061537345654565,
+            1.159523667149272
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.024886229734950208,
+          "validDraws": 2000,
+          "value": 1.1115442791950843
+        },
+        "mean": {
+          "interval": [
+            4.650853493019926,
+            4.767361556296344
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.029906543517586853,
+          "validDraws": 2000,
+          "value": 4.712101910828025
+        }
+      },
+      "texts": 785,
+      "writers": 264
+    },
+    "content": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            0.41972839718709254,
+            0.6090638046725064
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.048229924351393304,
+          "validDraws": 2000,
+          "value": 0.5123395612196476
+        },
+        "mean": {
+          "interval": [
+            0.21819609221888467,
+            0.31023182810253574
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.024308023709068996,
+          "validDraws": 2000,
+          "value": 0.26120811473646605
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          0.5877486203027517,
+          0.7933462323673756
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "pointAtLeastHalfSD": true,
+        "standardError": 0.05344463198307632,
+        "validDraws": 2000,
+        "value": 0.6916702584756129
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            -0.27104557449041217,
+            -0.07911689114641687
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.04863771968492605,
+          "validDraws": 2000,
+          "value": -0.17933069725596526
+        },
+        "mean": {
+          "interval": [
+            0.21684280698923852,
+            0.25993477223966516
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.010814250263177188,
+          "validDraws": 2000,
+          "value": 0.23727122046422844
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.1081469580247304,
+          0.08468916329257743
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.04898743786193059,
+        "validDraws": 2000,
+        "value": -0.015286203595215486
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.1839587653175754,
+            -0.13972472569447095
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.010877066033493374,
+          "validDraws": 2000,
+          "value": -0.16404449366074977
+        },
+        "mean": {
+          "interval": [
+            0.0023181354352227092,
+            0.006103462898736786
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.001999000499750125,
+          "standardError": 0.0009967841163849634,
+          "validDraws": 2000,
+          "value": 0.004028264138237994
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            0.9673630902593893,
+            1.0647843858896529
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.025084591963283793,
+          "validDraws": 2000,
+          "value": 1.0172113030523013
+        },
+        "mean": {
+          "interval": [
+            4.485309189455531,
+            4.623298692370403
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.03482748785045746,
+          "validDraws": 2000,
+          "value": 4.556309362279512
+        }
+      },
+      "texts": 737,
+      "writers": 269
+    },
+    "devastated": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            -0.8690903079157949,
+            -0.7241257094104981
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.03693357308564351,
+          "validDraws": 2000,
+          "value": -0.7964188034681119
+        },
+        "mean": {
+          "interval": [
+            -0.44908870560274766,
+            -0.3634815848872232
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.02174031148880258,
+          "validDraws": 2000,
+          "value": -0.4064623415060644
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          -0.583668572962657,
+          -0.3588031061726904
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.35082458770614694,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.05868467794676148,
+        "validDraws": 2000,
+        "value": -0.4699694677711554
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            -0.4336903166684825,
+            -0.21456548992500218
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.05679080927769901,
+          "validDraws": 2000,
+          "value": -0.3264493356969565
+        },
+        "mean": {
+          "interval": [
+            0.1837923848371291,
+            0.2301799033772824
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.012052651752617407,
+          "validDraws": 2000,
+          "value": 0.20597215142150818
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.2952826960321831,
+          -0.06307099994241697
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.058672622963342545,
+        "validDraws": 2000,
+        "value": -0.18516821729663696
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.1691861212688749,
+            -0.10714487545810161
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.015741707619616487,
+          "validDraws": 2000,
+          "value": -0.14128111840031954
+        },
+        "mean": {
+          "interval": [
+            0.0036246816999573168,
+            0.009199691480468895
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.001440772130044956,
+          "validDraws": 2000,
+          "value": 0.00618628036075606
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            -1.0765206358797736,
+            -1.0047607213788232
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.01907260843802573,
+          "validDraws": 2000,
+          "value": -1.0405441287542307
+        },
+        "mean": {
+          "interval": [
+            1.043036995285919,
+            1.107197962912127
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.016824202996178466,
+          "validDraws": 2000,
+          "value": 1.074438202247191
+        }
+      },
+      "texts": 712,
+      "writers": 272
+    },
+    "disappointed": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            -0.5938673186001191,
+            -0.468629685171158
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.031601558218814156,
+          "validDraws": 2000,
+          "value": -0.5318582506692697
+        },
+        "mean": {
+          "interval": [
+            -0.30692256373506865,
+            -0.23119463534611415
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.019252292522579064,
+          "validDraws": 2000,
+          "value": -0.27078830881870786
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          -0.8640933355358582,
+          -0.6816942742748864
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "pointAtLeastHalfSD": true,
+        "standardError": 0.0463926349523609,
+        "validDraws": 2000,
+        "value": -0.7714450757051269
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            0.1483448663065754,
+            0.3345997183360945
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.048144452550520696,
+          "validDraws": 2000,
+          "value": 0.23958682503585718
+        },
+        "mean": {
+          "interval": [
+            0.3025990933895721,
+            0.3508607124306302
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.01218786785501898,
+          "validDraws": 2000,
+          "value": 0.3261205616903232
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          0.13309037705427482,
+          0.3738529929125668
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.060388038729354936,
+        "validDraws": 2000,
+        "value": 0.2563579754552019
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.09132052191583216,
+            0.07581774814609975
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.6251874062968515,
+          "standardError": 0.043915081926061,
+          "validDraws": 2000,
+          "value": -0.016771150419344735
+        },
+        "mean": {
+          "interval": [
+            0.010844361323887542,
+            0.027372203994878472
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0009995002498750624,
+          "standardError": 0.004272989133099586,
+          "validDraws": 2000,
+          "value": 0.01808270289962984
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            -0.9886839014672941,
+            -0.8992891315406192
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.02299874794052799,
+          "validDraws": 2000,
+          "value": -0.9456345690796952
+        },
+        "mean": {
+          "interval": [
+            1.1835919212312733,
+            1.3
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.029205731135886176,
+          "validDraws": 2000,
+          "value": 1.238961038961039
+        }
+      },
+      "texts": 770,
+      "writers": 259
+    },
+    "disgusted": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            -0.5626364522874339,
+            -0.4547358449411694
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.027903718368953608,
+          "validDraws": 2000,
+          "value": -0.5078421380038213
+        },
+        "mean": {
+          "interval": [
+            -0.28470436615905487,
+            -0.23006384457647525
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.013978945408891266,
+          "validDraws": 2000,
+          "value": -0.2583782967724082
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          -0.007370784994856596,
+          0.16942074634628673
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.045767600385439616,
+        "validDraws": 2000,
+        "value": 0.08385580672211579
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            -0.6515857127957986,
+            -0.5218639016766012
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.032103509244695495,
+          "validDraws": 2000,
+          "value": -0.5916979447259371
+        },
+        "mean": {
+          "interval": [
+            0.13763679966098624,
+            0.16386914594874205
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.0067729849517879324,
+          "validDraws": 2000,
+          "value": 0.15000306182967627
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.4741268990481579,
+          -0.35406822261185916
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.005497251374312844,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.031243959311680912,
+        "validDraws": 2000,
+        "value": -0.41541039619693854
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.20092766066759432,
+            -0.13429158557675264
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.017743226673161874,
+          "validDraws": 2000,
+          "value": -0.17628754852899856
+        },
+        "mean": {
+          "interval": [
+            0.0007784671074502273,
+            0.0067548629765626774
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.06896551724137931,
+          "standardError": 0.001661666686426815,
+          "validDraws": 2000,
+          "value": 0.002894958376233289
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            -1.0451601865683595,
+            -0.9824709415139381
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.015971505341572614,
+          "validDraws": 2000,
+          "value": -1.0133573857454645
+        },
+        "mean": {
+          "interval": [
+            1.0874972345132743,
+            1.1693690888896369
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.020690182551166107,
+          "validDraws": 2000,
+          "value": 1.1257941550190598
+        }
+      },
+      "texts": 787,
+      "writers": 244
+    },
+    "embarrassed": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            0.22108159991408283,
+            0.347210054029738
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.032207680532807696,
+          "validDraws": 2000,
+          "value": 0.28569388770188836
+        },
+        "mean": {
+          "interval": [
+            0.11558030469055648,
+            0.17457108010425193
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.015014966464413287,
+          "validDraws": 2000,
+          "value": 0.1456383284943292
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          0.018044600197092114,
+          0.19998295883203404
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.046741695552382,
+        "validDraws": 2000,
+        "value": 0.11145243062914739
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            0.1087714893459449,
+            0.2504069640155167
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.03522321118133164,
+          "validDraws": 2000,
+          "value": 0.17424145707274097
+        },
+        "mean": {
+          "interval": [
+            0.2966672146042979,
+            0.32930579273226884
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.008334992346932737,
+          "validDraws": 2000,
+          "value": 0.31231542685223507
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          0.02147636988186373,
+          0.2066780927667442
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.0468223983904014,
+        "validDraws": 2000,
+        "value": 0.1143058930502627
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.01728233069330011,
+            0.14291773277922207
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.07196401799100449,
+          "standardError": 0.0403373095852351,
+          "validDraws": 2000,
+          "value": 0.059935564022478266
+        },
+        "mean": {
+          "interval": [
+            0.018173987717951024,
+            0.03339871144648689
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.003851388724143586,
+          "validDraws": 2000,
+          "value": 0.025398857281897533
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            -1.0266561695189043,
+            -0.9480909730469911
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.019926760642490736,
+          "validDraws": 2000,
+          "value": -0.9882765198715513
+        },
+        "mean": {
+          "interval": [
+            1.124996387283237,
+            1.2088845551560143
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.02133635988123536,
+          "validDraws": 2000,
+          "value": 1.164864864864865
+        }
+      },
+      "texts": 740,
+      "writers": 281
+    },
+    "excited": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            0.2182394530522692,
+            0.34436360939171007
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.0322368582265699,
+          "validDraws": 2000,
+          "value": 0.28359391480109475
+        },
+        "mean": {
+          "interval": [
+            0.10752203737133104,
+            0.17803193263402486
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.018351389089488603,
+          "validDraws": 2000,
+          "value": 0.1433805811478526
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          0.15347924401650714,
+          0.36699614036882244
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.054255314379398,
+        "validDraws": 2000,
+        "value": 0.25829846607277207
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            -0.04391603341351437,
+            0.09567737740110405
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.248375812093953,
+          "standardError": 0.03637458122345489,
+          "validDraws": 2000,
+          "value": 0.02529544872832267
+        },
+        "mean": {
+          "interval": [
+            0.26290877958978265,
+            0.2988758771122558
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.009232232346517523,
+          "validDraws": 2000,
+          "value": 0.28066016828768464
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.02853227748771604,
+          0.16381562005423433
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.04849460592440446,
+        "validDraws": 2000,
+        "value": 0.06972985898080133
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.09688896838348748,
+            0.015247942439088372
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.9385307346326837,
+          "standardError": 0.029424013681336864,
+          "validDraws": 2000,
+          "value": -0.04443441025247867
+        },
+        "mean": {
+          "interval": [
+            0.01044560468941144,
+            0.02113121310938197
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.0027670299814711694,
+          "validDraws": 2000,
+          "value": 0.015476333962140806
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            1.1429232922217272,
+            1.2219016621927754
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.02032535915341156,
+          "validDraws": 2000,
+          "value": 1.1816199273404775
+        },
+        "mean": {
+          "interval": [
+            4.775844398660979,
+            4.860215701515741
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.021461952983560028,
+          "validDraws": 2000,
+          "value": 4.817697228144989
+        }
+      },
+      "texts": 938,
+      "writers": 263
+    },
+    "faithful": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            0.9304319771409392,
+            1.2442035923542807
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.07908223696781391,
+          "validDraws": 2000,
+          "value": 1.085828714397897
+        },
+        "mean": {
+          "interval": [
+            0.47940377922613403,
+            0.6405091898460255
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.04122476874491175,
+          "validDraws": 2000,
+          "value": 0.5595385566553346
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          0.9490583260860386,
+          1.3377023952889846
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "pointAtLeastHalfSD": true,
+        "standardError": 0.0973623764573442,
+        "validDraws": 2000,
+        "value": 1.1427094148590402
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            -0.13898358548986212,
+            0.025511330455171004
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.9160419790104948,
+          "standardError": 0.041761668600103684,
+          "validDraws": 2000,
+          "value": -0.0568807004611432
+        },
+        "mean": {
+          "interval": [
+            0.24540898880038203,
+            0.28138803313408456
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.009414462794582456,
+          "validDraws": 2000,
+          "value": 0.2631326302687256
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.19265990016932322,
+          0.04939431984020828
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.061683177761600025,
+        "validDraws": 2000,
+        "value": -0.06544259054414014
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.090035124066448,
+            0.13084219681046536
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.4362818590704648,
+          "standardError": 0.05689838428531607,
+          "validDraws": 2000,
+          "value": 0.008561890082996952
+        },
+        "mean": {
+          "interval": [
+            0.010891951501322583,
+            0.03283371202507673
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0014992503748125937,
+          "standardError": 0.0056620471653289735,
+          "validDraws": 2000,
+          "value": 0.020506467783123386
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            0.5817849120852786,
+            0.7626370798785418
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.04591586144727858,
+          "validDraws": 2000,
+          "value": 0.676055264784209
+        },
+        "mean": {
+          "interval": [
+            3.8381852954599784,
+            4.135700102925672
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.07718663943944314,
+          "validDraws": 2000,
+          "value": 3.99163179916318
+        }
+      },
+      "texts": 478,
+      "writers": 274
+    },
+    "furious": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            -0.5922065804750156,
+            -0.4938186359913841
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.025278938156469744,
+          "validDraws": 2000,
+          "value": -0.5454150109779968
+        },
+        "mean": {
+          "interval": [
+            -0.3043456921363552,
+            -0.24826402818145596
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.014620987855907625,
+          "validDraws": 2000,
+          "value": -0.27781739875376765
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          -0.5153236561144677,
+          -0.38360714929973416
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.059470264867566215,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.03406170071079852,
+        "validDraws": 2000,
+        "value": -0.4473132752778173
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            -0.16639936825072357,
+            -0.023029532415980106
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.9965017491254373,
+          "standardError": 0.036434354963850835,
+          "validDraws": 2000,
+          "value": -0.09810173570017952
+        },
+        "mean": {
+          "interval": [
+            0.23938480600733691,
+            0.2719621540162457
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.008247353505450649,
+          "validDraws": 2000,
+          "value": 0.25453178213998784
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.06449110384935874,
+          0.08673722145543317
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.0381345397025261,
+        "validDraws": 2000,
+        "value": 0.010982124928423598
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.15297481795558007,
+            -0.0536760445129278
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.025175279776625786,
+          "validDraws": 2000,
+          "value": -0.10908386062860312
+        },
+        "mean": {
+          "interval": [
+            0.0051797959215142035,
+            0.014443859601008722
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0009995002498750624,
+          "standardError": 0.002359001353009976,
+          "validDraws": 2000,
+          "value": 0.009281889939107628
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            -1.0758330659703914,
+            -1.011033415098798
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.016664261244363474,
+          "validDraws": 2000,
+          "value": -1.043742715019165
+        },
+        "mean": {
+          "interval": [
+            1.045661487542521,
+            1.1064374743687386
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.015570125276852193,
+          "validDraws": 2000,
+          "value": 1.0724637681159421
+        }
+      },
+      "texts": 759,
+      "writers": 237
+    },
+    "grateful": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            -0.061335941071208856,
+            0.10316461282422397
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.3378310844577711,
+          "standardError": 0.04222391217869861,
+          "validDraws": 2000,
+          "value": 0.017293604704790112
+        },
+        "mean": {
+          "interval": [
+            -0.032889340687478355,
+            0.05370479553201922
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.3523238380809595,
+          "standardError": 0.022585934723552914,
+          "validDraws": 2000,
+          "value": 0.008788346683984294
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          -0.17413515607306249,
+          0.0109617256339446
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.04697466881116917,
+        "validDraws": 2000,
+        "value": -0.08332587528485302
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            0.03768497486841728,
+            0.1681870965906834
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.001999000499750125,
+          "standardError": 0.032994009144063426,
+          "validDraws": 2000,
+          "value": 0.10061947998964313
+        },
+        "mean": {
+          "interval": [
+            0.2828522584076893,
+            0.31036009704609296
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.0070843168063897885,
+          "validDraws": 2000,
+          "value": 0.29662402816825967
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.018348847310015865,
+          0.21290688134146557
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.05834525469269962,
+        "validDraws": 2000,
+        "value": 0.10255660342323261
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.0844467601648427,
+            0.09108156538603712
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.49325337331334335,
+          "standardError": 0.045120271043827716,
+          "validDraws": 2000,
+          "value": -0.0019371234335894849
+        },
+        "mean": {
+          "interval": [
+            0.011117052404343245,
+            0.029839713321858124
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0009995002498750624,
+          "standardError": 0.004829068759037233,
+          "validDraws": 2000,
+          "value": 0.01949651584809957
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            0.8544556109988671,
+            0.9701037333917266
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.029938549526195006,
+          "validDraws": 2000,
+          "value": 0.9132290340094376
+        },
+        "mean": {
+          "interval": [
+            4.292024227888365,
+            4.457126636959471
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.041405700182378616,
+          "validDraws": 2000,
+          "value": 4.375460122699386
+        }
+      },
+      "texts": 815,
+      "writers": 245
+    },
+    "guilty": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            1.0207462126198226,
+            1.1831050679185495
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.04206078416920205,
+          "validDraws": 2000,
+          "value": 1.1021230817288452
+        },
+        "mean": {
+          "interval": [
+            0.5212068932713221,
+            0.6001142282284355
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.020457389107096626,
+          "validDraws": 2000,
+          "value": 0.5613638272269212
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          1.1266479663881293,
+          1.3455049164816966
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "pointAtLeastHalfSD": true,
+        "standardError": 0.055275411176717186,
+        "validDraws": 2000,
+        "value": 1.2353891448017527
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            -0.19904554816428827,
+            -0.06357433375966372
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.035142431653829555,
+          "validDraws": 2000,
+          "value": -0.13326606307290745
+        },
+        "mean": {
+          "interval": [
+            0.23216608188817164,
+            0.2623616323304636
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.007746929337551494,
+          "validDraws": 2000,
+          "value": 0.24707582653375024
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.2768413957027145,
+          -0.08870150597485811
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.04861417095327536,
+        "validDraws": 2000,
+        "value": -0.17998523011956713
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.03513849426821381,
+            0.13279554123859438
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.14192903548225888,
+          "standardError": 0.04265893632539723,
+          "validDraws": 2000,
+          "value": 0.04671916704665968
+        },
+        "mean": {
+          "interval": [
+            0.016140256481973203,
+            0.03283952779418598
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.004304573684829247,
+          "validDraws": 2000,
+          "value": 0.024134259664836212
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            -0.794576712354533,
+            -0.659285319250701
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.03489696890137794,
+          "validDraws": 2000,
+          "value": -0.7307766974598117
+        },
+        "mean": {
+          "interval": [
+            1.4980487393152555,
+            1.7192664751326916
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.05608971345852244,
+          "validDraws": 2000,
+          "value": 1.6013157894736842
+        }
+      },
+      "texts": 760,
+      "writers": 242
+    },
+    "hopeful": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            0.4170313425481637,
+            0.5803576692793638
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.042772075493862007,
+          "validDraws": 2000,
+          "value": 0.49541643566739857
+        },
+        "mean": {
+          "interval": [
+            0.20236514528105898,
+            0.30249553937487755
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.0258821107458504,
+          "validDraws": 2000,
+          "value": 0.25211923684499715
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          -0.24262040286834027,
+          -0.010095092813890797
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.060714730935781204,
+        "validDraws": 2000,
+        "value": -0.12607883597368008
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            0.5211228508042317,
+            0.7208861541236417
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.050920385964684206,
+          "validDraws": 2000,
+          "value": 0.6214952716410787
+        },
+        "mean": {
+          "interval": [
+            0.38099487105128965,
+            0.432559263141445
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.013052459745985468,
+          "validDraws": 2000,
+          "value": 0.4070128784825098
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          0.5548483546788575,
+          0.7832798277361565
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.0004997501249375312,
+        "pointAtLeastHalfSD": true,
+        "standardError": 0.057276498876631624,
+        "validDraws": 2000,
+        "value": 0.6702882654238017
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.10068405405174125,
+            0.007448698769004145
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.9650174912543729,
+          "standardError": 0.028123109633390955,
+          "validDraws": 2000,
+          "value": -0.048792993782723074
+        },
+        "mean": {
+          "interval": [
+            0.010010448068851686,
+            0.02078739508032377
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.0027893234740015475,
+          "validDraws": 2000,
+          "value": 0.015033608659621047
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            0.7737579659789536,
+            0.8836796343826429
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.027652256930706345,
+          "validDraws": 2000,
+          "value": 0.8298441372639873
+        },
+        "mean": {
+          "interval": [
+            4.147939573332619,
+            4.314343072755418
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.042548494922062995,
+          "validDraws": 2000,
+          "value": 4.236875800256082
+        }
+      },
+      "texts": 781,
+      "writers": 256
+    },
+    "impressed": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            -0.34182607740741894,
+            -0.18789058307503195
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.03896093869366642,
+          "validDraws": 2000,
+          "value": -0.26145258237978575
+        },
+        "mean": {
+          "interval": [
+            -0.17510622326509787,
+            -0.09208120280048872
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.021283007572126412,
+          "validDraws": 2000,
+          "value": -0.13292150308907538
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          -1.2022465753423286,
+          -0.9334279850168711
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "pointAtLeastHalfSD": true,
+        "standardError": 0.06679624081129718,
+        "validDraws": 2000,
+        "value": -1.0650429533077526
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            0.6964804580099718,
+            0.9133376121120057
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.05555492047407026,
+          "validDraws": 2000,
+          "value": 0.8035903709279668
+        },
+        "mean": {
+          "interval": [
+            0.4195828318207197,
+            0.47068677809519993
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.013091191486460176,
+          "validDraws": 2000,
+          "value": 0.4454238706883803
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          0.14846807583174493,
+          0.48243754063049976
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.9850074962518741,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.08494750595090814,
+        "validDraws": 2000,
+        "value": 0.31618553513193587
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            0.34741253910913894,
+            0.6476217007141095
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.07764687407534701,
+          "validDraws": 2000,
+          "value": 0.48740483579603094
+        },
+        "mean": {
+          "interval": [
+            0.051109730955404255,
+            0.0839511562208668
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.008278192382816473,
+          "validDraws": 2000,
+          "value": 0.06605587132905096
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            0.6017900092052236,
+            0.7448204975412265
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.03646980595318425,
+          "validDraws": 2000,
+          "value": 0.6740059167989977
+        },
+        "mean": {
+          "interval": [
+            3.8661390328582343,
+            4.077934180215671
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.054781061287146965,
+          "validDraws": 2000,
+          "value": 3.972670807453416
+        }
+      },
+      "texts": 805,
+      "writers": 253
+    },
+    "jealous": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            -0.6991063078831574,
+            -0.5712868599657251
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.03196488895248976,
+          "validDraws": 2000,
+          "value": -0.6337004773878716
+        },
+        "mean": {
+          "interval": [
+            -0.35311804066105645,
+            -0.2919235953883381
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.01584053314064158,
+          "validDraws": 2000,
+          "value": -0.3228140596429896
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          -1.0242355055627785,
+          -0.8002599165721697
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "pointAtLeastHalfSD": true,
+        "standardError": 0.05665549624988279,
+        "validDraws": 2000,
+        "value": -0.9081125535671917
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            0.17382889105765031,
+            0.3847334349823129
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.05372786832145088,
+          "validDraws": 2000,
+          "value": 0.27441207617932
+        },
+        "mean": {
+          "interval": [
+            0.31112814091774194,
+            0.3580285311322804
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.012062509453136012,
+          "validDraws": 2000,
+          "value": 0.33353381430329404
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.04253945849839093,
+          0.210942694460126
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.0633487893915663,
+        "validDraws": 2000,
+        "value": 0.0848852191138453
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            0.0912072832679593,
+            0.3027165306468479
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0009995002498750624,
+          "standardError": 0.053742041898595556,
+          "validDraws": 2000,
+          "value": 0.1895268570654747
+        },
+        "mean": {
+          "interval": [
+            0.027766804810255372,
+            0.04940177463479417
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.00556164123155838,
+          "validDraws": 2000,
+          "value": 0.03774966586893956
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            -0.7766862630867808,
+            -0.6530726229103679
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.030978711707082402,
+          "validDraws": 2000,
+          "value": -0.7159855382609113
+        },
+        "mean": {
+          "interval": [
+            1.5271421429418162,
+            1.731146737988217
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.051838947820047714,
+          "validDraws": 2000,
+          "value": 1.6261558784676353
+        }
+      },
+      "texts": 757,
+      "writers": 266
+    },
+    "joyful": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            0.1793782082890923,
+            0.28753130135976784
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.02793602258169053,
+          "validDraws": 2000,
+          "value": 0.23243751661616163
+        },
+        "mean": {
+          "interval": [
+            0.08783758218843059,
+            0.1497691323542154
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.016054004024581507,
+          "validDraws": 2000,
+          "value": 0.11834236274666762
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          0.12826432794829795,
+          0.3005006116027757
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.04451676013127387,
+        "validDraws": 2000,
+        "value": 0.21373620983551245
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            -0.05660598063127051,
+            0.09254158702552599
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.3268365817091454,
+          "standardError": 0.03922311744780583,
+          "validDraws": 2000,
+          "value": 0.01870130678064917
+        },
+        "mean": {
+          "interval": [
+            0.2599635884979311,
+            0.29831306711396405
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.009709810114373366,
+          "validDraws": 2000,
+          "value": 0.2792998271729411
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.06590538708148537,
+          0.11307020214529581
+        ],
+        "nearBar": false,
+        "pAboveBar": 1.0,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.04611222272692046,
+        "validDraws": 2000,
+        "value": 0.020823068287836442
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.07973293921557666,
+            0.09196863733442782
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.4752623688155922,
+          "standardError": 0.044031376720916844,
+          "validDraws": 2000,
+          "value": -0.0021217615071872707
+        },
+        "mean": {
+          "interval": [
+            0.011883257837579432,
+            0.028127847368438572
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.004189181868525634,
+          "validDraws": 2000,
+          "value": 0.019478577575427806
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            1.0964217093240551,
+            1.1875572448493192
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.02294842156651381,
+          "validDraws": 2000,
+          "value": 1.140597035183664
+        },
+        "mean": {
+          "interval": [
+            4.713952909869258,
+            4.8097982708933715
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.024322835227590003,
+          "validDraws": 2000,
+          "value": 4.7623376623376625
+        }
+      },
+      "texts": 770,
+      "writers": 247
+    },
+    "lonely": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            -0.4129969143966726,
+            -0.23912288562051706
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.04376417775126451,
+          "validDraws": 2000,
+          "value": -0.32600034360922914
+        },
+        "mean": {
+          "interval": [
+            -0.21191147773334096,
+            -0.12164401297603171
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.023043683117516842,
+          "validDraws": 2000,
+          "value": -0.1656753053500336
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          0.3136192313262461,
+          0.5105110207449005
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.9485257371314343,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.05011989815944387,
+        "validDraws": 2000,
+        "value": 0.41549995138411366
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            -0.8007418543016919,
+            -0.6770659576245542
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.031554466485904244,
+          "validDraws": 2000,
+          "value": -0.7415002949933428
+        },
+        "mean": {
+          "interval": [
+            0.10596061585325094,
+            0.1318203911204893
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.006523481062187435,
+          "validDraws": 2000,
+          "value": 0.11844835894174639
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.6839774612136227,
+          -0.5378912977295932
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.999000499750125,
+        "pointAtLeastHalfSD": true,
+        "standardError": 0.03701535386832557,
+        "validDraws": 2000,
+        "value": -0.612585673077406
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.17102874142023888,
+            -0.07835424884672702
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.02362784508701174,
+          "validDraws": 2000,
+          "value": -0.1289146219159369
+        },
+        "mean": {
+          "interval": [
+            0.00356396578721693,
+            0.01215892834368783
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0024987506246876563,
+          "standardError": 0.0021941574938004254,
+          "validDraws": 2000,
+          "value": 0.007419498924490001
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            -0.7051249283888138,
+            -0.5924668707513668
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.029317311604827312,
+          "validDraws": 2000,
+          "value": -0.6504140002153203
+        },
+        "mean": {
+          "interval": [
+            1.632734422262553,
+            1.8400505260243631
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.0514951052401919,
+          "validDraws": 2000,
+          "value": 1.7395577395577395
+        }
+      },
+      "texts": 814,
+      "writers": 251
+    },
+    "nostalgic": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            -0.19660483839497178,
+            -0.048067423574503394
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.037853437836935025,
+          "validDraws": 2000,
+          "value": -0.12148280916126597
+        },
+        "mean": {
+          "interval": [
+            -0.09864602937353806,
+            -0.024069465100082985
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.019189624694489368,
+          "validDraws": 2000,
+          "value": -0.06187955475219731
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          0.4879968763699493,
+          0.6552789892549684
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.050974512743628186,
+        "pointAtLeastHalfSD": true,
+        "standardError": 0.042865218630871935,
+        "validDraws": 2000,
+        "value": 0.570848039720586
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            -0.7454087080387845,
+            -0.6382857794034252
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.02771523015672843,
+          "validDraws": 2000,
+          "value": -0.6923308488818519
+        },
+        "mean": {
+          "interval": [
+            0.11722964663328801,
+            0.1394067538235615
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.0056348409828044736,
+          "validDraws": 2000,
+          "value": 0.12851649029429496
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.59789588804634,
+          -0.4809046059749717
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.8810594702648675,
+        "pointAtLeastHalfSD": true,
+        "standardError": 0.030601241404274015,
+        "validDraws": 2000,
+        "value": -0.5380485275471513
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.18716574962587318,
+            -0.11375492725386058
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.019208404300549254,
+          "validDraws": 2000,
+          "value": -0.15428232133470066
+        },
+        "mean": {
+          "interval": [
+            0.002027419046859916,
+            0.008858516254212825
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.005997001499250375,
+          "standardError": 0.001714304153699867,
+          "validDraws": 2000,
+          "value": 0.004973163624354357
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            0.37456212997027555,
+            0.4943179179968829
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.03130351067456849,
+          "validDraws": 2000,
+          "value": 0.43235104620239495
+        },
+        "mean": {
+          "interval": [
+            3.4638746330699974,
+            3.6824626256395367
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.05686706218462919,
+          "validDraws": 2000,
+          "value": 3.5665349143610015
+        }
+      },
+      "texts": 759,
+      "writers": 253
+    },
+    "prepared": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            1.0266911875997378,
+            1.189186879641167
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.04017233848905202,
+          "validDraws": 2000,
+          "value": 1.1053343924087202
+        },
+        "mean": {
+          "interval": [
+            0.5202771686182693,
+            0.6078104676857349
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.021977382963159882,
+          "validDraws": 2000,
+          "value": 0.5628592768144648
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          0.4318800052253637,
+          0.7261210404422368
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.19090454772613694,
+        "pointAtLeastHalfSD": true,
+        "standardError": 0.07383576959776172,
+        "validDraws": 2000,
+        "value": 0.572052026771239
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            0.3867287571593955,
+            0.6718187516084133
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.07109312288652532,
+          "validDraws": 2000,
+          "value": 0.5332823656374812
+        },
+        "mean": {
+          "interval": [
+            0.35451016137311053,
+            0.4210251481176355
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.016815762209933607,
+          "validDraws": 2000,
+          "value": 0.3883934923199327
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          0.32645218235895246,
+          0.6059996375602389
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.6526736631684158,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.0711474070539245,
+        "validDraws": 2000,
+        "value": 0.4695773160424917
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.020081368499371657,
+            0.1502781672953665
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.079960019990005,
+          "standardError": 0.04448204765314276,
+          "validDraws": 2000,
+          "value": 0.06370504959498952
+        },
+        "mean": {
+          "interval": [
+            0.017323853086041074,
+            0.034209520637930965
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.004452779981777132,
+          "validDraws": 2000,
+          "value": 0.02575192799501174
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            0.923348505155081,
+            1.0222487662830655
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.02553439334735411,
+          "validDraws": 2000,
+          "value": 0.9727344575472795
+        },
+        "mean": {
+          "interval": [
+            4.399520559070139,
+            4.548882307608706
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.03888272141418477,
+          "validDraws": 2000,
+          "value": 4.47911227154047
+        }
+      },
+      "texts": 766,
+      "writers": 268
+    },
+    "proud": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            0.5698429598137457,
+            0.7982725244661304
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.05853971981942107,
+          "validDraws": 2000,
+          "value": 0.6837602834051998
+        },
+        "mean": {
+          "interval": [
+            0.28334575594332484,
+            0.413197167223826
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.032885509513117514,
+          "validDraws": 2000,
+          "value": 0.34672479890267577
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          -0.7400262225954922,
+          -0.429134411745255
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.8490754622688655,
+        "pointAtLeastHalfSD": true,
+        "standardError": 0.07968102925690371,
+        "validDraws": 2000,
+        "value": -0.5842411679171547
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            1.1596519329721269,
+            1.3852862063491553
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.05944967996650196,
+          "validDraws": 2000,
+          "value": 1.2680014513223545
+        },
+        "mean": {
+          "interval": [
+            0.5160174144648182,
+            0.5703941720486252
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.014227896002436284,
+          "validDraws": 2000,
+          "value": 0.5430291983719276
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          0.6275297042758794,
+          0.9039435588301878
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "pointAtLeastHalfSD": true,
+        "standardError": 0.07090401869203598,
+        "validDraws": 2000,
+        "value": 0.7615757356882169
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            0.3721716134232534,
+            0.6449179550970596
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.07021402186778788,
+          "validDraws": 2000,
+          "value": 0.5064257156341376
+        },
+        "mean": {
+          "interval": [
+            0.05319893734934797,
+            0.08374812561311124
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.007986459706747592,
+          "validDraws": 2000,
+          "value": 0.06774140677671847
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            1.0408869769144855,
+            1.153921825445312
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.029142978341733204,
+          "validDraws": 2000,
+          "value": 1.096561670973617
+        },
+        "mean": {
+          "interval": [
+            4.6095893391215625,
+            4.751634527983379
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.03760088592106948,
+          "validDraws": 2000,
+          "value": 4.680507497116493
+        }
+      },
+      "texts": 867,
+      "writers": 254
+    },
+    "sad": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            -0.7737690352867905,
+            -0.6504509541209376
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.03186003710928041,
+          "validDraws": 2000,
+          "value": -0.7118197156076749
+        },
+        "mean": {
+          "interval": [
+            -0.3933041532485098,
+            -0.32620700644011147
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.017564408361559484,
+          "validDraws": 2000,
+          "value": -0.3611038287539072
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          -0.22648047906074395,
+          -0.08410810390251452
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.037203524298461535,
+        "validDraws": 2000,
+        "value": -0.15612323303128905
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            -0.6140984198903123,
+            -0.4974152521487329
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.03045962816945991,
+          "validDraws": 2000,
+          "value": -0.5556964825763858
+        },
+        "mean": {
+          "interval": [
+            0.14490669635961717,
+            0.1704266569332105
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.006554379968633433,
+          "validDraws": 2000,
+          "value": 0.1579712571526418
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.4606154658578369,
+          -0.34941360597252014
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0009995002498750624,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.028278350334890665,
+        "validDraws": 2000,
+        "value": -0.40477935684101185
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.17687105519385432,
+            -0.12209837330989674
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.014288962993875021,
+          "validDraws": 2000,
+          "value": -0.15091712573537394
+        },
+        "mean": {
+          "interval": [
+            0.003030707451823203,
+            0.008257291825747892
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.0013274347085231513,
+          "validDraws": 2000,
+          "value": 0.005352488663112504
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            -0.9919834130816384,
+            -0.8940636130285416
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.02543714507459777,
+          "validDraws": 2000,
+          "value": -0.9440636869165211
+        },
+        "mean": {
+          "interval": [
+            1.1813309224210213,
+            1.317831926205683
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.03465742991895208,
+          "validDraws": 2000,
+          "value": 1.2473745624270711
+        }
+      },
+      "texts": 857,
+      "writers": 241
+    },
+    "sentimental": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            -0.32156633205915935,
+            -0.14507281484642578
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.04463311575650776,
+          "validDraws": 2000,
+          "value": -0.23251214004788676
+        },
+        "mean": {
+          "interval": [
+            -0.16314482764806043,
+            -0.07191135890176757
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.023124184725404544,
+          "validDraws": 2000,
+          "value": -0.11873431743801156
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          0.3018161605320494,
+          0.5230167160870879
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.935032483758121,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.05708940517117608,
+        "validDraws": 2000,
+        "value": 0.41298413267424205
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            -0.712015865335451,
+            -0.581236785628951
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.03376893229832311,
+          "validDraws": 2000,
+          "value": -0.6454962727221288
+        },
+        "mean": {
+          "interval": [
+            0.12480096228738943,
+            0.15153319552140482
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.006907081394256447,
+          "validDraws": 2000,
+          "value": 0.13810186458047707
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.6912128805033148,
+          -0.4954183769999001
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.953023488255872,
+        "pointAtLeastHalfSD": true,
+        "standardError": 0.04918393684826459,
+        "validDraws": 2000,
+        "value": -0.5872160287977218
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.13986362662933186,
+            0.043224953005185966
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.9020489755122438,
+          "standardError": 0.04632453368751428,
+          "validDraws": 2000,
+          "value": -0.05828024392440702
+        },
+        "mean": {
+          "interval": [
+            0.006234774939071343,
+            0.024854916095007572
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.004997501249375313,
+          "standardError": 0.004588752647277544,
+          "validDraws": 2000,
+          "value": 0.014110882797011438
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            0.174658508743515,
+            0.3609634245462283
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.048845065698703186,
+          "validDraws": 2000,
+          "value": 0.2693440245311186
+        },
+        "mean": {
+          "interval": [
+            3.138877118644068,
+            3.453625284556382
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.08354221379508535,
+          "validDraws": 2000,
+          "value": 3.292263610315186
+        }
+      },
+      "texts": 698,
+      "writers": 275
+    },
+    "surprised": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            -0.5233546015524572,
+            -0.4029842937236879
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.03120761766661949,
+          "validDraws": 2000,
+          "value": -0.4654238043951531
+        },
+        "mean": {
+          "interval": [
+            -0.2633053711121209,
+            -0.19731754226426898
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.016805068318810668,
+          "validDraws": 2000,
+          "value": -0.23195520702478842
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          -0.47018711657603146,
+          -0.3437906613068776
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.0029985007496251873,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.0323085734442286,
+        "validDraws": 2000,
+        "value": -0.40753161630323254
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            -0.11775654524908051,
+            0.003230024691688693
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.9730134932533733,
+          "standardError": 0.030718355796561212,
+          "validDraws": 2000,
+          "value": -0.05789218809192052
+        },
+        "mean": {
+          "interval": [
+            0.2485143345862408,
+            0.2774025786392105
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.007409781397098625,
+          "validDraws": 2000,
+          "value": 0.26332382135533444
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.11446319334057199,
+          0.036005792016817806
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.03800705439389424,
+        "validDraws": 2000,
+        "value": -0.03941508161141693
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.07158425193986351,
+            0.0428432214087865
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.7296351824087957,
+          "standardError": 0.02981028655870286,
+          "validDraws": 2000,
+          "value": -0.01847710648050359
+        },
+        "mean": {
+          "interval": [
+            0.012579166266590757,
+            0.02436134166342656
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.0029394698975985793,
+          "validDraws": 2000,
+          "value": 0.017957365341355565
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            0.400925130550419,
+            0.5891658264485433
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.04823774884401071,
+          "validDraws": 2000,
+          "value": 0.49221145223842605
+        },
+        "mean": {
+          "interval": [
+            3.4971060930829103,
+            3.8030922016629183
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.0771278205399482,
+          "validDraws": 2000,
+          "value": 3.6497263487099296
+        }
+      },
+      "texts": 1279,
+      "writers": 302
+    },
+    "terrified": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            -0.8564071404329617,
+            -0.6758733682964085
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.04611430325012999,
+          "validDraws": 2000,
+          "value": -0.7698838638847493
+        },
+        "mean": {
+          "interval": [
+            -0.43844408614024644,
+            -0.3389517193816517
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.025886966908722338,
+          "validDraws": 2000,
+          "value": -0.3917804372802569
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          -0.26234546969254685,
+          -0.11507053524266342
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.037620662586159474,
+        "validDraws": 2000,
+        "value": -0.19076553384937378
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            -0.6430208029736929,
+            -0.5117304380893668
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.033328209087237576,
+          "validDraws": 2000,
+          "value": -0.5791183300353755
+        },
+        "mean": {
+          "interval": [
+            0.138820197679285,
+            0.1659048806072175
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.0067485277915060385,
+          "validDraws": 2000,
+          "value": 0.1526421703290455
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.4571869509941596,
+          -0.32586710839284866
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0009995002498750624,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.033140336492130044,
+        "validDraws": 2000,
+        "value": -0.3920146432694348
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            -0.20470810477659465,
+            -0.1642347726134562
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.010176717085015826,
+          "validDraws": 2000,
+          "value": -0.18710368676594066
+        },
+        "mean": {
+          "interval": [
+            0.0004590753346490971,
+            0.0038379624796735816
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.031984007996002,
+          "standardError": 0.0008991496276159955,
+          "validDraws": 2000,
+          "value": 0.0018613627079529468
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            -0.9139387777496553,
+            -0.7736427913697758
+          ],
+          "nearBar": false,
+          "pAboveBar": 1.0,
+          "standardError": 0.03544716426647525,
+          "validDraws": 2000,
+          "value": -0.8497964337384512
+        },
+        "mean": {
+          "interval": [
+            1.2946143721902357,
+            1.5363535824593237
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.06052456351627741,
+          "validDraws": 2000,
+          "value": 1.4015345268542199
+        }
+      },
+      "texts": 782,
+      "writers": 246
+    },
+    "trusting": {
+      "Competence": {
+        "lift": {
+          "interval": [
+            0.24149819269091363,
+            0.4063874040052705
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.04200664639481175,
+          "validDraws": 2000,
+          "value": 0.3256581648757768
+        },
+        "mean": {
+          "interval": [
+            0.12126259064975708,
+            0.2112698164400126
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.022798011560627433,
+          "validDraws": 2000,
+          "value": 0.16662375496745402
+        }
+      },
+      "CompetenceMinusRespect": {
+        "interval": [
+          0.2535762180592168,
+          0.5505080368066788
+        ],
+        "nearBar": true,
+        "pAboveBar": 0.9110444777611194,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.07491952869174663,
+        "validDraws": 2000,
+        "value": 0.39716640230152245
+      },
+      "Respect": {
+        "lift": {
+          "interval": [
+            -0.17845957131491072,
+            0.03196812401965487
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.9035482258870565,
+          "standardError": 0.05445371849536663,
+          "validDraws": 2000,
+          "value": -0.07150823742574565
+        },
+        "mean": {
+          "interval": [
+            0.23736374056472342,
+            0.28077665937612994
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.011241806705877962,
+          "validDraws": 2000,
+          "value": 0.2601033545404699
+        }
+      },
+      "RespectMinusacceptance": {
+        "interval": [
+          -0.34411667159432613,
+          -0.08362133350068976
+        ],
+        "nearBar": false,
+        "pAboveBar": 0.0004997501249375312,
+        "pointAtLeastHalfSD": false,
+        "standardError": 0.06609138572372561,
+        "validDraws": 2000,
+        "value": -0.21728802476162618
+      },
+      "acceptance": {
+        "lift": {
+          "interval": [
+            0.030384300751010767,
+            0.28707140270063586
+          ],
+          "nearBar": true,
+          "pAboveBar": 0.021989005497251374,
+          "standardError": 0.06670093213843495,
+          "validDraws": 2000,
+          "value": 0.14577978733588054
+        },
+        "mean": {
+          "interval": [
+            0.02192771805102573,
+            0.047856210584185925
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.006688543759869938,
+          "validDraws": 2000,
+          "value": 0.03364009984233409
+        }
+      },
+      "goal support": {
+        "lift": {
+          "interval": [
+            0.25669831903988755,
+            0.5799470971517274
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.08274040862604752,
+          "validDraws": 2000,
+          "value": 0.42787439523935866
+        },
+        "mean": {
+          "interval": [
+            3.2577947060634043,
+            3.811865571453807
+          ],
+          "nearBar": false,
+          "pAboveBar": 0.0004997501249375312,
+          "standardError": 0.14143203943790578,
+          "validDraws": 2000,
+          "value": 3.5622119815668203
+        }
+      },
+      "texts": 651,
+      "writers": 331
+    }
+  },
+  "linearRespect": {
+    "afraid": {
+      "iso": {
+        "band": [
+          -0.6594443752286538,
+          0.013663603932865307,
+          0.6966878310370155
+        ],
+        "percentile": 7.4
+      },
+      "rot": {
+        "band": [
+          -0.6117811196791365,
+          -0.004469336617521501,
+          0.6480784192877597
+        ],
+        "percentile": 5.1
+      },
+      "trained": -0.5106553087866126
+    },
+    "angry": {
+      "iso": {
+        "band": [
+          -0.5397091486308617,
+          0.007395011494439878,
+          0.46513640454551175
+        ],
+        "percentile": 51.9
+      },
+      "rot": {
+        "band": [
+          -0.5013604524590677,
+          0.0013173804199536553,
+          0.5411662357507846
+        ],
+        "percentile": 53.0
+      },
+      "trained": 0.021740379162356605
+    },
+    "annoyed": {
+      "iso": {
+        "band": [
+          -0.5287277818653808,
+          0.001017481412581609,
+          0.52571105178477
+        ],
+        "percentile": 19.2
+      },
+      "rot": {
+        "band": [
+          -0.49189268341222736,
+          0.013250655814320353,
+          0.5353197762574928
+        ],
+        "percentile": 19.0
+      },
+      "trained": -0.2429702571788771
+    },
+    "anticipating": {
+      "iso": {
+        "band": [
+          -0.6622979225577295,
+          -0.004108666640611186,
+          0.6389082561901983
+        ],
+        "percentile": 56.8
+      },
+      "rot": {
+        "band": [
+          -0.6806058993510707,
+          0.008489355568630789,
+          0.6869005951597192
+        ],
+        "percentile": 57.0
+      },
+      "trained": 0.07506667159884498
+    },
+    "anxious": {
+      "iso": {
+        "band": [
+          -0.5860069921244812,
+          -0.010186577907018799,
+          0.5879112893014689
+        ],
+        "percentile": 80.3
+      },
+      "rot": {
+        "band": [
+          -0.5685283356211305,
+          0.003778574650868356,
+          0.6038285481138185
+        ],
+        "percentile": 79.3
+      },
+      "trained": 0.26302797092834507
+    },
+    "apprehensive": {
+      "iso": {
+        "band": [
+          -0.508388280435301,
+          0.006793976746619858,
+          0.519534407571872
+        ],
+        "percentile": 46.1
+      },
+      "rot": {
+        "band": [
+          -0.5191878254804256,
+          -0.007473197778653072,
+          0.49605586294065795
+        ],
+        "percentile": 48.3
+      },
+      "trained": -0.020211946942560705
+    },
+    "ashamed": {
+      "iso": {
+        "band": [
+          -0.4712856342011769,
+          0.000861286078354859,
+          0.48621349181276036
+        ],
+        "percentile": 80.6
+      },
+      "rot": {
+        "band": [
+          -0.4729079337020871,
+          0.00016441112127000418,
+          0.46626656813265
+        ],
+        "percentile": 81.4
+      },
+      "trained": 0.21711185639451863
+    },
+    "caring": {
+      "iso": {
+        "band": [
+          -0.6494138540120991,
+          0.00035444753711270515,
+          0.5939179106707043
+        ],
+        "percentile": 2.5
+      },
+      "rot": {
+        "band": [
+          -0.599701726787957,
+          -0.00916039944814542,
+          0.5748806788732757
+        ],
+        "percentile": 1.3
+      },
+      "trained": -0.6495254887510385
+    },
+    "confident": {
+      "iso": {
+        "band": [
+          -0.6581701919719136,
+          -0.011529509166927032,
+          0.6610034287558022
+        ],
+        "percentile": 100.0
+      },
+      "rot": {
+        "band": [
+          -0.6386143128656505,
+          0.006122583794207687,
+          0.6517829459108254
+        ],
+        "percentile": 100.0
+      },
+      "trained": 1.2966084238218065
+    },
+    "content": {
+      "iso": {
+        "band": [
+          -0.6086296984119589,
+          -0.005912757368597815,
+          0.5918581323948067
+        ],
+        "percentile": 31.1
+      },
+      "rot": {
+        "band": [
+          -0.603358969985993,
+          -0.006921991558861941,
+          0.6119310376667497
+        ],
+        "percentile": 31.6
+      },
+      "trained": -0.16331291170855947
+    },
+    "devastated": {
+      "iso": {
+        "band": [
+          -0.5401225517485099,
+          -0.004636791453401533,
+          0.5631859575919993
+        ],
+        "percentile": 11.0
+      },
+      "rot": {
+        "band": [
+          -0.5862203879484297,
+          0.0027747761598878556,
+          0.549590059478003
+        ],
+        "percentile": 12.3
+      },
+      "trained": -0.3494113993882912
+    },
+    "disappointed": {
+      "iso": {
+        "band": [
+          -0.367361377822844,
+          0.0061935175890118575,
+          0.3529979524162291
+        ],
+        "percentile": 90.0
+      },
+      "rot": {
+        "band": [
+          -0.37020924892095125,
+          0.00293310644962901,
+          0.3833704445423863
+        ],
+        "percentile": 89.6
+      },
+      "trained": 0.25218488596852634
+    },
+    "disgusted": {
+      "iso": {
+        "band": [
+          -0.6819272773733842,
+          0.01549949217520798,
+          0.7209339535603602
+        ],
+        "percentile": 4.1
+      },
+      "rot": {
+        "band": [
+          -0.7184220288584021,
+          -0.005910813683032324,
+          0.6986248826023822
+        ],
+        "percentile": 5.6
+      },
+      "trained": -0.6045517239554157
+    },
+    "embarrassed": {
+      "iso": {
+        "band": [
+          -0.6512673136324963,
+          -0.0021792710184766893,
+          0.6904097896551797
+        ],
+        "percentile": 79.5
+      },
+      "rot": {
+        "band": [
+          -0.6660685454564474,
+          0.00486920133972284,
+          0.6583354474772527
+        ],
+        "percentile": 79.8
+      },
+      "trained": 0.2770079096848864
+    },
+    "excited": {
+      "iso": {
+        "band": [
+          -0.647763950019998,
+          -0.005942196263806012,
+          0.6192976263902987
+        ],
+        "percentile": 52.7
+      },
+      "rot": {
+        "band": [
+          -0.6096645806680523,
+          0.030132664703348827,
+          0.6200604447151239
+        ],
+        "percentile": 49.3
+      },
+      "trained": 0.026558977670170923
+    },
+    "faithful": {
+      "iso": {
+        "band": [
+          -0.6796515591020235,
+          0.019915288665673127,
+          0.6168939170213253
+        ],
+        "percentile": 46.4
+      },
+      "rot": {
+        "band": [
+          -0.6657347765462979,
+          -0.016490067954052,
+          0.684388396914886
+        ],
+        "percentile": 50.8
+      },
+      "trained": -0.011103360761237835
+    },
+    "furious": {
+      "iso": {
+        "band": [
+          -0.5880437213959342,
+          0.015475281554834066,
+          0.5351067049110226
+        ],
+        "percentile": 49.5
+      },
+      "rot": {
+        "band": [
+          -0.5655106324331798,
+          -0.0022630304256650788,
+          0.5879579325510526
+        ],
+        "percentile": 50.9
+      },
+      "trained": 0.007536080567100384
+    },
+    "grateful": {
+      "iso": {
+        "band": [
+          -0.49096917247760774,
+          0.013481248422432453,
+          0.5217442528602518
+        ],
+        "percentile": 72.7
+      },
+      "rot": {
+        "band": [
+          -0.5106536071419213,
+          -0.014091412303831425,
+          0.4852574273700311
+        ],
+        "percentile": 74.7
+      },
+      "trained": 0.17299209025416906
+    },
+    "guilty": {
+      "iso": {
+        "band": [
+          -0.5307206857644252,
+          0.007240017099752279,
+          0.5076536280933922
+        ],
+        "percentile": 45.7
+      },
+      "rot": {
+        "band": [
+          -0.5200631890177572,
+          0.0018526560864247157,
+          0.5456882735500707
+        ],
+        "percentile": 46.7
+      },
+      "trained": -0.02174594609271418
+    },
+    "hopeful": {
+      "iso": {
+        "band": [
+          -0.6200714617454463,
+          -0.004964266094371681,
+          0.6153896527913053
+        ],
+        "percentile": 96.2
+      },
+      "rot": {
+        "band": [
+          -0.5396795415144615,
+          -0.011377658047067342,
+          0.5287721704562501
+        ],
+        "percentile": 98.1
+      },
+      "trained": 0.5661301100228565
+    },
+    "impressed": {
+      "iso": {
+        "band": [
+          -0.554241159123246,
+          0.013877576678213863,
+          0.5128794400470765
+        ],
+        "percentile": 99.9
+      },
+      "rot": {
+        "band": [
+          -0.5150368776232415,
+          -0.003242534601228588,
+          0.557845299052522
+        ],
+        "percentile": 99.7
+      },
+      "trained": 0.7395039177851556
+    },
+    "jealous": {
+      "iso": {
+        "band": [
+          -0.5588338136770071,
+          0.003403063784077131,
+          0.5844816793663812
+        ],
+        "percentile": 83.4
+      },
+      "rot": {
+        "band": [
+          -0.5674080170255574,
+          -0.014502118539614063,
+          0.575223271616356
+        ],
+        "percentile": 86.2
+      },
+      "trained": 0.3040081939621719
+    },
+    "joyful": {
+      "iso": {
+        "band": [
+          -0.5072565121274589,
+          -0.004598550520096551,
+          0.4844650862447173
+        ],
+        "percentile": 57.0
+      },
+      "rot": {
+        "band": [
+          -0.5244587052124116,
+          0.013369597170935485,
+          0.5347447829867433
+        ],
+        "percentile": 53.7
+      },
+      "trained": 0.03878663908626973
+    },
+    "lonely": {
+      "iso": {
+        "band": [
+          -0.7991378128306268,
+          -0.0048631113721472555,
+          0.7863784230508541
+        ],
+        "percentile": 1.8
+      },
+      "rot": {
+        "band": [
+          -0.7981957947767877,
+          -0.012438886923823847,
+          0.7645557153813745
+        ],
+        "percentile": 2.0
+      },
+      "trained": -0.8174901071093514
+    },
+    "nostalgic": {
+      "iso": {
+        "band": [
+          -0.7736053775567875,
+          -0.004415906580666595,
+          0.7189591882054537
+        ],
+        "percentile": 2.4
+      },
+      "rot": {
+        "band": [
+          -0.793614604014922,
+          0.008386284455747989,
+          0.7677785841355595
+        ],
+        "percentile": 2.7
+      },
+      "trained": -0.774745629267018
+    },
+    "prepared": {
+      "iso": {
+        "band": [
+          -0.6901257987171585,
+          -0.013612697991359774,
+          0.6431904665988555
+        ],
+        "percentile": 93.1
+      },
+      "rot": {
+        "band": [
+          -0.7197993795688574,
+          -0.013008407348760204,
+          0.688534091070596
+        ],
+        "percentile": 92.6
+      },
+      "trained": 0.5183910257813251
+    },
+    "proud": {
+      "iso": {
+        "band": [
+          -0.6372986840991708,
+          -0.005226971223993562,
+          0.6375704729091535
+        ],
+        "percentile": 100.0
+      },
+      "rot": {
+        "band": [
+          -0.6418370016995164,
+          0.009372637910306268,
+          0.610510236619527
+        ],
+        "percentile": 100.0
+      },
+      "trained": 1.2021904726971469
+    },
+    "sad": {
+      "iso": {
+        "band": [
+          -0.51627347386279,
+          -0.0017093523535985835,
+          0.5377941372151296
+        ],
+        "percentile": 1.1
+      },
+      "rot": {
+        "band": [
+          -0.5577283795593267,
+          0.011262867974532829,
+          0.5154479394026866
+        ],
+        "percentile": 1.4
+      },
+      "trained": -0.6133007620657858
+    },
+    "sentimental": {
+      "iso": {
+        "band": [
+          -0.6609110683016628,
+          -0.004052880139316042,
+          0.6102373825981485
+        ],
+        "percentile": 1.3
+      },
+      "rot": {
+        "band": [
+          -0.6190856709551666,
+          -0.002427326279364485,
+          0.6495801924557403
+        ],
+        "percentile": 0.8
+      },
+      "trained": -0.7275445336259285
+    },
+    "surprised": {
+      "iso": {
+        "band": [
+          -0.42430959902622767,
+          0.003940982475222647,
+          0.4215225452265427
+        ],
+        "percentile": 46.2
+      },
+      "rot": {
+        "band": [
+          -0.40090053530541303,
+          0.00743583285653044,
+          0.43003467553100716
+        ],
+        "percentile": 45.0
+      },
+      "trained": -0.020179541977695992
+    },
+    "terrified": {
+      "iso": {
+        "band": [
+          -0.8057759976602434,
+          0.012450545269652901,
+          0.7858846070097479
+        ],
+        "percentile": 7.4
+      },
+      "rot": {
+        "band": [
+          -0.664185259475599,
+          -0.009348004936178763,
+          0.7422892730084162
+        ],
+        "percentile": 4.7
+      },
+      "trained": -0.5858633237460601
+    },
+    "trusting": {
+      "iso": {
+        "band": [
+          -0.543725373791655,
+          0.01570149604444119,
+          0.5660078684160151
+        ],
+        "percentile": 43.5
+      },
+      "rot": {
+        "band": [
+          -0.556040705450348,
+          -0.008458302149446375,
+          0.5331967636476004
+        ],
+        "percentile": 45.7
+      },
+      "trained": -0.03600242757390679
+    }
+  },
+  "draws": 2000,
+  "setsPerFamily": 1000,
+  "card": "TP69",
+  "sourceReceiptPin": "33b33438c2bf95017dc3fcb8b58183011c14f09427c71a0a1e93e0a579a0e525",
+  "productionAdmission": false,
+  "license": "EmpatheticDialogues used for research under CC BY-NC 4.0.",
+  "ledger": "E-TP69-20261127"
+}
