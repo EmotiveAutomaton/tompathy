@@ -1,4 +1,4 @@
-Nov 27 at 10:10 PT, Spark is running Q27 (18,980/43,021), the workstation GPU is running G12 (16,960/43,021), and the card queue is between registered stages. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
+Nov 27 at 10:10 PT, Spark is running Q27 (19,000/43,021), the workstation GPU is running G12 (16,960/43,021), and the card queue is paused after pride-scale-queue reported a stop. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
 
 # Two-day engine return · November 27–29
 
@@ -9,6 +9,8 @@ Worry’s within-author slope exceeded the 99.5th percentile of both control fam
 **TP70 · TP70.1, TP70.3.** Against rotated heads, the component floor was 2 on chat texts and 3 on blog author means. The map’s margins above the rotated bands were 0.187 [0.174, 0.196], 0.129 [0.119, 0.137] in chat and blogs, respectively. [TP70 tables](result-sheets/TP70.md)
 
 **TP69 · TP69.1.** Across 24,850 chat situations, Competence and Respect lifts differed by at least half a standard deviation for 11 of 32 words. Respect and acceptance differed by that much for 6. [Tables](result-sheets/TP69.md)
+
+**TP66 · TP66.analyst.** After matching sentence counts, the SADNESS-minus-FEAR timing difference between loss and other texts was -0.014 [-0.058, 0.032] in chat and 0.268 [0.184, 0.352] in recalled events. [Tables](result-sheets/TP66.md)
 
 ## Registered predictions
 
@@ -28,7 +30,7 @@ The table covers 35 registered predictions. TP62 met both directional criteria o
 | TP63 · Outside scores | Across 2,379 writers, 0 of 145 correlations exceeded the rotated family bar of 0.088 in absolute value. Worry and emotional stability correlated -0.065 [-0.105, -0.025]. | [TP63 · E-TP63-ORIGINAL-20261127](result-sheets/TP63.md) |
 | TP68 · Embarrassment | SHAME plus PLAY ranked 2 of 45 pairs for embarrassed. The dedicated head’s gain over its strongest covered-word comparator was -0.015 [-0.030, -0.006] AUC. | [TP68 · E-TP68-20261127](result-sheets/TP68.md) |
 | TP69 · Competence and Respect | Across 24,850 chat situations, Competence and Respect lifts differed by at least half a standard deviation for 11 of 32 words. Respect and acceptance differed by that much for 6. | [TP69 · E-TP69-20261127](result-sheets/TP69.md) |
-| TP66 · Order during loss | The short loss comparison is queued. The blog and story comparisons await their sources. | [TP66](result-sheets/TP66.md) |
+| TP66 · Order during loss | After matching sentence counts, the SADNESS-minus-FEAR timing difference between loss and other texts was -0.014 [-0.058, 0.032] in chat and 0.268 [0.184, 0.352] in recalled events. | [TP66 · E-TP66-SHORT-20261127](result-sheets/TP66.md) |
 | TP67 · Whose rise | The own-versus-other responsibility comparison is queued. For the analyst’s one-fifth-SD prediction, each writer draw recalculates the within-word scale among eligible reports. The three-way comparison needs Q27. | [TP67](result-sheets/TP67.md) |
 | TP72 · Sealed bundle v2 | Pending its place in the section 6 queue, two invented-data rehearsals and a verified manifest. Sounding Line retains the TP58 rehearsal bundle. | Section 4 |
 | TP73 · Whole authors | Q24 returned 2,993 whole authors. The registered competence arm is complete. Its curiosity contrasts miss both bars. Other arms remain open. | [TP73](result-sheets/TP73.md) |

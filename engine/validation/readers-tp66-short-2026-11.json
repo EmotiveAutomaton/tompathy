@@ -1,0 +1,654 @@
+{
+  "inputReceiptPin": "2785c2963d8abe38f2b9ea1002fa7084f92baf70714f559d56222e6ad3ea6dc1",
+  "census": {
+    "ed": {
+      "loss": {
+        "fourOrMore": {
+          "texts": 53,
+          "writers": 30
+        },
+        "three": {
+          "texts": 286,
+          "writers": 103
+        },
+        "two": {
+          "texts": 1361,
+          "writers": 245
+        }
+      },
+      "other": {
+        "fourOrMore": {
+          "texts": 331,
+          "writers": 102
+        },
+        "three": {
+          "texts": 1894,
+          "writers": 291
+        },
+        "two": {
+          "texts": 9361,
+          "writers": 500
+        }
+      }
+    },
+    "envent": {
+      "loss": {
+        "fourOrMore": {
+          "texts": 51,
+          "writers": 46
+        },
+        "three": {
+          "texts": 35,
+          "writers": 32
+        },
+        "two": {
+          "texts": 130,
+          "writers": 122
+        }
+      },
+      "other": {
+        "fourOrMore": {
+          "texts": 443,
+          "writers": 255
+        },
+        "three": {
+          "texts": 322,
+          "writers": 244
+        },
+        "two": {
+          "texts": 1266,
+          "writers": 687
+        }
+      }
+    }
+  },
+  "sources": {
+    "ed": {
+      "comparisons": {
+        "fearCentre": {
+          "difference": {
+            "interval": [
+              -0.0005417702663407102,
+              0.05974285908836235
+            ],
+            "nearBar": true,
+            "pAboveBar": 0.048153034300791556,
+            "standardError": 0.015307925735197654,
+            "validDraws": 1515,
+            "value": 0.02797187731774553
+          },
+          "drawCoverage": 0.7575,
+          "lengthMatchedOther": {
+            "interval": [
+              0.4479381318002282,
+              0.47165223551899005
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0006596306068601583,
+            "standardError": 0.005963004439021817,
+            "validDraws": 1515,
+            "value": 0.46022478814078416
+          },
+          "loss": {
+            "interval": [
+              0.4614556453459746,
+              0.5171243224313358
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0004997501249375312,
+            "standardError": 0.014050671440121738,
+            "validDraws": 2000,
+            "value": 0.4881966654585297
+          },
+          "matchedLossTexts": 1700
+        },
+        "fearEarlySadnessLate": {
+          "difference": {
+            "interval": [
+              -0.03897724581474366,
+              0.022550434060125406
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.728891820580475,
+            "standardError": 0.015520487055678371,
+            "validDraws": 1515,
+            "value": -0.009493079803660515
+          },
+          "drawCoverage": 0.7575,
+          "lengthMatchedOther": {
+            "interval": [
+              0.11249650462849048,
+              0.1369045989462647
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0006596306068601583,
+            "standardError": 0.0063072219113048025,
+            "validDraws": 1515,
+            "value": 0.12453732759127113
+          },
+          "loss": {
+            "interval": [
+              0.08666606498194947,
+              0.14557048963694533
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0004997501249375312,
+            "standardError": 0.01458454888028207,
+            "validDraws": 2000,
+            "value": 0.11504424778761062
+          },
+          "matchedLossTexts": 339
+        },
+        "rageCentre": {
+          "difference": {
+            "interval": [
+              0.016303786916653122,
+              0.08369480732661944
+            ],
+            "nearBar": true,
+            "pAboveBar": 0.00395778364116095,
+            "standardError": 0.017130812184044313,
+            "validDraws": 1515,
+            "value": 0.047951594202580994
+          },
+          "drawCoverage": 0.7575,
+          "lengthMatchedOther": {
+            "interval": [
+              0.3862789329456339,
+              0.41823685103328817
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0006596306068601583,
+            "standardError": 0.007993377625196744,
+            "validDraws": 1515,
+            "value": 0.40353015778850726
+          },
+          "loss": {
+            "interval": [
+              0.42305317020633904,
+              0.4797960426946596
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0004997501249375312,
+            "standardError": 0.014129597614634785,
+            "validDraws": 2000,
+            "value": 0.45148175199108825
+          },
+          "matchedLossTexts": 1700
+        },
+        "rageEarlySadnessLate": {
+          "difference": {
+            "interval": [
+              -0.03541022425787949,
+              0.0397362297221572
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.512532981530343,
+            "standardError": 0.01951061564239833,
+            "validDraws": 1515,
+            "value": 3.356711541030455e-05
+          },
+          "drawCoverage": 0.7575,
+          "lengthMatchedOther": {
+            "interval": [
+              0.11209118658630561,
+              0.1420470195567037
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0006596306068601583,
+            "standardError": 0.007740192014687669,
+            "validDraws": 1515,
+            "value": 0.12681009070169885
+          },
+          "loss": {
+            "interval": [
+              0.09454338169973349,
+              0.16438581470800287
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0004997501249375312,
+            "standardError": 0.017757266350689967,
+            "validDraws": 2000,
+            "value": 0.12684365781710916
+          },
+          "matchedLossTexts": 339
+        },
+        "sadnessCentre": {
+          "difference": {
+            "interval": [
+              -0.03463485008308406,
+              0.06185428245809507
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.3080474934036939,
+            "standardError": 0.024528499448630173,
+            "validDraws": 1515,
+            "value": 0.013574426330691336
+          },
+          "drawCoverage": 0.7575,
+          "lengthMatchedOther": {
+            "interval": [
+              0.47584906596691584,
+              0.5148638788264225
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0006596306068601583,
+            "standardError": 0.009952329091569673,
+            "validDraws": 1515,
+            "value": 0.4952894954891867
+          },
+          "loss": {
+            "interval": [
+              0.4507934811015638,
+              0.5672391714706716
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0004997501249375312,
+            "standardError": 0.029178169632089867,
+            "validDraws": 2000,
+            "value": 0.508863921819878
+          },
+          "matchedLossTexts": 1700
+        },
+        "sadnessMinusFear": {
+          "difference": {
+            "interval": [
+              -0.05813959907633297,
+              0.03206943021703284
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.7381266490765171,
+            "standardError": 0.02314763337947095,
+            "validDraws": 1515,
+            "value": -0.014397450987054191
+          },
+          "drawCoverage": 0.7575,
+          "lengthMatchedOther": {
+            "interval": [
+              0.016239723391089134,
+              0.053982746665521976
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0006596306068601583,
+            "standardError": 0.009517977683953956,
+            "validDraws": 1515,
+            "value": 0.035064707348402564
+          },
+          "loss": {
+            "interval": [
+              -0.030472833007047277,
+              0.07423321195419968
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.21739130434782608,
+            "standardError": 0.026421948209574986,
+            "validDraws": 2000,
+            "value": 0.020667256361348373
+          },
+          "matchedLossTexts": 1700
+        },
+        "sadnessMinusRage": {
+          "difference": {
+            "interval": [
+              -0.08086851865630018,
+              0.01299256178890604
+            ],
+            "nearBar": true,
+            "pAboveBar": 0.9300791556728232,
+            "standardError": 0.0236555105939248,
+            "validDraws": 1515,
+            "value": -0.034377167871889686
+          },
+          "drawCoverage": 0.7575,
+          "lengthMatchedOther": {
+            "interval": [
+              0.06676612825075265,
+              0.12113234655564686
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0006596306068601583,
+            "standardError": 0.013857758132621559,
+            "validDraws": 1515,
+            "value": 0.09175933770067948
+          },
+          "loss": {
+            "interval": [
+              0.0040047428100081165,
+              0.11255575175411398
+            ],
+            "nearBar": true,
+            "pAboveBar": 0.020989505247376312,
+            "standardError": 0.02745331822461224,
+            "validDraws": 2000,
+            "value": 0.0573821698287898
+          },
+          "matchedLossTexts": 1700
+        }
+      },
+      "shuffle": {
+        "draws": 100,
+        "lossTexts": 339,
+        "meanShare": 0.10312684365781712,
+        "range": [
+          0.06489675516224189,
+          0.1415929203539823
+        ]
+      },
+      "unmatchedLengths": [
+        {
+          "loss": 0,
+          "other": 5,
+          "sentences": 7
+        }
+      ],
+      "writersWithEligibleTexts": 605
+    },
+    "envent": {
+      "comparisons": {
+        "fearCentre": {
+          "difference": {
+            "interval": [
+              -0.07919622432441943,
+              0.015829881044657775
+            ],
+            "nearBar": true,
+            "pAboveBar": 0.9089989888776542,
+            "standardError": 0.024780262400392227,
+            "validDraws": 1977,
+            "value": -0.0327467442409205
+          },
+          "drawCoverage": 0.9885,
+          "lengthMatchedOther": {
+            "interval": [
+              0.28536898268892147,
+              0.3289657366824135
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0005055611729019212,
+            "standardError": 0.010961258478339252,
+            "validDraws": 1977,
+            "value": 0.307051259444827
+          },
+          "loss": {
+            "interval": [
+              0.22638058881485645,
+              0.3236919748467267
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0004997501249375312,
+            "standardError": 0.025458650215654046,
+            "validDraws": 2000,
+            "value": 0.2743045152039065
+          },
+          "matchedLossTexts": 216
+        },
+        "fearEarlySadnessLate": {
+          "difference": {
+            "interval": [
+              0.0026893079041126096,
+              0.17533139896750333
+            ],
+            "nearBar": true,
+            "pAboveBar": 0.025278058645096056,
+            "standardError": 0.04416444253565977,
+            "validDraws": 1977,
+            "value": 0.08791994951502119
+          },
+          "drawCoverage": 0.9885,
+          "lengthMatchedOther": {
+            "interval": [
+              0.05993479415712912,
+              0.12205937182767022
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0005055611729019212,
+            "standardError": 0.01589886010526891,
+            "validDraws": 1977,
+            "value": 0.0864986551361416
+          },
+          "loss": {
+            "interval": [
+              0.09090909090909091,
+              0.26262626262626265
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0004997501249375312,
+            "standardError": 0.04325256373727996,
+            "validDraws": 2000,
+            "value": 0.1744186046511628
+          },
+          "matchedLossTexts": 86
+        },
+        "rageCentre": {
+          "difference": {
+            "interval": [
+              -0.07209288505250777,
+              0.04514576674567699
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.6723963599595552,
+            "standardError": 0.03004254914046557,
+            "validDraws": 1977,
+            "value": -0.011651633211321288
+          },
+          "drawCoverage": 0.9885,
+          "lengthMatchedOther": {
+            "interval": [
+              0.38593141877311654,
+              0.42171315057511927
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0005055611729019212,
+            "standardError": 0.009260011419381785,
+            "validDraws": 1977,
+            "value": 0.403857046013894
+          },
+          "loss": {
+            "interval": [
+              0.33806743917512694,
+              0.44938168957143104
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0004997501249375312,
+            "standardError": 0.028731636218007138,
+            "validDraws": 2000,
+            "value": 0.3922054128025727
+          },
+          "matchedLossTexts": 216
+        },
+        "rageEarlySadnessLate": {
+          "difference": {
+            "interval": [
+              -0.02694257692200294,
+              0.12179130030545073
+            ],
+            "nearBar": true,
+            "pAboveBar": 0.11122345803842265,
+            "standardError": 0.03813779590274309,
+            "validDraws": 1977,
+            "value": 0.04511968169145873
+          },
+          "drawCoverage": 0.9885,
+          "lengthMatchedOther": {
+            "interval": [
+              0.05977455721293066,
+              0.10816744839625254
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0005055611729019212,
+            "standardError": 0.012256240577438236,
+            "validDraws": 1977,
+            "value": 0.08278729505272732
+          },
+          "loss": {
+            "interval": [
+              0.060227477072468984,
+              0.20481927710843373
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0009995002498750624,
+            "standardError": 0.036159862489403616,
+            "validDraws": 2000,
+            "value": 0.12790697674418605
+          },
+          "matchedLossTexts": 86
+        },
+        "sadnessCentre": {
+          "difference": {
+            "interval": [
+              0.17144006373144358,
+              0.2976743012703892
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0005055611729019212,
+            "standardError": 0.03264130446800022,
+            "validDraws": 1977,
+            "value": 0.23508018250060753
+          },
+          "drawCoverage": 0.9885,
+          "lengthMatchedOther": {
+            "interval": [
+              0.27462104583319374,
+              0.31517297717919146
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0005055611729019212,
+            "standardError": 0.010152404422815902,
+            "validDraws": 1977,
+            "value": 0.29507919412173705
+          },
+          "loss": {
+            "interval": [
+              0.47323375583533234,
+              0.5864078812723784
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0004997501249375312,
+            "standardError": 0.02934269483544719,
+            "validDraws": 2000,
+            "value": 0.5301593766223446
+          },
+          "matchedLossTexts": 216
+        },
+        "sadnessMinusFear": {
+          "difference": {
+            "interval": [
+              0.1840176598217986,
+              0.3516030792441322
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0005055611729019212,
+            "standardError": 0.042267129761091454,
+            "validDraws": 1977,
+            "value": 0.26782692674152797
+          },
+          "drawCoverage": 0.9885,
+          "lengthMatchedOther": {
+            "interval": [
+              -0.03405226473620982,
+              0.011151555356867687
+            ],
+            "nearBar": true,
+            "pAboveBar": 0.8468149646107179,
+            "standardError": 0.011501631860617846,
+            "validDraws": 1977,
+            "value": -0.011972065323089856
+          },
+          "loss": {
+            "interval": [
+              0.17528926667930872,
+              0.33472323445486946
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0004997501249375312,
+            "standardError": 0.04078799761941235,
+            "validDraws": 2000,
+            "value": 0.2558548614184381
+          },
+          "matchedLossTexts": 216
+        },
+        "sadnessMinusRage": {
+          "difference": {
+            "interval": [
+              0.15889132542538034,
+              0.3363205672625192
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0005055611729019212,
+            "standardError": 0.044907138615605705,
+            "validDraws": 1977,
+            "value": 0.24673181571192876
+          },
+          "drawCoverage": 0.9885,
+          "lengthMatchedOther": {
+            "interval": [
+              -0.1340628624126095,
+              -0.08559184233473285
+            ],
+            "nearBar": false,
+            "pAboveBar": 1.0,
+            "standardError": 0.012409433117824312,
+            "validDraws": 1977,
+            "value": -0.1087778518921569
+          },
+          "loss": {
+            "interval": [
+              0.05616501307668828,
+              0.21752428152882197
+            ],
+            "nearBar": false,
+            "pAboveBar": 0.0014992503748125937,
+            "standardError": 0.04148228631893526,
+            "validDraws": 2000,
+            "value": 0.13795396381977185
+          },
+          "matchedLossTexts": 216
+        }
+      },
+      "shuffle": {
+        "draws": 100,
+        "lossTexts": 86,
+        "meanShare": 0.10895348837209302,
+        "range": [
+          0.046511627906976744,
+          0.18604651162790697
+        ]
+      },
+      "unmatchedLengths": [
+        {
+          "loss": 0,
+          "other": 8,
+          "sentences": 9
+        },
+        {
+          "loss": 0,
+          "other": 5,
+          "sentences": 11
+        },
+        {
+          "loss": 0,
+          "other": 2,
+          "sentences": 13
+        },
+        {
+          "loss": 0,
+          "other": 2,
+          "sentences": 14
+        },
+        {
+          "loss": 0,
+          "other": 1,
+          "sentences": 24
+        }
+      ],
+      "writersWithEligibleTexts": 1011
+    }
+  },
+  "wholeWriterDraws": 2000,
+  "scope": "Short texts selected by assigned feeling. Sentence shuffles describe order.",
+  "card": "TP66-short",
+  "sourceReceiptPin": "7cf9657d616e081766fe32bc76165df01ada453fb18017c58340f42de5146a05",
+  "productionAdmission": false,
+  "license": "EmpatheticDialogues used for research under CC BY-NC 4.0.",
+  "ledger": "E-TP66-SHORT-20261127"
+}
