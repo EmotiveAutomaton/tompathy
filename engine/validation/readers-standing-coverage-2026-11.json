@@ -1,0 +1,27 @@
+{
+  "scope": "Standing-mark production and attempted coverage. Full paired agreement unavailable. No inference on people is made here.",
+  "Q27": {
+    "status": "complete",
+    "sourceReceiptPin": "0df9eaea92fb4757dac8c9d04ccccf8986a2f96916a3081c6e1b159e4fbdcd9e",
+    "verifiedFiles": 43031,
+    "rows": 43021,
+    "valid": 38202,
+    "seconds": 23134.15499612002,
+    "inputPin": "9d531edd2128cdfa0985c00113503b29bc28999b7830b3d4c28189682a954434",
+    "protocolPin": "3eeb4b1e6506a9d14165a08bf89d324b57192ffcbafcf0efc6966a3f520e8d4b"
+  },
+  "G12": {
+    "status": "memory-stop",
+    "durableBatchFiles": 27214,
+    "responsesPerBatch": 1,
+    "lastProgress": {
+      "rows": 27200,
+      "valid": 24347,
+      "total": 43021,
+      "elapsedSeconds": 17724.915942699998
+    },
+    "failedPin": "e9ac71cfc42a7c2c4ba4dc6089de6e9ed88dee3615e466c18efa4997be35a55c",
+    "releasePin": "3c9a076db208904301a3165b2184b296acdf85cc3aadca6bb4f90a72474785b6",
+    "availableCommitFloorGiB": 8
+  }
+}

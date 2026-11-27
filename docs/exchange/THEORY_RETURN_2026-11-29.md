@@ -54,21 +54,21 @@ Pilot times are wall seconds after loading. Observed totals include job startup 
 |---|---:|---:|---:|---|
 | Q26 · Throughput | <1 | 53.01 serial, 52.98 at two, 53.28 at four | 0.088 for 600 at the serial pilot rate | Completed in 0.093 hours. Serial retained. |
 | Q34 · Worry | <1 | 0.422 | 0.068 | Completed in 0.0062 hours after the import repair. |
-| Q27 · Standing | 10.8 | 53.74 | 6.42 | Running serially. |
-| Q28 · Event features | 2.0 | — | — | Registered behind Q27. |
+| Q27 · Standing | 10.8 | 53.74 | 6.42 | Completed. 38,202 of 43,021 responses were valid. The native release and all 43,031 returned files were verified. |
+| Q28 · Event features | 2.0 | 111.65 | 2.05 | Running. All first 100 responses were valid. |
 | Q32 · Third reader and rewordings | 2.0 | — | — | Registered behind Q28. The extended memory rule applies only to C on this job. |
 | Q29 · Sentences | 3.0 | — | — | Both machines verified the same 17,755 held-out forum sentences and 21,247 ISEAR sentences. Spark’s native listener is waiting for Q32’s release. |
 | Q31 · Blog loss and timing | 9.8 | — | — | Both machines verified 1,054 loss candidates and 82,548 sentences from the 10,000 sampled openings. Spark’s listener waits for Q29’s exact release. |
 | Q30 · Long stories | 9.9 | — | — | In-place Spark source unavailable. |
 | Q33 · Talk pages | First 1,000 to size | — | — | In-place Spark source unavailable. |
-| G12 · Standing | 4–6 | 66.58 | 7.96 | Running. |
-| G14 · Event features | <1 | — | — | Follows G12. |
+| G12 · Standing | 4–6 | 66.58 | 7.96 | Memory stop. 27,214 single-response files are durable. The last progress count covers 27,200. |
+| G14 · Event features | <1 | 120.60 | 2.21 | Running. All first 100 responses were valid. |
 | G13 · Sentence and loss comparisons | First 100 to size | — | — | The original-sentence arm follows G14. The verified blog arm follows the original-sentence arm. |
-| G15 · Workstation filler | Up to 21.6 | — | — | Input preparation waits for reserved CPU memory. Exact historical W responses, including missing values, retain their original positions. |
-| Q24b · Spark filler | Time remaining | — | — | Native dispatcher verified at offset 207,795. Parked while Q27 owns the GPU. |
+| G15 · Workstation filler | Up to 21.6 | — | — | Inputs prepared and source-bound. Queued after both G13 arms. Exact historical W responses retain their original positions. |
+| Q24b · Spark filler | Time remaining | — | — | Native dispatcher verified at offset 207,795. Parked behind the priority jobs. |
 
 **Q26.** The three widths completed the same 200 texts at 112.59, 112.58 and 113.47 texts per minute. All 173 valid serial answers matched literally at both higher widths. The other 27 violated the earned-rise field rule. A width needed 200 valid matches and higher throughput. Further concurrency work would require a separately approved server trial or a separately registered prompt; neither change was made. [Verified Q26 aggregate](../../engine/validation/readers-q26-throughput-2026-11.json)
 
 **Q34.** The original process stopped before scoring because its interpreter could not import SciPy. The retry used the earlier offline dependency directory and the identical frozen worker and inputs. It returned 6,600 event scores, 5,014 Q11 sentence scores and 46,543 Q12 sentence scores. All 591 returned artifacts and the GPU release were verified. Source receipt `d1194417e2159f036f5856889427106c0f8aa4d4f6782dcfb8be68d53167da5c`.
 
-**TP77.** Whose doing, change in standing, visibility and earned rise are being measured independently by B and W. Their validity counts and Q26’s repeated B answers do not measure cross-reader agreement. New marks await their field-specific kappa checks.
+**TP77.** Reader B finished its standing panel. Reader W stopped at the memory floor. The full paired agreement check has no result. No field has gained admission from a validity count. [Source-bound coverage and partial progress](../../engine/validation/readers-standing-coverage-2026-11.json)
