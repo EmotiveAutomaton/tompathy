@@ -1,4 +1,4 @@
-Nov 28 at 05:35 PT, Spark is running Q31 (69,940/82,548), the workstation GPU has no verified active ToMpathy GPU worker (stopped, last G15) after the final job reached its 8 GiB memory floor, and the card queue is between registered stages. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
+Nov 28 at 05:42 PT, Spark is running Q31 (70,920/82,548), the workstation GPU has no verified active ToMpathy GPU worker (stopped, last G15) after the final job reached its 8 GiB memory floor, and the card queue is waiting for Q31 agreement before the registered TP75 input preparation. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
 
 # Two-day engine return · November 27–29
 
@@ -41,7 +41,7 @@ The table covers 35 registered predictions. TP62 met both directional criteria o
 | TP72 · Sealed bundle v2 | Sounding Line received 27 verified payload files. Invented histories exercised all nine tables. The two-speaker fixture produced zero releasable rows, and a larger invented group exercised both conversation tables. | [TP72 · E-TP72-PRODUCER-20261127](result-sheets/TP72.md) |
 | TP73 · Whole authors | Q24 returned 2,993 whole authors. Both curiosity predictions missed. B fell below the rotated individual-head band in 2 of 16 feature-by-size comparisons. Across 432 authors and 8,640 openings, B/W agreement on author means was 0.955 [0.943, 0.965] for unpleasantness and 0.382 [0.283, 0.475] for social norms. | [TP73 · E-TP73-PAIRED-20261128](result-sheets/TP73.md) |
 | TP74 · Earned standing | Depends on Q27 and the agreement of the relevant fields. | Section 4 |
-| TP75 · Worry and time direction | Depends on Q31’s blog sentence sample. | Section 4 |
+| TP75 · Worry and time direction | The input runner is ready. Its observer is attached to the original Q31 receiver and will check agreement and counted CPU admission before pairing the timing shares with worry. | [TP75 method](result-sheets/TP75.md) |
 | TP76 · Long recalled stories | The V3 header is readable on the workstation. Spark cannot read the table at its held location. No story has entered this job. | Section 4 |
 | TP78 · Family table | Open. Includes registered predictions with no measurement yet. | [TP78](result-sheets/TP78.md) |
 | TP79 · Anger answered by rank | The workstation opened the held archive directory and its member index. Q33 needs Spark access in place. | Section 4 |
