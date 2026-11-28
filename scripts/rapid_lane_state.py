@@ -77,6 +77,47 @@ def gpu(root, jobs):
     return last or {"state": "no verified ToMpathy worker"}
 
 
+def spark(root):
+    priority = gpu(root, ("Q26", "Q27", "Q28", "Q32", "Q29", "Q31", "Q30", "Q33"))
+    if priority["state"] == "running":
+        return priority
+    week = root.parent / "week-20261122"
+    out = week / "jobs/Q24b"
+    if not (out / "owner.json").is_file():
+        return priority
+    owner = read(out / "owner.json")
+    if owner["job"] != "Q24b" or not live(owner):
+        return priority
+    if (week / "priority.pending").exists() or (out / "YIELD").exists():
+        return {**priority, "parked": "Q24b"}
+    lease = Path("/home/agent/gpu.lock").stat()
+    held = False
+    for line in Path("/proc/locks").read_text().splitlines():
+        f = line.split()
+        if len(f) < 6 or f[1] != "FLOCK" or f[4] != str(owner["pid"]):
+            continue
+        major, minor, inode = f[5].split(":")
+        if (int(major, 16), int(minor, 16), int(inode)) == (
+            os.major(lease.st_dev),
+            os.minor(lease.st_dev),
+            lease.st_ino,
+        ):
+            held = True
+            break
+    if not held:
+        return {"state": "dispatcher active between GPU leases", "last": "Q24b"}
+    progress = read(out / "progress.json") if (out / "progress.json").is_file() else {}
+    return {
+        "state": "running",
+        "job": "Q24b",
+        **{
+            k: v
+            for k, v in progress.items()
+            if k in ("rows", "total", "at", "wholeAuthors")
+        },
+    }
+
+
 def windows():
     root = Path(".local/rapid-20261127")
     active = []
@@ -88,6 +129,7 @@ def windows():
         "TP65-inputs-?",
         "TP77-*-?",
         "TP65-Q29-?",
+        "TP73-paired*-?",
         "Q31-inputs-?",
         "TP63-*-?",
         "G15-inputs-?",
@@ -178,10 +220,6 @@ def get():
 if __name__ == "__main__":
     if sys.argv[1:] == ["--spark"]:
         root = Path("/home/agent/tompathy-open/rapid-20261127")
-        print(
-            json.dumps(
-                gpu(root, ("Q26", "Q27", "Q28", "Q32", "Q29", "Q31", "Q30", "Q33"))
-            )
-        )
+        print(json.dumps(spark(root)))
     else:
         print(json.dumps(get()))
