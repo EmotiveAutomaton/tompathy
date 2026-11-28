@@ -1,0 +1,529 @@
+{
+  "TP45profiles": "23382a2d79bc6955482e5df50bba2d496065bfb2c229098faa83ebf959081f8d",
+  "TP45receipt": "80c8df419d5c68ffef56d3fbacc5466d3fdc08c783e57fa3bb21d6c6f818bf8d",
+  "draws": 2000,
+  "headPin": "7f5bfe1ff5ab5e4a0b93072bb7e1f54f73466ab01ade90fc2ad2c4041d12e7ae",
+  "setsPerFamily": 1000,
+  "sizes": {
+    "10": {
+      "authors": 1392,
+      "baseline": {
+        "firstOne": 0.28879310344827586,
+        "firstTen": 0.5761494252873564
+      },
+      "controls": {
+        "iso": {
+          "firstOne": {
+            "high": 0.34482758620689624,
+            "low": 0.32110272988505745,
+            "median": 0.33189655172413784,
+            "position": "inside",
+            "trainedPercentile": 14.6
+          },
+          "firstOneGain": {
+            "high": 0.056034482758620635,
+            "low": 0.032309626436781584,
+            "median": 0.04310344827586203,
+            "position": "inside",
+            "trainedPercentile": 18.099999999999998
+          },
+          "firstTen": {
+            "high": 0.645114942528731,
+            "low": 0.6192528735632147,
+            "median": 0.6329022988505704,
+            "position": "inside",
+            "trainedPercentile": 8.3
+          },
+          "firstTenGain": {
+            "high": 0.06896551724137928,
+            "low": 0.04310344827586203,
+            "median": 0.056752873563218335,
+            "position": "inside",
+            "trainedPercentile": 8.5
+          },
+          "meanRepeat": {
+            "high": 0.4462508734835499,
+            "low": 0.38690852051095426,
+            "median": 0.41443332977217906,
+            "position": "above",
+            "trainedPercentile": 100.0
+          }
+        },
+        "rot": {
+          "firstOne": {
+            "high": 0.3433908045977009,
+            "low": 0.3182471264367817,
+            "median": 0.3304597701149424,
+            "position": "inside",
+            "trainedPercentile": 23.599999999999998
+          },
+          "firstOneGain": {
+            "high": 0.054597701149425235,
+            "low": 0.029454022988505725,
+            "median": 0.04166666666666663,
+            "position": "inside",
+            "trainedPercentile": 27.900000000000002
+          },
+          "firstTen": {
+            "high": 0.6429597701149378,
+            "low": 0.6170977011494214,
+            "median": 0.6300287356321795,
+            "position": "inside",
+            "trainedPercentile": 17.7
+          },
+          "firstTenGain": {
+            "high": 0.06681034482758617,
+            "low": 0.04094827586206893,
+            "median": 0.053879310344827534,
+            "position": "inside",
+            "trainedPercentile": 17.75
+          },
+          "meanRepeat": {
+            "high": 0.4481056512206431,
+            "low": 0.38437290602149504,
+            "median": 0.41538532314549514,
+            "position": "above",
+            "trainedPercentile": 99.7
+          }
+        }
+      },
+      "foldSizes": [
+        698,
+        694
+      ],
+      "trained": {
+        "firstOne": {
+          "interval": [
+            0.30172413793103436,
+            0.34985632183908033
+          ],
+          "validDraws": 2000,
+          "value": 0.32614942528735597
+        },
+        "firstOneGain": {
+          "interval": [
+            0.022988505747126436,
+            0.05316091954022989
+          ],
+          "validDraws": 2000,
+          "value": 0.037356321839080435
+        },
+        "firstTen": {
+          "interval": [
+            0.5977011494252873,
+            0.6472701149425288
+          ],
+          "validDraws": 2000,
+          "value": 0.6235632183908005
+        },
+        "firstTenGain": {
+          "interval": [
+            0.029454022988505746,
+            0.0653735632183908
+          ],
+          "validDraws": 2000,
+          "value": 0.04741379310344823
+        },
+        "meanRepeat": {
+          "interval": [
+            0.4439953480587114,
+            0.48133748107161206
+          ],
+          "validDraws": 2000,
+          "value": 0.4629300931829726
+        }
+      }
+    },
+    "20": {
+      "authors": 1323,
+      "baseline": {
+        "firstOne": 0.5578231292517006,
+        "firstTen": 0.8352229780801209
+      },
+      "controls": {
+        "iso": {
+          "firstOne": {
+            "high": 0.6266061980347638,
+            "low": 0.6009070294784533,
+            "median": 0.6145124716553234,
+            "position": "inside",
+            "trainedPercentile": 68.85
+          },
+          "firstOneGain": {
+            "high": 0.0687830687830687,
+            "low": 0.04308390022675734,
+            "median": 0.05668934240362803,
+            "position": "inside",
+            "trainedPercentile": 69.2
+          },
+          "firstTen": {
+            "high": 0.8722600151171466,
+            "low": 0.857142857142846,
+            "median": 0.8647014361299964,
+            "position": "inside",
+            "trainedPercentile": 13.0
+          },
+          "firstTenGain": {
+            "high": 0.03703703703703703,
+            "low": 0.021919879062736212,
+            "median": 0.029478458049886636,
+            "position": "inside",
+            "trainedPercentile": 13.25
+          },
+          "meanRepeat": {
+            "high": 0.5912540121349701,
+            "low": 0.5334308164709641,
+            "median": 0.5603057573623367,
+            "position": "above",
+            "trainedPercentile": 99.5
+          }
+        },
+        "rot": {
+          "firstOne": {
+            "high": 0.6228269085411889,
+            "low": 0.597864701436125,
+            "median": 0.6107331821617487,
+            "position": "inside",
+            "trainedPercentile": 84.6
+          },
+          "firstOneGain": {
+            "high": 0.06500377928949348,
+            "low": 0.04004157218442931,
+            "median": 0.05291005291005285,
+            "position": "inside",
+            "trainedPercentile": 84.1
+          },
+          "firstTen": {
+            "high": 0.8722600151171467,
+            "low": 0.855631141345416,
+            "median": 0.8639455782312813,
+            "position": "inside",
+            "trainedPercentile": 21.450000000000003
+          },
+          "firstTenGain": {
+            "high": 0.03703703703703703,
+            "low": 0.02040816326530613,
+            "median": 0.028722600151171594,
+            "position": "inside",
+            "trainedPercentile": 21.5
+          },
+          "meanRepeat": {
+            "high": 0.5923745330021025,
+            "low": 0.5318658981287517,
+            "median": 0.5610303040761371,
+            "position": "above",
+            "trainedPercentile": 99.2
+          }
+        }
+      },
+      "foldSizes": [
+        659,
+        664
+      ],
+      "trained": {
+        "firstOne": {
+          "interval": [
+            0.5918367346938774,
+            0.6455026455026452
+          ],
+          "validDraws": 2000,
+          "value": 0.6175359032501836
+        },
+        "firstOneGain": {
+          "interval": [
+            0.04230914588057445,
+            0.0763416477702192
+          ],
+          "validDraws": 2000,
+          "value": 0.05971277399848819
+        },
+        "firstTen": {
+          "interval": [
+            0.8420256991685562,
+            0.8790627362055932
+          ],
+          "validDraws": 2000,
+          "value": 0.8601662887377062
+        },
+        "firstTenGain": {
+          "interval": [
+            0.012093726379440667,
+            0.03779289493575208
+          ],
+          "validDraws": 2000,
+          "value": 0.024943310657596383
+        },
+        "meanRepeat": {
+          "interval": [
+            0.5819832825024107,
+            0.6168205879069705
+          ],
+          "validDraws": 2000,
+          "value": 0.6010065125185992
+        }
+      }
+    },
+    "40": {
+      "authors": 970,
+      "baseline": {
+        "firstOne": 0.7845360824742268,
+        "firstTen": 0.954639175257732
+      },
+      "controls": {
+        "iso": {
+          "firstOne": {
+            "high": 0.8206185567010287,
+            "low": 0.8010309278350494,
+            "median": 0.8103092783505133,
+            "position": "inside",
+            "trainedPercentile": 28.700000000000003
+          },
+          "firstOneGain": {
+            "high": 0.036082474226804134,
+            "low": 0.016494845360824743,
+            "median": 0.02577319587628866,
+            "position": "inside",
+            "trainedPercentile": 28.549999999999997
+          },
+          "firstTen": {
+            "high": 0.9690721649484508,
+            "low": 0.9608247422680385,
+            "median": 0.9649484536082447,
+            "position": "inside",
+            "trainedPercentile": 15.65
+          },
+          "firstTenGain": {
+            "high": 0.014432989690721649,
+            "low": 0.006185567010309278,
+            "median": 0.010309278350515464,
+            "position": "inside",
+            "trainedPercentile": 15.65
+          },
+          "meanRepeat": {
+            "high": 0.7039492854458517,
+            "low": 0.6541637750730871,
+            "median": 0.6774767262965152,
+            "position": "above",
+            "trainedPercentile": 99.9
+          }
+        },
+        "rot": {
+          "firstOne": {
+            "high": 0.8195876288659771,
+            "low": 0.7989690721649463,
+            "median": 0.8092783505154617,
+            "position": "inside",
+            "trainedPercentile": 33.75
+          },
+          "firstOneGain": {
+            "high": 0.035051546391752585,
+            "low": 0.014432989690721649,
+            "median": 0.024742268041237112,
+            "position": "inside",
+            "trainedPercentile": 33.699999999999996
+          },
+          "firstTen": {
+            "high": 0.9690721649484508,
+            "low": 0.959793814432987,
+            "median": 0.9649484536082447,
+            "position": "inside",
+            "trainedPercentile": 22.45
+          },
+          "firstTenGain": {
+            "high": 0.014432989690721649,
+            "low": 0.005154639175257732,
+            "median": 0.010309278350515464,
+            "position": "inside",
+            "trainedPercentile": 22.45
+          },
+          "meanRepeat": {
+            "high": 0.7044738719597786,
+            "low": 0.6526382683660654,
+            "median": 0.6781670460808483,
+            "position": "above",
+            "trainedPercentile": 99.5
+          }
+        }
+      },
+      "foldSizes": [
+        488,
+        482
+      ],
+      "trained": {
+        "firstOne": {
+          "interval": [
+            0.7835051546391756,
+            0.8319587628865982
+          ],
+          "validDraws": 2000,
+          "value": 0.8072164948453586
+        },
+        "firstOneGain": {
+          "interval": [
+            0.00824742268041237,
+            0.03814432989690722
+          ],
+          "validDraws": 2000,
+          "value": 0.02268041237113402
+        },
+        "firstTen": {
+          "interval": [
+            0.9505154639175262,
+            0.9742268041237117
+          ],
+          "validDraws": 2000,
+          "value": 0.9628865979381416
+        },
+        "firstTenGain": {
+          "interval": [
+            0.0,
+            0.01752577319587629
+          ],
+          "validDraws": 2000,
+          "value": 0.008247422680412371
+        },
+        "meanRepeat": {
+          "interval": [
+            0.697291931238479,
+            0.7314878819672219
+          ],
+          "validDraws": 2000,
+          "value": 0.715140125666473
+        }
+      }
+    },
+    "5": {
+      "authors": 1425,
+      "baseline": {
+        "firstOne": 0.13964912280701755,
+        "firstTen": 0.35578947368421054
+      },
+      "controls": {
+        "iso": {
+          "firstOne": {
+            "high": 0.17403508771929893,
+            "low": 0.1550701754385969,
+            "median": 0.16421052631579008,
+            "position": "inside",
+            "trainedPercentile": 79.95
+          },
+          "firstOneGain": {
+            "high": 0.034385964912280687,
+            "low": 0.015421052631578941,
+            "median": 0.02456140350877192,
+            "position": "inside",
+            "trainedPercentile": 80.75
+          },
+          "firstTen": {
+            "high": 0.4112280701754429,
+            "low": 0.3887719298245653,
+            "median": 0.40000000000000413,
+            "position": "inside",
+            "trainedPercentile": 13.5
+          },
+          "firstTenGain": {
+            "high": 0.05543859649122804,
+            "low": 0.032982456140350856,
+            "median": 0.04421052631578945,
+            "position": "inside",
+            "trainedPercentile": 12.5
+          },
+          "meanRepeat": {
+            "high": 0.30144627577883765,
+            "low": 0.24768687730456754,
+            "median": 0.27344836707357956,
+            "position": "above",
+            "trainedPercentile": 99.9
+          }
+        },
+        "rot": {
+          "firstOne": {
+            "high": 0.17194736842105338,
+            "low": 0.15368421052631623,
+            "median": 0.1628070175438602,
+            "position": "inside",
+            "trainedPercentile": 87.94999999999999
+          },
+          "firstOneGain": {
+            "high": 0.032298245614035055,
+            "low": 0.014035087719298244,
+            "median": 0.023157894736842096,
+            "position": "inside",
+            "trainedPercentile": 88.25
+          },
+          "firstTen": {
+            "high": 0.409824561403513,
+            "low": 0.3852631578947407,
+            "median": 0.39789473684210924,
+            "position": "inside",
+            "trainedPercentile": 24.3
+          },
+          "firstTenGain": {
+            "high": 0.054035087719298214,
+            "low": 0.0294736842105263,
+            "median": 0.04210526315789471,
+            "position": "inside",
+            "trainedPercentile": 22.849999999999998
+          },
+          "meanRepeat": {
+            "high": 0.30281828222417695,
+            "low": 0.247933289967099,
+            "median": 0.27354423273177875,
+            "position": "above",
+            "trainedPercentile": 99.9
+          }
+        }
+      },
+      "foldSizes": [
+        718,
+        707
+      ],
+      "trained": {
+        "firstOne": {
+          "interval": [
+            0.15017543859649118,
+            0.18877192982456137
+          ],
+          "validDraws": 2000,
+          "value": 0.16842105263157958
+        },
+        "firstOneGain": {
+          "interval": [
+            0.014035087719298244,
+            0.04280701754385964
+          ],
+          "validDraws": 2000,
+          "value": 0.02877192982456139
+        },
+        "firstTen": {
+          "interval": [
+            0.36842105263157876,
+            0.4189473684210524
+          ],
+          "validDraws": 2000,
+          "value": 0.39298245614035504
+        },
+        "firstTenGain": {
+          "interval": [
+            0.02033333333333333,
+            0.05333333333333333
+          ],
+          "validDraws": 2000,
+          "value": 0.03719298245614033
+        },
+        "meanRepeat": {
+          "interval": [
+            0.30051740855580555,
+            0.3375270913587067
+          ],
+          "validDraws": 2000,
+          "value": 0.31948654105182456
+        }
+      }
+    }
+  },
+  "vectorReceipt": "258d14c8405973cb7db874895a18a46e054241c3638e89d39bf73aef7941f02d",
+  "sourceReceiptPin": "072803982aabe2b16ffc1fd488ab9540fd19087152c9395bbd7073baecd4b2f9",
+  "ledger": "E-TP61-DATE-MATCHING-20261128",
+  "limit": "Matching identifies an author within the original candidate fold. Persistent style and topic can also distinguish writers."
+}

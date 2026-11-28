@@ -1,4 +1,4 @@
-Nov 28 at 05:26 PT, Spark is running Q31 (68,660/82,548), the workstation GPU has no verified active ToMpathy GPU worker (stopped, last G15) after the final job reached its 8 GiB memory floor, and the card queue is between registered stages. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
+Nov 28 at 05:35 PT, Spark is running Q31 (69,940/82,548), the workstation GPU has no verified active ToMpathy GPU worker (stopped, last G15) after the final job reached its 8 GiB memory floor, and the card queue is between registered stages. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
 
 # Two-day engine return · November 27–29
 
@@ -20,14 +20,14 @@ Worry’s within-author slope exceeded the 99.5th percentile of both control fam
 
 ## Registered predictions
 
-The table covers 35 registered predictions. TP62 met both directional criteria on the fixed texts, including after assigned stems were excluded. The whole-writer sampling interval is unavailable. The trained highest-group repeat exceeded its rotated band on the point estimate. Its lower writer interval was within one standard error of that band. TP61’s matching comparison remains open. [TP78 family table](result-sheets/TP78.md)
+The table covers 35 registered predictions. TP62 met both directional criteria on the fixed texts, including after assigned stems were excluded. The whole-writer sampling interval is unavailable. The trained highest-group repeat exceeded its rotated band on the point estimate. Its lower writer interval was within one standard error of that band. At five openings per half, the top-ten matching gain fell inside the rotated control band. The matched within-writer competence control remains open. [TP78 family table](result-sheets/TP78.md)
 
 ## Readouts
 
 | Card | Recorded state | Sheet or registered protocol |
 |---|---|---|
 | TP71 · Display and exports | Landed. Acceptance is shown beside Respect. Wanting and amusement are the reader labels. SHAME carries its scope flag. The Meaning row is hidden. | [TP71 change list](result-sheets/TP71.md) |
-| TP61 · Random-head controls | Worry minus median tag repeat was 0.218, below the 0.229–0.299 rotated band. The word-specific estimates fell inside the rotated band for all eight words. Three met the 200-author minimum. Worry’s slope of 0.12711 exceeded both 99.5th percentiles, and seven of 7,600 individual heads reached it. The same group ranked highest for 45.4% of 5,409 writers, against 15.7% under random dealing. The excess was 29.7% [28.3%, 30.9%], above the rotated band [21.0%, 27.8%]. | [TP61 · E-TP61-HIGHEST-20261128](result-sheets/TP61.md) |
+| TP61 · Random-head controls | Worry minus median tag repeat was 0.218, below the 0.229–0.299 rotated band. The word-specific estimates fell inside the rotated band for all eight words. Three met the 200-author minimum. Worry’s slope of 0.12711 exceeded both 99.5th percentiles, and seven of 7,600 individual heads reached it. The same group ranked highest for 45.4% of 5,409 writers, against 15.7% under random dealing. The excess was 29.7% [28.3%, 30.9%], above the rotated band [21.0%, 27.8%]. At five openings per half, the trained heads repeated at r = 0.319. Their top-ten matching gain was 3.7% [2.0%, 5.3%], inside the rotated control band [2.9%, 5.4%]. | [TP61 · E-TP61-DATE-MATCHING-20261128](result-sheets/TP61.md) |
 | TP62 · Content and style | Trained word accuracy was 35.21%, above every rotated set. Writer accuracy was 1.76%, below the rotated median of 2.43%. Both findings persisted after removing assigned stems. | [TP62](result-sheets/TP62.md) |
 | TP70 · Blind grouping | Against rotated heads, the component floor was 2 on chat texts and 3 on blog author means. The map’s margins above the rotated bands were 0.187 [0.174, 0.196], 0.129 [0.119, 0.137] in chat and blogs, respectively. | [TP70 · E-TP70-20261127](result-sheets/TP70.md) |
 | TP64 · Channel checks | Forum desire versus optimism and excitement had AUC 0.712 [0.652, 0.767], 0.843 [0.802, 0.884]. | [TP64 · E-TP64-20261127](result-sheets/TP64.md) |

@@ -943,6 +943,35 @@ def highest_report(s):
     )
 
 
+def dated_matching_report(s):
+    from rapid_date_report import render
+
+    stem = "readers-tp61-date-matching"
+    if aggregate(stem) not in s.files(VALID):
+        return
+    r = s.tables(stem)
+    brief, rows, limit = render(r)
+    yield Report(
+        "TP61-date-matching",
+        date.fromisoformat(r["ledger"][-8:]).isoformat(),
+        "How well do linear tags repeat and match writers across dates?",
+        "Read matching at five openings and compare it with both random-head families at each size.",
+        "Blog Authorship Corpus, TP45 dated openings and original candidate folds.",
+        f"{r['sizes']['5']['authors']:,} authors at five openings per half and {r['sizes']['40']['authors']:,} at forty.",
+        "\n".join(rows)
+        + f"\n\nThe intervals use {r['draws']:,} whole-writer draws. Each control band uses {r['setsPerFamily']:,} sets.",
+        "descriptive",
+        brief,
+        limit,
+        "The public table includes each estimate, control median, band and percentile. Private writer-level outputs stay local.",
+        [
+            aggregate(stem),
+            "scripts/rapid_date_matching.py",
+            "scripts/rapid_date_report.py",
+        ],
+    )
+
+
 def build(s):
     seed = {
         r["id"]: r
@@ -957,6 +986,7 @@ def build(s):
             *new_sentence_reports(s),
             *paired_report(s),
             *highest_report(s),
+            *dated_matching_report(s),
             *blog_sentence_report(s),
             feature_delivery(s),
         ],
