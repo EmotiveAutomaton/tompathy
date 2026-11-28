@@ -6,6 +6,8 @@ import math
 import re
 from pathlib import Path
 
+import day_predictions
+
 PACKET = Path("TOMPATHY_0.3_ENGINE_TWO_DAY_PACKET_2026-11-27.md")
 SHEET = Path("docs/exchange/result-sheets/TP78.md")
 
@@ -50,11 +52,18 @@ def adjustments(pvalues):
 
 def render(measured):
     rows = registration()
+    rows.update(day_predictions.rows())
     if set(measured) - set(rows):
         raise ValueError("An unregistered hypothesis entered the family")
-    bh = adjustments({k: measured[k]["p"] if k in measured else None for k in rows})
+    bh = adjustments(
+        {
+            k: measured[k]["p"] if k in measured else None
+            for k in rows
+            if k not in day_predictions.OUTSIDE
+        }
+    )
     lines = [
-        "# TP78 · Round 37 family table",
+        "# TP78 · Round 37 and 38 family table",
         "",
         "Each row retains its claimant and registered prediction. The section 7 reference to TP73–TP75 points to their existing analyst rows. Each multi-part prediction requires all of its clauses; its joint test uses the largest component p value. Individual contrasts stay on their card sheets. A tie requires a registered equivalence criterion for a positive equivalence verdict.",
         "",
@@ -79,6 +88,14 @@ def render(measured):
                 )
             ),
         )
+        if key in day_predictions.MISSED:
+            against, verdict = True, day_predictions.MISSED[key]
+        if key in day_predictions.OUTSIDE and key not in measured:
+            verdict = (
+                "Unscored"
+                if key == "TP82.lust"
+                else "Outside the false discovery family"
+            )
         values = [
             key,
             who,

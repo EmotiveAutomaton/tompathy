@@ -100,6 +100,9 @@ class Report:
 
     def render(self):
         links = " · ".join(f"[{Path(p).name}](../../../{p})" for p in self.files)
+        limit_label = "**5. Limit.**"
+        if re.fullmatch(r"TP(?:6[1-9]|7[0-9]|89)", self.code):
+            limit_label += "\n\nLimit:"
         return f"""# {self.code} · {self.question}
 
 **1. Question and prediction.** {self.question} {self.prediction}
@@ -112,7 +115,7 @@ class Report:
 
 **4. Verdict.** **{self.verdict}.** {self.headline}
 
-**5. Limit.** {self.limit}
+{limit_label} {self.limit}
 
 **6. Withholding and release.** {self.held}
 
@@ -641,8 +644,8 @@ def other_reports(s):
             f"The access check read {access['sourceRowsRead']} data rows and made {access['rawCopies']} copies. There is no effect estimate, interval or null band.",
             "pending",
             "No Q30 measurements. Analytical size and interval unavailable.",
-            "Only recalled and retold accounts are eligible. Imagined accounts are excluded.",
-            "Full figures are due after registered scoring in place. Spark needs a readable route to the held table. Stories stay at source, without copies or quotations.",
+            "The available Spark table contains recalled accounts. The study excludes imagined accounts.",
+            "The archive supplied a recalled-only Spark table on November 28. Q30 intake and scoring precede the full figures. Stories stay at source, without copies or quotations.",
             [aggregate("r48-legacy")],
             "withheld: Q30 source access pending",
         )
@@ -973,6 +976,8 @@ def dated_matching_report(s):
 
 
 def build(s):
+    from day_history import reports as history_reports
+
     seed = {
         r["id"]: r
         for r in (json.loads(line) for line in s.read(SEED).splitlines())
@@ -987,6 +992,7 @@ def build(s):
             *paired_report(s),
             *highest_report(s),
             *dated_matching_report(s),
+            *history_reports(s),
             *blog_sentence_report(s),
             feature_delivery(s),
         ],
@@ -1083,7 +1089,7 @@ def build(s):
         "[Readers return](THEORY_RETURN_READERS.md) · [Scoreboard](../ENGINE_SCOREBOARD.md)\n"
         + "- The en/de bilingual recall releases in R29, sacredness in R35 and the newly located Hansard temporal labels have no engine "
         "estimate in the surveyed returns. Original ISEAR in TP44 and TP54 is a separate release. DreamBank has no engine card here. "
-        "Talk-page CP1 has a stated CC BY-SA licence and TP79 is awaiting in-place access.\n"
+        "Talk-page CP1 has a stated CC BY-SA licence. The archive supplied a Spark route on November 28. TP79 awaits Q33.\n"
         + "- TP59's personally supplied reference workbook was used to match feeling names. The engine computed no pooled human "
         "estimate or rater accuracy. Individual scores remain private. Its public, source-specific model estimates and intervals "
         "are already in the [TP59 numerical table](result-sheets/TP59-by-source.csv). Theory owns any pooling.\n"

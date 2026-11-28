@@ -1,0 +1,41 @@
+{
+  "aboveZero": [
+    "RAGE"
+  ],
+  "belowZero": [
+    "CARE",
+    "DISGUST",
+    "FEAR",
+    "LUST",
+    "PLAY",
+    "SEEKING"
+  ],
+  "card": "TP89",
+  "chatChannels": 10,
+  "crossedRowsChecked": 6,
+  "ledger": "E-TP89-20261128",
+  "newInference": false,
+  "reportSha256": {
+    "docs/exchange/r48/TP61.md": "741806e91a9655d3eab675aeb00aeadfd07df40850060f6e269550738e7d335f",
+    "docs/exchange/r48/TP62.md": "4c973c0d73465fbbb9c7f00c0c525ca1a181ee029c9792e5d49fcbf2369ed815",
+    "docs/exchange/r48/TP63.md": "d13f66f0a40d8ffd7b445170fa5f5b371ac1c48b7af8a40ed3add8fd3d94992e",
+    "docs/exchange/r48/TP64.md": "3e56afd055456b74ed4af48f830c3258e4cc17af45927d8e4ea6159dd5eed1f4",
+    "docs/exchange/r48/TP65.md": "4a31f2970e413990a095729144951d8b6a690804bfc4a7ed8af06a2f2b95cb22",
+    "docs/exchange/r48/TP66.md": "86f4b03bc5700692654b414c22a8f9e0d308ac3177a0c19831976e184f4efc9b",
+    "docs/exchange/r48/TP67.md": "e22d901ebdf8e99c08331838b1e366ce3cd46cc1cbe44be7e47d5aea910339ef",
+    "docs/exchange/r48/TP68.md": "e86ef6f736571d8328f2dbdc32579ad217d778ba9b5c02dbc9804c618035a1ec",
+    "docs/exchange/r48/TP69.md": "8a7c4bec9b3eb90da679c170dd00778051200491eccd8fb05705189b2046350e",
+    "docs/exchange/r48/TP70.md": "604e63186bd4dd9b9b33ba22ed41d3d61f9c9fb7bd1e2c608a54517b22c421eb",
+    "docs/exchange/r48/TP71.md": "53ed8d521bdd98476aef7467ae04e1c518a1714564cfd68fd67538543e383150",
+    "docs/exchange/r48/TP72.md": "03dc45d894ddf8d899821fd0300eb4d74add77cf61edf4f3c49d077305c99461",
+    "docs/exchange/r48/TP73.md": "99261d6033022128b0755957234bbc459780a83ef074fcc621c84b9cede15b00",
+    "docs/exchange/r48/TP74.md": "9cc065376c3b077f87915d840033cbff6df3329886fcdd80cc967aa9c400e84b",
+    "docs/exchange/r48/TP75.md": "cd7637fb15762b0072697c5726baaec09ef84095cd238071558034344f0996a6",
+    "docs/exchange/r48/TP76.md": "bbe043fd0ea5eba347e5ed5d83add4aea05385541c02203c473b877d0769ebfe",
+    "docs/exchange/r48/TP77.md": "6be6e900ee95a1de5dab0913e1ba5726827dde4587a0d0500dc7390de2ddb105",
+    "docs/exchange/r48/TP78.md": "efaa66d56dcc13481a8897a5675fda4ed900dca231e66d1aa7713607b8e1cb90",
+    "docs/exchange/r48/TP79.md": "f9a00b571dce2977f80f87351570743ab4cfe12b22aec777b6af1b1f2715f659"
+  },
+  "reports": 19,
+  "sourceReceiptPin": "b138933c110d9a963ba678729dcdc7142259e45f601bbbd276e1c93ad71c9141"
+}

@@ -1,4 +1,4 @@
-Spark is reserved for Q35 while its prompt is frozen. The workstation is waiting for the G12 prefix verification and resume code. The card queue is preparing TP89.
+Nov 28, 07:38 PT. Spark is running Q35. G12r is waiting on workstation commit memory. TP89 is filed and TP81 is next in the card queue.
 
 # Round 38 engine return
 
@@ -7,6 +7,16 @@ At 07:19 Pacific on November 28 the Spark filler had yielded. Q31 recorded 82,54
 The registered need prompt and its two alternate wordings are filed together in [R38-need-protocol.json](result-sheets/R38-need-protocol.json). The packet and R38 handoff match the supplied files. The preflight archive is filed under `docs/exchange/PREFLIGHT_2026-11-28.zip` with SHA-256 `5ecb569bb9efd5bbab15623a3bd292a0a47774547d436f0faf58b34d158cd4fa`. Its simulations describe constructed worlds.
 
 Q30 and Q33 have received source pointers on Spark. Their intake must bind the recalled-only story table and exact talk-page archive before either job may run. The permitted order puts both ahead of Q24b. The overall cutoff is November 29 at 08:00 Pacific.
+
+Q35 saved 1,520 positions with 1,519 valid replies at 07:37 PT, with its exact native GPU lock verified. The first 100 took 37.09 seconds after loading, projecting 3.24 hours for 31,450 texts against the packet estimate of 5.8 hours. Q36 follows automatically on a verified release.
+
+G12r verified and hashed all 27,214 stopped rows, including 24,850 chat texts (22,016 valid) and 2,364 events (2,344 valid). The first unfinished zero-based ordinal is 27,214. At 07:33:55 PT, free commit was 7.31 GiB. Program and Sounding Line slot processes held 0.079 GiB and the remainder was 93.709 GiB. The minute check resumes W above 13.583 GiB. The subsequent workstation order is G16, G14r, then G13r. The G15 filler remains last.
+
+**Against, and clear.** On chat, six channel outputs decreased on change sentences and RAGE increased. The prediction that all ten would rise missed. The specified TP64, TP65 and TP70 misses and the earlier TP61 miss are recorded in [TP78](result-sheets/TP78.md).
+
+**TP89 landed.** Nineteen seven-part reports now cover TP61 through TP79, including pending measurements. An independent check verified all ten TP65 transcriptions and six crossed prediction rows. [TP89 report](result-sheets/TP89.md) · [Report index](HELD_RESULTS_DIGEST.md)
+
+The Spark account verified both newly supplied corpus hashes in place. Q30 uses the recalled-only source; Q33 uses the talk-page archive. Their runners and scoring remain pending. The Q24b yield remains set.
 
 ## Earlier Round 37 checkpoints
 
@@ -76,7 +86,7 @@ Pilot times are wall seconds after loading. Observed totals include job startup 
 | G12 · Standing | 4–6 | 66.58 | 7.96 | Memory stop. 27,214 single-response files are durable. The last progress count covers 27,200. |
 | G14 · Event features | <1 | 120.60 | 2.21 | Stopped at the 8 GiB commit floor. Saved 928 single-response files. The last progress report recorded 920 valid out of 920. The full roster was 6,600. Native exit and release verified. |
 | G13 · Sentence and loss comparisons | First 100 to size | 51.03 forum/ISEAR, 49.21 blog | 5.53 and 11.28 for the respective sentence panels | Forum/ISEAR stopped at 17,124 saved forum sentences. The independent blog run stopped at 00:46 PT on November 28 with 11,179 valid saved sentence marks and no W loss readings. Both workers exited at the 8 GiB commit floor and released their leases. |
-| G15 · Workstation filler | Up to 21.6 | Unreached | — | W reached its memory floor at 00:47 PT after 39 valid new ratings out of 28,846 new calls. Exact native exit and shared release verified. The historical W ratings remain available separately. |
+| G15 · Workstation filler | Up to 21.6 | Unreached | — | W reached its memory floor at 00:47 PT after 39 valid saved ratings; 28,846 calls were planned and fewer than 100 ran. Exact native exit and shared release verified. The historical W ratings remain available separately. |
 | Q24b · Spark filler | Time remaining | — | — | Native dispatcher verified at offset 207,795. Parked behind the priority jobs. |
 
 At 04:02 PT on November 28, the workstation receiver confirmed its connection to the original Q31 process. After a successful exit it checks the shared GPU release and the hash of every returned file, then starts the blog sentence agreement study when the counted CPU slot has sufficient memory. The separate Spark listener lets Q24b resume after that same release if the higher-priority sources are still unavailable. Both handoffs are armed. Q31 has yet to return its complete result.
