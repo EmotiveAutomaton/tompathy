@@ -75,8 +75,8 @@ def compare(pride, words, writers, agency, gate, check):
     return rows
 
 
-def prepare(out, check):
-    panel = ROOT / "TP77-standing-a"
+def prepare(out, check, *, panel=None):
+    panel = panel or ROOT / "TP77-standing-a"
     bridge = ROOT / "TP69-a"
     prior = ROOT / "TP67-original-a"
     releases = {p.name: confirmed(p) for p in (panel, bridge, prior)}
@@ -85,13 +85,14 @@ def prepare(out, check):
     forecasts = read(bridge / "receipt.json")["result"]
     if (
         original["sourceReceiptPin"] != releases[bridge.name]
-        or gates["card"] != "TP77-standing"
+        or gates["card"] not in ("TP77-standing", "TP77-standing-chat-prefix")
         or gates["fields"] != list(CHOICES)
         or gates["counts"]["ed"] != 24850
     ):
         raise ValueError("Standing and original PRIDE sources are not bound")
-    full = gates["tables"]["all"]["whose"]
     chat = gates["tables"]["ed"]["whose"]
+    prefix = gates["card"] == "TP77-standing-chat-prefix"
+    full = chat if prefix else gates["tables"]["all"]["whose"]
     for cell in (full, chat):
         if cell["levels"] != CHOICES["whose"] or cell["CW"] != classification(
             cell["value"]
@@ -133,5 +134,11 @@ def prepare(out, check):
         "reports": rows,
         "wholeWriterDraws": 2000,
     }
+    if prefix:
+        result.update(
+            card="TP67-agency-chat-prefix",
+            panelScope="Complete chat roster in G12's memory-stop prefix",
+            originalPrefixSources=gates["originalPrefixSources"],
+        )
     write(out / "table.json", result)
     return result

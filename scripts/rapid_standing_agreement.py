@@ -101,6 +101,40 @@ def decode(row):
 
 def marks(binding, role, cfg, ids, check):
     directory = Path(binding["mirror"])
+    if binding.get("status") == "memory-prefix":
+        if (
+            role != "W"
+            or not binding["nativeExited"]
+            or not binding["ownedGpuLockReleased"]
+        ):
+            raise ValueError("DU requires a released workstation floor stop")
+        proof = read(bound(Path(binding["manifest"]), binding["sourceReceiptPin"]))
+        bound(directory / "released.json", binding["releasePin"])
+        folder = directory / role
+        settings = read(bound(folder / "protocol.json", proof["protocolPin"]))
+        if (
+            settings["inputPin"] != digest("\n".join(ids))
+            or settings["width"] != 1
+            or settings["modelPin"] != cfg["readers"]["W"][1]
+            or settings["think"] is not False
+            or any(settings[k] != v for k, v in cfg["prompts"]["standing"].items())
+        ):
+            raise ValueError("DU protocol differs from the registered W reader")
+        n = proof["nextOrdinal"]
+        if n != len(proof["files"]) or n != binding["nextOrdinal"] or n > len(ids):
+            raise ValueError("DU ordinal differs")
+        matrix = np.full((n, len(CHOICES)), -1, np.int8)
+        for i in range(n):
+            if i % 256 == 0:
+                check()
+            name = f"from-{i:06d}.json"
+            [row] = read(bound(folder / name, proof["files"][name]))
+            if row["id"] != ids[i]:
+                raise ValueError("DU response ID differs")
+            matrix[i] = decode(row)
+        if np.sum(matrix[:, 0] >= 0) != proof["valid"]:
+            raise ValueError("DU valid reply census differs")
+        return matrix, proof["protocolPin"]
     receipt = read(bound(directory / "receipt.json", binding["sourceReceiptPin"]))
     folder = directory / role
     arm = read(
@@ -216,8 +250,8 @@ def original_when_tail(check):
     }
 
 
-def prepare(out, check):
-    handoff = ROOT / "standing-return/complete.json"
+def prepare(out, check, *, handoff=None):
+    handoff = handoff or ROOT / "standing-return/complete.json"
     verified = read(handoff)
     cfg = read(bound(ROOT / "registration.json", REG))
     manifest = read(bound(ROOT / "inputs/inputs.json", cfg["inputManifest"]))
@@ -226,6 +260,12 @@ def prepare(out, check):
     for role in ("B", "W"):
         matrices[role], settings[role] = marks(verified[role], role, cfg, ids, check)
     a, b = matrices["B"], matrices["W"]
+    prefix = verified["W"].get("status") == "memory-prefix"
+    if prefix:
+        n = manifest["counts"]["ed"]
+        if len(b) < n or not np.all(corpora[:n] == "ed"):
+            raise ValueError("The DU panel does not cover the full chat source")
+        a, b, ids, persons, corpora = a[:n], b[:n], ids[:n], persons[:n], corpora[:n]
     fields = list(CHOICES)
     rise = fields.index("standing")
     earned = fields.index("earned")
@@ -233,7 +273,7 @@ def prepare(out, check):
         b[:, rise] == CHOICES["standing"].index("rose")
     )
     results = {}
-    for source in ("all", *SOURCES):
+    for source in ("ed",) if prefix else ("all", *SOURCES):
         subset = np.ones(len(ids), bool) if source == "all" else corpora == source
         values = {
             field: table(a[subset, j], b[subset, j], persons[subset], levels, check)
@@ -255,8 +295,8 @@ def prepare(out, check):
         )
     result = {
         "card": "TP77-standing",
-        "counts": manifest["counts"],
-        "unknownForumAuthorsAsSingleComments": unknown,
+        "counts": {"ed": len(ids)} if prefix else manifest["counts"],
+        "unknownForumAuthorsAsSingleComments": 0 if prefix else unknown,
         "draws": 2000,
         "fields": fields,
         "tables": results,
@@ -267,7 +307,14 @@ def prepare(out, check):
         "inputManifest": cfg["inputManifest"],
         "nativeReturnPin": pin(handoff),
         "privateAlignmentPin": pin(path),
-        "originalTimingTail": original_when_tail(check),
     }
+    if prefix:
+        result.update(
+            card="TP77-standing-chat-prefix",
+            originalPrefixSources=verified["W"]["sources"],
+            nextOrdinal=verified["W"]["nextOrdinal"],
+        )
+    else:
+        result["originalTimingTail"] = original_when_tail(check)
     write(out / "table.json", result)
     return result

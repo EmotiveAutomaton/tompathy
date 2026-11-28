@@ -76,7 +76,6 @@ def windows(plan):
         or release["owner"] != owner
         or release["wrapper"] != witness["shim"]
         or release["witnessedBy"] != witness["observer"]
-        or release["exitCode"]
         or not all(
             release[k] for k in ("childWaited", "sharedLeaseReacquired", "nativeExited")
         )
@@ -84,6 +83,8 @@ def windows(plan):
         or live(witness["shim"])
     ):
         raise ValueError("G12 native exit or GPU lease proof differs")
+    if release["exitCode"]:
+        return memory_prefix(owner, release)
     source, files = inventory(WINDOWS_JOB)
     return {
         "sourceReceiptPin": source,
@@ -93,6 +94,40 @@ def windows(plan):
         "fileCount": len(files),
         "nativeExited": True,
         "ownedGpuLockReleased": True,
+    }
+
+
+def memory_prefix(owner, release):
+    """Admit only the original G12 floor stop via the verified DU manifest."""
+    prefix = ROOT.parent / "day-20261128/jobs/G12r/W-prefix.json"
+    proof = read(prefix)
+    failed = read(WINDOWS_JOB / "failed.json")
+    if (
+        failed["owner"] != owner
+        or failed["error"] != "Available commit reached the 8 GiB floor"
+        or proof["job"] != "G12"
+        or owner["registration"] != REG
+        or proof["firstOrdinal"] != 0
+        or proof["nextOrdinal"] != len(proof["files"])
+        or proof["original"]["owner.json"] != pin(WINDOWS_JOB / "owner.json")
+        or proof["original"]["failed.json"] != pin(WINDOWS_JOB / "failed.json")
+        or proof["original"]["released.json"] != pin(WINDOWS_JOB / "released.json")
+        or release["owner"] != owner
+        or not release["nativeExited"]
+    ):
+        raise ValueError("DU prefix is not bound to the witnessed stopped worker")
+    return {
+        "status": "memory-prefix",
+        "sourceReceiptPin": pin(prefix),
+        "manifest": str(prefix),
+        "mirror": str(WINDOWS_JOB),
+        "owner": owner,
+        "nativeExited": True,
+        "ownedGpuLockReleased": True,
+        "releasePin": pin(WINDOWS_JOB / "released.json"),
+        "nextOrdinal": proof["nextOrdinal"],
+        "valid": proof["valid"],
+        "sources": proof["sources"],
     }
 
 
