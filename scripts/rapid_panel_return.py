@@ -199,7 +199,45 @@ def forum_contrasts(r):
 
 
 # stage: renderer, aggregate fields, question, registered comparison, claim IDs.
+def blog_marks(r):
+    if set(r["tables"]) != {"change", "when", "whose"} or r["lossSavedW"] != 0:
+        raise ValueError("Unexpected blog mark coverage")
+    rows = [
+        "| Field | Paired sentences | Authors in prefix | Kappa (95% interval) | CW on prefix |",
+        "|---|---:|---:|---:|---|",
+    ]
+    for name in ("change", "when", "whose"):
+        c = r["tables"][name]
+        if (
+            c["roster"] != r["WSaved"]
+            or sum(map(sum, c["contingency"])) != c["jointlyValid"]
+        ):
+            raise ValueError("Blog agreement denominators differ")
+        rows.append(
+            f"| {name} | {c['jointlyValid']:,} | {c['clusters']:,} | {interval(c)} | {c['CW']} |"
+        )
+    rows.extend(
+        [
+            "",
+            "| Reader B loss judgment | Openings |",
+            "|---|---:|",
+            *[f"| {k} | {v:,} |" for k, v in sorted(r["lossKindsB"].items())],
+        ]
+    )
+    time = r["tables"]["when"]
+    brief = f"On the saved blog prefix, sentence timing kappa was {interval(time)} across {time['jointlyValid']:,} jointly valid sentences. B supplied {r['validB']:,} valid sentence readings across the full roster."
+    limit = f"W stopped after {r['WSaved']:,} of {r['sentences']:,} sentences. B’s loss judgments cover selected high-SADNESS openings and have no independent W comparison."
+    return brief, rows, limit
+
+
 PANELS = {
+    "TP77-Q31": (
+        blog_marks,
+        "BReceipt WRelease registration alignedPin sentences openings authors WSaved lossKindsB lossSavedW validB tables draws",
+        "How closely do B and W agree on sentence changes in blog openings?",
+        "CW thresholds on the saved prefix only.",
+        ["T2", "T11"],
+    ),
     "TP73-paired": (
         paired_readers,
         "inputReceipt momentsReceipt headPin authors posts eligibleAuthors cohort coverage draws setsPerFamily headsPerSet tables",

@@ -37,6 +37,37 @@ def confirmed(out):
     return source
 
 
+def capacity():
+    """Read the same reservation and free-memory inputs as the scoring lease."""
+    for folder in (
+        Path("engine").resolve(),
+        Path("../SoundingLine/sounding-line").resolve(),
+    ):
+        if str(folder) not in sys.path:
+            sys.path.insert(0, str(folder))
+    from runners.drive.cards.week5_policy_v2 import (
+        lease_paths,
+        memory_reserve,
+        shared_reservation,
+    )
+    from tompathy_engine.eval.back_half.resources import headroom
+
+    paths = lease_paths()
+    available = headroom()
+    slots = 8 - int(shared_reservation()["active"])
+    required = 14 + memory_reserve(paths)
+    free = not Path(".local/bench/two-day-scoring.lock").exists()
+    return {
+        "at": now(),
+        "headroom": available,
+        "counted": len(paths),
+        "capacity": slots,
+        "requiredGiB": required,
+        "localFree": free,
+        "eligible": free and len(paths) < slots and min(available.values()) >= required,
+    }
+
+
 def execute(card):
     out = ROOT / (card + "-a")
     if not out.exists():

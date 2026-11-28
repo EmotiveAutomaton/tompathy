@@ -855,6 +855,36 @@ def new_sentence_reports(s):
     )
 
 
+def blog_sentence_report(s):
+    stem = "readers-tp77-q31"
+    if aggregate(stem) not in s.files(VALID):
+        return
+    r = s.tables(stem)
+    when = r["tables"]["when"]
+    yield Report(
+        "TP77-Q31",
+        date.fromisoformat(r["ledger"][-8:]).isoformat(),
+        "Do B and W agree on sentence changes in blog openings?",
+        "Usable agreement requires kappa of at least 0.60 under CW.",
+        "Blog Authorship Corpus, dated openings and a separate high-SADNESS candidate set.",
+        f"{r['openings']:,} openings from {r['authors']:,} authors, with {r['WSaved']:,} W marks in roster order.",
+        table(
+            ["Field", "Jointly valid", "Prefix authors", "Kappa (95% interval)", "CW"],
+            [
+                [k, v["jointlyValid"], v["clusters"], measured(v), v["CW"]]
+                for k, v in r["tables"].items()
+            ],
+        )
+        + "\n\n"
+        + table(["B loss judgment", "Openings"], sorted(r["lossKindsB"].items())),
+        "partial",
+        f"Timing kappa {measured(when)} ({when['CW']}) on the saved overlap.",
+        r["limit"],
+        "All measured aggregate cells are available. W reached its memory floor before the loss arm.",
+        [aggregate(stem), "scripts/rapid_q31_agreement.py"],
+    )
+
+
 def paired_report(s):
     from rapid_paired_report import render
 
@@ -897,6 +927,7 @@ def build(s):
             *other_reports(s),
             *new_sentence_reports(s),
             *paired_report(s),
+            *blog_sentence_report(s),
             feature_delivery(s),
         ],
         key=lambda r: (r.day, r.code),

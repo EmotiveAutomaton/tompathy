@@ -111,6 +111,10 @@ def run(card, attempt):
                 import rapid_q29_agreement as study
 
                 result = study.prepare(out, check)
+            elif card == "TP77-Q31":
+                import rapid_q31_agreement as study
+
+                result = study.prepare(out, check)
             elif card == "TP77-responsibility":
                 import rapid_responsibility as study
 
@@ -239,6 +243,7 @@ if __name__ == "__main__":
             "TP77-original",
             "TP77-wordings",
             "TP77-Q29",
+            "TP77-Q31",
             "TP77-responsibility",
             "TP63-original",
             "TP63-features",
