@@ -278,6 +278,11 @@ def tables(values, draws, bands, names, census):
                 zip(traits, np.quantile(null, 0.975, axis=(0, 1)).tolist(), strict=True)
             ),
         }
+    return bars, table_cells(values, draws, bars, names, census)
+
+
+def table_cells(values, draws, bars, names, census):
+    traits = list(KEYS)
     result = {}
     for i, name in enumerate(names):
         result[name] = {}
@@ -322,7 +327,7 @@ def tables(values, draws, bands, names, census):
                     / (len(sample) + 1),
                 ),
             }
-    return bars, result
+    return result
 
 
 def prepare(out, check):

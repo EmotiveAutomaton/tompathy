@@ -58,12 +58,20 @@ def run(
     blog_registration=None,
     filler_registration=None,
     released_workstation=False,
+    after_g14_stop=False,
 ):
     import hashlib
     import json
 
     if filler_registration and (blog_registration or os.name != "nt"):
         raise ValueError("G15 is a separate workstation registration")
+    if after_g14_stop and (
+        os.name != "nt"
+        or not released_workstation
+        or blog_registration
+        or filler_registration
+    ):
+        raise ValueError("Only G13-Q29 can follow the verified G14 memory stop")
     if filler_registration:
         cfgpath = root / "G15-registration.json"
     else:
@@ -170,9 +178,12 @@ def run(
     )
     if released_workstation and not win:
         raise ValueError("Release-only continuation belongs to the workstation")
-    ctl = root / (
-        machine + suffix + ("-after-G12-stop" if released_workstation else "")
+    route = (
+        "-after-G14-stop"
+        if after_g14_stop
+        else ("-after-G12-stop" if released_workstation else "")
     )
+    ctl = root / (machine + suffix + route)
     ctl.mkdir(exist_ok=True)
     with lane.lease(ctl / "dispatcher.lock"):
         target = root / "jobs" / job
@@ -227,19 +238,70 @@ def run(
             release = lane.read(previous / "released.json")
             if (
                 release["owner"] != old_owner
-                or release["exitCode"] != 0
+                or release["exitCode"] != int(after_g14_stop)
                 or not release["sharedLeaseReacquired"]
                 or old_owner["job"] != prior
                 or old_owner["registration"] != predecessor_registration
                 or not release["childWaited"]
             ):
                 raise ValueError("Cannot advance beyond an unverified predecessor")
-            worker.require_pin(
-                previous / "receipt.json",
-                lane.read(previous / "complete.json")["sourceReceiptPin"],
-            )
-            if lane.read(previous / "receipt.json")["owner"] != old_owner:
-                raise ValueError("Predecessor source and native owner differ")
+            if after_g14_stop:
+                from rapid_windows_follow import Process
+
+                worker.require_pin(
+                    previous / "failed.json",
+                    "56e6c128806ede0aa60b3595d760a5249d80e71df675717324289c458af613e9",
+                )
+                worker.require_pin(
+                    previous / "released.json",
+                    "4014a51add3281982cdd459e230c7d0e0488ae3f4b0489e74f827617cde7e923",
+                )
+                failure = lane.read(previous / "failed.json")
+                if (
+                    failure["owner"] != old_owner
+                    or failure["error"] != "Available commit reached the 8 GiB floor"
+                    or not release["nativeExited"]
+                ):
+                    raise ValueError(
+                        "G14 failure differs from the witnessed memory stop"
+                    )
+                try:
+                    handle = Process(old_owner["pid"], old_owner["createdTicks"])
+                except OSError as exc:
+                    if exc.winerror != 87:
+                        raise
+                except ValueError:
+                    pass  # The original creation time no longer occupies this PID.
+                else:
+                    with contextlib.closing(handle):
+                        if handle.dll.WaitForSingleObject(handle.handle, 0) != 0:
+                            raise ValueError("The original G14 worker has not exited")
+                resident = (
+                    lane.read(previous / "W/first100.json")["residentBytes"] / 2**30
+                )
+                while True:
+                    check()
+                    available = lane.commit_free_gib()
+                    models = lane.core.api("ps")["models"]
+                    lane.write(
+                        ctl / "capacity.json",
+                        {
+                            "at": lane.now(),
+                            "commitGiB": available,
+                            "lastResidentGiB": resident,
+                            "residentModels": len(models),
+                        },
+                    )
+                    if available > 8 + resident and not models:
+                        break
+                    time.sleep(60)
+            else:
+                worker.require_pin(
+                    previous / "receipt.json",
+                    lane.read(previous / "complete.json")["sourceReceiptPin"],
+                )
+                if lane.read(previous / "receipt.json")["owner"] != old_owner:
+                    raise ValueError("Predecessor source and native owner differ")
             if not win and linux_live(old_owner):
                 raise ValueError("Predecessor worker is still running")
             with lane.lease(root / (machine + "-dispatch.lock")):
@@ -360,6 +422,7 @@ if __name__ == "__main__":
     parser.add_argument("root", type=Path)
     parser.add_argument("--verify-only", action="store_true")
     parser.add_argument("--released-workstation", action="store_true")
+    parser.add_argument("--after-g14-stop", action="store_true")
     registrations = parser.add_mutually_exclusive_group()
     registrations.add_argument("--blog-registration")
     registrations.add_argument("--filler-registration")
@@ -370,6 +433,7 @@ if __name__ == "__main__":
         args.blog_registration,
         args.filler_registration,
         args.released_workstation,
+        args.after_g14_stop,
     )
     if proof:
         print(proof)

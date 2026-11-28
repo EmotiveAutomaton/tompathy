@@ -103,6 +103,10 @@ def run(card, attempt):
                 import rapid_outside as study
 
                 result = study.prepare(out, check)
+            elif card == "TP63-features":
+                import rapid_event_features as study
+
+                result = study.prepare(out, check)
             elif card in ("TP69", "TP67-original"):
                 import rapid_word_contrasts as study
 
@@ -209,6 +213,7 @@ if __name__ == "__main__":
             "TP65",
             "TP77-original",
             "TP63-original",
+            "TP63-features",
             "TP69",
             "TP66-short",
             "TP67-original",
