@@ -109,9 +109,61 @@ def responsibility(r):
     )
 
 
+def sentences(r):
+    tables = r["tables"]
+    coverage = r["coverage"]
+    if set(tables) != {"change", "when", "whose"} or set(coverage) != {"go", "isear"}:
+        raise ValueError("Missing source or agreement table")
+    if (
+        any(
+            c["roster"] != coverage["go"]["WSaved"]
+            or sum(map(sum, c["contingency"])) != c["jointlyValid"]
+            for c in tables.values()
+        )
+        or coverage["isear"]["WSaved"] != 0
+    ):
+        raise ValueError("Agreement census differs from the saved overlap")
+    when = tables["when"]
+    brief = f"On the saved forum prefix, B/W kappa for sentence timing was {interval(when)} on {when['jointlyValid']:,} paired sentences. ISEAR has {coverage['isear']['B']['valid']:,} valid B readings and zero W readings."
+    lines = [
+        "| Forum prefix | Paired | Writer clusters | Kappa (95% interval) | CW on prefix |",
+        "|---|---:|---:|---:|---|",
+    ]
+    for field in ("change", "when", "whose"):
+        c = tables[field]
+        lines.append(
+            f"| {field} | {c['jointlyValid']:,} | {c['clusters']:,} | {interval(c)} | {c['CW']} |"
+        )
+    lines.extend(
+        [
+            "",
+            "| Source | Reader | Saved | Valid | No change | Ahead | Already | Ongoing |",
+            "|---|---|---:|---:|---:|---:|---:|---:|",
+        ]
+    )
+    for name, c in coverage.items():
+        for role in ("B", "W"):
+            row = c[role]
+            n = c["sentences"] if role == "B" else c["WSaved"]
+            vals = [
+                n,
+                row["valid"],
+                *(row[k] for k in ("none", "ahead", "already", "ongoing")),
+            ]
+            lines.append(
+                f"| {name} | {role} | " + " | ".join(f"{v:,}" for v in vals) + " |"
+            )
+    return (
+        brief,
+        lines,
+        "The overlap follows the original forum order up to the workstation memory stop. Full-panel agreement and ISEAR reliability are unavailable.",
+    )
+
+
 def file(stage, states):
     is_feature = stage == "TP63-features"
     human = stage == "TP77-responsibility"
+    sentence = stage == "TP77-Q29"
     card = stage.split("-")[0]
     sheet = Path(f"docs/exchange/result-sheets/{card}.md")
     out = ROOT / (stage + "-a")
@@ -131,6 +183,8 @@ def file(stage, states):
         if is_feature
         else "target generationPin BReceipt WRelease WFailure ratingPins draws tables"
         if human
+        else "BReceipt WFailure WRelease BResponsesPin WResponsesPin alignedPin coverage tables draws"
+        if sentence
         else "readerReceipts protocols draws tables inputManifest"
     ).split()
     if set(r) != set(fields):
@@ -139,6 +193,7 @@ def file(stage, states):
         "TP63-features": features,
         "TP77-wordings": wordings,
         "TP77-responsibility": responsibility,
+        "TP77-Q29": sentences,
     }[stage](r)
     file = PUBLIC / f"readers-{stage.lower()}-2026-11.json"
     put(file, {**r, "sourceReceiptPin": source, "ledger": ident, "limit": limit})
@@ -147,6 +202,8 @@ def file(stage, states):
         if is_feature
         else "How closely do the readers’ own-responsibility ratings agree with writers’ answers?"
         if human
+        else "How closely do B and W agree on the new sentence marks?"
+        if sentence
         else "How sensitive are standing judgments to reader and prompt wording?"
     )
     bar = (
@@ -154,6 +211,8 @@ def file(stage, states):
         if is_feature
         else "Descriptive human check on a common 1–5 scale."
         if human
+        else "CW thresholds on the observed overlap only."
+        if sentence
         else "Descriptive reader and wording checks."
     )
     append(
@@ -244,7 +303,8 @@ def file(stage, states):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "stage", choices=["TP63-features", "TP77-wordings", "TP77-responsibility"]
+        "stage",
+        choices=["TP63-features", "TP77-wordings", "TP77-responsibility", "TP77-Q29"],
     )
     parser.add_argument("observations", type=Path)
     args = parser.parse_args()

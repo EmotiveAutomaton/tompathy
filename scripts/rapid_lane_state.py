@@ -86,8 +86,8 @@ def windows():
         "TP64-?",
         "TP65-?",
         "TP65-inputs-?",
-        "TP77-original-?",
-        "TP77-wordings-?",
+        "TP77-*-?",
+        "TP65-Q29-?",
         "Q31-inputs-?",
         "TP63-*-?",
         "G15-inputs-?",
@@ -127,12 +127,21 @@ def windows():
         )
     ):
         reason = "waiting for counted CPU and memory admission for the sealed-bundle rehearsal"
-    wording_wait = root / "TP77-wordings-counted-wait"
-    if not active and (wording_wait / "armed.json").is_file() and not any(
-        (wording_wait / name).is_file() for name in ("complete.json", "stopped.json")
+    for stage, label in (
+        ("TP77-wordings", "Q32 wording comparisons"),
+        ("TP77-Q29", "Q29 sentence agreement"),
     ):
-        if live(read(wording_wait / "armed.json")["owner"]):
-            reason = "waiting for counted memory admission for the Q32 wording comparisons"
+        wait = root / (stage + "-counted-wait")
+        if (
+            not active
+            and (wait / "armed.json").is_file()
+            and not any(
+                (wait / name).is_file() for name in ("complete.json", "stopped.json")
+            )
+            and live(read(wait / "armed.json")["owner"])
+        ):
+            reason = "waiting for counted memory admission for " + label
+            break
     return {
         "gpu": gpu(root, ("G12", "G14", "G13-Q29", "G13-Q31", "G15")),
         "card": active[0] if active else None,

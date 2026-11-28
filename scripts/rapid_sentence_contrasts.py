@@ -43,7 +43,20 @@ def slopes(m, outputs):
     )
 
 
-def fit(labels, positive, negative, score, parent, writer, position, weights, check):
+def fit(
+    labels,
+    positive,
+    negative,
+    score,
+    parent,
+    writer,
+    position,
+    weights,
+    check,
+    names=NAMES,
+):
+    if score.ndim != 2 or score.shape[1] != len(names):
+        raise ValueError("Output names and score columns differ")
     eligible = np.isin(labels, (*positive, *negative))
     if not eligible.any():
         return {"eligibleSentences": 0, "outputs": {}}
@@ -69,7 +82,7 @@ def fit(labels, positive, negative, score, parent, writer, position, weights, ch
         result.append(slopes(w @ per_writer, y.shape[1]))
     values = np.concatenate(result)
     outputs = {}
-    for j, name in enumerate(NAMES):
+    for j, name in enumerate(names):
         a = values[:, j]
         finite = a[1:][np.isfinite(a[1:])]
         r = summary(a[0], finite)

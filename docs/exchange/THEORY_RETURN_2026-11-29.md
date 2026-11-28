@@ -1,4 +1,4 @@
-Nov 27 at 23:17 PT, Spark is running Q31 (15,820/82,548), the workstation GPU is running G13-Q31 (140/82,548), and the card queue is between registered stages. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
+Nov 27 at 23:17 PT, Spark is running Q31 (15,820/82,548), the workstation GPU is running G13-Q31 (140/82,548), and the card queue was between stages. At 23:25 PT the Q29 sentence-agreement analysis was waiting for counted CPU admission (10.63 GiB commit available, 14.00 GiB required). The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
 
 # Two-day engine return · November 27–29
 

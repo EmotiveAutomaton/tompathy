@@ -4,6 +4,7 @@ Reviewed the engine returns from the current two-day packet back to the October 
 
 | Report | Date | Class | Earlier disposition | Aggregate source | Action or outstanding requirement |
 | --- | --- | --- | --- | --- | --- |
+| [TP77-responsibility](r48/TP77-responsibility.md) | 2026-11-27 | P | New Round 37 reader comparison. | [readers-tp77-responsibility-2026-11.json](../../engine/validation/readers-tp77-responsibility-2026-11.json) · [rapid_responsibility.py](../../scripts/rapid_responsibility.py) | Report generated from the released paired counts and estimates. |
 | [TP76](r48/TP76.md) | 2026-11-27 | P | withheld: Q30 source access pending | [r48-legacy-2026-11.json](../../engine/validation/r48-legacy-2026-11.json) | Full figures are due after registered scoring in place. Spark needs a readable route to the held table. Stories stay at source, without copies or quotations. |
 | [TP66-long](r48/TP66-long.md) | 2026-11-27 | P | withheld: Q30 source access pending | [r48-legacy-2026-11.json](../../engine/validation/r48-legacy-2026-11.json) | Full figures are due after registered scoring in place. Spark needs a readable route to the held table. Stories stay at source, without copies or quotations. |
 | [TMP2-source](r48/TMP2-source.md) | 2026-11-27 | S | withheld: source binding failed | [r48-tmp2-source-2026-11.json](../../engine/validation/r48-tmp2-source-2026-11.json) | Native exit 22, launcher exit 4, external gate skipped. Verify key uniqueness, timestamps and missing-value conventions inside the seal. |

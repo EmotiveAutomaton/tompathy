@@ -677,6 +677,111 @@ def other_reports(s):
     )
 
 
+def new_sentence_reports(s):
+    stem = "readers-tp77-responsibility"
+    r = s.tables(stem)
+    rows = r["tables"]
+    b = rows["B-writer"]
+    yield Report(
+        "TP77-responsibility",
+        date.fromisoformat(r["ledger"][-8:]).isoformat(),
+        "Do readers agree with writers about their own responsibility?",
+        "The packet specified the comparison without a numerical pass threshold.",
+        "Crowd-enVENT (CC BY 4.0).",
+        f"{b['paired']:,} events from {b['writers']:,} writers in the full B comparison.",
+        table(
+            [
+                "Comparison",
+                "Paired events",
+                "Writers",
+                "Rank correlation (95% interval)",
+                "Unweighted kappa (95% interval)",
+                "Fraction in exact agreement",
+            ],
+            [
+                [
+                    k,
+                    c["paired"],
+                    c["writers"],
+                    measured(c["rank"]),
+                    measured(c["kappa"]),
+                    c["exactAgreement"],
+                ]
+                for k, c in rows.items()
+            ],
+        )
+        + "\n\nEach interval uses 2,000 whole-writer resamples. The aggregate includes every cell of each paired 1–5 table.",
+        "descriptive",
+        f"B and writer rank correlation {measured(b['rank'])}. Exact agreement {b['exactAgreement']:.1%}.",
+        r["limit"],
+        "W reached only the original source-order prefix before its memory stop. The full W estimate has no paired data beyond that prefix. Individual answers remain private.",
+        [aggregate(stem), "scripts/rapid_responsibility.py"],
+    )
+    stem = "readers-tp77-q29"
+    if aggregate(stem) not in s.files(VALID):
+        return
+    r = s.tables(stem)
+    c = r["coverage"]
+    rows = r["tables"]
+    when = rows["when"]
+    summary = table(
+        [
+            "Forum prefix",
+            "Paired",
+            "Author clusters",
+            "Kappa (95% interval)",
+            "CW on prefix",
+        ],
+        [
+            [field, cell["jointlyValid"], cell["clusters"], measured(cell), cell["CW"]]
+            for field, cell in rows.items()
+        ],
+    )
+    counts = table(
+        [
+            "Source",
+            "Reader",
+            "Reports in roster",
+            "Sentences in roster",
+            "Saved",
+            "Valid",
+            "Neither",
+            "Ahead",
+            "Landed",
+            "Ongoing",
+        ],
+        [
+            [
+                src,
+                reader,
+                srcrow["reports"],
+                srcrow["sentences"],
+                srcrow["WSaved"] if reader == "W" else srcrow["sentences"],
+                *[
+                    srcrow[reader][k]
+                    for k in ("valid", "none", "ahead", "already", "ongoing")
+                ],
+            ]
+            for src, srcrow in c.items()
+            for reader in ("B", "W")
+        ],
+    )
+    yield Report(
+        "TP77-Q29",
+        date.fromisoformat(r["ledger"][-8:]).isoformat(),
+        "Do the two readers agree on the new sentence marks?",
+        "Timing was predicted to be usable under CW (kappa at least 0.60).",
+        "Held-out GoEmotions forum comments and ISEAR. " + ISEAR,
+        f"{when['jointlyValid']:,} paired forum sentences from {when['clusters']:,} author clusters. ISEAR contributed {c['isear']['sentences']:,} B readings; authors were not joined for an unpaired comparison.",
+        summary + "\n\n" + counts,
+        "partial",
+        f"Timing kappa {measured(when)} on the forum prefix ({when['CW']} on that subset).",
+        r["limit"],
+        "The workstation reached its memory floor before finishing the forum or reaching ISEAR. A full-panel estimate requires the missing independent readings. The original job is closed.",
+        [aggregate(stem), "scripts/rapid_q29_agreement.py"],
+    )
+
+
 def build(s):
     seed = {
         r["id"]: r
@@ -688,6 +793,7 @@ def build(s):
             *legacy_reports(s, seed),
             *tag_reports(s, seed),
             *other_reports(s),
+            *new_sentence_reports(s),
             feature_delivery(s),
         ],
         key=lambda r: (r.day, r.code),
@@ -740,6 +846,9 @@ def build(s):
         if r.code == "EV4":
             hold = "The feature handoff used dictionary hashes pending the corpus terms check."
             next_step = "All received statistical quantities are releasable. Source-owned dictionary arrays were outside the delivery."
+        elif r.code.startswith("TP77-"):
+            hold = "New Round 37 reader comparison."
+            next_step = "Report generated from the released paired counts and estimates."
         elif r.code in ("TP66-long", "TP76", "TMP2-source", "TP23-base", "TP54"):
             hold, next_step = r.status, r.held
         files = " · ".join(f"[{Path(p).name}](../../{p})" for p in r.files if p != SEED)
