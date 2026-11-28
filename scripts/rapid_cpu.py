@@ -184,6 +184,10 @@ def run(card, attempt):
                 )
                 if result["meta"] != study.read(first / "design.json"):
                     raise ValueError("The fixed chat roster or design differs")
+            elif card == "TP73-paired-inputs":
+                import rapid_paired_authors as study
+
+                result = study.prepare(out, check)
             elif card == "TP73-TP51":
                 import week_competence_q24 as study
                 from rapid_collect import read
@@ -246,6 +250,7 @@ if __name__ == "__main__":
             *(f"TP70-block-{i:02d}" for i in range(40)),
             "TP62-first",
             "TP73-TP51",
+            "TP73-paired-inputs",
             *(f"TP62-block-{i:02d}" for i in range(10)),
         ],
     )
