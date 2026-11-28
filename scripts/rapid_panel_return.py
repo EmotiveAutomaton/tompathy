@@ -1,0 +1,197 @@
+"""Write the TP63 reader extension and TP77 wording tables from verified aggregate receipts."""
+
+import argparse
+from datetime import datetime
+from pathlib import Path
+from zoneinfo import ZoneInfo
+
+from rapid_card_record import RETURN, SCOREBOARD, STATUS, interval, live_line
+from rapid_cpu_dispatch import ROOT, confirmed
+from rapid_family import SHEET, render
+from rapid_land import PUBLIC, put
+from rapid_later_record import write_text
+from tompathy_engine.eval.evidence import append
+from word_table_lane import core, pin, read, write
+
+
+def features(r):
+    if set(r["outputs"]) != set(core.FEATURES) or any(
+        set(row) != set(r["targets"]) for row in r["outputs"].values()
+    ):
+        raise ValueError("Incomplete feature-by-trait table")
+    cells = [(feat, t, c) for feat, row in r["outputs"].items() for t, c in row.items()]
+    n = sum(c["pointAboveRotFamily"] for _, _, c in cells)
+    feat, trait, top = max(cells, key=lambda x: abs(x[2]["value"]))
+    brief = f"Across {r['writers']:,} writers and {r['reports']:,} reports, {n} of {len(cells)} feature–trait correlations exceeded the rotated family threshold of {r['bars']['rot']['family']:.3f}. The largest absolute correlation was {feat} with {trait.lower()}, {interval(top)}."
+    traits = list(r["targets"])
+    lines = [
+        "| Reader B feature | " + " | ".join(traits) + " |",
+        "|---|" + "---:|" * len(traits),
+    ]
+    for name, row in r["outputs"].items():
+        lines.append(
+            "| "
+            + name.replace("_", " ")
+            + " | "
+            + " | ".join(interval(row[t]) for t in traits)
+            + " |"
+        )
+    limit = "Each writer provided a few short events. The rotated reference uses the tag encoder. Each rating was cleared of assigned feeling before averaging within writer."
+    return brief, lines, limit
+
+
+def wordings(r):
+    comparisons = ["B/C", "B/standing2", "B/standing3", "standing2/standing3"]
+    fields = ["whose", "standing", "known", "earned"]
+    if set(r["tables"]) != set(comparisons):
+        raise ValueError("Incomplete reader or wording comparison")
+    lines = [
+        "| Readers or wordings | Paired valid / submitted | "
+        + " | ".join(fields)
+        + " |",
+        "|---|---:|---:|---:|---:|---:|",
+    ]
+    for name in comparisons:
+        row = r["tables"][name]
+        if set(row) != set(fields) or any(
+            sum(map(sum, c["contingency"])) != c["jointlyValid"] for c in row.values()
+        ):
+            raise ValueError("Invalid standing contingency")
+        cell = row["standing"]
+        lines.append(
+            f"| {name} | {cell['jointlyValid']:,} / {cell['roster']:,} | "
+            + " | ".join(interval(row[f]) for f in fields)
+            + " |"
+        )
+    bc = r["tables"]["B/C"]["standing"]
+    brief = f"B and C agreed on the direction of standing with kappa {interval(bc)} on {bc['jointlyValid']:,} jointly valid texts out of {bc['roster']:,}."
+    return (
+        brief,
+        lines,
+        "The two rewordings use the same fixed reader and reports. CW usability requires B/W agreement. G12 stopped before the full W panel was available.",
+    )
+
+
+def file(stage, states):
+    is_feature = stage == "TP63-features"
+    card = stage.split("-")[0]
+    sheet = Path(f"docs/exchange/result-sheets/{card}.md")
+    out = ROOT / (stage + "-a")
+    source = confirmed(out)
+    rec = read(out / "receipt.json")
+    r = rec["result"]
+    if (
+        rec["card"] != stage
+        or rec["status"] != "complete"
+        or r != read(out / "table.json")
+    ):
+        raise ValueError("Analysis identity or aggregate differs")
+    day = datetime.fromisoformat(rec["at"]).astimezone(ZoneInfo("America/Los_Angeles"))
+    ident = f"E-{stage.upper()}-{day:%Y%m%d}"
+    fields = (
+        "originalReceipt readerReceipt readerProtocol reports writers targets bootstrapDraws bars outputs"
+        if is_feature
+        else "readerReceipts protocols draws tables inputManifest"
+    ).split()
+    if set(r) != set(fields):
+        raise ValueError("Unexpected public aggregate fields")
+    brief, lines, limit = (features if is_feature else wordings)(r)
+    file = PUBLIC / f"readers-{stage.lower()}-2026-11.json"
+    put(file, {**r, "sourceReceiptPin": source, "ledger": ident, "limit": limit})
+    question = (
+        "Do B’s eight event ratings track writers’ self-rated traits?"
+        if is_feature
+        else "How sensitive are standing judgments to reader and prompt wording?"
+    )
+    bar = (
+        "Rotated family and trait-specific bars."
+        if is_feature
+        else "Descriptive reader and wording checks."
+    )
+    append(
+        PUBLIC / "EVIDENCE_LEDGER.jsonl",
+        {
+            "id": ident,
+            "date": day.date().isoformat(),
+            "claims": ["P5", "S3"] if is_feature else ["T2", "T11"],
+            "question": question,
+            "data": file.as_posix(),
+            "estimate": {"result": brief, "sourceReceiptPin": source},
+            "interval": "95% intervals from 2,000 whole-writer draws.",
+            "bar": bar,
+            "verdict": brief,
+            "limit": limit,
+            "family": "Round 37 reader measurements",
+        },
+    )
+    note = sheet.read_text("utf8")
+    if ident not in note:
+        note = note.replace(
+            "Reader B’s eight features await Q28.",
+            "Reader B’s eight features appear below.",
+        )
+        write_text(
+            sheet,
+            note.rstrip()
+            + "\n\n## "
+            + question
+            + "\n\n"
+            + brief
+            + "\n\n"
+            + "\n".join(lines)
+            + "\n\nIntervals use 2,000 whole-writer resamples. "
+            + limit
+            + f" [Full aggregate and source receipt · {ident}](../../../engine/validation/{file.name})\n",
+        )
+    for path, link in (
+        (STATUS, sheet.as_posix()),
+        (SCOREBOARD, sheet.relative_to("docs").as_posix()),
+    ):
+        note = path.read_text("utf8")
+        if ident not in note:
+            head, tail = note.split("\n", 1)
+            write_text(
+                path,
+                head
+                + f"\n\n**{day:%B %d} · {card}.** {brief} [{ident}]({link})\n\n"
+                + tail.lstrip("\n"),
+            )
+    if is_feature:
+        family_file = ROOT / "TP78-measurements.json"
+        family = read(family_file)
+        for key in ("TP63.analyst", "TP63.2"):
+            row = family[key]
+            if "Q28 features remain open." in row["verdict"]:
+                row["verdict"] = (
+                    row["verdict"].split(" Q28")[0]
+                    + " The full feature table is recorded. The worry interval crosses the trait-specific bar."
+                )
+                row["estimate"] += " " + brief.split(" The largest")[0]
+        write(family_file, family)
+        write_text(SHEET, render(family))
+    note = RETURN.read_text("utf8").splitlines()
+    note[0] = live_line(states)
+    i = next(i for i, l in enumerate(note) if l.startswith("| " + card + " ·"))
+    if ident not in note[i]:
+        row = note[i].rsplit(" | ", 1)[0]
+        note[i] = (
+            row + " " + brief + f" | [{card} · {ident}](result-sheets/{card}.md) |"
+        )
+    write_text(RETURN, "\n".join(note) + "\n")
+    write(
+        ROOT / (stage + "-landing.json"),
+        {
+            "sourceReceiptPin": source,
+            "public": file.as_posix(),
+            "sha256": pin(file),
+            "ledger": ident,
+        },
+    )
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("stage", choices=["TP63-features", "TP77-wordings"])
+    parser.add_argument("observations", type=Path)
+    args = parser.parse_args()
+    file(args.stage, read(args.observations))

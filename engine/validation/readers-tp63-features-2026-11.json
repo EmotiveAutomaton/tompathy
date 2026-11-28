@@ -1,0 +1,758 @@
+{
+  "bars": {
+    "iso": {
+      "family": 0.08672909757880203,
+      "trait": {
+        "Agreeableness": 0.05657958644559369,
+        "Conscientiousness": 0.050577076427579463,
+        "Emotional stability": 0.058202349697762,
+        "Extraversion": 0.04837373109647354,
+        "Openness": 0.063761302970626
+      }
+    },
+    "rot": {
+      "family": 0.08763311376723112,
+      "trait": {
+        "Agreeableness": 0.05668856638223686,
+        "Conscientiousness": 0.051410818180979416,
+        "Emotional stability": 0.05885187752985965,
+        "Extraversion": 0.04851471733278859,
+        "Openness": 0.06346355994950116
+      }
+    }
+  },
+  "bootstrapDraws": 2000,
+  "originalReceipt": "0e1675b77740d6e9c552365f67bb3ad0503dc56e5d680bdaefcf90f147df8a3f",
+  "outputs": {
+    "goal_support": {
+      "Agreeableness": {
+        "interval": [
+          -0.016770414849634784,
+          0.06573914875123235
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": true,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.02128249407503835,
+        "twoSidedP": 0.26486756621689156,
+        "validDraws": 2000,
+        "value": 0.024696257508253862,
+        "writers": 2379
+      },
+      "Conscientiousness": {
+        "interval": [
+          -0.01810292097837319,
+          0.062136223298276845
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020371485283905123,
+        "twoSidedP": 0.2658670664667666,
+        "validDraws": 2000,
+        "value": 0.02317179296208332,
+        "writers": 2379
+      },
+      "Emotional stability": {
+        "interval": [
+          -0.03887389417245292,
+          0.039835425867252854
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020634257092856954,
+        "twoSidedP": 0.991504247876062,
+        "validDraws": 2000,
+        "value": 0.0011040629071001219,
+        "writers": 2379
+      },
+      "Extraversion": {
+        "interval": [
+          -0.019214211200522864,
+          0.0615952850457865
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020748354711819305,
+        "twoSidedP": 0.30684657671164417,
+        "validDraws": 2000,
+        "value": 0.0222691783747539,
+        "writers": 2379
+      },
+      "Openness": {
+        "interval": [
+          -0.023692103211835673,
+          0.05388732881585646
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.02063253887988031,
+        "twoSidedP": 0.4827586206896552,
+        "validDraws": 2000,
+        "value": 0.014357163770897378,
+        "writers": 2379
+      }
+    },
+    "other_responsblt": {
+      "Agreeableness": {
+        "interval": [
+          -0.030435936576567887,
+          0.051706895848056225
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020944831976106082,
+        "twoSidedP": 0.6366816591704147,
+        "validDraws": 2000,
+        "value": 0.0103444395311261,
+        "writers": 2379
+      },
+      "Conscientiousness": {
+        "interval": [
+          -0.019734067268800868,
+          0.060450191141701026
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020610814333720785,
+        "twoSidedP": 0.31984007996002,
+        "validDraws": 2000,
+        "value": 0.019941167424316883,
+        "writers": 2379
+      },
+      "Emotional stability": {
+        "interval": [
+          -0.06458000586386628,
+          0.015952203824296688
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": true,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.02007654026938224,
+        "twoSidedP": 0.2588705647176412,
+        "validDraws": 2000,
+        "value": -0.02410174999248159,
+        "writers": 2379
+      },
+      "Extraversion": {
+        "interval": [
+          -0.017084174403336653,
+          0.06478628210209497
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020539071008009502,
+        "twoSidedP": 0.2368815592203898,
+        "validDraws": 2000,
+        "value": 0.023811737393211005,
+        "writers": 2379
+      },
+      "Openness": {
+        "interval": [
+          -0.04165558983328707,
+          0.03879259746317551
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": false,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020292187885773878,
+        "twoSidedP": 0.9845077461269365,
+        "validDraws": 2000,
+        "value": -0.00029833199311317046,
+        "writers": 2379
+      }
+    },
+    "pleasantness": {
+      "Agreeableness": {
+        "interval": [
+          -0.036491585107888046,
+          0.042030191232226434
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.02047073035426889,
+        "twoSidedP": 0.9065467266366817,
+        "validDraws": 2000,
+        "value": 0.0025083010946778637,
+        "writers": 2379
+      },
+      "Conscientiousness": {
+        "interval": [
+          -0.028446289348513287,
+          0.053536598826543824
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020936574886675174,
+        "twoSidedP": 0.5487256371814093,
+        "validDraws": 2000,
+        "value": 0.012748055356892125,
+        "writers": 2379
+      },
+      "Emotional stability": {
+        "interval": [
+          -0.04920577226197292,
+          0.02960945075958886
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020527265249668906,
+        "twoSidedP": 0.6586706646676662,
+        "validDraws": 2000,
+        "value": -0.008375318804014332,
+        "writers": 2379
+      },
+      "Extraversion": {
+        "interval": [
+          -0.008682881940256496,
+          0.0737822774659344
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": true,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020972278413343134,
+        "twoSidedP": 0.12093953023488256,
+        "validDraws": 2000,
+        "value": 0.03274285751454524,
+        "writers": 2379
+      },
+      "Openness": {
+        "interval": [
+          -0.02800517929294088,
+          0.05301217619964736
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020842899119110476,
+        "twoSidedP": 0.6006996501749126,
+        "validDraws": 2000,
+        "value": 0.011327027358514038,
+        "writers": 2379
+      }
+    },
+    "self_responsblt": {
+      "Agreeableness": {
+        "interval": [
+          -0.06181220345900688,
+          0.018187039312427548
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.02088362180604936,
+        "twoSidedP": 0.2818590704647676,
+        "validDraws": 2000,
+        "value": -0.02243916983266636,
+        "writers": 2379
+      },
+      "Conscientiousness": {
+        "interval": [
+          -0.03136461007788684,
+          0.05206098456102529
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020987563019122468,
+        "twoSidedP": 0.5637181409295352,
+        "validDraws": 2000,
+        "value": 0.011654303630709429,
+        "writers": 2379
+      },
+      "Emotional stability": {
+        "interval": [
+          -0.03006155839356219,
+          0.04890522786064836
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020331204798704948,
+        "twoSidedP": 0.6206896551724138,
+        "validDraws": 2000,
+        "value": 0.010047498123806415,
+        "writers": 2379
+      },
+      "Extraversion": {
+        "interval": [
+          -0.07493663587286345,
+          0.005766096203352538
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.02067775010560123,
+        "twoSidedP": 0.09095452273863068,
+        "validDraws": 2000,
+        "value": -0.03469198318591398,
+        "writers": 2379
+      },
+      "Openness": {
+        "interval": [
+          -0.08099438613595454,
+          -0.001539367208464742
+        ],
+        "intervalExcludesZero": true,
+        "leadsColumn": false,
+        "leadsRow": true,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020418519078332153,
+        "twoSidedP": 0.04597701149425287,
+        "validDraws": 2000,
+        "value": -0.03996353227621096,
+        "writers": 2379
+      }
+    },
+    "social_norms": {
+      "Agreeableness": {
+        "interval": [
+          -0.05425948618225238,
+          0.02527665320967157
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.02013457817877272,
+        "twoSidedP": 0.4547726136931534,
+        "validDraws": 2000,
+        "value": -0.014174093501772931,
+        "writers": 2379
+      },
+      "Conscientiousness": {
+        "interval": [
+          -0.031797388105022396,
+          0.04272706814109564
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.01977388169266299,
+        "twoSidedP": 0.7646176911544228,
+        "validDraws": 2000,
+        "value": 0.00670550517423835,
+        "writers": 2379
+      },
+      "Emotional stability": {
+        "interval": [
+          -0.06663597129912509,
+          0.008766777307874077
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": true,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020190480818415117,
+        "twoSidedP": 0.1619190404797601,
+        "validDraws": 2000,
+        "value": -0.02767166999332548,
+        "writers": 2379
+      },
+      "Extraversion": {
+        "interval": [
+          -0.04711545649537878,
+          0.03249934383938669
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020242517415714426,
+        "twoSidedP": 0.7926036981509246,
+        "validDraws": 2000,
+        "value": -0.005957178168937987,
+        "writers": 2379
+      },
+      "Openness": {
+        "interval": [
+          -0.017589615371654852,
+          0.06178636267236018
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020156809072688398,
+        "twoSidedP": 0.25487256371814093,
+        "validDraws": 2000,
+        "value": 0.022619672194620508,
+        "writers": 2379
+      }
+    },
+    "standards": {
+      "Agreeableness": {
+        "interval": [
+          -0.0494007484426076,
+          0.03144401637033468
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020835750511137955,
+        "twoSidedP": 0.6646676661669165,
+        "validDraws": 2000,
+        "value": -0.008967015839589218,
+        "writers": 2379
+      },
+      "Conscientiousness": {
+        "interval": [
+          0.003784042001246611,
+          0.080547685535906
+        ],
+        "intervalExcludesZero": true,
+        "leadsColumn": false,
+        "leadsRow": true,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.01996195212748708,
+        "twoSidedP": 0.029985007496251874,
+        "validDraws": 2000,
+        "value": 0.042992728619811085,
+        "writers": 2379
+      },
+      "Emotional stability": {
+        "interval": [
+          -0.04959421364036595,
+          0.030292622367674986
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020658012601855555,
+        "twoSidedP": 0.6296851574212894,
+        "validDraws": 2000,
+        "value": -0.010016362489576327,
+        "writers": 2379
+      },
+      "Extraversion": {
+        "interval": [
+          -0.058193639462077756,
+          0.025935077550907116
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.02130744630165933,
+        "twoSidedP": 0.4257871064467766,
+        "validDraws": 2000,
+        "value": -0.015942171111086492,
+        "writers": 2379
+      },
+      "Openness": {
+        "interval": [
+          -0.0060572675953903836,
+          0.07534070156544909
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.021075113703257733,
+        "twoSidedP": 0.09095452273863068,
+        "validDraws": 2000,
+        "value": 0.0367677452027775,
+        "writers": 2379
+      }
+    },
+    "suddenness": {
+      "Agreeableness": {
+        "interval": [
+          -0.03733456804521208,
+          0.04260440021810289
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.02057656297133317,
+        "twoSidedP": 0.8675662168915542,
+        "validDraws": 2000,
+        "value": 0.0035314236186140564,
+        "writers": 2379
+      },
+      "Conscientiousness": {
+        "interval": [
+          -0.02966950554746478,
+          0.05036133470011703
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.01950121694682559,
+        "twoSidedP": 0.5377311344327836,
+        "validDraws": 2000,
+        "value": 0.011474406897822483,
+        "writers": 2379
+      },
+      "Emotional stability": {
+        "interval": [
+          -0.02877334280133593,
+          0.05183640563921002
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020542627449064817,
+        "twoSidedP": 0.5547226386806596,
+        "validDraws": 2000,
+        "value": 0.011402064000646273,
+        "writers": 2379
+      },
+      "Extraversion": {
+        "interval": [
+          -0.05375917423631594,
+          0.02878311101859619
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": true,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.021052674646803708,
+        "twoSidedP": 0.5677161419290355,
+        "validDraws": 2000,
+        "value": -0.012133858651832537,
+        "writers": 2379
+      },
+      "Openness": {
+        "interval": [
+          -0.03424462897374601,
+          0.047581239562045394
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020461386119046996,
+        "twoSidedP": 0.7256371814092953,
+        "validDraws": 2000,
+        "value": 0.006903258055282619,
+        "writers": 2379
+      }
+    },
+    "unpleasantness": {
+      "Agreeableness": {
+        "interval": [
+          -0.03597249612103298,
+          0.04465325534808935
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020626383141191706,
+        "twoSidedP": 0.8465767116441779,
+        "validDraws": 2000,
+        "value": 0.004609036771859726,
+        "writers": 2379
+      },
+      "Conscientiousness": {
+        "interval": [
+          -0.043967512305019246,
+          0.03773508600780111
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020841659250724537,
+        "twoSidedP": 0.8505747126436781,
+        "validDraws": 2000,
+        "value": -0.0039095160511820074,
+        "writers": 2379
+      },
+      "Emotional stability": {
+        "interval": [
+          -0.048680012004432796,
+          0.031176087811137426
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.02054701594482558,
+        "twoSidedP": 0.670664667666167,
+        "validDraws": 2000,
+        "value": -0.009775001814232612,
+        "writers": 2379
+      },
+      "Extraversion": {
+        "interval": [
+          -0.0778747163291004,
+          0.003449605820934394
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": true,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020655640601650708,
+        "twoSidedP": 0.07096451774112944,
+        "validDraws": 2000,
+        "value": -0.03779075079453048,
+        "writers": 2379
+      },
+      "Openness": {
+        "interval": [
+          -0.03593458086906346,
+          0.04359640958436248
+        ],
+        "intervalExcludesZero": false,
+        "leadsColumn": false,
+        "leadsRow": false,
+        "nearBar": true,
+        "pointAboveRotFamily": false,
+        "pointAboveRotTrait": false,
+        "standardError": 0.020579512565381756,
+        "twoSidedP": 0.8515742128935532,
+        "validDraws": 2000,
+        "value": 0.004162630345230997,
+        "writers": 2379
+      }
+    }
+  },
+  "readerProtocol": "506db18979536157bfd77e04165f6698bae57c2d0425fc7ba7e1047cfa7b612f",
+  "readerReceipt": "7c5f8d44e34a0cb34def2fd86987044df80f163d1d97d89cb4de61e428ec08c1",
+  "reports": 6600,
+  "targets": {
+    "Agreeableness": {
+      "available": 2379,
+      "conflictingItem": 0,
+      "missingItem": 0
+    },
+    "Conscientiousness": {
+      "available": 2379,
+      "conflictingItem": 0,
+      "missingItem": 0
+    },
+    "Emotional stability": {
+      "available": 2379,
+      "conflictingItem": 0,
+      "missingItem": 0
+    },
+    "Extraversion": {
+      "available": 2379,
+      "conflictingItem": 0,
+      "missingItem": 0
+    },
+    "Openness": {
+      "available": 2379,
+      "conflictingItem": 0,
+      "missingItem": 0
+    }
+  },
+  "writers": 2379,
+  "sourceReceiptPin": "f12e9397d124f9669116c2d27f1e4fd19910b8f6eb984b9ce08529ee6e1b461d",
+  "ledger": "E-TP63-FEATURES-20261127",
+  "limit": "Each writer provided a few short events. The rotated reference uses the tag encoder. Each rating was cleared of assigned feeling before averaging within writer."
+}

@@ -1,4 +1,4 @@
-Nov 27 at 14:05 PT, Spark is running Q28 (1,160/6,600), the workstation GPU has no verified active ToMpathy GPU worker (stopped, last G14), and the card queue is between registered stages. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
+Nov 27 at 17:26 PT, Spark is running Q29 (5,840/39,002), the workstation GPU is running G13-Q29 (480/39,002), and the card queue is waiting for counted memory admission for the Q32 wording comparisons. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
 
 # Two-day engine return · November 27–29
 
@@ -6,7 +6,7 @@ Nov 27 at 14:05 PT, Spark is running Q28 (1,160/6,600), the workstation GPU has 
 
 **November 27 engineering record.** The first digest was pushed at 13:40 PT, about fifteen minutes after the deadline. The outgoing-commit check reproduced all 25 reports. G12's native worker and shared lease released after the memory stop. Its partial response files stay intact. The independent G14 job takes its original inputs, model, guards and registration. For TP72 the Windows SciPy import asked Python for the CPU architecture, which in turn requested the host name. An import-only reproduction stopped at that call. The bounded rehearsal repair supplies an empty node name for that platform query, with the socket guard active throughout. The original candidate, inputs and failed attempt are preserved.
 
-G12's last progress receipt contained 27,200 of 43,021 texts, with 24,347 valid. The registered full-panel agreement is pending a complete paired panel. G14's first 100 responses were all valid in 120.60 seconds after loading. That projects to 2.21 hours against the packet's one-hour estimate. G13 and G15 are registered behind G14, with exact release checks at each transition.
+G12's last progress receipt contained 27,200 of 43,021 texts, with 24,347 valid. The registered full-panel agreement is pending a complete paired panel. G14 subsequently stopped at the same memory floor. The supervisor checked its exact native exit and shared GPU release before starting the independent G13 job. Both partial panels remain preserved.
 
 ## Against, and clear
 
@@ -33,7 +33,7 @@ The table covers 35 registered predictions. TP62 met both directional criteria o
 | TP64 · Channel checks | Forum desire versus optimism and excitement had AUC 0.712 [0.652, 0.767], 0.843 [0.802, 0.884]. | [TP64 · E-TP64-20261127](result-sheets/TP64.md) |
 | TP65 · Coming or landed | The original sentence timing comparisons are eligible for the registered comparisons. | [TP65 · E-TP65-20261127](result-sheets/TP65.md) |
 | TP77 · Reader agreement | On the original sentences, B/W kappa was 0.609 for change (usable), 0.614 for timing (usable) and 0.444 for whose situation changed (weak). The four standing fields await both verified GPU returns. | [TP77 · E-TP77-ORIGINAL-20261127](result-sheets/TP77.md) |
-| TP63 · Outside scores | Across 2,379 writers, 0 of 145 correlations exceeded the rotated family bar of 0.088 in absolute value. Worry and emotional stability correlated -0.065 [-0.105, -0.025]. | [TP63 · E-TP63-ORIGINAL-20261127](result-sheets/TP63.md) |
+| TP63 · Outside scores | Across 2,379 writers, 0 of 145 correlations exceeded the rotated family bar of 0.088 in absolute value. Worry and emotional stability correlated -0.065 [-0.105, -0.025]. Across 2,379 writers and 6,600 reports, 0 of 40 feature–trait correlations exceeded the rotated family threshold of 0.088. The largest absolute correlation was standards with conscientiousness, 0.043 [0.004, 0.081]. | [TP63 · E-TP63-FEATURES-20261127](result-sheets/TP63.md) |
 | TP68 · Embarrassment | SHAME plus PLAY ranked 2 of 45 pairs for embarrassed. The dedicated head’s gain over its strongest covered-word comparator was -0.015 [-0.030, -0.006] AUC. | [TP68 · E-TP68-20261127](result-sheets/TP68.md) |
 | TP69 · Competence and Respect | Across 24,850 chat situations, Competence and Respect lifts differed by at least half a standard deviation for 11 of 32 words. Respect and acceptance differed by that much for 6. | [TP69 · E-TP69-20261127](result-sheets/TP69.md) |
 | TP66 · Order during loss | After matching sentence counts, the SADNESS-minus-FEAR timing difference between loss and other texts was -0.014 [-0.058, 0.032] in chat and 0.268 [0.184, 0.352] in recalled events. | [TP66 · E-TP66-SHORT-20261127](result-sheets/TP66.md) |
@@ -55,15 +55,15 @@ Pilot times are wall seconds after loading. Observed totals include job startup 
 | Q26 · Throughput | <1 | 53.01 serial, 52.98 at two, 53.28 at four | 0.088 for 600 at the serial pilot rate | Completed in 0.093 hours. Serial retained. |
 | Q34 · Worry | <1 | 0.422 | 0.068 | Completed in 0.0062 hours after the import repair. |
 | Q27 · Standing | 10.8 | 53.74 | 6.42 | Completed. 38,202 of 43,021 responses were valid. The native release and all 43,031 returned files were verified. |
-| Q28 · Event features | 2.0 | 111.65 | 2.05 | Running. All first 100 responses were valid. |
-| Q32 · Third reader and rewordings | 2.0 | — | — | Registered behind Q28. The extended memory rule applies only to C on this job. |
-| Q29 · Sentences | 3.0 | — | — | Both machines verified the same 17,755 held-out forum sentences and 21,247 ISEAR sentences. Spark’s native listener is waiting for Q32’s release. |
+| Q28 · Event features | 2.0 | 111.65 | 2.05 | All 6,600 event ratings were valid. All 6,610 files and the native release were verified. [TP63](result-sheets/TP63.md) |
+| Q32 · Third reader and rewordings | 2.0 | C 151.87, B 64.33 / 63.41 | — | Reader C returned 1,492 valid responses on 1,500 texts. B returned 939 and 934 on the same 1,000 texts under two rewordings. All 3,516 files and the native release were verified. |
+| Q29 · Sentences | 3.0 | 42.41 | 4.60 for B ratings | Spark started B on 39,002 sentences after Q32 released. Frozen channel scoring follows the reader. |
 | Q31 · Blog loss and timing | 9.8 | — | — | Both machines verified 1,054 loss candidates and 82,548 sentences from the 10,000 sampled openings. Spark’s listener waits for Q29’s exact release. |
 | Q30 · Long stories | 9.9 | — | — | In-place Spark source unavailable. |
 | Q33 · Talk pages | First 1,000 to size | — | — | In-place Spark source unavailable. |
 | G12 · Standing | 4–6 | 66.58 | 7.96 | Memory stop. 27,214 single-response files are durable. The last progress count covers 27,200. |
-| G14 · Event features | <1 | 120.60 | 2.21 | Running. All first 100 responses were valid. |
-| G13 · Sentence and loss comparisons | First 100 to size | — | — | The original-sentence arm follows G14. The verified blog arm follows the original-sentence arm. |
+| G14 · Event features | <1 | 120.60 | 2.21 | Stopped at the 8 GiB commit floor. Saved 928 single-response files. The last progress report recorded 920 valid out of 920. The full roster was 6,600. Native exit and release verified. |
+| G13 · Sentence and loss comparisons | First 100 to size | 51.03 | 5.53 for this arm | W started the independent 39,002-sentence comparison after G14 released. This estimate covers only that sentence panel. |
 | G15 · Workstation filler | Up to 21.6 | — | — | Inputs prepared and source-bound. Queued after both G13 arms. Exact historical W responses retain their original positions. |
 | Q24b · Spark filler | Time remaining | — | — | Native dispatcher verified at offset 207,795. Parked behind the priority jobs. |
 
