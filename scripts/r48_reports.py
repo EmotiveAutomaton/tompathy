@@ -914,6 +914,35 @@ def paired_report(s):
     )
 
 
+def highest_report(s):
+    from rapid_highest_report import render
+
+    stem = "readers-tp61-highest"
+    if aggregate(stem) not in s.files(VALID):
+        return
+    r = s.tables(stem)
+    brief, rows, limit = render(r)
+    yield Report(
+        "TP61-highest",
+        date.fromisoformat(r["ledger"][-8:]).isoformat(),
+        "Does a writer’s highest group repeat beyond random dealing?",
+        "The trained excess was predicted to fall inside the rotated control band.",
+        "Blog Authorship Corpus. Each author has openings in both original date halves.",
+        f"{r['authors']:,} writers, {r['openings']:,} opening occurrences, {r['distinctOpenings']:,} distinct openings.",
+        "\n".join(rows)
+        + f"\n\nIntervals use {r['draws']:,} whole-writer resamples. Each band uses {r['setsPerFamily']:,} complete sets.",
+        "outside predicted band on point estimate, unresolved under CX",
+        brief,
+        limit,
+        "All group estimates are released. Individual openings, author scores and weights stay private.",
+        [
+            aggregate(stem),
+            "scripts/rapid_highest_need.py",
+            "scripts/rapid_opening_scale.py",
+        ],
+    )
+
+
 def build(s):
     seed = {
         r["id"]: r
@@ -927,6 +956,7 @@ def build(s):
             *other_reports(s),
             *new_sentence_reports(s),
             *paired_report(s),
+            *highest_report(s),
             *blog_sentence_report(s),
             feature_delivery(s),
         ],
