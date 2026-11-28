@@ -210,6 +210,12 @@ def reader_arm(
         )
         lane.fit_or_wait(model_pin, role)
         start = time.monotonic()
+        previous_seconds = 0.0
+        pilot_origin = len(items) - measured if start_at is not None and measured else 0
+        if start_at is not None and start_at > pilot_origin:
+            previous_seconds = read(folder / f"from-{start_at - 1:06d}.json")[-1][
+                "activeElapsedSeconds"
+            ]
         valid = slow = 0
         durations = []
         with ThreadPoolExecutor(max_workers=width) as pool:
@@ -221,6 +227,11 @@ def reader_arm(
                         "A committed response already occupies this ordinal"
                     )
                 batch = list(pool.map(call, items[pos : pos + width]))
+                if start_at is not None:
+                    for row in batch:
+                        row["activeElapsedSeconds"] = previous_seconds + (
+                            time.monotonic() - start
+                        )
                 write(destination, batch)
                 rows.extend(batch)
                 valid += sum(r["values"] is not None for r in batch)
@@ -252,12 +263,24 @@ def reader_arm(
                 if start_at is not None:
                     progress["nextOrdinal"] = pos + len(batch)
                     progress["segmentStart"] = start_at
-                if len(rows) == 100 and not (folder / "first100.json").exists():
-                    projected = elapsed * (measured or len(items)) / 100 / 3600
+                pilot_rows = (
+                    pos + len(batch) - pilot_origin
+                    if start_at is not None
+                    else len(rows)
+                )
+                if pilot_rows == 100 and not (folder / "first100.json").exists():
+                    projected = (
+                        (previous_seconds + elapsed)
+                        * (measured or len(items))
+                        / 100
+                        / 3600
+                    )
                     write(
                         folder / "first100.json",
                         dict(
                             **progress,
+                            timedRows=100,
+                            activePilotSeconds=previous_seconds + elapsed,
                             projectedHours=projected,
                             packetHours=HOURS[job],
                             overThreeTimes=projected > 3 * HOURS[job]
