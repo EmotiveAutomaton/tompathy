@@ -103,6 +103,10 @@ def run(card, attempt):
                 import rapid_prompt_agreement as study
 
                 result = study.prepare(out, check)
+            elif card == "TP77-responsibility":
+                import rapid_responsibility as study
+
+                result = study.prepare(out, check)
             elif card == "TP63-original":
                 import rapid_outside as study
 
@@ -217,6 +221,7 @@ if __name__ == "__main__":
             "TP65",
             "TP77-original",
             "TP77-wordings",
+            "TP77-responsibility",
             "TP63-original",
             "TP63-features",
             "TP69",

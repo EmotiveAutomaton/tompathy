@@ -72,8 +72,46 @@ def wordings(r):
     )
 
 
+def responsibility(r):
+    rows = r["tables"]
+    primary = rows["B-writer"]
+    if set(rows) != {"B-writer", "B-writer-prefix", "W-writer-prefix", "B-W-prefix"}:
+        raise ValueError("Missing registered comparison")
+    labels = {
+        "B-writer": "B and writer, all events",
+        "B-writer-prefix": "B and writer, W prefix",
+        "W-writer-prefix": "W and writer, W prefix",
+        "B-W-prefix": "B and W, W prefix",
+    }
+    lines = [
+        "| Comparison | Paired events | Writers | Spearman correlation (95% interval) | Cohen kappa (95% interval) | Exact 1–5 agreement |",
+        "|---|---:|---:|---:|---:|---:|",
+    ]
+    for name, label in labels.items():
+        c = rows[name]
+        if (
+            sum(map(sum, c["counts"])) != c["paired"]
+            or c["rank"]["reports"] != c["paired"]
+        ):
+            raise ValueError("Paired counts and response table disagree")
+        lines.append(
+            f"| {label} | {c['paired']:,} | {c['writers']:,} | {interval(c['rank'])} | {interval(c['kappa'])} | {c['exactAgreement']:.1%} |"
+        )
+    brief = (
+        f"Across {primary['paired']:,} recalled events from {primary['writers']:,} writers, "
+        f"B’s own-responsibility rating correlated {interval(primary['rank'])} with the writer’s rating. "
+        f"The two gave the same 1–5 answer on {primary['exactAgreement']:.1%} of events."
+    )
+    return (
+        brief,
+        lines,
+        "The comparison measures agreement with self-reports of who caused an event. W’s saved source-order prefix covers 928 events. Its results are descriptive for that subset.",
+    )
+
+
 def file(stage, states):
     is_feature = stage == "TP63-features"
+    human = stage == "TP77-responsibility"
     card = stage.split("-")[0]
     sheet = Path(f"docs/exchange/result-sheets/{card}.md")
     out = ROOT / (stage + "-a")
@@ -91,21 +129,31 @@ def file(stage, states):
     fields = (
         "originalReceipt readerReceipt readerProtocol reports writers targets bootstrapDraws bars outputs"
         if is_feature
+        else "target generationPin BReceipt WRelease WFailure ratingPins draws tables"
+        if human
         else "readerReceipts protocols draws tables inputManifest"
     ).split()
     if set(r) != set(fields):
         raise ValueError("Unexpected public aggregate fields")
-    brief, lines, limit = (features if is_feature else wordings)(r)
+    brief, lines, limit = {
+        "TP63-features": features,
+        "TP77-wordings": wordings,
+        "TP77-responsibility": responsibility,
+    }[stage](r)
     file = PUBLIC / f"readers-{stage.lower()}-2026-11.json"
     put(file, {**r, "sourceReceiptPin": source, "ledger": ident, "limit": limit})
     question = (
         "Do B’s eight event ratings track writers’ self-rated traits?"
         if is_feature
+        else "How closely do the readers’ own-responsibility ratings agree with writers’ answers?"
+        if human
         else "How sensitive are standing judgments to reader and prompt wording?"
     )
     bar = (
         "Rotated family and trait-specific bars."
         if is_feature
+        else "Descriptive human check on a common 1–5 scale."
+        if human
         else "Descriptive reader and wording checks."
     )
     append(
@@ -113,7 +161,11 @@ def file(stage, states):
         {
             "id": ident,
             "date": day.date().isoformat(),
-            "claims": ["P5", "S3"] if is_feature else ["T2", "T11"],
+            "claims": ["P5", "S3"]
+            if is_feature
+            else ["T11"]
+            if human
+            else ["T2", "T11"],
             "question": question,
             "data": file.as_posix(),
             "estimate": {"result": brief, "sourceReceiptPin": source},
@@ -168,7 +220,7 @@ def file(stage, states):
                 )
                 row["estimate"] += " " + brief.split(" The largest")[0]
         write(family_file, family)
-        write_text(SHEET, render(family))
+    write_text(SHEET, render(read(ROOT / "TP78-measurements.json")))
     note = RETURN.read_text("utf8").splitlines()
     note[0] = live_line(states)
     i = next(i for i, l in enumerate(note) if l.startswith("| " + card + " ·"))
@@ -191,7 +243,9 @@ def file(stage, states):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("stage", choices=["TP63-features", "TP77-wordings"])
+    parser.add_argument(
+        "stage", choices=["TP63-features", "TP77-wordings", "TP77-responsibility"]
+    )
     parser.add_argument("observations", type=Path)
     args = parser.parse_args()
     file(args.stage, read(args.observations))

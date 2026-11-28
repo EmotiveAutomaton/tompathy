@@ -1,0 +1,261 @@
+{
+  "BReceipt": "7c5f8d44e34a0cb34def2fd86987044df80f163d1d97d89cb4de61e428ec08c1",
+  "WFailure": "56e6c128806ede0aa60b3595d760a5249d80e71df675717324289c458af613e9",
+  "WRelease": "4014a51add3281982cdd459e230c7d0e0488ae3f4b0489e74f827617cde7e923",
+  "draws": 2000,
+  "generationPin": "3d2536b555ac7005080c2cd35aadb4d570992bca70d2017e4d8939525fa3a86b",
+  "ratingPins": {
+    "B": "2583b6e558d9e913a37a9b041c8641104c3b1e3bc06da9562b69eae45d90d862",
+    "W": "e32f4f56a64e28350c6a8c99499c8cd60dca392910530feb0202c43ad67f2749"
+  },
+  "tables": {
+    "B-W-prefix": {
+      "counts": [
+        [
+          374,
+          59,
+          20,
+          9,
+          2
+        ],
+        [
+          74,
+          80,
+          31,
+          6,
+          1
+        ],
+        [
+          10,
+          21,
+          43,
+          6,
+          11
+        ],
+        [
+          12,
+          7,
+          27,
+          29,
+          21
+        ],
+        [
+          9,
+          2,
+          12,
+          10,
+          52
+        ]
+      ],
+      "exactAgreement": 0.6228448275862069,
+      "kappa": {
+        "interval": [
+          0.39841388882505563,
+          0.4826431522758172
+        ],
+        "validDraws": 2000,
+        "value": 0.4411773814480526
+      },
+      "paired": 928,
+      "rank": {
+        "interval": [
+          0.6414923143612632,
+          0.731665197545864
+        ],
+        "reports": 928,
+        "validDraws": 2000,
+        "value": 0.6881464508240646,
+        "writers": 655
+      },
+      "submitted": 928,
+      "writers": 655
+    },
+    "B-writer": {
+      "counts": [
+        [
+          1581,
+          210,
+          167,
+          109,
+          65
+        ],
+        [
+          566,
+          207,
+          168,
+          163,
+          126
+        ],
+        [
+          147,
+          89,
+          117,
+          158,
+          152
+        ],
+        [
+          185,
+          103,
+          178,
+          343,
+          651
+        ],
+        [
+          112,
+          62,
+          111,
+          230,
+          600
+        ]
+      ],
+      "exactAgreement": 0.4315151515151515,
+      "kappa": {
+        "interval": [
+          0.24549202310292267,
+          0.2752129858956512
+        ],
+        "validDraws": 2000,
+        "value": 0.2603072763245129
+      },
+      "paired": 6600,
+      "rank": {
+        "interval": [
+          0.5975711510211241,
+          0.6318887829761805
+        ],
+        "reports": 6600,
+        "validDraws": 2000,
+        "value": 0.6142660736298009,
+        "writers": 2379
+      },
+      "submitted": 6600,
+      "writers": 2379
+    },
+    "B-writer-prefix": {
+      "counts": [
+        [
+          319,
+          72,
+          41,
+          24,
+          8
+        ],
+        [
+          91,
+          48,
+          28,
+          18,
+          7
+        ],
+        [
+          25,
+          19,
+          13,
+          21,
+          13
+        ],
+        [
+          25,
+          16,
+          18,
+          17,
+          20
+        ],
+        [
+          16,
+          10,
+          11,
+          20,
+          28
+        ]
+      ],
+      "exactAgreement": 0.4579741379310345,
+      "kappa": {
+        "interval": [
+          0.1574548672419515,
+          0.24024296614513088
+        ],
+        "validDraws": 2000,
+        "value": 0.19862518648740984
+      },
+      "paired": 928,
+      "rank": {
+        "interval": [
+          0.3828005360687325,
+          0.5080943112672469
+        ],
+        "reports": 928,
+        "validDraws": 2000,
+        "value": 0.44699237586181545,
+        "writers": 655
+      },
+      "submitted": 928,
+      "writers": 655
+    },
+    "W-writer-prefix": {
+      "counts": [
+        [
+          320,
+          84,
+          34,
+          27,
+          14
+        ],
+        [
+          74,
+          31,
+          31,
+          24,
+          9
+        ],
+        [
+          50,
+          25,
+          21,
+          17,
+          20
+        ],
+        [
+          19,
+          11,
+          9,
+          12,
+          9
+        ],
+        [
+          13,
+          14,
+          16,
+          20,
+          24
+        ]
+      ],
+      "exactAgreement": 0.4396551724137931,
+      "kappa": {
+        "interval": [
+          0.12617274397677755,
+          0.20442271185542304
+        ],
+        "validDraws": 2000,
+        "value": 0.16500553709856036
+      },
+      "paired": 928,
+      "rank": {
+        "interval": [
+          0.33518425415551156,
+          0.4595706573647788
+        ],
+        "reports": 928,
+        "validDraws": 2000,
+        "value": 0.3998213830444015,
+        "writers": 655
+      },
+      "submitted": 928,
+      "writers": 655
+    }
+  },
+  "target": "self_responsblt",
+  "sourceReceiptPin": "d89187c7e46ecb1ed44bf215fe2cd614fff277be3e6df73b88e6f5e67b9de6f4",
+  "ledger": "E-TP77-RESPONSIBILITY-20261127",
+  "limit": "The comparison measures agreement with self-reports of who caused an event. W’s saved source-order prefix covers 928 events. Its results are descriptive for that subset."
+}

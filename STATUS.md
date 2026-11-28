@@ -1,5 +1,7 @@
 # ToMpathy status
 
+**November 27 · TP77.** Across 6,600 recalled events from 2,379 writers, B’s own-responsibility rating correlated 0.614 [0.598, 0.632] with the writer’s rating. The two gave the same 1–5 answer on 43.2% of events. [E-TP77-RESPONSIBILITY-20261127](docs/exchange/result-sheets/TP77.md)
+
 **November 27 · TP77.** B and C agreed on the direction of standing with kappa 0.574 [0.519, 0.627] on 1,324 jointly valid texts out of 1,500. [E-TP77-WORDINGS-20261127](docs/exchange/result-sheets/TP77.md)
 
 **November 27 · TP63.** Across 2,379 writers and 6,600 reports, 0 of 40 feature–trait correlations exceeded the rotated family threshold of 0.088. The largest absolute correlation was standards with conscientiousness, 0.043 [0.004, 0.081]. [E-TP63-FEATURES-20261127](docs/exchange/result-sheets/TP63.md)
