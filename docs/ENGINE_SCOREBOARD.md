@@ -1,5 +1,7 @@
 # Engine scoreboard
 
+**November 27 · TP77.** B and C agreed on the direction of standing with kappa 0.574 [0.519, 0.627] on 1,324 jointly valid texts out of 1,500. [E-TP77-WORDINGS-20261127](exchange/result-sheets/TP77.md)
+
 **November 27 · TP63.** Across 2,379 writers and 6,600 reports, 0 of 40 feature–trait correlations exceeded the rotated family threshold of 0.088. The largest absolute correlation was standards with conscientiousness, 0.043 [0.004, 0.081]. [E-TP63-FEATURES-20261127](exchange/result-sheets/TP63.md)
 
 **November 27 · TP73.** B fell below the rotated individual-head band in 2 of 16 feature-by-size comparisons. [E-TP73-B-REPEAT-20261127](exchange/result-sheets/TP73.md)

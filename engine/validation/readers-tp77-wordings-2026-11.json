@@ -1,0 +1,627 @@
+{
+  "draws": 2000,
+  "inputManifest": "83534f034bd19546448fad6e0437ecd4d4397ebb0b576ec9ddd3ee2ace331ce2",
+  "protocols": {
+    "B": "3eeb4b1e6506a9d14165a08bf89d324b57192ffcbafcf0efc6966a3f520e8d4b",
+    "C": "836a754e00546a03387eb38be264133003978afa0eb262e5f5194b7619542b38",
+    "standing2": "d1ad9526a1afdc24e68e6c538736b23383230e3faa6cc35cda09d852258b0d74",
+    "standing3": "956e331ff1041f421d4f4bd9b66a3291c8edd0a52db6392c4825c1cf9dc3bfa3"
+  },
+  "readerReceipts": {
+    "Q27": "0df9eaea92fb4757dac8c9d04ccccf8986a2f96916a3081c6e1b159e4fbdcd9e",
+    "Q32": "c95a62ab78bc0bd069534c12db35d4b55a9056bc953f3044e9ccd969ac7e5be6"
+  },
+  "tables": {
+    "B/C": {
+      "earned": {
+        "bootstrapSE": 0.029232077431620682,
+        "bothMissing": 0,
+        "clusters": 1121,
+        "contingency": [
+          [
+            80,
+            7,
+            60
+          ],
+          [
+            9,
+            26,
+            59
+          ],
+          [
+            2,
+            2,
+            1079
+          ]
+        ],
+        "firstOnly": 8,
+        "interval": [
+          0.5203205164832224,
+          0.6345096541474307
+        ],
+        "jointlyValid": 1324,
+        "levels": [
+          "yes",
+          "no",
+          "no_rise"
+        ],
+        "roster": 1500,
+        "secondOnly": 168,
+        "validDraws": 2000,
+        "value": 0.5806641982341213
+      },
+      "known": {
+        "bootstrapSE": 0.013553749711321929,
+        "bothMissing": 0,
+        "clusters": 1121,
+        "contingency": [
+          [
+            133,
+            648
+          ],
+          [
+            11,
+            532
+          ]
+        ],
+        "firstOnly": 8,
+        "interval": [
+          0.10136883693145281,
+          0.15434064050638405
+        ],
+        "jointlyValid": 1324,
+        "levels": [
+          "yes",
+          "no"
+        ],
+        "roster": 1500,
+        "secondOnly": 168,
+        "validDraws": 2000,
+        "value": 0.12728502098478453
+      },
+      "standing": {
+        "bootstrapSE": 0.027862588614597086,
+        "bothMissing": 0,
+        "clusters": 1121,
+        "contingency": [
+          [
+            122,
+            1,
+            118
+          ],
+          [
+            0,
+            25,
+            31
+          ],
+          [
+            4,
+            18,
+            1005
+          ]
+        ],
+        "firstOnly": 8,
+        "interval": [
+          0.5192747786069811,
+          0.6268242092150021
+        ],
+        "jointlyValid": 1324,
+        "levels": [
+          "rose",
+          "fell",
+          "neither"
+        ],
+        "roster": 1500,
+        "secondOnly": 168,
+        "validDraws": 2000,
+        "value": 0.5743306391919071
+      },
+      "whose": {
+        "bootstrapSE": 0.01779530097617987,
+        "bothMissing": 0,
+        "clusters": 1121,
+        "contingency": [
+          [
+            457,
+            32,
+            89,
+            195
+          ],
+          [
+            6,
+            76,
+            32,
+            4
+          ],
+          [
+            5,
+            19,
+            207,
+            64
+          ],
+          [
+            2,
+            0,
+            20,
+            116
+          ]
+        ],
+        "firstOnly": 8,
+        "interval": [
+          0.457467324964295,
+          0.526928643681482
+        ],
+        "jointlyValid": 1324,
+        "levels": [
+          "own",
+          "close",
+          "other",
+          "no_one"
+        ],
+        "roster": 1500,
+        "secondOnly": 168,
+        "validDraws": 2000,
+        "value": 0.4919874921908179
+      }
+    },
+    "B/standing2": {
+      "earned": {
+        "bootstrapSE": 0.03858805907560135,
+        "bothMissing": 2,
+        "clusters": 786,
+        "contingency": [
+          [
+            62,
+            0,
+            25
+          ],
+          [
+            10,
+            0,
+            31
+          ],
+          [
+            3,
+            0,
+            701
+          ]
+        ],
+        "firstOnly": 59,
+        "interval": [
+          0.5450280333159103,
+          0.6971438053857358
+        ],
+        "jointlyValid": 832,
+        "levels": [
+          "yes",
+          "no",
+          "no_rise"
+        ],
+        "roster": 1000,
+        "secondOnly": 107,
+        "validDraws": 2000,
+        "value": 0.6242218745704355
+      },
+      "known": {
+        "bootstrapSE": 0.029707789751137383,
+        "bothMissing": 2,
+        "clusters": 786,
+        "contingency": [
+          [
+            440,
+            36
+          ],
+          [
+            238,
+            118
+          ]
+        ],
+        "firstOnly": 59,
+        "interval": [
+          0.21618940475187537,
+          0.3310539007177918
+        ],
+        "jointlyValid": 832,
+        "levels": [
+          "yes",
+          "no"
+        ],
+        "roster": 1000,
+        "secondOnly": 107,
+        "validDraws": 2000,
+        "value": 0.27553770275080086
+      },
+      "standing": {
+        "bootstrapSE": 0.035851938669785886,
+        "bothMissing": 2,
+        "clusters": 786,
+        "contingency": [
+          [
+            72,
+            0,
+            56
+          ],
+          [
+            0,
+            20,
+            20
+          ],
+          [
+            3,
+            20,
+            641
+          ]
+        ],
+        "firstOnly": 59,
+        "interval": [
+          0.5249920727423107,
+          0.6639542881878019
+        ],
+        "jointlyValid": 832,
+        "levels": [
+          "rose",
+          "fell",
+          "neither"
+        ],
+        "roster": 1000,
+        "secondOnly": 107,
+        "validDraws": 2000,
+        "value": 0.5980794003981731
+      },
+      "whose": {
+        "bootstrapSE": 0.018187978459029887,
+        "bothMissing": 2,
+        "clusters": 786,
+        "contingency": [
+          [
+            99,
+            63,
+            33,
+            273
+          ],
+          [
+            0,
+            71,
+            3,
+            8
+          ],
+          [
+            0,
+            32,
+            109,
+            45
+          ],
+          [
+            0,
+            0,
+            6,
+            90
+          ]
+        ],
+        "firstOnly": 59,
+        "interval": [
+          0.28177869098557157,
+          0.35244642396259623
+        ],
+        "jointlyValid": 832,
+        "levels": [
+          "own",
+          "close",
+          "other",
+          "no_one"
+        ],
+        "roster": 1000,
+        "secondOnly": 107,
+        "validDraws": 2000,
+        "value": 0.3173052043568722
+      }
+    },
+    "B/standing3": {
+      "earned": {
+        "bootstrapSE": 0.02818588508342897,
+        "bothMissing": 21,
+        "clusters": 786,
+        "contingency": [
+          [
+            87,
+            3,
+            7
+          ],
+          [
+            27,
+            11,
+            9
+          ],
+          [
+            19,
+            9,
+            674
+          ]
+        ],
+        "firstOnly": 45,
+        "interval": [
+          0.6562548004403543,
+          0.7648994765814455
+        ],
+        "jointlyValid": 846,
+        "levels": [
+          "yes",
+          "no",
+          "no_rise"
+        ],
+        "roster": 1000,
+        "secondOnly": 88,
+        "validDraws": 2000,
+        "value": 0.7119721744251314
+      },
+      "known": {
+        "bootstrapSE": 0.02938595329472452,
+        "bothMissing": 21,
+        "clusters": 786,
+        "contingency": [
+          [
+            396,
+            87
+          ],
+          [
+            134,
+            229
+          ]
+        ],
+        "firstOnly": 45,
+        "interval": [
+          0.3973186017961857,
+          0.5119658177649844
+        ],
+        "jointlyValid": 846,
+        "levels": [
+          "yes",
+          "no"
+        ],
+        "roster": 1000,
+        "secondOnly": 88,
+        "validDraws": 2000,
+        "value": 0.4580978383736501
+      },
+      "standing": {
+        "bootstrapSE": 0.02670949026480642,
+        "bothMissing": 21,
+        "clusters": 786,
+        "contingency": [
+          [
+            128,
+            0,
+            16
+          ],
+          [
+            0,
+            33,
+            7
+          ],
+          [
+            28,
+            40,
+            594
+          ]
+        ],
+        "firstOnly": 45,
+        "interval": [
+          0.6723907602222071,
+          0.7764155848105331
+        ],
+        "jointlyValid": 846,
+        "levels": [
+          "rose",
+          "fell",
+          "neither"
+        ],
+        "roster": 1000,
+        "secondOnly": 88,
+        "validDraws": 2000,
+        "value": 0.7268818424992373
+      },
+      "whose": {
+        "bootstrapSE": 0.021859625972328257,
+        "bothMissing": 21,
+        "clusters": 786,
+        "contingency": [
+          [
+            315,
+            15,
+            41,
+            120
+          ],
+          [
+            11,
+            39,
+            7,
+            28
+          ],
+          [
+            5,
+            16,
+            100,
+            53
+          ],
+          [
+            6,
+            0,
+            11,
+            79
+          ]
+        ],
+        "firstOnly": 45,
+        "interval": [
+          0.4163047416436336,
+          0.5014138255737343
+        ],
+        "jointlyValid": 846,
+        "levels": [
+          "own",
+          "close",
+          "other",
+          "no_one"
+        ],
+        "roster": 1000,
+        "secondOnly": 88,
+        "validDraws": 2000,
+        "value": 0.4593233732105776
+      }
+    },
+    "standing2/standing3": {
+      "earned": {
+        "bootstrapSE": 0.03793011484726288,
+        "bothMissing": 17,
+        "clusters": 786,
+        "contingency": [
+          [
+            69,
+            3,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            47,
+            9,
+            761
+          ]
+        ],
+        "firstOnly": 49,
+        "interval": [
+          0.5927386763263952,
+          0.7396640235939423
+        ],
+        "jointlyValid": 890,
+        "levels": [
+          "yes",
+          "no",
+          "no_rise"
+        ],
+        "roster": 1000,
+        "secondOnly": 44,
+        "validDraws": 2000,
+        "value": 0.6684835918002459
+      },
+      "known": {
+        "bootstrapSE": 0.03142756132166047,
+        "bothMissing": 17,
+        "clusters": 786,
+        "contingency": [
+          [
+            548,
+            187
+          ],
+          [
+            40,
+            115
+          ]
+        ],
+        "firstOnly": 49,
+        "interval": [
+          0.2922741278177868,
+          0.41539833564609885
+        ],
+        "jointlyValid": 890,
+        "levels": [
+          "yes",
+          "no"
+        ],
+        "roster": 1000,
+        "secondOnly": 44,
+        "validDraws": 2000,
+        "value": 0.35476350164478937
+      },
+      "standing": {
+        "bootstrapSE": 0.028651576872740413,
+        "bothMissing": 17,
+        "clusters": 786,
+        "contingency": [
+          [
+            72,
+            0,
+            1
+          ],
+          [
+            0,
+            77,
+            10
+          ],
+          [
+            56,
+            64,
+            610
+          ]
+        ],
+        "firstOnly": 49,
+        "interval": [
+          0.5732393089029661,
+          0.6858835787516083
+        ],
+        "jointlyValid": 890,
+        "levels": [
+          "rose",
+          "fell",
+          "neither"
+        ],
+        "roster": 1000,
+        "secondOnly": 44,
+        "validDraws": 2000,
+        "value": 0.6323925854224537
+      },
+      "whose": {
+        "bootstrapSE": 0.021747943596993887,
+        "bothMissing": 17,
+        "clusters": 786,
+        "contingency": [
+          [
+            109,
+            0,
+            0,
+            2
+          ],
+          [
+            41,
+            61,
+            27,
+            34
+          ],
+          [
+            6,
+            1,
+            134,
+            30
+          ],
+          [
+            183,
+            0,
+            29,
+            233
+          ]
+        ],
+        "firstOnly": 49,
+        "interval": [
+          0.4141840701817502,
+          0.5000862368275414
+        ],
+        "jointlyValid": 890,
+        "levels": [
+          "own",
+          "close",
+          "other",
+          "no_one"
+        ],
+        "roster": 1000,
+        "secondOnly": 44,
+        "validDraws": 2000,
+        "value": 0.45722331640233577
+      }
+    }
+  },
+  "sourceReceiptPin": "62075cfd5e85590612b0fc066ad46ec8e7172fba292edf96b9cf4cb5425156f7",
+  "ledger": "E-TP77-WORDINGS-20261127",
+  "limit": "The two rewordings use the same fixed reader and reports. CW usability requires B/W agreement. G12 stopped before the full W panel was available."
+}
