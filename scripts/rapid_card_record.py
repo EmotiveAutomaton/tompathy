@@ -324,6 +324,12 @@ def live_line(states):
             parts.append(
                 f"{label} has no verified active ToMpathy GPU worker ({lane['state']}, last {lane.get('last', 'unavailable')})"
             )
+            if (
+                label == "the workstation GPU"
+                and lane.get("last") == "G15"
+                and lane["state"] == "stopped"
+            ):
+                parts[-1] += " after the final job reached its 8 GiB memory floor"
     cpu = states["workstation"]["card"]
     if cpu and cpu.startswith("TP70-block-"):
         current = "TP70 grouping block " + str(int(cpu.split("-")[2]) + 1) + " of 40"

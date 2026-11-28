@@ -855,6 +855,35 @@ def new_sentence_reports(s):
     )
 
 
+def paired_report(s):
+    from rapid_paired_report import render
+
+    stem = "readers-tp73-paired"
+    if aggregate(stem) not in s.files(VALID):
+        return
+    r = s.tables(stem)
+    brief, rows, limit = render(r)
+    yield Report(
+        "TP73-paired",
+        date.fromisoformat(r["ledger"][-8:]).isoformat(),
+        "How closely do two readers agree on the same blog authors?",
+        "The paired comparison is descriptive. The registered B-only repeat prediction is recorded separately.",
+        "Blog Authorship Corpus, dated openings with saved B and W readings.",
+        f"{r['authors']:,} complete authors and {r['posts']:,} openings. Ten openings per date half.",
+        "\n".join(rows)
+        + "\n\nPearson correlations with 95% intervals from 2,000 whole-author resamples.",
+        "descriptive",
+        brief,
+        limit,
+        "Every aggregate estimate is available in the linked table. Per-opening scores and author identifiers remain private.",
+        [
+            aggregate(stem),
+            "scripts/rapid_paired_controls.py",
+            "scripts/rapid_paired_moments.py",
+        ],
+    )
+
+
 def build(s):
     seed = {
         r["id"]: r
@@ -867,6 +896,7 @@ def build(s):
             *tag_reports(s, seed),
             *other_reports(s),
             *new_sentence_reports(s),
+            *paired_report(s),
             feature_delivery(s),
         ],
         key=lambda r: (r.day, r.code),

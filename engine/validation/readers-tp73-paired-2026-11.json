@@ -1,0 +1,1599 @@
+{
+  "authors": 432,
+  "cohort": {
+    "complete": 432,
+    "historicalComplete": 429,
+    "incomplete": 1841
+  },
+  "coverage": {
+    "contextUnavailable": 3,
+    "validPairsAllOpenings": 16650
+  },
+  "draws": 2000,
+  "eligibleAuthors": 2273,
+  "headPin": "7f5bfe1ff5ab5e4a0b93072bb7e1f54f73466ab01ade90fc2ad2c4041d12e7ae",
+  "headsPerSet": 19,
+  "inputReceipt": "60cba495151dbaa70eec4104748955f81a0301f653c029aa456ea414130b1bef",
+  "momentsReceipt": "6785cc434153f1759482a154853685034c9601fb281817c9395103741ca5cca4",
+  "posts": 8640,
+  "setsPerFamily": 1000,
+  "tables": {
+    "WDateRepeat": {
+      "goal_support": {
+        "interval": [
+          0.45259463663224864,
+          0.603572445820153
+        ],
+        "iso": {
+          "repeat": {
+            "individual": {
+              "high": 0.6301482738589802,
+              "low": 0.3568085893554257,
+              "median": 0.48597061101535943,
+              "position": "inside",
+              "trainedPercentile": 74.06315789473685
+            },
+            "setMedian": {
+              "high": 0.523628435832261,
+              "low": 0.4494764341728877,
+              "median": 0.48613828704062284,
+              "position": "above",
+              "trainedPercentile": 98.8
+            }
+          }
+        },
+        "rot": {
+          "repeat": {
+            "individual": {
+              "high": 0.6353490320143098,
+              "low": 0.3560217314102968,
+              "median": 0.48682936247171316,
+              "position": "inside",
+              "trainedPercentile": 73.7
+            },
+            "setMedian": {
+              "high": 0.5252897116956249,
+              "low": 0.44850215884254757,
+              "median": 0.4868609615076255,
+              "position": "above",
+              "trainedPercentile": 98.7
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.5318879006968699
+      },
+      "other_responsblt": {
+        "interval": [
+          0.4235323844530967,
+          0.5913578152093856
+        ],
+        "iso": {
+          "repeat": {
+            "individual": {
+              "high": 0.6301482738589802,
+              "low": 0.3568085893554257,
+              "median": 0.48597061101535943,
+              "position": "inside",
+              "trainedPercentile": 66.63157894736842
+            },
+            "setMedian": {
+              "high": 0.523628435832261,
+              "low": 0.4494764341728877,
+              "median": 0.48613828704062284,
+              "position": "inside",
+              "trainedPercentile": 94.0
+            }
+          }
+        },
+        "rot": {
+          "repeat": {
+            "individual": {
+              "high": 0.6353490320143098,
+              "low": 0.3560217314102968,
+              "median": 0.48682936247171316,
+              "position": "inside",
+              "trainedPercentile": 66.02105263157895
+            },
+            "setMedian": {
+              "high": 0.5252897116956249,
+              "low": 0.44850215884254757,
+              "median": 0.4868609615076255,
+              "position": "inside",
+              "trainedPercentile": 94.0
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.5161924577433866
+      },
+      "pleasantness": {
+        "interval": [
+          0.4973814049485441,
+          0.640717103715164
+        ],
+        "iso": {
+          "repeat": {
+            "individual": {
+              "high": 0.6301482738589802,
+              "low": 0.3568085893554257,
+              "median": 0.48597061101535943,
+              "position": "inside",
+              "trainedPercentile": 89.11578947368422
+            },
+            "setMedian": {
+              "high": 0.523628435832261,
+              "low": 0.4494764341728877,
+              "median": 0.48613828704062284,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "rot": {
+          "repeat": {
+            "individual": {
+              "high": 0.6353490320143098,
+              "low": 0.3560217314102968,
+              "median": 0.48682936247171316,
+              "position": "inside",
+              "trainedPercentile": 88.78421052631579
+            },
+            "setMedian": {
+              "high": 0.5252897116956249,
+              "low": 0.44850215884254757,
+              "median": 0.4868609615076255,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.5756006807443157
+      },
+      "self_responsblt": {
+        "interval": [
+          0.3880219659324542,
+          0.5480381092088316
+        ],
+        "iso": {
+          "repeat": {
+            "individual": {
+              "high": 0.6301482738589802,
+              "low": 0.3568085893554257,
+              "median": 0.48597061101535943,
+              "position": "inside",
+              "trainedPercentile": 42.13157894736842
+            },
+            "setMedian": {
+              "high": 0.523628435832261,
+              "low": 0.4494764341728877,
+              "median": 0.48613828704062284,
+              "position": "inside",
+              "trainedPercentile": 23.3
+            }
+          }
+        },
+        "rot": {
+          "repeat": {
+            "individual": {
+              "high": 0.6353490320143098,
+              "low": 0.3560217314102968,
+              "median": 0.48682936247171316,
+              "position": "inside",
+              "trainedPercentile": 41.805263157894736
+            },
+            "setMedian": {
+              "high": 0.5252897116956249,
+              "low": 0.44850215884254757,
+              "median": 0.4868609615076255,
+              "position": "inside",
+              "trainedPercentile": 23.799999999999997
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.4726741788828248
+      },
+      "social_norms": {
+        "interval": [
+          0.07911596080756193,
+          0.29224262909386367
+        ],
+        "iso": {
+          "repeat": {
+            "individual": {
+              "high": 0.6301482738589802,
+              "low": 0.3568085893554257,
+              "median": 0.48597061101535943,
+              "position": "below",
+              "trainedPercentile": 0.0
+            },
+            "setMedian": {
+              "high": 0.523628435832261,
+              "low": 0.4494764341728877,
+              "median": 0.48613828704062284,
+              "position": "below",
+              "trainedPercentile": 0.0
+            }
+          }
+        },
+        "rot": {
+          "repeat": {
+            "individual": {
+              "high": 0.6353490320143098,
+              "low": 0.3560217314102968,
+              "median": 0.48682936247171316,
+              "position": "below",
+              "trainedPercentile": 0.0
+            },
+            "setMedian": {
+              "high": 0.5252897116956249,
+              "low": 0.44850215884254757,
+              "median": 0.4868609615076255,
+              "position": "below",
+              "trainedPercentile": 0.0
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.18481374041778523
+      },
+      "standards": {
+        "interval": [
+          0.20791259246185545,
+          0.38478055847471204
+        ],
+        "iso": {
+          "repeat": {
+            "individual": {
+              "high": 0.6301482738589802,
+              "low": 0.3568085893554257,
+              "median": 0.48597061101535943,
+              "position": "below",
+              "trainedPercentile": 0.2473684210526316
+            },
+            "setMedian": {
+              "high": 0.523628435832261,
+              "low": 0.4494764341728877,
+              "median": 0.48613828704062284,
+              "position": "below",
+              "trainedPercentile": 0.0
+            }
+          }
+        },
+        "rot": {
+          "repeat": {
+            "individual": {
+              "high": 0.6353490320143098,
+              "low": 0.3560217314102968,
+              "median": 0.48682936247171316,
+              "position": "below",
+              "trainedPercentile": 0.2473684210526316
+            },
+            "setMedian": {
+              "high": 0.5252897116956249,
+              "low": 0.44850215884254757,
+              "median": 0.4868609615076255,
+              "position": "below",
+              "trainedPercentile": 0.0
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.3019897509719318
+      },
+      "suddenness": {
+        "interval": [
+          0.2907078181701772,
+          0.4628374713887127
+        ],
+        "iso": {
+          "repeat": {
+            "individual": {
+              "high": 0.6301482738589802,
+              "low": 0.3568085893554257,
+              "median": 0.48597061101535943,
+              "position": "inside",
+              "trainedPercentile": 5.284210526315789
+            },
+            "setMedian": {
+              "high": 0.523628435832261,
+              "low": 0.4494764341728877,
+              "median": 0.48613828704062284,
+              "position": "below",
+              "trainedPercentile": 0.0
+            }
+          }
+        },
+        "rot": {
+          "repeat": {
+            "individual": {
+              "high": 0.6353490320143098,
+              "low": 0.3560217314102968,
+              "median": 0.48682936247171316,
+              "position": "inside",
+              "trainedPercentile": 5.394736842105264
+            },
+            "setMedian": {
+              "high": 0.5252897116956249,
+              "low": 0.44850215884254757,
+              "median": 0.4868609615076255,
+              "position": "below",
+              "trainedPercentile": 0.0
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.3783062545867337
+      },
+      "unpleasantness": {
+        "interval": [
+          0.4826805160988163,
+          0.6308378609642826
+        ],
+        "iso": {
+          "repeat": {
+            "individual": {
+              "high": 0.6301482738589802,
+              "low": 0.3568085893554257,
+              "median": 0.48597061101535943,
+              "position": "inside",
+              "trainedPercentile": 85.82105263157894
+            },
+            "setMedian": {
+              "high": 0.523628435832261,
+              "low": 0.4494764341728877,
+              "median": 0.48613828704062284,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "rot": {
+          "repeat": {
+            "individual": {
+              "high": 0.6353490320143098,
+              "low": 0.3560217314102968,
+              "median": 0.48682936247171316,
+              "position": "inside",
+              "trainedPercentile": 85.72631578947369
+            },
+            "setMedian": {
+              "high": 0.5252897116956249,
+              "low": 0.44850215884254757,
+              "median": 0.4868609615076255,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.5637470097673761
+      }
+    },
+    "authorAgreement": {
+      "goal_support": {
+        "interval": [
+          0.8625794420773218,
+          0.9031713967197955
+        ],
+        "iso": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.2993119365136024,
+              "low": -0.30340003391572073,
+              "median": -0.00010392243586153641,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.08999186064016797,
+              "low": -0.09711470076712599,
+              "median": -0.001063663035299325,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.306331621061795,
+              "low": -0.3111518234328045,
+              "median": -0.00028765495936450074,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.09665889563289749,
+              "low": -0.09866254221766213,
+              "median": -0.000885025072827555,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "rot": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.30216756517100174,
+              "low": -0.30543820496860924,
+              "median": 0.0007530215348591118,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.10719230977409212,
+              "low": -0.10153096638137157,
+              "median": -0.00019903306011322336,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.31096146828358673,
+              "low": -0.31107559967666654,
+              "median": 0.0012165514238696563,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.11088742906307145,
+              "low": -0.10664684926292488,
+              "median": 0.0004043940066454077,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.8840480642297673
+      },
+      "other_responsblt": {
+        "interval": [
+          0.7603041172746864,
+          0.8658614743795647
+        ],
+        "iso": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.2769810617593282,
+              "low": -0.27684170998544627,
+              "median": 0.00027811024253325734,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.07715112205105792,
+              "low": -0.08349016011760979,
+              "median": 0.0022321294722654978,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.3332212284523651,
+              "low": -0.33157609396643756,
+              "median": 0.002798990808548061,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.10151056882426576,
+              "low": -0.1012316963251676,
+              "median": 0.002954085779020648,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "rot": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.2780059562909952,
+              "low": -0.277804045790946,
+              "median": 0.0008872387957849384,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.09605435415327067,
+              "low": -0.09703676013582871,
+              "median": 0.0009468596740982998,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.32730970603770937,
+              "low": -0.3314015266342258,
+              "median": 1.0855708939856032e-05,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.12353283836990894,
+              "low": -0.109067220296526,
+              "median": -0.0006547104378229665,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.8220162544701873
+      },
+      "pleasantness": {
+        "interval": [
+          0.9346160751647383,
+          0.958330736029309
+        ],
+        "iso": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.29948578802891,
+              "low": -0.30211458480879155,
+              "median": -0.0030391066002423365,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.08745104439488065,
+              "low": -0.09737802026238926,
+              "median": -0.0016713153861228932,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.2994864253433952,
+              "low": -0.30237893600901333,
+              "median": -0.0011746309427211271,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.09365992852471669,
+              "low": -0.09533061935111387,
+              "median": 0.00038110858956787055,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "rot": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.3034453486720408,
+              "low": -0.305026120269775,
+              "median": 0.0021915033092078052,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.10538700256228849,
+              "low": -0.0991814793698638,
+              "median": -0.0005414115774887107,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.3032140667593147,
+              "low": -0.3053501639756451,
+              "median": 0.001829569688303822,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.10530902077646742,
+              "low": -0.10071447918091178,
+              "median": -0.0008180080780514044,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.9475867370624022
+      },
+      "self_responsblt": {
+        "interval": [
+          0.7965841552855183,
+          0.8654658776025674
+        ],
+        "iso": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.3107183026965591,
+              "low": -0.31336963221848874,
+              "median": -0.0017594531282378101,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.0944400218003983,
+              "low": -0.10131014142280689,
+              "median": -0.0013751329521673665,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.2927446861186426,
+              "low": -0.2925957645483887,
+              "median": -0.0009934225466290121,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.0920772372368905,
+              "low": -0.09133852166293005,
+              "median": -0.0013437067426641256,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "rot": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.31110023805944076,
+              "low": -0.3059513003208792,
+              "median": -0.0006350106534528358,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.11353190465084086,
+              "low": -0.11271097901188211,
+              "median": -0.0017425142141838067,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.29098693926417185,
+              "low": -0.29250569163863943,
+              "median": -0.001550179660111422,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.10628512314209194,
+              "low": -0.1042620292532149,
+              "median": 1.3856133428928873e-06,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.834463859517389
+      },
+      "social_norms": {
+        "interval": [
+          0.283063827864999,
+          0.4747201836424529
+        ],
+        "iso": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.191000556376672,
+              "low": -0.19198013916555443,
+              "median": 0.001174312542513049,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.05984714321333499,
+              "low": -0.058357543216402796,
+              "median": 0.0015682297010230998,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.2542878546122647,
+              "low": -0.2494007157564561,
+              "median": 0.00010405938914463428,
+              "position": "above",
+              "trainedPercentile": 99.99473684210525
+            },
+            "setMedian": {
+              "high": 0.07919769467869216,
+              "low": -0.0824926717822265,
+              "median": 0.0006681639706974513,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "rot": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.1905949819238686,
+              "low": -0.1930487309651081,
+              "median": -0.0009904707275960158,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.06470119433242291,
+              "low": -0.06757561858501933,
+              "median": -0.0008854746118228045,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.24975343246440823,
+              "low": -0.25052901070414946,
+              "median": -0.0005516110370109525,
+              "position": "above",
+              "trainedPercentile": 99.98947368421052
+            },
+            "setMedian": {
+              "high": 0.0901136824304862,
+              "low": -0.09362573059348299,
+              "median": 0.00012128723271847144,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.38178758617371883
+      },
+      "standards": {
+        "interval": [
+          0.28064367308401633,
+          0.4782587892665232
+        ],
+        "iso": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.3736250576994149,
+              "low": -0.37603407219699625,
+              "median": 0.006833867498147659,
+              "position": "above",
+              "trainedPercentile": 97.89999999999999
+            },
+            "setMedian": {
+              "high": 0.12311130509667718,
+              "low": -0.12053821990083442,
+              "median": 0.005828894844186326,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.36293612881367404,
+              "low": -0.36014814706957476,
+              "median": 0.0032532844841338393,
+              "position": "above",
+              "trainedPercentile": 98.40526315789474
+            },
+            "setMedian": {
+              "high": 0.12258825848597682,
+              "low": -0.11547316298554915,
+              "median": 0.001125947815463753,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "rot": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.3745168472149064,
+              "low": -0.3766955757519674,
+              "median": -0.004080745567855724,
+              "position": "above",
+              "trainedPercentile": 97.83684210526316
+            },
+            "setMedian": {
+              "high": 0.12867627423094782,
+              "low": -0.13438730826204953,
+              "median": -0.0005691857261446707,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.3585615222151853,
+              "low": -0.3639913976488131,
+              "median": -0.002611312362188898,
+              "position": "above",
+              "trainedPercentile": 98.45789473684209
+            },
+            "setMedian": {
+              "high": 0.1348980107476594,
+              "low": -0.14131429948632795,
+              "median": -0.002660275652603749,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.3836721233676349
+      },
+      "suddenness": {
+        "interval": [
+          0.6348783753710305,
+          0.7363663175996542
+        ],
+        "iso": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.3049013502853534,
+              "low": -0.30490738987172317,
+              "median": -0.003953586479929354,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.09782764112382861,
+              "low": -0.09442302457786486,
+              "median": -0.004474683428127015,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.25754123186127365,
+              "low": -0.2559939898884896,
+              "median": -0.0014296324834883437,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.07076482954924902,
+              "low": -0.07922965382684378,
+              "median": -2.7093002814404532e-05,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "rot": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.30673640920584827,
+              "low": -0.30255162852565026,
+              "median": 0.002320543232403603,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.11473029005665546,
+              "low": -0.11048190250617854,
+              "median": 0.0015204452676990522,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.2541535896208396,
+              "low": -0.25629290849480924,
+              "median": 0.0020179341685528044,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.09653200015467833,
+              "low": -0.08833852280880335,
+              "median": 0.0034352457831313826,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.6895225166550006
+      },
+      "unpleasantness": {
+        "interval": [
+          0.9427512892643496,
+          0.9646987269734048
+        ],
+        "iso": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.3137975995091918,
+              "low": -0.30952925187739994,
+              "median": 0.0005556243980966284,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.09359202116731723,
+              "low": -0.08811794520840241,
+              "median": -0.0005453540807781905,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.3177557867179209,
+              "low": -0.31552833073317654,
+              "median": 0.00030252668782448444,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.10156383266828929,
+              "low": -0.0911652560063633,
+              "median": 0.001423064968978538,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "rot": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.31643343131291973,
+              "low": -0.3145937233698637,
+              "median": 0.0005548759289673485,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.10450426125227494,
+              "low": -0.10887890749787797,
+              "median": 0.002545109819935783,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.32251150911699017,
+              "low": -0.3217810018043244,
+              "median": -0.0004969561624059567,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.10796138037939045,
+              "low": -0.11430610011323192,
+              "median": 0.0012724924442389888,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.9547973082251253
+      }
+    },
+    "openingAgreement": {
+      "goal_support": {
+        "interval": [
+          0.7172029364616597,
+          0.7455199683921717
+        ],
+        "iso": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.14008143738278372,
+              "low": -0.1407462066601909,
+              "median": -0.00039519012339313367,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.04005324759400759,
+              "low": -0.043137846636132994,
+              "median": -0.0003924263354230252,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.13915151801510237,
+              "low": -0.14018528223263266,
+              "median": -0.00039979546391083823,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.04012913159093206,
+              "low": -0.041946731532936724,
+              "median": 0.00010344301105583891,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "rot": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.13983713767256536,
+              "low": -0.1410991199809369,
+              "median": 0.00030774406825510305,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.04873669852373229,
+              "low": -0.04422970854206396,
+              "median": -0.0006101903908580309,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.13981910435533473,
+              "low": -0.14021900533658285,
+              "median": 0.000462818643399587,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.04601380429878358,
+              "low": -0.044394628087118616,
+              "median": 0.0002373084022470269,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.7316223794521857
+      },
+      "other_responsblt": {
+        "interval": [
+          0.6380191825971177,
+          0.6750703194233405
+        ],
+        "iso": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.13664018217626783,
+              "low": -0.13618052332588826,
+              "median": 0.0012913050504233096,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.043281678513862665,
+              "low": -0.03828557215686322,
+              "median": 0.001004002688827759,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.1462945967467193,
+              "low": -0.1474343508313241,
+              "median": 0.0019651159300295784,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.0449939518235123,
+              "low": -0.04382027396639327,
+              "median": 0.00047972433977547333,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "rot": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.13608712739198392,
+              "low": -0.13685807863385585,
+              "median": -0.00033066786163863575,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.04538564699145435,
+              "low": -0.04392215190631545,
+              "median": 0.0006802352972158038,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.14461580248263187,
+              "low": -0.1490138334392314,
+              "median": -6.7501208496221e-05,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.048452503296043836,
+              "low": -0.04989512980768384,
+              "median": -0.0006469765579677792,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.6569305038700487
+      },
+      "pleasantness": {
+        "interval": [
+          0.8420650168236913,
+          0.8647739128521076
+        ],
+        "iso": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.16377296181352305,
+              "low": -0.16480944390447702,
+              "median": -0.0010663691255611944,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.04552167985722612,
+              "low": -0.047254088350147265,
+              "median": -0.0006862212743480663,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.16091493907349688,
+              "low": -0.16117408177952192,
+              "median": -0.0009677461985995555,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.04443927129931783,
+              "low": -0.04939536423903069,
+              "median": -0.000908880351099433,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "rot": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.1660020018489211,
+              "low": -0.1642106814399904,
+              "median": 0.0002265387133619834,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.05642746051418576,
+              "low": -0.051848027840483514,
+              "median": -0.000588082591352781,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.1599755202800288,
+              "low": -0.15971858105386513,
+              "median": 0.00020155240386357103,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.05265087341409043,
+              "low": -0.05160404858463593,
+              "median": -0.0006527756424306665,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.8536257589288718
+      },
+      "self_responsblt": {
+        "interval": [
+          0.6482432108818179,
+          0.6800549278772774
+        ],
+        "iso": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.13260598194022058,
+              "low": -0.13136975139328672,
+              "median": -0.001325387948566974,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.037464457616436096,
+              "low": -0.03914771281517699,
+              "median": -0.0009967445790181626,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.12075992584664892,
+              "low": -0.11943338870685359,
+              "median": -0.00021335333185221054,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.033864249256721636,
+              "low": -0.0362488058426231,
+              "median": 0.0002180805247086441,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "rot": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.13223498029964248,
+              "low": -0.12733663992789948,
+              "median": 9.301510267683253e-05,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.04375037145740123,
+              "low": -0.04492351910984932,
+              "median": 0.0004163900167778717,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.11847466685695861,
+              "low": -0.11625433714578316,
+              "median": -0.00041050311655431085,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.03992267791380553,
+              "low": -0.0412598894555101,
+              "median": 0.00023144314681915846,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.6646137921140725
+      },
+      "social_norms": {
+        "interval": [
+          0.22013226400471395,
+          0.27130356646194126
+        ],
+        "iso": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.05183412244160331,
+              "low": -0.05050776444864856,
+              "median": 0.0001347169241583701,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.015010938589322332,
+              "low": -0.014319586411915615,
+              "median": 7.441862063404671e-05,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.05397227302803951,
+              "low": -0.05379461574560444,
+              "median": 4.9963810150619804e-05,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.014645062178787088,
+              "low": -0.016736355788062922,
+              "median": -4.9825125499788816e-05,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "rot": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.05091554937774527,
+              "low": -0.05235687802694041,
+              "median": -0.00013009145161844407,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.016909022020394356,
+              "low": -0.01932980888252651,
+              "median": 0.00020377366416787492,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.05370539539324175,
+              "low": -0.053981523358240455,
+              "median": 0.00028671932641513933,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.019011046470222087,
+              "low": -0.01836831284184641,
+              "median": 0.00042532047247123827,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.24593729922534882
+      },
+      "standards": {
+        "interval": [
+          0.15643769756388567,
+          0.20874097345387244
+        ],
+        "iso": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.15298092698788268,
+              "low": -0.14999950595986092,
+              "median": 0.002330778506879891,
+              "position": "above",
+              "trainedPercentile": 99.27894736842106
+            },
+            "setMedian": {
+              "high": 0.04542692700249546,
+              "low": -0.04183445231292092,
+              "median": 0.0018487645583710227,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.08567508346668189,
+              "low": -0.08493146565584667,
+              "median": 0.000987779933409347,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.025809927683346962,
+              "low": -0.022708301656055033,
+              "median": 0.0013635690553958002,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "rot": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.15197067005282477,
+              "low": -0.15343177515827533,
+              "median": -0.0014747417573009003,
+              "position": "above",
+              "trainedPercentile": 99.26315789473684
+            },
+            "setMedian": {
+              "high": 0.04813232496031398,
+              "low": -0.050972524297318925,
+              "median": -0.0008647099300383601,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.08459002172630269,
+              "low": -0.08589487154582026,
+              "median": -0.00015946594878443575,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.028984562919051823,
+              "low": -0.03040992697845656,
+              "median": 0.00034112813751880884,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.18336917492958474
+      },
+      "suddenness": {
+        "interval": [
+          0.5516127895174159,
+          0.5843417164156874
+        ],
+        "iso": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.11687570270247818,
+              "low": -0.11592805043466992,
+              "median": -0.0003752248565430602,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.03321091547754963,
+              "low": -0.0328543027420186,
+              "median": -0.0009138260648164443,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.09903647129316408,
+              "low": -0.09809940505210953,
+              "median": -9.053235416422875e-05,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.028414536679943005,
+              "low": -0.02904134919588499,
+              "median": 0.00017012046299577736,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "rot": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.11767199434193291,
+              "low": -0.11585993673181656,
+              "median": -0.0003537242223221583,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.03806608453758887,
+              "low": -0.039369408734945696,
+              "median": 0.00013858880295645725,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.0999190662422365,
+              "low": -0.09933286235125129,
+              "median": -0.000575227031741924,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.03232770275087918,
+              "low": -0.03242274372925332,
+              "median": -0.0009392739724421254,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.5681663309344227
+      },
+      "unpleasantness": {
+        "interval": [
+          0.8482978792231572,
+          0.8693702171350393
+        ],
+        "iso": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.16445745166271292,
+              "low": -0.16476343903426144,
+              "median": 0.0008512610737886636,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.050407648803317835,
+              "low": -0.047255416727761325,
+              "median": 0.0012098397552544053,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.16316234074383304,
+              "low": -0.16519964023876155,
+              "median": 0.0006721221324477388,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.04927376119367385,
+              "low": -0.048711924813980935,
+              "median": 0.0002870623661318693,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "rot": {
+          "BWithControl": {
+            "individual": {
+              "high": 0.16318995923159163,
+              "low": -0.16295878614938142,
+              "median": -4.54397637576087e-06,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.05346044007828936,
+              "low": -0.056213996846147335,
+              "median": -0.0001797365494307025,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          },
+          "WWithControl": {
+            "individual": {
+              "high": 0.16300488475942126,
+              "low": -0.1640325163837296,
+              "median": 0.00021905633864596378,
+              "position": "above",
+              "trainedPercentile": 100.0
+            },
+            "setMedian": {
+              "high": 0.05311509850368602,
+              "low": -0.05705827533124794,
+              "median": -1.7922908507411068e-05,
+              "position": "above",
+              "trainedPercentile": 100.0
+            }
+          }
+        },
+        "validDraws": 2000,
+        "value": 0.8588743880780024
+      }
+    }
+  },
+  "sourceReceiptPin": "632add8ea83358daa9a846e9e5b537b95c88fb3b44cf76b1fc72cedc892cdec2",
+  "ledger": "E-TP73-PAIRED-20261128",
+  "limit": "Only 432 of 2,273 eligible authors had both readers’ scores on all twenty openings. G11 already covered 429 of them. These estimates measure agreement and repeatability for two fixed reader builds on that subset."
+}

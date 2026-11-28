@@ -1,5 +1,7 @@
 # ToMpathy status
 
+**November 28 · TP73.** Across 432 authors and 8,640 openings, B/W agreement on author means was 0.955 [0.943, 0.965] for unpleasantness and 0.382 [0.283, 0.475] for social norms. [E-TP73-PAIRED-20261128](docs/exchange/result-sheets/TP73.md)
+
 **November 28 · TP65.** Among 11,157 complete forum comments, B marked both timings in 43. SADNESS was lower ahead than after a change, difference -0.054 [-0.102, -0.005]. On sentences where the readers agreed, the difference was 0.030 [-0.074, 0.097]. [E-TP65-Q29-20261128](docs/exchange/result-sheets/TP65.md)
 
 **November 28 · TP77.** On the saved forum prefix, B/W kappa for sentence timing was 0.523 [0.505, 0.541] on 17,124 paired sentences. ISEAR has 21,247 valid B readings and zero W readings. [E-TP77-Q29-20261128](docs/exchange/result-sheets/TP77.md)

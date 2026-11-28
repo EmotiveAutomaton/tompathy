@@ -188,6 +188,10 @@ def run(card, attempt):
                 import rapid_paired_authors as study
 
                 result = study.prepare(out, check)
+            elif card == "TP73-paired":
+                import rapid_paired_controls as study
+
+                result = study.prepare(out, check)
             elif card == "TP73-TP51":
                 import week_competence_q24 as study
                 from rapid_collect import read
@@ -251,6 +255,7 @@ if __name__ == "__main__":
             "TP62-first",
             "TP73-TP51",
             "TP73-paired-inputs",
+            "TP73-paired",
             *(f"TP62-block-{i:02d}" for i in range(10)),
         ],
     )

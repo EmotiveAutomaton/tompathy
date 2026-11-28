@@ -10,6 +10,7 @@ from rapid_cpu_dispatch import ROOT, confirmed
 from rapid_family import SHEET, render
 from rapid_land import PUBLIC, put
 from rapid_later_record import write_text
+from rapid_paired_report import render as paired_readers
 from tompathy_engine.eval.evidence import append
 from word_table_lane import core, pin, read, write
 
@@ -199,6 +200,13 @@ def forum_contrasts(r):
 
 # stage: renderer, aggregate fields, question, registered comparison, claim IDs.
 PANELS = {
+    "TP73-paired": (
+        paired_readers,
+        "inputReceipt momentsReceipt headPin authors posts eligibleAuthors cohort coverage draws setsPerFamily headsPerSet tables",
+        "How closely do B and W agree on the same blog authors?",
+        "Descriptive paired-reader comparison with matched TP61 control heads.",
+        ["P2", "P3"],
+    ),
     "TP63-features": (
         features,
         "originalReceipt readerReceipt readerProtocol reports writers targets bootstrapDraws bars outputs",
