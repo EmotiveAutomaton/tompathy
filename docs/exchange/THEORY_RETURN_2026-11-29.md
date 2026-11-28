@@ -1,20 +1,22 @@
-Nov 28, 07:38 PT. Spark is running Q35. G12r is waiting on workstation commit memory. TP89 is filed and TP81 is next in the card queue.
+Nov 28, 08:03 PT. Spark is running Q35 (5,600 of 31,450 texts saved). The workstation GPU has waited 29 minutes for memory. The TP81 card is also waiting for memory, with 12.57 GiB of free commit against its 14 GiB start requirement.
 
 # Round 38 engine return
 
-At 07:19 Pacific on November 28 the Spark filler had yielded. Q31 recorded 82,548 sentence positions and its worker released the shared GPU lease after a summary-field error. Complete artifact verification and a derived summary are still owed. The Q31 source directory is preserved.
+At 07:19 Pacific on November 28 the Spark filler had yielded. Q31 exited with an error while writing its final timing summary, after saving the readings and before recording success. The exact worker released the shared GPU lease. A separate recovery verified all 84,442 original files on the workstation. Of 82,548 sentence marks, 82,546 were valid. All 1,054 loss marks were valid, and each sentence had ten finite channel scores. The original failure stands. Recovery used zero additional model calls. The derived manifest has SHA-256 `ac36cc560ab50245c49a3d06962fc27f1a4eece14695747d21f71f8ffebe5c0a`.
 
 The registered need prompt and its two alternate wordings are filed together in [R38-need-protocol.json](result-sheets/R38-need-protocol.json). The packet and R38 handoff match the supplied files. The preflight archive is filed under `docs/exchange/PREFLIGHT_2026-11-28.zip` with SHA-256 `5ecb569bb9efd5bbab15623a3bd292a0a47774547d436f0faf58b34d158cd4fa`. Its simulations describe constructed worlds.
 
-Q30 and Q33 have received source pointers on Spark. Their intake must bind the recalled-only story table and exact talk-page archive before either job may run. The permitted order puts both ahead of Q24b. The overall cutoff is November 29 at 08:00 Pacific.
+Spark can read the hash-verified recalled-only story table for Q30 and the talk-page archive for Q33. Both follow Q36 and precede the filler. Their study-specific intake and launch are pending. The cutoff is November 29 at 08:00 Pacific.
 
-Q35 saved 1,520 positions with 1,519 valid replies at 07:37 PT, with its exact native GPU lock verified. The first 100 took 37.09 seconds after loading, projecting 3.24 hours for 31,450 texts against the packet estimate of 5.8 hours. Q36 follows automatically on a verified release.
+Q35 saved 5,600 positions with 5,598 valid replies at 08:02 PT. Its worker still held the shared GPU lock. The first 100 took 37.09 seconds after loading, projecting 3.24 hours for 31,450 texts against the packet estimate of 5.8 hours. Q36 follows automatically on a verified release. Validity here means that a reply meets the answer format. Need-mark agreement awaits the second reader.
 
 G12r verified and hashed all 27,214 stopped rows, including 24,850 chat texts (22,016 valid) and 2,364 events (2,344 valid). The first unfinished zero-based ordinal is 27,214. At 07:33:55 PT, free commit was 7.31 GiB. Program and Sounding Line slot processes held 0.079 GiB and the remainder was 93.709 GiB. The minute check resumes W above 13.583 GiB. The subsequent workstation order is G16, G14r, then G13r. The G15 filler remains last.
 
 **Against, and clear.** On chat, six channel outputs decreased on change sentences and RAGE increased. The prediction that all ten would rise missed. The specified TP64, TP65 and TP70 misses and the earlier TP61 miss are recorded in [TP78](result-sheets/TP78.md).
 
 **TP89 landed.** Nineteen seven-part reports now cover TP61 through TP79, including pending measurements. An independent check verified all ten TP65 transcriptions and six crossed prediction rows. [TP89 report](result-sheets/TP89.md) · [Report index](HELD_RESULTS_DIGEST.md)
+
+**TP81 is ready for counted admission.** Two independent calculations use the same source rows and resampling draws. They must agree to 0.001 on every number and exactly on verdicts before filing. The check passed on a constructed example. A measured verdict is pending. [TP81 protocol](result-sheets/TP81.md)
 
 The Spark account verified both newly supplied corpus hashes in place. Q30 uses the recalled-only source; Q33 uses the talk-page archive. Their runners and scoring remain pending. The Q24b yield remains set.
 

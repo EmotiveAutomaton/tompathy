@@ -1,6 +1,8 @@
 """Verify the Q31 blog return and compare the jointly saved sentence marks by author."""
 
+import hashlib
 import json
+import zipfile
 from collections import Counter
 from pathlib import Path
 
@@ -38,9 +40,16 @@ def parents(ids, openings):
     return np.array(owners)
 
 
-def batches(directory, arm, count, config, role, width, check, artifacts=None):
+def batches(
+    directory, arm, count, config, role, width, check, artifacts=None, archive=None
+):
     def original(file):
         name = arm + "/" + file
+        if archive is not None:
+            raw = archive.read(name)
+            if hashlib.sha256(raw).hexdigest() != artifacts[name]:
+                raise ValueError("Original Q31 archive member differs")
+            return json.loads(raw)
         return read(
             bound(directory / name, artifacts[name])
             if artifacts is not None
@@ -63,7 +72,15 @@ def batches(directory, arm, count, config, role, width, check, artifacts=None):
         modelPin=modelpin,
     ):
         raise ValueError("Unexpected prompt, model, roster or options")
-    if len(list((directory / arm).glob("from-*.json"))) != (count + width - 1) // width:
+    batch_count = (
+        sum(
+            n.startswith(arm + "/from-") and n.endswith(".json")
+            for n in archive.namelist()
+        )
+        if archive is not None
+        else len(list((directory / arm).glob("from-*.json")))
+    )
+    if batch_count != (count + width - 1) // width:
         raise ValueError("Incomplete batch inventory")
     for i in range(0, count, width):
         if i % 128 == 0:
@@ -75,6 +92,35 @@ def batches(directory, arm, count, config, role, width, check, artifacts=None):
 
 
 def prepare(out, check):
+    recovery = ROOT.parent / "day-20261128/Q31-recovery"
+    if (
+        not (ROOT / "Q31-transfer.json").exists()
+        and (recovery / "local-verification.json").is_file()
+    ):
+        check()
+        proof = read(recovery / "local-verification.json")
+        derived = read(bound(recovery / "derived.json", proof["sourcePin"]))
+        if (
+            derived["status"] != "outputs-verified-after-summary-failure"
+            or derived["newInference"]
+            or derived["originalExit"] != 1
+            or derived["sourceRegistration"] != REG
+            or derived["release"]["owner"] != derived["owner"]
+            or derived["release"]["exitCode"] != 1
+            or not derived["release"]["childWaited"]
+            or not derived["release"]["sharedLeaseReacquired"]
+            or proof["verifiedFiles"] != len(derived["artifacts"])
+            or proof["archivePin"] != derived["archiveSha256"]
+        ):
+            raise ValueError("Q31 derived receipt or native release differs")
+        with zipfile.ZipFile(
+            bound(recovery / "original.zip", proof["archivePin"])
+        ) as z:
+            return _prepare(out, check, (derived, proof["sourcePin"], z))
+    return _prepare(out, check, None)
+
+
+def _prepare(out, check, recovered):
     cfg = read(bound(ROOT / "Q31-registration.json", REG))
     sel = ROOT / "Q31-inputs-a"
     if confirmed(sel) != cfg["selectionReceiptPin"]:
@@ -82,10 +128,30 @@ def prepare(out, check):
     intake = read(sel / "receipt.json")["result"]
     joins = read(bound(sel / "local-joins.json", intake["joinPin"]))
     plan = read(bound(sel / "selection.json", cfg["selectionPin"]))
-    transfer = read(ROOT / "Q31-transfer.json")
-    src = transfer["sourceReceiptPin"]
-    b = Path(transfer["mirror"])
-    brec = read(bound(b / "receipt.json", src))
+    archive = None
+    if recovered is None:
+        transfer = read(ROOT / "Q31-transfer.json")
+        src = transfer["sourceReceiptPin"]
+        b = Path(transfer["mirror"])
+        brec = read(bound(b / "receipt.json", src))
+        if brec["status"] != "complete":
+            raise ValueError("Expected a successful original return")
+    else:
+        derived, src, archive = recovered
+        b = None
+        transfer = {
+            "owner": derived["owner"],
+            "nativeExited": True,
+            "ownedFlockReleased": True,
+        }
+        brec = {
+            "owner": derived["owner"],
+            "artifacts": derived["artifacts"],
+            "result": {
+                **derived["verified"],
+                "intake": json.loads(archive.read("intake.json")),
+            },
+        }
     w = ROOT / "jobs/G13-Q31"
     release = read(bound(w / "released.json", WRELEASE))
     stop = read(bound(w / "failed.json", WFAIL))
@@ -95,7 +161,6 @@ def prepare(out, check):
         or not transfer["ownedFlockReleased"]
         or brec["owner"]["registration"] != REG
         or brec["owner"] != transfer["owner"]
-        or brec["status"] != "complete"
         or not proof["exitVerified"]
         or proof["releasePin"] != WRELEASE
         or proof["owner"] != release["owner"]
@@ -125,7 +190,7 @@ def prepare(out, check):
     ids = []
     labels = np.empty((n, 2), dtype=np.int8)
     for i, row in enumerate(
-        batches(b, "sentence", n, cfg, "B", width, check, artifacts)
+        batches(b, "sentence", n, cfg, "B", width, check, artifacts, archive)
     ):
         ids.append(row["id"])
         labels[i] = decode(row)
@@ -149,7 +214,9 @@ def prepare(out, check):
     loss = Counter()
     parse = template("loss")[2]
     for row, (key, _) in zip(
-        batches(b, "loss", len(plan["loss"]), cfg, "B", width, check, artifacts),
+        batches(
+            b, "loss", len(plan["loss"]), cfg, "B", width, check, artifacts, archive
+        ),
         plan["loss"],
         strict=True,
     ):
@@ -198,5 +265,10 @@ def prepare(out, check):
         "tables": tables,
         "draws": 2000,
     }
+    if recovered is not None:
+        result.update(
+            BReceiptKind="verified outputs after original summary failure",
+            BOriginalExit=1,
+        )
     write(out / "table.json", result)
     return result

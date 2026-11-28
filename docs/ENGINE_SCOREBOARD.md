@@ -1,5 +1,7 @@
 # Engine scoreboard
 
+**November 28 · TP89.** All 19 earlier cards now have seven-part reports. The audit checked ten channel estimates and six predictions that ran against their registered direction. Pending rows retain their original status. [E-TP89-20261128](exchange/result-sheets/TP89.md)
+
 **November 28 · TP61.** At five openings per half, the trained heads repeated at r = 0.319. Their top-ten matching gain was 3.7% [2.0%, 5.3%], inside the rotated control band [2.9%, 5.4%]. [E-TP61-DATE-MATCHING-20261128](exchange/result-sheets/TP61.md)
 
 **November 28 · TP61.** The same group ranked highest for 45.4% of 5,409 writers, against 15.7% under random dealing. The excess was 29.7% [28.3%, 30.9%], above the rotated band [21.0%, 27.8%]. [E-TP61-HIGHEST-20261128](exchange/result-sheets/TP61.md)

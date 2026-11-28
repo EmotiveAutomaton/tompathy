@@ -1,6 +1,6 @@
 # ToMpathy status
 
-**November 28 · Round 38.** Q35 started on Spark and G12r verified 27,214 existing replies before entering its memory wait. TP89 audited the 19 Round 37 reports. [Current return](docs/exchange/THEORY_RETURN_2026-11-29.md) · [TP89](docs/exchange/result-sheets/TP89.md)
+**November 28 · Round 38.** Q35 saved 5,600 need marks on Spark. G12r verified 27,214 existing workstation replies and is waiting for memory. TP89 filed the 19 earlier reports. The two TP81 calculations are ready for admission. All 84,442 original Q31 files passed recovery verification after its final summary failed. [Current return](docs/exchange/THEORY_RETURN_2026-11-29.md) · [TP89](docs/exchange/result-sheets/TP89.md)
 
 **November 28 · TP61.** At five openings per half, the trained heads repeated at r = 0.319. Their top-ten matching gain was 3.7% [2.0%, 5.3%], inside the rotated control band [2.9%, 5.4%]. [E-TP61-DATE-MATCHING-20261128](docs/exchange/result-sheets/TP61.md)
 

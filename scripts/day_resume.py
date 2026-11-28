@@ -194,7 +194,7 @@ def workstation(root, old, job, out, guard, thermal, cfg):
             cfg31 = original(old, "G13-Q31", cfg)
             selection = old / "Q31-selection.json"
             gpu.require_pin(selection, cfg31["selectionPin"])
-            loss, rows, census = calendar(
+            _, rows, census = calendar(
                 lane.read(selection),
                 old.parent / "week-20261122/Q20-inputs-a/spark-inputs",
                 teacher.sentences,
@@ -203,10 +203,6 @@ def workstation(root, old, job, out, guard, thermal, cfg):
             if census != cfg31["roster"]:
                 raise ValueError("Q31 blog roster differs")
             yield "G13-Q31", "sentence", "sentence", rows
-            # The stopped job had not yet opened its loss arm.
-            if (old / "jobs/G13-Q31/loss").exists():
-                raise ValueError("Unexpected source loss arm needs binding")
-            yield None, "loss", "loss", loss
 
     summaries = {}
     for previous, arm, kind, items in arms():
@@ -237,6 +233,13 @@ def workstation(root, old, job, out, guard, thermal, cfg):
             ):
                 raise ValueError("Ordered inputs, model or prompt changed")
             base = scan(source, items, kind, check=control)
+            if previous == "G13-Q29":
+                # Verify the older combined roster first. Only forum and blog
+                # sentences are commissioned for today's continuation.
+                forum_count = cfg["originals"][previous]["forumSentences"]
+                if not base["nextOrdinal"] <= forum_count <= len(items):
+                    raise ValueError("Stopped prefix extends beyond the forum roster")
+                items = items[:forum_count]
             lane.write(
                 out / (arm + "-prefix.json"),
                 {

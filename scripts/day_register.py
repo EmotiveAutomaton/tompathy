@@ -18,9 +18,10 @@ def protocol():
     return {kind: rapid_marks.protocol(kind) for kind in ("need", "need2", "need3")}
 
 
-def freeze(machine):
+def freeze(machine, late=False):
     commit = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
-    folder = ROOT / "code" / commit
+    root = ROOT / "late" if late else ROOT
+    folder = root / "code" / commit
     folder.mkdir(parents=True, exist_ok=True)
     names = [
         "day_gpu",
@@ -73,7 +74,16 @@ def freeze(machine):
             cfg["originals"][job]["protocol"] = lane.pin(
                 out / ("sentence" if job == "G13-Q31" else "W") / "protocol.json"
             )
-    dest = ROOT / (machine + ".json")
+            if job == "G13-Q29":
+                cfg["originals"][job]["forumSentences"] = lane.read(
+                    OLD / "Q29-inputs/manifest.json"
+                )["counts"]["go"]["sentences"]
+    if late:
+        cfg["predecessor"] = {
+            "name": "G14r",
+            "registration": lane.pin(ROOT / "workstation.json"),
+        }
+    dest = root / (machine + ".json")
     if dest.exists() and lane.read(dest) != cfg:
         raise ValueError("Registration path already belongs to a different snapshot")
     if not dest.exists():
@@ -90,5 +100,7 @@ if __name__ == "__main__":
         PROTOCOL.write_text(data, encoding="utf8", newline="\n")
     elif mode in {"spark", "workstation"}:
         freeze(mode)
+    elif mode == "late":
+        freeze("workstation", late=True)
     else:
         sys.exit("Expected protocol, spark or workstation")

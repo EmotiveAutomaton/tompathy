@@ -20,7 +20,7 @@ WINDOWS = ("G12r", "G16", "G14r", "G13r")
 
 def check(root, old):
     gpu.check_stop(old)
-    if (root / "STOP").exists():
+    if (root / "STOP").exists() or (root.name == "late" and (root.parent / "STOP").exists()):
         raise RuntimeError("Round 38 STOP")
 
 
@@ -158,13 +158,31 @@ def run(root, old, job, registration, cfg):
             raise
 
 
-def serve(root, old, registration, queue):
+def await_predecessor(root, old, cfg):
+    job = cfg.get("predecessor")
+    if job is None:
+        return
+    if os.name != "nt" or root.name != "late" or job["name"] != "G14r":
+        raise ValueError("Unexpected continuation host or predecessor")
+    previous = root.parent / "jobs" / job["name"]
+    gpu.require_pin(root.parent / "workstation.json", job["registration"])
+    while not (previous / "released.json").is_file():
+        check(root, old)
+        for name in ("G12r", "G16", "G14r"):
+            if (root.parent / "jobs" / name / "failed.json").is_file():
+                raise ValueError("Earlier workstation job needs an exit review")
+        time.sleep(60)
+    verified(previous, job["registration"])
+
+
+def serve(root, old, registration, queue, cfg):
     machine = "workstation" if os.name == "nt" else "spark"
     with lane.lease(root / (machine + "-dispatch.lock")):
         lane.write(
             root / (machine + "-dispatcher.json"),
             {**lane.identity(), "at": lane.now(), "registration": registration},
         )
+        await_predecessor(root, old, cfg)
         for job in queue:
             out = root / "jobs" / job
             if out.exists():
@@ -254,10 +272,13 @@ if __name__ == "__main__":
     for name, digest in cfg["code"].items():
         gpu.require_pin(folder / name, digest)
     queue = WINDOWS if os.name == "nt" else SPARK
+    if cfg.get("predecessor"):
+        queue = ("G13r",)
     if args.action == "serve":
-        serve(root, old, args.registration, queue)
+        serve(root, old, args.registration, queue, cfg)
     elif args.action in queue:
         try:
+            await_predecessor(root, old, cfg)
             run(root, old, args.action, args.registration, cfg)
         except lane.Busy:
             sys.exit(74)

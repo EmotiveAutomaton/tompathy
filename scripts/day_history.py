@@ -45,7 +45,7 @@ DATA = {
     67: (
         "Does PRIDE vary with who brought about the rise?",
         f"{ED} {EVENT}",
-        "Five assigned chat words in the original responsibility arm. Counts by word appear below.",
+        "Four assigned chat words in the original responsibility arm: proud, impressed, confident and grateful. Counts by word appear below.",
     ),
     68: (
         "Is embarrassment better read by a pair or its own head?",
