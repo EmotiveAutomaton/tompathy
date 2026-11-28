@@ -59,6 +59,7 @@ def run(
     filler_registration=None,
     released_workstation=False,
     after_g14_stop=False,
+    memory_stop_pins=None,
 ):
     import hashlib
     import json
@@ -72,6 +73,22 @@ def run(
         or filler_registration
     ):
         raise ValueError("Only G13-Q29 can follow the verified G14 memory stop")
+    if memory_stop_pins and (
+        os.name != "nt"
+        or not released_workstation
+        or after_g14_stop
+        or not (blog_registration or filler_registration)
+        or len(memory_stop_pins) != 2
+        or not all(re.fullmatch("[0-9a-f]{64}", p) for p in memory_stop_pins)
+    ):
+        raise ValueError(
+            "A released workstation stage and both exact memory-stop file hashes are required"
+        )
+    if after_g14_stop:
+        memory_stop_pins = (
+            "56e6c128806ede0aa60b3595d760a5249d80e71df675717324289c458af613e9",
+            "4014a51add3281982cdd459e230c7d0e0488ae3f4b0489e74f827617cde7e923",
+        )
     if filler_registration:
         cfgpath = root / "G15-registration.json"
     else:
@@ -179,8 +196,8 @@ def run(
     if released_workstation and not win:
         raise ValueError("Release-only continuation belongs to the workstation")
     route = (
-        "-after-G14-stop"
-        if after_g14_stop
+        f"-after-{prior}-stop"
+        if memory_stop_pins
         else ("-after-G12-stop" if released_workstation else "")
     )
     ctl = root / (machine + suffix + route)
@@ -238,32 +255,27 @@ def run(
             release = lane.read(previous / "released.json")
             if (
                 release["owner"] != old_owner
-                or release["exitCode"] != int(after_g14_stop)
+                or release["exitCode"] != int(bool(memory_stop_pins))
                 or not release["sharedLeaseReacquired"]
                 or old_owner["job"] != prior
                 or old_owner["registration"] != predecessor_registration
                 or not release["childWaited"]
             ):
                 raise ValueError("Cannot advance beyond an unverified predecessor")
-            if after_g14_stop:
+            if memory_stop_pins:
                 from rapid_windows_follow import Process
 
-                worker.require_pin(
-                    previous / "failed.json",
-                    "56e6c128806ede0aa60b3595d760a5249d80e71df675717324289c458af613e9",
-                )
-                worker.require_pin(
-                    previous / "released.json",
-                    "4014a51add3281982cdd459e230c7d0e0488ae3f4b0489e74f827617cde7e923",
-                )
+                worker.require_pin(previous / "failed.json", memory_stop_pins[0])
+                worker.require_pin(previous / "released.json", memory_stop_pins[1])
                 failure = lane.read(previous / "failed.json")
                 if (
                     failure["owner"] != old_owner
                     or failure["error"] != "Available commit reached the 8 GiB floor"
-                    or not release["nativeExited"]
+                    or (previous / "complete.json").exists()
+                    or (previous / "receipt.json").exists()
                 ):
                     raise ValueError(
-                        "G14 failure differs from the witnessed memory stop"
+                        "Predecessor failure differs from the witnessed memory stop"
                     )
                 try:
                     handle = Process(old_owner["pid"], old_owner["createdTicks"])
@@ -275,10 +287,11 @@ def run(
                 else:
                     with contextlib.closing(handle):
                         if handle.dll.WaitForSingleObject(handle.handle, 0) != 0:
-                            raise ValueError("The original G14 worker has not exited")
-                resident = (
-                    lane.read(previous / "W/first100.json")["residentBytes"] / 2**30
-                )
+                            raise ValueError("The original worker has not exited")
+                # All successor jobs use the same pinned W model. Its completed
+                # G14 pilot is also available when a later arm stops during loading.
+                pilot = root / "jobs/G14/W/first100.json"
+                resident = lane.read(pilot)["residentBytes"] / 2**30
                 while True:
                     check()
                     available = lane.commit_free_gib()
@@ -423,6 +436,9 @@ if __name__ == "__main__":
     parser.add_argument("--verify-only", action="store_true")
     parser.add_argument("--released-workstation", action="store_true")
     parser.add_argument("--after-g14-stop", action="store_true")
+    parser.add_argument(
+        "--after-memory-stop", nargs=2, metavar=("FAILURE_PIN", "RELEASE_PIN")
+    )
     registrations = parser.add_mutually_exclusive_group()
     registrations.add_argument("--blog-registration")
     registrations.add_argument("--filler-registration")
@@ -434,6 +450,7 @@ if __name__ == "__main__":
         args.filler_registration,
         args.released_workstation,
         args.after_g14_stop,
+        args.after_memory_stop,
     )
     if proof:
         print(proof)
