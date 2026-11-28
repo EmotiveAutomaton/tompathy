@@ -1,5 +1,7 @@
 # Engine scoreboard
 
+**November 28 · TP61.** At five openings per half, the trained heads repeated at r = 0.319. Their top-ten matching gain was 3.7% [2.0%, 5.3%], inside the rotated control band [2.9%, 5.4%]. [E-TP61-DATE-MATCHING-20261128](exchange/result-sheets/TP61.md)
+
 **November 28 · TP61.** The same group ranked highest for 45.4% of 5,409 writers, against 15.7% under random dealing. The excess was 29.7% [28.3%, 30.9%], above the rotated band [21.0%, 27.8%]. [E-TP61-HIGHEST-20261128](exchange/result-sheets/TP61.md)
 
 **November 28 · TP73.** Across 432 authors and 8,640 openings, B/W agreement on author means was 0.955 [0.943, 0.965] for unpleasantness and 0.382 [0.283, 0.475] for social norms. [E-TP73-PAIRED-20261128](exchange/result-sheets/TP73.md)
