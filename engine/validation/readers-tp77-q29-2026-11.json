@@ -1,0 +1,181 @@
+{
+  "BReceipt": "87208aafd6bc6345d6a8a3babf98e648d323b93823289b617d01cceb7c66653e",
+  "BResponsesPin": "a07ba4bbf954549e67727d67f44a09fc8ad86b5b6edbbaee43b520e8e5ca379f",
+  "WFailure": "d69e33f2a43a948795399ad397216a5939ec7bcb08b5848f23fc4bea9c1d3d8c",
+  "WRelease": "06abcdf4181755b2456c1f007fa417fa24e514518541b98e16b767b71e5f67d4",
+  "WResponsesPin": "412ec5c914c69a237bd16eca233cfe0597a89ee60a5efd10bd3707a82d23ad1d",
+  "alignedPin": "76701ad32c43fb019929ce5ba3bb8d25eadbe4ceb984b8e60c99467cfd793446",
+  "coverage": {
+    "go": {
+      "B": {
+        "ahead": 614,
+        "already": 1573,
+        "none": 15049,
+        "ongoing": 519,
+        "valid": 17755
+      },
+      "W": {
+        "ahead": 649,
+        "already": 936,
+        "none": 15476,
+        "ongoing": 63,
+        "valid": 17124
+      },
+      "WSaved": 17124,
+      "emptyReports": 0,
+      "reports": 11571,
+      "sentences": 17755
+    },
+    "isear": {
+      "B": {
+        "ahead": 510,
+        "already": 6539,
+        "none": 13654,
+        "ongoing": 544,
+        "valid": 21247
+      },
+      "W": {
+        "ahead": 0,
+        "already": 0,
+        "none": 0,
+        "ongoing": 0,
+        "valid": 0
+      },
+      "WSaved": 0,
+      "emptyReports": 0,
+      "reports": 7666,
+      "sentences": 21247
+    }
+  },
+  "draws": 2000,
+  "tables": {
+    "change": {
+      "BOnly": 0,
+      "CW": "weak",
+      "WOnly": 0,
+      "atOrAboveUsable": 0.0004997501249375312,
+      "atOrBelowUsable": 1.0,
+      "atOrBelowWeakFloor": 0.0004997501249375312,
+      "bootstrapSE": 0.009789228861527721,
+      "bothMissing": 0,
+      "clusters": 9735,
+      "contingency": [
+        [
+          14152,
+          352
+        ],
+        [
+          1324,
+          1296
+        ]
+      ],
+      "interval": [
+        0.5356700227773723,
+        0.5727130163138756
+      ],
+      "jointlyValid": 17124,
+      "levels": [
+        "no change",
+        "change"
+      ],
+      "roster": 17124,
+      "validDraws": 2000,
+      "value": 0.5546943018147233
+    },
+    "when": {
+      "BOnly": 0,
+      "CW": "weak",
+      "WOnly": 0,
+      "atOrAboveUsable": 0.0004997501249375312,
+      "atOrBelowUsable": 1.0,
+      "atOrBelowWeakFloor": 0.0004997501249375312,
+      "bootstrapSE": 0.009382571106295895,
+      "bothMissing": 0,
+      "clusters": 9735,
+      "contingency": [
+        [
+          14152,
+          243,
+          100,
+          9
+        ],
+        [
+          221,
+          348,
+          21,
+          4
+        ],
+        [
+          781,
+          31,
+          711,
+          1
+        ],
+        [
+          322,
+          27,
+          104,
+          49
+        ]
+      ],
+      "interval": [
+        0.5052192369317877,
+        0.5410928418064197
+      ],
+      "jointlyValid": 17124,
+      "levels": [
+        "none",
+        "ahead",
+        "already",
+        "ongoing"
+      ],
+      "roster": 17124,
+      "validDraws": 2000,
+      "value": 0.523053087959221
+    },
+    "whose": {
+      "BOnly": 0,
+      "CW": "weak",
+      "WOnly": 0,
+      "atOrAboveUsable": 0.0004997501249375312,
+      "atOrBelowUsable": 1.0,
+      "atOrBelowWeakFloor": 0.0004997501249375312,
+      "bootstrapSE": 0.00900165701715862,
+      "bothMissing": 0,
+      "clusters": 9735,
+      "contingency": [
+        [
+          14152,
+          113,
+          239
+        ],
+        [
+          237,
+          170,
+          5
+        ],
+        [
+          1087,
+          396,
+          725
+        ]
+      ],
+      "interval": [
+        0.44675602686535165,
+        0.48151002496961476
+      ],
+      "jointlyValid": 17124,
+      "levels": [
+        "nobody",
+        "writer",
+        "someone_else"
+      ],
+      "roster": 17124,
+      "validDraws": 2000,
+      "value": 0.46394080005700833
+    }
+  },
+  "sourceReceiptPin": "820b8b5012480e1a0061474fcb138b81c56613f53f8b3ea3056b554182d25b4d",
+  "ledger": "E-TP77-Q29-20261128",
+  "limit": "The overlap follows the original forum order up to the workstation memory stop. Full-panel agreement and ISEAR reliability are unavailable."
+}

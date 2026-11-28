@@ -4,6 +4,7 @@ Reviewed the engine returns from the current two-day packet back to the October 
 
 | Report | Date | Class | Earlier disposition | Aggregate source | Action or outstanding requirement |
 | --- | --- | --- | --- | --- | --- |
+| [TP77-Q29](r48/TP77-Q29.md) | 2026-11-28 | P | New Round 37 reader comparison. | [readers-tp77-q29-2026-11.json](../../engine/validation/readers-tp77-q29-2026-11.json) · [rapid_q29_agreement.py](../../scripts/rapid_q29_agreement.py) | Report generated from the released paired counts and estimates. |
 | [TP77-responsibility](r48/TP77-responsibility.md) | 2026-11-27 | P | New Round 37 reader comparison. | [readers-tp77-responsibility-2026-11.json](../../engine/validation/readers-tp77-responsibility-2026-11.json) · [rapid_responsibility.py](../../scripts/rapid_responsibility.py) | Report generated from the released paired counts and estimates. |
 | [TP76](r48/TP76.md) | 2026-11-27 | P | withheld: Q30 source access pending | [r48-legacy-2026-11.json](../../engine/validation/r48-legacy-2026-11.json) | Full figures are due after registered scoring in place. Spark needs a readable route to the held table. Stories stay at source, without copies or quotations. |
 | [TP66-long](r48/TP66-long.md) | 2026-11-27 | P | withheld: Q30 source access pending | [r48-legacy-2026-11.json](../../engine/validation/r48-legacy-2026-11.json) | Full figures are due after registered scoring in place. Spark needs a readable route to the held table. Stories stay at source, without copies or quotations. |
