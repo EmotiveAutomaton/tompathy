@@ -1,5 +1,7 @@
 # ToMpathy status
 
+**November 28 · TP65.** Among 11,157 complete forum comments, B marked both timings in 43. SADNESS was lower ahead than after a change, difference -0.054 [-0.102, -0.005]. On sentences where the readers agreed, the difference was 0.030 [-0.074, 0.097]. [E-TP65-Q29-20261128](docs/exchange/result-sheets/TP65.md)
+
 **November 28 · TP77.** On the saved forum prefix, B/W kappa for sentence timing was 0.523 [0.505, 0.541] on 17,124 paired sentences. ISEAR has 21,247 valid B readings and zero W readings. [E-TP77-Q29-20261128](docs/exchange/result-sheets/TP77.md)
 
 **November 27 · TP77.** Across 6,600 recalled events from 2,379 writers, B’s own-responsibility rating correlated 0.614 [0.598, 0.632] with the writer’s rating. The two gave the same 1–5 answer on 43.2% of events. [E-TP77-RESPONSIBILITY-20261127](docs/exchange/result-sheets/TP77.md)

@@ -781,6 +781,79 @@ def new_sentence_reports(s):
         [aggregate(stem), "scripts/rapid_q29_agreement.py"],
     )
 
+    stem = "readers-tp65-q29"
+    if aggregate(stem) not in s.files(VALID):
+        return
+    r = s.tables(stem)
+    f = r["forum"]
+    contrasts = (
+        "changeMinusNeither",
+        "aheadMinusNeither",
+        "landedMinusNeither",
+        "aheadMinusLanded",
+    )
+    labels = [
+        "Change minus neither",
+        "Ahead minus neither",
+        "Landed minus neither",
+        "Ahead minus landed",
+    ]
+    rows = []
+    counts = []
+    for arm, panel in f["tables"].items():
+        for channel in r["outputs"]:
+            rows.append(
+                [
+                    arm,
+                    channel,
+                    *[
+                        measured(panel["contrasts"][k]["outputs"][channel])
+                        for k in contrasts
+                    ],
+                ]
+            )
+        for k, label in zip(contrasts, labels, strict=True):
+            c = panel["contrasts"][k]
+            counts.append(
+                [
+                    arm,
+                    label,
+                    c["eligibleSentences"],
+                    c["eligibleReports"],
+                    c["reportsWithBothClasses"],
+                    c["writersWithBothClasses"],
+                ]
+            )
+    primary = f["tables"]["B"]["contrasts"]["aheadMinusLanded"]
+    both = f["tables"]["agreement"]["contrasts"]["aheadMinusLanded"]
+    yield Report(
+        "TP65-Q29",
+        date.fromisoformat(r["ledger"][-8:]).isoformat(),
+        "Do channel readings differ between look-ahead and landed forum sentences?",
+        "SADNESS was predicted higher on landed sentences. The six channel-specific timing predictions and the change-versus-neither comparison were registered before Q29.",
+        "Held-out GoEmotions forum comments. " + ISEAR,
+        f"{f['sentences']:,} sentences in {f['reports']:,} complete comments and {f['writers']:,} author clusters. {f['lastReportSentencesExcluded']} sentences from incomplete comments excluded.",
+        table(["Reading", "Channel", *labels], rows)
+        + "\n\n"
+        + table(
+            [
+                "Reading",
+                "Contrast",
+                "Eligible sentences",
+                "Eligible comments",
+                "Comments with both classes",
+                "Author clusters with both",
+            ],
+            counts,
+        )
+        + "\n\nValues are position-adjusted within-comment differences with 95% intervals from 2,000 whole-writer resamples. Counts and intervals come from the released table.",
+        "descriptive",
+        f"SADNESS ahead minus landed {measured(primary['outputs']['SADNESS'])} using B and {measured(both['outputs']['SADNESS'])} on agreement.",
+        r["limit"],
+        f"ISEAR has {r['coverage']['isear']['B']['valid']:,} valid B marks and no W marks. Independent readings would be needed for a reliability-gated contrast. Q29 did not score worry.",
+        [aggregate(stem), "scripts/rapid_q29_contrasts.py"],
+    )
+
 
 def build(s):
     seed = {
@@ -848,7 +921,9 @@ def build(s):
             next_step = "All received statistical quantities are releasable. Source-owned dictionary arrays were outside the delivery."
         elif r.code.startswith("TP77-"):
             hold = "New Round 37 reader comparison."
-            next_step = "Report generated from the released paired counts and estimates."
+            next_step = (
+                "Report generated from the released paired counts and estimates."
+            )
         elif r.code in ("TP66-long", "TP76", "TMP2-source", "TP23-base", "TP54"):
             hold, next_step = r.status, r.held
         files = " · ".join(f"[{Path(p).name}](../../{p})" for p in r.files if p != SEED)

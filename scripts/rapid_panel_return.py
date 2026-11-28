@@ -160,10 +160,85 @@ def sentences(r):
     )
 
 
+def forum_contrasts(r):
+    f = r["forum"]
+    arms = f["tables"]
+    if set(arms) != {"B", "W", "agreement"} or r["draws"] != 2000:
+        raise ValueError("Unexpected forum contrast design")
+    if (
+        f["sentences"] + f["lastReportSentencesExcluded"]
+        != r["coverage"]["go"]["WSaved"]
+        or sum(arms["B"]["classCounts"].values()) + arms["B"]["outside"]
+        != f["sentences"]
+    ):
+        raise ValueError("Incomplete forum analysis census")
+    lines = [
+        "| Reading | Reports with both timings | SADNESS, ahead minus landed | FEAR, ahead minus landed |",
+        "|---|---:|---:|---:|",
+    ]
+    for name in ("B", "W", "agreement"):
+        row = arms[name]["contrasts"]["aheadMinusLanded"]
+        if set(row["outputs"]) != set(r["outputs"]):
+            raise ValueError("Incomplete channel contrast")
+        lines.append(
+            f"| {name} | {row['reportsWithBothClasses']:,} | {interval(row['outputs']['SADNESS'])} | {interval(row['outputs']['FEAR'])} |"
+        )
+    primary = arms["B"]["contrasts"]["aheadMinusLanded"]
+    both = arms["agreement"]["contrasts"]["aheadMinusLanded"]
+    brief = (
+        f"Among {f['reports']:,} complete forum comments, B marked both timings in {primary['reportsWithBothClasses']}. "
+        f"SADNESS was lower ahead than after a change, difference {interval(primary['outputs']['SADNESS'])}. "
+        f"On sentences where the readers agreed, the difference was {interval(both['outputs']['SADNESS'])}."
+    )
+    return (
+        brief,
+        lines,
+        "All three B/W reliability checks were weak on this source-order prefix. These within-comment estimates are descriptive. ISEAR has no paired timing contrast, and Q29 has no sentence worry scores.",
+    )
+
+
+# stage: renderer, aggregate fields, question, registered comparison, claim IDs.
+PANELS = {
+    "TP63-features": (
+        features,
+        "originalReceipt readerReceipt readerProtocol reports writers targets bootstrapDraws bars outputs",
+        "Do B’s eight event ratings track writers’ self-rated traits?",
+        "Rotated family and trait-specific bars.",
+        ["P5", "S3"],
+    ),
+    "TP77-responsibility": (
+        responsibility,
+        "target generationPin BReceipt WRelease WFailure ratingPins draws tables",
+        "How closely do the readers’ own-responsibility ratings agree with writers’ answers?",
+        "Descriptive human check on a common 1–5 scale.",
+        ["T11"],
+    ),
+    "TP77-Q29": (
+        sentences,
+        "BReceipt WFailure WRelease BResponsesPin WResponsesPin alignedPin coverage tables draws",
+        "How closely do B and W agree on the new sentence marks?",
+        "CW thresholds on the observed overlap only.",
+        ["T2", "T11"],
+    ),
+    "TP77-wordings": (
+        wordings,
+        "readerReceipts protocols draws tables inputManifest",
+        "How sensitive are standing judgments to reader and prompt wording?",
+        "Descriptive reader and wording checks.",
+        ["T2", "T11"],
+    ),
+    "TP65-Q29": (
+        forum_contrasts,
+        "agreementReceipt coverage forum isear outputs draws",
+        "How do channel scores differ on look-ahead and landed forum sentences?",
+        "Weak CW marks allow descriptive comparisons on the observed prefix.",
+        ["A1", "T2", "T3"],
+    ),
+}
+
+
 def file(stage, states):
-    is_feature = stage == "TP63-features"
-    human = stage == "TP77-responsibility"
-    sentence = stage == "TP77-Q29"
+    renderer, fields, question, bar, claims = PANELS[stage]
     card = stage.split("-")[0]
     sheet = Path(f"docs/exchange/result-sheets/{card}.md")
     out = ROOT / (stage + "-a")
@@ -178,53 +253,17 @@ def file(stage, states):
         raise ValueError("Analysis identity or aggregate differs")
     day = datetime.fromisoformat(rec["at"]).astimezone(ZoneInfo("America/Los_Angeles"))
     ident = f"E-{stage.upper()}-{day:%Y%m%d}"
-    fields = (
-        "originalReceipt readerReceipt readerProtocol reports writers targets bootstrapDraws bars outputs"
-        if is_feature
-        else "target generationPin BReceipt WRelease WFailure ratingPins draws tables"
-        if human
-        else "BReceipt WFailure WRelease BResponsesPin WResponsesPin alignedPin coverage tables draws"
-        if sentence
-        else "readerReceipts protocols draws tables inputManifest"
-    ).split()
-    if set(r) != set(fields):
+    if set(r) != set(fields.split()):
         raise ValueError("Unexpected public aggregate fields")
-    brief, lines, limit = {
-        "TP63-features": features,
-        "TP77-wordings": wordings,
-        "TP77-responsibility": responsibility,
-        "TP77-Q29": sentences,
-    }[stage](r)
+    brief, lines, limit = renderer(r)
     file = PUBLIC / f"readers-{stage.lower()}-2026-11.json"
     put(file, {**r, "sourceReceiptPin": source, "ledger": ident, "limit": limit})
-    question = (
-        "Do B’s eight event ratings track writers’ self-rated traits?"
-        if is_feature
-        else "How closely do the readers’ own-responsibility ratings agree with writers’ answers?"
-        if human
-        else "How closely do B and W agree on the new sentence marks?"
-        if sentence
-        else "How sensitive are standing judgments to reader and prompt wording?"
-    )
-    bar = (
-        "Rotated family and trait-specific bars."
-        if is_feature
-        else "Descriptive human check on a common 1–5 scale."
-        if human
-        else "CW thresholds on the observed overlap only."
-        if sentence
-        else "Descriptive reader and wording checks."
-    )
     append(
         PUBLIC / "EVIDENCE_LEDGER.jsonl",
         {
             "id": ident,
             "date": day.date().isoformat(),
-            "claims": ["P5", "S3"]
-            if is_feature
-            else ["T11"]
-            if human
-            else ["T2", "T11"],
+            "claims": claims,
             "question": question,
             "data": file.as_posix(),
             "estimate": {"result": brief, "sourceReceiptPin": source},
@@ -267,7 +306,7 @@ def file(stage, states):
                 + f"\n\n**{day:%B %d} · {card}.** {brief} [{ident}]({link})\n\n"
                 + tail.lstrip("\n"),
             )
-    if is_feature:
+    if stage == "TP63-features":
         family_file = ROOT / "TP78-measurements.json"
         family = read(family_file)
         for key in ("TP63.analyst", "TP63.2"):
@@ -278,6 +317,15 @@ def file(stage, states):
                     + " The full feature table is recorded. The worry interval crosses the trait-specific bar."
                 )
                 row["estimate"] += " " + brief.split(" The largest")[0]
+        write(family_file, family)
+    if stage == "TP65-Q29":
+        family_file = ROOT / "TP78-measurements.json"
+        family = read(family_file)
+        for key in ("TP65.1", "TP65.2", "TP65.analyst"):
+            row = family[key]
+            marker = " Forum prefix contrasts are descriptive under CW."
+            if marker not in row["estimate"]:
+                row["estimate"] += marker
         write(family_file, family)
     write_text(SHEET, render(read(ROOT / "TP78-measurements.json")))
     note = RETURN.read_text("utf8").splitlines()
@@ -304,7 +352,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "stage",
-        choices=["TP63-features", "TP77-wordings", "TP77-responsibility", "TP77-Q29"],
+        choices=sorted(PANELS),
     )
     parser.add_argument("observations", type=Path)
     args = parser.parse_args()

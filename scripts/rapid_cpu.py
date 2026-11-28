@@ -95,6 +95,10 @@ def run(card, attempt):
                 import rapid_sentence_contrasts as study
 
                 result = study.prepare(out, check)
+            elif card == "TP65-Q29":
+                import rapid_q29_contrasts as study
+
+                result = study.prepare(out, check)
             elif card == "TP77-original":
                 import rapid_agreement as study
 
@@ -223,6 +227,7 @@ if __name__ == "__main__":
             "TP64",
             "TP65-inputs",
             "TP65",
+            "TP65-Q29",
             "TP77-original",
             "TP77-wordings",
             "TP77-Q29",
