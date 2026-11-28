@@ -1,3 +1,15 @@
+Spark is reserved for Q35 while its prompt is frozen. The workstation is waiting for the G12 prefix verification and resume code. The card queue is preparing TP89.
+
+# Round 38 engine return
+
+At 07:19 Pacific on November 28 the Spark filler had yielded. Q31 recorded 82,548 sentence positions and its worker released the shared GPU lease after a summary-field error. Complete artifact verification and a derived summary are still owed. The Q31 source directory is preserved.
+
+The registered need prompt and its two alternate wordings are filed together in [R38-need-protocol.json](result-sheets/R38-need-protocol.json). The packet and R38 handoff match the supplied files. The preflight archive is filed under `docs/exchange/PREFLIGHT_2026-11-28.zip` with SHA-256 `5ecb569bb9efd5bbab15623a3bd292a0a47774547d436f0faf58b34d158cd4fa`. Its simulations describe constructed worlds.
+
+Q30 and Q33 have received source pointers on Spark. Their intake must bind the recalled-only story table and exact talk-page archive before either job may run. The permitted order puts both ahead of Q24b. The overall cutoff is November 29 at 08:00 Pacific.
+
+## Earlier Round 37 checkpoints
+
 Nov 28 at 05:42 PT, Spark is running Q31 (70,920/82,548), the workstation GPU has no verified active ToMpathy GPU worker (stopped, last G15) after the final job reached its 8 GiB memory floor, and the card queue is waiting for Q31 agreement before the registered TP75 input preparation. The workstation can read both held corpora. The last Spark check found no in-place route to the talk pages or recalled stories.
 
 # Two-day engine return · November 27–29

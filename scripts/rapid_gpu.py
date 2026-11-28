@@ -19,6 +19,12 @@ WEEK = Path("/home/agent/tompathy-open/week-20261122")
 C = ("qwen3.5:122b", "8b9d11d807c57feb1e2ecb0d6cbf40334c37dcc3523bed5540af4f927f112a37")
 QUEUE = {"workstation": ("G12", "G14"), "spark": ("Q26", "Q34", "Q27", "Q28", "Q32")}
 HOURS = {
+    "Q35": 5.8,
+    "Q36": 1.0,
+    "G12r": 2.9,
+    "G16": 6.8,
+    "G14r": 1.9,
+    "G13r": 12.9,
     "Q26": 1,
     "Q34": 1,
     "Q27": 10.8,
@@ -110,9 +116,11 @@ def job_width(root):
     return width
 
 
-def reader_arm(out, items, role, kind, width, guard, job, arm, measured=None):
+def reader_arm(
+    out, items, role, kind, width, guard, job, arm, measured=None, *, start_at=None
+):
     folder = out / arm
-    folder.mkdir()
+    folder.mkdir(exist_ok=start_at is not None)
     prompt, schema, parse = marks.template(kind)
     model, model_pin = C if role == "C" else lane.MODELS[role]
     options = {
@@ -131,7 +139,12 @@ def reader_arm(out, items, role, kind, width, guard, job, arm, measured=None):
         inputPin=marks.digest("\n".join(r["id"] for r in items)),
         width=width,
     )
-    write(folder / "protocol.json", binding)
+    protocol_file = folder / "protocol.json"
+    if protocol_file.exists():
+        if read(protocol_file) != binding:
+            raise ValueError("Resume protocol differs from the frozen arm")
+    else:
+        write(protocol_file, binding)
     lane.core.read_model(model, model_pin)
     if lane.core.api("ps")["models"]:
         raise lane.Pause("Another resident is present before this arm")
@@ -200,10 +213,15 @@ def reader_arm(out, items, role, kind, width, guard, job, arm, measured=None):
         valid = slow = 0
         durations = []
         with ThreadPoolExecutor(max_workers=width) as pool:
-            for pos in range(0, len(items), width):
+            for pos in range(start_at or 0, len(items), width):
                 guard.check()
+                destination = folder / f"from-{pos:06d}.json"
+                if destination.exists():
+                    raise ValueError(
+                        "A committed response already occupies this ordinal"
+                    )
                 batch = list(pool.map(call, items[pos : pos + width]))
-                write(folder / f"from-{pos:06d}.json", batch)
+                write(destination, batch)
                 rows.extend(batch)
                 valid += sum(r["values"] is not None for r in batch)
                 for row in batch:
@@ -231,7 +249,10 @@ def reader_arm(out, items, role, kind, width, guard, job, arm, measured=None):
                     "residentBytes": resident,
                     "width": width,
                 }
-                if len(rows) == 100:
+                if start_at is not None:
+                    progress["nextOrdinal"] = pos + len(batch)
+                    progress["segmentStart"] = start_at
+                if len(rows) == 100 and not (folder / "first100.json").exists():
                     projected = elapsed * (measured or len(items)) / 100 / 3600
                     write(
                         folder / "first100.json",
@@ -244,7 +265,7 @@ def reader_arm(out, items, role, kind, width, guard, job, arm, measured=None):
                             else None,
                         ),
                     )
-                if len(rows) % 20 == 0 or len(rows) == len(items):
+                if len(rows) % 20 == 0 or pos + len(batch) == len(items):
                     write(out / "progress.json", progress)
         elapsed = time.monotonic() - start
         write(

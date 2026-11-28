@@ -52,6 +52,10 @@ def standing(value):
 
 
 def template(kind):
+    if kind in ("need", "need2", "need3"):
+        from day_need import template as need_template
+
+        return need_template(kind)
     if kind == "sentence":
         try:
             import tp31_teacher as teacher
