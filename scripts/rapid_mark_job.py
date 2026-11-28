@@ -16,7 +16,7 @@ def run(plan, expected):
     cfg = read(plan)
     if (
         pin(plan) != expected
-        or cfg["stage"] != "TP77-standing"
+        or cfg["stage"] not in {"TP77-standing", "TP61-highest"}
         or cfg["attempt"] not in ("a", "b", "c")
     ):
         raise ValueError("Unregistered mark analysis")
@@ -55,7 +55,10 @@ def run(plan, expected):
             card="ToMpathy-" + cfg["stage"],
         ):
             check()
-            from rapid_standing_agreement import prepare
+            if cfg["stage"] == "TP61-highest":
+                from rapid_highest_need import prepare
+            else:
+                from rapid_standing_agreement import prepare
 
             result = prepare(out, check)
             check()

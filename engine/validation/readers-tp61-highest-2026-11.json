@@ -1,0 +1,101 @@
+{
+  "TP46Receipt": "37ff959e4166418a9080d443632f137b0cf9b8e76d65e07b732d9a43e50bd401",
+  "authors": 5409,
+  "controls": {
+    "iso": {
+      "dealt": {
+        "high": 0.19059676290493383,
+        "low": 0.15502975396107427,
+        "median": 0.1705352934197833,
+        "position": "inside",
+        "trainedPercentile": 5.3
+      },
+      "difference": {
+        "high": 0.27976610249599054,
+        "low": 0.21229850699386596,
+        "median": 0.24107477724946383,
+        "position": "above",
+        "trainedPercentile": 99.9
+      },
+      "paired": {
+        "high": 0.4597938620817164,
+        "low": 0.37714457385838474,
+        "median": 0.4122758365686825,
+        "position": "inside",
+        "trainedPercentile": 96.24999999999999
+      }
+    },
+    "rot": {
+      "dealt": {
+        "high": 0.19030124843111787,
+        "low": 0.1560301288762959,
+        "median": 0.17102648738958487,
+        "position": "inside",
+        "trainedPercentile": 3.5999999999999996
+      },
+      "difference": {
+        "high": 0.277662226199351,
+        "low": 0.20968502678017062,
+        "median": 0.24158876896318537,
+        "position": "above",
+        "trainedPercentile": 99.7
+      },
+      "paired": {
+        "high": 0.45794509151414386,
+        "low": 0.3752958032908122,
+        "median": 0.4123682750970611,
+        "position": "inside",
+        "trainedPercentile": 95.89999999999999
+      }
+    }
+  },
+  "distinctOpenings": 336008,
+  "draws": 2000,
+  "groups": {
+    "Body": 4,
+    "Compassion": 1,
+    "Competence": 1,
+    "Meaning": 3,
+    "Respect": 5,
+    "acceptance": 1,
+    "familyAndContact": 2
+  },
+  "headPin": "7f5bfe1ff5ab5e4a0b93072bb7e1f54f73466ab01ade90fc2ad2c4041d12e7ae",
+  "openings": 372273,
+  "originalTP46": {
+    "dealt": 0.1507855426141617,
+    "paired": 0.34128304677389537
+  },
+  "scaleReceipt": "93f8416f1a83c622460ae864b975350f4b4220374895a187358a51a282b0f6ce",
+  "setsPerFamily": 1000,
+  "trained": {
+    "dealt": {
+      "interval": [
+        0.1555039128550601,
+        0.15909946313876558
+      ],
+      "validDraws": 2000,
+      "value": 0.15721009754802642
+    },
+    "difference": {
+      "interval": [
+        0.2834876692745301,
+        0.30924494231025756
+      ],
+      "validDraws": 2000,
+      "value": 0.29666307679103887
+    },
+    "paired": {
+      "interval": [
+        0.44074690330929944,
+        0.4666343131817342
+      ],
+      "validDraws": 2000,
+      "value": 0.45387317433906527
+    }
+  },
+  "vectorReceipt": "258d14c8405973cb7db874895a18a46e054241c3638e89d39bf73aef7941f02d",
+  "sourceReceiptPin": "2d6eca8549f755097401c9ec2c38f5af8f77d5159d24238a7e3cbaa4fa2ac706",
+  "ledger": "E-TP61-HIGHEST-20261128",
+  "limit": "The registered inside-band prediction missed on the point estimate. The lower writer interval is within one bootstrap standard error of the upper rotated threshold, leaving the comparison unresolved under CX. Repetition can reflect stable differences in writing style or subject matter."
+}

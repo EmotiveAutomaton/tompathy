@@ -1,5 +1,7 @@
 # Engine scoreboard
 
+**November 28 · TP61.** The same group ranked highest for 45.4% of 5,409 writers, against 15.7% under random dealing. The excess was 29.7% [28.3%, 30.9%], above the rotated band [21.0%, 27.8%]. [E-TP61-HIGHEST-20261128](exchange/result-sheets/TP61.md)
+
 **November 28 · TP73.** Across 432 authors and 8,640 openings, B/W agreement on author means was 0.955 [0.943, 0.965] for unpleasantness and 0.382 [0.283, 0.475] for social norms. [E-TP73-PAIRED-20261128](exchange/result-sheets/TP73.md)
 
 **November 28 · TP65.** Among 11,157 complete forum comments, B marked both timings in 43. SADNESS was lower ahead than after a change, difference -0.054 [-0.102, -0.005]. On sentences where the readers agreed, the difference was 0.030 [-0.074, 0.097]. [E-TP65-Q29-20261128](exchange/result-sheets/TP65.md)
